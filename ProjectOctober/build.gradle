@@ -50,7 +50,7 @@ gretty {
 	
   	debugSuspend = false
   	
-	contextPath = '/ajaxtest'
+	contextPath = '/ProjectOctober'
 }
 
 dependencies {
