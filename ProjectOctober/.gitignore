@@ -1,5 +1,5 @@
 /build/
-# Created by https://www.gitignore.io/api/java,eclipse,windows
+# Created by https://www.gitignore.io/api/java,windows,eclipse
 
 ### Java ###
 *.class
@@ -14,45 +14,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-
-
-### Eclipse ###
-*.pydevproject
-.metadata
-.gradle
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
-
-# External tool builders
-.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-*.launch
-
-# CDT-specific
-.cproject
-
-# Project
-.project
-
-# ClassPath
-.classpath
-
-# Java annotation processor (APT)
-.factorypath
-
-# sbteclipse plugin
-.target
-
-# TeXlipse plugin
-.texlipse
 
 
 ### Windows ###
@@ -74,3 +35,45 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+### Eclipse ###
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# Eclipse Core
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# TeXlipse plugin
+.texlipse
