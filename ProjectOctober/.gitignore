@@ -39,6 +39,11 @@ local.properties
 # CDT-specific
 .cproject
 
+# Project
+.project
+
+# ClassPath
+.classpath
 
 # Java annotation processor (APT)
 .factorypath
@@ -69,6 +74,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-.project
-.buildpath
