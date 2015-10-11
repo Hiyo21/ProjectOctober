@@ -33,7 +33,10 @@
 <title>Main</title>
 </head>
 <body>
-<h1 align="center">Head</h1>
+<h1 align="center">
+	<a href="join.jsp">회원가입</a>
+	<a href="login.jsp">로그인</a>
+</h1>
 
  <div class="container">
  	<div class="row marketing">
