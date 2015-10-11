@@ -36,7 +36,7 @@
 <title>Main</title>
 </head>
 <body>
-<s:include value="Header_test.jsp"></s:include>
+<s:include value="Header.jsp"></s:include>
 
  <div class="container">
  	<div class="row marketing">
@@ -48,23 +48,6 @@
 	   	</div>
 	   	
 	   	<div class="col-md-10">
-	  		<div class ="well">
-          <ul class="nav nav-tabs">
-          <a class="navbar-brand">24Hour+</a>
-            <li role="presentation" class="active"><a href="#location">지역</a></li>
-            <li role="presentation"><a href="#genre">장르</a></li>
-            <li role="presentation"><a href="#condition">상태</a></li>
-            <li role="presentation">
-            	<form class="navbar-form navbar-left" role="search">
-			        <div class="input-group input-group-sm">
-			          <input type="search" class="form-control" placeholder="Search" type="search">
-			          <span class="input-group-btn">
-								<button class="btn btn-default fa fa-search" type="submit"></button>
-					  </span>
-			        </div>
-			     </form>
-            </li>
-          </ul>
 	        <div class="tab-content">
 	        	<div id="location" class="tab-pane fade in active">
     				<div class="row">
