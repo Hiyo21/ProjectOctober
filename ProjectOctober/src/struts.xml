@@ -6,16 +6,33 @@
     <constant name="struts.devMode" value="true" />
 
     <package name="default" namespace="/" extends="json-default">
-    	<default-action-ref name="goToIndexPage" />
+    	<interceptors>
+    		<interceptor name="loginInterceptor" class="controller.interceptor.LoginInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginInterceptor" />
+			</interceptor-stack>    		
+    	</interceptors>
+    	
+    	<default-action-ref name="toMainPage" />
 
         <global-results>
-            <result name="login">/jsp/loginForm.jsp</result>
-            <result name="error">/jsp/gotError.jsp</result>
+            <result name="login" type="redirect">member/toLoginPage.action</result>
+            <result name="error" type="redirect">toErrorPage.action</result>
         </global-results>
 
-		<action name="goToIndexPage">
-			<result>/index.jsp</result>
+		<action name="toMainPage">
+			<result>/jsp/Main.jsp</result>
+		</action>
+		
+		<action name="toErrorPage">
+			<result>/jsp/Error.jsp</result>
 		</action>
 	</package> 
-
+	
+	<include file="controller/struts/SearchController.xml"/>
+	<include file="controller/struts/MemberController.xml"/>
+	<include file="controller/struts/CustomerController.xml"/>
+	<include file="controller/struts/EnterpriseController.xml"/>
+	<include file="controller/struts/AdminController.xml"/>
 </struts>
