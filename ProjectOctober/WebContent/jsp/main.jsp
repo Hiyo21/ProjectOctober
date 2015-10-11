@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +8,14 @@
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/freelancer/css/freelancer.css">
 
-<!-- jQuery library -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
 
 <script>
@@ -33,10 +36,7 @@
 <title>Main</title>
 </head>
 <body>
-<h1 align="center">
-	<a href="join.jsp">회원가입</a>
-	<a href="login.jsp">로그인</a>
-</h1>
+<s:include value="Header_test.jsp"></s:include>
 
  <div class="container">
  	<div class="row marketing">
@@ -56,10 +56,12 @@
             <li role="presentation"><a href="#condition">상태</a></li>
             <li role="presentation">
             	<form class="navbar-form navbar-left" role="search">
-			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="Search">
+			        <div class="input-group input-group-sm">
+			          <input type="search" class="form-control" placeholder="Search" type="search">
+			          <span class="input-group-btn">
+								<button class="btn btn-default fa fa-search" type="submit"></button>
+					  </span>
 			        </div>
-			        <button type="submit" class="btn btn-default">Submit</button>
 			     </form>
             </li>
           </ul>
