@@ -28,6 +28,14 @@
 		<action name="toErrorPage">
 			<result>/jsp/Error.jsp</result>
 		</action>
+		
+		<action name="toRegistrationPage">
+			<result>/jsp/Join.jsp</result>
+		</action>
+		
+		<action name="toLoginPage">
+			<result>/jsp/Login.jsp</result>
+		</action>
 	</package> 
 	
 	<include file="controller/struts/SearchController.xml"/>
