@@ -29,20 +29,30 @@
 	});
 </script>
 
+<style type="text/css">
+
+	.btn-default{
+		width: 110px;
+	}
+</style>
+
+<%@include file="Header.jsp"%>
 
 <title>Main</title>
 </head>
 <body>
+
+
 <h1 align="center">
 	<a href="join.jsp">회원가입</a>
-	<a href="login.jsp">로그인</a>
+	<a href="Login.jsp">로그인</a>
 </h1>
 
  <div class="container">
  	<div class="row marketing">
 		<div class="col-md-2" id="introduce">
 		   	<div class ="well">
-		     <h2>사이트 간단한 소개</h2>
+		     <h1>ASAP</h1>
 		     <h3>Made by 24Hour+</h3>
 		   	</div>
 	   	</div>
@@ -50,7 +60,7 @@
 	   	<div class="col-md-10">
 	  		<div class ="well">
           <ul class="nav nav-tabs">
-          <a class="navbar-brand">24Hour+</a>
+          <a class="navbar-brand">ASAP</a>
             <li role="presentation" class="active"><a href="#location">지역</a></li>
             <li role="presentation"><a href="#genre">장르</a></li>
             <li role="presentation"><a href="#condition">상태</a></li>
@@ -68,22 +78,22 @@
     				<div class="row">
 				      	<div class="col-md-7">	
 				      		<!-- 실제로 사용할 때는 DB에서 구역명을 가져와서 뿌리기 -->
-				      		<button type="button" class="btn btn-default btn-xs">
+				      		<button type="button" class="btn btn-default btn-md">
 							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 서울특별시
 							</button>
-							<button type="button" class="btn btn-default btn-xs">
+							<button type="button" class="btn btn-default btn-md">
 							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 부산광역시
 							</button>
-							<button type="button" class="btn btn-default btn-xs">
+							<button type="button" class="btn btn-default btn-md">
 							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 충청북도
 							</button>
-							<button type="button" class="btn btn-default btn-xs">
+							<button type="button" class="btn btn-default btn-md">
 							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 서울특별시
 							</button>
-							<button type="button" class="btn btn-default btn-xs">
+							<button type="button" class="btn btn-default btn-md">
 							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 부산광역시
 							</button>
-							<button type="button" class="btn btn-default btn-xs">
+							<button type="button" class="btn btn-default btn-md">
 							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 충청북도
 							</button>
 				      	</div>
