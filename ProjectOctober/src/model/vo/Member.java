@@ -1,13 +1,13 @@
 package model.vo;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Member {
 	private String memberEmail;
 	private String memberName;
 	private String memberPassword;
 	private String memberPhone;
-	private Date memberJoinedDate;
+	private LocalDate memberJoinedDate;
 	
 	public Member() {}
 
@@ -27,7 +27,7 @@ public class Member {
 		return memberPhone;
 	}
 
-	public Date getMemberJoinedDate() {
+	public LocalDate getMemberJoinedDate() {
 		return memberJoinedDate;
 	}
 
@@ -47,7 +47,7 @@ public class Member {
 		this.memberPhone = memberPhone;
 	}
 
-	public void setMemberJoinedDate(Date memberJoinedDate) {
+	public void setMemberJoinedDate(LocalDate memberJoinedDate) {
 		this.memberJoinedDate = memberJoinedDate;
 	}
 
@@ -59,4 +59,6 @@ public class Member {
 				.append(", memberJoinedDate=").append(memberJoinedDate).append("]");
 		return builder.toString();
 	}
+
+	
 }
