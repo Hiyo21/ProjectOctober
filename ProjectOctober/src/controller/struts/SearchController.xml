@@ -4,23 +4,24 @@
 <struts>
 	<package name="search" namespace="/search" extends="default">
 		<action name="toAreaCategoryPage">
-			
+			<result>/jsp/search/AreaCategory.jsp</result>
 		</action>
 		
 		<action name="toBusinessSectorCategoryPage">
-		
+			<result>/jsp/search/BusinessSectorCategory.jsp</result>
 		</action>
 		
 		<action name="toFeatureCategoryPage">
-		
+			<result>/jsp/search/FeatureCategory.jsp</result>
 		</action>
 		
 		<action name="toMoodCategoryPage">
-		
+			<result>/jsp/search/MoodCategory.jsp</result>
 		</action>
 		
 		<action name="searchFreeKeyword" class="controller.action.SearchAction" method="">
-		
+			<result name="success">/jsp/search/searchResult.jsp</result>
+			<result name="error" type="redirect">toErrorPage.action</result>
 		</action>
 	</package>
 

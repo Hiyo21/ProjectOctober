@@ -75,22 +75,22 @@
 						<s:if test="#session.loginId == null || #session.loginId == 'customer'">
 							<ul class="nav navbar-nav" id="test1">
 								<li>
-									<a href="toAreaCategoryPage.action">
+									<a href="${pageContext.request.contextPath}/search/toAreaCategoryPage.action">
 										<span class="nav-icon-wrap"><i class="fa fa-map-marker fa-fw"></i></span>지역검색
 									</a>
 								</li>
 								<li>
-									<a href="toBusinessSectorCategoryPage.action">
+									<a href="${pageContext.request.contextPath}/search/toBusinessSectorCategoryPage.action">
 										<span class="nav-icon-wrap"><i class="fa fa-building fa-fw"></i></span>업종검색
 									</a>
 								</li>
 								<li>
-									<a href="toFeatureCategoryPage.action">
+									<a href="${pageContext.request.contextPath}/search/toFeatureCategoryPage.action">
 										<span class="nav-icon-wrap"><i class="fa fa-road fa-fw"></i></span>특징검색
 									</a>
 								</li>
 								<li>
-									<a href="toMoodCategoryPage.action">
+									<a href="${pageContext.request.contextPath}/search/toMoodCategoryPage.action">
 										<span class="nav-icon-wrap"><i class="fa fa-leaf fa-fw"></i></span>기분/상태 검색
 									</a>
 								</li>

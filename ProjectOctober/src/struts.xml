@@ -17,8 +17,8 @@
     	<default-action-ref name="toMainPage" />
 
         <global-results>
-            <result name="login">member/toLoginPage.action</result>
-            <result name="error">toErrorPage.action</result>
+            <result name="login" type="redirect">member/toLoginPage.action</result>
+            <result name="error" type="redirect">toErrorPage.action</result>
         </global-results>
 
 		<action name="toMainPage">
@@ -30,9 +30,9 @@
 		</action>
 	</package> 
 	
-	<include file="controller/struts/SearchController.html"/>
-	<include file="controller/struts/MemberController.html"/>
-	<include file="controller/struts/CustomerController.html"/>
-	<include file="controller/struts/EnterpriseController.html"/>
-	<include file="controller/struts/AdminController.html"/>
+	<include file="controller/struts/SearchController.xml"/>
+	<include file="controller/struts/MemberController.xml"/>
+	<include file="controller/struts/CustomerController.xml"/>
+	<include file="controller/struts/EnterpriseController.xml"/>
+	<include file="controller/struts/AdminController.xml"/>
 </struts>
