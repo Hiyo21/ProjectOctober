@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.ComponentMapper" >
+
   <resultMap id="BaseResultMap" type="model.vo.Component" >
     <id column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <id column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
@@ -66,6 +67,8 @@
     <result column="REVIEW_POS_Y" property="reviewPosY" jdbcType="DECIMAL" />
     <result column="BACKGROUND_THEME" property="backgroundTheme" jdbcType="DECIMAL" />
   </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -95,6 +98,8 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -124,6 +129,8 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Base_Column_List" >
     ETP_NUM, ETP_EMAIL, LOGO, LOGO_THEME, LOGO_SIZE_X, LOGO_SIZE_Y, LOGO_POS_X, LOGO_POS_Y, 
     OUTLINE, OUTLINE_THEME, OUTLINE_SIZE_X, OUTLINE_SIZE_Y, OUTLINE_POS_X, OUTLINE_POS_Y, 
@@ -137,6 +144,8 @@
     LOCATION_SIZE_Y, LOCATION_POS_X, LOCATION_POS_Y, REVIEW, REVIEW_THEME, REVIEW_SIZE_X, 
     REVIEW_SIZE_Y, REVIEW_POS_X, REVIEW_POS_Y, BACKGROUND_THEME
   </sql>
+  
+  
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.ComponentExample" >
     select
     <if test="distinct" >
@@ -151,24 +160,32 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="model.vo.ComponentKey" >
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="model.vo.Component" >
     select 
     <include refid="Base_Column_List" />
     from HR.COMPONENT
     where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
       and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="model.vo.ComponentKey" >
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="model.vo.Component" >
     delete from HR.COMPONENT
     where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
       and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
   </delete>
+  
+  
   <delete id="deleteByExample" parameterType="model.vo.ComponentExample" >
     delete from HR.COMPONENT
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  
+  
   <insert id="insert" parameterType="model.vo.Component" >
     insert into HR.COMPONENT (ETP_NUM, ETP_EMAIL, LOGO, 
       LOGO_THEME, LOGO_SIZE_X, LOGO_SIZE_Y, 
@@ -215,6 +232,8 @@
       #{reviewPosX,jdbcType=DECIMAL}, #{reviewPosY,jdbcType=DECIMAL}, #{backgroundTheme,jdbcType=DECIMAL}
       )
   </insert>
+  
+  
   <insert id="insertSelective" parameterType="model.vo.Component" >
     insert into HR.COMPONENT
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -600,12 +619,16 @@
       </if>
     </trim>
   </insert>
+  
+  
   <select id="countByExample" parameterType="model.vo.ComponentExample" resultType="java.lang.Integer" >
     select count(*) from HR.COMPONENT
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update HR.COMPONENT
     <set >
@@ -803,6 +826,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByExample" parameterType="map" >
     update HR.COMPONENT
     set ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
@@ -872,6 +897,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.Component" >
     update HR.COMPONENT
     <set >
@@ -1062,6 +1089,8 @@
     where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
       and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
   </update>
+  
+  
   <update id="updateByPrimaryKey" parameterType="model.vo.Component" >
     update HR.COMPONENT
     set LOGO = #{logoComponent,jdbcType=DECIMAL},
@@ -1128,7 +1157,11 @@
     where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
       and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
   </update>
+  
+  
   <cache />
+  
+  
   <select resultMap="BaseResultMap" parameterType="model.vo.ComponentExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
@@ -1143,4 +1176,6 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
 </mapper>

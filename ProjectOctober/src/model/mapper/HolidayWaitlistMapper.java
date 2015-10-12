@@ -11,7 +11,7 @@ public interface HolidayWaitlistMapper {
 
     int deleteByExample(HolidayWaitlistExample example);
 
-    int deleteByPrimaryKey(Short holWtlNum);
+    int deleteByPrimaryKey(Integer holWtlNum);
 
     int insert(HolidayWaitlist record);
 
@@ -21,7 +21,7 @@ public interface HolidayWaitlistMapper {
 
     List<HolidayWaitlist> selectByExample(HolidayWaitlistExample example);
 
-    HolidayWaitlist selectByPrimaryKey(Short holWtlNum);
+    HolidayWaitlist selectByPrimaryKey(Integer holWtlNum);
 
     int updateByExampleSelective(@Param("record") HolidayWaitlist record, @Param("example") HolidayWaitlistExample example);
 

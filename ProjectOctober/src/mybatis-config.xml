@@ -4,6 +4,34 @@
 	<properties resource="db.properties" />
 
 	<typeAliases>
+		<typeAlias type="model.vo.Component" alias="Component" />
+		<typeAlias type="model.vo.ComponentExample" alias="ComponentExample" />
+		<typeAlias type="model.vo.Coupon" alias="Coupon" />
+		<typeAlias type="model.vo.CouponExample" alias="CouponExample" />
+		<typeAlias type="model.vo.Enterprise" alias="Enterprise" />
+		<typeAlias type="model.vo.EnterpriseExample" alias="EnterpriseExample" />
+		<typeAlias type="model.vo.EnterpriseWaitlist" alias="EnterpriseWaitlist" />
+		<typeAlias type="model.vo.EnterpriseWaitlistExample" alias="EnterpriseWaitlistExample" />
+		<typeAlias type="model.vo.Holiday" alias="Holiday" />
+		<typeAlias type="model.vo.HolidayExample" alias="HolidayExample" />
+		<typeAlias type="model.vo.HolidayWaitlist" alias="HolidayWaitlist" />
+		<typeAlias type="model.vo.HolidayWaitlistExample" alias="HolidayWaitlistExample" />
+		<typeAlias type="model.vo.Member" alias="Member" />
+		<typeAlias type="model.vo.MemberCode" alias="MemberCode" />
+		<typeAlias type="model.vo.MemberCodeExample" alias="MemberCodeExample" />
+		<typeAlias type="model.vo.MemberExample" alias="MemberExample" />
+		<typeAlias type="model.vo.PaymentRecord" alias="PaymentRecord" />
+		<typeAlias type="model.vo.PaymentRecordExample" alias="PaymentRecordExample" />
+		<typeAlias type="model.vo.PhotoLocation" alias="PhotoLocation" />
+		<typeAlias type="model.vo.PhotoLocationExample" alias="PhotoLocationExample" />
+		<typeAlias type="model.vo.Reservation" alias="Reservation" />
+		<typeAlias type="model.vo.ReservationExample" alias="ReservationExample" />
+		<typeAlias type="model.vo.Review" alias="Review" />
+		<typeAlias type="model.vo.ReviewExample" alias="ReviewExample" />
+		<typeAlias type="model.vo.SaleRecord" alias="SaleRecord" />
+		<typeAlias type="model.vo.SaleRecordExample" alias="SaleRecordExample" />
+		<typeAlias type="model.vo.Service" alias="Service" />
+		<typeAlias type="model.vo.ServiceExample" alias="ServiceExample" />
 	</typeAliases>
 	
 	<typeHandlers>
@@ -28,11 +56,21 @@
 	</environments>
 
 	<mappers>
-		<mapper resource="model/mapper/AdminMapper.xml"/>
-		<mapper resource="model/mapper/CustomerMapper.xml"/>
-		<mapper resource="model/mapper/EnterpriseMapper.xml"/>
-		<mapper resource="model/mapper/MemberMapper.xml"/>
-		<mapper resource="model/mapper/SearchMapper.xml"/>
+		<mapper resource="model/mapper/ComponenetMapper" />
+		<mapper resource="model/mapper/CouponMapper" />
+		<mapper resource="model/mapper/CustomerMApper" />
+		<mapper resource="model/mapper/EnterpriseMapper" />
+		<mapper resource="model/mapper/EnterpriseWaitlistMapper" />
+		<mapper resource="model/mapper/HolidayMapper" />
+		<mapper resource="model/mapper/HolidayWaitlistMapper" />
+		<mapper resource="model/mapper/MemberCodeMapper" />
+		<mapper resource="model/mapper/MemberMapper" />
+		<mapper resource="model/mapper/PaymentRecordMapper.xml"/>
+		<mapper resource="model/mapper/PhotoLocationMapper.xml"/>
+		<mapper resource="model/mapper/ReservationMapper.xml"/>
+		<mapper resource="model/mapper/ReviewMapper.xml"/>
+		<mapper resource="model/mapper/SaleRecordMapper.xml"/>
+		<mapper resource="model/mapper/ServiceMapper.xml"/>
 	</mappers>
 	
 </configuration>
