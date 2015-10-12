@@ -11,7 +11,7 @@ public interface PhotoLocationMapper {
 
     int deleteByExample(PhotoLocationExample example);
 
-    int deleteByPrimaryKey(Short photoNum);
+    int deleteByPrimaryKey(Integer photoNum);
 
     int insert(PhotoLocation record);
 
@@ -21,7 +21,7 @@ public interface PhotoLocationMapper {
 
     List<PhotoLocation> selectByExample(PhotoLocationExample example);
 
-    PhotoLocation selectByPrimaryKey(Short photoNum);
+    PhotoLocation selectByPrimaryKey(Integer photoNum);
 
     int updateByExampleSelective(@Param("record") PhotoLocation record, @Param("example") PhotoLocationExample example);
 

@@ -3,7 +3,6 @@ package model.mapper;
 import java.util.List;
 import model.vo.Component;
 import model.vo.ComponentExample;
-import model.vo.ComponentKey;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
@@ -12,7 +11,7 @@ public interface ComponentMapper {
 
     int deleteByExample(ComponentExample example);
 
-    int deleteByPrimaryKey(ComponentKey key);
+    int deleteByPrimaryKey(Component key);
 
     int insert(Component record);
 
@@ -22,7 +21,7 @@ public interface ComponentMapper {
 
     List<Component> selectByExample(ComponentExample example);
 
-    Component selectByPrimaryKey(ComponentKey key);
+    Component selectByPrimaryKey(Component key);
 
     int updateByExampleSelective(@Param("record") Component record, @Param("example") ComponentExample example);
 

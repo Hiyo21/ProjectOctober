@@ -11,7 +11,7 @@ public interface SaleRecordMapper {
 
     int deleteByExample(SaleRecordExample example);
 
-    int deleteByPrimaryKey(Short saleNum);
+    int deleteByPrimaryKey(Integer saleNum);
 
     int insert(SaleRecord record);
 
@@ -21,7 +21,7 @@ public interface SaleRecordMapper {
 
     List<SaleRecord> selectByExample(SaleRecordExample example);
 
-    SaleRecord selectByPrimaryKey(Short saleNum);
+    SaleRecord selectByPrimaryKey(Integer saleNum);
 
     int updateByExampleSelective(@Param("record") SaleRecord record, @Param("example") SaleRecordExample example);
 

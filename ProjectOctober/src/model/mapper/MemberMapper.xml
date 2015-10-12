@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.MemberMapper" >
+
+
   <resultMap id="BaseResultMap" type="model.vo.Member" >
     <id column="EMAIL" property="email" jdbcType="VARCHAR" />
     <result column="MCODE" property="memberCode" jdbcType="NUMBER" />
@@ -9,6 +11,8 @@
     <result column="PHONE" property="phone" jdbcType="VARCHAR" />
     <result column="JOINED_DATE" property="joinedDate" jdbcType="TIMESTAMP" typeHandler="model.mapper.typehandler.LocalDateHandler" />
   </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -57,6 +61,8 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -105,9 +111,13 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Base_Column_List" >
     EMAIL, MCODE, NAME, PASSWORD, PHONE, JOINED_DATE
   </sql>
+  
+  
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.MemberExample" >
     select
     <if test="distinct" >
@@ -122,22 +132,30 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from HR.MEMBER
     where EMAIL = #{email,jdbcType=VARCHAR}
   </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from HR.MEMBER
     where EMAIL = #{email,jdbcType=VARCHAR}
   </delete>
+  
+  
   <delete id="deleteByExample" parameterType="model.vo.MemberExample" >
     delete from HR.MEMBER
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  
+  
   <insert id="insert" parameterType="model.vo.Member" >
     insert into HR.MEMBER (EMAIL, MCODE, NAME, 
       PASSWORD, PHONE, JOINED_DATE
@@ -146,6 +164,8 @@
       #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{joinedDate,jdbcType=TIMESTAMP,typeHandler=model.mapper.typehandler.LocalDateHandler}
       )
   </insert>
+  
+  
   <insert id="insertSelective" parameterType="model.vo.Member" >
     insert into HR.MEMBER
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -189,12 +209,16 @@
       </if>
     </trim>
   </insert>
+  
+  
   <select id="countByExample" parameterType="model.vo.MemberExample" resultType="java.lang.Integer" >
     select count(*) from HR.MEMBER
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update HR.MEMBER
     <set >
@@ -221,6 +245,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByExample" parameterType="map" >
     update HR.MEMBER
     set EMAIL = #{record.email,jdbcType=VARCHAR},
@@ -233,6 +259,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.Member" >
     update HR.MEMBER
     <set >
@@ -254,6 +282,8 @@
     </set>
     where EMAIL = #{email,jdbcType=VARCHAR}
   </update>
+  
+  
   <update id="updateByPrimaryKey" parameterType="model.vo.Member" >
     update HR.MEMBER
     set MCODE = #{memberCode,jdbcType=NUMBER},
@@ -264,6 +294,8 @@
     where EMAIL = #{email,jdbcType=VARCHAR}
   </update>
   <cache />
+  
+  
   <select resultMap="BaseResultMap" parameterType="model.vo.MemberExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >

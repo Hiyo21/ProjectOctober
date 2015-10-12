@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.ServiceMapper" >
+
+
   <resultMap id="BaseResultMap" type="model.vo.Service" >
     <id column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
@@ -13,6 +15,8 @@
     <result column="SPECIALTY" property="specialty" jdbcType="VARCHAR" />
     <result column="SVC_COUNT" property="svcCount" jdbcType="DECIMAL" />
   </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -42,6 +46,8 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -71,10 +77,14 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Base_Column_List" >
     SVC_NUM, ETP_NUM, ETP_EMAIL, TITLE, COST, TIME, DESCRIPTION, CATEGORY, SPECIALTY, 
     SVC_COUNT
   </sql>
+  
+  
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.ServiceExample" >
     select
     <if test="distinct" >
@@ -89,13 +99,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from HR.SERVICE
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from HR.SERVICE
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </delete>
@@ -105,6 +117,8 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  
+  
   <insert id="insert" parameterType="model.vo.Service" >
     insert into HR.SERVICE (SVC_NUM, ETP_NUM, ETP_EMAIL, 
       TITLE, COST, TIME, DESCRIPTION, 
@@ -115,6 +129,8 @@
       #{category,jdbcType=VARCHAR}, #{specialty,jdbcType=VARCHAR}, #{svcCount,jdbcType=DECIMAL}
       )
   </insert>
+  
+  
   <insert id="insertSelective" parameterType="model.vo.Service" >
     insert into HR.SERVICE
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -182,12 +198,16 @@
       </if>
     </trim>
   </insert>
+  
+  
   <select id="countByExample" parameterType="model.vo.ServiceExample" resultType="java.lang.Integer" >
     select count(*) from HR.SERVICE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update HR.SERVICE
     <set >
@@ -226,6 +246,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByExample" parameterType="map" >
     update HR.SERVICE
     set SVC_NUM = #{record.svcNum,jdbcType=DECIMAL},
@@ -242,6 +264,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.Service" >
     update HR.SERVICE
     <set >
@@ -275,6 +299,8 @@
     </set>
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </update>
+  
+  
   <update id="updateByPrimaryKey" parameterType="model.vo.Service" >
     update HR.SERVICE
     set ETP_NUM = #{etpNum,jdbcType=VARCHAR},
@@ -289,6 +315,8 @@
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </update>
   <cache />
+  
+  
   <select resultMap="BaseResultMap" parameterType="model.vo.ServiceExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >

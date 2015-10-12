@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.CustomerMapper" >
+
+
   <resultMap id="BaseResultMap" type="model.vo.Customer" >
     <id column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
     <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
@@ -9,6 +11,8 @@
     <result column="GENDER" property="gender" jdbcType="VARCHAR" />
     <result column="ONECLICK" property="oneclickStatus" jdbcType="DECIMAL" />
   </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -38,6 +42,8 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -67,9 +73,13 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Base_Column_List" >
     CST_EMAIL, ADDRESS, ZIPCODE, BIRTHDAY, GENDER, ONECLICK
   </sql>
+  
+  
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.CustomerExample" >
     select
     <if test="distinct" >
@@ -84,22 +94,30 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from HR.CUSTOMER
     where CST_EMAIL = #{cstEmail,jdbcType=VARCHAR}
   </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from HR.CUSTOMER
     where CST_EMAIL = #{cstEmail,jdbcType=VARCHAR}
   </delete>
+  
+  
   <delete id="deleteByExample" parameterType="model.vo.CustomerExample" >
     delete from HR.CUSTOMER
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  
+  
   <insert id="insert" parameterType="model.vo.Customer" >
     insert into HR.CUSTOMER (CST_EMAIL, ADDRESS, ZIPCODE, 
       BIRTHDAY, GENDER, ONECLICK
@@ -108,6 +126,8 @@
       #{birthday,jdbcType=TIMESTAMP}, #{gender,jdbcType=VARCHAR}, #{oneclickStatus,jdbcType=DECIMAL}
       )
   </insert>
+  
+  
   <insert id="insertSelective" parameterType="model.vo.Customer" >
     insert into HR.CUSTOMER
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -151,12 +171,16 @@
       </if>
     </trim>
   </insert>
+  
+  
   <select id="countByExample" parameterType="model.vo.CustomerExample" resultType="java.lang.Integer" >
     select count(*) from HR.CUSTOMER
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update HR.CUSTOMER
     <set >
@@ -183,6 +207,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByExample" parameterType="map" >
     update HR.CUSTOMER
     set CST_EMAIL = #{record.cstEmail,jdbcType=VARCHAR},
@@ -195,6 +221,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.Customer" >
     update HR.CUSTOMER
     <set >
@@ -216,6 +244,8 @@
     </set>
     where CST_EMAIL = #{cstEmail,jdbcType=VARCHAR}
   </update>
+  
+  
   <update id="updateByPrimaryKey" parameterType="model.vo.Customer" >
     update HR.CUSTOMER
     set ADDRESS = #{address,jdbcType=VARCHAR},
@@ -226,6 +256,8 @@
     where CST_EMAIL = #{cstEmail,jdbcType=VARCHAR}
   </update>
   <cache />
+  
+  
   <select resultMap="BaseResultMap" parameterType="model.vo.CustomerExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
@@ -240,4 +272,6 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
 </mapper>
