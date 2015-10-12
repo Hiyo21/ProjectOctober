@@ -10,6 +10,7 @@ import model.vo.Enterprise;
 
 public class SearchAction extends ActionSupport {
 	private List<Enterprise> enterpriseList;
+	private String searchKeyword;
 	private SearchDAO searchDAO;
 	
 	public SearchAction() {
@@ -17,7 +18,7 @@ public class SearchAction extends ActionSupport {
 	}
 	
 	public String takeEnterpriseList() throws Exception{
-		
+		//searchDAO에 searchKeyword를 패러미터로 줘서 받아오게 함.
 	}
 
 	
@@ -27,6 +28,14 @@ public class SearchAction extends ActionSupport {
 
 	public void setEnterpriseList(List<Enterprise> enterpriseList) {
 		this.enterpriseList = enterpriseList;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 	
 	
