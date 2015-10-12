@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="model.mapper.MemberCodeMapper" >
+  <resultMap id="BaseResultMap" type="model.vo.MemberCode" >
+    <id column="MCODE" property="memberCode" jdbcType="NUMBER" />
+    <result column="TYPE" property="memberType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MCODE, TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.MemberCodeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.MEMBER_CODE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from HR.MEMBER_CODE
+    where MCODE = #{memberCode,jdbcType=NUMBER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from HR.MEMBER_CODE
+    where MCODE = #{memberCode,jdbcType=NUMBER}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.vo.MemberCodeExample" >
+    delete from HR.MEMBER_CODE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.vo.MemberCode" >
+    insert into HR.MEMBER_CODE (MCODE, TYPE)
+    values (#{memberCode,jdbcType=NUMBER}, #{memberType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="model.vo.MemberCode" >
+    insert into HR.MEMBER_CODE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberCode != null" >
+        MCODE,
+      </if>
+      <if test="memberType != null" >
+        TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberCode != null" >
+        #{memberCode,jdbcType=NUMBER},
+      </if>
+      <if test="memberType != null" >
+        #{memberType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.vo.MemberCodeExample" resultType="java.lang.Integer" >
+    select count(*) from HR.MEMBER_CODE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update HR.MEMBER_CODE
+    <set >
+      <if test="record.memberCode != null" >
+        MCODE = #{record.memberCode,jdbcType=NUMBER},
+      </if>
+      <if test="record.memberType != null" >
+        TYPE = #{record.memberType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update HR.MEMBER_CODE
+    set MCODE = #{record.memberCode,jdbcType=NUMBER},
+      TYPE = #{record.memberType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.vo.MemberCode" >
+    update HR.MEMBER_CODE
+    <set >
+      <if test="memberType != null" >
+        TYPE = #{memberType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MCODE = #{memberCode,jdbcType=NUMBER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.vo.MemberCode" >
+    update HR.MEMBER_CODE
+    set TYPE = #{memberType,jdbcType=VARCHAR}
+    where MCODE = #{memberCode,jdbcType=NUMBER}
+  </update>
+  <cache />
+  <select resultMap="BaseResultMap" parameterType="model.vo.MemberCodeExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.MEMBER_CODE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="model.mapper.PhotoLocationMapper" >
+  <resultMap id="BaseResultMap" type="model.vo.PhotoLocation" >
+    <id column="PHOTO_NUM" property="photoNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="USAGE" property="usage" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="webAddress" jdbcType="VARCHAR" />
+    <result column="UPLOAD_DATE" property="uploadDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PHOTO_NUM, ETP_NUM, ETP_EMAIL, USAGE, DESCRIPTION, ADDRESS, UPLOAD_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.PhotoLocationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.PHOTO_LOCATION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from HR.PHOTO_LOCATION
+    where PHOTO_NUM = #{photoNum,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from HR.PHOTO_LOCATION
+    where PHOTO_NUM = #{photoNum,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.vo.PhotoLocationExample" >
+    delete from HR.PHOTO_LOCATION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.vo.PhotoLocation" >
+    insert into HR.PHOTO_LOCATION (PHOTO_NUM, ETP_NUM, ETP_EMAIL, 
+      USAGE, DESCRIPTION, ADDRESS, 
+      UPLOAD_DATE)
+    values (#{photoNum,jdbcType=DECIMAL}, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
+      #{usage,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{webAddress,jdbcType=VARCHAR}, 
+      #{uploadDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="model.vo.PhotoLocation" >
+    insert into HR.PHOTO_LOCATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="photoNum != null" >
+        PHOTO_NUM,
+      </if>
+      <if test="etpNum != null" >
+        ETP_NUM,
+      </if>
+      <if test="etpEmail != null" >
+        ETP_EMAIL,
+      </if>
+      <if test="usage != null" >
+        USAGE,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="webAddress != null" >
+        ADDRESS,
+      </if>
+      <if test="uploadDate != null" >
+        UPLOAD_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="photoNum != null" >
+        #{photoNum,jdbcType=DECIMAL},
+      </if>
+      <if test="etpNum != null" >
+        #{etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="etpEmail != null" >
+        #{etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="usage != null" >
+        #{usage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="webAddress != null" >
+        #{webAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadDate != null" >
+        #{uploadDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.vo.PhotoLocationExample" resultType="java.lang.Integer" >
+    select count(*) from HR.PHOTO_LOCATION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update HR.PHOTO_LOCATION
+    <set >
+      <if test="record.photoNum != null" >
+        PHOTO_NUM = #{record.photoNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpNum != null" >
+        ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpEmail != null" >
+        ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usage != null" >
+        USAGE = #{record.usage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.webAddress != null" >
+        ADDRESS = #{record.webAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadDate != null" >
+        UPLOAD_DATE = #{record.uploadDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update HR.PHOTO_LOCATION
+    set PHOTO_NUM = #{record.photoNum,jdbcType=DECIMAL},
+      ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      USAGE = #{record.usage,jdbcType=VARCHAR},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      ADDRESS = #{record.webAddress,jdbcType=VARCHAR},
+      UPLOAD_DATE = #{record.uploadDate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.vo.PhotoLocation" >
+    update HR.PHOTO_LOCATION
+    <set >
+      <if test="etpNum != null" >
+        ETP_NUM = #{etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="etpEmail != null" >
+        ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="usage != null" >
+        USAGE = #{usage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="webAddress != null" >
+        ADDRESS = #{webAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadDate != null" >
+        UPLOAD_DATE = #{uploadDate,jdbcType=DATE},
+      </if>
+    </set>
+    where PHOTO_NUM = #{photoNum,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.vo.PhotoLocation" >
+    update HR.PHOTO_LOCATION
+    set ETP_NUM = #{etpNum,jdbcType=VARCHAR},
+      ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
+      USAGE = #{usage,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      ADDRESS = #{webAddress,jdbcType=VARCHAR},
+      UPLOAD_DATE = #{uploadDate,jdbcType=DATE}
+    where PHOTO_NUM = #{photoNum,jdbcType=DECIMAL}
+  </update>
+  <cache />
+  <select resultMap="BaseResultMap" parameterType="model.vo.PhotoLocationExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.PHOTO_LOCATION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
