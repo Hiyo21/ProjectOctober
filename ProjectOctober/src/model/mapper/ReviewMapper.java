@@ -11,7 +11,7 @@ public interface ReviewMapper {
 
     int deleteByExample(ReviewExample example);
 
-    int deleteByPrimaryKey(Short rvwNum);
+    int deleteByPrimaryKey(Integer rvwNum);
 
     int insert(Review record);
 
@@ -21,7 +21,7 @@ public interface ReviewMapper {
 
     List<Review> selectByExample(ReviewExample example);
 
-    Review selectByPrimaryKey(Short rvwNum);
+    Review selectByPrimaryKey(Integer rvwNum);
 
     int updateByExampleSelective(@Param("record") Review record, @Param("example") ReviewExample example);
 

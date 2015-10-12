@@ -11,7 +11,7 @@ public interface PaymentRecordMapper {
 
     int deleteByExample(PaymentRecordExample example);
 
-    int deleteByPrimaryKey(Short pmtNum);
+    int deleteByPrimaryKey(Integer pmtNum);
 
     int insert(PaymentRecord record);
 
@@ -21,7 +21,7 @@ public interface PaymentRecordMapper {
 
     List<PaymentRecord> selectByExample(PaymentRecordExample example);
 
-    PaymentRecord selectByPrimaryKey(Short pmtNum);
+    PaymentRecord selectByPrimaryKey(Integer pmtNum);
 
     int updateByExampleSelective(@Param("record") PaymentRecord record, @Param("example") PaymentRecordExample example);
 

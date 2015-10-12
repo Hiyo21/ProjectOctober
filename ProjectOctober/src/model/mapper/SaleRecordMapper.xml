@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.SaleRecordMapper" >
+
+
   <resultMap id="BaseResultMap" type="model.vo.SaleRecord" >
     <id column="SALE_NUM" property="saleNum" jdbcType="DECIMAL" />
     <result column="PMT_NUM" property="pmtNum" jdbcType="DECIMAL" />
@@ -9,6 +11,8 @@
     <result column="TIME" property="time" jdbcType="DATE" />
     <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
   </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -38,6 +42,8 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -67,9 +73,13 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Base_Column_List" >
     SALE_NUM, PMT_NUM, ETP_NUM, ETP_EMAIL, TIME, AMOUNT
   </sql>
+  
+  
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.SaleRecordExample" >
     select
     <if test="distinct" >
@@ -84,22 +94,30 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from HR.SALE_RECORD
     where SALE_NUM = #{saleNum,jdbcType=DECIMAL}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from HR.SALE_RECORD
     where SALE_NUM = #{saleNum,jdbcType=DECIMAL}
   </delete>
+  
+  
   <delete id="deleteByExample" parameterType="model.vo.SaleRecordExample" >
     delete from HR.SALE_RECORD
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  
+  
   <insert id="insert" parameterType="model.vo.SaleRecord" >
     insert into HR.SALE_RECORD (SALE_NUM, PMT_NUM, ETP_NUM, 
       ETP_EMAIL, TIME, AMOUNT
@@ -108,6 +126,8 @@
       #{etpEmail,jdbcType=VARCHAR}, #{time,jdbcType=DATE}, #{amount,jdbcType=DECIMAL}
       )
   </insert>
+  
+  
   <insert id="insertSelective" parameterType="model.vo.SaleRecord" >
     insert into HR.SALE_RECORD
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -151,12 +171,16 @@
       </if>
     </trim>
   </insert>
+  
+  
   <select id="countByExample" parameterType="model.vo.SaleRecordExample" resultType="java.lang.Integer" >
     select count(*) from HR.SALE_RECORD
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update HR.SALE_RECORD
     <set >
@@ -183,6 +207,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByExample" parameterType="map" >
     update HR.SALE_RECORD
     set SALE_NUM = #{record.saleNum,jdbcType=DECIMAL},
@@ -195,6 +221,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.SaleRecord" >
     update HR.SALE_RECORD
     <set >
@@ -216,6 +244,8 @@
     </set>
     where SALE_NUM = #{saleNum,jdbcType=DECIMAL}
   </update>
+  
+  
   <update id="updateByPrimaryKey" parameterType="model.vo.SaleRecord" >
     update HR.SALE_RECORD
     set PMT_NUM = #{pmtNum,jdbcType=DECIMAL},
@@ -226,6 +256,8 @@
     where SALE_NUM = #{saleNum,jdbcType=DECIMAL}
   </update>
   <cache />
+  
+  
   <select resultMap="BaseResultMap" parameterType="model.vo.SaleRecordExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >

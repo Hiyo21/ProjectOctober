@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.PhotoLocationMapper" >
+
+
   <resultMap id="BaseResultMap" type="model.vo.PhotoLocation" >
     <id column="PHOTO_NUM" property="photoNum" jdbcType="DECIMAL" />
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
@@ -10,6 +12,8 @@
     <result column="ADDRESS" property="webAddress" jdbcType="VARCHAR" />
     <result column="UPLOAD_DATE" property="uploadDate" jdbcType="DATE" />
   </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -39,6 +43,8 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -68,9 +74,13 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Base_Column_List" >
     PHOTO_NUM, ETP_NUM, ETP_EMAIL, USAGE, DESCRIPTION, ADDRESS, UPLOAD_DATE
   </sql>
+  
+  
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.PhotoLocationExample" >
     select
     <if test="distinct" >
@@ -85,22 +95,30 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from HR.PHOTO_LOCATION
     where PHOTO_NUM = #{photoNum,jdbcType=DECIMAL}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from HR.PHOTO_LOCATION
     where PHOTO_NUM = #{photoNum,jdbcType=DECIMAL}
   </delete>
+  
+  
   <delete id="deleteByExample" parameterType="model.vo.PhotoLocationExample" >
     delete from HR.PHOTO_LOCATION
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  
+  
   <insert id="insert" parameterType="model.vo.PhotoLocation" >
     insert into HR.PHOTO_LOCATION (PHOTO_NUM, ETP_NUM, ETP_EMAIL, 
       USAGE, DESCRIPTION, ADDRESS, 
@@ -109,6 +127,8 @@
       #{usage,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{webAddress,jdbcType=VARCHAR}, 
       #{uploadDate,jdbcType=DATE})
   </insert>
+  
+  
   <insert id="insertSelective" parameterType="model.vo.PhotoLocation" >
     insert into HR.PHOTO_LOCATION
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -158,12 +178,16 @@
       </if>
     </trim>
   </insert>
+  
+  
   <select id="countByExample" parameterType="model.vo.PhotoLocationExample" resultType="java.lang.Integer" >
     select count(*) from HR.PHOTO_LOCATION
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update HR.PHOTO_LOCATION
     <set >
@@ -193,6 +217,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByExample" parameterType="map" >
     update HR.PHOTO_LOCATION
     set PHOTO_NUM = #{record.photoNum,jdbcType=DECIMAL},
@@ -206,6 +232,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.PhotoLocation" >
     update HR.PHOTO_LOCATION
     <set >
@@ -230,6 +258,8 @@
     </set>
     where PHOTO_NUM = #{photoNum,jdbcType=DECIMAL}
   </update>
+  
+  
   <update id="updateByPrimaryKey" parameterType="model.vo.PhotoLocation" >
     update HR.PHOTO_LOCATION
     set ETP_NUM = #{etpNum,jdbcType=VARCHAR},
@@ -241,6 +271,8 @@
     where PHOTO_NUM = #{photoNum,jdbcType=DECIMAL}
   </update>
   <cache />
+  
+  
   <select resultMap="BaseResultMap" parameterType="model.vo.PhotoLocationExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >

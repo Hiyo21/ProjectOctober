@@ -11,7 +11,7 @@ public interface HolidayMapper {
 
     int deleteByExample(HolidayExample example);
 
-    int deleteByPrimaryKey(Short holNum);
+    int deleteByPrimaryKey(Integer holNum);
 
     int insert(Holiday record);
 
@@ -21,7 +21,7 @@ public interface HolidayMapper {
 
     List<Holiday> selectByExample(HolidayExample example);
 
-    Holiday selectByPrimaryKey(Short holNum);
+    Holiday selectByPrimaryKey(Integer holNum);
 
     int updateByExampleSelective(@Param("record") Holiday record, @Param("example") HolidayExample example);
 
