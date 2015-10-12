@@ -2,7 +2,7 @@ package model.vo;
 
 import java.time.LocalTime;
 
-public class Enterprise extends EnterpriseKey {
+public class EnterpriseWaitlist extends EnterpriseWaitlistKey {
     private String owner;
 
     private String superclass;

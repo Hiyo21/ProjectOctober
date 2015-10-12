@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="model.mapper.ServiceMapper" >
+  <resultMap id="BaseResultMap" type="model.vo.Service" >
+    <id column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="COST" property="cost" jdbcType="DECIMAL" />
+    <result column="TIME" property="time" jdbcType="DATE" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CATEGORY" property="category" jdbcType="VARCHAR" />
+    <result column="SPECIALTY" property="specialty" jdbcType="VARCHAR" />
+    <result column="SVC_COUNT" property="svcCount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SVC_NUM, ETP_NUM, ETP_EMAIL, TITLE, COST, TIME, DESCRIPTION, CATEGORY, SPECIALTY, 
+    SVC_COUNT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.ServiceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.SERVICE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from HR.SERVICE
+    where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from HR.SERVICE
+    where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.vo.ServiceExample" >
+    delete from HR.SERVICE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.vo.Service" >
+    insert into HR.SERVICE (SVC_NUM, ETP_NUM, ETP_EMAIL, 
+      TITLE, COST, TIME, DESCRIPTION, 
+      CATEGORY, SPECIALTY, SVC_COUNT
+      )
+    values (#{svcNum,jdbcType=DECIMAL}, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{cost,jdbcType=DECIMAL}, #{time,jdbcType=DATE}, #{description,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{specialty,jdbcType=VARCHAR}, #{svcCount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.vo.Service" >
+    insert into HR.SERVICE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="svcNum != null" >
+        SVC_NUM,
+      </if>
+      <if test="etpNum != null" >
+        ETP_NUM,
+      </if>
+      <if test="etpEmail != null" >
+        ETP_EMAIL,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="cost != null" >
+        COST,
+      </if>
+      <if test="time != null" >
+        TIME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="category != null" >
+        CATEGORY,
+      </if>
+      <if test="specialty != null" >
+        SPECIALTY,
+      </if>
+      <if test="svcCount != null" >
+        SVC_COUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="svcNum != null" >
+        #{svcNum,jdbcType=DECIMAL},
+      </if>
+      <if test="etpNum != null" >
+        #{etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="etpEmail != null" >
+        #{etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null" >
+        #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="svcCount != null" >
+        #{svcCount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.vo.ServiceExample" resultType="java.lang.Integer" >
+    select count(*) from HR.SERVICE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update HR.SERVICE
+    <set >
+      <if test="record.svcNum != null" >
+        SVC_NUM = #{record.svcNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpNum != null" >
+        ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpEmail != null" >
+        ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        TITLE = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cost != null" >
+        COST = #{record.cost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.time != null" >
+        TIME = #{record.time,jdbcType=DATE},
+      </if>
+      <if test="record.description != null" >
+        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null" >
+        CATEGORY = #{record.category,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialty != null" >
+        SPECIALTY = #{record.specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.svcCount != null" >
+        SVC_COUNT = #{record.svcCount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update HR.SERVICE
+    set SVC_NUM = #{record.svcNum,jdbcType=DECIMAL},
+      ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      TITLE = #{record.title,jdbcType=VARCHAR},
+      COST = #{record.cost,jdbcType=DECIMAL},
+      TIME = #{record.time,jdbcType=DATE},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      CATEGORY = #{record.category,jdbcType=VARCHAR},
+      SPECIALTY = #{record.specialty,jdbcType=VARCHAR},
+      SVC_COUNT = #{record.svcCount,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.vo.Service" >
+    update HR.SERVICE
+    <set >
+      <if test="etpNum != null" >
+        ETP_NUM = #{etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="etpEmail != null" >
+        ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        COST = #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null" >
+        TIME = #{time,jdbcType=DATE},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        CATEGORY = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null" >
+        SPECIALTY = #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="svcCount != null" >
+        SVC_COUNT = #{svcCount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.vo.Service" >
+    update HR.SERVICE
+    set ETP_NUM = #{etpNum,jdbcType=VARCHAR},
+      ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      COST = #{cost,jdbcType=DECIMAL},
+      TIME = #{time,jdbcType=DATE},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CATEGORY = #{category,jdbcType=VARCHAR},
+      SPECIALTY = #{specialty,jdbcType=VARCHAR},
+      SVC_COUNT = #{svcCount,jdbcType=DECIMAL}
+    where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
+  </update>
+  <cache />
+  <select resultMap="BaseResultMap" parameterType="model.vo.ServiceExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.SERVICE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

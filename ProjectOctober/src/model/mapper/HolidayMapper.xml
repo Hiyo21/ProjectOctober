@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="model.mapper.HolidayMapper" >
+  <resultMap id="BaseResultMap" type="model.vo.Holiday" >
+    <id column="HOL_NUM" property="holNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="HOL_DATE" property="holDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    HOL_NUM, ETP_NUM, ETP_EMAIL, HOL_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.HolidayExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.HOLIDAY
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from HR.HOLIDAY
+    where HOL_NUM = #{holNum,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from HR.HOLIDAY
+    where HOL_NUM = #{holNum,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.vo.HolidayExample" >
+    delete from HR.HOLIDAY
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.vo.Holiday" >
+    insert into HR.HOLIDAY (HOL_NUM, ETP_NUM, ETP_EMAIL, 
+      HOL_DATE)
+    values (#{holNum,jdbcType=DECIMAL}, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
+      #{holDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="model.vo.Holiday" >
+    insert into HR.HOLIDAY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="holNum != null" >
+        HOL_NUM,
+      </if>
+      <if test="etpNum != null" >
+        ETP_NUM,
+      </if>
+      <if test="etpEmail != null" >
+        ETP_EMAIL,
+      </if>
+      <if test="holDate != null" >
+        HOL_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="holNum != null" >
+        #{holNum,jdbcType=DECIMAL},
+      </if>
+      <if test="etpNum != null" >
+        #{etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="etpEmail != null" >
+        #{etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="holDate != null" >
+        #{holDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.vo.HolidayExample" resultType="java.lang.Integer" >
+    select count(*) from HR.HOLIDAY
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update HR.HOLIDAY
+    <set >
+      <if test="record.holNum != null" >
+        HOL_NUM = #{record.holNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpNum != null" >
+        ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpEmail != null" >
+        ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holDate != null" >
+        HOL_DATE = #{record.holDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update HR.HOLIDAY
+    set HOL_NUM = #{record.holNum,jdbcType=DECIMAL},
+      ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      HOL_DATE = #{record.holDate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.vo.Holiday" >
+    update HR.HOLIDAY
+    <set >
+      <if test="etpNum != null" >
+        ETP_NUM = #{etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="etpEmail != null" >
+        ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="holDate != null" >
+        HOL_DATE = #{holDate,jdbcType=DATE},
+      </if>
+    </set>
+    where HOL_NUM = #{holNum,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.vo.Holiday" >
+    update HR.HOLIDAY
+    set ETP_NUM = #{etpNum,jdbcType=VARCHAR},
+      ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
+      HOL_DATE = #{holDate,jdbcType=DATE}
+    where HOL_NUM = #{holNum,jdbcType=DECIMAL}
+  </update>
+  <cache />
+  <select resultMap="BaseResultMap" parameterType="model.vo.HolidayExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.HOLIDAY
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
