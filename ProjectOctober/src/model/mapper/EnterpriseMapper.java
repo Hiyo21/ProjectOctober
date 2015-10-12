@@ -3,7 +3,6 @@ package model.mapper;
 import java.util.List;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
-import model.vo.EnterpriseKey;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
@@ -12,7 +11,7 @@ public interface EnterpriseMapper {
 
     int deleteByExample(EnterpriseExample example);
 
-    int deleteByPrimaryKey(EnterpriseKey key);
+    int deleteByPrimaryKey(Enterprise key);
 
     int insert(Enterprise record);
 
@@ -22,7 +21,7 @@ public interface EnterpriseMapper {
 
     List<Enterprise> selectByExample(EnterpriseExample example);
 
-    Enterprise selectByPrimaryKey(EnterpriseKey key);
+    Enterprise selectByPrimaryKey(Enterprise key);
 
     int updateByExampleSelective(@Param("record") Enterprise record, @Param("example") EnterpriseExample example);
 

@@ -3,7 +3,6 @@ package model.mapper;
 import java.util.List;
 import model.vo.EnterpriseWaitlist;
 import model.vo.EnterpriseWaitlistExample;
-import model.vo.EnterpriseWaitlistKey;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
@@ -12,7 +11,7 @@ public interface EnterpriseWaitlistMapper {
 
     int deleteByExample(EnterpriseWaitlistExample example);
 
-    int deleteByPrimaryKey(EnterpriseWaitlistKey key);
+    int deleteByPrimaryKey(EnterpriseWaitlist key);
 
     int insert(EnterpriseWaitlist record);
 
@@ -22,7 +21,7 @@ public interface EnterpriseWaitlistMapper {
 
     List<EnterpriseWaitlist> selectByExample(EnterpriseWaitlistExample example);
 
-    EnterpriseWaitlist selectByPrimaryKey(EnterpriseWaitlistKey key);
+    EnterpriseWaitlist selectByPrimaryKey(EnterpriseWaitlist key);
 
     int updateByExampleSelective(@Param("record") EnterpriseWaitlist record, @Param("example") EnterpriseWaitlistExample example);
 

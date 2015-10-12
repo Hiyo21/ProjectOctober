@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.ReviewMapper" >
+
+
   <resultMap id="BaseResultMap" type="model.vo.Review" >
     <id column="RVW_NUM" property="rvwNum" jdbcType="DECIMAL" />
     <result column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
@@ -16,6 +18,8 @@
     <result column="PRICE" property="price" jdbcType="DECIMAL" />
     <result column="SERVICE" property="service" jdbcType="DECIMAL" />
   </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -45,6 +49,8 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -74,10 +80,14 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Base_Column_List" >
     RVW_NUM, CST_EMAIL, ETP_NUM, ETP_EMAIL, INPUTDATE, IP_ADDRESS, CONTENT, JOB, HYGIENE, 
     COMFORT, TECHNIQUE, PRICE, SERVICE
   </sql>
+  
+  
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.ReviewExample" >
     select
     <if test="distinct" >
@@ -92,22 +102,30 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from HR.REVIEW
     where RVW_NUM = #{rvwNum,jdbcType=DECIMAL}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from HR.REVIEW
     where RVW_NUM = #{rvwNum,jdbcType=DECIMAL}
   </delete>
+  
+  
   <delete id="deleteByExample" parameterType="model.vo.ReviewExample" >
     delete from HR.REVIEW
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  
+  
   <insert id="insert" parameterType="model.vo.Review" >
     insert into HR.REVIEW (RVW_NUM, CST_EMAIL, ETP_NUM, 
       ETP_EMAIL, INPUTDATE, IP_ADDRESS, 
@@ -120,6 +138,8 @@
       #{comfort,jdbcType=DECIMAL}, #{technique,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
       #{service,jdbcType=DECIMAL})
   </insert>
+  
+  
   <insert id="insertSelective" parameterType="model.vo.Review" >
     insert into HR.REVIEW
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -205,12 +225,16 @@
       </if>
     </trim>
   </insert>
+  
+  
   <select id="countByExample" parameterType="model.vo.ReviewExample" resultType="java.lang.Integer" >
     select count(*) from HR.REVIEW
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update HR.REVIEW
     <set >
@@ -258,6 +282,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByExample" parameterType="map" >
     update HR.REVIEW
     set RVW_NUM = #{record.rvwNum,jdbcType=DECIMAL},
@@ -277,6 +303,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.Review" >
     update HR.REVIEW
     <set >
@@ -319,6 +347,8 @@
     </set>
     where RVW_NUM = #{rvwNum,jdbcType=DECIMAL}
   </update>
+  
+  
   <update id="updateByPrimaryKey" parameterType="model.vo.Review" >
     update HR.REVIEW
     set CST_EMAIL = #{cstEmail,jdbcType=VARCHAR},
@@ -335,7 +365,11 @@
       SERVICE = #{service,jdbcType=DECIMAL}
     where RVW_NUM = #{rvwNum,jdbcType=DECIMAL}
   </update>
+  
+  
   <cache />
+  
+  
   <select resultMap="BaseResultMap" parameterType="model.vo.ReviewExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >

@@ -11,7 +11,7 @@ public interface ServiceMapper {
 
     int deleteByExample(ServiceExample example);
 
-    int deleteByPrimaryKey(Short svcNum);
+    int deleteByPrimaryKey(Integer svcNum);
 
     int insert(Service record);
 
@@ -21,7 +21,7 @@ public interface ServiceMapper {
 
     List<Service> selectByExample(ServiceExample example);
 
-    Service selectByPrimaryKey(Short svcNum);
+    Service selectByPrimaryKey(Integer svcNum);
 
     int updateByExampleSelective(@Param("record") Service record, @Param("example") ServiceExample example);
 

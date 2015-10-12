@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.EnterpriseWaitlistMapper" >
+
+
   <resultMap id="BaseResultMap" type="model.vo.EnterpriseWaitlist" >
     <id column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <id column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
@@ -26,6 +28,8 @@
     <result column="SPECIALTY_LIST" property="specialtyList" jdbcType="VARCHAR" />
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
   </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -55,6 +59,8 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -84,12 +90,16 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Base_Column_List" >
     ETP_NUM, ETP_EMAIL, OWNER, SUPERCLASS, ADDRESS, ZIPCODE, TITLE, START_HOUR, END_HOUR, 
     PHONE, MALE_STAFF, FEMALE_STAFF, HOURLY_CAPACITY, RSV_DEADLINE, ETP_NOTIFICATION, 
     CST_NOTIFICATION, TEMPLATE_TYPE, MAP_API_ADDRESS, LOCATION_DESC, SVC_LIST, SUBCLASS, 
     SPECIALTY_LIST, DESCRIPTION
   </sql>
+  
+  
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.EnterpriseWaitlistExample" >
     select
     <if test="distinct" >
@@ -104,24 +114,32 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="model.vo.EnterpriseWaitlistKey" >
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="model.vo.EnterpriseWaitlist" >
     select 
     <include refid="Base_Column_List" />
     from HR.ENTERPRISE_WAITLIST
     where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
       and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="model.vo.EnterpriseWaitlistKey" >
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="model.vo.EnterpriseWaitlist" >
     delete from HR.ENTERPRISE_WAITLIST
     where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
       and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
   </delete>
+  
+  
   <delete id="deleteByExample" parameterType="model.vo.EnterpriseWaitlistExample" >
     delete from HR.ENTERPRISE_WAITLIST
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  
+  
   <insert id="insert" parameterType="model.vo.EnterpriseWaitlist" >
     insert into HR.ENTERPRISE_WAITLIST (ETP_NUM, ETP_EMAIL, OWNER, 
       SUPERCLASS, ADDRESS, ZIPCODE, 
@@ -140,6 +158,8 @@
       #{etpLocationGuide,jdbcType=VARCHAR}, #{svcList,jdbcType=VARCHAR}, #{subclass,jdbcType=VARCHAR}, 
       #{specialtyList,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
   </insert>
+  
+  
   <insert id="insertSelective" parameterType="model.vo.EnterpriseWaitlist" >
     insert into HR.ENTERPRISE_WAITLIST
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -285,12 +305,16 @@
       </if>
     </trim>
   </insert>
+  
+  
   <select id="countByExample" parameterType="model.vo.EnterpriseWaitlistExample" resultType="java.lang.Integer" >
     select count(*) from HR.ENTERPRISE_WAITLIST
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update HR.ENTERPRISE_WAITLIST
     <set >
@@ -368,6 +392,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByExample" parameterType="map" >
     update HR.ENTERPRISE_WAITLIST
     set ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
@@ -397,6 +423,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.EnterpriseWaitlist" >
     update HR.ENTERPRISE_WAITLIST
     <set >
@@ -467,6 +495,8 @@
     where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
       and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
   </update>
+  
+  
   <update id="updateByPrimaryKey" parameterType="model.vo.EnterpriseWaitlist" >
     update HR.ENTERPRISE_WAITLIST
     set OWNER = #{owner,jdbcType=VARCHAR},
@@ -494,6 +524,8 @@
       and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
   </update>
   <cache />
+  
+  
   <select resultMap="BaseResultMap" parameterType="model.vo.EnterpriseWaitlistExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
@@ -508,4 +540,6 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
 </mapper>

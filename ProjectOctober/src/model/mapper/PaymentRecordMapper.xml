@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.PaymentRecordMapper" >
+
+
   <resultMap id="BaseResultMap" type="model.vo.PaymentRecord" >
     <id column="PMT_NUM" property="pmtNum" jdbcType="DECIMAL" />
     <result column="RSV_NUM" property="rsvNum" jdbcType="DECIMAL" />
     <result column="TIME" property="time" jdbcType="DATE" />
     <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
   </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -36,6 +40,8 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -65,9 +71,13 @@
       </foreach>
     </where>
   </sql>
+  
+  
   <sql id="Base_Column_List" >
     PMT_NUM, RSV_NUM, TIME, AMOUNT
   </sql>
+  
+  
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.PaymentRecordExample" >
     select
     <if test="distinct" >
@@ -82,28 +92,38 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from HR.PAYMENT_RECORD
     where PMT_NUM = #{pmtNum,jdbcType=DECIMAL}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from HR.PAYMENT_RECORD
     where PMT_NUM = #{pmtNum,jdbcType=DECIMAL}
   </delete>
+  
+  
   <delete id="deleteByExample" parameterType="model.vo.PaymentRecordExample" >
     delete from HR.PAYMENT_RECORD
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  
+  
   <insert id="insert" parameterType="model.vo.PaymentRecord" >
     insert into HR.PAYMENT_RECORD (PMT_NUM, RSV_NUM, TIME, 
       AMOUNT)
     values (#{pmtNum,jdbcType=DECIMAL}, #{rsvNum,jdbcType=DECIMAL}, #{time,jdbcType=DATE}, 
       #{amount,jdbcType=DECIMAL})
   </insert>
+  
+  
   <insert id="insertSelective" parameterType="model.vo.PaymentRecord" >
     insert into HR.PAYMENT_RECORD
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -135,12 +155,16 @@
       </if>
     </trim>
   </insert>
+  
+  
   <select id="countByExample" parameterType="model.vo.PaymentRecordExample" resultType="java.lang.Integer" >
     select count(*) from HR.PAYMENT_RECORD
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update HR.PAYMENT_RECORD
     <set >
@@ -161,6 +185,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByExample" parameterType="map" >
     update HR.PAYMENT_RECORD
     set PMT_NUM = #{record.pmtNum,jdbcType=DECIMAL},
@@ -171,6 +197,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.PaymentRecord" >
     update HR.PAYMENT_RECORD
     <set >
@@ -186,6 +214,8 @@
     </set>
     where PMT_NUM = #{pmtNum,jdbcType=DECIMAL}
   </update>
+  
+  
   <update id="updateByPrimaryKey" parameterType="model.vo.PaymentRecord" >
     update HR.PAYMENT_RECORD
     set RSV_NUM = #{rsvNum,jdbcType=DECIMAL},
@@ -194,6 +224,8 @@
     where PMT_NUM = #{pmtNum,jdbcType=DECIMAL}
   </update>
   <cache />
+  
+  
   <select resultMap="BaseResultMap" parameterType="model.vo.PaymentRecordExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
