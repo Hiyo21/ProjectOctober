@@ -41,7 +41,26 @@
 						</div>
 						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
 							<br>
-							<a href="toRegistrationPage.action" class="btn btn-info btn-block header-newmember-btn"><span class="glyphicon glyphicon-user"></span> 회원등록</a>
+							<a class="btn btn-info btn-block header-newmember-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span> 회원등록</a>
+							
+							<!-- Modal -->
+							<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-body">
+							      <br><br><br>
+							      <h2 style="color: black">회원가입 선택</h2>
+							      <br><br>
+							        <a class="btn btn-primary btn-lg" href="member/toEnterpriseRegistrationPage.action" 
+									role="button" style="vertical-align:center" id="etpBT"><h1>사업자</h1></a>
+				
+									<a class="btn btn-success btn-lg" href="member/toCustomerRegistrationPage.action" 
+									role="button" style="vertical-align:center" id="cstBT"><h1>이용자</h1></a>
+									<br><br><br><br><br>
+							      </div>
+							    </div>
+							  </div>
+							</div>
 						</div>
 						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
 							<br>
