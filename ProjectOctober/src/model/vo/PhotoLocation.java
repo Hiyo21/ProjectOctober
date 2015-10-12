@@ -3,7 +3,7 @@ package model.vo;
 import java.time.LocalDateTime;
 
 public class PhotoLocation {
-    private Short photoNum;
+    private Integer photoNum;
 
     private String etpNum;
 
@@ -17,11 +17,11 @@ public class PhotoLocation {
 
     private LocalDateTime uploadDate;
 
-    public Short getPhotoNum() {
+    public Integer getPhotoNum() {
         return photoNum;
     }
 
-    public void setPhotoNum(Short photoNum) {
+    public void setPhotoNum(Integer photoNum) {
         this.photoNum = photoNum;
     }
 

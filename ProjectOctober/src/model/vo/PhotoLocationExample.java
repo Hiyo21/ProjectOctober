@@ -115,52 +115,52 @@ public class PhotoLocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumEqualTo(Short value) {
+        public Criteria andPhotoNumEqualTo(Integer value) {
             addCriterion("PHOTO_NUM =", value, "photoNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumNotEqualTo(Short value) {
+        public Criteria andPhotoNumNotEqualTo(Integer value) {
             addCriterion("PHOTO_NUM <>", value, "photoNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumGreaterThan(Short value) {
+        public Criteria andPhotoNumGreaterThan(Integer value) {
             addCriterion("PHOTO_NUM >", value, "photoNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andPhotoNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("PHOTO_NUM >=", value, "photoNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumLessThan(Short value) {
+        public Criteria andPhotoNumLessThan(Integer value) {
             addCriterion("PHOTO_NUM <", value, "photoNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumLessThanOrEqualTo(Short value) {
+        public Criteria andPhotoNumLessThanOrEqualTo(Integer value) {
             addCriterion("PHOTO_NUM <=", value, "photoNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumIn(List<Short> values) {
+        public Criteria andPhotoNumIn(List<Integer> values) {
             addCriterion("PHOTO_NUM in", values, "photoNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumNotIn(List<Short> values) {
+        public Criteria andPhotoNumNotIn(List<Integer> values) {
             addCriterion("PHOTO_NUM not in", values, "photoNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumBetween(Short value1, Short value2) {
+        public Criteria andPhotoNumBetween(Integer value1, Integer value2) {
             addCriterion("PHOTO_NUM between", value1, value2, "photoNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumNotBetween(Short value1, Short value2) {
+        public Criteria andPhotoNumNotBetween(Integer value1, Integer value2) {
             addCriterion("PHOTO_NUM not between", value1, value2, "photoNum");
             return (Criteria) this;
         }

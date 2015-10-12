@@ -1,6 +1,6 @@
 package model.vo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Customer {
     private String cstEmail;
@@ -9,7 +9,7 @@ public class Customer {
 
     private String zipcode;
 
-    private Date birthday;
+    private LocalDate birthday;
 
     private String gender;
 
@@ -39,11 +39,11 @@ public class Customer {
         this.zipcode = zipcode;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

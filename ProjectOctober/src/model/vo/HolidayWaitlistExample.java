@@ -115,52 +115,52 @@ public class HolidayWaitlistExample {
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumEqualTo(Short value) {
+        public Criteria andHolWtlNumEqualTo(Integer value) {
             addCriterion("HOL_WTL_NUM =", value, "holWtlNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumNotEqualTo(Short value) {
+        public Criteria andHolWtlNumNotEqualTo(Integer value) {
             addCriterion("HOL_WTL_NUM <>", value, "holWtlNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumGreaterThan(Short value) {
+        public Criteria andHolWtlNumGreaterThan(Integer value) {
             addCriterion("HOL_WTL_NUM >", value, "holWtlNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andHolWtlNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("HOL_WTL_NUM >=", value, "holWtlNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumLessThan(Short value) {
+        public Criteria andHolWtlNumLessThan(Integer value) {
             addCriterion("HOL_WTL_NUM <", value, "holWtlNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumLessThanOrEqualTo(Short value) {
+        public Criteria andHolWtlNumLessThanOrEqualTo(Integer value) {
             addCriterion("HOL_WTL_NUM <=", value, "holWtlNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumIn(List<Short> values) {
+        public Criteria andHolWtlNumIn(List<Integer> values) {
             addCriterion("HOL_WTL_NUM in", values, "holWtlNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumNotIn(List<Short> values) {
+        public Criteria andHolWtlNumNotIn(List<Integer> values) {
             addCriterion("HOL_WTL_NUM not in", values, "holWtlNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumBetween(Short value1, Short value2) {
+        public Criteria andHolWtlNumBetween(Integer value1, Integer value2) {
             addCriterion("HOL_WTL_NUM between", value1, value2, "holWtlNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumNotBetween(Short value1, Short value2) {
+        public Criteria andHolWtlNumNotBetween(Integer value1, Integer value2) {
             addCriterion("HOL_WTL_NUM not between", value1, value2, "holWtlNum");
             return (Criteria) this;
         }

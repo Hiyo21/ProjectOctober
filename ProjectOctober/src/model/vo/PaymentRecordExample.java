@@ -115,52 +115,52 @@ public class PaymentRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumEqualTo(Short value) {
+        public Criteria andPmtNumEqualTo(Integer value) {
             addCriterion("PMT_NUM =", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumNotEqualTo(Short value) {
+        public Criteria andPmtNumNotEqualTo(Integer value) {
             addCriterion("PMT_NUM <>", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumGreaterThan(Short value) {
+        public Criteria andPmtNumGreaterThan(Integer value) {
             addCriterion("PMT_NUM >", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andPmtNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("PMT_NUM >=", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumLessThan(Short value) {
+        public Criteria andPmtNumLessThan(Integer value) {
             addCriterion("PMT_NUM <", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumLessThanOrEqualTo(Short value) {
+        public Criteria andPmtNumLessThanOrEqualTo(Integer value) {
             addCriterion("PMT_NUM <=", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumIn(List<Short> values) {
+        public Criteria andPmtNumIn(List<Integer> values) {
             addCriterion("PMT_NUM in", values, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumNotIn(List<Short> values) {
+        public Criteria andPmtNumNotIn(List<Integer> values) {
             addCriterion("PMT_NUM not in", values, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumBetween(Short value1, Short value2) {
+        public Criteria andPmtNumBetween(Integer value1, Integer value2) {
             addCriterion("PMT_NUM between", value1, value2, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumNotBetween(Short value1, Short value2) {
+        public Criteria andPmtNumNotBetween(Integer value1, Integer value2) {
             addCriterion("PMT_NUM not between", value1, value2, "pmtNum");
             return (Criteria) this;
         }
@@ -175,52 +175,52 @@ public class PaymentRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumEqualTo(Short value) {
+        public Criteria andRsvNumEqualTo(Integer value) {
             addCriterion("RSV_NUM =", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumNotEqualTo(Short value) {
+        public Criteria andRsvNumNotEqualTo(Integer value) {
             addCriterion("RSV_NUM <>", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumGreaterThan(Short value) {
+        public Criteria andRsvNumGreaterThan(Integer value) {
             addCriterion("RSV_NUM >", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_NUM >=", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumLessThan(Short value) {
+        public Criteria andRsvNumLessThan(Integer value) {
             addCriterion("RSV_NUM <", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumLessThanOrEqualTo(Short value) {
+        public Criteria andRsvNumLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_NUM <=", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumIn(List<Short> values) {
+        public Criteria andRsvNumIn(List<Integer> values) {
             addCriterion("RSV_NUM in", values, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumNotIn(List<Short> values) {
+        public Criteria andRsvNumNotIn(List<Integer> values) {
             addCriterion("RSV_NUM not in", values, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumBetween(Short value1, Short value2) {
+        public Criteria andRsvNumBetween(Integer value1, Integer value2) {
             addCriterion("RSV_NUM between", value1, value2, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumNotBetween(Short value1, Short value2) {
+        public Criteria andRsvNumNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_NUM not between", value1, value2, "rsvNum");
             return (Criteria) this;
         }
@@ -295,52 +295,52 @@ public class PaymentRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andAmountEqualTo(Short value) {
+        public Criteria andAmountEqualTo(Integer value) {
             addCriterion("AMOUNT =", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotEqualTo(Short value) {
+        public Criteria andAmountNotEqualTo(Integer value) {
             addCriterion("AMOUNT <>", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThan(Short value) {
+        public Criteria andAmountGreaterThan(Integer value) {
             addCriterion("AMOUNT >", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThanOrEqualTo(Short value) {
+        public Criteria andAmountGreaterThanOrEqualTo(Integer value) {
             addCriterion("AMOUNT >=", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThan(Short value) {
+        public Criteria andAmountLessThan(Integer value) {
             addCriterion("AMOUNT <", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThanOrEqualTo(Short value) {
+        public Criteria andAmountLessThanOrEqualTo(Integer value) {
             addCriterion("AMOUNT <=", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountIn(List<Short> values) {
+        public Criteria andAmountIn(List<Integer> values) {
             addCriterion("AMOUNT in", values, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotIn(List<Short> values) {
+        public Criteria andAmountNotIn(List<Integer> values) {
             addCriterion("AMOUNT not in", values, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountBetween(Short value1, Short value2) {
+        public Criteria andAmountBetween(Integer value1, Integer value2) {
             addCriterion("AMOUNT between", value1, value2, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotBetween(Short value1, Short value2) {
+        public Criteria andAmountNotBetween(Integer value1, Integer value2) {
             addCriterion("AMOUNT not between", value1, value2, "amount");
             return (Criteria) this;
         }

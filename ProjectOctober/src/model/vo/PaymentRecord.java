@@ -3,27 +3,27 @@ package model.vo;
 import java.time.LocalDateTime;
 
 public class PaymentRecord {
-    private Short pmtNum;
+    private Integer pmtNum;
 
-    private Short rsvNum;
+    private Integer rsvNum;
 
     private LocalDateTime time;
 
-    private Short amount;
+    private Integer amount;
 
-    public Short getPmtNum() {
+    public Integer getPmtNum() {
         return pmtNum;
     }
 
-    public void setPmtNum(Short pmtNum) {
+    public void setPmtNum(Integer pmtNum) {
         this.pmtNum = pmtNum;
     }
 
-    public Short getRsvNum() {
+    public Integer getRsvNum() {
         return rsvNum;
     }
 
-    public void setRsvNum(Short rsvNum) {
+    public void setRsvNum(Integer rsvNum) {
         this.rsvNum = rsvNum;
     }
 
@@ -35,11 +35,11 @@ public class PaymentRecord {
         this.time = time;
     }
 
-    public Short getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(Short amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 

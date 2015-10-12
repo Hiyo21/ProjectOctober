@@ -3,9 +3,9 @@ package model.vo;
 import java.time.LocalDateTime;
 
 public class SaleRecord {
-    private Short saleNum;
+    private Integer saleNum;
 
-    private Short pmtNum;
+    private Integer pmtNum;
 
     private String etpNum;
 
@@ -13,21 +13,21 @@ public class SaleRecord {
 
     private LocalDateTime time;
 
-    private Short amount;
+    private Integer amount;
 
-    public Short getSaleNum() {
+    public Integer getSaleNum() {
         return saleNum;
     }
 
-    public void setSaleNum(Short saleNum) {
+    public void setSaleNum(Integer saleNum) {
         this.saleNum = saleNum;
     }
 
-    public Short getPmtNum() {
+    public Integer getPmtNum() {
         return pmtNum;
     }
 
-    public void setPmtNum(Short pmtNum) {
+    public void setPmtNum(Integer pmtNum) {
         this.pmtNum = pmtNum;
     }
 
@@ -55,11 +55,11 @@ public class SaleRecord {
         this.time = time;
     }
 
-    public Short getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(Short amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 

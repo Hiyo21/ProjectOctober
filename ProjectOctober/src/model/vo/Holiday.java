@@ -3,7 +3,7 @@ package model.vo;
 import java.time.LocalDateTime;
 
 public class Holiday {
-    private Short holNum;
+    private Integer holNum;
 
     private String etpNum;
 
@@ -11,11 +11,11 @@ public class Holiday {
 
     private LocalDateTime holDate;
 
-    public Short getHolNum() {
+    public Integer getHolNum() {
         return holNum;
     }
 
-    public void setHolNum(Short holNum) {
+    public void setHolNum(Integer holNum) {
         this.holNum = holNum;
     }
 

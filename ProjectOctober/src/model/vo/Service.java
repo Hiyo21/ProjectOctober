@@ -3,7 +3,7 @@ package model.vo;
 import java.time.LocalTime;
 
 public class Service {
-    private Short svcNum;
+    private Integer svcNum;
 
     private String etpNum;
 
@@ -11,7 +11,7 @@ public class Service {
 
     private String title;
 
-    private Short cost;
+    private Integer cost;
 
     private LocalTime time;
 
@@ -21,13 +21,13 @@ public class Service {
 
     private String specialty;
 
-    private Short svcCount;
+    private Integer svcCount;
 
-    public Short getSvcNum() {
+    public Integer getSvcNum() {
         return svcNum;
     }
 
-    public void setSvcNum(Short svcNum) {
+    public void setSvcNum(Integer svcNum) {
         this.svcNum = svcNum;
     }
 
@@ -55,11 +55,11 @@ public class Service {
         this.title = title;
     }
 
-    public Short getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(Short cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
     }
 
@@ -95,11 +95,11 @@ public class Service {
         this.specialty = specialty;
     }
 
-    public Short getSvcCount() {
+    public Integer getSvcCount() {
         return svcCount;
     }
 
-    public void setSvcCount(Short svcCount) {
+    public void setSvcCount(Integer svcCount) {
         this.svcCount = svcCount;
     }
 

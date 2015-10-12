@@ -314,52 +314,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLogoThemeEqualTo(Short value) {
+        public Criteria andLogoThemeEqualTo(Integer value) {
             addCriterion("LOGO_THEME =", value, "logoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLogoThemeNotEqualTo(Short value) {
+        public Criteria andLogoThemeNotEqualTo(Integer value) {
             addCriterion("LOGO_THEME <>", value, "logoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLogoThemeGreaterThan(Short value) {
+        public Criteria andLogoThemeGreaterThan(Integer value) {
             addCriterion("LOGO_THEME >", value, "logoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLogoThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andLogoThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("LOGO_THEME >=", value, "logoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLogoThemeLessThan(Short value) {
+        public Criteria andLogoThemeLessThan(Integer value) {
             addCriterion("LOGO_THEME <", value, "logoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLogoThemeLessThanOrEqualTo(Short value) {
+        public Criteria andLogoThemeLessThanOrEqualTo(Integer value) {
             addCriterion("LOGO_THEME <=", value, "logoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLogoThemeIn(List<Short> values) {
+        public Criteria andLogoThemeIn(List<Integer> values) {
             addCriterion("LOGO_THEME in", values, "logoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLogoThemeNotIn(List<Short> values) {
+        public Criteria andLogoThemeNotIn(List<Integer> values) {
             addCriterion("LOGO_THEME not in", values, "logoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLogoThemeBetween(Short value1, Short value2) {
+        public Criteria andLogoThemeBetween(Integer value1, Integer value2) {
             addCriterion("LOGO_THEME between", value1, value2, "logoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLogoThemeNotBetween(Short value1, Short value2) {
+        public Criteria andLogoThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("LOGO_THEME not between", value1, value2, "logoTheme");
             return (Criteria) this;
         }
@@ -374,52 +374,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeXEqualTo(Short value) {
+        public Criteria andLogoSizeXEqualTo(Integer value) {
             addCriterion("LOGO_SIZE_X =", value, "logoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeXNotEqualTo(Short value) {
+        public Criteria andLogoSizeXNotEqualTo(Integer value) {
             addCriterion("LOGO_SIZE_X <>", value, "logoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeXGreaterThan(Short value) {
+        public Criteria andLogoSizeXGreaterThan(Integer value) {
             addCriterion("LOGO_SIZE_X >", value, "logoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeXGreaterThanOrEqualTo(Short value) {
+        public Criteria andLogoSizeXGreaterThanOrEqualTo(Integer value) {
             addCriterion("LOGO_SIZE_X >=", value, "logoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeXLessThan(Short value) {
+        public Criteria andLogoSizeXLessThan(Integer value) {
             addCriterion("LOGO_SIZE_X <", value, "logoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeXLessThanOrEqualTo(Short value) {
+        public Criteria andLogoSizeXLessThanOrEqualTo(Integer value) {
             addCriterion("LOGO_SIZE_X <=", value, "logoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeXIn(List<Short> values) {
+        public Criteria andLogoSizeXIn(List<Integer> values) {
             addCriterion("LOGO_SIZE_X in", values, "logoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeXNotIn(List<Short> values) {
+        public Criteria andLogoSizeXNotIn(List<Integer> values) {
             addCriterion("LOGO_SIZE_X not in", values, "logoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeXBetween(Short value1, Short value2) {
+        public Criteria andLogoSizeXBetween(Integer value1, Integer value2) {
             addCriterion("LOGO_SIZE_X between", value1, value2, "logoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeXNotBetween(Short value1, Short value2) {
+        public Criteria andLogoSizeXNotBetween(Integer value1, Integer value2) {
             addCriterion("LOGO_SIZE_X not between", value1, value2, "logoSizeX");
             return (Criteria) this;
         }
@@ -434,52 +434,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeYEqualTo(Short value) {
+        public Criteria andLogoSizeYEqualTo(Integer value) {
             addCriterion("LOGO_SIZE_Y =", value, "logoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeYNotEqualTo(Short value) {
+        public Criteria andLogoSizeYNotEqualTo(Integer value) {
             addCriterion("LOGO_SIZE_Y <>", value, "logoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeYGreaterThan(Short value) {
+        public Criteria andLogoSizeYGreaterThan(Integer value) {
             addCriterion("LOGO_SIZE_Y >", value, "logoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeYGreaterThanOrEqualTo(Short value) {
+        public Criteria andLogoSizeYGreaterThanOrEqualTo(Integer value) {
             addCriterion("LOGO_SIZE_Y >=", value, "logoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeYLessThan(Short value) {
+        public Criteria andLogoSizeYLessThan(Integer value) {
             addCriterion("LOGO_SIZE_Y <", value, "logoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeYLessThanOrEqualTo(Short value) {
+        public Criteria andLogoSizeYLessThanOrEqualTo(Integer value) {
             addCriterion("LOGO_SIZE_Y <=", value, "logoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeYIn(List<Short> values) {
+        public Criteria andLogoSizeYIn(List<Integer> values) {
             addCriterion("LOGO_SIZE_Y in", values, "logoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeYNotIn(List<Short> values) {
+        public Criteria andLogoSizeYNotIn(List<Integer> values) {
             addCriterion("LOGO_SIZE_Y not in", values, "logoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeYBetween(Short value1, Short value2) {
+        public Criteria andLogoSizeYBetween(Integer value1, Integer value2) {
             addCriterion("LOGO_SIZE_Y between", value1, value2, "logoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoSizeYNotBetween(Short value1, Short value2) {
+        public Criteria andLogoSizeYNotBetween(Integer value1, Integer value2) {
             addCriterion("LOGO_SIZE_Y not between", value1, value2, "logoSizeY");
             return (Criteria) this;
         }
@@ -494,52 +494,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosXEqualTo(Short value) {
+        public Criteria andLogoPosXEqualTo(Integer value) {
             addCriterion("LOGO_POS_X =", value, "logoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosXNotEqualTo(Short value) {
+        public Criteria andLogoPosXNotEqualTo(Integer value) {
             addCriterion("LOGO_POS_X <>", value, "logoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosXGreaterThan(Short value) {
+        public Criteria andLogoPosXGreaterThan(Integer value) {
             addCriterion("LOGO_POS_X >", value, "logoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosXGreaterThanOrEqualTo(Short value) {
+        public Criteria andLogoPosXGreaterThanOrEqualTo(Integer value) {
             addCriterion("LOGO_POS_X >=", value, "logoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosXLessThan(Short value) {
+        public Criteria andLogoPosXLessThan(Integer value) {
             addCriterion("LOGO_POS_X <", value, "logoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosXLessThanOrEqualTo(Short value) {
+        public Criteria andLogoPosXLessThanOrEqualTo(Integer value) {
             addCriterion("LOGO_POS_X <=", value, "logoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosXIn(List<Short> values) {
+        public Criteria andLogoPosXIn(List<Integer> values) {
             addCriterion("LOGO_POS_X in", values, "logoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosXNotIn(List<Short> values) {
+        public Criteria andLogoPosXNotIn(List<Integer> values) {
             addCriterion("LOGO_POS_X not in", values, "logoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosXBetween(Short value1, Short value2) {
+        public Criteria andLogoPosXBetween(Integer value1, Integer value2) {
             addCriterion("LOGO_POS_X between", value1, value2, "logoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosXNotBetween(Short value1, Short value2) {
+        public Criteria andLogoPosXNotBetween(Integer value1, Integer value2) {
             addCriterion("LOGO_POS_X not between", value1, value2, "logoPosX");
             return (Criteria) this;
         }
@@ -554,52 +554,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosYEqualTo(Short value) {
+        public Criteria andLogoPosYEqualTo(Integer value) {
             addCriterion("LOGO_POS_Y =", value, "logoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosYNotEqualTo(Short value) {
+        public Criteria andLogoPosYNotEqualTo(Integer value) {
             addCriterion("LOGO_POS_Y <>", value, "logoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosYGreaterThan(Short value) {
+        public Criteria andLogoPosYGreaterThan(Integer value) {
             addCriterion("LOGO_POS_Y >", value, "logoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosYGreaterThanOrEqualTo(Short value) {
+        public Criteria andLogoPosYGreaterThanOrEqualTo(Integer value) {
             addCriterion("LOGO_POS_Y >=", value, "logoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosYLessThan(Short value) {
+        public Criteria andLogoPosYLessThan(Integer value) {
             addCriterion("LOGO_POS_Y <", value, "logoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosYLessThanOrEqualTo(Short value) {
+        public Criteria andLogoPosYLessThanOrEqualTo(Integer value) {
             addCriterion("LOGO_POS_Y <=", value, "logoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosYIn(List<Short> values) {
+        public Criteria andLogoPosYIn(List<Integer> values) {
             addCriterion("LOGO_POS_Y in", values, "logoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosYNotIn(List<Short> values) {
+        public Criteria andLogoPosYNotIn(List<Integer> values) {
             addCriterion("LOGO_POS_Y not in", values, "logoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosYBetween(Short value1, Short value2) {
+        public Criteria andLogoPosYBetween(Integer value1, Integer value2) {
             addCriterion("LOGO_POS_Y between", value1, value2, "logoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLogoPosYNotBetween(Short value1, Short value2) {
+        public Criteria andLogoPosYNotBetween(Integer value1, Integer value2) {
             addCriterion("LOGO_POS_Y not between", value1, value2, "logoPosY");
             return (Criteria) this;
         }
@@ -674,52 +674,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andOutlineThemeEqualTo(Short value) {
+        public Criteria andOutlineThemeEqualTo(Integer value) {
             addCriterion("OUTLINE_THEME =", value, "outlineTheme");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineThemeNotEqualTo(Short value) {
+        public Criteria andOutlineThemeNotEqualTo(Integer value) {
             addCriterion("OUTLINE_THEME <>", value, "outlineTheme");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineThemeGreaterThan(Short value) {
+        public Criteria andOutlineThemeGreaterThan(Integer value) {
             addCriterion("OUTLINE_THEME >", value, "outlineTheme");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andOutlineThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("OUTLINE_THEME >=", value, "outlineTheme");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineThemeLessThan(Short value) {
+        public Criteria andOutlineThemeLessThan(Integer value) {
             addCriterion("OUTLINE_THEME <", value, "outlineTheme");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineThemeLessThanOrEqualTo(Short value) {
+        public Criteria andOutlineThemeLessThanOrEqualTo(Integer value) {
             addCriterion("OUTLINE_THEME <=", value, "outlineTheme");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineThemeIn(List<Short> values) {
+        public Criteria andOutlineThemeIn(List<Integer> values) {
             addCriterion("OUTLINE_THEME in", values, "outlineTheme");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineThemeNotIn(List<Short> values) {
+        public Criteria andOutlineThemeNotIn(List<Integer> values) {
             addCriterion("OUTLINE_THEME not in", values, "outlineTheme");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineThemeBetween(Short value1, Short value2) {
+        public Criteria andOutlineThemeBetween(Integer value1, Integer value2) {
             addCriterion("OUTLINE_THEME between", value1, value2, "outlineTheme");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineThemeNotBetween(Short value1, Short value2) {
+        public Criteria andOutlineThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("OUTLINE_THEME not between", value1, value2, "outlineTheme");
             return (Criteria) this;
         }
@@ -734,52 +734,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeXEqualTo(Short value) {
+        public Criteria andOutlineSizeXEqualTo(Integer value) {
             addCriterion("OUTLINE_SIZE_X =", value, "outlineSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeXNotEqualTo(Short value) {
+        public Criteria andOutlineSizeXNotEqualTo(Integer value) {
             addCriterion("OUTLINE_SIZE_X <>", value, "outlineSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeXGreaterThan(Short value) {
+        public Criteria andOutlineSizeXGreaterThan(Integer value) {
             addCriterion("OUTLINE_SIZE_X >", value, "outlineSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeXGreaterThanOrEqualTo(Short value) {
+        public Criteria andOutlineSizeXGreaterThanOrEqualTo(Integer value) {
             addCriterion("OUTLINE_SIZE_X >=", value, "outlineSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeXLessThan(Short value) {
+        public Criteria andOutlineSizeXLessThan(Integer value) {
             addCriterion("OUTLINE_SIZE_X <", value, "outlineSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeXLessThanOrEqualTo(Short value) {
+        public Criteria andOutlineSizeXLessThanOrEqualTo(Integer value) {
             addCriterion("OUTLINE_SIZE_X <=", value, "outlineSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeXIn(List<Short> values) {
+        public Criteria andOutlineSizeXIn(List<Integer> values) {
             addCriterion("OUTLINE_SIZE_X in", values, "outlineSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeXNotIn(List<Short> values) {
+        public Criteria andOutlineSizeXNotIn(List<Integer> values) {
             addCriterion("OUTLINE_SIZE_X not in", values, "outlineSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeXBetween(Short value1, Short value2) {
+        public Criteria andOutlineSizeXBetween(Integer value1, Integer value2) {
             addCriterion("OUTLINE_SIZE_X between", value1, value2, "outlineSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeXNotBetween(Short value1, Short value2) {
+        public Criteria andOutlineSizeXNotBetween(Integer value1, Integer value2) {
             addCriterion("OUTLINE_SIZE_X not between", value1, value2, "outlineSizeX");
             return (Criteria) this;
         }
@@ -794,52 +794,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeYEqualTo(Short value) {
+        public Criteria andOutlineSizeYEqualTo(Integer value) {
             addCriterion("OUTLINE_SIZE_Y =", value, "outlineSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeYNotEqualTo(Short value) {
+        public Criteria andOutlineSizeYNotEqualTo(Integer value) {
             addCriterion("OUTLINE_SIZE_Y <>", value, "outlineSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeYGreaterThan(Short value) {
+        public Criteria andOutlineSizeYGreaterThan(Integer value) {
             addCriterion("OUTLINE_SIZE_Y >", value, "outlineSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeYGreaterThanOrEqualTo(Short value) {
+        public Criteria andOutlineSizeYGreaterThanOrEqualTo(Integer value) {
             addCriterion("OUTLINE_SIZE_Y >=", value, "outlineSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeYLessThan(Short value) {
+        public Criteria andOutlineSizeYLessThan(Integer value) {
             addCriterion("OUTLINE_SIZE_Y <", value, "outlineSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeYLessThanOrEqualTo(Short value) {
+        public Criteria andOutlineSizeYLessThanOrEqualTo(Integer value) {
             addCriterion("OUTLINE_SIZE_Y <=", value, "outlineSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeYIn(List<Short> values) {
+        public Criteria andOutlineSizeYIn(List<Integer> values) {
             addCriterion("OUTLINE_SIZE_Y in", values, "outlineSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeYNotIn(List<Short> values) {
+        public Criteria andOutlineSizeYNotIn(List<Integer> values) {
             addCriterion("OUTLINE_SIZE_Y not in", values, "outlineSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeYBetween(Short value1, Short value2) {
+        public Criteria andOutlineSizeYBetween(Integer value1, Integer value2) {
             addCriterion("OUTLINE_SIZE_Y between", value1, value2, "outlineSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlineSizeYNotBetween(Short value1, Short value2) {
+        public Criteria andOutlineSizeYNotBetween(Integer value1, Integer value2) {
             addCriterion("OUTLINE_SIZE_Y not between", value1, value2, "outlineSizeY");
             return (Criteria) this;
         }
@@ -854,52 +854,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosXEqualTo(Short value) {
+        public Criteria andOutlinePosXEqualTo(Integer value) {
             addCriterion("OUTLINE_POS_X =", value, "outlinePosX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosXNotEqualTo(Short value) {
+        public Criteria andOutlinePosXNotEqualTo(Integer value) {
             addCriterion("OUTLINE_POS_X <>", value, "outlinePosX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosXGreaterThan(Short value) {
+        public Criteria andOutlinePosXGreaterThan(Integer value) {
             addCriterion("OUTLINE_POS_X >", value, "outlinePosX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosXGreaterThanOrEqualTo(Short value) {
+        public Criteria andOutlinePosXGreaterThanOrEqualTo(Integer value) {
             addCriterion("OUTLINE_POS_X >=", value, "outlinePosX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosXLessThan(Short value) {
+        public Criteria andOutlinePosXLessThan(Integer value) {
             addCriterion("OUTLINE_POS_X <", value, "outlinePosX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosXLessThanOrEqualTo(Short value) {
+        public Criteria andOutlinePosXLessThanOrEqualTo(Integer value) {
             addCriterion("OUTLINE_POS_X <=", value, "outlinePosX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosXIn(List<Short> values) {
+        public Criteria andOutlinePosXIn(List<Integer> values) {
             addCriterion("OUTLINE_POS_X in", values, "outlinePosX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosXNotIn(List<Short> values) {
+        public Criteria andOutlinePosXNotIn(List<Integer> values) {
             addCriterion("OUTLINE_POS_X not in", values, "outlinePosX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosXBetween(Short value1, Short value2) {
+        public Criteria andOutlinePosXBetween(Integer value1, Integer value2) {
             addCriterion("OUTLINE_POS_X between", value1, value2, "outlinePosX");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosXNotBetween(Short value1, Short value2) {
+        public Criteria andOutlinePosXNotBetween(Integer value1, Integer value2) {
             addCriterion("OUTLINE_POS_X not between", value1, value2, "outlinePosX");
             return (Criteria) this;
         }
@@ -914,52 +914,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosYEqualTo(Short value) {
+        public Criteria andOutlinePosYEqualTo(Integer value) {
             addCriterion("OUTLINE_POS_Y =", value, "outlinePosY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosYNotEqualTo(Short value) {
+        public Criteria andOutlinePosYNotEqualTo(Integer value) {
             addCriterion("OUTLINE_POS_Y <>", value, "outlinePosY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosYGreaterThan(Short value) {
+        public Criteria andOutlinePosYGreaterThan(Integer value) {
             addCriterion("OUTLINE_POS_Y >", value, "outlinePosY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosYGreaterThanOrEqualTo(Short value) {
+        public Criteria andOutlinePosYGreaterThanOrEqualTo(Integer value) {
             addCriterion("OUTLINE_POS_Y >=", value, "outlinePosY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosYLessThan(Short value) {
+        public Criteria andOutlinePosYLessThan(Integer value) {
             addCriterion("OUTLINE_POS_Y <", value, "outlinePosY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosYLessThanOrEqualTo(Short value) {
+        public Criteria andOutlinePosYLessThanOrEqualTo(Integer value) {
             addCriterion("OUTLINE_POS_Y <=", value, "outlinePosY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosYIn(List<Short> values) {
+        public Criteria andOutlinePosYIn(List<Integer> values) {
             addCriterion("OUTLINE_POS_Y in", values, "outlinePosY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosYNotIn(List<Short> values) {
+        public Criteria andOutlinePosYNotIn(List<Integer> values) {
             addCriterion("OUTLINE_POS_Y not in", values, "outlinePosY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosYBetween(Short value1, Short value2) {
+        public Criteria andOutlinePosYBetween(Integer value1, Integer value2) {
             addCriterion("OUTLINE_POS_Y between", value1, value2, "outlinePosY");
             return (Criteria) this;
         }
 
-        public Criteria andOutlinePosYNotBetween(Short value1, Short value2) {
+        public Criteria andOutlinePosYNotBetween(Integer value1, Integer value2) {
             addCriterion("OUTLINE_POS_Y not between", value1, value2, "outlinePosY");
             return (Criteria) this;
         }
@@ -1034,52 +1034,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmThemeEqualTo(Short value) {
+        public Criteria andRsvMgmThemeEqualTo(Integer value) {
             addCriterion("RSV_MGM_THEME =", value, "rsvMgmTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmThemeNotEqualTo(Short value) {
+        public Criteria andRsvMgmThemeNotEqualTo(Integer value) {
             addCriterion("RSV_MGM_THEME <>", value, "rsvMgmTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmThemeGreaterThan(Short value) {
+        public Criteria andRsvMgmThemeGreaterThan(Integer value) {
             addCriterion("RSV_MGM_THEME >", value, "rsvMgmTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvMgmThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_MGM_THEME >=", value, "rsvMgmTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmThemeLessThan(Short value) {
+        public Criteria andRsvMgmThemeLessThan(Integer value) {
             addCriterion("RSV_MGM_THEME <", value, "rsvMgmTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmThemeLessThanOrEqualTo(Short value) {
+        public Criteria andRsvMgmThemeLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_MGM_THEME <=", value, "rsvMgmTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmThemeIn(List<Short> values) {
+        public Criteria andRsvMgmThemeIn(List<Integer> values) {
             addCriterion("RSV_MGM_THEME in", values, "rsvMgmTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmThemeNotIn(List<Short> values) {
+        public Criteria andRsvMgmThemeNotIn(List<Integer> values) {
             addCriterion("RSV_MGM_THEME not in", values, "rsvMgmTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmThemeBetween(Short value1, Short value2) {
+        public Criteria andRsvMgmThemeBetween(Integer value1, Integer value2) {
             addCriterion("RSV_MGM_THEME between", value1, value2, "rsvMgmTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmThemeNotBetween(Short value1, Short value2) {
+        public Criteria andRsvMgmThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_MGM_THEME not between", value1, value2, "rsvMgmTheme");
             return (Criteria) this;
         }
@@ -1094,52 +1094,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeXEqualTo(Short value) {
+        public Criteria andRsvMgmSizeXEqualTo(Integer value) {
             addCriterion("RSV_MGM_SIZE_X =", value, "rsvMgmSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeXNotEqualTo(Short value) {
+        public Criteria andRsvMgmSizeXNotEqualTo(Integer value) {
             addCriterion("RSV_MGM_SIZE_X <>", value, "rsvMgmSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeXGreaterThan(Short value) {
+        public Criteria andRsvMgmSizeXGreaterThan(Integer value) {
             addCriterion("RSV_MGM_SIZE_X >", value, "rsvMgmSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeXGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvMgmSizeXGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_MGM_SIZE_X >=", value, "rsvMgmSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeXLessThan(Short value) {
+        public Criteria andRsvMgmSizeXLessThan(Integer value) {
             addCriterion("RSV_MGM_SIZE_X <", value, "rsvMgmSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeXLessThanOrEqualTo(Short value) {
+        public Criteria andRsvMgmSizeXLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_MGM_SIZE_X <=", value, "rsvMgmSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeXIn(List<Short> values) {
+        public Criteria andRsvMgmSizeXIn(List<Integer> values) {
             addCriterion("RSV_MGM_SIZE_X in", values, "rsvMgmSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeXNotIn(List<Short> values) {
+        public Criteria andRsvMgmSizeXNotIn(List<Integer> values) {
             addCriterion("RSV_MGM_SIZE_X not in", values, "rsvMgmSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeXBetween(Short value1, Short value2) {
+        public Criteria andRsvMgmSizeXBetween(Integer value1, Integer value2) {
             addCriterion("RSV_MGM_SIZE_X between", value1, value2, "rsvMgmSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeXNotBetween(Short value1, Short value2) {
+        public Criteria andRsvMgmSizeXNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_MGM_SIZE_X not between", value1, value2, "rsvMgmSizeX");
             return (Criteria) this;
         }
@@ -1154,52 +1154,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeYEqualTo(Short value) {
+        public Criteria andRsvMgmSizeYEqualTo(Integer value) {
             addCriterion("RSV_MGM_SIZE_Y =", value, "rsvMgmSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeYNotEqualTo(Short value) {
+        public Criteria andRsvMgmSizeYNotEqualTo(Integer value) {
             addCriterion("RSV_MGM_SIZE_Y <>", value, "rsvMgmSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeYGreaterThan(Short value) {
+        public Criteria andRsvMgmSizeYGreaterThan(Integer value) {
             addCriterion("RSV_MGM_SIZE_Y >", value, "rsvMgmSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeYGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvMgmSizeYGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_MGM_SIZE_Y >=", value, "rsvMgmSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeYLessThan(Short value) {
+        public Criteria andRsvMgmSizeYLessThan(Integer value) {
             addCriterion("RSV_MGM_SIZE_Y <", value, "rsvMgmSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeYLessThanOrEqualTo(Short value) {
+        public Criteria andRsvMgmSizeYLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_MGM_SIZE_Y <=", value, "rsvMgmSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeYIn(List<Short> values) {
+        public Criteria andRsvMgmSizeYIn(List<Integer> values) {
             addCriterion("RSV_MGM_SIZE_Y in", values, "rsvMgmSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeYNotIn(List<Short> values) {
+        public Criteria andRsvMgmSizeYNotIn(List<Integer> values) {
             addCriterion("RSV_MGM_SIZE_Y not in", values, "rsvMgmSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeYBetween(Short value1, Short value2) {
+        public Criteria andRsvMgmSizeYBetween(Integer value1, Integer value2) {
             addCriterion("RSV_MGM_SIZE_Y between", value1, value2, "rsvMgmSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmSizeYNotBetween(Short value1, Short value2) {
+        public Criteria andRsvMgmSizeYNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_MGM_SIZE_Y not between", value1, value2, "rsvMgmSizeY");
             return (Criteria) this;
         }
@@ -1214,52 +1214,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosXEqualTo(Short value) {
+        public Criteria andRsvMgmPosXEqualTo(Integer value) {
             addCriterion("RSV_MGM_POS_X =", value, "rsvMgmPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosXNotEqualTo(Short value) {
+        public Criteria andRsvMgmPosXNotEqualTo(Integer value) {
             addCriterion("RSV_MGM_POS_X <>", value, "rsvMgmPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosXGreaterThan(Short value) {
+        public Criteria andRsvMgmPosXGreaterThan(Integer value) {
             addCriterion("RSV_MGM_POS_X >", value, "rsvMgmPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosXGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvMgmPosXGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_MGM_POS_X >=", value, "rsvMgmPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosXLessThan(Short value) {
+        public Criteria andRsvMgmPosXLessThan(Integer value) {
             addCriterion("RSV_MGM_POS_X <", value, "rsvMgmPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosXLessThanOrEqualTo(Short value) {
+        public Criteria andRsvMgmPosXLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_MGM_POS_X <=", value, "rsvMgmPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosXIn(List<Short> values) {
+        public Criteria andRsvMgmPosXIn(List<Integer> values) {
             addCriterion("RSV_MGM_POS_X in", values, "rsvMgmPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosXNotIn(List<Short> values) {
+        public Criteria andRsvMgmPosXNotIn(List<Integer> values) {
             addCriterion("RSV_MGM_POS_X not in", values, "rsvMgmPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosXBetween(Short value1, Short value2) {
+        public Criteria andRsvMgmPosXBetween(Integer value1, Integer value2) {
             addCriterion("RSV_MGM_POS_X between", value1, value2, "rsvMgmPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosXNotBetween(Short value1, Short value2) {
+        public Criteria andRsvMgmPosXNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_MGM_POS_X not between", value1, value2, "rsvMgmPosX");
             return (Criteria) this;
         }
@@ -1274,52 +1274,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosYEqualTo(Short value) {
+        public Criteria andRsvMgmPosYEqualTo(Integer value) {
             addCriterion("RSV_MGM_POS_Y =", value, "rsvMgmPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosYNotEqualTo(Short value) {
+        public Criteria andRsvMgmPosYNotEqualTo(Integer value) {
             addCriterion("RSV_MGM_POS_Y <>", value, "rsvMgmPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosYGreaterThan(Short value) {
+        public Criteria andRsvMgmPosYGreaterThan(Integer value) {
             addCriterion("RSV_MGM_POS_Y >", value, "rsvMgmPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosYGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvMgmPosYGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_MGM_POS_Y >=", value, "rsvMgmPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosYLessThan(Short value) {
+        public Criteria andRsvMgmPosYLessThan(Integer value) {
             addCriterion("RSV_MGM_POS_Y <", value, "rsvMgmPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosYLessThanOrEqualTo(Short value) {
+        public Criteria andRsvMgmPosYLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_MGM_POS_Y <=", value, "rsvMgmPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosYIn(List<Short> values) {
+        public Criteria andRsvMgmPosYIn(List<Integer> values) {
             addCriterion("RSV_MGM_POS_Y in", values, "rsvMgmPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosYNotIn(List<Short> values) {
+        public Criteria andRsvMgmPosYNotIn(List<Integer> values) {
             addCriterion("RSV_MGM_POS_Y not in", values, "rsvMgmPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosYBetween(Short value1, Short value2) {
+        public Criteria andRsvMgmPosYBetween(Integer value1, Integer value2) {
             addCriterion("RSV_MGM_POS_Y between", value1, value2, "rsvMgmPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvMgmPosYNotBetween(Short value1, Short value2) {
+        public Criteria andRsvMgmPosYNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_MGM_POS_Y not between", value1, value2, "rsvMgmPosY");
             return (Criteria) this;
         }
@@ -1394,52 +1394,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingThemeEqualTo(Short value) {
+        public Criteria andMiscSettingThemeEqualTo(Integer value) {
             addCriterion("MISC_SETTING_THEME =", value, "miscSettingTheme");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingThemeNotEqualTo(Short value) {
+        public Criteria andMiscSettingThemeNotEqualTo(Integer value) {
             addCriterion("MISC_SETTING_THEME <>", value, "miscSettingTheme");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingThemeGreaterThan(Short value) {
+        public Criteria andMiscSettingThemeGreaterThan(Integer value) {
             addCriterion("MISC_SETTING_THEME >", value, "miscSettingTheme");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andMiscSettingThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("MISC_SETTING_THEME >=", value, "miscSettingTheme");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingThemeLessThan(Short value) {
+        public Criteria andMiscSettingThemeLessThan(Integer value) {
             addCriterion("MISC_SETTING_THEME <", value, "miscSettingTheme");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingThemeLessThanOrEqualTo(Short value) {
+        public Criteria andMiscSettingThemeLessThanOrEqualTo(Integer value) {
             addCriterion("MISC_SETTING_THEME <=", value, "miscSettingTheme");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingThemeIn(List<Short> values) {
+        public Criteria andMiscSettingThemeIn(List<Integer> values) {
             addCriterion("MISC_SETTING_THEME in", values, "miscSettingTheme");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingThemeNotIn(List<Short> values) {
+        public Criteria andMiscSettingThemeNotIn(List<Integer> values) {
             addCriterion("MISC_SETTING_THEME not in", values, "miscSettingTheme");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingThemeBetween(Short value1, Short value2) {
+        public Criteria andMiscSettingThemeBetween(Integer value1, Integer value2) {
             addCriterion("MISC_SETTING_THEME between", value1, value2, "miscSettingTheme");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingThemeNotBetween(Short value1, Short value2) {
+        public Criteria andMiscSettingThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("MISC_SETTING_THEME not between", value1, value2, "miscSettingTheme");
             return (Criteria) this;
         }
@@ -1454,52 +1454,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeXEqualTo(Short value) {
+        public Criteria andMiscSettingSizeXEqualTo(Integer value) {
             addCriterion("MISC_SETTING_SIZE_X =", value, "miscSettingSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeXNotEqualTo(Short value) {
+        public Criteria andMiscSettingSizeXNotEqualTo(Integer value) {
             addCriterion("MISC_SETTING_SIZE_X <>", value, "miscSettingSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeXGreaterThan(Short value) {
+        public Criteria andMiscSettingSizeXGreaterThan(Integer value) {
             addCriterion("MISC_SETTING_SIZE_X >", value, "miscSettingSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeXGreaterThanOrEqualTo(Short value) {
+        public Criteria andMiscSettingSizeXGreaterThanOrEqualTo(Integer value) {
             addCriterion("MISC_SETTING_SIZE_X >=", value, "miscSettingSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeXLessThan(Short value) {
+        public Criteria andMiscSettingSizeXLessThan(Integer value) {
             addCriterion("MISC_SETTING_SIZE_X <", value, "miscSettingSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeXLessThanOrEqualTo(Short value) {
+        public Criteria andMiscSettingSizeXLessThanOrEqualTo(Integer value) {
             addCriterion("MISC_SETTING_SIZE_X <=", value, "miscSettingSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeXIn(List<Short> values) {
+        public Criteria andMiscSettingSizeXIn(List<Integer> values) {
             addCriterion("MISC_SETTING_SIZE_X in", values, "miscSettingSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeXNotIn(List<Short> values) {
+        public Criteria andMiscSettingSizeXNotIn(List<Integer> values) {
             addCriterion("MISC_SETTING_SIZE_X not in", values, "miscSettingSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeXBetween(Short value1, Short value2) {
+        public Criteria andMiscSettingSizeXBetween(Integer value1, Integer value2) {
             addCriterion("MISC_SETTING_SIZE_X between", value1, value2, "miscSettingSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeXNotBetween(Short value1, Short value2) {
+        public Criteria andMiscSettingSizeXNotBetween(Integer value1, Integer value2) {
             addCriterion("MISC_SETTING_SIZE_X not between", value1, value2, "miscSettingSizeX");
             return (Criteria) this;
         }
@@ -1514,52 +1514,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeYEqualTo(Short value) {
+        public Criteria andMiscSettingSizeYEqualTo(Integer value) {
             addCriterion("MISC_SETTING_SIZE_Y =", value, "miscSettingSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeYNotEqualTo(Short value) {
+        public Criteria andMiscSettingSizeYNotEqualTo(Integer value) {
             addCriterion("MISC_SETTING_SIZE_Y <>", value, "miscSettingSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeYGreaterThan(Short value) {
+        public Criteria andMiscSettingSizeYGreaterThan(Integer value) {
             addCriterion("MISC_SETTING_SIZE_Y >", value, "miscSettingSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeYGreaterThanOrEqualTo(Short value) {
+        public Criteria andMiscSettingSizeYGreaterThanOrEqualTo(Integer value) {
             addCriterion("MISC_SETTING_SIZE_Y >=", value, "miscSettingSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeYLessThan(Short value) {
+        public Criteria andMiscSettingSizeYLessThan(Integer value) {
             addCriterion("MISC_SETTING_SIZE_Y <", value, "miscSettingSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeYLessThanOrEqualTo(Short value) {
+        public Criteria andMiscSettingSizeYLessThanOrEqualTo(Integer value) {
             addCriterion("MISC_SETTING_SIZE_Y <=", value, "miscSettingSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeYIn(List<Short> values) {
+        public Criteria andMiscSettingSizeYIn(List<Integer> values) {
             addCriterion("MISC_SETTING_SIZE_Y in", values, "miscSettingSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeYNotIn(List<Short> values) {
+        public Criteria andMiscSettingSizeYNotIn(List<Integer> values) {
             addCriterion("MISC_SETTING_SIZE_Y not in", values, "miscSettingSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeYBetween(Short value1, Short value2) {
+        public Criteria andMiscSettingSizeYBetween(Integer value1, Integer value2) {
             addCriterion("MISC_SETTING_SIZE_Y between", value1, value2, "miscSettingSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingSizeYNotBetween(Short value1, Short value2) {
+        public Criteria andMiscSettingSizeYNotBetween(Integer value1, Integer value2) {
             addCriterion("MISC_SETTING_SIZE_Y not between", value1, value2, "miscSettingSizeY");
             return (Criteria) this;
         }
@@ -1574,52 +1574,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosXEqualTo(Short value) {
+        public Criteria andMiscSettingPosXEqualTo(Integer value) {
             addCriterion("MISC_SETTING_POS_X =", value, "miscSettingPosX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosXNotEqualTo(Short value) {
+        public Criteria andMiscSettingPosXNotEqualTo(Integer value) {
             addCriterion("MISC_SETTING_POS_X <>", value, "miscSettingPosX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosXGreaterThan(Short value) {
+        public Criteria andMiscSettingPosXGreaterThan(Integer value) {
             addCriterion("MISC_SETTING_POS_X >", value, "miscSettingPosX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosXGreaterThanOrEqualTo(Short value) {
+        public Criteria andMiscSettingPosXGreaterThanOrEqualTo(Integer value) {
             addCriterion("MISC_SETTING_POS_X >=", value, "miscSettingPosX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosXLessThan(Short value) {
+        public Criteria andMiscSettingPosXLessThan(Integer value) {
             addCriterion("MISC_SETTING_POS_X <", value, "miscSettingPosX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosXLessThanOrEqualTo(Short value) {
+        public Criteria andMiscSettingPosXLessThanOrEqualTo(Integer value) {
             addCriterion("MISC_SETTING_POS_X <=", value, "miscSettingPosX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosXIn(List<Short> values) {
+        public Criteria andMiscSettingPosXIn(List<Integer> values) {
             addCriterion("MISC_SETTING_POS_X in", values, "miscSettingPosX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosXNotIn(List<Short> values) {
+        public Criteria andMiscSettingPosXNotIn(List<Integer> values) {
             addCriterion("MISC_SETTING_POS_X not in", values, "miscSettingPosX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosXBetween(Short value1, Short value2) {
+        public Criteria andMiscSettingPosXBetween(Integer value1, Integer value2) {
             addCriterion("MISC_SETTING_POS_X between", value1, value2, "miscSettingPosX");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosXNotBetween(Short value1, Short value2) {
+        public Criteria andMiscSettingPosXNotBetween(Integer value1, Integer value2) {
             addCriterion("MISC_SETTING_POS_X not between", value1, value2, "miscSettingPosX");
             return (Criteria) this;
         }
@@ -1634,52 +1634,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosYEqualTo(Short value) {
+        public Criteria andMiscSettingPosYEqualTo(Integer value) {
             addCriterion("MISC_SETTING_POS_Y =", value, "miscSettingPosY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosYNotEqualTo(Short value) {
+        public Criteria andMiscSettingPosYNotEqualTo(Integer value) {
             addCriterion("MISC_SETTING_POS_Y <>", value, "miscSettingPosY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosYGreaterThan(Short value) {
+        public Criteria andMiscSettingPosYGreaterThan(Integer value) {
             addCriterion("MISC_SETTING_POS_Y >", value, "miscSettingPosY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosYGreaterThanOrEqualTo(Short value) {
+        public Criteria andMiscSettingPosYGreaterThanOrEqualTo(Integer value) {
             addCriterion("MISC_SETTING_POS_Y >=", value, "miscSettingPosY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosYLessThan(Short value) {
+        public Criteria andMiscSettingPosYLessThan(Integer value) {
             addCriterion("MISC_SETTING_POS_Y <", value, "miscSettingPosY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosYLessThanOrEqualTo(Short value) {
+        public Criteria andMiscSettingPosYLessThanOrEqualTo(Integer value) {
             addCriterion("MISC_SETTING_POS_Y <=", value, "miscSettingPosY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosYIn(List<Short> values) {
+        public Criteria andMiscSettingPosYIn(List<Integer> values) {
             addCriterion("MISC_SETTING_POS_Y in", values, "miscSettingPosY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosYNotIn(List<Short> values) {
+        public Criteria andMiscSettingPosYNotIn(List<Integer> values) {
             addCriterion("MISC_SETTING_POS_Y not in", values, "miscSettingPosY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosYBetween(Short value1, Short value2) {
+        public Criteria andMiscSettingPosYBetween(Integer value1, Integer value2) {
             addCriterion("MISC_SETTING_POS_Y between", value1, value2, "miscSettingPosY");
             return (Criteria) this;
         }
 
-        public Criteria andMiscSettingPosYNotBetween(Short value1, Short value2) {
+        public Criteria andMiscSettingPosYNotBetween(Integer value1, Integer value2) {
             addCriterion("MISC_SETTING_POS_Y not between", value1, value2, "miscSettingPosY");
             return (Criteria) this;
         }
@@ -1754,52 +1754,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarThemeEqualTo(Short value) {
+        public Criteria andRsvBtnBarThemeEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_THEME =", value, "rsvBtnBarTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarThemeNotEqualTo(Short value) {
+        public Criteria andRsvBtnBarThemeNotEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_THEME <>", value, "rsvBtnBarTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarThemeGreaterThan(Short value) {
+        public Criteria andRsvBtnBarThemeGreaterThan(Integer value) {
             addCriterion("RSV_BTN_BAR_THEME >", value, "rsvBtnBarTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvBtnBarThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_THEME >=", value, "rsvBtnBarTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarThemeLessThan(Short value) {
+        public Criteria andRsvBtnBarThemeLessThan(Integer value) {
             addCriterion("RSV_BTN_BAR_THEME <", value, "rsvBtnBarTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarThemeLessThanOrEqualTo(Short value) {
+        public Criteria andRsvBtnBarThemeLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_THEME <=", value, "rsvBtnBarTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarThemeIn(List<Short> values) {
+        public Criteria andRsvBtnBarThemeIn(List<Integer> values) {
             addCriterion("RSV_BTN_BAR_THEME in", values, "rsvBtnBarTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarThemeNotIn(List<Short> values) {
+        public Criteria andRsvBtnBarThemeNotIn(List<Integer> values) {
             addCriterion("RSV_BTN_BAR_THEME not in", values, "rsvBtnBarTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarThemeBetween(Short value1, Short value2) {
+        public Criteria andRsvBtnBarThemeBetween(Integer value1, Integer value2) {
             addCriterion("RSV_BTN_BAR_THEME between", value1, value2, "rsvBtnBarTheme");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarThemeNotBetween(Short value1, Short value2) {
+        public Criteria andRsvBtnBarThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_BTN_BAR_THEME not between", value1, value2, "rsvBtnBarTheme");
             return (Criteria) this;
         }
@@ -1814,52 +1814,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeXEqualTo(Short value) {
+        public Criteria andRsvBtnBarSizeXEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_X =", value, "rsvBtnBarSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeXNotEqualTo(Short value) {
+        public Criteria andRsvBtnBarSizeXNotEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_X <>", value, "rsvBtnBarSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeXGreaterThan(Short value) {
+        public Criteria andRsvBtnBarSizeXGreaterThan(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_X >", value, "rsvBtnBarSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeXGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvBtnBarSizeXGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_X >=", value, "rsvBtnBarSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeXLessThan(Short value) {
+        public Criteria andRsvBtnBarSizeXLessThan(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_X <", value, "rsvBtnBarSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeXLessThanOrEqualTo(Short value) {
+        public Criteria andRsvBtnBarSizeXLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_X <=", value, "rsvBtnBarSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeXIn(List<Short> values) {
+        public Criteria andRsvBtnBarSizeXIn(List<Integer> values) {
             addCriterion("RSV_BTN_BAR_SIZE_X in", values, "rsvBtnBarSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeXNotIn(List<Short> values) {
+        public Criteria andRsvBtnBarSizeXNotIn(List<Integer> values) {
             addCriterion("RSV_BTN_BAR_SIZE_X not in", values, "rsvBtnBarSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeXBetween(Short value1, Short value2) {
+        public Criteria andRsvBtnBarSizeXBetween(Integer value1, Integer value2) {
             addCriterion("RSV_BTN_BAR_SIZE_X between", value1, value2, "rsvBtnBarSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeXNotBetween(Short value1, Short value2) {
+        public Criteria andRsvBtnBarSizeXNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_BTN_BAR_SIZE_X not between", value1, value2, "rsvBtnBarSizeX");
             return (Criteria) this;
         }
@@ -1874,52 +1874,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeYEqualTo(Short value) {
+        public Criteria andRsvBtnBarSizeYEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_Y =", value, "rsvBtnBarSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeYNotEqualTo(Short value) {
+        public Criteria andRsvBtnBarSizeYNotEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_Y <>", value, "rsvBtnBarSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeYGreaterThan(Short value) {
+        public Criteria andRsvBtnBarSizeYGreaterThan(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_Y >", value, "rsvBtnBarSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeYGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvBtnBarSizeYGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_Y >=", value, "rsvBtnBarSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeYLessThan(Short value) {
+        public Criteria andRsvBtnBarSizeYLessThan(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_Y <", value, "rsvBtnBarSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeYLessThanOrEqualTo(Short value) {
+        public Criteria andRsvBtnBarSizeYLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_SIZE_Y <=", value, "rsvBtnBarSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeYIn(List<Short> values) {
+        public Criteria andRsvBtnBarSizeYIn(List<Integer> values) {
             addCriterion("RSV_BTN_BAR_SIZE_Y in", values, "rsvBtnBarSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeYNotIn(List<Short> values) {
+        public Criteria andRsvBtnBarSizeYNotIn(List<Integer> values) {
             addCriterion("RSV_BTN_BAR_SIZE_Y not in", values, "rsvBtnBarSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeYBetween(Short value1, Short value2) {
+        public Criteria andRsvBtnBarSizeYBetween(Integer value1, Integer value2) {
             addCriterion("RSV_BTN_BAR_SIZE_Y between", value1, value2, "rsvBtnBarSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarSizeYNotBetween(Short value1, Short value2) {
+        public Criteria andRsvBtnBarSizeYNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_BTN_BAR_SIZE_Y not between", value1, value2, "rsvBtnBarSizeY");
             return (Criteria) this;
         }
@@ -1934,52 +1934,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosXEqualTo(Short value) {
+        public Criteria andRsvBtnBarPosXEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_X =", value, "rsvBtnBarPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosXNotEqualTo(Short value) {
+        public Criteria andRsvBtnBarPosXNotEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_X <>", value, "rsvBtnBarPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosXGreaterThan(Short value) {
+        public Criteria andRsvBtnBarPosXGreaterThan(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_X >", value, "rsvBtnBarPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosXGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvBtnBarPosXGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_X >=", value, "rsvBtnBarPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosXLessThan(Short value) {
+        public Criteria andRsvBtnBarPosXLessThan(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_X <", value, "rsvBtnBarPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosXLessThanOrEqualTo(Short value) {
+        public Criteria andRsvBtnBarPosXLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_X <=", value, "rsvBtnBarPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosXIn(List<Short> values) {
+        public Criteria andRsvBtnBarPosXIn(List<Integer> values) {
             addCriterion("RSV_BTN_BAR_POS_X in", values, "rsvBtnBarPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosXNotIn(List<Short> values) {
+        public Criteria andRsvBtnBarPosXNotIn(List<Integer> values) {
             addCriterion("RSV_BTN_BAR_POS_X not in", values, "rsvBtnBarPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosXBetween(Short value1, Short value2) {
+        public Criteria andRsvBtnBarPosXBetween(Integer value1, Integer value2) {
             addCriterion("RSV_BTN_BAR_POS_X between", value1, value2, "rsvBtnBarPosX");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosXNotBetween(Short value1, Short value2) {
+        public Criteria andRsvBtnBarPosXNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_BTN_BAR_POS_X not between", value1, value2, "rsvBtnBarPosX");
             return (Criteria) this;
         }
@@ -1994,52 +1994,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosYEqualTo(Short value) {
+        public Criteria andRsvBtnBarPosYEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_Y =", value, "rsvBtnBarPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosYNotEqualTo(Short value) {
+        public Criteria andRsvBtnBarPosYNotEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_Y <>", value, "rsvBtnBarPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosYGreaterThan(Short value) {
+        public Criteria andRsvBtnBarPosYGreaterThan(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_Y >", value, "rsvBtnBarPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosYGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvBtnBarPosYGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_Y >=", value, "rsvBtnBarPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosYLessThan(Short value) {
+        public Criteria andRsvBtnBarPosYLessThan(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_Y <", value, "rsvBtnBarPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosYLessThanOrEqualTo(Short value) {
+        public Criteria andRsvBtnBarPosYLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_BTN_BAR_POS_Y <=", value, "rsvBtnBarPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosYIn(List<Short> values) {
+        public Criteria andRsvBtnBarPosYIn(List<Integer> values) {
             addCriterion("RSV_BTN_BAR_POS_Y in", values, "rsvBtnBarPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosYNotIn(List<Short> values) {
+        public Criteria andRsvBtnBarPosYNotIn(List<Integer> values) {
             addCriterion("RSV_BTN_BAR_POS_Y not in", values, "rsvBtnBarPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosYBetween(Short value1, Short value2) {
+        public Criteria andRsvBtnBarPosYBetween(Integer value1, Integer value2) {
             addCriterion("RSV_BTN_BAR_POS_Y between", value1, value2, "rsvBtnBarPosY");
             return (Criteria) this;
         }
 
-        public Criteria andRsvBtnBarPosYNotBetween(Short value1, Short value2) {
+        public Criteria andRsvBtnBarPosYNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_BTN_BAR_POS_Y not between", value1, value2, "rsvBtnBarPosY");
             return (Criteria) this;
         }
@@ -2114,52 +2114,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoThemeEqualTo(Short value) {
+        public Criteria andEtpInfoThemeEqualTo(Integer value) {
             addCriterion("ETP_INFO_THEME =", value, "etpInfoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoThemeNotEqualTo(Short value) {
+        public Criteria andEtpInfoThemeNotEqualTo(Integer value) {
             addCriterion("ETP_INFO_THEME <>", value, "etpInfoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoThemeGreaterThan(Short value) {
+        public Criteria andEtpInfoThemeGreaterThan(Integer value) {
             addCriterion("ETP_INFO_THEME >", value, "etpInfoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andEtpInfoThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("ETP_INFO_THEME >=", value, "etpInfoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoThemeLessThan(Short value) {
+        public Criteria andEtpInfoThemeLessThan(Integer value) {
             addCriterion("ETP_INFO_THEME <", value, "etpInfoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoThemeLessThanOrEqualTo(Short value) {
+        public Criteria andEtpInfoThemeLessThanOrEqualTo(Integer value) {
             addCriterion("ETP_INFO_THEME <=", value, "etpInfoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoThemeIn(List<Short> values) {
+        public Criteria andEtpInfoThemeIn(List<Integer> values) {
             addCriterion("ETP_INFO_THEME in", values, "etpInfoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoThemeNotIn(List<Short> values) {
+        public Criteria andEtpInfoThemeNotIn(List<Integer> values) {
             addCriterion("ETP_INFO_THEME not in", values, "etpInfoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoThemeBetween(Short value1, Short value2) {
+        public Criteria andEtpInfoThemeBetween(Integer value1, Integer value2) {
             addCriterion("ETP_INFO_THEME between", value1, value2, "etpInfoTheme");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoThemeNotBetween(Short value1, Short value2) {
+        public Criteria andEtpInfoThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("ETP_INFO_THEME not between", value1, value2, "etpInfoTheme");
             return (Criteria) this;
         }
@@ -2174,52 +2174,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeXEqualTo(Short value) {
+        public Criteria andEtpInfoSizeXEqualTo(Integer value) {
             addCriterion("ETP_INFO_SIZE_X =", value, "etpInfoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeXNotEqualTo(Short value) {
+        public Criteria andEtpInfoSizeXNotEqualTo(Integer value) {
             addCriterion("ETP_INFO_SIZE_X <>", value, "etpInfoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeXGreaterThan(Short value) {
+        public Criteria andEtpInfoSizeXGreaterThan(Integer value) {
             addCriterion("ETP_INFO_SIZE_X >", value, "etpInfoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeXGreaterThanOrEqualTo(Short value) {
+        public Criteria andEtpInfoSizeXGreaterThanOrEqualTo(Integer value) {
             addCriterion("ETP_INFO_SIZE_X >=", value, "etpInfoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeXLessThan(Short value) {
+        public Criteria andEtpInfoSizeXLessThan(Integer value) {
             addCriterion("ETP_INFO_SIZE_X <", value, "etpInfoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeXLessThanOrEqualTo(Short value) {
+        public Criteria andEtpInfoSizeXLessThanOrEqualTo(Integer value) {
             addCriterion("ETP_INFO_SIZE_X <=", value, "etpInfoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeXIn(List<Short> values) {
+        public Criteria andEtpInfoSizeXIn(List<Integer> values) {
             addCriterion("ETP_INFO_SIZE_X in", values, "etpInfoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeXNotIn(List<Short> values) {
+        public Criteria andEtpInfoSizeXNotIn(List<Integer> values) {
             addCriterion("ETP_INFO_SIZE_X not in", values, "etpInfoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeXBetween(Short value1, Short value2) {
+        public Criteria andEtpInfoSizeXBetween(Integer value1, Integer value2) {
             addCriterion("ETP_INFO_SIZE_X between", value1, value2, "etpInfoSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeXNotBetween(Short value1, Short value2) {
+        public Criteria andEtpInfoSizeXNotBetween(Integer value1, Integer value2) {
             addCriterion("ETP_INFO_SIZE_X not between", value1, value2, "etpInfoSizeX");
             return (Criteria) this;
         }
@@ -2234,52 +2234,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeYEqualTo(Short value) {
+        public Criteria andEtpInfoSizeYEqualTo(Integer value) {
             addCriterion("ETP_INFO_SIZE_Y =", value, "etpInfoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeYNotEqualTo(Short value) {
+        public Criteria andEtpInfoSizeYNotEqualTo(Integer value) {
             addCriterion("ETP_INFO_SIZE_Y <>", value, "etpInfoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeYGreaterThan(Short value) {
+        public Criteria andEtpInfoSizeYGreaterThan(Integer value) {
             addCriterion("ETP_INFO_SIZE_Y >", value, "etpInfoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeYGreaterThanOrEqualTo(Short value) {
+        public Criteria andEtpInfoSizeYGreaterThanOrEqualTo(Integer value) {
             addCriterion("ETP_INFO_SIZE_Y >=", value, "etpInfoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeYLessThan(Short value) {
+        public Criteria andEtpInfoSizeYLessThan(Integer value) {
             addCriterion("ETP_INFO_SIZE_Y <", value, "etpInfoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeYLessThanOrEqualTo(Short value) {
+        public Criteria andEtpInfoSizeYLessThanOrEqualTo(Integer value) {
             addCriterion("ETP_INFO_SIZE_Y <=", value, "etpInfoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeYIn(List<Short> values) {
+        public Criteria andEtpInfoSizeYIn(List<Integer> values) {
             addCriterion("ETP_INFO_SIZE_Y in", values, "etpInfoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeYNotIn(List<Short> values) {
+        public Criteria andEtpInfoSizeYNotIn(List<Integer> values) {
             addCriterion("ETP_INFO_SIZE_Y not in", values, "etpInfoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeYBetween(Short value1, Short value2) {
+        public Criteria andEtpInfoSizeYBetween(Integer value1, Integer value2) {
             addCriterion("ETP_INFO_SIZE_Y between", value1, value2, "etpInfoSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoSizeYNotBetween(Short value1, Short value2) {
+        public Criteria andEtpInfoSizeYNotBetween(Integer value1, Integer value2) {
             addCriterion("ETP_INFO_SIZE_Y not between", value1, value2, "etpInfoSizeY");
             return (Criteria) this;
         }
@@ -2294,52 +2294,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosXEqualTo(Short value) {
+        public Criteria andEtpInfoPosXEqualTo(Integer value) {
             addCriterion("ETP_INFO_POS_X =", value, "etpInfoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosXNotEqualTo(Short value) {
+        public Criteria andEtpInfoPosXNotEqualTo(Integer value) {
             addCriterion("ETP_INFO_POS_X <>", value, "etpInfoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosXGreaterThan(Short value) {
+        public Criteria andEtpInfoPosXGreaterThan(Integer value) {
             addCriterion("ETP_INFO_POS_X >", value, "etpInfoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosXGreaterThanOrEqualTo(Short value) {
+        public Criteria andEtpInfoPosXGreaterThanOrEqualTo(Integer value) {
             addCriterion("ETP_INFO_POS_X >=", value, "etpInfoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosXLessThan(Short value) {
+        public Criteria andEtpInfoPosXLessThan(Integer value) {
             addCriterion("ETP_INFO_POS_X <", value, "etpInfoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosXLessThanOrEqualTo(Short value) {
+        public Criteria andEtpInfoPosXLessThanOrEqualTo(Integer value) {
             addCriterion("ETP_INFO_POS_X <=", value, "etpInfoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosXIn(List<Short> values) {
+        public Criteria andEtpInfoPosXIn(List<Integer> values) {
             addCriterion("ETP_INFO_POS_X in", values, "etpInfoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosXNotIn(List<Short> values) {
+        public Criteria andEtpInfoPosXNotIn(List<Integer> values) {
             addCriterion("ETP_INFO_POS_X not in", values, "etpInfoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosXBetween(Short value1, Short value2) {
+        public Criteria andEtpInfoPosXBetween(Integer value1, Integer value2) {
             addCriterion("ETP_INFO_POS_X between", value1, value2, "etpInfoPosX");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosXNotBetween(Short value1, Short value2) {
+        public Criteria andEtpInfoPosXNotBetween(Integer value1, Integer value2) {
             addCriterion("ETP_INFO_POS_X not between", value1, value2, "etpInfoPosX");
             return (Criteria) this;
         }
@@ -2354,52 +2354,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosYEqualTo(Short value) {
+        public Criteria andEtpInfoPosYEqualTo(Integer value) {
             addCriterion("ETP_INFO_POS_Y =", value, "etpInfoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosYNotEqualTo(Short value) {
+        public Criteria andEtpInfoPosYNotEqualTo(Integer value) {
             addCriterion("ETP_INFO_POS_Y <>", value, "etpInfoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosYGreaterThan(Short value) {
+        public Criteria andEtpInfoPosYGreaterThan(Integer value) {
             addCriterion("ETP_INFO_POS_Y >", value, "etpInfoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosYGreaterThanOrEqualTo(Short value) {
+        public Criteria andEtpInfoPosYGreaterThanOrEqualTo(Integer value) {
             addCriterion("ETP_INFO_POS_Y >=", value, "etpInfoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosYLessThan(Short value) {
+        public Criteria andEtpInfoPosYLessThan(Integer value) {
             addCriterion("ETP_INFO_POS_Y <", value, "etpInfoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosYLessThanOrEqualTo(Short value) {
+        public Criteria andEtpInfoPosYLessThanOrEqualTo(Integer value) {
             addCriterion("ETP_INFO_POS_Y <=", value, "etpInfoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosYIn(List<Short> values) {
+        public Criteria andEtpInfoPosYIn(List<Integer> values) {
             addCriterion("ETP_INFO_POS_Y in", values, "etpInfoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosYNotIn(List<Short> values) {
+        public Criteria andEtpInfoPosYNotIn(List<Integer> values) {
             addCriterion("ETP_INFO_POS_Y not in", values, "etpInfoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosYBetween(Short value1, Short value2) {
+        public Criteria andEtpInfoPosYBetween(Integer value1, Integer value2) {
             addCriterion("ETP_INFO_POS_Y between", value1, value2, "etpInfoPosY");
             return (Criteria) this;
         }
 
-        public Criteria andEtpInfoPosYNotBetween(Short value1, Short value2) {
+        public Criteria andEtpInfoPosYNotBetween(Integer value1, Integer value2) {
             addCriterion("ETP_INFO_POS_Y not between", value1, value2, "etpInfoPosY");
             return (Criteria) this;
         }
@@ -2474,52 +2474,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andSvcListThemeEqualTo(Short value) {
+        public Criteria andSvcListThemeEqualTo(Integer value) {
             addCriterion("SVC_LIST_THEME =", value, "svcListTheme");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListThemeNotEqualTo(Short value) {
+        public Criteria andSvcListThemeNotEqualTo(Integer value) {
             addCriterion("SVC_LIST_THEME <>", value, "svcListTheme");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListThemeGreaterThan(Short value) {
+        public Criteria andSvcListThemeGreaterThan(Integer value) {
             addCriterion("SVC_LIST_THEME >", value, "svcListTheme");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andSvcListThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("SVC_LIST_THEME >=", value, "svcListTheme");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListThemeLessThan(Short value) {
+        public Criteria andSvcListThemeLessThan(Integer value) {
             addCriterion("SVC_LIST_THEME <", value, "svcListTheme");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListThemeLessThanOrEqualTo(Short value) {
+        public Criteria andSvcListThemeLessThanOrEqualTo(Integer value) {
             addCriterion("SVC_LIST_THEME <=", value, "svcListTheme");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListThemeIn(List<Short> values) {
+        public Criteria andSvcListThemeIn(List<Integer> values) {
             addCriterion("SVC_LIST_THEME in", values, "svcListTheme");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListThemeNotIn(List<Short> values) {
+        public Criteria andSvcListThemeNotIn(List<Integer> values) {
             addCriterion("SVC_LIST_THEME not in", values, "svcListTheme");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListThemeBetween(Short value1, Short value2) {
+        public Criteria andSvcListThemeBetween(Integer value1, Integer value2) {
             addCriterion("SVC_LIST_THEME between", value1, value2, "svcListTheme");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListThemeNotBetween(Short value1, Short value2) {
+        public Criteria andSvcListThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("SVC_LIST_THEME not between", value1, value2, "svcListTheme");
             return (Criteria) this;
         }
@@ -2534,52 +2534,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeXEqualTo(Short value) {
+        public Criteria andSvcListSizeXEqualTo(Integer value) {
             addCriterion("SVC_LIST_SIZE_X =", value, "svcListSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeXNotEqualTo(Short value) {
+        public Criteria andSvcListSizeXNotEqualTo(Integer value) {
             addCriterion("SVC_LIST_SIZE_X <>", value, "svcListSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeXGreaterThan(Short value) {
+        public Criteria andSvcListSizeXGreaterThan(Integer value) {
             addCriterion("SVC_LIST_SIZE_X >", value, "svcListSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeXGreaterThanOrEqualTo(Short value) {
+        public Criteria andSvcListSizeXGreaterThanOrEqualTo(Integer value) {
             addCriterion("SVC_LIST_SIZE_X >=", value, "svcListSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeXLessThan(Short value) {
+        public Criteria andSvcListSizeXLessThan(Integer value) {
             addCriterion("SVC_LIST_SIZE_X <", value, "svcListSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeXLessThanOrEqualTo(Short value) {
+        public Criteria andSvcListSizeXLessThanOrEqualTo(Integer value) {
             addCriterion("SVC_LIST_SIZE_X <=", value, "svcListSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeXIn(List<Short> values) {
+        public Criteria andSvcListSizeXIn(List<Integer> values) {
             addCriterion("SVC_LIST_SIZE_X in", values, "svcListSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeXNotIn(List<Short> values) {
+        public Criteria andSvcListSizeXNotIn(List<Integer> values) {
             addCriterion("SVC_LIST_SIZE_X not in", values, "svcListSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeXBetween(Short value1, Short value2) {
+        public Criteria andSvcListSizeXBetween(Integer value1, Integer value2) {
             addCriterion("SVC_LIST_SIZE_X between", value1, value2, "svcListSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeXNotBetween(Short value1, Short value2) {
+        public Criteria andSvcListSizeXNotBetween(Integer value1, Integer value2) {
             addCriterion("SVC_LIST_SIZE_X not between", value1, value2, "svcListSizeX");
             return (Criteria) this;
         }
@@ -2594,52 +2594,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeYEqualTo(Short value) {
+        public Criteria andSvcListSizeYEqualTo(Integer value) {
             addCriterion("SVC_LIST_SIZE_Y =", value, "svcListSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeYNotEqualTo(Short value) {
+        public Criteria andSvcListSizeYNotEqualTo(Integer value) {
             addCriterion("SVC_LIST_SIZE_Y <>", value, "svcListSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeYGreaterThan(Short value) {
+        public Criteria andSvcListSizeYGreaterThan(Integer value) {
             addCriterion("SVC_LIST_SIZE_Y >", value, "svcListSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeYGreaterThanOrEqualTo(Short value) {
+        public Criteria andSvcListSizeYGreaterThanOrEqualTo(Integer value) {
             addCriterion("SVC_LIST_SIZE_Y >=", value, "svcListSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeYLessThan(Short value) {
+        public Criteria andSvcListSizeYLessThan(Integer value) {
             addCriterion("SVC_LIST_SIZE_Y <", value, "svcListSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeYLessThanOrEqualTo(Short value) {
+        public Criteria andSvcListSizeYLessThanOrEqualTo(Integer value) {
             addCriterion("SVC_LIST_SIZE_Y <=", value, "svcListSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeYIn(List<Short> values) {
+        public Criteria andSvcListSizeYIn(List<Integer> values) {
             addCriterion("SVC_LIST_SIZE_Y in", values, "svcListSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeYNotIn(List<Short> values) {
+        public Criteria andSvcListSizeYNotIn(List<Integer> values) {
             addCriterion("SVC_LIST_SIZE_Y not in", values, "svcListSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeYBetween(Short value1, Short value2) {
+        public Criteria andSvcListSizeYBetween(Integer value1, Integer value2) {
             addCriterion("SVC_LIST_SIZE_Y between", value1, value2, "svcListSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListSizeYNotBetween(Short value1, Short value2) {
+        public Criteria andSvcListSizeYNotBetween(Integer value1, Integer value2) {
             addCriterion("SVC_LIST_SIZE_Y not between", value1, value2, "svcListSizeY");
             return (Criteria) this;
         }
@@ -2654,52 +2654,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosXEqualTo(Short value) {
+        public Criteria andSvcListPosXEqualTo(Integer value) {
             addCriterion("SVC_LIST_POS_X =", value, "svcListPosX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosXNotEqualTo(Short value) {
+        public Criteria andSvcListPosXNotEqualTo(Integer value) {
             addCriterion("SVC_LIST_POS_X <>", value, "svcListPosX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosXGreaterThan(Short value) {
+        public Criteria andSvcListPosXGreaterThan(Integer value) {
             addCriterion("SVC_LIST_POS_X >", value, "svcListPosX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosXGreaterThanOrEqualTo(Short value) {
+        public Criteria andSvcListPosXGreaterThanOrEqualTo(Integer value) {
             addCriterion("SVC_LIST_POS_X >=", value, "svcListPosX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosXLessThan(Short value) {
+        public Criteria andSvcListPosXLessThan(Integer value) {
             addCriterion("SVC_LIST_POS_X <", value, "svcListPosX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosXLessThanOrEqualTo(Short value) {
+        public Criteria andSvcListPosXLessThanOrEqualTo(Integer value) {
             addCriterion("SVC_LIST_POS_X <=", value, "svcListPosX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosXIn(List<Short> values) {
+        public Criteria andSvcListPosXIn(List<Integer> values) {
             addCriterion("SVC_LIST_POS_X in", values, "svcListPosX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosXNotIn(List<Short> values) {
+        public Criteria andSvcListPosXNotIn(List<Integer> values) {
             addCriterion("SVC_LIST_POS_X not in", values, "svcListPosX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosXBetween(Short value1, Short value2) {
+        public Criteria andSvcListPosXBetween(Integer value1, Integer value2) {
             addCriterion("SVC_LIST_POS_X between", value1, value2, "svcListPosX");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosXNotBetween(Short value1, Short value2) {
+        public Criteria andSvcListPosXNotBetween(Integer value1, Integer value2) {
             addCriterion("SVC_LIST_POS_X not between", value1, value2, "svcListPosX");
             return (Criteria) this;
         }
@@ -2714,52 +2714,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosYEqualTo(Short value) {
+        public Criteria andSvcListPosYEqualTo(Integer value) {
             addCriterion("SVC_LIST_POS_Y =", value, "svcListPosY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosYNotEqualTo(Short value) {
+        public Criteria andSvcListPosYNotEqualTo(Integer value) {
             addCriterion("SVC_LIST_POS_Y <>", value, "svcListPosY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosYGreaterThan(Short value) {
+        public Criteria andSvcListPosYGreaterThan(Integer value) {
             addCriterion("SVC_LIST_POS_Y >", value, "svcListPosY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosYGreaterThanOrEqualTo(Short value) {
+        public Criteria andSvcListPosYGreaterThanOrEqualTo(Integer value) {
             addCriterion("SVC_LIST_POS_Y >=", value, "svcListPosY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosYLessThan(Short value) {
+        public Criteria andSvcListPosYLessThan(Integer value) {
             addCriterion("SVC_LIST_POS_Y <", value, "svcListPosY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosYLessThanOrEqualTo(Short value) {
+        public Criteria andSvcListPosYLessThanOrEqualTo(Integer value) {
             addCriterion("SVC_LIST_POS_Y <=", value, "svcListPosY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosYIn(List<Short> values) {
+        public Criteria andSvcListPosYIn(List<Integer> values) {
             addCriterion("SVC_LIST_POS_Y in", values, "svcListPosY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosYNotIn(List<Short> values) {
+        public Criteria andSvcListPosYNotIn(List<Integer> values) {
             addCriterion("SVC_LIST_POS_Y not in", values, "svcListPosY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosYBetween(Short value1, Short value2) {
+        public Criteria andSvcListPosYBetween(Integer value1, Integer value2) {
             addCriterion("SVC_LIST_POS_Y between", value1, value2, "svcListPosY");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListPosYNotBetween(Short value1, Short value2) {
+        public Criteria andSvcListPosYNotBetween(Integer value1, Integer value2) {
             addCriterion("SVC_LIST_POS_Y not between", value1, value2, "svcListPosY");
             return (Criteria) this;
         }
@@ -2834,52 +2834,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andGalleryThemeEqualTo(Short value) {
+        public Criteria andGalleryThemeEqualTo(Integer value) {
             addCriterion("GALLERY_THEME =", value, "galleryTheme");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryThemeNotEqualTo(Short value) {
+        public Criteria andGalleryThemeNotEqualTo(Integer value) {
             addCriterion("GALLERY_THEME <>", value, "galleryTheme");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryThemeGreaterThan(Short value) {
+        public Criteria andGalleryThemeGreaterThan(Integer value) {
             addCriterion("GALLERY_THEME >", value, "galleryTheme");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andGalleryThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("GALLERY_THEME >=", value, "galleryTheme");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryThemeLessThan(Short value) {
+        public Criteria andGalleryThemeLessThan(Integer value) {
             addCriterion("GALLERY_THEME <", value, "galleryTheme");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryThemeLessThanOrEqualTo(Short value) {
+        public Criteria andGalleryThemeLessThanOrEqualTo(Integer value) {
             addCriterion("GALLERY_THEME <=", value, "galleryTheme");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryThemeIn(List<Short> values) {
+        public Criteria andGalleryThemeIn(List<Integer> values) {
             addCriterion("GALLERY_THEME in", values, "galleryTheme");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryThemeNotIn(List<Short> values) {
+        public Criteria andGalleryThemeNotIn(List<Integer> values) {
             addCriterion("GALLERY_THEME not in", values, "galleryTheme");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryThemeBetween(Short value1, Short value2) {
+        public Criteria andGalleryThemeBetween(Integer value1, Integer value2) {
             addCriterion("GALLERY_THEME between", value1, value2, "galleryTheme");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryThemeNotBetween(Short value1, Short value2) {
+        public Criteria andGalleryThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("GALLERY_THEME not between", value1, value2, "galleryTheme");
             return (Criteria) this;
         }
@@ -2894,52 +2894,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeXEqualTo(Short value) {
+        public Criteria andGallerySizeXEqualTo(Integer value) {
             addCriterion("GALLERY_SIZE_X =", value, "gallerySizeX");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeXNotEqualTo(Short value) {
+        public Criteria andGallerySizeXNotEqualTo(Integer value) {
             addCriterion("GALLERY_SIZE_X <>", value, "gallerySizeX");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeXGreaterThan(Short value) {
+        public Criteria andGallerySizeXGreaterThan(Integer value) {
             addCriterion("GALLERY_SIZE_X >", value, "gallerySizeX");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeXGreaterThanOrEqualTo(Short value) {
+        public Criteria andGallerySizeXGreaterThanOrEqualTo(Integer value) {
             addCriterion("GALLERY_SIZE_X >=", value, "gallerySizeX");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeXLessThan(Short value) {
+        public Criteria andGallerySizeXLessThan(Integer value) {
             addCriterion("GALLERY_SIZE_X <", value, "gallerySizeX");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeXLessThanOrEqualTo(Short value) {
+        public Criteria andGallerySizeXLessThanOrEqualTo(Integer value) {
             addCriterion("GALLERY_SIZE_X <=", value, "gallerySizeX");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeXIn(List<Short> values) {
+        public Criteria andGallerySizeXIn(List<Integer> values) {
             addCriterion("GALLERY_SIZE_X in", values, "gallerySizeX");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeXNotIn(List<Short> values) {
+        public Criteria andGallerySizeXNotIn(List<Integer> values) {
             addCriterion("GALLERY_SIZE_X not in", values, "gallerySizeX");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeXBetween(Short value1, Short value2) {
+        public Criteria andGallerySizeXBetween(Integer value1, Integer value2) {
             addCriterion("GALLERY_SIZE_X between", value1, value2, "gallerySizeX");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeXNotBetween(Short value1, Short value2) {
+        public Criteria andGallerySizeXNotBetween(Integer value1, Integer value2) {
             addCriterion("GALLERY_SIZE_X not between", value1, value2, "gallerySizeX");
             return (Criteria) this;
         }
@@ -2954,52 +2954,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeYEqualTo(Short value) {
+        public Criteria andGallerySizeYEqualTo(Integer value) {
             addCriterion("GALLERY_SIZE_Y =", value, "gallerySizeY");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeYNotEqualTo(Short value) {
+        public Criteria andGallerySizeYNotEqualTo(Integer value) {
             addCriterion("GALLERY_SIZE_Y <>", value, "gallerySizeY");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeYGreaterThan(Short value) {
+        public Criteria andGallerySizeYGreaterThan(Integer value) {
             addCriterion("GALLERY_SIZE_Y >", value, "gallerySizeY");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeYGreaterThanOrEqualTo(Short value) {
+        public Criteria andGallerySizeYGreaterThanOrEqualTo(Integer value) {
             addCriterion("GALLERY_SIZE_Y >=", value, "gallerySizeY");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeYLessThan(Short value) {
+        public Criteria andGallerySizeYLessThan(Integer value) {
             addCriterion("GALLERY_SIZE_Y <", value, "gallerySizeY");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeYLessThanOrEqualTo(Short value) {
+        public Criteria andGallerySizeYLessThanOrEqualTo(Integer value) {
             addCriterion("GALLERY_SIZE_Y <=", value, "gallerySizeY");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeYIn(List<Short> values) {
+        public Criteria andGallerySizeYIn(List<Integer> values) {
             addCriterion("GALLERY_SIZE_Y in", values, "gallerySizeY");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeYNotIn(List<Short> values) {
+        public Criteria andGallerySizeYNotIn(List<Integer> values) {
             addCriterion("GALLERY_SIZE_Y not in", values, "gallerySizeY");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeYBetween(Short value1, Short value2) {
+        public Criteria andGallerySizeYBetween(Integer value1, Integer value2) {
             addCriterion("GALLERY_SIZE_Y between", value1, value2, "gallerySizeY");
             return (Criteria) this;
         }
 
-        public Criteria andGallerySizeYNotBetween(Short value1, Short value2) {
+        public Criteria andGallerySizeYNotBetween(Integer value1, Integer value2) {
             addCriterion("GALLERY_SIZE_Y not between", value1, value2, "gallerySizeY");
             return (Criteria) this;
         }
@@ -3014,52 +3014,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosXEqualTo(Short value) {
+        public Criteria andGalleryPosXEqualTo(Integer value) {
             addCriterion("GALLERY_POS_X =", value, "galleryPosX");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosXNotEqualTo(Short value) {
+        public Criteria andGalleryPosXNotEqualTo(Integer value) {
             addCriterion("GALLERY_POS_X <>", value, "galleryPosX");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosXGreaterThan(Short value) {
+        public Criteria andGalleryPosXGreaterThan(Integer value) {
             addCriterion("GALLERY_POS_X >", value, "galleryPosX");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosXGreaterThanOrEqualTo(Short value) {
+        public Criteria andGalleryPosXGreaterThanOrEqualTo(Integer value) {
             addCriterion("GALLERY_POS_X >=", value, "galleryPosX");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosXLessThan(Short value) {
+        public Criteria andGalleryPosXLessThan(Integer value) {
             addCriterion("GALLERY_POS_X <", value, "galleryPosX");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosXLessThanOrEqualTo(Short value) {
+        public Criteria andGalleryPosXLessThanOrEqualTo(Integer value) {
             addCriterion("GALLERY_POS_X <=", value, "galleryPosX");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosXIn(List<Short> values) {
+        public Criteria andGalleryPosXIn(List<Integer> values) {
             addCriterion("GALLERY_POS_X in", values, "galleryPosX");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosXNotIn(List<Short> values) {
+        public Criteria andGalleryPosXNotIn(List<Integer> values) {
             addCriterion("GALLERY_POS_X not in", values, "galleryPosX");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosXBetween(Short value1, Short value2) {
+        public Criteria andGalleryPosXBetween(Integer value1, Integer value2) {
             addCriterion("GALLERY_POS_X between", value1, value2, "galleryPosX");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosXNotBetween(Short value1, Short value2) {
+        public Criteria andGalleryPosXNotBetween(Integer value1, Integer value2) {
             addCriterion("GALLERY_POS_X not between", value1, value2, "galleryPosX");
             return (Criteria) this;
         }
@@ -3074,52 +3074,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosYEqualTo(Short value) {
+        public Criteria andGalleryPosYEqualTo(Integer value) {
             addCriterion("GALLERY_POS_Y =", value, "galleryPosY");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosYNotEqualTo(Short value) {
+        public Criteria andGalleryPosYNotEqualTo(Integer value) {
             addCriterion("GALLERY_POS_Y <>", value, "galleryPosY");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosYGreaterThan(Short value) {
+        public Criteria andGalleryPosYGreaterThan(Integer value) {
             addCriterion("GALLERY_POS_Y >", value, "galleryPosY");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosYGreaterThanOrEqualTo(Short value) {
+        public Criteria andGalleryPosYGreaterThanOrEqualTo(Integer value) {
             addCriterion("GALLERY_POS_Y >=", value, "galleryPosY");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosYLessThan(Short value) {
+        public Criteria andGalleryPosYLessThan(Integer value) {
             addCriterion("GALLERY_POS_Y <", value, "galleryPosY");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosYLessThanOrEqualTo(Short value) {
+        public Criteria andGalleryPosYLessThanOrEqualTo(Integer value) {
             addCriterion("GALLERY_POS_Y <=", value, "galleryPosY");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosYIn(List<Short> values) {
+        public Criteria andGalleryPosYIn(List<Integer> values) {
             addCriterion("GALLERY_POS_Y in", values, "galleryPosY");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosYNotIn(List<Short> values) {
+        public Criteria andGalleryPosYNotIn(List<Integer> values) {
             addCriterion("GALLERY_POS_Y not in", values, "galleryPosY");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosYBetween(Short value1, Short value2) {
+        public Criteria andGalleryPosYBetween(Integer value1, Integer value2) {
             addCriterion("GALLERY_POS_Y between", value1, value2, "galleryPosY");
             return (Criteria) this;
         }
 
-        public Criteria andGalleryPosYNotBetween(Short value1, Short value2) {
+        public Criteria andGalleryPosYNotBetween(Integer value1, Integer value2) {
             addCriterion("GALLERY_POS_Y not between", value1, value2, "galleryPosY");
             return (Criteria) this;
         }
@@ -3194,52 +3194,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLocationThemeEqualTo(Short value) {
+        public Criteria andLocationThemeEqualTo(Integer value) {
             addCriterion("LOCATION_THEME =", value, "locationTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLocationThemeNotEqualTo(Short value) {
+        public Criteria andLocationThemeNotEqualTo(Integer value) {
             addCriterion("LOCATION_THEME <>", value, "locationTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLocationThemeGreaterThan(Short value) {
+        public Criteria andLocationThemeGreaterThan(Integer value) {
             addCriterion("LOCATION_THEME >", value, "locationTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLocationThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andLocationThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("LOCATION_THEME >=", value, "locationTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLocationThemeLessThan(Short value) {
+        public Criteria andLocationThemeLessThan(Integer value) {
             addCriterion("LOCATION_THEME <", value, "locationTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLocationThemeLessThanOrEqualTo(Short value) {
+        public Criteria andLocationThemeLessThanOrEqualTo(Integer value) {
             addCriterion("LOCATION_THEME <=", value, "locationTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLocationThemeIn(List<Short> values) {
+        public Criteria andLocationThemeIn(List<Integer> values) {
             addCriterion("LOCATION_THEME in", values, "locationTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLocationThemeNotIn(List<Short> values) {
+        public Criteria andLocationThemeNotIn(List<Integer> values) {
             addCriterion("LOCATION_THEME not in", values, "locationTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLocationThemeBetween(Short value1, Short value2) {
+        public Criteria andLocationThemeBetween(Integer value1, Integer value2) {
             addCriterion("LOCATION_THEME between", value1, value2, "locationTheme");
             return (Criteria) this;
         }
 
-        public Criteria andLocationThemeNotBetween(Short value1, Short value2) {
+        public Criteria andLocationThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("LOCATION_THEME not between", value1, value2, "locationTheme");
             return (Criteria) this;
         }
@@ -3254,52 +3254,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeXEqualTo(Short value) {
+        public Criteria andLocationSizeXEqualTo(Integer value) {
             addCriterion("LOCATION_SIZE_X =", value, "locationSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeXNotEqualTo(Short value) {
+        public Criteria andLocationSizeXNotEqualTo(Integer value) {
             addCriterion("LOCATION_SIZE_X <>", value, "locationSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeXGreaterThan(Short value) {
+        public Criteria andLocationSizeXGreaterThan(Integer value) {
             addCriterion("LOCATION_SIZE_X >", value, "locationSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeXGreaterThanOrEqualTo(Short value) {
+        public Criteria andLocationSizeXGreaterThanOrEqualTo(Integer value) {
             addCriterion("LOCATION_SIZE_X >=", value, "locationSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeXLessThan(Short value) {
+        public Criteria andLocationSizeXLessThan(Integer value) {
             addCriterion("LOCATION_SIZE_X <", value, "locationSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeXLessThanOrEqualTo(Short value) {
+        public Criteria andLocationSizeXLessThanOrEqualTo(Integer value) {
             addCriterion("LOCATION_SIZE_X <=", value, "locationSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeXIn(List<Short> values) {
+        public Criteria andLocationSizeXIn(List<Integer> values) {
             addCriterion("LOCATION_SIZE_X in", values, "locationSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeXNotIn(List<Short> values) {
+        public Criteria andLocationSizeXNotIn(List<Integer> values) {
             addCriterion("LOCATION_SIZE_X not in", values, "locationSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeXBetween(Short value1, Short value2) {
+        public Criteria andLocationSizeXBetween(Integer value1, Integer value2) {
             addCriterion("LOCATION_SIZE_X between", value1, value2, "locationSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeXNotBetween(Short value1, Short value2) {
+        public Criteria andLocationSizeXNotBetween(Integer value1, Integer value2) {
             addCriterion("LOCATION_SIZE_X not between", value1, value2, "locationSizeX");
             return (Criteria) this;
         }
@@ -3314,52 +3314,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeYEqualTo(Short value) {
+        public Criteria andLocationSizeYEqualTo(Integer value) {
             addCriterion("LOCATION_SIZE_Y =", value, "locationSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeYNotEqualTo(Short value) {
+        public Criteria andLocationSizeYNotEqualTo(Integer value) {
             addCriterion("LOCATION_SIZE_Y <>", value, "locationSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeYGreaterThan(Short value) {
+        public Criteria andLocationSizeYGreaterThan(Integer value) {
             addCriterion("LOCATION_SIZE_Y >", value, "locationSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeYGreaterThanOrEqualTo(Short value) {
+        public Criteria andLocationSizeYGreaterThanOrEqualTo(Integer value) {
             addCriterion("LOCATION_SIZE_Y >=", value, "locationSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeYLessThan(Short value) {
+        public Criteria andLocationSizeYLessThan(Integer value) {
             addCriterion("LOCATION_SIZE_Y <", value, "locationSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeYLessThanOrEqualTo(Short value) {
+        public Criteria andLocationSizeYLessThanOrEqualTo(Integer value) {
             addCriterion("LOCATION_SIZE_Y <=", value, "locationSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeYIn(List<Short> values) {
+        public Criteria andLocationSizeYIn(List<Integer> values) {
             addCriterion("LOCATION_SIZE_Y in", values, "locationSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeYNotIn(List<Short> values) {
+        public Criteria andLocationSizeYNotIn(List<Integer> values) {
             addCriterion("LOCATION_SIZE_Y not in", values, "locationSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeYBetween(Short value1, Short value2) {
+        public Criteria andLocationSizeYBetween(Integer value1, Integer value2) {
             addCriterion("LOCATION_SIZE_Y between", value1, value2, "locationSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationSizeYNotBetween(Short value1, Short value2) {
+        public Criteria andLocationSizeYNotBetween(Integer value1, Integer value2) {
             addCriterion("LOCATION_SIZE_Y not between", value1, value2, "locationSizeY");
             return (Criteria) this;
         }
@@ -3374,52 +3374,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosXEqualTo(Short value) {
+        public Criteria andLocationPosXEqualTo(Integer value) {
             addCriterion("LOCATION_POS_X =", value, "locationPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosXNotEqualTo(Short value) {
+        public Criteria andLocationPosXNotEqualTo(Integer value) {
             addCriterion("LOCATION_POS_X <>", value, "locationPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosXGreaterThan(Short value) {
+        public Criteria andLocationPosXGreaterThan(Integer value) {
             addCriterion("LOCATION_POS_X >", value, "locationPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosXGreaterThanOrEqualTo(Short value) {
+        public Criteria andLocationPosXGreaterThanOrEqualTo(Integer value) {
             addCriterion("LOCATION_POS_X >=", value, "locationPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosXLessThan(Short value) {
+        public Criteria andLocationPosXLessThan(Integer value) {
             addCriterion("LOCATION_POS_X <", value, "locationPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosXLessThanOrEqualTo(Short value) {
+        public Criteria andLocationPosXLessThanOrEqualTo(Integer value) {
             addCriterion("LOCATION_POS_X <=", value, "locationPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosXIn(List<Short> values) {
+        public Criteria andLocationPosXIn(List<Integer> values) {
             addCriterion("LOCATION_POS_X in", values, "locationPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosXNotIn(List<Short> values) {
+        public Criteria andLocationPosXNotIn(List<Integer> values) {
             addCriterion("LOCATION_POS_X not in", values, "locationPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosXBetween(Short value1, Short value2) {
+        public Criteria andLocationPosXBetween(Integer value1, Integer value2) {
             addCriterion("LOCATION_POS_X between", value1, value2, "locationPosX");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosXNotBetween(Short value1, Short value2) {
+        public Criteria andLocationPosXNotBetween(Integer value1, Integer value2) {
             addCriterion("LOCATION_POS_X not between", value1, value2, "locationPosX");
             return (Criteria) this;
         }
@@ -3434,52 +3434,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosYEqualTo(Short value) {
+        public Criteria andLocationPosYEqualTo(Integer value) {
             addCriterion("LOCATION_POS_Y =", value, "locationPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosYNotEqualTo(Short value) {
+        public Criteria andLocationPosYNotEqualTo(Integer value) {
             addCriterion("LOCATION_POS_Y <>", value, "locationPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosYGreaterThan(Short value) {
+        public Criteria andLocationPosYGreaterThan(Integer value) {
             addCriterion("LOCATION_POS_Y >", value, "locationPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosYGreaterThanOrEqualTo(Short value) {
+        public Criteria andLocationPosYGreaterThanOrEqualTo(Integer value) {
             addCriterion("LOCATION_POS_Y >=", value, "locationPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosYLessThan(Short value) {
+        public Criteria andLocationPosYLessThan(Integer value) {
             addCriterion("LOCATION_POS_Y <", value, "locationPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosYLessThanOrEqualTo(Short value) {
+        public Criteria andLocationPosYLessThanOrEqualTo(Integer value) {
             addCriterion("LOCATION_POS_Y <=", value, "locationPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosYIn(List<Short> values) {
+        public Criteria andLocationPosYIn(List<Integer> values) {
             addCriterion("LOCATION_POS_Y in", values, "locationPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosYNotIn(List<Short> values) {
+        public Criteria andLocationPosYNotIn(List<Integer> values) {
             addCriterion("LOCATION_POS_Y not in", values, "locationPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosYBetween(Short value1, Short value2) {
+        public Criteria andLocationPosYBetween(Integer value1, Integer value2) {
             addCriterion("LOCATION_POS_Y between", value1, value2, "locationPosY");
             return (Criteria) this;
         }
 
-        public Criteria andLocationPosYNotBetween(Short value1, Short value2) {
+        public Criteria andLocationPosYNotBetween(Integer value1, Integer value2) {
             addCriterion("LOCATION_POS_Y not between", value1, value2, "locationPosY");
             return (Criteria) this;
         }
@@ -3554,52 +3554,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andReviewThemeEqualTo(Short value) {
+        public Criteria andReviewThemeEqualTo(Integer value) {
             addCriterion("REVIEW_THEME =", value, "reviewTheme");
             return (Criteria) this;
         }
 
-        public Criteria andReviewThemeNotEqualTo(Short value) {
+        public Criteria andReviewThemeNotEqualTo(Integer value) {
             addCriterion("REVIEW_THEME <>", value, "reviewTheme");
             return (Criteria) this;
         }
 
-        public Criteria andReviewThemeGreaterThan(Short value) {
+        public Criteria andReviewThemeGreaterThan(Integer value) {
             addCriterion("REVIEW_THEME >", value, "reviewTheme");
             return (Criteria) this;
         }
 
-        public Criteria andReviewThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andReviewThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("REVIEW_THEME >=", value, "reviewTheme");
             return (Criteria) this;
         }
 
-        public Criteria andReviewThemeLessThan(Short value) {
+        public Criteria andReviewThemeLessThan(Integer value) {
             addCriterion("REVIEW_THEME <", value, "reviewTheme");
             return (Criteria) this;
         }
 
-        public Criteria andReviewThemeLessThanOrEqualTo(Short value) {
+        public Criteria andReviewThemeLessThanOrEqualTo(Integer value) {
             addCriterion("REVIEW_THEME <=", value, "reviewTheme");
             return (Criteria) this;
         }
 
-        public Criteria andReviewThemeIn(List<Short> values) {
+        public Criteria andReviewThemeIn(List<Integer> values) {
             addCriterion("REVIEW_THEME in", values, "reviewTheme");
             return (Criteria) this;
         }
 
-        public Criteria andReviewThemeNotIn(List<Short> values) {
+        public Criteria andReviewThemeNotIn(List<Integer> values) {
             addCriterion("REVIEW_THEME not in", values, "reviewTheme");
             return (Criteria) this;
         }
 
-        public Criteria andReviewThemeBetween(Short value1, Short value2) {
+        public Criteria andReviewThemeBetween(Integer value1, Integer value2) {
             addCriterion("REVIEW_THEME between", value1, value2, "reviewTheme");
             return (Criteria) this;
         }
 
-        public Criteria andReviewThemeNotBetween(Short value1, Short value2) {
+        public Criteria andReviewThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("REVIEW_THEME not between", value1, value2, "reviewTheme");
             return (Criteria) this;
         }
@@ -3614,52 +3614,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeXEqualTo(Short value) {
+        public Criteria andReviewSizeXEqualTo(Integer value) {
             addCriterion("REVIEW_SIZE_X =", value, "reviewSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeXNotEqualTo(Short value) {
+        public Criteria andReviewSizeXNotEqualTo(Integer value) {
             addCriterion("REVIEW_SIZE_X <>", value, "reviewSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeXGreaterThan(Short value) {
+        public Criteria andReviewSizeXGreaterThan(Integer value) {
             addCriterion("REVIEW_SIZE_X >", value, "reviewSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeXGreaterThanOrEqualTo(Short value) {
+        public Criteria andReviewSizeXGreaterThanOrEqualTo(Integer value) {
             addCriterion("REVIEW_SIZE_X >=", value, "reviewSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeXLessThan(Short value) {
+        public Criteria andReviewSizeXLessThan(Integer value) {
             addCriterion("REVIEW_SIZE_X <", value, "reviewSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeXLessThanOrEqualTo(Short value) {
+        public Criteria andReviewSizeXLessThanOrEqualTo(Integer value) {
             addCriterion("REVIEW_SIZE_X <=", value, "reviewSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeXIn(List<Short> values) {
+        public Criteria andReviewSizeXIn(List<Integer> values) {
             addCriterion("REVIEW_SIZE_X in", values, "reviewSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeXNotIn(List<Short> values) {
+        public Criteria andReviewSizeXNotIn(List<Integer> values) {
             addCriterion("REVIEW_SIZE_X not in", values, "reviewSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeXBetween(Short value1, Short value2) {
+        public Criteria andReviewSizeXBetween(Integer value1, Integer value2) {
             addCriterion("REVIEW_SIZE_X between", value1, value2, "reviewSizeX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeXNotBetween(Short value1, Short value2) {
+        public Criteria andReviewSizeXNotBetween(Integer value1, Integer value2) {
             addCriterion("REVIEW_SIZE_X not between", value1, value2, "reviewSizeX");
             return (Criteria) this;
         }
@@ -3674,52 +3674,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeYEqualTo(Short value) {
+        public Criteria andReviewSizeYEqualTo(Integer value) {
             addCriterion("REVIEW_SIZE_Y =", value, "reviewSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeYNotEqualTo(Short value) {
+        public Criteria andReviewSizeYNotEqualTo(Integer value) {
             addCriterion("REVIEW_SIZE_Y <>", value, "reviewSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeYGreaterThan(Short value) {
+        public Criteria andReviewSizeYGreaterThan(Integer value) {
             addCriterion("REVIEW_SIZE_Y >", value, "reviewSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeYGreaterThanOrEqualTo(Short value) {
+        public Criteria andReviewSizeYGreaterThanOrEqualTo(Integer value) {
             addCriterion("REVIEW_SIZE_Y >=", value, "reviewSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeYLessThan(Short value) {
+        public Criteria andReviewSizeYLessThan(Integer value) {
             addCriterion("REVIEW_SIZE_Y <", value, "reviewSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeYLessThanOrEqualTo(Short value) {
+        public Criteria andReviewSizeYLessThanOrEqualTo(Integer value) {
             addCriterion("REVIEW_SIZE_Y <=", value, "reviewSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeYIn(List<Short> values) {
+        public Criteria andReviewSizeYIn(List<Integer> values) {
             addCriterion("REVIEW_SIZE_Y in", values, "reviewSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeYNotIn(List<Short> values) {
+        public Criteria andReviewSizeYNotIn(List<Integer> values) {
             addCriterion("REVIEW_SIZE_Y not in", values, "reviewSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeYBetween(Short value1, Short value2) {
+        public Criteria andReviewSizeYBetween(Integer value1, Integer value2) {
             addCriterion("REVIEW_SIZE_Y between", value1, value2, "reviewSizeY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewSizeYNotBetween(Short value1, Short value2) {
+        public Criteria andReviewSizeYNotBetween(Integer value1, Integer value2) {
             addCriterion("REVIEW_SIZE_Y not between", value1, value2, "reviewSizeY");
             return (Criteria) this;
         }
@@ -3734,52 +3734,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosXEqualTo(Short value) {
+        public Criteria andReviewPosXEqualTo(Integer value) {
             addCriterion("REVIEW_POS_X =", value, "reviewPosX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosXNotEqualTo(Short value) {
+        public Criteria andReviewPosXNotEqualTo(Integer value) {
             addCriterion("REVIEW_POS_X <>", value, "reviewPosX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosXGreaterThan(Short value) {
+        public Criteria andReviewPosXGreaterThan(Integer value) {
             addCriterion("REVIEW_POS_X >", value, "reviewPosX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosXGreaterThanOrEqualTo(Short value) {
+        public Criteria andReviewPosXGreaterThanOrEqualTo(Integer value) {
             addCriterion("REVIEW_POS_X >=", value, "reviewPosX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosXLessThan(Short value) {
+        public Criteria andReviewPosXLessThan(Integer value) {
             addCriterion("REVIEW_POS_X <", value, "reviewPosX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosXLessThanOrEqualTo(Short value) {
+        public Criteria andReviewPosXLessThanOrEqualTo(Integer value) {
             addCriterion("REVIEW_POS_X <=", value, "reviewPosX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosXIn(List<Short> values) {
+        public Criteria andReviewPosXIn(List<Integer> values) {
             addCriterion("REVIEW_POS_X in", values, "reviewPosX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosXNotIn(List<Short> values) {
+        public Criteria andReviewPosXNotIn(List<Integer> values) {
             addCriterion("REVIEW_POS_X not in", values, "reviewPosX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosXBetween(Short value1, Short value2) {
+        public Criteria andReviewPosXBetween(Integer value1, Integer value2) {
             addCriterion("REVIEW_POS_X between", value1, value2, "reviewPosX");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosXNotBetween(Short value1, Short value2) {
+        public Criteria andReviewPosXNotBetween(Integer value1, Integer value2) {
             addCriterion("REVIEW_POS_X not between", value1, value2, "reviewPosX");
             return (Criteria) this;
         }
@@ -3794,52 +3794,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosYEqualTo(Short value) {
+        public Criteria andReviewPosYEqualTo(Integer value) {
             addCriterion("REVIEW_POS_Y =", value, "reviewPosY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosYNotEqualTo(Short value) {
+        public Criteria andReviewPosYNotEqualTo(Integer value) {
             addCriterion("REVIEW_POS_Y <>", value, "reviewPosY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosYGreaterThan(Short value) {
+        public Criteria andReviewPosYGreaterThan(Integer value) {
             addCriterion("REVIEW_POS_Y >", value, "reviewPosY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosYGreaterThanOrEqualTo(Short value) {
+        public Criteria andReviewPosYGreaterThanOrEqualTo(Integer value) {
             addCriterion("REVIEW_POS_Y >=", value, "reviewPosY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosYLessThan(Short value) {
+        public Criteria andReviewPosYLessThan(Integer value) {
             addCriterion("REVIEW_POS_Y <", value, "reviewPosY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosYLessThanOrEqualTo(Short value) {
+        public Criteria andReviewPosYLessThanOrEqualTo(Integer value) {
             addCriterion("REVIEW_POS_Y <=", value, "reviewPosY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosYIn(List<Short> values) {
+        public Criteria andReviewPosYIn(List<Integer> values) {
             addCriterion("REVIEW_POS_Y in", values, "reviewPosY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosYNotIn(List<Short> values) {
+        public Criteria andReviewPosYNotIn(List<Integer> values) {
             addCriterion("REVIEW_POS_Y not in", values, "reviewPosY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosYBetween(Short value1, Short value2) {
+        public Criteria andReviewPosYBetween(Integer value1, Integer value2) {
             addCriterion("REVIEW_POS_Y between", value1, value2, "reviewPosY");
             return (Criteria) this;
         }
 
-        public Criteria andReviewPosYNotBetween(Short value1, Short value2) {
+        public Criteria andReviewPosYNotBetween(Integer value1, Integer value2) {
             addCriterion("REVIEW_POS_Y not between", value1, value2, "reviewPosY");
             return (Criteria) this;
         }
@@ -3854,52 +3854,52 @@ public class ComponentExample {
             return (Criteria) this;
         }
 
-        public Criteria andBackgroundThemeEqualTo(Short value) {
+        public Criteria andBackgroundThemeEqualTo(Integer value) {
             addCriterion("BACKGROUND_THEME =", value, "backgroundTheme");
             return (Criteria) this;
         }
 
-        public Criteria andBackgroundThemeNotEqualTo(Short value) {
+        public Criteria andBackgroundThemeNotEqualTo(Integer value) {
             addCriterion("BACKGROUND_THEME <>", value, "backgroundTheme");
             return (Criteria) this;
         }
 
-        public Criteria andBackgroundThemeGreaterThan(Short value) {
+        public Criteria andBackgroundThemeGreaterThan(Integer value) {
             addCriterion("BACKGROUND_THEME >", value, "backgroundTheme");
             return (Criteria) this;
         }
 
-        public Criteria andBackgroundThemeGreaterThanOrEqualTo(Short value) {
+        public Criteria andBackgroundThemeGreaterThanOrEqualTo(Integer value) {
             addCriterion("BACKGROUND_THEME >=", value, "backgroundTheme");
             return (Criteria) this;
         }
 
-        public Criteria andBackgroundThemeLessThan(Short value) {
+        public Criteria andBackgroundThemeLessThan(Integer value) {
             addCriterion("BACKGROUND_THEME <", value, "backgroundTheme");
             return (Criteria) this;
         }
 
-        public Criteria andBackgroundThemeLessThanOrEqualTo(Short value) {
+        public Criteria andBackgroundThemeLessThanOrEqualTo(Integer value) {
             addCriterion("BACKGROUND_THEME <=", value, "backgroundTheme");
             return (Criteria) this;
         }
 
-        public Criteria andBackgroundThemeIn(List<Short> values) {
+        public Criteria andBackgroundThemeIn(List<Integer> values) {
             addCriterion("BACKGROUND_THEME in", values, "backgroundTheme");
             return (Criteria) this;
         }
 
-        public Criteria andBackgroundThemeNotIn(List<Short> values) {
+        public Criteria andBackgroundThemeNotIn(List<Integer> values) {
             addCriterion("BACKGROUND_THEME not in", values, "backgroundTheme");
             return (Criteria) this;
         }
 
-        public Criteria andBackgroundThemeBetween(Short value1, Short value2) {
+        public Criteria andBackgroundThemeBetween(Integer value1, Integer value2) {
             addCriterion("BACKGROUND_THEME between", value1, value2, "backgroundTheme");
             return (Criteria) this;
         }
 
-        public Criteria andBackgroundThemeNotBetween(Short value1, Short value2) {
+        public Criteria andBackgroundThemeNotBetween(Integer value1, Integer value2) {
             addCriterion("BACKGROUND_THEME not between", value1, value2, "backgroundTheme");
             return (Criteria) this;
         }

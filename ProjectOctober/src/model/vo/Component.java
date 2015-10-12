@@ -3,125 +3,125 @@ package model.vo;
 public class Component extends ComponentKey {
     private Integer logoComponent;
 
-    private Short logoTheme;
+    private Integer logoTheme;
 
-    private Short logoSizeX;
+    private Integer logoSizeX;
 
-    private Short logoSizeY;
+    private Integer logoSizeY;
 
-    private Short logoPosX;
+    private Integer logoPosX;
 
-    private Short logoPosY;
+    private Integer logoPosY;
 
     private Integer outlineComponenet;
 
-    private Short outlineTheme;
+    private Integer outlineTheme;
 
-    private Short outlineSizeX;
+    private Integer outlineSizeX;
 
-    private Short outlineSizeY;
+    private Integer outlineSizeY;
 
-    private Short outlinePosX;
+    private Integer outlinePosX;
 
-    private Short outlinePosY;
+    private Integer outlinePosY;
 
     private Integer rsvMgmComponent;
 
-    private Short rsvMgmTheme;
+    private Integer rsvMgmTheme;
 
-    private Short rsvMgmSizeX;
+    private Integer rsvMgmSizeX;
 
-    private Short rsvMgmSizeY;
+    private Integer rsvMgmSizeY;
 
-    private Short rsvMgmPosX;
+    private Integer rsvMgmPosX;
 
-    private Short rsvMgmPosY;
+    private Integer rsvMgmPosY;
 
     private Integer miscSettingComponent;
 
-    private Short miscSettingTheme;
+    private Integer miscSettingTheme;
 
-    private Short miscSettingSizeX;
+    private Integer miscSettingSizeX;
 
-    private Short miscSettingSizeY;
+    private Integer miscSettingSizeY;
 
-    private Short miscSettingPosX;
+    private Integer miscSettingPosX;
 
-    private Short miscSettingPosY;
+    private Integer miscSettingPosY;
 
     private Integer rsvBtnBarComponent;
 
-    private Short rsvBtnBarTheme;
+    private Integer rsvBtnBarTheme;
 
-    private Short rsvBtnBarSizeX;
+    private Integer rsvBtnBarSizeX;
 
-    private Short rsvBtnBarSizeY;
+    private Integer rsvBtnBarSizeY;
 
-    private Short rsvBtnBarPosX;
+    private Integer rsvBtnBarPosX;
 
-    private Short rsvBtnBarPosY;
+    private Integer rsvBtnBarPosY;
 
     private Integer etpInfoComponent;
 
-    private Short etpInfoTheme;
+    private Integer etpInfoTheme;
 
-    private Short etpInfoSizeX;
+    private Integer etpInfoSizeX;
 
-    private Short etpInfoSizeY;
+    private Integer etpInfoSizeY;
 
-    private Short etpInfoPosX;
+    private Integer etpInfoPosX;
 
-    private Short etpInfoPosY;
+    private Integer etpInfoPosY;
 
     private Integer svcListComponent;
 
-    private Short svcListTheme;
+    private Integer svcListTheme;
 
-    private Short svcListSizeX;
+    private Integer svcListSizeX;
 
-    private Short svcListSizeY;
+    private Integer svcListSizeY;
 
-    private Short svcListPosX;
+    private Integer svcListPosX;
 
-    private Short svcListPosY;
+    private Integer svcListPosY;
 
     private Integer galleryComponent;
 
-    private Short galleryTheme;
+    private Integer galleryTheme;
 
-    private Short gallerySizeX;
+    private Integer gallerySizeX;
 
-    private Short gallerySizeY;
+    private Integer gallerySizeY;
 
-    private Short galleryPosX;
+    private Integer galleryPosX;
 
-    private Short galleryPosY;
+    private Integer galleryPosY;
 
     private Integer locationComponent;
 
-    private Short locationTheme;
+    private Integer locationTheme;
 
-    private Short locationSizeX;
+    private Integer locationSizeX;
 
-    private Short locationSizeY;
+    private Integer locationSizeY;
 
-    private Short locationPosX;
+    private Integer locationPosX;
 
-    private Short locationPosY;
+    private Integer locationPosY;
 
     private Integer reviewComponent;
 
-    private Short reviewTheme;
+    private Integer reviewTheme;
 
-    private Short reviewSizeX;
+    private Integer reviewSizeX;
 
-    private Short reviewSizeY;
+    private Integer reviewSizeY;
 
-    private Short reviewPosX;
+    private Integer reviewPosX;
 
-    private Short reviewPosY;
+    private Integer reviewPosY;
 
-    private Short backgroundTheme;
+    private Integer backgroundTheme;
 
     public Integer getLogoComponent() {
         return logoComponent;
@@ -131,43 +131,43 @@ public class Component extends ComponentKey {
         this.logoComponent = logoComponent;
     }
 
-    public Short getLogoTheme() {
+    public Integer getLogoTheme() {
         return logoTheme;
     }
 
-    public void setLogoTheme(Short logoTheme) {
+    public void setLogoTheme(Integer logoTheme) {
         this.logoTheme = logoTheme;
     }
 
-    public Short getLogoSizeX() {
+    public Integer getLogoSizeX() {
         return logoSizeX;
     }
 
-    public void setLogoSizeX(Short logoSizeX) {
+    public void setLogoSizeX(Integer logoSizeX) {
         this.logoSizeX = logoSizeX;
     }
 
-    public Short getLogoSizeY() {
+    public Integer getLogoSizeY() {
         return logoSizeY;
     }
 
-    public void setLogoSizeY(Short logoSizeY) {
+    public void setLogoSizeY(Integer logoSizeY) {
         this.logoSizeY = logoSizeY;
     }
 
-    public Short getLogoPosX() {
+    public Integer getLogoPosX() {
         return logoPosX;
     }
 
-    public void setLogoPosX(Short logoPosX) {
+    public void setLogoPosX(Integer logoPosX) {
         this.logoPosX = logoPosX;
     }
 
-    public Short getLogoPosY() {
+    public Integer getLogoPosY() {
         return logoPosY;
     }
 
-    public void setLogoPosY(Short logoPosY) {
+    public void setLogoPosY(Integer logoPosY) {
         this.logoPosY = logoPosY;
     }
 
@@ -179,43 +179,43 @@ public class Component extends ComponentKey {
         this.outlineComponenet = outlineComponenet;
     }
 
-    public Short getOutlineTheme() {
+    public Integer getOutlineTheme() {
         return outlineTheme;
     }
 
-    public void setOutlineTheme(Short outlineTheme) {
+    public void setOutlineTheme(Integer outlineTheme) {
         this.outlineTheme = outlineTheme;
     }
 
-    public Short getOutlineSizeX() {
+    public Integer getOutlineSizeX() {
         return outlineSizeX;
     }
 
-    public void setOutlineSizeX(Short outlineSizeX) {
+    public void setOutlineSizeX(Integer outlineSizeX) {
         this.outlineSizeX = outlineSizeX;
     }
 
-    public Short getOutlineSizeY() {
+    public Integer getOutlineSizeY() {
         return outlineSizeY;
     }
 
-    public void setOutlineSizeY(Short outlineSizeY) {
+    public void setOutlineSizeY(Integer outlineSizeY) {
         this.outlineSizeY = outlineSizeY;
     }
 
-    public Short getOutlinePosX() {
+    public Integer getOutlinePosX() {
         return outlinePosX;
     }
 
-    public void setOutlinePosX(Short outlinePosX) {
+    public void setOutlinePosX(Integer outlinePosX) {
         this.outlinePosX = outlinePosX;
     }
 
-    public Short getOutlinePosY() {
+    public Integer getOutlinePosY() {
         return outlinePosY;
     }
 
-    public void setOutlinePosY(Short outlinePosY) {
+    public void setOutlinePosY(Integer outlinePosY) {
         this.outlinePosY = outlinePosY;
     }
 
@@ -227,43 +227,43 @@ public class Component extends ComponentKey {
         this.rsvMgmComponent = rsvMgmComponent;
     }
 
-    public Short getRsvMgmTheme() {
+    public Integer getRsvMgmTheme() {
         return rsvMgmTheme;
     }
 
-    public void setRsvMgmTheme(Short rsvMgmTheme) {
+    public void setRsvMgmTheme(Integer rsvMgmTheme) {
         this.rsvMgmTheme = rsvMgmTheme;
     }
 
-    public Short getRsvMgmSizeX() {
+    public Integer getRsvMgmSizeX() {
         return rsvMgmSizeX;
     }
 
-    public void setRsvMgmSizeX(Short rsvMgmSizeX) {
+    public void setRsvMgmSizeX(Integer rsvMgmSizeX) {
         this.rsvMgmSizeX = rsvMgmSizeX;
     }
 
-    public Short getRsvMgmSizeY() {
+    public Integer getRsvMgmSizeY() {
         return rsvMgmSizeY;
     }
 
-    public void setRsvMgmSizeY(Short rsvMgmSizeY) {
+    public void setRsvMgmSizeY(Integer rsvMgmSizeY) {
         this.rsvMgmSizeY = rsvMgmSizeY;
     }
 
-    public Short getRsvMgmPosX() {
+    public Integer getRsvMgmPosX() {
         return rsvMgmPosX;
     }
 
-    public void setRsvMgmPosX(Short rsvMgmPosX) {
+    public void setRsvMgmPosX(Integer rsvMgmPosX) {
         this.rsvMgmPosX = rsvMgmPosX;
     }
 
-    public Short getRsvMgmPosY() {
+    public Integer getRsvMgmPosY() {
         return rsvMgmPosY;
     }
 
-    public void setRsvMgmPosY(Short rsvMgmPosY) {
+    public void setRsvMgmPosY(Integer rsvMgmPosY) {
         this.rsvMgmPosY = rsvMgmPosY;
     }
 
@@ -275,43 +275,43 @@ public class Component extends ComponentKey {
         this.miscSettingComponent = miscSettingComponent;
     }
 
-    public Short getMiscSettingTheme() {
+    public Integer getMiscSettingTheme() {
         return miscSettingTheme;
     }
 
-    public void setMiscSettingTheme(Short miscSettingTheme) {
+    public void setMiscSettingTheme(Integer miscSettingTheme) {
         this.miscSettingTheme = miscSettingTheme;
     }
 
-    public Short getMiscSettingSizeX() {
+    public Integer getMiscSettingSizeX() {
         return miscSettingSizeX;
     }
 
-    public void setMiscSettingSizeX(Short miscSettingSizeX) {
+    public void setMiscSettingSizeX(Integer miscSettingSizeX) {
         this.miscSettingSizeX = miscSettingSizeX;
     }
 
-    public Short getMiscSettingSizeY() {
+    public Integer getMiscSettingSizeY() {
         return miscSettingSizeY;
     }
 
-    public void setMiscSettingSizeY(Short miscSettingSizeY) {
+    public void setMiscSettingSizeY(Integer miscSettingSizeY) {
         this.miscSettingSizeY = miscSettingSizeY;
     }
 
-    public Short getMiscSettingPosX() {
+    public Integer getMiscSettingPosX() {
         return miscSettingPosX;
     }
 
-    public void setMiscSettingPosX(Short miscSettingPosX) {
+    public void setMiscSettingPosX(Integer miscSettingPosX) {
         this.miscSettingPosX = miscSettingPosX;
     }
 
-    public Short getMiscSettingPosY() {
+    public Integer getMiscSettingPosY() {
         return miscSettingPosY;
     }
 
-    public void setMiscSettingPosY(Short miscSettingPosY) {
+    public void setMiscSettingPosY(Integer miscSettingPosY) {
         this.miscSettingPosY = miscSettingPosY;
     }
 
@@ -323,43 +323,43 @@ public class Component extends ComponentKey {
         this.rsvBtnBarComponent = rsvBtnBarComponent;
     }
 
-    public Short getRsvBtnBarTheme() {
+    public Integer getRsvBtnBarTheme() {
         return rsvBtnBarTheme;
     }
 
-    public void setRsvBtnBarTheme(Short rsvBtnBarTheme) {
+    public void setRsvBtnBarTheme(Integer rsvBtnBarTheme) {
         this.rsvBtnBarTheme = rsvBtnBarTheme;
     }
 
-    public Short getRsvBtnBarSizeX() {
+    public Integer getRsvBtnBarSizeX() {
         return rsvBtnBarSizeX;
     }
 
-    public void setRsvBtnBarSizeX(Short rsvBtnBarSizeX) {
+    public void setRsvBtnBarSizeX(Integer rsvBtnBarSizeX) {
         this.rsvBtnBarSizeX = rsvBtnBarSizeX;
     }
 
-    public Short getRsvBtnBarSizeY() {
+    public Integer getRsvBtnBarSizeY() {
         return rsvBtnBarSizeY;
     }
 
-    public void setRsvBtnBarSizeY(Short rsvBtnBarSizeY) {
+    public void setRsvBtnBarSizeY(Integer rsvBtnBarSizeY) {
         this.rsvBtnBarSizeY = rsvBtnBarSizeY;
     }
 
-    public Short getRsvBtnBarPosX() {
+    public Integer getRsvBtnBarPosX() {
         return rsvBtnBarPosX;
     }
 
-    public void setRsvBtnBarPosX(Short rsvBtnBarPosX) {
+    public void setRsvBtnBarPosX(Integer rsvBtnBarPosX) {
         this.rsvBtnBarPosX = rsvBtnBarPosX;
     }
 
-    public Short getRsvBtnBarPosY() {
+    public Integer getRsvBtnBarPosY() {
         return rsvBtnBarPosY;
     }
 
-    public void setRsvBtnBarPosY(Short rsvBtnBarPosY) {
+    public void setRsvBtnBarPosY(Integer rsvBtnBarPosY) {
         this.rsvBtnBarPosY = rsvBtnBarPosY;
     }
 
@@ -371,43 +371,43 @@ public class Component extends ComponentKey {
         this.etpInfoComponent = etpInfoComponent;
     }
 
-    public Short getEtpInfoTheme() {
+    public Integer getEtpInfoTheme() {
         return etpInfoTheme;
     }
 
-    public void setEtpInfoTheme(Short etpInfoTheme) {
+    public void setEtpInfoTheme(Integer etpInfoTheme) {
         this.etpInfoTheme = etpInfoTheme;
     }
 
-    public Short getEtpInfoSizeX() {
+    public Integer getEtpInfoSizeX() {
         return etpInfoSizeX;
     }
 
-    public void setEtpInfoSizeX(Short etpInfoSizeX) {
+    public void setEtpInfoSizeX(Integer etpInfoSizeX) {
         this.etpInfoSizeX = etpInfoSizeX;
     }
 
-    public Short getEtpInfoSizeY() {
+    public Integer getEtpInfoSizeY() {
         return etpInfoSizeY;
     }
 
-    public void setEtpInfoSizeY(Short etpInfoSizeY) {
+    public void setEtpInfoSizeY(Integer etpInfoSizeY) {
         this.etpInfoSizeY = etpInfoSizeY;
     }
 
-    public Short getEtpInfoPosX() {
+    public Integer getEtpInfoPosX() {
         return etpInfoPosX;
     }
 
-    public void setEtpInfoPosX(Short etpInfoPosX) {
+    public void setEtpInfoPosX(Integer etpInfoPosX) {
         this.etpInfoPosX = etpInfoPosX;
     }
 
-    public Short getEtpInfoPosY() {
+    public Integer getEtpInfoPosY() {
         return etpInfoPosY;
     }
 
-    public void setEtpInfoPosY(Short etpInfoPosY) {
+    public void setEtpInfoPosY(Integer etpInfoPosY) {
         this.etpInfoPosY = etpInfoPosY;
     }
 
@@ -419,43 +419,43 @@ public class Component extends ComponentKey {
         this.svcListComponent = svcListComponent;
     }
 
-    public Short getSvcListTheme() {
+    public Integer getSvcListTheme() {
         return svcListTheme;
     }
 
-    public void setSvcListTheme(Short svcListTheme) {
+    public void setSvcListTheme(Integer svcListTheme) {
         this.svcListTheme = svcListTheme;
     }
 
-    public Short getSvcListSizeX() {
+    public Integer getSvcListSizeX() {
         return svcListSizeX;
     }
 
-    public void setSvcListSizeX(Short svcListSizeX) {
+    public void setSvcListSizeX(Integer svcListSizeX) {
         this.svcListSizeX = svcListSizeX;
     }
 
-    public Short getSvcListSizeY() {
+    public Integer getSvcListSizeY() {
         return svcListSizeY;
     }
 
-    public void setSvcListSizeY(Short svcListSizeY) {
+    public void setSvcListSizeY(Integer svcListSizeY) {
         this.svcListSizeY = svcListSizeY;
     }
 
-    public Short getSvcListPosX() {
+    public Integer getSvcListPosX() {
         return svcListPosX;
     }
 
-    public void setSvcListPosX(Short svcListPosX) {
+    public void setSvcListPosX(Integer svcListPosX) {
         this.svcListPosX = svcListPosX;
     }
 
-    public Short getSvcListPosY() {
+    public Integer getSvcListPosY() {
         return svcListPosY;
     }
 
-    public void setSvcListPosY(Short svcListPosY) {
+    public void setSvcListPosY(Integer svcListPosY) {
         this.svcListPosY = svcListPosY;
     }
 
@@ -467,43 +467,43 @@ public class Component extends ComponentKey {
         this.galleryComponent = galleryComponent;
     }
 
-    public Short getGalleryTheme() {
+    public Integer getGalleryTheme() {
         return galleryTheme;
     }
 
-    public void setGalleryTheme(Short galleryTheme) {
+    public void setGalleryTheme(Integer galleryTheme) {
         this.galleryTheme = galleryTheme;
     }
 
-    public Short getGallerySizeX() {
+    public Integer getGallerySizeX() {
         return gallerySizeX;
     }
 
-    public void setGallerySizeX(Short gallerySizeX) {
+    public void setGallerySizeX(Integer gallerySizeX) {
         this.gallerySizeX = gallerySizeX;
     }
 
-    public Short getGallerySizeY() {
+    public Integer getGallerySizeY() {
         return gallerySizeY;
     }
 
-    public void setGallerySizeY(Short gallerySizeY) {
+    public void setGallerySizeY(Integer gallerySizeY) {
         this.gallerySizeY = gallerySizeY;
     }
 
-    public Short getGalleryPosX() {
+    public Integer getGalleryPosX() {
         return galleryPosX;
     }
 
-    public void setGalleryPosX(Short galleryPosX) {
+    public void setGalleryPosX(Integer galleryPosX) {
         this.galleryPosX = galleryPosX;
     }
 
-    public Short getGalleryPosY() {
+    public Integer getGalleryPosY() {
         return galleryPosY;
     }
 
-    public void setGalleryPosY(Short galleryPosY) {
+    public void setGalleryPosY(Integer galleryPosY) {
         this.galleryPosY = galleryPosY;
     }
 
@@ -515,43 +515,43 @@ public class Component extends ComponentKey {
         this.locationComponent = locationComponent;
     }
 
-    public Short getLocationTheme() {
+    public Integer getLocationTheme() {
         return locationTheme;
     }
 
-    public void setLocationTheme(Short locationTheme) {
+    public void setLocationTheme(Integer locationTheme) {
         this.locationTheme = locationTheme;
     }
 
-    public Short getLocationSizeX() {
+    public Integer getLocationSizeX() {
         return locationSizeX;
     }
 
-    public void setLocationSizeX(Short locationSizeX) {
+    public void setLocationSizeX(Integer locationSizeX) {
         this.locationSizeX = locationSizeX;
     }
 
-    public Short getLocationSizeY() {
+    public Integer getLocationSizeY() {
         return locationSizeY;
     }
 
-    public void setLocationSizeY(Short locationSizeY) {
+    public void setLocationSizeY(Integer locationSizeY) {
         this.locationSizeY = locationSizeY;
     }
 
-    public Short getLocationPosX() {
+    public Integer getLocationPosX() {
         return locationPosX;
     }
 
-    public void setLocationPosX(Short locationPosX) {
+    public void setLocationPosX(Integer locationPosX) {
         this.locationPosX = locationPosX;
     }
 
-    public Short getLocationPosY() {
+    public Integer getLocationPosY() {
         return locationPosY;
     }
 
-    public void setLocationPosY(Short locationPosY) {
+    public void setLocationPosY(Integer locationPosY) {
         this.locationPosY = locationPosY;
     }
 
@@ -563,51 +563,51 @@ public class Component extends ComponentKey {
         this.reviewComponent = reviewComponent;
     }
 
-    public Short getReviewTheme() {
+    public Integer getReviewTheme() {
         return reviewTheme;
     }
 
-    public void setReviewTheme(Short reviewTheme) {
+    public void setReviewTheme(Integer reviewTheme) {
         this.reviewTheme = reviewTheme;
     }
 
-    public Short getReviewSizeX() {
+    public Integer getReviewSizeX() {
         return reviewSizeX;
     }
 
-    public void setReviewSizeX(Short reviewSizeX) {
+    public void setReviewSizeX(Integer reviewSizeX) {
         this.reviewSizeX = reviewSizeX;
     }
 
-    public Short getReviewSizeY() {
+    public Integer getReviewSizeY() {
         return reviewSizeY;
     }
 
-    public void setReviewSizeY(Short reviewSizeY) {
+    public void setReviewSizeY(Integer reviewSizeY) {
         this.reviewSizeY = reviewSizeY;
     }
 
-    public Short getReviewPosX() {
+    public Integer getReviewPosX() {
         return reviewPosX;
     }
 
-    public void setReviewPosX(Short reviewPosX) {
+    public void setReviewPosX(Integer reviewPosX) {
         this.reviewPosX = reviewPosX;
     }
 
-    public Short getReviewPosY() {
+    public Integer getReviewPosY() {
         return reviewPosY;
     }
 
-    public void setReviewPosY(Short reviewPosY) {
+    public void setReviewPosY(Integer reviewPosY) {
         this.reviewPosY = reviewPosY;
     }
 
-    public Short getBackgroundTheme() {
+    public Integer getBackgroundTheme() {
         return backgroundTheme;
     }
 
-    public void setBackgroundTheme(Short backgroundTheme) {
+    public void setBackgroundTheme(Integer backgroundTheme) {
         this.backgroundTheme = backgroundTheme;
     }
 
