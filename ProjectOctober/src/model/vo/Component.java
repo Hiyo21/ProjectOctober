@@ -1,6 +1,10 @@
 package model.vo;
 
-public class Component extends ComponentKey {
+public class Component{
+	private String etpNum;
+
+	private String etpEmail;
+	
     private Integer logoComponent;
 
     private Integer logoTheme;
@@ -611,74 +615,58 @@ public class Component extends ComponentKey {
         this.backgroundTheme = backgroundTheme;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", logoComponent=").append(logoComponent);
-        sb.append(", logoTheme=").append(logoTheme);
-        sb.append(", logoSizeX=").append(logoSizeX);
-        sb.append(", logoSizeY=").append(logoSizeY);
-        sb.append(", logoPosX=").append(logoPosX);
-        sb.append(", logoPosY=").append(logoPosY);
-        sb.append(", outlineComponenet=").append(outlineComponenet);
-        sb.append(", outlineTheme=").append(outlineTheme);
-        sb.append(", outlineSizeX=").append(outlineSizeX);
-        sb.append(", outlineSizeY=").append(outlineSizeY);
-        sb.append(", outlinePosX=").append(outlinePosX);
-        sb.append(", outlinePosY=").append(outlinePosY);
-        sb.append(", rsvMgmComponent=").append(rsvMgmComponent);
-        sb.append(", rsvMgmTheme=").append(rsvMgmTheme);
-        sb.append(", rsvMgmSizeX=").append(rsvMgmSizeX);
-        sb.append(", rsvMgmSizeY=").append(rsvMgmSizeY);
-        sb.append(", rsvMgmPosX=").append(rsvMgmPosX);
-        sb.append(", rsvMgmPosY=").append(rsvMgmPosY);
-        sb.append(", miscSettingComponent=").append(miscSettingComponent);
-        sb.append(", miscSettingTheme=").append(miscSettingTheme);
-        sb.append(", miscSettingSizeX=").append(miscSettingSizeX);
-        sb.append(", miscSettingSizeY=").append(miscSettingSizeY);
-        sb.append(", miscSettingPosX=").append(miscSettingPosX);
-        sb.append(", miscSettingPosY=").append(miscSettingPosY);
-        sb.append(", rsvBtnBarComponent=").append(rsvBtnBarComponent);
-        sb.append(", rsvBtnBarTheme=").append(rsvBtnBarTheme);
-        sb.append(", rsvBtnBarSizeX=").append(rsvBtnBarSizeX);
-        sb.append(", rsvBtnBarSizeY=").append(rsvBtnBarSizeY);
-        sb.append(", rsvBtnBarPosX=").append(rsvBtnBarPosX);
-        sb.append(", rsvBtnBarPosY=").append(rsvBtnBarPosY);
-        sb.append(", etpInfoComponent=").append(etpInfoComponent);
-        sb.append(", etpInfoTheme=").append(etpInfoTheme);
-        sb.append(", etpInfoSizeX=").append(etpInfoSizeX);
-        sb.append(", etpInfoSizeY=").append(etpInfoSizeY);
-        sb.append(", etpInfoPosX=").append(etpInfoPosX);
-        sb.append(", etpInfoPosY=").append(etpInfoPosY);
-        sb.append(", svcListComponent=").append(svcListComponent);
-        sb.append(", svcListTheme=").append(svcListTheme);
-        sb.append(", svcListSizeX=").append(svcListSizeX);
-        sb.append(", svcListSizeY=").append(svcListSizeY);
-        sb.append(", svcListPosX=").append(svcListPosX);
-        sb.append(", svcListPosY=").append(svcListPosY);
-        sb.append(", galleryComponent=").append(galleryComponent);
-        sb.append(", galleryTheme=").append(galleryTheme);
-        sb.append(", gallerySizeX=").append(gallerySizeX);
-        sb.append(", gallerySizeY=").append(gallerySizeY);
-        sb.append(", galleryPosX=").append(galleryPosX);
-        sb.append(", galleryPosY=").append(galleryPosY);
-        sb.append(", locationComponent=").append(locationComponent);
-        sb.append(", locationTheme=").append(locationTheme);
-        sb.append(", locationSizeX=").append(locationSizeX);
-        sb.append(", locationSizeY=").append(locationSizeY);
-        sb.append(", locationPosX=").append(locationPosX);
-        sb.append(", locationPosY=").append(locationPosY);
-        sb.append(", reviewComponent=").append(reviewComponent);
-        sb.append(", reviewTheme=").append(reviewTheme);
-        sb.append(", reviewSizeX=").append(reviewSizeX);
-        sb.append(", reviewSizeY=").append(reviewSizeY);
-        sb.append(", reviewPosX=").append(reviewPosX);
-        sb.append(", reviewPosY=").append(reviewPosY);
-        sb.append(", backgroundTheme=").append(backgroundTheme);
-        sb.append("]");
-        return sb.toString();
-    }
+	public String getEtpNum() {
+		return etpNum;
+	}
+
+	public String getEtpEmail() {
+		return etpEmail;
+	}
+
+	public void setEtpNum(String etpNum) {
+		this.etpNum = etpNum;
+	}
+
+	public void setEtpEmail(String etpEmail) {
+		this.etpEmail = etpEmail;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Component [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail)
+				.append(", logoComponent=").append(logoComponent).append(", logoTheme=").append(logoTheme)
+				.append(", logoSizeX=").append(logoSizeX).append(", logoSizeY=").append(logoSizeY).append(", logoPosX=")
+				.append(logoPosX).append(", logoPosY=").append(logoPosY).append(", outlineComponenet=")
+				.append(outlineComponenet).append(", outlineTheme=").append(outlineTheme).append(", outlineSizeX=")
+				.append(outlineSizeX).append(", outlineSizeY=").append(outlineSizeY).append(", outlinePosX=")
+				.append(outlinePosX).append(", outlinePosY=").append(outlinePosY).append(", rsvMgmComponent=")
+				.append(rsvMgmComponent).append(", rsvMgmTheme=").append(rsvMgmTheme).append(", rsvMgmSizeX=")
+				.append(rsvMgmSizeX).append(", rsvMgmSizeY=").append(rsvMgmSizeY).append(", rsvMgmPosX=")
+				.append(rsvMgmPosX).append(", rsvMgmPosY=").append(rsvMgmPosY).append(", miscSettingComponent=")
+				.append(miscSettingComponent).append(", miscSettingTheme=").append(miscSettingTheme)
+				.append(", miscSettingSizeX=").append(miscSettingSizeX).append(", miscSettingSizeY=")
+				.append(miscSettingSizeY).append(", miscSettingPosX=").append(miscSettingPosX)
+				.append(", miscSettingPosY=").append(miscSettingPosY).append(", rsvBtnBarComponent=")
+				.append(rsvBtnBarComponent).append(", rsvBtnBarTheme=").append(rsvBtnBarTheme)
+				.append(", rsvBtnBarSizeX=").append(rsvBtnBarSizeX).append(", rsvBtnBarSizeY=").append(rsvBtnBarSizeY)
+				.append(", rsvBtnBarPosX=").append(rsvBtnBarPosX).append(", rsvBtnBarPosY=").append(rsvBtnBarPosY)
+				.append(", etpInfoComponent=").append(etpInfoComponent).append(", etpInfoTheme=").append(etpInfoTheme)
+				.append(", etpInfoSizeX=").append(etpInfoSizeX).append(", etpInfoSizeY=").append(etpInfoSizeY)
+				.append(", etpInfoPosX=").append(etpInfoPosX).append(", etpInfoPosY=").append(etpInfoPosY)
+				.append(", svcListComponent=").append(svcListComponent).append(", svcListTheme=").append(svcListTheme)
+				.append(", svcListSizeX=").append(svcListSizeX).append(", svcListSizeY=").append(svcListSizeY)
+				.append(", svcListPosX=").append(svcListPosX).append(", svcListPosY=").append(svcListPosY)
+				.append(", galleryComponent=").append(galleryComponent).append(", galleryTheme=").append(galleryTheme)
+				.append(", gallerySizeX=").append(gallerySizeX).append(", gallerySizeY=").append(gallerySizeY)
+				.append(", galleryPosX=").append(galleryPosX).append(", galleryPosY=").append(galleryPosY)
+				.append(", locationComponent=").append(locationComponent).append(", locationTheme=")
+				.append(locationTheme).append(", locationSizeX=").append(locationSizeX).append(", locationSizeY=")
+				.append(locationSizeY).append(", locationPosX=").append(locationPosX).append(", locationPosY=")
+				.append(locationPosY).append(", reviewComponent=").append(reviewComponent).append(", reviewTheme=")
+				.append(reviewTheme).append(", reviewSizeX=").append(reviewSizeX).append(", reviewSizeY=")
+				.append(reviewSizeY).append(", reviewPosX=").append(reviewPosX).append(", reviewPosY=")
+				.append(reviewPosY).append(", backgroundTheme=").append(backgroundTheme).append("]");
+		return builder.toString();
+	}
 }

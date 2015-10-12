@@ -2,7 +2,11 @@ package model.vo;
 
 import java.time.LocalTime;
 
-public class EnterpriseWaitlist extends EnterpriseWaitlistKey {
+public class EnterpriseWaitlist{
+    private String etpNum;
+
+    private String etpEmail;
+	
     private String owner;
 
     private String superclass;
@@ -213,34 +217,37 @@ public class EnterpriseWaitlist extends EnterpriseWaitlistKey {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", owner=").append(owner);
-        sb.append(", superclass=").append(superclass);
-        sb.append(", address=").append(address);
-        sb.append(", zipcode=").append(zipcode);
-        sb.append(", title=").append(title);
-        sb.append(", startHour=").append(startHour);
-        sb.append(", endHour=").append(endHour);
-        sb.append(", phone=").append(phone);
-        sb.append(", maleStaffCount=").append(maleStaffCount);
-        sb.append(", femaleStaffCount=").append(femaleStaffCount);
-        sb.append(", hourlyCapacity=").append(hourlyCapacity);
-        sb.append(", modificationDeadline=").append(modificationDeadline);
-        sb.append(", ntfFrequencyToEtp=").append(ntfFrequencyToEtp);
-        sb.append(", ntfFrequencyToCst=").append(ntfFrequencyToCst);
-        sb.append(", pageTemplateType=").append(pageTemplateType);
-        sb.append(", etpLocationMapAPIAddress=").append(etpLocationMapAPIAddress);
-        sb.append(", etpLocationGuide=").append(etpLocationGuide);
-        sb.append(", svcList=").append(svcList);
-        sb.append(", subclass=").append(subclass);
-        sb.append(", specialtyList=").append(specialtyList);
-        sb.append(", description=").append(description);
-        sb.append("]");
-        return sb.toString();
-    }
+	public String getEtpNum() {
+		return etpNum;
+	}
+
+	public String getEtpEmail() {
+		return etpEmail;
+	}
+
+	public void setEtpNum(String etpNum) {
+		this.etpNum = etpNum;
+	}
+
+	public void setEtpEmail(String etpEmail) {
+		this.etpEmail = etpEmail;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("EnterpriseWaitlist [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail)
+				.append(", owner=").append(owner).append(", superclass=").append(superclass).append(", address=")
+				.append(address).append(", zipcode=").append(zipcode).append(", title=").append(title)
+				.append(", startHour=").append(startHour).append(", endHour=").append(endHour).append(", phone=")
+				.append(phone).append(", maleStaffCount=").append(maleStaffCount).append(", femaleStaffCount=")
+				.append(femaleStaffCount).append(", hourlyCapacity=").append(hourlyCapacity)
+				.append(", modificationDeadline=").append(modificationDeadline).append(", ntfFrequencyToEtp=")
+				.append(ntfFrequencyToEtp).append(", ntfFrequencyToCst=").append(ntfFrequencyToCst)
+				.append(", pageTemplateType=").append(pageTemplateType).append(", etpLocationMapAPIAddress=")
+				.append(etpLocationMapAPIAddress).append(", etpLocationGuide=").append(etpLocationGuide)
+				.append(", svcList=").append(svcList).append(", subclass=").append(subclass).append(", specialtyList=")
+				.append(specialtyList).append(", description=").append(description).append("]");
+		return builder.toString();
+	}
 }
