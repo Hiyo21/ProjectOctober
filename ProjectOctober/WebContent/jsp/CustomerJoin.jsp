@@ -33,6 +33,10 @@ img {border:none}
 .join_tbl td .inputText {width:100px; border:1px solid #ccc}
 .join_tbl td span {color:#888}
 .join_tbl textarea {width:95%; height:80px; border:1px solid #ccc; padding:10px}
+.join_tbl {
+		margin-left: auto;
+        margin-right: auto;
+}
 .btn {text-align:center}
 
 .span {
@@ -165,7 +169,7 @@ img {border:none}
 <fieldset>
 
 <h1 align="center">이용자 회원가입</h1>
-<center><table class="join_tbl">
+<table class="join_tbl">
 <colgroup>
 <col width="10%" />
 <col width="40%" />
@@ -567,8 +571,7 @@ img {border:none}
 <tr><td align=center colspan="4"><input type=radio name=yaok value='Y'> 약관에 동의합니다.<input type=radio name=yaok value='N' checked> 동의하지 않습니다.</td></tr>
 
 
-</table></center>
-
+</table>
 </fieldset>
 </form>
 
