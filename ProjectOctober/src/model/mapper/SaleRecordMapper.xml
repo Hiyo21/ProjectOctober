@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="model.mapper.SaleRecordMapper" >
+  <resultMap id="BaseResultMap" type="model.vo.SaleRecord" >
+    <id column="SALE_NUM" property="saleNum" jdbcType="DECIMAL" />
+    <result column="PMT_NUM" property="pmtNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="TIME" property="time" jdbcType="DATE" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SALE_NUM, PMT_NUM, ETP_NUM, ETP_EMAIL, TIME, AMOUNT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.SaleRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.SALE_RECORD
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from HR.SALE_RECORD
+    where SALE_NUM = #{saleNum,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from HR.SALE_RECORD
+    where SALE_NUM = #{saleNum,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.vo.SaleRecordExample" >
+    delete from HR.SALE_RECORD
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.vo.SaleRecord" >
+    insert into HR.SALE_RECORD (SALE_NUM, PMT_NUM, ETP_NUM, 
+      ETP_EMAIL, TIME, AMOUNT
+      )
+    values (#{saleNum,jdbcType=DECIMAL}, #{pmtNum,jdbcType=DECIMAL}, #{etpNum,jdbcType=VARCHAR}, 
+      #{etpEmail,jdbcType=VARCHAR}, #{time,jdbcType=DATE}, #{amount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.vo.SaleRecord" >
+    insert into HR.SALE_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="saleNum != null" >
+        SALE_NUM,
+      </if>
+      <if test="pmtNum != null" >
+        PMT_NUM,
+      </if>
+      <if test="etpNum != null" >
+        ETP_NUM,
+      </if>
+      <if test="etpEmail != null" >
+        ETP_EMAIL,
+      </if>
+      <if test="time != null" >
+        TIME,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="saleNum != null" >
+        #{saleNum,jdbcType=DECIMAL},
+      </if>
+      <if test="pmtNum != null" >
+        #{pmtNum,jdbcType=DECIMAL},
+      </if>
+      <if test="etpNum != null" >
+        #{etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="etpEmail != null" >
+        #{etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.vo.SaleRecordExample" resultType="java.lang.Integer" >
+    select count(*) from HR.SALE_RECORD
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update HR.SALE_RECORD
+    <set >
+      <if test="record.saleNum != null" >
+        SALE_NUM = #{record.saleNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pmtNum != null" >
+        PMT_NUM = #{record.pmtNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpNum != null" >
+        ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpEmail != null" >
+        ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        TIME = #{record.time,jdbcType=DATE},
+      </if>
+      <if test="record.amount != null" >
+        AMOUNT = #{record.amount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update HR.SALE_RECORD
+    set SALE_NUM = #{record.saleNum,jdbcType=DECIMAL},
+      PMT_NUM = #{record.pmtNum,jdbcType=DECIMAL},
+      ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      TIME = #{record.time,jdbcType=DATE},
+      AMOUNT = #{record.amount,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.vo.SaleRecord" >
+    update HR.SALE_RECORD
+    <set >
+      <if test="pmtNum != null" >
+        PMT_NUM = #{pmtNum,jdbcType=DECIMAL},
+      </if>
+      <if test="etpNum != null" >
+        ETP_NUM = #{etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="etpEmail != null" >
+        ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        TIME = #{time,jdbcType=DATE},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SALE_NUM = #{saleNum,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.vo.SaleRecord" >
+    update HR.SALE_RECORD
+    set PMT_NUM = #{pmtNum,jdbcType=DECIMAL},
+      ETP_NUM = #{etpNum,jdbcType=VARCHAR},
+      ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
+      TIME = #{time,jdbcType=DATE},
+      AMOUNT = #{amount,jdbcType=DECIMAL}
+    where SALE_NUM = #{saleNum,jdbcType=DECIMAL}
+  </update>
+  <cache />
+  <select resultMap="BaseResultMap" parameterType="model.vo.SaleRecordExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.SALE_RECORD
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

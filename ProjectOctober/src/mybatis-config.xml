@@ -5,6 +5,15 @@
 
 	<typeAliases>
 	</typeAliases>
+	
+	<typeHandlers>
+		<typeHandler handler="model.mapper.typehandler.InstantHandler"/>
+		<typeHandler handler="model.mapper.typehandler.LocalDateHandler"/>
+		<typeHandler handler="model.mapper.typehandler.LocalDateTimeHandler"/>
+		<typeHandler handler="model.mapper.typehandler.LocalTimeHandler"/>
+		<typeHandler handler="model.mapper.typehandler.OffsetDateTimeHandler"/>
+		<typeHandler handler="model.mapper.typehandler.ZonedDateTimeHandler"/>
+	</typeHandlers>
 
 	<environments default="development">
 		<environment id="development">
@@ -19,6 +28,11 @@
 	</environments>
 
 	<mappers>
+		<mapper resource="model/mapper/AdminMapper.xml"/>
+		<mapper resource="model/mapper/CustomerMapper.xml"/>
+		<mapper resource="model/mapper/EnterpriseMapper.xml"/>
+		<mapper resource="model/mapper/MemberMapper.xml"/>
+		<mapper resource="model/mapper/SearchMapper.xml"/>
 	</mappers>
 	
 </configuration>

@@ -1,64 +1,81 @@
 package model.vo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Member {
-	private String memberEmail;
-	private String memberName;
-	private String memberPassword;
-	private String memberPhone;
-	private LocalDate memberJoinedDate;
-	
-	public Member() {}
+    private String email;
 
-	public String getMemberEmail() {
-		return memberEmail;
-	}
+    private Integer memberCode;
 
-	public String getMemberName() {
-		return memberName;
-	}
+    private String name;
 
-	public String getMemberPassword() {
-		return memberPassword;
-	}
+    private String password;
 
-	public String getMemberPhone() {
-		return memberPhone;
-	}
+    private String phone;
 
-	public LocalDate getMemberJoinedDate() {
-		return memberJoinedDate;
-	}
+    private LocalDateTime joinedDate;
 
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setMemberPassword(String memberPassword) {
-		this.memberPassword = memberPassword;
-	}
+    public Integer getMemberCode() {
+        return memberCode;
+    }
 
-	public void setMemberPhone(String memberPhone) {
-		this.memberPhone = memberPhone;
-	}
+    public void setMemberCode(Integer memberCode) {
+        this.memberCode = memberCode;
+    }
 
-	public void setMemberJoinedDate(LocalDate memberJoinedDate) {
-		this.memberJoinedDate = memberJoinedDate;
-	}
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Member [memberEmail=").append(memberEmail).append(", memberName=").append(memberName)
-				.append(", memberPassword=").append(memberPassword).append(", memberPhone=").append(memberPhone)
-				.append(", memberJoinedDate=").append(memberJoinedDate).append("]");
-		return builder.toString();
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public LocalDateTime getJoinedDate() {
+        return joinedDate;
+    }
+
+    public void setJoinedDate(LocalDateTime joinedDate) {
+        this.joinedDate = joinedDate;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", email=").append(email);
+        sb.append(", memberCode=").append(memberCode);
+        sb.append(", name=").append(name);
+        sb.append(", password=").append(password);
+        sb.append(", phone=").append(phone);
+        sb.append(", joinedDate=").append(joinedDate);
+        sb.append("]");
+        return sb.toString();
+    }
 }

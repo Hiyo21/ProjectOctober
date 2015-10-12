@@ -1,1 +1,281 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="model.mapper.MemberMapper" >
+  <resultMap id="BaseResultMap" type="model.vo.Member" >
+    <id column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="MCODE" property="memberCode" jdbcType="NUMBER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="JOINED_DATE" property="joinedDate" jdbcType="TIMESTAMP" typeHandler="model.mapper.typehandler.LocalDateHandler" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.joinedDateCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalDateHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalDateHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalDateHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=model.mapper.typehandler.LocalDateHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.joinedDateCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalDateHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalDateHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalDateHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=model.mapper.typehandler.LocalDateHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    EMAIL, MCODE, NAME, PASSWORD, PHONE, JOINED_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.MemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.MEMBER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from HR.MEMBER
+    where EMAIL = #{email,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from HR.MEMBER
+    where EMAIL = #{email,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.vo.MemberExample" >
+    delete from HR.MEMBER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.vo.Member" >
+    insert into HR.MEMBER (EMAIL, MCODE, NAME, 
+      PASSWORD, PHONE, JOINED_DATE
+      )
+    values (#{email,jdbcType=VARCHAR}, #{memberCode,jdbcType=NUMBER}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{joinedDate,jdbcType=TIMESTAMP,typeHandler=model.mapper.typehandler.LocalDateHandler}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.vo.Member" >
+    insert into HR.MEMBER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="memberCode != null" >
+        MCODE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="joinedDate != null" >
+        JOINED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCode != null" >
+        #{memberCode,jdbcType=NUMBER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="joinedDate != null" >
+        #{joinedDate,jdbcType=TIMESTAMP,typeHandler=model.mapper.typehandler.LocalDateHandler},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.vo.MemberExample" resultType="java.lang.Integer" >
+    select count(*) from HR.MEMBER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update HR.MEMBER
+    <set >
+      <if test="record.email != null" >
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberCode != null" >
+        MCODE = #{record.memberCode,jdbcType=NUMBER},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        PHONE = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joinedDate != null" >
+        JOINED_DATE = #{record.joinedDate,jdbcType=TIMESTAMP,typeHandler=model.mapper.typehandler.LocalDateHandler},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update HR.MEMBER
+    set EMAIL = #{record.email,jdbcType=VARCHAR},
+      MCODE = #{record.memberCode,jdbcType=NUMBER},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
+      PHONE = #{record.phone,jdbcType=VARCHAR},
+      JOINED_DATE = #{record.joinedDate,jdbcType=TIMESTAMP,typeHandler=model.mapper.typehandler.LocalDateHandler}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.vo.Member" >
+    update HR.MEMBER
+    <set >
+      <if test="memberCode != null" >
+        MCODE = #{memberCode,jdbcType=NUMBER},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="joinedDate != null" >
+        JOINED_DATE = #{joinedDate,jdbcType=TIMESTAMP,typeHandler=model.mapper.typehandler.LocalDateHandler},
+      </if>
+    </set>
+    where EMAIL = #{email,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.vo.Member" >
+    update HR.MEMBER
+    set MCODE = #{memberCode,jdbcType=NUMBER},
+      NAME = #{name,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      JOINED_DATE = #{joinedDate,jdbcType=TIMESTAMP,typeHandler=model.mapper.typehandler.LocalDateHandler}
+    where EMAIL = #{email,jdbcType=VARCHAR}
+  </update>
+  <cache />
+  <select resultMap="BaseResultMap" parameterType="model.vo.MemberExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.MEMBER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
