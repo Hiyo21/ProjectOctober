@@ -23,7 +23,7 @@ public class EnterpriseWaitlist extends EnterpriseWaitlistKey {
 
     private Integer femaleStaffCount;
 
-    private Short hourlyCapacity;
+    private Integer hourlyCapacity;
 
     private Integer modificationDeadline;
 
@@ -125,11 +125,11 @@ public class EnterpriseWaitlist extends EnterpriseWaitlistKey {
         this.femaleStaffCount = femaleStaffCount;
     }
 
-    public Short getHourlyCapacity() {
+    public Integer getHourlyCapacity() {
         return hourlyCapacity;
     }
 
-    public void setHourlyCapacity(Short hourlyCapacity) {
+    public void setHourlyCapacity(Integer hourlyCapacity) {
         this.hourlyCapacity = hourlyCapacity;
     }
 

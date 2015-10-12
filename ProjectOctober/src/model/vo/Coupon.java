@@ -3,7 +3,7 @@ package model.vo;
 import java.time.LocalDateTime;
 
 public class Coupon {
-    private Short cpnNum;
+    private Integer cpnNum;
 
     private String etpNum;
 
@@ -13,17 +13,17 @@ public class Coupon {
 
     private String code;
 
-    private Short rate;
+    private Integer rate;
 
     private LocalDateTime startDate;
 
     private LocalDateTime endDate;
 
-    public Short getCpnNum() {
+    public Integer getCpnNum() {
         return cpnNum;
     }
 
-    public void setCpnNum(Short cpnNum) {
+    public void setCpnNum(Integer cpnNum) {
         this.cpnNum = cpnNum;
     }
 
@@ -59,11 +59,11 @@ public class Coupon {
         this.code = code;
     }
 
-    public Short getRate() {
+    public Integer getRate() {
         return rate;
     }
 
-    public void setRate(Short rate) {
+    public void setRate(Integer rate) {
         this.rate = rate;
     }
 

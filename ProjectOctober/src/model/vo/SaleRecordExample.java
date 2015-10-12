@@ -115,52 +115,52 @@ public class SaleRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andSaleNumEqualTo(Short value) {
+        public Criteria andSaleNumEqualTo(Integer value) {
             addCriterion("SALE_NUM =", value, "saleNum");
             return (Criteria) this;
         }
 
-        public Criteria andSaleNumNotEqualTo(Short value) {
+        public Criteria andSaleNumNotEqualTo(Integer value) {
             addCriterion("SALE_NUM <>", value, "saleNum");
             return (Criteria) this;
         }
 
-        public Criteria andSaleNumGreaterThan(Short value) {
+        public Criteria andSaleNumGreaterThan(Integer value) {
             addCriterion("SALE_NUM >", value, "saleNum");
             return (Criteria) this;
         }
 
-        public Criteria andSaleNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andSaleNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("SALE_NUM >=", value, "saleNum");
             return (Criteria) this;
         }
 
-        public Criteria andSaleNumLessThan(Short value) {
+        public Criteria andSaleNumLessThan(Integer value) {
             addCriterion("SALE_NUM <", value, "saleNum");
             return (Criteria) this;
         }
 
-        public Criteria andSaleNumLessThanOrEqualTo(Short value) {
+        public Criteria andSaleNumLessThanOrEqualTo(Integer value) {
             addCriterion("SALE_NUM <=", value, "saleNum");
             return (Criteria) this;
         }
 
-        public Criteria andSaleNumIn(List<Short> values) {
+        public Criteria andSaleNumIn(List<Integer> values) {
             addCriterion("SALE_NUM in", values, "saleNum");
             return (Criteria) this;
         }
 
-        public Criteria andSaleNumNotIn(List<Short> values) {
+        public Criteria andSaleNumNotIn(List<Integer> values) {
             addCriterion("SALE_NUM not in", values, "saleNum");
             return (Criteria) this;
         }
 
-        public Criteria andSaleNumBetween(Short value1, Short value2) {
+        public Criteria andSaleNumBetween(Integer value1, Integer value2) {
             addCriterion("SALE_NUM between", value1, value2, "saleNum");
             return (Criteria) this;
         }
 
-        public Criteria andSaleNumNotBetween(Short value1, Short value2) {
+        public Criteria andSaleNumNotBetween(Integer value1, Integer value2) {
             addCriterion("SALE_NUM not between", value1, value2, "saleNum");
             return (Criteria) this;
         }
@@ -175,52 +175,52 @@ public class SaleRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumEqualTo(Short value) {
+        public Criteria andPmtNumEqualTo(Integer value) {
             addCriterion("PMT_NUM =", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumNotEqualTo(Short value) {
+        public Criteria andPmtNumNotEqualTo(Integer value) {
             addCriterion("PMT_NUM <>", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumGreaterThan(Short value) {
+        public Criteria andPmtNumGreaterThan(Integer value) {
             addCriterion("PMT_NUM >", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andPmtNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("PMT_NUM >=", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumLessThan(Short value) {
+        public Criteria andPmtNumLessThan(Integer value) {
             addCriterion("PMT_NUM <", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumLessThanOrEqualTo(Short value) {
+        public Criteria andPmtNumLessThanOrEqualTo(Integer value) {
             addCriterion("PMT_NUM <=", value, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumIn(List<Short> values) {
+        public Criteria andPmtNumIn(List<Integer> values) {
             addCriterion("PMT_NUM in", values, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumNotIn(List<Short> values) {
+        public Criteria andPmtNumNotIn(List<Integer> values) {
             addCriterion("PMT_NUM not in", values, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumBetween(Short value1, Short value2) {
+        public Criteria andPmtNumBetween(Integer value1, Integer value2) {
             addCriterion("PMT_NUM between", value1, value2, "pmtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumNotBetween(Short value1, Short value2) {
+        public Criteria andPmtNumNotBetween(Integer value1, Integer value2) {
             addCriterion("PMT_NUM not between", value1, value2, "pmtNum");
             return (Criteria) this;
         }
@@ -435,52 +435,52 @@ public class SaleRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andAmountEqualTo(Short value) {
+        public Criteria andAmountEqualTo(Integer value) {
             addCriterion("AMOUNT =", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotEqualTo(Short value) {
+        public Criteria andAmountNotEqualTo(Integer value) {
             addCriterion("AMOUNT <>", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThan(Short value) {
+        public Criteria andAmountGreaterThan(Integer value) {
             addCriterion("AMOUNT >", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThanOrEqualTo(Short value) {
+        public Criteria andAmountGreaterThanOrEqualTo(Integer value) {
             addCriterion("AMOUNT >=", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThan(Short value) {
+        public Criteria andAmountLessThan(Integer value) {
             addCriterion("AMOUNT <", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThanOrEqualTo(Short value) {
+        public Criteria andAmountLessThanOrEqualTo(Integer value) {
             addCriterion("AMOUNT <=", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountIn(List<Short> values) {
+        public Criteria andAmountIn(List<Integer> values) {
             addCriterion("AMOUNT in", values, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotIn(List<Short> values) {
+        public Criteria andAmountNotIn(List<Integer> values) {
             addCriterion("AMOUNT not in", values, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountBetween(Short value1, Short value2) {
+        public Criteria andAmountBetween(Integer value1, Integer value2) {
             addCriterion("AMOUNT between", value1, value2, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotBetween(Short value1, Short value2) {
+        public Criteria andAmountNotBetween(Integer value1, Integer value2) {
             addCriterion("AMOUNT not between", value1, value2, "amount");
             return (Criteria) this;
         }

@@ -3,11 +3,11 @@ package model.vo;
 import java.time.LocalDateTime;
 
 public class Reservation {
-    private Short rsvNum;
+    private Integer rsvNum;
 
-    private Short svcNum;
+    private Integer svcNum;
 
-    private Short cpnNum;
+    private Integer cpnNum;
 
     private String etpNum;
 
@@ -19,31 +19,31 @@ public class Reservation {
 
     private LocalDateTime endDate;
 
-    private Short status;
+    private Integer status;
 
     private char employeeGender;
 
-    public Short getRsvNum() {
+    public Integer getRsvNum() {
         return rsvNum;
     }
 
-    public void setRsvNum(Short rsvNum) {
+    public void setRsvNum(Integer rsvNum) {
         this.rsvNum = rsvNum;
     }
 
-    public Short getSvcNum() {
+    public Integer getSvcNum() {
         return svcNum;
     }
 
-    public void setSvcNum(Short svcNum) {
+    public void setSvcNum(Integer svcNum) {
         this.svcNum = svcNum;
     }
 
-    public Short getCpnNum() {
+    public Integer getCpnNum() {
         return cpnNum;
     }
 
-    public void setCpnNum(Short cpnNum) {
+    public void setCpnNum(Integer cpnNum) {
         this.cpnNum = cpnNum;
     }
 
@@ -87,11 +87,11 @@ public class Reservation {
         this.endDate = endDate;
     }
 
-    public Short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Short status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

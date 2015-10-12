@@ -115,52 +115,52 @@ public class ReservationExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumEqualTo(Short value) {
+        public Criteria andRsvNumEqualTo(Integer value) {
             addCriterion("RSV_NUM =", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumNotEqualTo(Short value) {
+        public Criteria andRsvNumNotEqualTo(Integer value) {
             addCriterion("RSV_NUM <>", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumGreaterThan(Short value) {
+        public Criteria andRsvNumGreaterThan(Integer value) {
             addCriterion("RSV_NUM >", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andRsvNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("RSV_NUM >=", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumLessThan(Short value) {
+        public Criteria andRsvNumLessThan(Integer value) {
             addCriterion("RSV_NUM <", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumLessThanOrEqualTo(Short value) {
+        public Criteria andRsvNumLessThanOrEqualTo(Integer value) {
             addCriterion("RSV_NUM <=", value, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumIn(List<Short> values) {
+        public Criteria andRsvNumIn(List<Integer> values) {
             addCriterion("RSV_NUM in", values, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumNotIn(List<Short> values) {
+        public Criteria andRsvNumNotIn(List<Integer> values) {
             addCriterion("RSV_NUM not in", values, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumBetween(Short value1, Short value2) {
+        public Criteria andRsvNumBetween(Integer value1, Integer value2) {
             addCriterion("RSV_NUM between", value1, value2, "rsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andRsvNumNotBetween(Short value1, Short value2) {
+        public Criteria andRsvNumNotBetween(Integer value1, Integer value2) {
             addCriterion("RSV_NUM not between", value1, value2, "rsvNum");
             return (Criteria) this;
         }
@@ -175,52 +175,52 @@ public class ReservationExample {
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumEqualTo(Short value) {
+        public Criteria andSvcNumEqualTo(Integer value) {
             addCriterion("SVC_NUM =", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumNotEqualTo(Short value) {
+        public Criteria andSvcNumNotEqualTo(Integer value) {
             addCriterion("SVC_NUM <>", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumGreaterThan(Short value) {
+        public Criteria andSvcNumGreaterThan(Integer value) {
             addCriterion("SVC_NUM >", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andSvcNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("SVC_NUM >=", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumLessThan(Short value) {
+        public Criteria andSvcNumLessThan(Integer value) {
             addCriterion("SVC_NUM <", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumLessThanOrEqualTo(Short value) {
+        public Criteria andSvcNumLessThanOrEqualTo(Integer value) {
             addCriterion("SVC_NUM <=", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumIn(List<Short> values) {
+        public Criteria andSvcNumIn(List<Integer> values) {
             addCriterion("SVC_NUM in", values, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumNotIn(List<Short> values) {
+        public Criteria andSvcNumNotIn(List<Integer> values) {
             addCriterion("SVC_NUM not in", values, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumBetween(Short value1, Short value2) {
+        public Criteria andSvcNumBetween(Integer value1, Integer value2) {
             addCriterion("SVC_NUM between", value1, value2, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumNotBetween(Short value1, Short value2) {
+        public Criteria andSvcNumNotBetween(Integer value1, Integer value2) {
             addCriterion("SVC_NUM not between", value1, value2, "svcNum");
             return (Criteria) this;
         }
@@ -235,52 +235,52 @@ public class ReservationExample {
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumEqualTo(Short value) {
+        public Criteria andCpnNumEqualTo(Integer value) {
             addCriterion("CPN_NUM =", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumNotEqualTo(Short value) {
+        public Criteria andCpnNumNotEqualTo(Integer value) {
             addCriterion("CPN_NUM <>", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumGreaterThan(Short value) {
+        public Criteria andCpnNumGreaterThan(Integer value) {
             addCriterion("CPN_NUM >", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andCpnNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("CPN_NUM >=", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumLessThan(Short value) {
+        public Criteria andCpnNumLessThan(Integer value) {
             addCriterion("CPN_NUM <", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumLessThanOrEqualTo(Short value) {
+        public Criteria andCpnNumLessThanOrEqualTo(Integer value) {
             addCriterion("CPN_NUM <=", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumIn(List<Short> values) {
+        public Criteria andCpnNumIn(List<Integer> values) {
             addCriterion("CPN_NUM in", values, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumNotIn(List<Short> values) {
+        public Criteria andCpnNumNotIn(List<Integer> values) {
             addCriterion("CPN_NUM not in", values, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumBetween(Short value1, Short value2) {
+        public Criteria andCpnNumBetween(Integer value1, Integer value2) {
             addCriterion("CPN_NUM between", value1, value2, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumNotBetween(Short value1, Short value2) {
+        public Criteria andCpnNumNotBetween(Integer value1, Integer value2) {
             addCriterion("CPN_NUM not between", value1, value2, "cpnNum");
             return (Criteria) this;
         }
@@ -625,52 +625,52 @@ public class ReservationExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Short value) {
+        public Criteria andStatusEqualTo(Integer value) {
             addCriterion("STATUS =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Short value) {
+        public Criteria andStatusNotEqualTo(Integer value) {
             addCriterion("STATUS <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Short value) {
+        public Criteria andStatusGreaterThan(Integer value) {
             addCriterion("STATUS >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Short value) {
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
             addCriterion("STATUS >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Short value) {
+        public Criteria andStatusLessThan(Integer value) {
             addCriterion("STATUS <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Short value) {
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
             addCriterion("STATUS <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Short> values) {
+        public Criteria andStatusIn(List<Integer> values) {
             addCriterion("STATUS in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Short> values) {
+        public Criteria andStatusNotIn(List<Integer> values) {
             addCriterion("STATUS not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Short value1, Short value2) {
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
             addCriterion("STATUS between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Short value1, Short value2) {
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("STATUS not between", value1, value2, "status");
             return (Criteria) this;
         }

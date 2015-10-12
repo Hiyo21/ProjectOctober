@@ -115,52 +115,52 @@ public class CouponExample {
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumEqualTo(Short value) {
+        public Criteria andCpnNumEqualTo(Integer value) {
             addCriterion("CPN_NUM =", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumNotEqualTo(Short value) {
+        public Criteria andCpnNumNotEqualTo(Integer value) {
             addCriterion("CPN_NUM <>", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumGreaterThan(Short value) {
+        public Criteria andCpnNumGreaterThan(Integer value) {
             addCriterion("CPN_NUM >", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andCpnNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("CPN_NUM >=", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumLessThan(Short value) {
+        public Criteria andCpnNumLessThan(Integer value) {
             addCriterion("CPN_NUM <", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumLessThanOrEqualTo(Short value) {
+        public Criteria andCpnNumLessThanOrEqualTo(Integer value) {
             addCriterion("CPN_NUM <=", value, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumIn(List<Short> values) {
+        public Criteria andCpnNumIn(List<Integer> values) {
             addCriterion("CPN_NUM in", values, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumNotIn(List<Short> values) {
+        public Criteria andCpnNumNotIn(List<Integer> values) {
             addCriterion("CPN_NUM not in", values, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumBetween(Short value1, Short value2) {
+        public Criteria andCpnNumBetween(Integer value1, Integer value2) {
             addCriterion("CPN_NUM between", value1, value2, "cpnNum");
             return (Criteria) this;
         }
 
-        public Criteria andCpnNumNotBetween(Short value1, Short value2) {
+        public Criteria andCpnNumNotBetween(Integer value1, Integer value2) {
             addCriterion("CPN_NUM not between", value1, value2, "cpnNum");
             return (Criteria) this;
         }
@@ -455,52 +455,52 @@ public class CouponExample {
             return (Criteria) this;
         }
 
-        public Criteria andRateEqualTo(Short value) {
+        public Criteria andRateEqualTo(Integer value) {
             addCriterion("RATE =", value, "rate");
             return (Criteria) this;
         }
 
-        public Criteria andRateNotEqualTo(Short value) {
+        public Criteria andRateNotEqualTo(Integer value) {
             addCriterion("RATE <>", value, "rate");
             return (Criteria) this;
         }
 
-        public Criteria andRateGreaterThan(Short value) {
+        public Criteria andRateGreaterThan(Integer value) {
             addCriterion("RATE >", value, "rate");
             return (Criteria) this;
         }
 
-        public Criteria andRateGreaterThanOrEqualTo(Short value) {
+        public Criteria andRateGreaterThanOrEqualTo(Integer value) {
             addCriterion("RATE >=", value, "rate");
             return (Criteria) this;
         }
 
-        public Criteria andRateLessThan(Short value) {
+        public Criteria andRateLessThan(Integer value) {
             addCriterion("RATE <", value, "rate");
             return (Criteria) this;
         }
 
-        public Criteria andRateLessThanOrEqualTo(Short value) {
+        public Criteria andRateLessThanOrEqualTo(Integer value) {
             addCriterion("RATE <=", value, "rate");
             return (Criteria) this;
         }
 
-        public Criteria andRateIn(List<Short> values) {
+        public Criteria andRateIn(List<Integer> values) {
             addCriterion("RATE in", values, "rate");
             return (Criteria) this;
         }
 
-        public Criteria andRateNotIn(List<Short> values) {
+        public Criteria andRateNotIn(List<Integer> values) {
             addCriterion("RATE not in", values, "rate");
             return (Criteria) this;
         }
 
-        public Criteria andRateBetween(Short value1, Short value2) {
+        public Criteria andRateBetween(Integer value1, Integer value2) {
             addCriterion("RATE between", value1, value2, "rate");
             return (Criteria) this;
         }
 
-        public Criteria andRateNotBetween(Short value1, Short value2) {
+        public Criteria andRateNotBetween(Integer value1, Integer value2) {
             addCriterion("RATE not between", value1, value2, "rate");
             return (Criteria) this;
         }

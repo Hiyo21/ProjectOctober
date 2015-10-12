@@ -915,52 +915,52 @@ public class EnterpriseWaitlistExample {
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityEqualTo(Short value) {
+        public Criteria andHourlyCapacityEqualTo(Integer value) {
             addCriterion("HOURLY_CAPACITY =", value, "hourlyCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityNotEqualTo(Short value) {
+        public Criteria andHourlyCapacityNotEqualTo(Integer value) {
             addCriterion("HOURLY_CAPACITY <>", value, "hourlyCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityGreaterThan(Short value) {
+        public Criteria andHourlyCapacityGreaterThan(Integer value) {
             addCriterion("HOURLY_CAPACITY >", value, "hourlyCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityGreaterThanOrEqualTo(Short value) {
+        public Criteria andHourlyCapacityGreaterThanOrEqualTo(Integer value) {
             addCriterion("HOURLY_CAPACITY >=", value, "hourlyCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityLessThan(Short value) {
+        public Criteria andHourlyCapacityLessThan(Integer value) {
             addCriterion("HOURLY_CAPACITY <", value, "hourlyCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityLessThanOrEqualTo(Short value) {
+        public Criteria andHourlyCapacityLessThanOrEqualTo(Integer value) {
             addCriterion("HOURLY_CAPACITY <=", value, "hourlyCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityIn(List<Short> values) {
+        public Criteria andHourlyCapacityIn(List<Integer> values) {
             addCriterion("HOURLY_CAPACITY in", values, "hourlyCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityNotIn(List<Short> values) {
+        public Criteria andHourlyCapacityNotIn(List<Integer> values) {
             addCriterion("HOURLY_CAPACITY not in", values, "hourlyCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityBetween(Short value1, Short value2) {
+        public Criteria andHourlyCapacityBetween(Integer value1, Integer value2) {
             addCriterion("HOURLY_CAPACITY between", value1, value2, "hourlyCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityNotBetween(Short value1, Short value2) {
+        public Criteria andHourlyCapacityNotBetween(Integer value1, Integer value2) {
             addCriterion("HOURLY_CAPACITY not between", value1, value2, "hourlyCapacity");
             return (Criteria) this;
         }

@@ -115,52 +115,52 @@ public class ServiceExample {
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumEqualTo(Short value) {
+        public Criteria andSvcNumEqualTo(Integer value) {
             addCriterion("SVC_NUM =", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumNotEqualTo(Short value) {
+        public Criteria andSvcNumNotEqualTo(Integer value) {
             addCriterion("SVC_NUM <>", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumGreaterThan(Short value) {
+        public Criteria andSvcNumGreaterThan(Integer value) {
             addCriterion("SVC_NUM >", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andSvcNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("SVC_NUM >=", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumLessThan(Short value) {
+        public Criteria andSvcNumLessThan(Integer value) {
             addCriterion("SVC_NUM <", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumLessThanOrEqualTo(Short value) {
+        public Criteria andSvcNumLessThanOrEqualTo(Integer value) {
             addCriterion("SVC_NUM <=", value, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumIn(List<Short> values) {
+        public Criteria andSvcNumIn(List<Integer> values) {
             addCriterion("SVC_NUM in", values, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumNotIn(List<Short> values) {
+        public Criteria andSvcNumNotIn(List<Integer> values) {
             addCriterion("SVC_NUM not in", values, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumBetween(Short value1, Short value2) {
+        public Criteria andSvcNumBetween(Integer value1, Integer value2) {
             addCriterion("SVC_NUM between", value1, value2, "svcNum");
             return (Criteria) this;
         }
 
-        public Criteria andSvcNumNotBetween(Short value1, Short value2) {
+        public Criteria andSvcNumNotBetween(Integer value1, Integer value2) {
             addCriterion("SVC_NUM not between", value1, value2, "svcNum");
             return (Criteria) this;
         }
@@ -385,52 +385,52 @@ public class ServiceExample {
             return (Criteria) this;
         }
 
-        public Criteria andCostEqualTo(Short value) {
+        public Criteria andCostEqualTo(Integer value) {
             addCriterion("COST =", value, "cost");
             return (Criteria) this;
         }
 
-        public Criteria andCostNotEqualTo(Short value) {
+        public Criteria andCostNotEqualTo(Integer value) {
             addCriterion("COST <>", value, "cost");
             return (Criteria) this;
         }
 
-        public Criteria andCostGreaterThan(Short value) {
+        public Criteria andCostGreaterThan(Integer value) {
             addCriterion("COST >", value, "cost");
             return (Criteria) this;
         }
 
-        public Criteria andCostGreaterThanOrEqualTo(Short value) {
+        public Criteria andCostGreaterThanOrEqualTo(Integer value) {
             addCriterion("COST >=", value, "cost");
             return (Criteria) this;
         }
 
-        public Criteria andCostLessThan(Short value) {
+        public Criteria andCostLessThan(Integer value) {
             addCriterion("COST <", value, "cost");
             return (Criteria) this;
         }
 
-        public Criteria andCostLessThanOrEqualTo(Short value) {
+        public Criteria andCostLessThanOrEqualTo(Integer value) {
             addCriterion("COST <=", value, "cost");
             return (Criteria) this;
         }
 
-        public Criteria andCostIn(List<Short> values) {
+        public Criteria andCostIn(List<Integer> values) {
             addCriterion("COST in", values, "cost");
             return (Criteria) this;
         }
 
-        public Criteria andCostNotIn(List<Short> values) {
+        public Criteria andCostNotIn(List<Integer> values) {
             addCriterion("COST not in", values, "cost");
             return (Criteria) this;
         }
 
-        public Criteria andCostBetween(Short value1, Short value2) {
+        public Criteria andCostBetween(Integer value1, Integer value2) {
             addCriterion("COST between", value1, value2, "cost");
             return (Criteria) this;
         }
 
-        public Criteria andCostNotBetween(Short value1, Short value2) {
+        public Criteria andCostNotBetween(Integer value1, Integer value2) {
             addCriterion("COST not between", value1, value2, "cost");
             return (Criteria) this;
         }
@@ -715,52 +715,52 @@ public class ServiceExample {
             return (Criteria) this;
         }
 
-        public Criteria andSvcCountEqualTo(Short value) {
+        public Criteria andSvcCountEqualTo(Integer value) {
             addCriterion("SVC_COUNT =", value, "svcCount");
             return (Criteria) this;
         }
 
-        public Criteria andSvcCountNotEqualTo(Short value) {
+        public Criteria andSvcCountNotEqualTo(Integer value) {
             addCriterion("SVC_COUNT <>", value, "svcCount");
             return (Criteria) this;
         }
 
-        public Criteria andSvcCountGreaterThan(Short value) {
+        public Criteria andSvcCountGreaterThan(Integer value) {
             addCriterion("SVC_COUNT >", value, "svcCount");
             return (Criteria) this;
         }
 
-        public Criteria andSvcCountGreaterThanOrEqualTo(Short value) {
+        public Criteria andSvcCountGreaterThanOrEqualTo(Integer value) {
             addCriterion("SVC_COUNT >=", value, "svcCount");
             return (Criteria) this;
         }
 
-        public Criteria andSvcCountLessThan(Short value) {
+        public Criteria andSvcCountLessThan(Integer value) {
             addCriterion("SVC_COUNT <", value, "svcCount");
             return (Criteria) this;
         }
 
-        public Criteria andSvcCountLessThanOrEqualTo(Short value) {
+        public Criteria andSvcCountLessThanOrEqualTo(Integer value) {
             addCriterion("SVC_COUNT <=", value, "svcCount");
             return (Criteria) this;
         }
 
-        public Criteria andSvcCountIn(List<Short> values) {
+        public Criteria andSvcCountIn(List<Integer> values) {
             addCriterion("SVC_COUNT in", values, "svcCount");
             return (Criteria) this;
         }
 
-        public Criteria andSvcCountNotIn(List<Short> values) {
+        public Criteria andSvcCountNotIn(List<Integer> values) {
             addCriterion("SVC_COUNT not in", values, "svcCount");
             return (Criteria) this;
         }
 
-        public Criteria andSvcCountBetween(Short value1, Short value2) {
+        public Criteria andSvcCountBetween(Integer value1, Integer value2) {
             addCriterion("SVC_COUNT between", value1, value2, "svcCount");
             return (Criteria) this;
         }
 
-        public Criteria andSvcCountNotBetween(Short value1, Short value2) {
+        public Criteria andSvcCountNotBetween(Integer value1, Integer value2) {
             addCriterion("SVC_COUNT not between", value1, value2, "svcCount");
             return (Criteria) this;
         }

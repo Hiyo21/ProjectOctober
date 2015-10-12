@@ -115,52 +115,52 @@ public class ReviewExample {
             return (Criteria) this;
         }
 
-        public Criteria andRvwNumEqualTo(Short value) {
+        public Criteria andRvwNumEqualTo(Integer value) {
             addCriterion("RVW_NUM =", value, "rvwNum");
             return (Criteria) this;
         }
 
-        public Criteria andRvwNumNotEqualTo(Short value) {
+        public Criteria andRvwNumNotEqualTo(Integer value) {
             addCriterion("RVW_NUM <>", value, "rvwNum");
             return (Criteria) this;
         }
 
-        public Criteria andRvwNumGreaterThan(Short value) {
+        public Criteria andRvwNumGreaterThan(Integer value) {
             addCriterion("RVW_NUM >", value, "rvwNum");
             return (Criteria) this;
         }
 
-        public Criteria andRvwNumGreaterThanOrEqualTo(Short value) {
+        public Criteria andRvwNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("RVW_NUM >=", value, "rvwNum");
             return (Criteria) this;
         }
 
-        public Criteria andRvwNumLessThan(Short value) {
+        public Criteria andRvwNumLessThan(Integer value) {
             addCriterion("RVW_NUM <", value, "rvwNum");
             return (Criteria) this;
         }
 
-        public Criteria andRvwNumLessThanOrEqualTo(Short value) {
+        public Criteria andRvwNumLessThanOrEqualTo(Integer value) {
             addCriterion("RVW_NUM <=", value, "rvwNum");
             return (Criteria) this;
         }
 
-        public Criteria andRvwNumIn(List<Short> values) {
+        public Criteria andRvwNumIn(List<Integer> values) {
             addCriterion("RVW_NUM in", values, "rvwNum");
             return (Criteria) this;
         }
 
-        public Criteria andRvwNumNotIn(List<Short> values) {
+        public Criteria andRvwNumNotIn(List<Integer> values) {
             addCriterion("RVW_NUM not in", values, "rvwNum");
             return (Criteria) this;
         }
 
-        public Criteria andRvwNumBetween(Short value1, Short value2) {
+        public Criteria andRvwNumBetween(Integer value1, Integer value2) {
             addCriterion("RVW_NUM between", value1, value2, "rvwNum");
             return (Criteria) this;
         }
 
-        public Criteria andRvwNumNotBetween(Short value1, Short value2) {
+        public Criteria andRvwNumNotBetween(Integer value1, Integer value2) {
             addCriterion("RVW_NUM not between", value1, value2, "rvwNum");
             return (Criteria) this;
         }
@@ -655,52 +655,52 @@ public class ReviewExample {
             return (Criteria) this;
         }
 
-        public Criteria andHygieneEqualTo(Short value) {
+        public Criteria andHygieneEqualTo(Integer value) {
             addCriterion("HYGIENE =", value, "hygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneNotEqualTo(Short value) {
+        public Criteria andHygieneNotEqualTo(Integer value) {
             addCriterion("HYGIENE <>", value, "hygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneGreaterThan(Short value) {
+        public Criteria andHygieneGreaterThan(Integer value) {
             addCriterion("HYGIENE >", value, "hygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneGreaterThanOrEqualTo(Short value) {
+        public Criteria andHygieneGreaterThanOrEqualTo(Integer value) {
             addCriterion("HYGIENE >=", value, "hygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneLessThan(Short value) {
+        public Criteria andHygieneLessThan(Integer value) {
             addCriterion("HYGIENE <", value, "hygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneLessThanOrEqualTo(Short value) {
+        public Criteria andHygieneLessThanOrEqualTo(Integer value) {
             addCriterion("HYGIENE <=", value, "hygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneIn(List<Short> values) {
+        public Criteria andHygieneIn(List<Integer> values) {
             addCriterion("HYGIENE in", values, "hygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneNotIn(List<Short> values) {
+        public Criteria andHygieneNotIn(List<Integer> values) {
             addCriterion("HYGIENE not in", values, "hygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneBetween(Short value1, Short value2) {
+        public Criteria andHygieneBetween(Integer value1, Integer value2) {
             addCriterion("HYGIENE between", value1, value2, "hygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneNotBetween(Short value1, Short value2) {
+        public Criteria andHygieneNotBetween(Integer value1, Integer value2) {
             addCriterion("HYGIENE not between", value1, value2, "hygiene");
             return (Criteria) this;
         }
@@ -715,52 +715,52 @@ public class ReviewExample {
             return (Criteria) this;
         }
 
-        public Criteria andComfortEqualTo(Short value) {
+        public Criteria andComfortEqualTo(Integer value) {
             addCriterion("COMFORT =", value, "comfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortNotEqualTo(Short value) {
+        public Criteria andComfortNotEqualTo(Integer value) {
             addCriterion("COMFORT <>", value, "comfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortGreaterThan(Short value) {
+        public Criteria andComfortGreaterThan(Integer value) {
             addCriterion("COMFORT >", value, "comfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortGreaterThanOrEqualTo(Short value) {
+        public Criteria andComfortGreaterThanOrEqualTo(Integer value) {
             addCriterion("COMFORT >=", value, "comfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortLessThan(Short value) {
+        public Criteria andComfortLessThan(Integer value) {
             addCriterion("COMFORT <", value, "comfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortLessThanOrEqualTo(Short value) {
+        public Criteria andComfortLessThanOrEqualTo(Integer value) {
             addCriterion("COMFORT <=", value, "comfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortIn(List<Short> values) {
+        public Criteria andComfortIn(List<Integer> values) {
             addCriterion("COMFORT in", values, "comfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortNotIn(List<Short> values) {
+        public Criteria andComfortNotIn(List<Integer> values) {
             addCriterion("COMFORT not in", values, "comfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortBetween(Short value1, Short value2) {
+        public Criteria andComfortBetween(Integer value1, Integer value2) {
             addCriterion("COMFORT between", value1, value2, "comfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortNotBetween(Short value1, Short value2) {
+        public Criteria andComfortNotBetween(Integer value1, Integer value2) {
             addCriterion("COMFORT not between", value1, value2, "comfort");
             return (Criteria) this;
         }
@@ -775,52 +775,52 @@ public class ReviewExample {
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueEqualTo(Short value) {
+        public Criteria andTechniqueEqualTo(Integer value) {
             addCriterion("TECHNIQUE =", value, "technique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueNotEqualTo(Short value) {
+        public Criteria andTechniqueNotEqualTo(Integer value) {
             addCriterion("TECHNIQUE <>", value, "technique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueGreaterThan(Short value) {
+        public Criteria andTechniqueGreaterThan(Integer value) {
             addCriterion("TECHNIQUE >", value, "technique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueGreaterThanOrEqualTo(Short value) {
+        public Criteria andTechniqueGreaterThanOrEqualTo(Integer value) {
             addCriterion("TECHNIQUE >=", value, "technique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueLessThan(Short value) {
+        public Criteria andTechniqueLessThan(Integer value) {
             addCriterion("TECHNIQUE <", value, "technique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueLessThanOrEqualTo(Short value) {
+        public Criteria andTechniqueLessThanOrEqualTo(Integer value) {
             addCriterion("TECHNIQUE <=", value, "technique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueIn(List<Short> values) {
+        public Criteria andTechniqueIn(List<Integer> values) {
             addCriterion("TECHNIQUE in", values, "technique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueNotIn(List<Short> values) {
+        public Criteria andTechniqueNotIn(List<Integer> values) {
             addCriterion("TECHNIQUE not in", values, "technique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueBetween(Short value1, Short value2) {
+        public Criteria andTechniqueBetween(Integer value1, Integer value2) {
             addCriterion("TECHNIQUE between", value1, value2, "technique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueNotBetween(Short value1, Short value2) {
+        public Criteria andTechniqueNotBetween(Integer value1, Integer value2) {
             addCriterion("TECHNIQUE not between", value1, value2, "technique");
             return (Criteria) this;
         }
@@ -835,52 +835,52 @@ public class ReviewExample {
             return (Criteria) this;
         }
 
-        public Criteria andPriceEqualTo(Short value) {
+        public Criteria andPriceEqualTo(Integer value) {
             addCriterion("PRICE =", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotEqualTo(Short value) {
+        public Criteria andPriceNotEqualTo(Integer value) {
             addCriterion("PRICE <>", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThan(Short value) {
+        public Criteria andPriceGreaterThan(Integer value) {
             addCriterion("PRICE >", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThanOrEqualTo(Short value) {
+        public Criteria andPriceGreaterThanOrEqualTo(Integer value) {
             addCriterion("PRICE >=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThan(Short value) {
+        public Criteria andPriceLessThan(Integer value) {
             addCriterion("PRICE <", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThanOrEqualTo(Short value) {
+        public Criteria andPriceLessThanOrEqualTo(Integer value) {
             addCriterion("PRICE <=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceIn(List<Short> values) {
+        public Criteria andPriceIn(List<Integer> values) {
             addCriterion("PRICE in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotIn(List<Short> values) {
+        public Criteria andPriceNotIn(List<Integer> values) {
             addCriterion("PRICE not in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceBetween(Short value1, Short value2) {
+        public Criteria andPriceBetween(Integer value1, Integer value2) {
             addCriterion("PRICE between", value1, value2, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotBetween(Short value1, Short value2) {
+        public Criteria andPriceNotBetween(Integer value1, Integer value2) {
             addCriterion("PRICE not between", value1, value2, "price");
             return (Criteria) this;
         }
@@ -895,52 +895,52 @@ public class ReviewExample {
             return (Criteria) this;
         }
 
-        public Criteria andServiceEqualTo(Short value) {
+        public Criteria andServiceEqualTo(Integer value) {
             addCriterion("SERVICE =", value, "service");
             return (Criteria) this;
         }
 
-        public Criteria andServiceNotEqualTo(Short value) {
+        public Criteria andServiceNotEqualTo(Integer value) {
             addCriterion("SERVICE <>", value, "service");
             return (Criteria) this;
         }
 
-        public Criteria andServiceGreaterThan(Short value) {
+        public Criteria andServiceGreaterThan(Integer value) {
             addCriterion("SERVICE >", value, "service");
             return (Criteria) this;
         }
 
-        public Criteria andServiceGreaterThanOrEqualTo(Short value) {
+        public Criteria andServiceGreaterThanOrEqualTo(Integer value) {
             addCriterion("SERVICE >=", value, "service");
             return (Criteria) this;
         }
 
-        public Criteria andServiceLessThan(Short value) {
+        public Criteria andServiceLessThan(Integer value) {
             addCriterion("SERVICE <", value, "service");
             return (Criteria) this;
         }
 
-        public Criteria andServiceLessThanOrEqualTo(Short value) {
+        public Criteria andServiceLessThanOrEqualTo(Integer value) {
             addCriterion("SERVICE <=", value, "service");
             return (Criteria) this;
         }
 
-        public Criteria andServiceIn(List<Short> values) {
+        public Criteria andServiceIn(List<Integer> values) {
             addCriterion("SERVICE in", values, "service");
             return (Criteria) this;
         }
 
-        public Criteria andServiceNotIn(List<Short> values) {
+        public Criteria andServiceNotIn(List<Integer> values) {
             addCriterion("SERVICE not in", values, "service");
             return (Criteria) this;
         }
 
-        public Criteria andServiceBetween(Short value1, Short value2) {
+        public Criteria andServiceBetween(Integer value1, Integer value2) {
             addCriterion("SERVICE between", value1, value2, "service");
             return (Criteria) this;
         }
 
-        public Criteria andServiceNotBetween(Short value1, Short value2) {
+        public Criteria andServiceNotBetween(Integer value1, Integer value2) {
             addCriterion("SERVICE not between", value1, value2, "service");
             return (Criteria) this;
         }

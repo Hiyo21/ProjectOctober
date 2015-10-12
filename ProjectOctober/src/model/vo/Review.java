@@ -3,7 +3,7 @@ package model.vo;
 import java.time.LocalDateTime;
 
 public class Review {
-    private Short rvwNum;
+    private Integer rvwNum;
 
     private String cstEmail;
 
@@ -19,21 +19,21 @@ public class Review {
 
     private String cstJob;
 
-    private Short hygiene;
+    private Integer hygiene;
 
-    private Short comfort;
+    private Integer comfort;
 
-    private Short technique;
+    private Integer technique;
 
-    private Short price;
+    private Integer price;
 
-    private Short service;
+    private Integer service;
 
-    public Short getRvwNum() {
+    public Integer getRvwNum() {
         return rvwNum;
     }
 
-    public void setRvwNum(Short rvwNum) {
+    public void setRvwNum(Integer rvwNum) {
         this.rvwNum = rvwNum;
     }
 
@@ -93,43 +93,43 @@ public class Review {
         this.cstJob = cstJob;
     }
 
-    public Short getHygiene() {
+    public Integer getHygiene() {
         return hygiene;
     }
 
-    public void setHygiene(Short hygiene) {
+    public void setHygiene(Integer hygiene) {
         this.hygiene = hygiene;
     }
 
-    public Short getComfort() {
+    public Integer getComfort() {
         return comfort;
     }
 
-    public void setComfort(Short comfort) {
+    public void setComfort(Integer comfort) {
         this.comfort = comfort;
     }
 
-    public Short getTechnique() {
+    public Integer getTechnique() {
         return technique;
     }
 
-    public void setTechnique(Short technique) {
+    public void setTechnique(Integer technique) {
         this.technique = technique;
     }
 
-    public Short getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Short price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public Short getService() {
+    public Integer getService() {
         return service;
     }
 
-    public void setService(Short service) {
+    public void setService(Integer service) {
         this.service = service;
     }
 
