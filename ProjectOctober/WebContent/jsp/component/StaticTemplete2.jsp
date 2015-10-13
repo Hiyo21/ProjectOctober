@@ -26,6 +26,17 @@
 	<div class="container">
 		<!-- page-top -->
 		<s:include value="./StaticTop.jsp"></s:include>
+		
+		<div class="buttonBars">
+			<div class="btn-group btn-group-justified" role="group" aria-label="...">
+				<div class="btn-group" role="group">
+			    	<button type="button" class="btn btn-default btn-lg">전화 예약(000-0000-0000)</button>
+			  	</div>
+			  	<div class="btn-group" role="group">
+			    	<button type="button" class="btn btn-success btn-lg">예약 하기</button>
+			  	</div>
+			</div>
+		</div>
 
 		<!------- 업체 소개 ------->
 		<br>
