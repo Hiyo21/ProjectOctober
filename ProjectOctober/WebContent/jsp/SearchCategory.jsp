@@ -30,6 +30,7 @@ textarea {width:800px; height:300px;overflow:visible;}
 <body>
 <%@include file="Header.jsp"%>
 <!-- 내가 작성 -->
+
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">특징</a></li>
@@ -41,159 +42,203 @@ textarea {width:800px; height:300px;overflow:visible;}
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
       <h3>특징</h3>
-	      <div class="container">	         
-	  		<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">주차장 여부</button>
-		  	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">남성전용</button>
-		  </div>  
-		  <br>
-		  	  
-		  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">여성전용</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">역근처</button>
-	 	  </div>
-	 	  <br>
-	 	  
-	 	  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">어린아이 동반여부</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">패키지상품</button>
-	 	  </div>
-	 	  <br>
-	 	  
-	 	  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">예약 가능 여부</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">주말오픈</button>
-	 	  </div>
-	</div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>상태</h3>
-        <div class="container">	         
-	  		<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">다리를 교정하고 싶을 때</button>
-		  	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">허리디스크 교정</button>
-		  </div>  
-		  <br>
-		  	  
-		  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">얼굴축소</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">부종제거</button>
-	 	  </div>
-	 	  <br>
-	 	  
-	 	  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">피부 화이트닝</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">손관리</button>
-	 	  </div>
-	 	  <br>
-	 	  
-	 	  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">발관리</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">골반교정</button>
-	 	  </div>    
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <h3>장르</h3>
-       <div class="container">	         
-	  		<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">발마사지</button>
-		  	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">네일아트</button>
-		  </div>  
-		  <br>
-		  	  
-		  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">바디케어</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">핸드케어</button>
-	 	  </div>
-	 	  <br>
-	 	  
-	 	  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">교정</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">두피마사지</button>
-	 	  </div>
-	 	  <br>
-	 	  
-	 	  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">경락마사지</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">타이식 마사지</button>
-	 	  </div>   
-    </div>
-    <div id="menu3" class="tab-pane fade">
-      <h3>지역</h3>
-    	 <div class="container">	         
-	  		<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">서울특별시</button>
-		  	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">경기도</button>
-		  </div>  
-		  <br>
-		  	  
-		  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">강원도</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">경상도</button>
-	 	  </div>
-	 	  <br>
-	 	  
-	 	  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">전라도</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">충청도</button>
-	 	  </div>
-	 	  <br>
-	 	  
-	 	  <div class="container">	         
-  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  			<button type="button" style="width:300px; height:50px;" class="btn btn-primary">제주도</button>
-  			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  	 <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  		<button type="button" style="width:300px; height:50px;" class="btn btn-primary">기타섬</button>
-	 	  </div>   
-    </div>
-  </div>
+         <div class="section">
+		      <div class="container">
+		        <div class="row">
+		          <div class="col-md-12">
+		            <div class="section">
+		              <div class="container">
+		                <div class="row">
+		                  <div class="col-md-6"><!-- 왼쪽 -->
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">주차장 여부</button>
+			                  <br>
+			                  <br>
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">남성전용</button>
+				  			  <br>
+				  			  <br>
+				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">여성전용</button>
+  							  <br>
+  							  <br>
+  							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">역근처</button>
+		                  </div>
+		                  <div class="col-md-6"><!-- 오른쪽 -->
+		                  	  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">어린아이 동반여부</button>
+			                  <br>
+			                  <br>
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">패키지상품</button>
+				  			  <br>
+				  			  <br>
+				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">예약 가능 여부</button>
+  							  <br>
+  							  <br>
+  							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">주말오픈</button>                  
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+      	
+      
+     </div> <!-- 특징 -->
+   	 <div id="menu1" class="tab-pane fade">
+   		  <h3>상태</h3>
+   			<div class="section">
+		      <div class="container">
+		        <div class="row">
+		          <div class="col-md-12">
+		            <div class="section">
+		              <div class="container">
+		                <div class="row">
+		                  <div class="col-md-6"><!-- 왼쪽 -->
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">다리를 교정하고 싶을 때</button>
+			                  <br>
+			                  <br>
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">허리디스크 교정</button>
+				  			  <br>
+				  			  <br>
+				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">발관리</button>
+  							  <br>
+  							  <br>
+  							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">손관리</button>
+		                  </div>
+		                  <div class="col-md-6"><!-- 오른쪽 -->
+		                  	  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">골반교정</button>
+			                  <br>
+			                  <br>
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">부종제거</button>
+				  			  <br>
+				  			  <br>
+				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">피부 화이트닝</button>
+  							  <br>
+  							  <br>
+  							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">얼굴축소</button>                  
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>   		
+   	  </div>	<!-- 상태 -->
+   	  <div id="menu2" class="tab-pane fade">
+      	<h3>장르</h3>	
+   		  <div class="section">
+		      <div class="container">
+		        <div class="row">
+		          <div class="col-md-12">
+		            <div class="section">
+		              <div class="container">
+		                <div class="row">
+		                  <div class="col-md-6"><!-- 왼쪽 -->
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">타이식마사지</button>
+			                  <br>
+			                  <br>
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">경락마사지 교정</button>
+				  			  <br>
+				  			  <br>
+				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">두피마사지</button>
+  							  <br>
+  							  <br>
+  							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">교정</button>
+		                  </div>
+		                  <div class="col-md-6"><!-- 오른쪽 -->
+		                  	  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">핸드케어</button>
+			                  <br>
+			                  <br>
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">바디케어</button>
+				  			  <br>
+				  			  <br>
+				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">네일아트</button>
+  							  <br>
+  							  <br>
+  							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">발마사지</button>                  
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>    		
+   	  </div><!-- 장르 -->
+   	   <div id="menu3" class="tab-pane fade">
+     	  <h3>지역</h3>
+      	    <div class="section">
+		      <div class="container">
+		        <div class="row">
+		          <div class="col-md-12">
+		            <div class="section">
+		              <div class="container">
+		                <div class="row">
+		                  <div class="col-md-6"><!-- 왼쪽 -->
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">서울특별시</button>
+			                  <br>
+			                  <br>
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">경기도</button>
+				  			  <br>
+				  			  <br>
+				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">강원도</button>
+  							  <br>
+  							  <br>
+  							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">충청도</button>
+		                  </div>
+		                  <div class="col-md-6"><!-- 오른쪽 -->
+		                  	  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">경상도</button>
+			                  <br>
+			                  <br>
+			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">전라도</button>
+				  			  <br>
+				  			  <br>
+				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">제주도</button>
+  							  <br>
+  							  <br>
+  							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">기타 섬 지역</button>                  
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>      
+      </div><!-- 지역 -->
+   </div>
 </div>
-
-
-
-
-
-
 </body>
 </html>	
