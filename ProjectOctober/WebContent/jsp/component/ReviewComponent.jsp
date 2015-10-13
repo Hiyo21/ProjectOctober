@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 $(function () {
-    $('#container').highcharts({
+    $('#chart').highcharts({
     	chart: {
             polar: true,
             type: 'line'
@@ -60,7 +60,7 @@ $(function () {
 <body>
 <div class="container"> 
 	<div class="row">
-		<div class="col-md-6" id="container" style="min-width: 400px; max-width: 600px; height: 600px; margin: 0 auto"></div>
+		<div class="col-md-6" id="chart" style="min-width: 400px; max-width: 600px; height: 600px; margin: 0 auto"></div>
 		<div class="col-md-5"><h1>종합평가 점수 / 정보</h1></div>
 	</div>
 	<div class="row">

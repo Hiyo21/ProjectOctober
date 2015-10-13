@@ -3,6 +3,9 @@
 
 <struts>
 	<package name="enterprise" namespace="/enterprise" extends="default">
+		<action name="insertCmponent" class="controller.action.EnterpriseAction" method="insertCmponent()">
+			<result>../jsp/Main.jsp</result>
+		</action>
 	
 	</package>
 

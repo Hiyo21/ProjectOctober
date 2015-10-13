@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./InfoComponent.jsp"></s:include>
+				<s:include value="./InfoComponent.jsp"/>
 			</div>	
 				
 			<!------- 서비스 메뉴 ------->
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./SvcComponent.jsp"></s:include>
+				<s:include value="./SvcComponent.jsp"/>
 			</div>
 				
 			<!------- 갤러리 메뉴 ------->
@@ -56,7 +56,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./GalleryComponent.jsp"></s:include>
+				<s:include value="./GalleryComponent.jsp"/>
 			</div>
 				
 			<!------- 오시는 길 ------->
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./LocationComponent.jsp"></s:include>
+				<s:include value="./LocationComponent.jsp"/>
 			</div>	
 				
 			<!------- 고객 평가 ------->
@@ -76,7 +76,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./ReviewComponent.jsp"></s:include>
+				<s:include value="./ReviewComponent.jsp"/>
 			</div>		
 		</div>
 	</div>
