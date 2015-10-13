@@ -56,15 +56,15 @@
 	</environments>
 
 	<mappers>
-		<mapper resource="model/mapper/ComponenetMapper" />
-		<mapper resource="model/mapper/CouponMapper" />
-		<mapper resource="model/mapper/CustomerMApper" />
-		<mapper resource="model/mapper/EnterpriseMapper" />
-		<mapper resource="model/mapper/EnterpriseWaitlistMapper" />
-		<mapper resource="model/mapper/HolidayMapper" />
-		<mapper resource="model/mapper/HolidayWaitlistMapper" />
-		<mapper resource="model/mapper/MemberCodeMapper" />
-		<mapper resource="model/mapper/MemberMapper" />
+		<mapper resource="model/mapper/ComponentMapper.xml" />
+		<mapper resource="model/mapper/CouponMapper.xml" />
+		<mapper resource="model/mapper/CustomerMApper.xml" />
+		<mapper resource="model/mapper/EnterpriseMapper.xml" />
+		<mapper resource="model/mapper/EnterpriseWaitlistMapper.xml" />
+		<mapper resource="model/mapper/HolidayMapper.xml" />
+		<mapper resource="model/mapper/HolidayWaitlistMapper.xml" />
+		<mapper resource="model/mapper/MemberCodeMapper.xml" />
+		<mapper resource="model/mapper/MemberMapper.xml" />
 		<mapper resource="model/mapper/PaymentRecordMapper.xml"/>
 		<mapper resource="model/mapper/PhotoLocationMapper.xml"/>
 		<mapper resource="model/mapper/ReservationMapper.xml"/>
