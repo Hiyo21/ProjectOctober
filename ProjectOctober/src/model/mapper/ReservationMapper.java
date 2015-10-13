@@ -30,4 +30,8 @@ public interface ReservationMapper {
     int updateByPrimaryKeySelective(Reservation record);
 
     int updateByPrimaryKey(Reservation record);
+    
+    List<Reservation> retrieveEvents();
+    
+    Integer insertEvent(Reservation reservation);
 }

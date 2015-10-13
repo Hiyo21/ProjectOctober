@@ -14,6 +14,8 @@
     <result column="END_DATE" property="endDate" jdbcType="DATE" />
     <result column="STATUS" property="status" jdbcType="DECIMAL" />
     <result column="GENDER" property="employeeGender" jdbcType="VARCHAR" />
+    <result column="start1" property="start"/>
+    <result column="end1" property="end"/>
   </resultMap>
   
   
@@ -333,4 +335,13 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  <select id="retrieveEvents" resultType="Reservation">
+  	select * from reservation_test;
+  </select>
+  
+  <insert id="" parameterType="Reservation">
+  	insert into reservation_test values();
+  </insert>
+  
 </mapper>

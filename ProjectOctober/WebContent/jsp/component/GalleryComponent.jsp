@@ -11,15 +11,15 @@
 	<div class="container"> 
 		<div class="row"> 
 			<div class="col-md-4"> 
-				<a><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive" width="300px"></a> 
+				<a><img src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/18.Pictures-Day-128.png" class="img-responsive"></a> 
 				<h3>A title</h3> <p>내용</p>
 			</div>
 			<div class="col-md-4"> 
-				<a><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive" width="300px"></a> 
+				<a><img src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/18.Pictures-Day-128.png" class="img-responsive"></a> 
 				<h3>A title</h3> <p>내용</p>
 			</div>
 			<div class="col-md-4"> 
-				<a><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive" width="300px"></a> 
+				<a><img src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/18.Pictures-Day-128.png" class="img-responsive"></a> 
 				<h3>A title</h3> <p>내용</p>
 			</div>
 		</div>
