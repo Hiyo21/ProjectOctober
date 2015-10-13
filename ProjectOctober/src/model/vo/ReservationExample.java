@@ -65,19 +65,75 @@ public class ReservationExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> rsvStartDateCriteria;
+
+        protected List<Criterion> rsvEndDateCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            rsvStartDateCriteria = new ArrayList<Criterion>();
+            rsvEndDateCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getRsvStartDateCriteria() {
+            return rsvStartDateCriteria;
+        }
+
+        protected void addRsvStartDateCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            rsvStartDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addRsvStartDateCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            rsvStartDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
+        }
+
+        public List<Criterion> getRsvEndDateCriteria() {
+            return rsvEndDateCriteria;
+        }
+
+        protected void addRsvEndDateCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            rsvEndDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addRsvEndDateCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            rsvEndDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || rsvStartDateCriteria.size() > 0
+                || rsvEndDateCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(rsvStartDateCriteria);
+                allCriteria.addAll(rsvEndDateCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +145,7 @@ public class ReservationExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +153,7 @@ public class ReservationExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +161,7 @@ public class ReservationExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andRsvNumIsNull() {
@@ -495,253 +554,323 @@ public class ReservationExample {
             return (Criteria) this;
         }
 
-        public Criteria andStartDateIsNull() {
-            addCriterion("START_DATE is null");
+        public Criteria andRsvStartDateIsNull() {
+            addCriterion("RSV_START_DATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateIsNotNull() {
-            addCriterion("START_DATE is not null");
+        public Criteria andRsvStartDateIsNotNull() {
+            addCriterion("RSV_START_DATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateEqualTo(LocalDateTime value) {
-            addCriterion("START_DATE =", value, "startDate");
+        public Criteria andRsvStartDateEqualTo(LocalDateTime value) {
+            addRsvStartDateCriterion("RSV_START_DATE =", value, "rsvStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateNotEqualTo(LocalDateTime value) {
-            addCriterion("START_DATE <>", value, "startDate");
+        public Criteria andRsvStartDateNotEqualTo(LocalDateTime value) {
+            addRsvStartDateCriterion("RSV_START_DATE <>", value, "rsvStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateGreaterThan(LocalDateTime value) {
-            addCriterion("START_DATE >", value, "startDate");
+        public Criteria andRsvStartDateGreaterThan(LocalDateTime value) {
+            addRsvStartDateCriterion("RSV_START_DATE >", value, "rsvStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("START_DATE >=", value, "startDate");
+        public Criteria andRsvStartDateGreaterThanOrEqualTo(LocalDateTime value) {
+            addRsvStartDateCriterion("RSV_START_DATE >=", value, "rsvStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateLessThan(LocalDateTime value) {
-            addCriterion("START_DATE <", value, "startDate");
+        public Criteria andRsvStartDateLessThan(LocalDateTime value) {
+            addRsvStartDateCriterion("RSV_START_DATE <", value, "rsvStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("START_DATE <=", value, "startDate");
+        public Criteria andRsvStartDateLessThanOrEqualTo(LocalDateTime value) {
+            addRsvStartDateCriterion("RSV_START_DATE <=", value, "rsvStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateIn(List<LocalDateTime> values) {
-            addCriterion("START_DATE in", values, "startDate");
+        public Criteria andRsvStartDateIn(List<LocalDateTime> values) {
+            addRsvStartDateCriterion("RSV_START_DATE in", values, "rsvStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateNotIn(List<LocalDateTime> values) {
-            addCriterion("START_DATE not in", values, "startDate");
+        public Criteria andRsvStartDateNotIn(List<LocalDateTime> values) {
+            addRsvStartDateCriterion("RSV_START_DATE not in", values, "rsvStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("START_DATE between", value1, value2, "startDate");
+        public Criteria andRsvStartDateBetween(LocalDateTime value1, LocalDateTime value2) {
+            addRsvStartDateCriterion("RSV_START_DATE between", value1, value2, "rsvStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("START_DATE not between", value1, value2, "startDate");
+        public Criteria andRsvStartDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addRsvStartDateCriterion("RSV_START_DATE not between", value1, value2, "rsvStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateIsNull() {
-            addCriterion("END_DATE is null");
+        public Criteria andRsvEndDateIsNull() {
+            addCriterion("RSV_END_DATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateIsNotNull() {
-            addCriterion("END_DATE is not null");
+        public Criteria andRsvEndDateIsNotNull() {
+            addCriterion("RSV_END_DATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateEqualTo(LocalDateTime value) {
-            addCriterion("END_DATE =", value, "endDate");
+        public Criteria andRsvEndDateEqualTo(LocalDateTime value) {
+            addRsvEndDateCriterion("RSV_END_DATE =", value, "rsvEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateNotEqualTo(LocalDateTime value) {
-            addCriterion("END_DATE <>", value, "endDate");
+        public Criteria andRsvEndDateNotEqualTo(LocalDateTime value) {
+            addRsvEndDateCriterion("RSV_END_DATE <>", value, "rsvEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateGreaterThan(LocalDateTime value) {
-            addCriterion("END_DATE >", value, "endDate");
+        public Criteria andRsvEndDateGreaterThan(LocalDateTime value) {
+            addRsvEndDateCriterion("RSV_END_DATE >", value, "rsvEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("END_DATE >=", value, "endDate");
+        public Criteria andRsvEndDateGreaterThanOrEqualTo(LocalDateTime value) {
+            addRsvEndDateCriterion("RSV_END_DATE >=", value, "rsvEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateLessThan(LocalDateTime value) {
-            addCriterion("END_DATE <", value, "endDate");
+        public Criteria andRsvEndDateLessThan(LocalDateTime value) {
+            addRsvEndDateCriterion("RSV_END_DATE <", value, "rsvEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("END_DATE <=", value, "endDate");
+        public Criteria andRsvEndDateLessThanOrEqualTo(LocalDateTime value) {
+            addRsvEndDateCriterion("RSV_END_DATE <=", value, "rsvEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateIn(List<LocalDateTime> values) {
-            addCriterion("END_DATE in", values, "endDate");
+        public Criteria andRsvEndDateIn(List<LocalDateTime> values) {
+            addRsvEndDateCriterion("RSV_END_DATE in", values, "rsvEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateNotIn(List<LocalDateTime> values) {
-            addCriterion("END_DATE not in", values, "endDate");
+        public Criteria andRsvEndDateNotIn(List<LocalDateTime> values) {
+            addRsvEndDateCriterion("RSV_END_DATE not in", values, "rsvEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("END_DATE between", value1, value2, "endDate");
+        public Criteria andRsvEndDateBetween(LocalDateTime value1, LocalDateTime value2) {
+            addRsvEndDateCriterion("RSV_END_DATE between", value1, value2, "rsvEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("END_DATE not between", value1, value2, "endDate");
+        public Criteria andRsvEndDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addRsvEndDateCriterion("RSV_END_DATE not between", value1, value2, "rsvEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNull() {
-            addCriterion("STATUS is null");
+        public Criteria andRsvStatusIsNull() {
+            addCriterion("RSV_STATUS is null");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNotNull() {
-            addCriterion("STATUS is not null");
+        public Criteria andRsvStatusIsNotNull() {
+            addCriterion("RSV_STATUS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Integer value) {
-            addCriterion("STATUS =", value, "status");
+        public Criteria andRsvStatusEqualTo(Integer value) {
+            addCriterion("RSV_STATUS =", value, "rsvStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Integer value) {
-            addCriterion("STATUS <>", value, "status");
+        public Criteria andRsvStatusNotEqualTo(Integer value) {
+            addCriterion("RSV_STATUS <>", value, "rsvStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Integer value) {
-            addCriterion("STATUS >", value, "status");
+        public Criteria andRsvStatusGreaterThan(Integer value) {
+            addCriterion("RSV_STATUS >", value, "rsvStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("STATUS >=", value, "status");
+        public Criteria andRsvStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("RSV_STATUS >=", value, "rsvStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Integer value) {
-            addCriterion("STATUS <", value, "status");
+        public Criteria andRsvStatusLessThan(Integer value) {
+            addCriterion("RSV_STATUS <", value, "rsvStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("STATUS <=", value, "status");
+        public Criteria andRsvStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("RSV_STATUS <=", value, "rsvStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Integer> values) {
-            addCriterion("STATUS in", values, "status");
+        public Criteria andRsvStatusIn(List<Integer> values) {
+            addCriterion("RSV_STATUS in", values, "rsvStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Integer> values) {
-            addCriterion("STATUS not in", values, "status");
+        public Criteria andRsvStatusNotIn(List<Integer> values) {
+            addCriterion("RSV_STATUS not in", values, "rsvStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Integer value1, Integer value2) {
-            addCriterion("STATUS between", value1, value2, "status");
+        public Criteria andRsvStatusBetween(Integer value1, Integer value2) {
+            addCriterion("RSV_STATUS between", value1, value2, "rsvStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("STATUS not between", value1, value2, "status");
+        public Criteria andRsvStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("RSV_STATUS not between", value1, value2, "rsvStatus");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderIsNull() {
-            addCriterion("GENDER is null");
+            addCriterion("RSV_GENDER is null");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderIsNotNull() {
-            addCriterion("GENDER is not null");
+            addCriterion("RSV_GENDER is not null");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderEqualTo(char value) {
-            addCriterion("GENDER =", value, "employeeGender");
+            addCriterion("RSV_GENDER =", value, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderNotEqualTo(char value) {
-            addCriterion("GENDER <>", value, "employeeGender");
+            addCriterion("RSV_GENDER <>", value, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderGreaterThan(char value) {
-            addCriterion("GENDER >", value, "employeeGender");
+            addCriterion("RSV_GENDER >", value, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderGreaterThanOrEqualTo(char value) {
-            addCriterion("GENDER >=", value, "employeeGender");
+            addCriterion("RSV_GENDER >=", value, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderLessThan(char value) {
-            addCriterion("GENDER <", value, "employeeGender");
+            addCriterion("RSV_GENDER <", value, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderLessThanOrEqualTo(char value) {
-            addCriterion("GENDER <=", value, "employeeGender");
+            addCriterion("RSV_GENDER <=", value, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderLike(char value) {
-            addCriterion("GENDER like", value, "employeeGender");
+            addCriterion("RSV_GENDER like", value, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderNotLike(char value) {
-            addCriterion("GENDER not like", value, "employeeGender");
+            addCriterion("RSV_GENDER not like", value, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderIn(List<Character> values) {
-            addCriterion("GENDER in", values, "employeeGender");
+            addCriterion("RSV_GENDER in", values, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderNotIn(List<Character> values) {
-            addCriterion("GENDER not in", values, "employeeGender");
+            addCriterion("RSV_GENDER not in", values, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderBetween(char value1, char value2) {
-            addCriterion("GENDER between", value1, value2, "employeeGender");
+            addCriterion("RSV_GENDER between", value1, value2, "employeeGender");
             return (Criteria) this;
         }
 
         public Criteria andEmployeeGenderNotBetween(char value1, char value2) {
-            addCriterion("GENDER not between", value1, value2, "employeeGender");
+            addCriterion("RSV_GENDER not between", value1, value2, "employeeGender");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleIsNull() {
+            addCriterion("RSV_TITLE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleIsNotNull() {
+            addCriterion("RSV_TITLE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleEqualTo(String value) {
+            addCriterion("RSV_TITLE =", value, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleNotEqualTo(String value) {
+            addCriterion("RSV_TITLE <>", value, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleGreaterThan(String value) {
+            addCriterion("RSV_TITLE >", value, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("RSV_TITLE >=", value, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleLessThan(String value) {
+            addCriterion("RSV_TITLE <", value, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleLessThanOrEqualTo(String value) {
+            addCriterion("RSV_TITLE <=", value, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleLike(String value) {
+            addCriterion("RSV_TITLE like", value, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleNotLike(String value) {
+            addCriterion("RSV_TITLE not like", value, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleIn(List<String> values) {
+            addCriterion("RSV_TITLE in", values, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleNotIn(List<String> values) {
+            addCriterion("RSV_TITLE not in", values, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleBetween(String value1, String value2) {
+            addCriterion("RSV_TITLE between", value1, value2, "rsvTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleNotBetween(String value1, String value2) {
+            addCriterion("RSV_TITLE not between", value1, value2, "rsvTitle");
             return (Criteria) this;
         }
 
@@ -757,6 +886,11 @@ public class ReservationExample {
 
         public Criteria andCstEmailLikeInsensitive(String value) {
             addCriterion("upper(CST_EMAIL) like", value.toUpperCase(), "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvTitleLikeInsensitive(String value) {
+            addCriterion("upper(RSV_TITLE) like", value.toUpperCase(), "rsvTitle");
             return (Criteria) this;
         }
     }

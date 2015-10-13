@@ -1,8 +1,9 @@
 package model.vo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Holiday {
+public class Holiday implements Serializable {
     private Integer holNum;
 
     private String etpNum;
@@ -10,6 +11,8 @@ public class Holiday {
     private String etpEmail;
 
     private LocalDateTime holDate;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getHolNum() {
         return holNum;

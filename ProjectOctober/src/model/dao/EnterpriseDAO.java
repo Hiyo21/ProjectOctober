@@ -1,29 +1,27 @@
 package model.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 
 import model.common.MyBatisSqlSessionFactory;
-import model.mapper.ReservationMapper;
-import model.vo.Reservation;
+import model.vo.Enterprise;
 
 public class EnterpriseDAO {
+	private Logger logger = Logger.getLogger(this.getClass());
 	
-	public List<Reservation> retrieveEvents(){
+	public Enterprise retrieveEnterpriseEvents(){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			System.out.println('t');
-			return session.getMapper(ReservationMapper.class).retrieveEvents(); 
+			return session.selectOne("model.mapper.EnterpriseMapper.retrieveEvents");
 		}finally{
 			session.close();
 		}
 	}
 	
-	public Integer insertEvent(Reservation reservation){
+	public Integer insertEvent(Enterprise enterprise){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			return session.insert("model.mapper.ReservationMapper.insertEvent", reservation);
+			return session.insert("model.mapper.EnterpriseMapper.insertEvent", enterprise);
 		}finally{
 			session.close();
 		}

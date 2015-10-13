@@ -65,19 +65,75 @@ public class CouponExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> cpnStartDateCriteria;
+
+        protected List<Criterion> cpnEndDateCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            cpnStartDateCriteria = new ArrayList<Criterion>();
+            cpnEndDateCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getCpnStartDateCriteria() {
+            return cpnStartDateCriteria;
+        }
+
+        protected void addCpnStartDateCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            cpnStartDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addCpnStartDateCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            cpnStartDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
+        }
+
+        public List<Criterion> getCpnEndDateCriteria() {
+            return cpnEndDateCriteria;
+        }
+
+        protected void addCpnEndDateCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            cpnEndDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addCpnEndDateCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            cpnEndDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || cpnStartDateCriteria.size() > 0
+                || cpnEndDateCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(cpnStartDateCriteria);
+                allCriteria.addAll(cpnEndDateCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +145,7 @@ public class CouponExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +153,7 @@ public class CouponExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +161,7 @@ public class CouponExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andCpnNumIsNull() {
@@ -305,323 +364,323 @@ public class CouponExample {
             return (Criteria) this;
         }
 
-        public Criteria andTitleIsNull() {
-            addCriterion("TITLE is null");
+        public Criteria andCpnTitleIsNull() {
+            addCriterion("CPN_TITLE is null");
             return (Criteria) this;
         }
 
-        public Criteria andTitleIsNotNull() {
-            addCriterion("TITLE is not null");
+        public Criteria andCpnTitleIsNotNull() {
+            addCriterion("CPN_TITLE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTitleEqualTo(String value) {
-            addCriterion("TITLE =", value, "title");
+        public Criteria andCpnTitleEqualTo(String value) {
+            addCriterion("CPN_TITLE =", value, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotEqualTo(String value) {
-            addCriterion("TITLE <>", value, "title");
+        public Criteria andCpnTitleNotEqualTo(String value) {
+            addCriterion("CPN_TITLE <>", value, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleGreaterThan(String value) {
-            addCriterion("TITLE >", value, "title");
+        public Criteria andCpnTitleGreaterThan(String value) {
+            addCriterion("CPN_TITLE >", value, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleGreaterThanOrEqualTo(String value) {
-            addCriterion("TITLE >=", value, "title");
+        public Criteria andCpnTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("CPN_TITLE >=", value, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLessThan(String value) {
-            addCriterion("TITLE <", value, "title");
+        public Criteria andCpnTitleLessThan(String value) {
+            addCriterion("CPN_TITLE <", value, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLessThanOrEqualTo(String value) {
-            addCriterion("TITLE <=", value, "title");
+        public Criteria andCpnTitleLessThanOrEqualTo(String value) {
+            addCriterion("CPN_TITLE <=", value, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLike(String value) {
-            addCriterion("TITLE like", value, "title");
+        public Criteria andCpnTitleLike(String value) {
+            addCriterion("CPN_TITLE like", value, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotLike(String value) {
-            addCriterion("TITLE not like", value, "title");
+        public Criteria andCpnTitleNotLike(String value) {
+            addCriterion("CPN_TITLE not like", value, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleIn(List<String> values) {
-            addCriterion("TITLE in", values, "title");
+        public Criteria andCpnTitleIn(List<String> values) {
+            addCriterion("CPN_TITLE in", values, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotIn(List<String> values) {
-            addCriterion("TITLE not in", values, "title");
+        public Criteria andCpnTitleNotIn(List<String> values) {
+            addCriterion("CPN_TITLE not in", values, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleBetween(String value1, String value2) {
-            addCriterion("TITLE between", value1, value2, "title");
+        public Criteria andCpnTitleBetween(String value1, String value2) {
+            addCriterion("CPN_TITLE between", value1, value2, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotBetween(String value1, String value2) {
-            addCriterion("TITLE not between", value1, value2, "title");
+        public Criteria andCpnTitleNotBetween(String value1, String value2) {
+            addCriterion("CPN_TITLE not between", value1, value2, "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andCodeIsNull() {
-            addCriterion("CODE is null");
+        public Criteria andCpnCodeIsNull() {
+            addCriterion("CPN_CODE is null");
             return (Criteria) this;
         }
 
-        public Criteria andCodeIsNotNull() {
-            addCriterion("CODE is not null");
+        public Criteria andCpnCodeIsNotNull() {
+            addCriterion("CPN_CODE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCodeEqualTo(String value) {
-            addCriterion("CODE =", value, "code");
+        public Criteria andCpnCodeEqualTo(String value) {
+            addCriterion("CPN_CODE =", value, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotEqualTo(String value) {
-            addCriterion("CODE <>", value, "code");
+        public Criteria andCpnCodeNotEqualTo(String value) {
+            addCriterion("CPN_CODE <>", value, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeGreaterThan(String value) {
-            addCriterion("CODE >", value, "code");
+        public Criteria andCpnCodeGreaterThan(String value) {
+            addCriterion("CPN_CODE >", value, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("CODE >=", value, "code");
+        public Criteria andCpnCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("CPN_CODE >=", value, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeLessThan(String value) {
-            addCriterion("CODE <", value, "code");
+        public Criteria andCpnCodeLessThan(String value) {
+            addCriterion("CPN_CODE <", value, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeLessThanOrEqualTo(String value) {
-            addCriterion("CODE <=", value, "code");
+        public Criteria andCpnCodeLessThanOrEqualTo(String value) {
+            addCriterion("CPN_CODE <=", value, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeLike(String value) {
-            addCriterion("CODE like", value, "code");
+        public Criteria andCpnCodeLike(String value) {
+            addCriterion("CPN_CODE like", value, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotLike(String value) {
-            addCriterion("CODE not like", value, "code");
+        public Criteria andCpnCodeNotLike(String value) {
+            addCriterion("CPN_CODE not like", value, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeIn(List<String> values) {
-            addCriterion("CODE in", values, "code");
+        public Criteria andCpnCodeIn(List<String> values) {
+            addCriterion("CPN_CODE in", values, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotIn(List<String> values) {
-            addCriterion("CODE not in", values, "code");
+        public Criteria andCpnCodeNotIn(List<String> values) {
+            addCriterion("CPN_CODE not in", values, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeBetween(String value1, String value2) {
-            addCriterion("CODE between", value1, value2, "code");
+        public Criteria andCpnCodeBetween(String value1, String value2) {
+            addCriterion("CPN_CODE between", value1, value2, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotBetween(String value1, String value2) {
-            addCriterion("CODE not between", value1, value2, "code");
+        public Criteria andCpnCodeNotBetween(String value1, String value2) {
+            addCriterion("CPN_CODE not between", value1, value2, "cpnCode");
             return (Criteria) this;
         }
 
-        public Criteria andRateIsNull() {
-            addCriterion("RATE is null");
+        public Criteria andCpnRateIsNull() {
+            addCriterion("CPN_RATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andRateIsNotNull() {
-            addCriterion("RATE is not null");
+        public Criteria andCpnRateIsNotNull() {
+            addCriterion("CPN_RATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRateEqualTo(Integer value) {
-            addCriterion("RATE =", value, "rate");
+        public Criteria andCpnRateEqualTo(Integer value) {
+            addCriterion("CPN_RATE =", value, "cpnRate");
             return (Criteria) this;
         }
 
-        public Criteria andRateNotEqualTo(Integer value) {
-            addCriterion("RATE <>", value, "rate");
+        public Criteria andCpnRateNotEqualTo(Integer value) {
+            addCriterion("CPN_RATE <>", value, "cpnRate");
             return (Criteria) this;
         }
 
-        public Criteria andRateGreaterThan(Integer value) {
-            addCriterion("RATE >", value, "rate");
+        public Criteria andCpnRateGreaterThan(Integer value) {
+            addCriterion("CPN_RATE >", value, "cpnRate");
             return (Criteria) this;
         }
 
-        public Criteria andRateGreaterThanOrEqualTo(Integer value) {
-            addCriterion("RATE >=", value, "rate");
+        public Criteria andCpnRateGreaterThanOrEqualTo(Integer value) {
+            addCriterion("CPN_RATE >=", value, "cpnRate");
             return (Criteria) this;
         }
 
-        public Criteria andRateLessThan(Integer value) {
-            addCriterion("RATE <", value, "rate");
+        public Criteria andCpnRateLessThan(Integer value) {
+            addCriterion("CPN_RATE <", value, "cpnRate");
             return (Criteria) this;
         }
 
-        public Criteria andRateLessThanOrEqualTo(Integer value) {
-            addCriterion("RATE <=", value, "rate");
+        public Criteria andCpnRateLessThanOrEqualTo(Integer value) {
+            addCriterion("CPN_RATE <=", value, "cpnRate");
             return (Criteria) this;
         }
 
-        public Criteria andRateIn(List<Integer> values) {
-            addCriterion("RATE in", values, "rate");
+        public Criteria andCpnRateIn(List<Integer> values) {
+            addCriterion("CPN_RATE in", values, "cpnRate");
             return (Criteria) this;
         }
 
-        public Criteria andRateNotIn(List<Integer> values) {
-            addCriterion("RATE not in", values, "rate");
+        public Criteria andCpnRateNotIn(List<Integer> values) {
+            addCriterion("CPN_RATE not in", values, "cpnRate");
             return (Criteria) this;
         }
 
-        public Criteria andRateBetween(Integer value1, Integer value2) {
-            addCriterion("RATE between", value1, value2, "rate");
+        public Criteria andCpnRateBetween(Integer value1, Integer value2) {
+            addCriterion("CPN_RATE between", value1, value2, "cpnRate");
             return (Criteria) this;
         }
 
-        public Criteria andRateNotBetween(Integer value1, Integer value2) {
-            addCriterion("RATE not between", value1, value2, "rate");
+        public Criteria andCpnRateNotBetween(Integer value1, Integer value2) {
+            addCriterion("CPN_RATE not between", value1, value2, "cpnRate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateIsNull() {
-            addCriterion("START_DATE is null");
+        public Criteria andCpnStartDateIsNull() {
+            addCriterion("CPN_START_DATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateIsNotNull() {
-            addCriterion("START_DATE is not null");
+        public Criteria andCpnStartDateIsNotNull() {
+            addCriterion("CPN_START_DATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateEqualTo(LocalDateTime value) {
-            addCriterion("START_DATE =", value, "startDate");
+        public Criteria andCpnStartDateEqualTo(LocalDateTime value) {
+            addCpnStartDateCriterion("CPN_START_DATE =", value, "cpnStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateNotEqualTo(LocalDateTime value) {
-            addCriterion("START_DATE <>", value, "startDate");
+        public Criteria andCpnStartDateNotEqualTo(LocalDateTime value) {
+            addCpnStartDateCriterion("CPN_START_DATE <>", value, "cpnStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateGreaterThan(LocalDateTime value) {
-            addCriterion("START_DATE >", value, "startDate");
+        public Criteria andCpnStartDateGreaterThan(LocalDateTime value) {
+            addCpnStartDateCriterion("CPN_START_DATE >", value, "cpnStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("START_DATE >=", value, "startDate");
+        public Criteria andCpnStartDateGreaterThanOrEqualTo(LocalDateTime value) {
+            addCpnStartDateCriterion("CPN_START_DATE >=", value, "cpnStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateLessThan(LocalDateTime value) {
-            addCriterion("START_DATE <", value, "startDate");
+        public Criteria andCpnStartDateLessThan(LocalDateTime value) {
+            addCpnStartDateCriterion("CPN_START_DATE <", value, "cpnStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("START_DATE <=", value, "startDate");
+        public Criteria andCpnStartDateLessThanOrEqualTo(LocalDateTime value) {
+            addCpnStartDateCriterion("CPN_START_DATE <=", value, "cpnStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateIn(List<LocalDateTime> values) {
-            addCriterion("START_DATE in", values, "startDate");
+        public Criteria andCpnStartDateIn(List<LocalDateTime> values) {
+            addCpnStartDateCriterion("CPN_START_DATE in", values, "cpnStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateNotIn(List<LocalDateTime> values) {
-            addCriterion("START_DATE not in", values, "startDate");
+        public Criteria andCpnStartDateNotIn(List<LocalDateTime> values) {
+            addCpnStartDateCriterion("CPN_START_DATE not in", values, "cpnStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("START_DATE between", value1, value2, "startDate");
+        public Criteria andCpnStartDateBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCpnStartDateCriterion("CPN_START_DATE between", value1, value2, "cpnStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andStartDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("START_DATE not between", value1, value2, "startDate");
+        public Criteria andCpnStartDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCpnStartDateCriterion("CPN_START_DATE not between", value1, value2, "cpnStartDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateIsNull() {
-            addCriterion("END_DATE is null");
+        public Criteria andCpnEndDateIsNull() {
+            addCriterion("CPN_END_DATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateIsNotNull() {
-            addCriterion("END_DATE is not null");
+        public Criteria andCpnEndDateIsNotNull() {
+            addCriterion("CPN_END_DATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateEqualTo(LocalDateTime value) {
-            addCriterion("END_DATE =", value, "endDate");
+        public Criteria andCpnEndDateEqualTo(LocalDateTime value) {
+            addCpnEndDateCriterion("CPN_END_DATE =", value, "cpnEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateNotEqualTo(LocalDateTime value) {
-            addCriterion("END_DATE <>", value, "endDate");
+        public Criteria andCpnEndDateNotEqualTo(LocalDateTime value) {
+            addCpnEndDateCriterion("CPN_END_DATE <>", value, "cpnEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateGreaterThan(LocalDateTime value) {
-            addCriterion("END_DATE >", value, "endDate");
+        public Criteria andCpnEndDateGreaterThan(LocalDateTime value) {
+            addCpnEndDateCriterion("CPN_END_DATE >", value, "cpnEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("END_DATE >=", value, "endDate");
+        public Criteria andCpnEndDateGreaterThanOrEqualTo(LocalDateTime value) {
+            addCpnEndDateCriterion("CPN_END_DATE >=", value, "cpnEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateLessThan(LocalDateTime value) {
-            addCriterion("END_DATE <", value, "endDate");
+        public Criteria andCpnEndDateLessThan(LocalDateTime value) {
+            addCpnEndDateCriterion("CPN_END_DATE <", value, "cpnEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("END_DATE <=", value, "endDate");
+        public Criteria andCpnEndDateLessThanOrEqualTo(LocalDateTime value) {
+            addCpnEndDateCriterion("CPN_END_DATE <=", value, "cpnEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateIn(List<LocalDateTime> values) {
-            addCriterion("END_DATE in", values, "endDate");
+        public Criteria andCpnEndDateIn(List<LocalDateTime> values) {
+            addCpnEndDateCriterion("CPN_END_DATE in", values, "cpnEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateNotIn(List<LocalDateTime> values) {
-            addCriterion("END_DATE not in", values, "endDate");
+        public Criteria andCpnEndDateNotIn(List<LocalDateTime> values) {
+            addCpnEndDateCriterion("CPN_END_DATE not in", values, "cpnEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("END_DATE between", value1, value2, "endDate");
+        public Criteria andCpnEndDateBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCpnEndDateCriterion("CPN_END_DATE between", value1, value2, "cpnEndDate");
             return (Criteria) this;
         }
 
-        public Criteria andEndDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("END_DATE not between", value1, value2, "endDate");
+        public Criteria andCpnEndDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCpnEndDateCriterion("CPN_END_DATE not between", value1, value2, "cpnEndDate");
             return (Criteria) this;
         }
 
@@ -635,13 +694,13 @@ public class CouponExample {
             return (Criteria) this;
         }
 
-        public Criteria andTitleLikeInsensitive(String value) {
-            addCriterion("upper(TITLE) like", value.toUpperCase(), "title");
+        public Criteria andCpnTitleLikeInsensitive(String value) {
+            addCriterion("upper(CPN_TITLE) like", value.toUpperCase(), "cpnTitle");
             return (Criteria) this;
         }
 
-        public Criteria andCodeLikeInsensitive(String value) {
-            addCriterion("upper(CODE) like", value.toUpperCase(), "code");
+        public Criteria andCpnCodeLikeInsensitive(String value) {
+            addCriterion("upper(CPN_CODE) like", value.toUpperCase(), "cpnCode");
             return (Criteria) this;
         }
     }

@@ -1,23 +1,26 @@
 package model.vo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Coupon {
+public class Coupon implements Serializable {
     private Integer cpnNum;
 
     private String etpNum;
 
     private String etpEmail;
 
-    private String title;
+    private String cpnTitle;
 
-    private String code;
+    private String cpnCode;
 
-    private Integer rate;
+    private Integer cpnRate;
 
-    private LocalDateTime startDate;
+    private LocalDateTime cpnStartDate;
 
-    private LocalDateTime endDate;
+    private LocalDateTime cpnEndDate;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getCpnNum() {
         return cpnNum;
@@ -43,44 +46,44 @@ public class Coupon {
         this.etpEmail = etpEmail;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCpnTitle() {
+        return cpnTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCpnTitle(String cpnTitle) {
+        this.cpnTitle = cpnTitle;
     }
 
-    public String getCode() {
-        return code;
+    public String getCpnCode() {
+        return cpnCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCpnCode(String cpnCode) {
+        this.cpnCode = cpnCode;
     }
 
-    public Integer getRate() {
-        return rate;
+    public Integer getCpnRate() {
+        return cpnRate;
     }
 
-    public void setRate(Integer rate) {
-        this.rate = rate;
+    public void setCpnRate(Integer cpnRate) {
+        this.cpnRate = cpnRate;
     }
 
-    public LocalDateTime getStartDate() {
-        return startDate;
+    public LocalDateTime getCpnStartDate() {
+        return cpnStartDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
+    public void setCpnStartDate(LocalDateTime cpnStartDate) {
+        this.cpnStartDate = cpnStartDate;
     }
 
-    public LocalDateTime getEndDate() {
-        return endDate;
+    public LocalDateTime getCpnEndDate() {
+        return cpnEndDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
+    public void setCpnEndDate(LocalDateTime cpnEndDate) {
+        this.cpnEndDate = cpnEndDate;
     }
 
     @Override
@@ -92,11 +95,11 @@ public class Coupon {
         sb.append(", cpnNum=").append(cpnNum);
         sb.append(", etpNum=").append(etpNum);
         sb.append(", etpEmail=").append(etpEmail);
-        sb.append(", title=").append(title);
-        sb.append(", code=").append(code);
-        sb.append(", rate=").append(rate);
-        sb.append(", startDate=").append(startDate);
-        sb.append(", endDate=").append(endDate);
+        sb.append(", cpnTitle=").append(cpnTitle);
+        sb.append(", cpnCode=").append(cpnCode);
+        sb.append(", cpnRate=").append(cpnRate);
+        sb.append(", cpnStartDate=").append(cpnStartDate);
+        sb.append(", cpnEndDate=").append(cpnEndDate);
         sb.append("]");
         return sb.toString();
     }

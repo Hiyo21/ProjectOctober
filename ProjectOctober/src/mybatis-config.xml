@@ -8,18 +8,20 @@
 		<typeAlias type="model.vo.ComponentExample" alias="ComponentExample" />
 		<typeAlias type="model.vo.Coupon" alias="Coupon" />
 		<typeAlias type="model.vo.CouponExample" alias="CouponExample" />
+		<typeAlias type="model.vo.Customer" alias="Customer"/>
+		<typeAlias type="model.vo.CustomerExample" alias="CustomerExample"/>
+		<typeAlias type="model.vo.WorkingDays" alias="WorkingDays"/>
+		<typeAlias type="model.vo.WorkingDaysExample" alias="WorkingDaysExample"/>
 		<typeAlias type="model.vo.Enterprise" alias="Enterprise" />
 		<typeAlias type="model.vo.EnterpriseExample" alias="EnterpriseExample" />
-		<typeAlias type="model.vo.EnterpriseWaitlist" alias="EnterpriseWaitlist" />
-		<typeAlias type="model.vo.EnterpriseWaitlistExample" alias="EnterpriseWaitlistExample" />
 		<typeAlias type="model.vo.Holiday" alias="Holiday" />
 		<typeAlias type="model.vo.HolidayExample" alias="HolidayExample" />
-		<typeAlias type="model.vo.HolidayWaitlist" alias="HolidayWaitlist" />
-		<typeAlias type="model.vo.HolidayWaitlistExample" alias="HolidayWaitlistExample" />
 		<typeAlias type="model.vo.Member" alias="Member" />
-		<typeAlias type="model.vo.MemberCode" alias="MemberCode" />
-		<typeAlias type="model.vo.MemberCodeExample" alias="MemberCodeExample" />
 		<typeAlias type="model.vo.MemberExample" alias="MemberExample" />
+		<typeAlias type="model.vo.Notification" alias="Notification" />
+		<typeAlias type="model.vo.NotificationExample" alias="NotificationExample" />
+		<typeAlias type="model.vo.OneclickPayment" alias="OneclickPayment" />
+		<typeAlias type="model.vo.OneclickPaymentExample" alias="OneclickPaymentExample" />
 		<typeAlias type="model.vo.PaymentRecord" alias="PaymentRecord" />
 		<typeAlias type="model.vo.PaymentRecordExample" alias="PaymentRecordExample" />
 		<typeAlias type="model.vo.PhotoLocation" alias="PhotoLocation" />
@@ -32,6 +34,12 @@
 		<typeAlias type="model.vo.SaleRecordExample" alias="SaleRecordExample" />
 		<typeAlias type="model.vo.Service" alias="Service" />
 		<typeAlias type="model.vo.ServiceExample" alias="ServiceExample" />
+		<typeAlias type="model.vo.Unregistered" alias="Unregistered" />
+		<typeAlias type="model.vo.UnregisteredExample" alias="UnregisteredExample" />
+		<typeAlias type="model.vo.UnregisteredReservation" alias="UnregisteredReservation" />
+		<typeAlias type="model.vo.UnregisteredReservationExample" alias="UnregisteredReservationExample" />
+		<typeAlias type="model.vo.Waitlist" alias="Waitlist" />
+		<typeAlias type="model.vo.WaitlistExample" alias="WaitlistExample" />
 	</typeAliases>
 	
 	<typeHandlers>
@@ -56,21 +64,12 @@
 	</environments>
 
 	<mappers>
-		<mapper resource="model/mapper/ComponentMapper.xml" />
-		<mapper resource="model/mapper/CouponMapper.xml" />
 		<mapper resource="model/mapper/CustomerMapper.xml" />
 		<mapper resource="model/mapper/EnterpriseMapper.xml" />
-		<mapper resource="model/mapper/EnterpriseWaitlistMapper.xml" />
-		<mapper resource="model/mapper/HolidayMapper.xml" />
-		<mapper resource="model/mapper/HolidayWaitlistMapper.xml" />
-		<mapper resource="model/mapper/MemberCodeMapper.xml" />
 		<mapper resource="model/mapper/MemberMapper.xml" />
-		<mapper resource="model/mapper/PaymentRecordMapper.xml"/>
-		<mapper resource="model/mapper/PhotoLocationMapper.xml"/>
-		<mapper resource="model/mapper/ReservationMapper.xml"/>
-		<mapper resource="model/mapper/ReviewMapper.xml"/>
-		<mapper resource="model/mapper/SaleRecordMapper.xml"/>
 		<mapper resource="model/mapper/ServiceMapper.xml"/>
+		<mapper resource="model/mapper/WaitlistMapper.xml"/>
+		<mapper resource="model/mapper/UnregisteredMapper.xml"/>
 	</mappers>
 	
 </configuration>

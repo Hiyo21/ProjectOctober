@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoLocationExample {
+public class NotificationExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public PhotoLocationExample() {
+    public NotificationExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -65,7 +65,7 @@ public class PhotoLocationExample {
     }
 
     protected abstract static class GeneratedCriteria {
-        protected List<Criterion> phtUploadDateCriteria;
+        protected List<Criterion> ntfTimeCriteria;
 
         protected List<Criterion> allCriteria;
 
@@ -74,39 +74,39 @@ public class PhotoLocationExample {
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
-            phtUploadDateCriteria = new ArrayList<Criterion>();
+            ntfTimeCriteria = new ArrayList<Criterion>();
         }
 
-        public List<Criterion> getPhtUploadDateCriteria() {
-            return phtUploadDateCriteria;
+        public List<Criterion> getNtfTimeCriteria() {
+            return ntfTimeCriteria;
         }
 
-        protected void addPhtUploadDateCriterion(String condition, Object value, String property) {
+        protected void addNtfTimeCriterion(String condition, Object value, String property) {
             if (value == null) {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
-            phtUploadDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
+            ntfTimeCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
             allCriteria = null;
         }
 
-        protected void addPhtUploadDateCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+        protected void addNtfTimeCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
             if (value1 == null || value2 == null) {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
-            phtUploadDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
+            ntfTimeCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
             allCriteria = null;
         }
 
         public boolean isValid() {
             return criteria.size() > 0
-                || phtUploadDateCriteria.size() > 0;
+                || ntfTimeCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
             if (allCriteria == null) {
                 allCriteria = new ArrayList<Criterion>();
                 allCriteria.addAll(criteria);
-                allCriteria.addAll(phtUploadDateCriteria);
+                allCriteria.addAll(ntfTimeCriteria);
             }
             return allCriteria;
         }
@@ -139,63 +139,193 @@ public class PhotoLocationExample {
             allCriteria = null;
         }
 
-        public Criteria andPhotoNumIsNull() {
-            addCriterion("PHOTO_NUM is null");
+        public Criteria andNtfNumIsNull() {
+            addCriterion("NTF_NUM is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumIsNotNull() {
-            addCriterion("PHOTO_NUM is not null");
+        public Criteria andNtfNumIsNotNull() {
+            addCriterion("NTF_NUM is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumEqualTo(Integer value) {
-            addCriterion("PHOTO_NUM =", value, "photoNum");
+        public Criteria andNtfNumEqualTo(Integer value) {
+            addCriterion("NTF_NUM =", value, "ntfNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumNotEqualTo(Integer value) {
-            addCriterion("PHOTO_NUM <>", value, "photoNum");
+        public Criteria andNtfNumNotEqualTo(Integer value) {
+            addCriterion("NTF_NUM <>", value, "ntfNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumGreaterThan(Integer value) {
-            addCriterion("PHOTO_NUM >", value, "photoNum");
+        public Criteria andNtfNumGreaterThan(Integer value) {
+            addCriterion("NTF_NUM >", value, "ntfNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumGreaterThanOrEqualTo(Integer value) {
-            addCriterion("PHOTO_NUM >=", value, "photoNum");
+        public Criteria andNtfNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("NTF_NUM >=", value, "ntfNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumLessThan(Integer value) {
-            addCriterion("PHOTO_NUM <", value, "photoNum");
+        public Criteria andNtfNumLessThan(Integer value) {
+            addCriterion("NTF_NUM <", value, "ntfNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumLessThanOrEqualTo(Integer value) {
-            addCriterion("PHOTO_NUM <=", value, "photoNum");
+        public Criteria andNtfNumLessThanOrEqualTo(Integer value) {
+            addCriterion("NTF_NUM <=", value, "ntfNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumIn(List<Integer> values) {
-            addCriterion("PHOTO_NUM in", values, "photoNum");
+        public Criteria andNtfNumIn(List<Integer> values) {
+            addCriterion("NTF_NUM in", values, "ntfNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumNotIn(List<Integer> values) {
-            addCriterion("PHOTO_NUM not in", values, "photoNum");
+        public Criteria andNtfNumNotIn(List<Integer> values) {
+            addCriterion("NTF_NUM not in", values, "ntfNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumBetween(Integer value1, Integer value2) {
-            addCriterion("PHOTO_NUM between", value1, value2, "photoNum");
+        public Criteria andNtfNumBetween(Integer value1, Integer value2) {
+            addCriterion("NTF_NUM between", value1, value2, "ntfNum");
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNumNotBetween(Integer value1, Integer value2) {
-            addCriterion("PHOTO_NUM not between", value1, value2, "photoNum");
+        public Criteria andNtfNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("NTF_NUM not between", value1, value2, "ntfNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumIsNull() {
+            addCriterion("RSV_NUM is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumIsNotNull() {
+            addCriterion("RSV_NUM is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumEqualTo(Integer value) {
+            addCriterion("RSV_NUM =", value, "rsvNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumNotEqualTo(Integer value) {
+            addCriterion("RSV_NUM <>", value, "rsvNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumGreaterThan(Integer value) {
+            addCriterion("RSV_NUM >", value, "rsvNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("RSV_NUM >=", value, "rsvNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumLessThan(Integer value) {
+            addCriterion("RSV_NUM <", value, "rsvNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumLessThanOrEqualTo(Integer value) {
+            addCriterion("RSV_NUM <=", value, "rsvNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumIn(List<Integer> values) {
+            addCriterion("RSV_NUM in", values, "rsvNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumNotIn(List<Integer> values) {
+            addCriterion("RSV_NUM not in", values, "rsvNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumBetween(Integer value1, Integer value2) {
+            addCriterion("RSV_NUM between", value1, value2, "rsvNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andRsvNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("RSV_NUM not between", value1, value2, "rsvNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailIsNull() {
+            addCriterion("CST_EMAIL is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailIsNotNull() {
+            addCriterion("CST_EMAIL is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailEqualTo(String value) {
+            addCriterion("CST_EMAIL =", value, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailNotEqualTo(String value) {
+            addCriterion("CST_EMAIL <>", value, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailGreaterThan(String value) {
+            addCriterion("CST_EMAIL >", value, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailGreaterThanOrEqualTo(String value) {
+            addCriterion("CST_EMAIL >=", value, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailLessThan(String value) {
+            addCriterion("CST_EMAIL <", value, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailLessThanOrEqualTo(String value) {
+            addCriterion("CST_EMAIL <=", value, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailLike(String value) {
+            addCriterion("CST_EMAIL like", value, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailNotLike(String value) {
+            addCriterion("CST_EMAIL not like", value, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailIn(List<String> values) {
+            addCriterion("CST_EMAIL in", values, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailNotIn(List<String> values) {
+            addCriterion("CST_EMAIL not in", values, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailBetween(String value1, String value2) {
+            addCriterion("CST_EMAIL between", value1, value2, "cstEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstEmailNotBetween(String value1, String value2) {
+            addCriterion("CST_EMAIL not between", value1, value2, "cstEmail");
             return (Criteria) this;
         }
 
@@ -339,273 +469,198 @@ public class PhotoLocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageIsNull() {
-            addCriterion("PHT_USAGE is null");
+        public Criteria andNtfMessageIsNull() {
+            addCriterion("NTF_MESSAGE is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageIsNotNull() {
-            addCriterion("PHT_USAGE is not null");
+        public Criteria andNtfMessageIsNotNull() {
+            addCriterion("NTF_MESSAGE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageEqualTo(String value) {
-            addCriterion("PHT_USAGE =", value, "phtUsage");
+        public Criteria andNtfMessageEqualTo(String value) {
+            addCriterion("NTF_MESSAGE =", value, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageNotEqualTo(String value) {
-            addCriterion("PHT_USAGE <>", value, "phtUsage");
+        public Criteria andNtfMessageNotEqualTo(String value) {
+            addCriterion("NTF_MESSAGE <>", value, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageGreaterThan(String value) {
-            addCriterion("PHT_USAGE >", value, "phtUsage");
+        public Criteria andNtfMessageGreaterThan(String value) {
+            addCriterion("NTF_MESSAGE >", value, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageGreaterThanOrEqualTo(String value) {
-            addCriterion("PHT_USAGE >=", value, "phtUsage");
+        public Criteria andNtfMessageGreaterThanOrEqualTo(String value) {
+            addCriterion("NTF_MESSAGE >=", value, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageLessThan(String value) {
-            addCriterion("PHT_USAGE <", value, "phtUsage");
+        public Criteria andNtfMessageLessThan(String value) {
+            addCriterion("NTF_MESSAGE <", value, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageLessThanOrEqualTo(String value) {
-            addCriterion("PHT_USAGE <=", value, "phtUsage");
+        public Criteria andNtfMessageLessThanOrEqualTo(String value) {
+            addCriterion("NTF_MESSAGE <=", value, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageLike(String value) {
-            addCriterion("PHT_USAGE like", value, "phtUsage");
+        public Criteria andNtfMessageLike(String value) {
+            addCriterion("NTF_MESSAGE like", value, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageNotLike(String value) {
-            addCriterion("PHT_USAGE not like", value, "phtUsage");
+        public Criteria andNtfMessageNotLike(String value) {
+            addCriterion("NTF_MESSAGE not like", value, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageIn(List<String> values) {
-            addCriterion("PHT_USAGE in", values, "phtUsage");
+        public Criteria andNtfMessageIn(List<String> values) {
+            addCriterion("NTF_MESSAGE in", values, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageNotIn(List<String> values) {
-            addCriterion("PHT_USAGE not in", values, "phtUsage");
+        public Criteria andNtfMessageNotIn(List<String> values) {
+            addCriterion("NTF_MESSAGE not in", values, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageBetween(String value1, String value2) {
-            addCriterion("PHT_USAGE between", value1, value2, "phtUsage");
+        public Criteria andNtfMessageBetween(String value1, String value2) {
+            addCriterion("NTF_MESSAGE between", value1, value2, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageNotBetween(String value1, String value2) {
-            addCriterion("PHT_USAGE not between", value1, value2, "phtUsage");
+        public Criteria andNtfMessageNotBetween(String value1, String value2) {
+            addCriterion("NTF_MESSAGE not between", value1, value2, "ntfMessage");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionIsNull() {
-            addCriterion("PHT_DESCRIPTION is null");
+        public Criteria andNtfTimeIsNull() {
+            addCriterion("NTF_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionIsNotNull() {
-            addCriterion("PHT_DESCRIPTION is not null");
+        public Criteria andNtfTimeIsNotNull() {
+            addCriterion("NTF_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionEqualTo(String value) {
-            addCriterion("PHT_DESCRIPTION =", value, "phtDescription");
+        public Criteria andNtfTimeEqualTo(LocalDateTime value) {
+            addNtfTimeCriterion("NTF_TIME =", value, "ntfTime");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionNotEqualTo(String value) {
-            addCriterion("PHT_DESCRIPTION <>", value, "phtDescription");
+        public Criteria andNtfTimeNotEqualTo(LocalDateTime value) {
+            addNtfTimeCriterion("NTF_TIME <>", value, "ntfTime");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionGreaterThan(String value) {
-            addCriterion("PHT_DESCRIPTION >", value, "phtDescription");
+        public Criteria andNtfTimeGreaterThan(LocalDateTime value) {
+            addNtfTimeCriterion("NTF_TIME >", value, "ntfTime");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("PHT_DESCRIPTION >=", value, "phtDescription");
+        public Criteria andNtfTimeGreaterThanOrEqualTo(LocalDateTime value) {
+            addNtfTimeCriterion("NTF_TIME >=", value, "ntfTime");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionLessThan(String value) {
-            addCriterion("PHT_DESCRIPTION <", value, "phtDescription");
+        public Criteria andNtfTimeLessThan(LocalDateTime value) {
+            addNtfTimeCriterion("NTF_TIME <", value, "ntfTime");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("PHT_DESCRIPTION <=", value, "phtDescription");
+        public Criteria andNtfTimeLessThanOrEqualTo(LocalDateTime value) {
+            addNtfTimeCriterion("NTF_TIME <=", value, "ntfTime");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionLike(String value) {
-            addCriterion("PHT_DESCRIPTION like", value, "phtDescription");
+        public Criteria andNtfTimeIn(List<LocalDateTime> values) {
+            addNtfTimeCriterion("NTF_TIME in", values, "ntfTime");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionNotLike(String value) {
-            addCriterion("PHT_DESCRIPTION not like", value, "phtDescription");
+        public Criteria andNtfTimeNotIn(List<LocalDateTime> values) {
+            addNtfTimeCriterion("NTF_TIME not in", values, "ntfTime");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionIn(List<String> values) {
-            addCriterion("PHT_DESCRIPTION in", values, "phtDescription");
+        public Criteria andNtfTimeBetween(LocalDateTime value1, LocalDateTime value2) {
+            addNtfTimeCriterion("NTF_TIME between", value1, value2, "ntfTime");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionNotIn(List<String> values) {
-            addCriterion("PHT_DESCRIPTION not in", values, "phtDescription");
+        public Criteria andNtfTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addNtfTimeCriterion("NTF_TIME not between", value1, value2, "ntfTime");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionBetween(String value1, String value2) {
-            addCriterion("PHT_DESCRIPTION between", value1, value2, "phtDescription");
+        public Criteria andNtfReadIsNull() {
+            addCriterion("NTF_READ is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionNotBetween(String value1, String value2) {
-            addCriterion("PHT_DESCRIPTION not between", value1, value2, "phtDescription");
+        public Criteria andNtfReadIsNotNull() {
+            addCriterion("NTF_READ is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressIsNull() {
-            addCriterion("PHT_ADDRESS is null");
+        public Criteria andNtfReadEqualTo(Integer value) {
+            addCriterion("NTF_READ =", value, "ntfRead");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressIsNotNull() {
-            addCriterion("PHT_ADDRESS is not null");
+        public Criteria andNtfReadNotEqualTo(Integer value) {
+            addCriterion("NTF_READ <>", value, "ntfRead");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressEqualTo(String value) {
-            addCriterion("PHT_ADDRESS =", value, "phtAddress");
+        public Criteria andNtfReadGreaterThan(Integer value) {
+            addCriterion("NTF_READ >", value, "ntfRead");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressNotEqualTo(String value) {
-            addCriterion("PHT_ADDRESS <>", value, "phtAddress");
+        public Criteria andNtfReadGreaterThanOrEqualTo(Integer value) {
+            addCriterion("NTF_READ >=", value, "ntfRead");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressGreaterThan(String value) {
-            addCriterion("PHT_ADDRESS >", value, "phtAddress");
+        public Criteria andNtfReadLessThan(Integer value) {
+            addCriterion("NTF_READ <", value, "ntfRead");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("PHT_ADDRESS >=", value, "phtAddress");
+        public Criteria andNtfReadLessThanOrEqualTo(Integer value) {
+            addCriterion("NTF_READ <=", value, "ntfRead");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressLessThan(String value) {
-            addCriterion("PHT_ADDRESS <", value, "phtAddress");
+        public Criteria andNtfReadIn(List<Integer> values) {
+            addCriterion("NTF_READ in", values, "ntfRead");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressLessThanOrEqualTo(String value) {
-            addCriterion("PHT_ADDRESS <=", value, "phtAddress");
+        public Criteria andNtfReadNotIn(List<Integer> values) {
+            addCriterion("NTF_READ not in", values, "ntfRead");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressLike(String value) {
-            addCriterion("PHT_ADDRESS like", value, "phtAddress");
+        public Criteria andNtfReadBetween(Integer value1, Integer value2) {
+            addCriterion("NTF_READ between", value1, value2, "ntfRead");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressNotLike(String value) {
-            addCriterion("PHT_ADDRESS not like", value, "phtAddress");
+        public Criteria andNtfReadNotBetween(Integer value1, Integer value2) {
+            addCriterion("NTF_READ not between", value1, value2, "ntfRead");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressIn(List<String> values) {
-            addCriterion("PHT_ADDRESS in", values, "phtAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtAddressNotIn(List<String> values) {
-            addCriterion("PHT_ADDRESS not in", values, "phtAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtAddressBetween(String value1, String value2) {
-            addCriterion("PHT_ADDRESS between", value1, value2, "phtAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtAddressNotBetween(String value1, String value2) {
-            addCriterion("PHT_ADDRESS not between", value1, value2, "phtAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateIsNull() {
-            addCriterion("PHT_UPLOAD_DATE is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateIsNotNull() {
-            addCriterion("PHT_UPLOAD_DATE is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateEqualTo(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE =", value, "phtUploadDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateNotEqualTo(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE <>", value, "phtUploadDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateGreaterThan(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE >", value, "phtUploadDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE >=", value, "phtUploadDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateLessThan(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE <", value, "phtUploadDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateLessThanOrEqualTo(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE <=", value, "phtUploadDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateIn(List<LocalDateTime> values) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE in", values, "phtUploadDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateNotIn(List<LocalDateTime> values) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE not in", values, "phtUploadDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE between", value1, value2, "phtUploadDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUploadDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE not between", value1, value2, "phtUploadDate");
+        public Criteria andCstEmailLikeInsensitive(String value) {
+            addCriterion("upper(CST_EMAIL) like", value.toUpperCase(), "cstEmail");
             return (Criteria) this;
         }
 
@@ -619,18 +674,8 @@ public class PhotoLocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageLikeInsensitive(String value) {
-            addCriterion("upper(PHT_USAGE) like", value.toUpperCase(), "phtUsage");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtDescriptionLikeInsensitive(String value) {
-            addCriterion("upper(PHT_DESCRIPTION) like", value.toUpperCase(), "phtDescription");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtAddressLikeInsensitive(String value) {
-            addCriterion("upper(PHT_ADDRESS) like", value.toUpperCase(), "phtAddress");
+        public Criteria andNtfMessageLikeInsensitive(String value) {
+            addCriterion("upper(NTF_MESSAGE) like", value.toUpperCase(), "ntfMessage");
             return (Criteria) this;
         }
     }

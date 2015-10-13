@@ -1,8 +1,9 @@
 package model.vo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class SaleRecord {
+public class SaleRecord implements Serializable {
     private Integer saleNum;
 
     private Integer pmtNum;
@@ -11,9 +12,11 @@ public class SaleRecord {
 
     private String etpEmail;
 
-    private LocalDateTime time;
+    private LocalDateTime saleTime;
 
-    private Integer amount;
+    private Integer saleAmount;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getSaleNum() {
         return saleNum;
@@ -47,20 +50,20 @@ public class SaleRecord {
         this.etpEmail = etpEmail;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public LocalDateTime getSaleTime() {
+        return saleTime;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void setSaleTime(LocalDateTime saleTime) {
+        this.saleTime = saleTime;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer getSaleAmount() {
+        return saleAmount;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setSaleAmount(Integer saleAmount) {
+        this.saleAmount = saleAmount;
     }
 
     @Override
@@ -73,8 +76,8 @@ public class SaleRecord {
         sb.append(", pmtNum=").append(pmtNum);
         sb.append(", etpNum=").append(etpNum);
         sb.append(", etpEmail=").append(etpEmail);
-        sb.append(", time=").append(time);
-        sb.append(", amount=").append(amount);
+        sb.append(", saleTime=").append(saleTime);
+        sb.append(", saleAmount=").append(saleAmount);
         sb.append("]");
         return sb.toString();
     }

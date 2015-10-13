@@ -1,7 +1,7 @@
 package model.vo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CustomerExample {
@@ -65,19 +65,50 @@ public class CustomerExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> cstBirthdayCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            cstBirthdayCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getCstBirthdayCriteria() {
+            return cstBirthdayCriteria;
+        }
+
+        protected void addCstBirthdayCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            cstBirthdayCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateHandler"));
+            allCriteria = null;
+        }
+
+        protected void addCstBirthdayCriterion(String condition, LocalDate value1, LocalDate value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            cstBirthdayCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || cstBirthdayCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(cstBirthdayCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +120,7 @@ public class CustomerExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +128,7 @@ public class CustomerExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +136,7 @@ public class CustomerExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andCstEmailIsNull() {
@@ -175,333 +209,333 @@ public class CustomerExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddressIsNull() {
-            addCriterion("ADDRESS is null");
+        public Criteria andCstAddressIsNull() {
+            addCriterion("CST_ADDRESS is null");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIsNotNull() {
-            addCriterion("ADDRESS is not null");
+        public Criteria andCstAddressIsNotNull() {
+            addCriterion("CST_ADDRESS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAddressEqualTo(String value) {
-            addCriterion("ADDRESS =", value, "address");
+        public Criteria andCstAddressEqualTo(String value) {
+            addCriterion("CST_ADDRESS =", value, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotEqualTo(String value) {
-            addCriterion("ADDRESS <>", value, "address");
+        public Criteria andCstAddressNotEqualTo(String value) {
+            addCriterion("CST_ADDRESS <>", value, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressGreaterThan(String value) {
-            addCriterion("ADDRESS >", value, "address");
+        public Criteria andCstAddressGreaterThan(String value) {
+            addCriterion("CST_ADDRESS >", value, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("ADDRESS >=", value, "address");
+        public Criteria andCstAddressGreaterThanOrEqualTo(String value) {
+            addCriterion("CST_ADDRESS >=", value, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLessThan(String value) {
-            addCriterion("ADDRESS <", value, "address");
+        public Criteria andCstAddressLessThan(String value) {
+            addCriterion("CST_ADDRESS <", value, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLessThanOrEqualTo(String value) {
-            addCriterion("ADDRESS <=", value, "address");
+        public Criteria andCstAddressLessThanOrEqualTo(String value) {
+            addCriterion("CST_ADDRESS <=", value, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLike(String value) {
-            addCriterion("ADDRESS like", value, "address");
+        public Criteria andCstAddressLike(String value) {
+            addCriterion("CST_ADDRESS like", value, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotLike(String value) {
-            addCriterion("ADDRESS not like", value, "address");
+        public Criteria andCstAddressNotLike(String value) {
+            addCriterion("CST_ADDRESS not like", value, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIn(List<String> values) {
-            addCriterion("ADDRESS in", values, "address");
+        public Criteria andCstAddressIn(List<String> values) {
+            addCriterion("CST_ADDRESS in", values, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotIn(List<String> values) {
-            addCriterion("ADDRESS not in", values, "address");
+        public Criteria andCstAddressNotIn(List<String> values) {
+            addCriterion("CST_ADDRESS not in", values, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressBetween(String value1, String value2) {
-            addCriterion("ADDRESS between", value1, value2, "address");
+        public Criteria andCstAddressBetween(String value1, String value2) {
+            addCriterion("CST_ADDRESS between", value1, value2, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotBetween(String value1, String value2) {
-            addCriterion("ADDRESS not between", value1, value2, "address");
+        public Criteria andCstAddressNotBetween(String value1, String value2) {
+            addCriterion("CST_ADDRESS not between", value1, value2, "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeIsNull() {
-            addCriterion("ZIPCODE is null");
+        public Criteria andCstZipcodeIsNull() {
+            addCriterion("CST_ZIPCODE is null");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeIsNotNull() {
-            addCriterion("ZIPCODE is not null");
+        public Criteria andCstZipcodeIsNotNull() {
+            addCriterion("CST_ZIPCODE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeEqualTo(String value) {
-            addCriterion("ZIPCODE =", value, "zipcode");
+        public Criteria andCstZipcodeEqualTo(String value) {
+            addCriterion("CST_ZIPCODE =", value, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeNotEqualTo(String value) {
-            addCriterion("ZIPCODE <>", value, "zipcode");
+        public Criteria andCstZipcodeNotEqualTo(String value) {
+            addCriterion("CST_ZIPCODE <>", value, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeGreaterThan(String value) {
-            addCriterion("ZIPCODE >", value, "zipcode");
+        public Criteria andCstZipcodeGreaterThan(String value) {
+            addCriterion("CST_ZIPCODE >", value, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeGreaterThanOrEqualTo(String value) {
-            addCriterion("ZIPCODE >=", value, "zipcode");
+        public Criteria andCstZipcodeGreaterThanOrEqualTo(String value) {
+            addCriterion("CST_ZIPCODE >=", value, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeLessThan(String value) {
-            addCriterion("ZIPCODE <", value, "zipcode");
+        public Criteria andCstZipcodeLessThan(String value) {
+            addCriterion("CST_ZIPCODE <", value, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeLessThanOrEqualTo(String value) {
-            addCriterion("ZIPCODE <=", value, "zipcode");
+        public Criteria andCstZipcodeLessThanOrEqualTo(String value) {
+            addCriterion("CST_ZIPCODE <=", value, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeLike(String value) {
-            addCriterion("ZIPCODE like", value, "zipcode");
+        public Criteria andCstZipcodeLike(String value) {
+            addCriterion("CST_ZIPCODE like", value, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeNotLike(String value) {
-            addCriterion("ZIPCODE not like", value, "zipcode");
+        public Criteria andCstZipcodeNotLike(String value) {
+            addCriterion("CST_ZIPCODE not like", value, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeIn(List<String> values) {
-            addCriterion("ZIPCODE in", values, "zipcode");
+        public Criteria andCstZipcodeIn(List<String> values) {
+            addCriterion("CST_ZIPCODE in", values, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeNotIn(List<String> values) {
-            addCriterion("ZIPCODE not in", values, "zipcode");
+        public Criteria andCstZipcodeNotIn(List<String> values) {
+            addCriterion("CST_ZIPCODE not in", values, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeBetween(String value1, String value2) {
-            addCriterion("ZIPCODE between", value1, value2, "zipcode");
+        public Criteria andCstZipcodeBetween(String value1, String value2) {
+            addCriterion("CST_ZIPCODE between", value1, value2, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeNotBetween(String value1, String value2) {
-            addCriterion("ZIPCODE not between", value1, value2, "zipcode");
+        public Criteria andCstZipcodeNotBetween(String value1, String value2) {
+            addCriterion("CST_ZIPCODE not between", value1, value2, "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayIsNull() {
-            addCriterion("BIRTHDAY is null");
+        public Criteria andCstBirthdayIsNull() {
+            addCriterion("CST_BIRTHDAY is null");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayIsNotNull() {
-            addCriterion("BIRTHDAY is not null");
+        public Criteria andCstBirthdayIsNotNull() {
+            addCriterion("CST_BIRTHDAY is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayEqualTo(Date value) {
-            addCriterion("BIRTHDAY =", value, "birthday");
+        public Criteria andCstBirthdayEqualTo(LocalDate value) {
+            addCstBirthdayCriterion("CST_BIRTHDAY =", value, "cstBirthday");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayNotEqualTo(Date value) {
-            addCriterion("BIRTHDAY <>", value, "birthday");
+        public Criteria andCstBirthdayNotEqualTo(LocalDate value) {
+            addCstBirthdayCriterion("CST_BIRTHDAY <>", value, "cstBirthday");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayGreaterThan(Date value) {
-            addCriterion("BIRTHDAY >", value, "birthday");
+        public Criteria andCstBirthdayGreaterThan(LocalDate value) {
+            addCstBirthdayCriterion("CST_BIRTHDAY >", value, "cstBirthday");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayGreaterThanOrEqualTo(Date value) {
-            addCriterion("BIRTHDAY >=", value, "birthday");
+        public Criteria andCstBirthdayGreaterThanOrEqualTo(LocalDate value) {
+            addCstBirthdayCriterion("CST_BIRTHDAY >=", value, "cstBirthday");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayLessThan(Date value) {
-            addCriterion("BIRTHDAY <", value, "birthday");
+        public Criteria andCstBirthdayLessThan(LocalDate value) {
+            addCstBirthdayCriterion("CST_BIRTHDAY <", value, "cstBirthday");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayLessThanOrEqualTo(Date value) {
-            addCriterion("BIRTHDAY <=", value, "birthday");
+        public Criteria andCstBirthdayLessThanOrEqualTo(LocalDate value) {
+            addCstBirthdayCriterion("CST_BIRTHDAY <=", value, "cstBirthday");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayIn(List<Date> values) {
-            addCriterion("BIRTHDAY in", values, "birthday");
+        public Criteria andCstBirthdayIn(List<LocalDate> values) {
+            addCstBirthdayCriterion("CST_BIRTHDAY in", values, "cstBirthday");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayNotIn(List<Date> values) {
-            addCriterion("BIRTHDAY not in", values, "birthday");
+        public Criteria andCstBirthdayNotIn(List<LocalDate> values) {
+            addCstBirthdayCriterion("CST_BIRTHDAY not in", values, "cstBirthday");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayBetween(Date value1, Date value2) {
-            addCriterion("BIRTHDAY between", value1, value2, "birthday");
+        public Criteria andCstBirthdayBetween(LocalDate value1, LocalDate value2) {
+            addCstBirthdayCriterion("CST_BIRTHDAY between", value1, value2, "cstBirthday");
             return (Criteria) this;
         }
 
-        public Criteria andBirthdayNotBetween(Date value1, Date value2) {
-            addCriterion("BIRTHDAY not between", value1, value2, "birthday");
+        public Criteria andCstBirthdayNotBetween(LocalDate value1, LocalDate value2) {
+            addCstBirthdayCriterion("CST_BIRTHDAY not between", value1, value2, "cstBirthday");
             return (Criteria) this;
         }
 
-        public Criteria andGenderIsNull() {
-            addCriterion("GENDER is null");
+        public Criteria andCstGenderIsNull() {
+            addCriterion("CST_GENDER is null");
             return (Criteria) this;
         }
 
-        public Criteria andGenderIsNotNull() {
-            addCriterion("GENDER is not null");
+        public Criteria andCstGenderIsNotNull() {
+            addCriterion("CST_GENDER is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGenderEqualTo(String value) {
-            addCriterion("GENDER =", value, "gender");
+        public Criteria andCstGenderEqualTo(String value) {
+            addCriterion("CST_GENDER =", value, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotEqualTo(String value) {
-            addCriterion("GENDER <>", value, "gender");
+        public Criteria andCstGenderNotEqualTo(String value) {
+            addCriterion("CST_GENDER <>", value, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderGreaterThan(String value) {
-            addCriterion("GENDER >", value, "gender");
+        public Criteria andCstGenderGreaterThan(String value) {
+            addCriterion("CST_GENDER >", value, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderGreaterThanOrEqualTo(String value) {
-            addCriterion("GENDER >=", value, "gender");
+        public Criteria andCstGenderGreaterThanOrEqualTo(String value) {
+            addCriterion("CST_GENDER >=", value, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLessThan(String value) {
-            addCriterion("GENDER <", value, "gender");
+        public Criteria andCstGenderLessThan(String value) {
+            addCriterion("CST_GENDER <", value, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLessThanOrEqualTo(String value) {
-            addCriterion("GENDER <=", value, "gender");
+        public Criteria andCstGenderLessThanOrEqualTo(String value) {
+            addCriterion("CST_GENDER <=", value, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLike(String value) {
-            addCriterion("GENDER like", value, "gender");
+        public Criteria andCstGenderLike(String value) {
+            addCriterion("CST_GENDER like", value, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotLike(String value) {
-            addCriterion("GENDER not like", value, "gender");
+        public Criteria andCstGenderNotLike(String value) {
+            addCriterion("CST_GENDER not like", value, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderIn(List<String> values) {
-            addCriterion("GENDER in", values, "gender");
+        public Criteria andCstGenderIn(List<String> values) {
+            addCriterion("CST_GENDER in", values, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotIn(List<String> values) {
-            addCriterion("GENDER not in", values, "gender");
+        public Criteria andCstGenderNotIn(List<String> values) {
+            addCriterion("CST_GENDER not in", values, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderBetween(String value1, String value2) {
-            addCriterion("GENDER between", value1, value2, "gender");
+        public Criteria andCstGenderBetween(String value1, String value2) {
+            addCriterion("CST_GENDER between", value1, value2, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotBetween(String value1, String value2) {
-            addCriterion("GENDER not between", value1, value2, "gender");
+        public Criteria andCstGenderNotBetween(String value1, String value2) {
+            addCriterion("CST_GENDER not between", value1, value2, "cstGender");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusIsNull() {
-            addCriterion("ONECLICK is null");
+        public Criteria andCstOneclickIsNull() {
+            addCriterion("CST_ONECLICK is null");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusIsNotNull() {
-            addCriterion("ONECLICK is not null");
+        public Criteria andCstOneclickIsNotNull() {
+            addCriterion("CST_ONECLICK is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusEqualTo(Integer value) {
-            addCriterion("ONECLICK =", value, "oneclickStatus");
+        public Criteria andCstOneclickEqualTo(Integer value) {
+            addCriterion("CST_ONECLICK =", value, "cstOneclick");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusNotEqualTo(Integer value) {
-            addCriterion("ONECLICK <>", value, "oneclickStatus");
+        public Criteria andCstOneclickNotEqualTo(Integer value) {
+            addCriterion("CST_ONECLICK <>", value, "cstOneclick");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusGreaterThan(Integer value) {
-            addCriterion("ONECLICK >", value, "oneclickStatus");
+        public Criteria andCstOneclickGreaterThan(Integer value) {
+            addCriterion("CST_ONECLICK >", value, "cstOneclick");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("ONECLICK >=", value, "oneclickStatus");
+        public Criteria andCstOneclickGreaterThanOrEqualTo(Integer value) {
+            addCriterion("CST_ONECLICK >=", value, "cstOneclick");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusLessThan(Integer value) {
-            addCriterion("ONECLICK <", value, "oneclickStatus");
+        public Criteria andCstOneclickLessThan(Integer value) {
+            addCriterion("CST_ONECLICK <", value, "cstOneclick");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("ONECLICK <=", value, "oneclickStatus");
+        public Criteria andCstOneclickLessThanOrEqualTo(Integer value) {
+            addCriterion("CST_ONECLICK <=", value, "cstOneclick");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusIn(List<Integer> values) {
-            addCriterion("ONECLICK in", values, "oneclickStatus");
+        public Criteria andCstOneclickIn(List<Integer> values) {
+            addCriterion("CST_ONECLICK in", values, "cstOneclick");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusNotIn(List<Integer> values) {
-            addCriterion("ONECLICK not in", values, "oneclickStatus");
+        public Criteria andCstOneclickNotIn(List<Integer> values) {
+            addCriterion("CST_ONECLICK not in", values, "cstOneclick");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusBetween(Integer value1, Integer value2) {
-            addCriterion("ONECLICK between", value1, value2, "oneclickStatus");
+        public Criteria andCstOneclickBetween(Integer value1, Integer value2) {
+            addCriterion("CST_ONECLICK between", value1, value2, "cstOneclick");
             return (Criteria) this;
         }
 
-        public Criteria andOneclickStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("ONECLICK not between", value1, value2, "oneclickStatus");
+        public Criteria andCstOneclickNotBetween(Integer value1, Integer value2) {
+            addCriterion("CST_ONECLICK not between", value1, value2, "cstOneclick");
             return (Criteria) this;
         }
 
@@ -510,18 +544,18 @@ public class CustomerExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddressLikeInsensitive(String value) {
-            addCriterion("upper(ADDRESS) like", value.toUpperCase(), "address");
+        public Criteria andCstAddressLikeInsensitive(String value) {
+            addCriterion("upper(CST_ADDRESS) like", value.toUpperCase(), "cstAddress");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeLikeInsensitive(String value) {
-            addCriterion("upper(ZIPCODE) like", value.toUpperCase(), "zipcode");
+        public Criteria andCstZipcodeLikeInsensitive(String value) {
+            addCriterion("upper(CST_ZIPCODE) like", value.toUpperCase(), "cstZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLikeInsensitive(String value) {
-            addCriterion("upper(GENDER) like", value.toUpperCase(), "gender");
+        public Criteria andCstGenderLikeInsensitive(String value) {
+            addCriterion("upper(CST_GENDER) like", value.toUpperCase(), "cstGender");
             return (Criteria) this;
         }
     }

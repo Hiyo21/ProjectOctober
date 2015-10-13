@@ -1,81 +1,100 @@
 package model.vo;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
 
-public class Member {
-    private String email;
+public class Member implements Serializable {
+	private List<Customer> customers;
+	private List<Enterprise> enterprises;
+	
+    private String memEmail;
 
-    private Integer memberCode;
+    private Integer memCode;
 
-    private String name;
+    private String memName;
 
-    private String password;
+    private String memPassword;
 
-    private String phone;
+    private String memPhone;
 
-    private LocalDateTime joinedDate;
+    private LocalDate memJoinedDate;
 
-    public String getEmail() {
-        return email;
-    }
+    private static final long serialVersionUID = 1L;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public List<Customer> getCustomers() {
+		return customers;
+	}
 
-    public Integer getMemberCode() {
-        return memberCode;
-    }
+	public List<Enterprise> getEnterprises() {
+		return enterprises;
+	}
 
-    public void setMemberCode(Integer memberCode) {
-        this.memberCode = memberCode;
-    }
+	public String getMemEmail() {
+		return memEmail;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Integer getMemCode() {
+		return memCode;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getMemName() {
+		return memName;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getMemPassword() {
+		return memPassword;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getMemPhone() {
+		return memPhone;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public LocalDate getMemJoinedDate() {
+		return memJoinedDate;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
 
-    public LocalDateTime getJoinedDate() {
-        return joinedDate;
-    }
+	public void setEnterprises(List<Enterprise> enterprises) {
+		this.enterprises = enterprises;
+	}
 
-    public void setJoinedDate(LocalDateTime joinedDate) {
-        this.joinedDate = joinedDate;
-    }
+	public void setMemEmail(String memEmail) {
+		this.memEmail = memEmail;
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", email=").append(email);
-        sb.append(", memberCode=").append(memberCode);
-        sb.append(", name=").append(name);
-        sb.append(", password=").append(password);
-        sb.append(", phone=").append(phone);
-        sb.append(", joinedDate=").append(joinedDate);
-        sb.append("]");
-        return sb.toString();
-    }
+	public void setMemCode(Integer memCode) {
+		this.memCode = memCode;
+	}
+
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+
+	public void setMemPassword(String memPassword) {
+		this.memPassword = memPassword;
+	}
+
+	public void setMemPhone(String memPhone) {
+		this.memPhone = memPhone;
+	}
+
+	public void setMemJoinedDate(LocalDate memJoinedDate) {
+		this.memJoinedDate = memJoinedDate;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Member [customers=").append(customers).append(", enterprises=").append(enterprises)
+				.append(", memEmail=").append(memEmail).append(", memCode=").append(memCode).append(", memName=")
+				.append(memName).append(", memPassword=").append(memPassword).append(", memPhone=").append(memPhone)
+				.append(", memJoinedDate=").append(memJoinedDate).append("]");
+		return builder.toString();
+	}
+
+   
 }

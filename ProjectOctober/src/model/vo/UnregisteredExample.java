@@ -1,17 +1,16 @@
 package model.vo;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HolidayWaitlistExample {
+public class UnregisteredExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public HolidayWaitlistExample() {
+    public UnregisteredExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -105,273 +104,288 @@ public class HolidayWaitlistExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andHolWtlNumIsNull() {
-            addCriterion("HOL_WTL_NUM is null");
+        public Criteria andUrgNumIsNull() {
+            addCriterion("URG_NUM is null");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumIsNotNull() {
-            addCriterion("HOL_WTL_NUM is not null");
+        public Criteria andUrgNumIsNotNull() {
+            addCriterion("URG_NUM is not null");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumEqualTo(Integer value) {
-            addCriterion("HOL_WTL_NUM =", value, "holWtlNum");
+        public Criteria andUrgNumEqualTo(Integer value) {
+            addCriterion("URG_NUM =", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumNotEqualTo(Integer value) {
-            addCriterion("HOL_WTL_NUM <>", value, "holWtlNum");
+        public Criteria andUrgNumNotEqualTo(Integer value) {
+            addCriterion("URG_NUM <>", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumGreaterThan(Integer value) {
-            addCriterion("HOL_WTL_NUM >", value, "holWtlNum");
+        public Criteria andUrgNumGreaterThan(Integer value) {
+            addCriterion("URG_NUM >", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumGreaterThanOrEqualTo(Integer value) {
-            addCriterion("HOL_WTL_NUM >=", value, "holWtlNum");
+        public Criteria andUrgNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("URG_NUM >=", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumLessThan(Integer value) {
-            addCriterion("HOL_WTL_NUM <", value, "holWtlNum");
+        public Criteria andUrgNumLessThan(Integer value) {
+            addCriterion("URG_NUM <", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumLessThanOrEqualTo(Integer value) {
-            addCriterion("HOL_WTL_NUM <=", value, "holWtlNum");
+        public Criteria andUrgNumLessThanOrEqualTo(Integer value) {
+            addCriterion("URG_NUM <=", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumIn(List<Integer> values) {
-            addCriterion("HOL_WTL_NUM in", values, "holWtlNum");
+        public Criteria andUrgNumIn(List<Integer> values) {
+            addCriterion("URG_NUM in", values, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumNotIn(List<Integer> values) {
-            addCriterion("HOL_WTL_NUM not in", values, "holWtlNum");
+        public Criteria andUrgNumNotIn(List<Integer> values) {
+            addCriterion("URG_NUM not in", values, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumBetween(Integer value1, Integer value2) {
-            addCriterion("HOL_WTL_NUM between", value1, value2, "holWtlNum");
+        public Criteria andUrgNumBetween(Integer value1, Integer value2) {
+            addCriterion("URG_NUM between", value1, value2, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlNumNotBetween(Integer value1, Integer value2) {
-            addCriterion("HOL_WTL_NUM not between", value1, value2, "holWtlNum");
+        public Criteria andUrgNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("URG_NUM not between", value1, value2, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumIsNull() {
-            addCriterion("ETP_NUM is null");
+        public Criteria andUrgNameIsNull() {
+            addCriterion("URG_NAME is null");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumIsNotNull() {
-            addCriterion("ETP_NUM is not null");
+        public Criteria andUrgNameIsNotNull() {
+            addCriterion("URG_NAME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumEqualTo(String value) {
-            addCriterion("ETP_NUM =", value, "etpNum");
+        public Criteria andUrgNameEqualTo(String value) {
+            addCriterion("URG_NAME =", value, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumNotEqualTo(String value) {
-            addCriterion("ETP_NUM <>", value, "etpNum");
+        public Criteria andUrgNameNotEqualTo(String value) {
+            addCriterion("URG_NAME <>", value, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumGreaterThan(String value) {
-            addCriterion("ETP_NUM >", value, "etpNum");
+        public Criteria andUrgNameGreaterThan(String value) {
+            addCriterion("URG_NAME >", value, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumGreaterThanOrEqualTo(String value) {
-            addCriterion("ETP_NUM >=", value, "etpNum");
+        public Criteria andUrgNameGreaterThanOrEqualTo(String value) {
+            addCriterion("URG_NAME >=", value, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumLessThan(String value) {
-            addCriterion("ETP_NUM <", value, "etpNum");
+        public Criteria andUrgNameLessThan(String value) {
+            addCriterion("URG_NAME <", value, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumLessThanOrEqualTo(String value) {
-            addCriterion("ETP_NUM <=", value, "etpNum");
+        public Criteria andUrgNameLessThanOrEqualTo(String value) {
+            addCriterion("URG_NAME <=", value, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumLike(String value) {
-            addCriterion("ETP_NUM like", value, "etpNum");
+        public Criteria andUrgNameLike(String value) {
+            addCriterion("URG_NAME like", value, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumNotLike(String value) {
-            addCriterion("ETP_NUM not like", value, "etpNum");
+        public Criteria andUrgNameNotLike(String value) {
+            addCriterion("URG_NAME not like", value, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumIn(List<String> values) {
-            addCriterion("ETP_NUM in", values, "etpNum");
+        public Criteria andUrgNameIn(List<String> values) {
+            addCriterion("URG_NAME in", values, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumNotIn(List<String> values) {
-            addCriterion("ETP_NUM not in", values, "etpNum");
+        public Criteria andUrgNameNotIn(List<String> values) {
+            addCriterion("URG_NAME not in", values, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumBetween(String value1, String value2) {
-            addCriterion("ETP_NUM between", value1, value2, "etpNum");
+        public Criteria andUrgNameBetween(String value1, String value2) {
+            addCriterion("URG_NAME between", value1, value2, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumNotBetween(String value1, String value2) {
-            addCriterion("ETP_NUM not between", value1, value2, "etpNum");
+        public Criteria andUrgNameNotBetween(String value1, String value2) {
+            addCriterion("URG_NAME not between", value1, value2, "urgName");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailIsNull() {
-            addCriterion("ETP_EMAIL is null");
+        public Criteria andUrgEmailIsNull() {
+            addCriterion("URG_EMAIL is null");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailIsNotNull() {
-            addCriterion("ETP_EMAIL is not null");
+        public Criteria andUrgEmailIsNotNull() {
+            addCriterion("URG_EMAIL is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailEqualTo(String value) {
-            addCriterion("ETP_EMAIL =", value, "etpEmail");
+        public Criteria andUrgEmailEqualTo(String value) {
+            addCriterion("URG_EMAIL =", value, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailNotEqualTo(String value) {
-            addCriterion("ETP_EMAIL <>", value, "etpEmail");
+        public Criteria andUrgEmailNotEqualTo(String value) {
+            addCriterion("URG_EMAIL <>", value, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailGreaterThan(String value) {
-            addCriterion("ETP_EMAIL >", value, "etpEmail");
+        public Criteria andUrgEmailGreaterThan(String value) {
+            addCriterion("URG_EMAIL >", value, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailGreaterThanOrEqualTo(String value) {
-            addCriterion("ETP_EMAIL >=", value, "etpEmail");
+        public Criteria andUrgEmailGreaterThanOrEqualTo(String value) {
+            addCriterion("URG_EMAIL >=", value, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailLessThan(String value) {
-            addCriterion("ETP_EMAIL <", value, "etpEmail");
+        public Criteria andUrgEmailLessThan(String value) {
+            addCriterion("URG_EMAIL <", value, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailLessThanOrEqualTo(String value) {
-            addCriterion("ETP_EMAIL <=", value, "etpEmail");
+        public Criteria andUrgEmailLessThanOrEqualTo(String value) {
+            addCriterion("URG_EMAIL <=", value, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailLike(String value) {
-            addCriterion("ETP_EMAIL like", value, "etpEmail");
+        public Criteria andUrgEmailLike(String value) {
+            addCriterion("URG_EMAIL like", value, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailNotLike(String value) {
-            addCriterion("ETP_EMAIL not like", value, "etpEmail");
+        public Criteria andUrgEmailNotLike(String value) {
+            addCriterion("URG_EMAIL not like", value, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailIn(List<String> values) {
-            addCriterion("ETP_EMAIL in", values, "etpEmail");
+        public Criteria andUrgEmailIn(List<String> values) {
+            addCriterion("URG_EMAIL in", values, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailNotIn(List<String> values) {
-            addCriterion("ETP_EMAIL not in", values, "etpEmail");
+        public Criteria andUrgEmailNotIn(List<String> values) {
+            addCriterion("URG_EMAIL not in", values, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailBetween(String value1, String value2) {
-            addCriterion("ETP_EMAIL between", value1, value2, "etpEmail");
+        public Criteria andUrgEmailBetween(String value1, String value2) {
+            addCriterion("URG_EMAIL between", value1, value2, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailNotBetween(String value1, String value2) {
-            addCriterion("ETP_EMAIL not between", value1, value2, "etpEmail");
+        public Criteria andUrgEmailNotBetween(String value1, String value2) {
+            addCriterion("URG_EMAIL not between", value1, value2, "urgEmail");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateIsNull() {
-            addCriterion("HOL_WTL_DATE is null");
+        public Criteria andUrgPhoneIsNull() {
+            addCriterion("URG_PHONE is null");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateIsNotNull() {
-            addCriterion("HOL_WTL_DATE is not null");
+        public Criteria andUrgPhoneIsNotNull() {
+            addCriterion("URG_PHONE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateEqualTo(LocalDateTime value) {
-            addCriterion("HOL_WTL_DATE =", value, "holWtlDate");
+        public Criteria andUrgPhoneEqualTo(String value) {
+            addCriterion("URG_PHONE =", value, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateNotEqualTo(LocalDateTime value) {
-            addCriterion("HOL_WTL_DATE <>", value, "holWtlDate");
+        public Criteria andUrgPhoneNotEqualTo(String value) {
+            addCriterion("URG_PHONE <>", value, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateGreaterThan(LocalDateTime value) {
-            addCriterion("HOL_WTL_DATE >", value, "holWtlDate");
+        public Criteria andUrgPhoneGreaterThan(String value) {
+            addCriterion("URG_PHONE >", value, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("HOL_WTL_DATE >=", value, "holWtlDate");
+        public Criteria andUrgPhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("URG_PHONE >=", value, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateLessThan(LocalDateTime value) {
-            addCriterion("HOL_WTL_DATE <", value, "holWtlDate");
+        public Criteria andUrgPhoneLessThan(String value) {
+            addCriterion("URG_PHONE <", value, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("HOL_WTL_DATE <=", value, "holWtlDate");
+        public Criteria andUrgPhoneLessThanOrEqualTo(String value) {
+            addCriterion("URG_PHONE <=", value, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateIn(List<LocalDateTime> values) {
-            addCriterion("HOL_WTL_DATE in", values, "holWtlDate");
+        public Criteria andUrgPhoneLike(String value) {
+            addCriterion("URG_PHONE like", value, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateNotIn(List<LocalDateTime> values) {
-            addCriterion("HOL_WTL_DATE not in", values, "holWtlDate");
+        public Criteria andUrgPhoneNotLike(String value) {
+            addCriterion("URG_PHONE not like", value, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("HOL_WTL_DATE between", value1, value2, "holWtlDate");
+        public Criteria andUrgPhoneIn(List<String> values) {
+            addCriterion("URG_PHONE in", values, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andHolWtlDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("HOL_WTL_DATE not between", value1, value2, "holWtlDate");
+        public Criteria andUrgPhoneNotIn(List<String> values) {
+            addCriterion("URG_PHONE not in", values, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andEtpNumLikeInsensitive(String value) {
-            addCriterion("upper(ETP_NUM) like", value.toUpperCase(), "etpNum");
+        public Criteria andUrgPhoneBetween(String value1, String value2) {
+            addCriterion("URG_PHONE between", value1, value2, "urgPhone");
             return (Criteria) this;
         }
 
-        public Criteria andEtpEmailLikeInsensitive(String value) {
-            addCriterion("upper(ETP_EMAIL) like", value.toUpperCase(), "etpEmail");
+        public Criteria andUrgPhoneNotBetween(String value1, String value2) {
+            addCriterion("URG_PHONE not between", value1, value2, "urgPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgNameLikeInsensitive(String value) {
+            addCriterion("upper(URG_NAME) like", value.toUpperCase(), "urgName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgEmailLikeInsensitive(String value) {
+            addCriterion("upper(URG_EMAIL) like", value.toUpperCase(), "urgEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgPhoneLikeInsensitive(String value) {
+            addCriterion("upper(URG_PHONE) like", value.toUpperCase(), "urgPhone");
             return (Criteria) this;
         }
     }

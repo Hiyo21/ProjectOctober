@@ -1,17 +1,16 @@
 package model.vo;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoLocationExample {
+public class WorkingDaysExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public PhotoLocationExample() {
+    public WorkingDaysExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -65,50 +64,19 @@ public class PhotoLocationExample {
     }
 
     protected abstract static class GeneratedCriteria {
-        protected List<Criterion> phtUploadDateCriteria;
-
-        protected List<Criterion> allCriteria;
-
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
-            phtUploadDateCriteria = new ArrayList<Criterion>();
-        }
-
-        public List<Criterion> getPhtUploadDateCriteria() {
-            return phtUploadDateCriteria;
-        }
-
-        protected void addPhtUploadDateCriterion(String condition, Object value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            phtUploadDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
-            allCriteria = null;
-        }
-
-        protected void addPhtUploadDateCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            phtUploadDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
-            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0
-                || phtUploadDateCriteria.size() > 0;
+            return criteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            if (allCriteria == null) {
-                allCriteria = new ArrayList<Criterion>();
-                allCriteria.addAll(criteria);
-                allCriteria.addAll(phtUploadDateCriteria);
-            }
-            return allCriteria;
+            return criteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -120,7 +88,6 @@ public class PhotoLocationExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
-            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -128,7 +95,6 @@ public class PhotoLocationExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
-            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -136,67 +102,6 @@ public class PhotoLocationExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-            allCriteria = null;
-        }
-
-        public Criteria andPhotoNumIsNull() {
-            addCriterion("PHOTO_NUM is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumIsNotNull() {
-            addCriterion("PHOTO_NUM is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumEqualTo(Integer value) {
-            addCriterion("PHOTO_NUM =", value, "photoNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumNotEqualTo(Integer value) {
-            addCriterion("PHOTO_NUM <>", value, "photoNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumGreaterThan(Integer value) {
-            addCriterion("PHOTO_NUM >", value, "photoNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumGreaterThanOrEqualTo(Integer value) {
-            addCriterion("PHOTO_NUM >=", value, "photoNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumLessThan(Integer value) {
-            addCriterion("PHOTO_NUM <", value, "photoNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumLessThanOrEqualTo(Integer value) {
-            addCriterion("PHOTO_NUM <=", value, "photoNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumIn(List<Integer> values) {
-            addCriterion("PHOTO_NUM in", values, "photoNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumNotIn(List<Integer> values) {
-            addCriterion("PHOTO_NUM not in", values, "photoNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumBetween(Integer value1, Integer value2) {
-            addCriterion("PHOTO_NUM between", value1, value2, "photoNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNumNotBetween(Integer value1, Integer value2) {
-            addCriterion("PHOTO_NUM not between", value1, value2, "photoNum");
-            return (Criteria) this;
         }
 
         public Criteria andEtpNumIsNull() {
@@ -339,273 +244,423 @@ public class PhotoLocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageIsNull() {
-            addCriterion("PHT_USAGE is null");
+        public Criteria andMonIsNull() {
+            addCriterion("MON is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageIsNotNull() {
-            addCriterion("PHT_USAGE is not null");
+        public Criteria andMonIsNotNull() {
+            addCriterion("MON is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageEqualTo(String value) {
-            addCriterion("PHT_USAGE =", value, "phtUsage");
+        public Criteria andMonEqualTo(Integer value) {
+            addCriterion("MON =", value, "mon");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageNotEqualTo(String value) {
-            addCriterion("PHT_USAGE <>", value, "phtUsage");
+        public Criteria andMonNotEqualTo(Integer value) {
+            addCriterion("MON <>", value, "mon");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageGreaterThan(String value) {
-            addCriterion("PHT_USAGE >", value, "phtUsage");
+        public Criteria andMonGreaterThan(Integer value) {
+            addCriterion("MON >", value, "mon");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageGreaterThanOrEqualTo(String value) {
-            addCriterion("PHT_USAGE >=", value, "phtUsage");
+        public Criteria andMonGreaterThanOrEqualTo(Integer value) {
+            addCriterion("MON >=", value, "mon");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageLessThan(String value) {
-            addCriterion("PHT_USAGE <", value, "phtUsage");
+        public Criteria andMonLessThan(Integer value) {
+            addCriterion("MON <", value, "mon");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageLessThanOrEqualTo(String value) {
-            addCriterion("PHT_USAGE <=", value, "phtUsage");
+        public Criteria andMonLessThanOrEqualTo(Integer value) {
+            addCriterion("MON <=", value, "mon");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageLike(String value) {
-            addCriterion("PHT_USAGE like", value, "phtUsage");
+        public Criteria andMonIn(List<Integer> values) {
+            addCriterion("MON in", values, "mon");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageNotLike(String value) {
-            addCriterion("PHT_USAGE not like", value, "phtUsage");
+        public Criteria andMonNotIn(List<Integer> values) {
+            addCriterion("MON not in", values, "mon");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageIn(List<String> values) {
-            addCriterion("PHT_USAGE in", values, "phtUsage");
+        public Criteria andMonBetween(Integer value1, Integer value2) {
+            addCriterion("MON between", value1, value2, "mon");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageNotIn(List<String> values) {
-            addCriterion("PHT_USAGE not in", values, "phtUsage");
+        public Criteria andMonNotBetween(Integer value1, Integer value2) {
+            addCriterion("MON not between", value1, value2, "mon");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageBetween(String value1, String value2) {
-            addCriterion("PHT_USAGE between", value1, value2, "phtUsage");
+        public Criteria andTueIsNull() {
+            addCriterion("TUE is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUsageNotBetween(String value1, String value2) {
-            addCriterion("PHT_USAGE not between", value1, value2, "phtUsage");
+        public Criteria andTueIsNotNull() {
+            addCriterion("TUE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionIsNull() {
-            addCriterion("PHT_DESCRIPTION is null");
+        public Criteria andTueEqualTo(Integer value) {
+            addCriterion("TUE =", value, "tue");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionIsNotNull() {
-            addCriterion("PHT_DESCRIPTION is not null");
+        public Criteria andTueNotEqualTo(Integer value) {
+            addCriterion("TUE <>", value, "tue");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionEqualTo(String value) {
-            addCriterion("PHT_DESCRIPTION =", value, "phtDescription");
+        public Criteria andTueGreaterThan(Integer value) {
+            addCriterion("TUE >", value, "tue");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionNotEqualTo(String value) {
-            addCriterion("PHT_DESCRIPTION <>", value, "phtDescription");
+        public Criteria andTueGreaterThanOrEqualTo(Integer value) {
+            addCriterion("TUE >=", value, "tue");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionGreaterThan(String value) {
-            addCriterion("PHT_DESCRIPTION >", value, "phtDescription");
+        public Criteria andTueLessThan(Integer value) {
+            addCriterion("TUE <", value, "tue");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("PHT_DESCRIPTION >=", value, "phtDescription");
+        public Criteria andTueLessThanOrEqualTo(Integer value) {
+            addCriterion("TUE <=", value, "tue");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionLessThan(String value) {
-            addCriterion("PHT_DESCRIPTION <", value, "phtDescription");
+        public Criteria andTueIn(List<Integer> values) {
+            addCriterion("TUE in", values, "tue");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("PHT_DESCRIPTION <=", value, "phtDescription");
+        public Criteria andTueNotIn(List<Integer> values) {
+            addCriterion("TUE not in", values, "tue");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionLike(String value) {
-            addCriterion("PHT_DESCRIPTION like", value, "phtDescription");
+        public Criteria andTueBetween(Integer value1, Integer value2) {
+            addCriterion("TUE between", value1, value2, "tue");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionNotLike(String value) {
-            addCriterion("PHT_DESCRIPTION not like", value, "phtDescription");
+        public Criteria andTueNotBetween(Integer value1, Integer value2) {
+            addCriterion("TUE not between", value1, value2, "tue");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionIn(List<String> values) {
-            addCriterion("PHT_DESCRIPTION in", values, "phtDescription");
+        public Criteria andWedIsNull() {
+            addCriterion("WED is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionNotIn(List<String> values) {
-            addCriterion("PHT_DESCRIPTION not in", values, "phtDescription");
+        public Criteria andWedIsNotNull() {
+            addCriterion("WED is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionBetween(String value1, String value2) {
-            addCriterion("PHT_DESCRIPTION between", value1, value2, "phtDescription");
+        public Criteria andWedEqualTo(Integer value) {
+            addCriterion("WED =", value, "wed");
             return (Criteria) this;
         }
 
-        public Criteria andPhtDescriptionNotBetween(String value1, String value2) {
-            addCriterion("PHT_DESCRIPTION not between", value1, value2, "phtDescription");
+        public Criteria andWedNotEqualTo(Integer value) {
+            addCriterion("WED <>", value, "wed");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressIsNull() {
-            addCriterion("PHT_ADDRESS is null");
+        public Criteria andWedGreaterThan(Integer value) {
+            addCriterion("WED >", value, "wed");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressIsNotNull() {
-            addCriterion("PHT_ADDRESS is not null");
+        public Criteria andWedGreaterThanOrEqualTo(Integer value) {
+            addCriterion("WED >=", value, "wed");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressEqualTo(String value) {
-            addCriterion("PHT_ADDRESS =", value, "phtAddress");
+        public Criteria andWedLessThan(Integer value) {
+            addCriterion("WED <", value, "wed");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressNotEqualTo(String value) {
-            addCriterion("PHT_ADDRESS <>", value, "phtAddress");
+        public Criteria andWedLessThanOrEqualTo(Integer value) {
+            addCriterion("WED <=", value, "wed");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressGreaterThan(String value) {
-            addCriterion("PHT_ADDRESS >", value, "phtAddress");
+        public Criteria andWedIn(List<Integer> values) {
+            addCriterion("WED in", values, "wed");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("PHT_ADDRESS >=", value, "phtAddress");
+        public Criteria andWedNotIn(List<Integer> values) {
+            addCriterion("WED not in", values, "wed");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressLessThan(String value) {
-            addCriterion("PHT_ADDRESS <", value, "phtAddress");
+        public Criteria andWedBetween(Integer value1, Integer value2) {
+            addCriterion("WED between", value1, value2, "wed");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressLessThanOrEqualTo(String value) {
-            addCriterion("PHT_ADDRESS <=", value, "phtAddress");
+        public Criteria andWedNotBetween(Integer value1, Integer value2) {
+            addCriterion("WED not between", value1, value2, "wed");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressLike(String value) {
-            addCriterion("PHT_ADDRESS like", value, "phtAddress");
+        public Criteria andThuIsNull() {
+            addCriterion("THU is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressNotLike(String value) {
-            addCriterion("PHT_ADDRESS not like", value, "phtAddress");
+        public Criteria andThuIsNotNull() {
+            addCriterion("THU is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressIn(List<String> values) {
-            addCriterion("PHT_ADDRESS in", values, "phtAddress");
+        public Criteria andThuEqualTo(Integer value) {
+            addCriterion("THU =", value, "thu");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressNotIn(List<String> values) {
-            addCriterion("PHT_ADDRESS not in", values, "phtAddress");
+        public Criteria andThuNotEqualTo(Integer value) {
+            addCriterion("THU <>", value, "thu");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressBetween(String value1, String value2) {
-            addCriterion("PHT_ADDRESS between", value1, value2, "phtAddress");
+        public Criteria andThuGreaterThan(Integer value) {
+            addCriterion("THU >", value, "thu");
             return (Criteria) this;
         }
 
-        public Criteria andPhtAddressNotBetween(String value1, String value2) {
-            addCriterion("PHT_ADDRESS not between", value1, value2, "phtAddress");
+        public Criteria andThuGreaterThanOrEqualTo(Integer value) {
+            addCriterion("THU >=", value, "thu");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateIsNull() {
-            addCriterion("PHT_UPLOAD_DATE is null");
+        public Criteria andThuLessThan(Integer value) {
+            addCriterion("THU <", value, "thu");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateIsNotNull() {
-            addCriterion("PHT_UPLOAD_DATE is not null");
+        public Criteria andThuLessThanOrEqualTo(Integer value) {
+            addCriterion("THU <=", value, "thu");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateEqualTo(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE =", value, "phtUploadDate");
+        public Criteria andThuIn(List<Integer> values) {
+            addCriterion("THU in", values, "thu");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateNotEqualTo(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE <>", value, "phtUploadDate");
+        public Criteria andThuNotIn(List<Integer> values) {
+            addCriterion("THU not in", values, "thu");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateGreaterThan(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE >", value, "phtUploadDate");
+        public Criteria andThuBetween(Integer value1, Integer value2) {
+            addCriterion("THU between", value1, value2, "thu");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE >=", value, "phtUploadDate");
+        public Criteria andThuNotBetween(Integer value1, Integer value2) {
+            addCriterion("THU not between", value1, value2, "thu");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateLessThan(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE <", value, "phtUploadDate");
+        public Criteria andFriIsNull() {
+            addCriterion("FRI is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateLessThanOrEqualTo(LocalDateTime value) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE <=", value, "phtUploadDate");
+        public Criteria andFriIsNotNull() {
+            addCriterion("FRI is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateIn(List<LocalDateTime> values) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE in", values, "phtUploadDate");
+        public Criteria andFriEqualTo(Integer value) {
+            addCriterion("FRI =", value, "fri");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateNotIn(List<LocalDateTime> values) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE not in", values, "phtUploadDate");
+        public Criteria andFriNotEqualTo(Integer value) {
+            addCriterion("FRI <>", value, "fri");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE between", value1, value2, "phtUploadDate");
+        public Criteria andFriGreaterThan(Integer value) {
+            addCriterion("FRI >", value, "fri");
             return (Criteria) this;
         }
 
-        public Criteria andPhtUploadDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addPhtUploadDateCriterion("PHT_UPLOAD_DATE not between", value1, value2, "phtUploadDate");
+        public Criteria andFriGreaterThanOrEqualTo(Integer value) {
+            addCriterion("FRI >=", value, "fri");
+            return (Criteria) this;
+        }
+
+        public Criteria andFriLessThan(Integer value) {
+            addCriterion("FRI <", value, "fri");
+            return (Criteria) this;
+        }
+
+        public Criteria andFriLessThanOrEqualTo(Integer value) {
+            addCriterion("FRI <=", value, "fri");
+            return (Criteria) this;
+        }
+
+        public Criteria andFriIn(List<Integer> values) {
+            addCriterion("FRI in", values, "fri");
+            return (Criteria) this;
+        }
+
+        public Criteria andFriNotIn(List<Integer> values) {
+            addCriterion("FRI not in", values, "fri");
+            return (Criteria) this;
+        }
+
+        public Criteria andFriBetween(Integer value1, Integer value2) {
+            addCriterion("FRI between", value1, value2, "fri");
+            return (Criteria) this;
+        }
+
+        public Criteria andFriNotBetween(Integer value1, Integer value2) {
+            addCriterion("FRI not between", value1, value2, "fri");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatIsNull() {
+            addCriterion("SAT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatIsNotNull() {
+            addCriterion("SAT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatEqualTo(Integer value) {
+            addCriterion("SAT =", value, "sat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatNotEqualTo(Integer value) {
+            addCriterion("SAT <>", value, "sat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatGreaterThan(Integer value) {
+            addCriterion("SAT >", value, "sat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatGreaterThanOrEqualTo(Integer value) {
+            addCriterion("SAT >=", value, "sat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatLessThan(Integer value) {
+            addCriterion("SAT <", value, "sat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatLessThanOrEqualTo(Integer value) {
+            addCriterion("SAT <=", value, "sat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatIn(List<Integer> values) {
+            addCriterion("SAT in", values, "sat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatNotIn(List<Integer> values) {
+            addCriterion("SAT not in", values, "sat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatBetween(Integer value1, Integer value2) {
+            addCriterion("SAT between", value1, value2, "sat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSatNotBetween(Integer value1, Integer value2) {
+            addCriterion("SAT not between", value1, value2, "sat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunIsNull() {
+            addCriterion("SUN is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunIsNotNull() {
+            addCriterion("SUN is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunEqualTo(Integer value) {
+            addCriterion("SUN =", value, "sun");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunNotEqualTo(Integer value) {
+            addCriterion("SUN <>", value, "sun");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunGreaterThan(Integer value) {
+            addCriterion("SUN >", value, "sun");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunGreaterThanOrEqualTo(Integer value) {
+            addCriterion("SUN >=", value, "sun");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunLessThan(Integer value) {
+            addCriterion("SUN <", value, "sun");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunLessThanOrEqualTo(Integer value) {
+            addCriterion("SUN <=", value, "sun");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunIn(List<Integer> values) {
+            addCriterion("SUN in", values, "sun");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunNotIn(List<Integer> values) {
+            addCriterion("SUN not in", values, "sun");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunBetween(Integer value1, Integer value2) {
+            addCriterion("SUN between", value1, value2, "sun");
+            return (Criteria) this;
+        }
+
+        public Criteria andSunNotBetween(Integer value1, Integer value2) {
+            addCriterion("SUN not between", value1, value2, "sun");
             return (Criteria) this;
         }
 
@@ -616,21 +671,6 @@ public class PhotoLocationExample {
 
         public Criteria andEtpEmailLikeInsensitive(String value) {
             addCriterion("upper(ETP_EMAIL) like", value.toUpperCase(), "etpEmail");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtUsageLikeInsensitive(String value) {
-            addCriterion("upper(PHT_USAGE) like", value.toUpperCase(), "phtUsage");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtDescriptionLikeInsensitive(String value) {
-            addCriterion("upper(PHT_DESCRIPTION) like", value.toUpperCase(), "phtDescription");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhtAddressLikeInsensitive(String value) {
-            addCriterion("upper(PHT_ADDRESS) like", value.toUpperCase(), "phtAddress");
             return (Criteria) this;
         }
     }

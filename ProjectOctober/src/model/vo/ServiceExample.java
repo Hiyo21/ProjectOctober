@@ -65,19 +65,50 @@ public class ServiceExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> svcTimeCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            svcTimeCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getSvcTimeCriteria() {
+            return svcTimeCriteria;
+        }
+
+        protected void addSvcTimeCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            svcTimeCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addSvcTimeCriterion(String condition, LocalTime value1, LocalTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            svcTimeCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalTimeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || svcTimeCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(svcTimeCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +120,7 @@ public class ServiceExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +128,7 @@ public class ServiceExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +136,7 @@ public class ServiceExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andSvcNumIsNull() {
@@ -305,403 +339,403 @@ public class ServiceExample {
             return (Criteria) this;
         }
 
-        public Criteria andTitleIsNull() {
-            addCriterion("TITLE is null");
+        public Criteria andSvcTitleIsNull() {
+            addCriterion("SVC_TITLE is null");
             return (Criteria) this;
         }
 
-        public Criteria andTitleIsNotNull() {
-            addCriterion("TITLE is not null");
+        public Criteria andSvcTitleIsNotNull() {
+            addCriterion("SVC_TITLE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTitleEqualTo(String value) {
-            addCriterion("TITLE =", value, "title");
+        public Criteria andSvcTitleEqualTo(String value) {
+            addCriterion("SVC_TITLE =", value, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotEqualTo(String value) {
-            addCriterion("TITLE <>", value, "title");
+        public Criteria andSvcTitleNotEqualTo(String value) {
+            addCriterion("SVC_TITLE <>", value, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleGreaterThan(String value) {
-            addCriterion("TITLE >", value, "title");
+        public Criteria andSvcTitleGreaterThan(String value) {
+            addCriterion("SVC_TITLE >", value, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleGreaterThanOrEqualTo(String value) {
-            addCriterion("TITLE >=", value, "title");
+        public Criteria andSvcTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("SVC_TITLE >=", value, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLessThan(String value) {
-            addCriterion("TITLE <", value, "title");
+        public Criteria andSvcTitleLessThan(String value) {
+            addCriterion("SVC_TITLE <", value, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLessThanOrEqualTo(String value) {
-            addCriterion("TITLE <=", value, "title");
+        public Criteria andSvcTitleLessThanOrEqualTo(String value) {
+            addCriterion("SVC_TITLE <=", value, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLike(String value) {
-            addCriterion("TITLE like", value, "title");
+        public Criteria andSvcTitleLike(String value) {
+            addCriterion("SVC_TITLE like", value, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotLike(String value) {
-            addCriterion("TITLE not like", value, "title");
+        public Criteria andSvcTitleNotLike(String value) {
+            addCriterion("SVC_TITLE not like", value, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleIn(List<String> values) {
-            addCriterion("TITLE in", values, "title");
+        public Criteria andSvcTitleIn(List<String> values) {
+            addCriterion("SVC_TITLE in", values, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotIn(List<String> values) {
-            addCriterion("TITLE not in", values, "title");
+        public Criteria andSvcTitleNotIn(List<String> values) {
+            addCriterion("SVC_TITLE not in", values, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleBetween(String value1, String value2) {
-            addCriterion("TITLE between", value1, value2, "title");
+        public Criteria andSvcTitleBetween(String value1, String value2) {
+            addCriterion("SVC_TITLE between", value1, value2, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotBetween(String value1, String value2) {
-            addCriterion("TITLE not between", value1, value2, "title");
+        public Criteria andSvcTitleNotBetween(String value1, String value2) {
+            addCriterion("SVC_TITLE not between", value1, value2, "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andCostIsNull() {
-            addCriterion("COST is null");
+        public Criteria andSvcCostIsNull() {
+            addCriterion("SVC_COST is null");
             return (Criteria) this;
         }
 
-        public Criteria andCostIsNotNull() {
-            addCriterion("COST is not null");
+        public Criteria andSvcCostIsNotNull() {
+            addCriterion("SVC_COST is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCostEqualTo(Integer value) {
-            addCriterion("COST =", value, "cost");
+        public Criteria andSvcCostEqualTo(Integer value) {
+            addCriterion("SVC_COST =", value, "svcCost");
             return (Criteria) this;
         }
 
-        public Criteria andCostNotEqualTo(Integer value) {
-            addCriterion("COST <>", value, "cost");
+        public Criteria andSvcCostNotEqualTo(Integer value) {
+            addCriterion("SVC_COST <>", value, "svcCost");
             return (Criteria) this;
         }
 
-        public Criteria andCostGreaterThan(Integer value) {
-            addCriterion("COST >", value, "cost");
+        public Criteria andSvcCostGreaterThan(Integer value) {
+            addCriterion("SVC_COST >", value, "svcCost");
             return (Criteria) this;
         }
 
-        public Criteria andCostGreaterThanOrEqualTo(Integer value) {
-            addCriterion("COST >=", value, "cost");
+        public Criteria andSvcCostGreaterThanOrEqualTo(Integer value) {
+            addCriterion("SVC_COST >=", value, "svcCost");
             return (Criteria) this;
         }
 
-        public Criteria andCostLessThan(Integer value) {
-            addCriterion("COST <", value, "cost");
+        public Criteria andSvcCostLessThan(Integer value) {
+            addCriterion("SVC_COST <", value, "svcCost");
             return (Criteria) this;
         }
 
-        public Criteria andCostLessThanOrEqualTo(Integer value) {
-            addCriterion("COST <=", value, "cost");
+        public Criteria andSvcCostLessThanOrEqualTo(Integer value) {
+            addCriterion("SVC_COST <=", value, "svcCost");
             return (Criteria) this;
         }
 
-        public Criteria andCostIn(List<Integer> values) {
-            addCriterion("COST in", values, "cost");
+        public Criteria andSvcCostIn(List<Integer> values) {
+            addCriterion("SVC_COST in", values, "svcCost");
             return (Criteria) this;
         }
 
-        public Criteria andCostNotIn(List<Integer> values) {
-            addCriterion("COST not in", values, "cost");
+        public Criteria andSvcCostNotIn(List<Integer> values) {
+            addCriterion("SVC_COST not in", values, "svcCost");
             return (Criteria) this;
         }
 
-        public Criteria andCostBetween(Integer value1, Integer value2) {
-            addCriterion("COST between", value1, value2, "cost");
+        public Criteria andSvcCostBetween(Integer value1, Integer value2) {
+            addCriterion("SVC_COST between", value1, value2, "svcCost");
             return (Criteria) this;
         }
 
-        public Criteria andCostNotBetween(Integer value1, Integer value2) {
-            addCriterion("COST not between", value1, value2, "cost");
+        public Criteria andSvcCostNotBetween(Integer value1, Integer value2) {
+            addCriterion("SVC_COST not between", value1, value2, "svcCost");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIsNull() {
-            addCriterion("TIME is null");
+        public Criteria andSvcTimeIsNull() {
+            addCriterion("SVC_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIsNotNull() {
-            addCriterion("TIME is not null");
+        public Criteria andSvcTimeIsNotNull() {
+            addCriterion("SVC_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTimeEqualTo(LocalTime value) {
-            addCriterion("TIME =", value, "time");
+        public Criteria andSvcTimeEqualTo(LocalTime value) {
+            addSvcTimeCriterion("SVC_TIME =", value, "svcTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotEqualTo(LocalTime value) {
-            addCriterion("TIME <>", value, "time");
+        public Criteria andSvcTimeNotEqualTo(LocalTime value) {
+            addSvcTimeCriterion("SVC_TIME <>", value, "svcTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThan(LocalTime value) {
-            addCriterion("TIME >", value, "time");
+        public Criteria andSvcTimeGreaterThan(LocalTime value) {
+            addSvcTimeCriterion("SVC_TIME >", value, "svcTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThanOrEqualTo(LocalTime value) {
-            addCriterion("TIME >=", value, "time");
+        public Criteria andSvcTimeGreaterThanOrEqualTo(LocalTime value) {
+            addSvcTimeCriterion("SVC_TIME >=", value, "svcTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThan(LocalTime value) {
-            addCriterion("TIME <", value, "time");
+        public Criteria andSvcTimeLessThan(LocalTime value) {
+            addSvcTimeCriterion("SVC_TIME <", value, "svcTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThanOrEqualTo(LocalTime value) {
-            addCriterion("TIME <=", value, "time");
+        public Criteria andSvcTimeLessThanOrEqualTo(LocalTime value) {
+            addSvcTimeCriterion("SVC_TIME <=", value, "svcTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIn(List<LocalTime> values) {
-            addCriterion("TIME in", values, "time");
+        public Criteria andSvcTimeIn(List<LocalTime> values) {
+            addSvcTimeCriterion("SVC_TIME in", values, "svcTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotIn(List<LocalTime> values) {
-            addCriterion("TIME not in", values, "time");
+        public Criteria andSvcTimeNotIn(List<LocalTime> values) {
+            addSvcTimeCriterion("SVC_TIME not in", values, "svcTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeBetween(LocalTime value1, LocalTime value2) {
-            addCriterion("TIME between", value1, value2, "time");
+        public Criteria andSvcTimeBetween(LocalTime value1, LocalTime value2) {
+            addSvcTimeCriterion("SVC_TIME between", value1, value2, "svcTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotBetween(LocalTime value1, LocalTime value2) {
-            addCriterion("TIME not between", value1, value2, "time");
+        public Criteria andSvcTimeNotBetween(LocalTime value1, LocalTime value2) {
+            addSvcTimeCriterion("SVC_TIME not between", value1, value2, "svcTime");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNull() {
-            addCriterion("DESCRIPTION is null");
+        public Criteria andSvcDescriptionIsNull() {
+            addCriterion("SVC_DESCRIPTION is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNotNull() {
-            addCriterion("DESCRIPTION is not null");
+        public Criteria andSvcDescriptionIsNotNull() {
+            addCriterion("SVC_DESCRIPTION is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionEqualTo(String value) {
-            addCriterion("DESCRIPTION =", value, "description");
+        public Criteria andSvcDescriptionEqualTo(String value) {
+            addCriterion("SVC_DESCRIPTION =", value, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotEqualTo(String value) {
-            addCriterion("DESCRIPTION <>", value, "description");
+        public Criteria andSvcDescriptionNotEqualTo(String value) {
+            addCriterion("SVC_DESCRIPTION <>", value, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionGreaterThan(String value) {
-            addCriterion("DESCRIPTION >", value, "description");
+        public Criteria andSvcDescriptionGreaterThan(String value) {
+            addCriterion("SVC_DESCRIPTION >", value, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("DESCRIPTION >=", value, "description");
+        public Criteria andSvcDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("SVC_DESCRIPTION >=", value, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLessThan(String value) {
-            addCriterion("DESCRIPTION <", value, "description");
+        public Criteria andSvcDescriptionLessThan(String value) {
+            addCriterion("SVC_DESCRIPTION <", value, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("DESCRIPTION <=", value, "description");
+        public Criteria andSvcDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("SVC_DESCRIPTION <=", value, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLike(String value) {
-            addCriterion("DESCRIPTION like", value, "description");
+        public Criteria andSvcDescriptionLike(String value) {
+            addCriterion("SVC_DESCRIPTION like", value, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotLike(String value) {
-            addCriterion("DESCRIPTION not like", value, "description");
+        public Criteria andSvcDescriptionNotLike(String value) {
+            addCriterion("SVC_DESCRIPTION not like", value, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIn(List<String> values) {
-            addCriterion("DESCRIPTION in", values, "description");
+        public Criteria andSvcDescriptionIn(List<String> values) {
+            addCriterion("SVC_DESCRIPTION in", values, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotIn(List<String> values) {
-            addCriterion("DESCRIPTION not in", values, "description");
+        public Criteria andSvcDescriptionNotIn(List<String> values) {
+            addCriterion("SVC_DESCRIPTION not in", values, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionBetween(String value1, String value2) {
-            addCriterion("DESCRIPTION between", value1, value2, "description");
+        public Criteria andSvcDescriptionBetween(String value1, String value2) {
+            addCriterion("SVC_DESCRIPTION between", value1, value2, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotBetween(String value1, String value2) {
-            addCriterion("DESCRIPTION not between", value1, value2, "description");
+        public Criteria andSvcDescriptionNotBetween(String value1, String value2) {
+            addCriterion("SVC_DESCRIPTION not between", value1, value2, "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIsNull() {
-            addCriterion("CATEGORY is null");
+        public Criteria andSvcCategoryIsNull() {
+            addCriterion("SVC_CATEGORY is null");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIsNotNull() {
-            addCriterion("CATEGORY is not null");
+        public Criteria andSvcCategoryIsNotNull() {
+            addCriterion("SVC_CATEGORY is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryEqualTo(String value) {
-            addCriterion("CATEGORY =", value, "category");
+        public Criteria andSvcCategoryEqualTo(String value) {
+            addCriterion("SVC_CATEGORY =", value, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryNotEqualTo(String value) {
-            addCriterion("CATEGORY <>", value, "category");
+        public Criteria andSvcCategoryNotEqualTo(String value) {
+            addCriterion("SVC_CATEGORY <>", value, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryGreaterThan(String value) {
-            addCriterion("CATEGORY >", value, "category");
+        public Criteria andSvcCategoryGreaterThan(String value) {
+            addCriterion("SVC_CATEGORY >", value, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryGreaterThanOrEqualTo(String value) {
-            addCriterion("CATEGORY >=", value, "category");
+        public Criteria andSvcCategoryGreaterThanOrEqualTo(String value) {
+            addCriterion("SVC_CATEGORY >=", value, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryLessThan(String value) {
-            addCriterion("CATEGORY <", value, "category");
+        public Criteria andSvcCategoryLessThan(String value) {
+            addCriterion("SVC_CATEGORY <", value, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryLessThanOrEqualTo(String value) {
-            addCriterion("CATEGORY <=", value, "category");
+        public Criteria andSvcCategoryLessThanOrEqualTo(String value) {
+            addCriterion("SVC_CATEGORY <=", value, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryLike(String value) {
-            addCriterion("CATEGORY like", value, "category");
+        public Criteria andSvcCategoryLike(String value) {
+            addCriterion("SVC_CATEGORY like", value, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryNotLike(String value) {
-            addCriterion("CATEGORY not like", value, "category");
+        public Criteria andSvcCategoryNotLike(String value) {
+            addCriterion("SVC_CATEGORY not like", value, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIn(List<String> values) {
-            addCriterion("CATEGORY in", values, "category");
+        public Criteria andSvcCategoryIn(List<String> values) {
+            addCriterion("SVC_CATEGORY in", values, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryNotIn(List<String> values) {
-            addCriterion("CATEGORY not in", values, "category");
+        public Criteria andSvcCategoryNotIn(List<String> values) {
+            addCriterion("SVC_CATEGORY not in", values, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryBetween(String value1, String value2) {
-            addCriterion("CATEGORY between", value1, value2, "category");
+        public Criteria andSvcCategoryBetween(String value1, String value2) {
+            addCriterion("SVC_CATEGORY between", value1, value2, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryNotBetween(String value1, String value2) {
-            addCriterion("CATEGORY not between", value1, value2, "category");
+        public Criteria andSvcCategoryNotBetween(String value1, String value2) {
+            addCriterion("SVC_CATEGORY not between", value1, value2, "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyIsNull() {
-            addCriterion("SPECIALTY is null");
+        public Criteria andSvcSpecializeIsNull() {
+            addCriterion("SVC_SPECIALIZE is null");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyIsNotNull() {
-            addCriterion("SPECIALTY is not null");
+        public Criteria andSvcSpecializeIsNotNull() {
+            addCriterion("SVC_SPECIALIZE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyEqualTo(String value) {
-            addCriterion("SPECIALTY =", value, "specialty");
+        public Criteria andSvcSpecializeEqualTo(String value) {
+            addCriterion("SVC_SPECIALIZE =", value, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyNotEqualTo(String value) {
-            addCriterion("SPECIALTY <>", value, "specialty");
+        public Criteria andSvcSpecializeNotEqualTo(String value) {
+            addCriterion("SVC_SPECIALIZE <>", value, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyGreaterThan(String value) {
-            addCriterion("SPECIALTY >", value, "specialty");
+        public Criteria andSvcSpecializeGreaterThan(String value) {
+            addCriterion("SVC_SPECIALIZE >", value, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyGreaterThanOrEqualTo(String value) {
-            addCriterion("SPECIALTY >=", value, "specialty");
+        public Criteria andSvcSpecializeGreaterThanOrEqualTo(String value) {
+            addCriterion("SVC_SPECIALIZE >=", value, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyLessThan(String value) {
-            addCriterion("SPECIALTY <", value, "specialty");
+        public Criteria andSvcSpecializeLessThan(String value) {
+            addCriterion("SVC_SPECIALIZE <", value, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyLessThanOrEqualTo(String value) {
-            addCriterion("SPECIALTY <=", value, "specialty");
+        public Criteria andSvcSpecializeLessThanOrEqualTo(String value) {
+            addCriterion("SVC_SPECIALIZE <=", value, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyLike(String value) {
-            addCriterion("SPECIALTY like", value, "specialty");
+        public Criteria andSvcSpecializeLike(String value) {
+            addCriterion("SVC_SPECIALIZE like", value, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyNotLike(String value) {
-            addCriterion("SPECIALTY not like", value, "specialty");
+        public Criteria andSvcSpecializeNotLike(String value) {
+            addCriterion("SVC_SPECIALIZE not like", value, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyIn(List<String> values) {
-            addCriterion("SPECIALTY in", values, "specialty");
+        public Criteria andSvcSpecializeIn(List<String> values) {
+            addCriterion("SVC_SPECIALIZE in", values, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyNotIn(List<String> values) {
-            addCriterion("SPECIALTY not in", values, "specialty");
+        public Criteria andSvcSpecializeNotIn(List<String> values) {
+            addCriterion("SVC_SPECIALIZE not in", values, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyBetween(String value1, String value2) {
-            addCriterion("SPECIALTY between", value1, value2, "specialty");
+        public Criteria andSvcSpecializeBetween(String value1, String value2) {
+            addCriterion("SVC_SPECIALIZE between", value1, value2, "svcSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyNotBetween(String value1, String value2) {
-            addCriterion("SPECIALTY not between", value1, value2, "specialty");
+        public Criteria andSvcSpecializeNotBetween(String value1, String value2) {
+            addCriterion("SVC_SPECIALIZE not between", value1, value2, "svcSpecialize");
             return (Criteria) this;
         }
 
@@ -775,23 +809,23 @@ public class ServiceExample {
             return (Criteria) this;
         }
 
-        public Criteria andTitleLikeInsensitive(String value) {
-            addCriterion("upper(TITLE) like", value.toUpperCase(), "title");
+        public Criteria andSvcTitleLikeInsensitive(String value) {
+            addCriterion("upper(SVC_TITLE) like", value.toUpperCase(), "svcTitle");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLikeInsensitive(String value) {
-            addCriterion("upper(DESCRIPTION) like", value.toUpperCase(), "description");
+        public Criteria andSvcDescriptionLikeInsensitive(String value) {
+            addCriterion("upper(SVC_DESCRIPTION) like", value.toUpperCase(), "svcDescription");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryLikeInsensitive(String value) {
-            addCriterion("upper(CATEGORY) like", value.toUpperCase(), "category");
+        public Criteria andSvcCategoryLikeInsensitive(String value) {
+            addCriterion("upper(SVC_CATEGORY) like", value.toUpperCase(), "svcCategory");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyLikeInsensitive(String value) {
-            addCriterion("upper(SPECIALTY) like", value.toUpperCase(), "specialty");
+        public Criteria andSvcSpecializeLikeInsensitive(String value) {
+            addCriterion("upper(SVC_SPECIALIZE) like", value.toUpperCase(), "svcSpecialize");
             return (Criteria) this;
         }
     }

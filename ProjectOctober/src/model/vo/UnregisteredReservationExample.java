@@ -1,17 +1,16 @@
 package model.vo;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentRecordExample {
+public class UnregisteredReservationExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public PaymentRecordExample() {
+    public UnregisteredReservationExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -65,50 +64,19 @@ public class PaymentRecordExample {
     }
 
     protected abstract static class GeneratedCriteria {
-        protected List<Criterion> pmtTimeCriteria;
-
-        protected List<Criterion> allCriteria;
-
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
-            pmtTimeCriteria = new ArrayList<Criterion>();
-        }
-
-        public List<Criterion> getPmtTimeCriteria() {
-            return pmtTimeCriteria;
-        }
-
-        protected void addPmtTimeCriterion(String condition, Object value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            pmtTimeCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
-            allCriteria = null;
-        }
-
-        protected void addPmtTimeCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            pmtTimeCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
-            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0
-                || pmtTimeCriteria.size() > 0;
+            return criteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            if (allCriteria == null) {
-                allCriteria = new ArrayList<Criterion>();
-                allCriteria.addAll(criteria);
-                allCriteria.addAll(pmtTimeCriteria);
-            }
-            return allCriteria;
+            return criteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -120,7 +88,6 @@ public class PaymentRecordExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
-            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -128,7 +95,6 @@ public class PaymentRecordExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
-            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -136,66 +102,65 @@ public class PaymentRecordExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-            allCriteria = null;
         }
 
-        public Criteria andPmtNumIsNull() {
-            addCriterion("PMT_NUM is null");
+        public Criteria andUrgRsvNumIsNull() {
+            addCriterion("URG_RSV_NUM is null");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumIsNotNull() {
-            addCriterion("PMT_NUM is not null");
+        public Criteria andUrgRsvNumIsNotNull() {
+            addCriterion("URG_RSV_NUM is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumEqualTo(Integer value) {
-            addCriterion("PMT_NUM =", value, "pmtNum");
+        public Criteria andUrgRsvNumEqualTo(Integer value) {
+            addCriterion("URG_RSV_NUM =", value, "urgRsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumNotEqualTo(Integer value) {
-            addCriterion("PMT_NUM <>", value, "pmtNum");
+        public Criteria andUrgRsvNumNotEqualTo(Integer value) {
+            addCriterion("URG_RSV_NUM <>", value, "urgRsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumGreaterThan(Integer value) {
-            addCriterion("PMT_NUM >", value, "pmtNum");
+        public Criteria andUrgRsvNumGreaterThan(Integer value) {
+            addCriterion("URG_RSV_NUM >", value, "urgRsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumGreaterThanOrEqualTo(Integer value) {
-            addCriterion("PMT_NUM >=", value, "pmtNum");
+        public Criteria andUrgRsvNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("URG_RSV_NUM >=", value, "urgRsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumLessThan(Integer value) {
-            addCriterion("PMT_NUM <", value, "pmtNum");
+        public Criteria andUrgRsvNumLessThan(Integer value) {
+            addCriterion("URG_RSV_NUM <", value, "urgRsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumLessThanOrEqualTo(Integer value) {
-            addCriterion("PMT_NUM <=", value, "pmtNum");
+        public Criteria andUrgRsvNumLessThanOrEqualTo(Integer value) {
+            addCriterion("URG_RSV_NUM <=", value, "urgRsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumIn(List<Integer> values) {
-            addCriterion("PMT_NUM in", values, "pmtNum");
+        public Criteria andUrgRsvNumIn(List<Integer> values) {
+            addCriterion("URG_RSV_NUM in", values, "urgRsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumNotIn(List<Integer> values) {
-            addCriterion("PMT_NUM not in", values, "pmtNum");
+        public Criteria andUrgRsvNumNotIn(List<Integer> values) {
+            addCriterion("URG_RSV_NUM not in", values, "urgRsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumBetween(Integer value1, Integer value2) {
-            addCriterion("PMT_NUM between", value1, value2, "pmtNum");
+        public Criteria andUrgRsvNumBetween(Integer value1, Integer value2) {
+            addCriterion("URG_RSV_NUM between", value1, value2, "urgRsvNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtNumNotBetween(Integer value1, Integer value2) {
-            addCriterion("PMT_NUM not between", value1, value2, "pmtNum");
+        public Criteria andUrgRsvNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("URG_RSV_NUM not between", value1, value2, "urgRsvNum");
             return (Criteria) this;
         }
 
@@ -259,123 +224,138 @@ public class PaymentRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeIsNull() {
-            addCriterion("PMT_TIME is null");
+        public Criteria andUrgNumIsNull() {
+            addCriterion("URG_NUM is null");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeIsNotNull() {
-            addCriterion("PMT_TIME is not null");
+        public Criteria andUrgNumIsNotNull() {
+            addCriterion("URG_NUM is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeEqualTo(LocalDateTime value) {
-            addPmtTimeCriterion("PMT_TIME =", value, "pmtTime");
+        public Criteria andUrgNumEqualTo(Integer value) {
+            addCriterion("URG_NUM =", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeNotEqualTo(LocalDateTime value) {
-            addPmtTimeCriterion("PMT_TIME <>", value, "pmtTime");
+        public Criteria andUrgNumNotEqualTo(Integer value) {
+            addCriterion("URG_NUM <>", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeGreaterThan(LocalDateTime value) {
-            addPmtTimeCriterion("PMT_TIME >", value, "pmtTime");
+        public Criteria andUrgNumGreaterThan(Integer value) {
+            addCriterion("URG_NUM >", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeGreaterThanOrEqualTo(LocalDateTime value) {
-            addPmtTimeCriterion("PMT_TIME >=", value, "pmtTime");
+        public Criteria andUrgNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("URG_NUM >=", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeLessThan(LocalDateTime value) {
-            addPmtTimeCriterion("PMT_TIME <", value, "pmtTime");
+        public Criteria andUrgNumLessThan(Integer value) {
+            addCriterion("URG_NUM <", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeLessThanOrEqualTo(LocalDateTime value) {
-            addPmtTimeCriterion("PMT_TIME <=", value, "pmtTime");
+        public Criteria andUrgNumLessThanOrEqualTo(Integer value) {
+            addCriterion("URG_NUM <=", value, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeIn(List<LocalDateTime> values) {
-            addPmtTimeCriterion("PMT_TIME in", values, "pmtTime");
+        public Criteria andUrgNumIn(List<Integer> values) {
+            addCriterion("URG_NUM in", values, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeNotIn(List<LocalDateTime> values) {
-            addPmtTimeCriterion("PMT_TIME not in", values, "pmtTime");
+        public Criteria andUrgNumNotIn(List<Integer> values) {
+            addCriterion("URG_NUM not in", values, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeBetween(LocalDateTime value1, LocalDateTime value2) {
-            addPmtTimeCriterion("PMT_TIME between", value1, value2, "pmtTime");
+        public Criteria andUrgNumBetween(Integer value1, Integer value2) {
+            addCriterion("URG_NUM between", value1, value2, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addPmtTimeCriterion("PMT_TIME not between", value1, value2, "pmtTime");
+        public Criteria andUrgNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("URG_NUM not between", value1, value2, "urgNum");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountIsNull() {
-            addCriterion("PMT_AMOUNT is null");
+        public Criteria andUrgRsvPasswordIsNull() {
+            addCriterion("URG_RSV_PASSWORD is null");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountIsNotNull() {
-            addCriterion("PMT_AMOUNT is not null");
+        public Criteria andUrgRsvPasswordIsNotNull() {
+            addCriterion("URG_RSV_PASSWORD is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountEqualTo(Integer value) {
-            addCriterion("PMT_AMOUNT =", value, "pmtAmount");
+        public Criteria andUrgRsvPasswordEqualTo(String value) {
+            addCriterion("URG_RSV_PASSWORD =", value, "urgRsvPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountNotEqualTo(Integer value) {
-            addCriterion("PMT_AMOUNT <>", value, "pmtAmount");
+        public Criteria andUrgRsvPasswordNotEqualTo(String value) {
+            addCriterion("URG_RSV_PASSWORD <>", value, "urgRsvPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountGreaterThan(Integer value) {
-            addCriterion("PMT_AMOUNT >", value, "pmtAmount");
+        public Criteria andUrgRsvPasswordGreaterThan(String value) {
+            addCriterion("URG_RSV_PASSWORD >", value, "urgRsvPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("PMT_AMOUNT >=", value, "pmtAmount");
+        public Criteria andUrgRsvPasswordGreaterThanOrEqualTo(String value) {
+            addCriterion("URG_RSV_PASSWORD >=", value, "urgRsvPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountLessThan(Integer value) {
-            addCriterion("PMT_AMOUNT <", value, "pmtAmount");
+        public Criteria andUrgRsvPasswordLessThan(String value) {
+            addCriterion("URG_RSV_PASSWORD <", value, "urgRsvPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountLessThanOrEqualTo(Integer value) {
-            addCriterion("PMT_AMOUNT <=", value, "pmtAmount");
+        public Criteria andUrgRsvPasswordLessThanOrEqualTo(String value) {
+            addCriterion("URG_RSV_PASSWORD <=", value, "urgRsvPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountIn(List<Integer> values) {
-            addCriterion("PMT_AMOUNT in", values, "pmtAmount");
+        public Criteria andUrgRsvPasswordLike(String value) {
+            addCriterion("URG_RSV_PASSWORD like", value, "urgRsvPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountNotIn(List<Integer> values) {
-            addCriterion("PMT_AMOUNT not in", values, "pmtAmount");
+        public Criteria andUrgRsvPasswordNotLike(String value) {
+            addCriterion("URG_RSV_PASSWORD not like", value, "urgRsvPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountBetween(Integer value1, Integer value2) {
-            addCriterion("PMT_AMOUNT between", value1, value2, "pmtAmount");
+        public Criteria andUrgRsvPasswordIn(List<String> values) {
+            addCriterion("URG_RSV_PASSWORD in", values, "urgRsvPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPmtAmountNotBetween(Integer value1, Integer value2) {
-            addCriterion("PMT_AMOUNT not between", value1, value2, "pmtAmount");
+        public Criteria andUrgRsvPasswordNotIn(List<String> values) {
+            addCriterion("URG_RSV_PASSWORD not in", values, "urgRsvPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgRsvPasswordBetween(String value1, String value2) {
+            addCriterion("URG_RSV_PASSWORD between", value1, value2, "urgRsvPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgRsvPasswordNotBetween(String value1, String value2) {
+            addCriterion("URG_RSV_PASSWORD not between", value1, value2, "urgRsvPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgRsvPasswordLikeInsensitive(String value) {
+            addCriterion("upper(URG_RSV_PASSWORD) like", value.toUpperCase(), "urgRsvPassword");
             return (Criteria) this;
         }
     }

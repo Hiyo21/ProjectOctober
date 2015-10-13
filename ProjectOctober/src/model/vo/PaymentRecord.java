@@ -1,15 +1,18 @@
 package model.vo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class PaymentRecord {
+public class PaymentRecord implements Serializable {
     private Integer pmtNum;
 
     private Integer rsvNum;
 
-    private LocalDateTime time;
+    private LocalDateTime pmtTime;
 
-    private Integer amount;
+    private Integer pmtAmount;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getPmtNum() {
         return pmtNum;
@@ -27,20 +30,20 @@ public class PaymentRecord {
         this.rsvNum = rsvNum;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public LocalDateTime getPmtTime() {
+        return pmtTime;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void setPmtTime(LocalDateTime pmtTime) {
+        this.pmtTime = pmtTime;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer getPmtAmount() {
+        return pmtAmount;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setPmtAmount(Integer pmtAmount) {
+        this.pmtAmount = pmtAmount;
     }
 
     @Override
@@ -51,8 +54,8 @@ public class PaymentRecord {
         sb.append("Hash = ").append(hashCode());
         sb.append(", pmtNum=").append(pmtNum);
         sb.append(", rsvNum=").append(rsvNum);
-        sb.append(", time=").append(time);
-        sb.append(", amount=").append(amount);
+        sb.append(", pmtTime=").append(pmtTime);
+        sb.append(", pmtAmount=").append(pmtAmount);
         sb.append("]");
         return sb.toString();
     }

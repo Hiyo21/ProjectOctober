@@ -1,39 +1,25 @@
 package model.vo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Reservation {
-	private Integer id;
-	private String title;
-	private boolean allDay;
-	private LocalDateTime start;
-	private LocalDateTime end;
-	private String url;
-	private String color;
-	private String bordercolor;
-	private String textcolor;
-	
+public class Reservation implements Serializable {
     private Integer rsvNum;
-
     private Integer svcNum;
-
     private Integer cpnNum;
-
     private String etpNum;
-
     private String etpEmail;
-
     private String cstEmail;
-
-    private LocalDateTime startDate;
-
-    private LocalDateTime endDate;
-
-    private Integer status;
-
+    private LocalDateTime rsvStartDate;
+    private LocalDateTime rsvEndDate;
+    private Integer rsvStatus;
     private char employeeGender;
-    
-    
+    private String rsvTitle;
+    private String start;
+    private String end;
+    private String bordercolor;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getRsvNum() {
         return rsvNum;
@@ -83,28 +69,28 @@ public class Reservation {
         this.cstEmail = cstEmail;
     }
 
-    public LocalDateTime getStartDate() {
-        return startDate;
+    public LocalDateTime getRsvStartDate() {
+        return rsvStartDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
+    public void setRsvStartDate(LocalDateTime rsvStartDate) {
+        this.rsvStartDate = rsvStartDate;
     }
 
-    public LocalDateTime getEndDate() {
-        return endDate;
+    public LocalDateTime getRsvEndDate() {
+        return rsvEndDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
+    public void setRsvEndDate(LocalDateTime rsvEndDate) {
+        this.rsvEndDate = rsvEndDate;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getRsvStatus() {
+        return rsvStatus;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setRsvStatus(Integer rsvStatus) {
+        this.rsvStatus = rsvStatus;
     }
 
     public char getEmployeeGender() {
@@ -115,89 +101,56 @@ public class Reservation {
         this.employeeGender = employeeGender;
     }
 
-	public Integer getId() {
-		return id;
-	}
+    public String getRsvTitle() {
+        return rsvTitle;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setRsvTitle(String rsvTitle) {
+        this.rsvTitle = rsvTitle;
+    }
 
-	public boolean isAllDay() {
-		return allDay;
-	}
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", rsvNum=").append(rsvNum);
+        sb.append(", svcNum=").append(svcNum);
+        sb.append(", cpnNum=").append(cpnNum);
+        sb.append(", etpNum=").append(etpNum);
+        sb.append(", etpEmail=").append(etpEmail);
+        sb.append(", cstEmail=").append(cstEmail);
+        sb.append(", rsvStartDate=").append(rsvStartDate);
+        sb.append(", rsvEndDate=").append(rsvEndDate);
+        sb.append(", rsvStatus=").append(rsvStatus);
+        sb.append(", employeeGender=").append(employeeGender);
+        sb.append(", rsvTitle=").append(rsvTitle);
+        sb.append("]");
+        return sb.toString();
+    }
 
-	public LocalDateTime getStart() {
+	public String getStart() {
 		return start;
 	}
 
-	public LocalDateTime getEnd() {
+	public String getEnd() {
 		return end;
 	}
 
-	public String getUrl() {
-		return url;
+	public void setStart(String start) {
+		this.start = start;
 	}
 
-	public String getColor() {
-		return color;
+	public void setEnd(String end) {
+		this.end = end;
 	}
 
 	public String getBordercolor() {
 		return bordercolor;
 	}
 
-	public String getTextcolor() {
-		return textcolor;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public void setAllDay(boolean allDay) {
-		this.allDay = allDay;
-	}
-
-	public void setStart(LocalDateTime start) {
-		this.start = start;
-	}
-
-	public void setEnd(LocalDateTime end) {
-		this.end = end;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
 	public void setBordercolor(String bordercolor) {
 		this.bordercolor = bordercolor;
-	}
-
-	public void setTextcolor(String textcolor) {
-		this.textcolor = textcolor;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Reservation [id=").append(id).append(", title=").append(title).append(", allDay=")
-				.append(allDay).append(", start=").append(start).append(", end=").append(end).append(", url=")
-				.append(url).append(", color=").append(color).append(", bordercolor=").append(bordercolor)
-				.append(", textcolor=").append(textcolor).append(", rsvNum=").append(rsvNum).append(", svcNum=")
-				.append(svcNum).append(", cpnNum=").append(cpnNum).append(", etpNum=").append(etpNum)
-				.append(", etpEmail=").append(etpEmail).append(", cstEmail=").append(cstEmail).append(", startDate=")
-				.append(startDate).append(", endDate=").append(endDate).append(", status=").append(status)
-				.append(", employeeGender=").append(employeeGender).append("]");
-		return builder.toString();
 	}
 }

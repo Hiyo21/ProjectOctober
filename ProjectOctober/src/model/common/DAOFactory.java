@@ -1,6 +1,16 @@
-package model.dao;
+package model.common;
+
+import model.dao.AdminDAO;
+import model.dao.CustomerDAO;
+import model.dao.EnterpriseDAO;
+import model.dao.MemberDAO;
+import model.dao.SearchDAO;
 
 public class DAOFactory {
+	public static AdminDAO createAdminDAO(){
+		return new AdminDAO();
+	}
+	
 	public static MemberDAO createMemberDAO(){
 		return new MemberDAO();
 	}
@@ -15,9 +25,5 @@ public class DAOFactory {
 	
 	public static SearchDAO createSearchDAO(){
 		return new SearchDAO();
-	}
-	
-	public static AdminDAO createAdminDAO(){
-		return new AdminDAO();
 	}
 }
