@@ -3,6 +3,16 @@ package model.vo;
 import java.time.LocalDateTime;
 
 public class Reservation {
+	private Integer id;
+	private String title;
+	private boolean allDay;
+	private LocalDateTime start;
+	private LocalDateTime end;
+	private String url;
+	private String color;
+	private String bordercolor;
+	private String textcolor;
+	
     private Integer rsvNum;
 
     private Integer svcNum;
@@ -22,6 +32,8 @@ public class Reservation {
     private Integer status;
 
     private char employeeGender;
+    
+    
 
     public Integer getRsvNum() {
         return rsvNum;
@@ -103,23 +115,89 @@ public class Reservation {
         this.employeeGender = employeeGender;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", rsvNum=").append(rsvNum);
-        sb.append(", svcNum=").append(svcNum);
-        sb.append(", cpnNum=").append(cpnNum);
-        sb.append(", etpNum=").append(etpNum);
-        sb.append(", etpEmail=").append(etpEmail);
-        sb.append(", cstEmail=").append(cstEmail);
-        sb.append(", startDate=").append(startDate);
-        sb.append(", endDate=").append(endDate);
-        sb.append(", status=").append(status);
-        sb.append(", employeeGender=").append(employeeGender);
-        sb.append("]");
-        return sb.toString();
-    }
+	public Integer getId() {
+		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public boolean isAllDay() {
+		return allDay;
+	}
+
+	public LocalDateTime getStart() {
+		return start;
+	}
+
+	public LocalDateTime getEnd() {
+		return end;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public String getBordercolor() {
+		return bordercolor;
+	}
+
+	public String getTextcolor() {
+		return textcolor;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setAllDay(boolean allDay) {
+		this.allDay = allDay;
+	}
+
+	public void setStart(LocalDateTime start) {
+		this.start = start;
+	}
+
+	public void setEnd(LocalDateTime end) {
+		this.end = end;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public void setBordercolor(String bordercolor) {
+		this.bordercolor = bordercolor;
+	}
+
+	public void setTextcolor(String textcolor) {
+		this.textcolor = textcolor;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Reservation [id=").append(id).append(", title=").append(title).append(", allDay=")
+				.append(allDay).append(", start=").append(start).append(", end=").append(end).append(", url=")
+				.append(url).append(", color=").append(color).append(", bordercolor=").append(bordercolor)
+				.append(", textcolor=").append(textcolor).append(", rsvNum=").append(rsvNum).append(", svcNum=")
+				.append(svcNum).append(", cpnNum=").append(cpnNum).append(", etpNum=").append(etpNum)
+				.append(", etpEmail=").append(etpEmail).append(", cstEmail=").append(cstEmail).append(", startDate=")
+				.append(startDate).append(", endDate=").append(endDate).append(", status=").append(status)
+				.append(", employeeGender=").append(employeeGender).append("]");
+		return builder.toString();
+	}
 }

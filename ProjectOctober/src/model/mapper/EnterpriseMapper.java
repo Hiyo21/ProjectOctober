@@ -3,6 +3,8 @@ package model.mapper;
 import java.util.List;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
+import model.vo.Reservation;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
@@ -30,4 +32,6 @@ public interface EnterpriseMapper {
     int updateByPrimaryKeySelective(Enterprise record);
 
     int updateByPrimaryKey(Enterprise record);
+    
+    List<Reservation> retrieveEvents();
 }
