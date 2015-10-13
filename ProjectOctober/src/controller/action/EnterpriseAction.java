@@ -26,7 +26,7 @@ public class EnterpriseAction extends ActionSupport {
 	}
 	
 	public String retrieveEvents() throws Exception{
-		System.out.println('t');
+		System.out.println("123");
 		etpDAO = new EnterpriseDAO();
 		reservationList = etpDAO.retrieveEvents();
 		System.out.println(2);
