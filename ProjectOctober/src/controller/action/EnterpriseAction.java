@@ -26,7 +26,8 @@ public class EnterpriseAction extends ActionSupport {
 	}
 	
 	public String retrieveEvents() throws Exception{
-		System.out.println(1);
+		System.out.println('t');
+		etpDAO = new EnterpriseDAO();
 		reservationList = etpDAO.retrieveEvents();
 		System.out.println(2);
 		return SUCCESS;
@@ -47,7 +48,6 @@ public class EnterpriseAction extends ActionSupport {
 	public void setReservationList(List<Reservation> reservationList) {
 		this.reservationList = reservationList;
 	}
-	
-	
+
 	
 }

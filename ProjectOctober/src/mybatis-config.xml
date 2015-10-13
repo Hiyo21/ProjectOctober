@@ -58,7 +58,7 @@
 	<mappers>
 		<mapper resource="model/mapper/ComponentMapper.xml" />
 		<mapper resource="model/mapper/CouponMapper.xml" />
-		<mapper resource="model/mapper/CustomerMApper.xml" />
+		<mapper resource="model/mapper/CustomerMapper.xml" />
 		<mapper resource="model/mapper/EnterpriseMapper.xml" />
 		<mapper resource="model/mapper/EnterpriseWaitlistMapper.xml" />
 		<mapper resource="model/mapper/HolidayMapper.xml" />

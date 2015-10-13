@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import model.common.MyBatisSqlSessionFactory;
+import model.mapper.ReservationMapper;
 import model.vo.Reservation;
 
 public class EnterpriseDAO {
@@ -12,8 +13,8 @@ public class EnterpriseDAO {
 	public List<Reservation> retrieveEvents(){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			System.out.println(1);
-			return session.selectList("model.mapper.ReservationMapper.retrieveEvents"); 
+			System.out.println('t');
+			return session.getMapper(ReservationMapper.class).retrieveEvents(); 
 		}finally{
 			session.close();
 		}
