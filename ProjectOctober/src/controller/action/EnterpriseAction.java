@@ -21,16 +21,15 @@ public class EnterpriseAction extends ActionSupport {
 		etpDAO = DAOFactory.createEnterpriseDAO();
 	}
 	
-	public String insertEvents() throws Exception{
+	public String insertReservation() throws Exception{
 		int result = etpDAO.insertEvent(enterprise);
 		if(result != 0) return SUCCESS;
 		else return ERROR;
 	}
 	
-	public String retrieveEvents() throws Exception{
-		System.out.println(1);
-		enterprise = etpDAO.retrieveEnterpriseEvents();
-		System.out.println(enterprise == null);
+	public String retrieveReservations() throws Exception{
+		enterprise = etpDAO.retrieveEnterpriseReservations();
+		System.out.println(enterprise);
 		if (enterprise != null) {
 			List<Reservation> resList = enterprise.getReservations();
 			System.out.println(resList.size());

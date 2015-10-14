@@ -18,7 +18,7 @@
   </resultMap>
   
     <!-- Reservation ResultMap -->
-   <resultMap id="ReservationResultMap" type="model.vo.Reservation" >
+   <resultMap id="ReservationResultMapForCustomer" type="model.vo.Reservation" >
     <id column="RSV_NUM" property="rsvNum" jdbcType="DECIMAL" />
     <result column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
     <result column="CPN_NUM" property="cpnNum" jdbcType="DECIMAL" />
@@ -33,7 +33,7 @@
   </resultMap>
   
   <!-- Review ResultMap -->
-    <resultMap id="ReviewResultMap" type="model.vo.Review" >
+    <resultMap id="ReviewResultMapForCustomer" type="model.vo.Review" >
     <id column="RVW_NUM" property="rvwNum" jdbcType="DECIMAL" />
     <result column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
@@ -50,7 +50,7 @@
   </resultMap>
   
     <!--  NotificationResultMap -->
-   <resultMap id="NotificationResultMap" type="model.vo.Notification" >
+   <resultMap id="NotificationResultMapForCustomer" type="model.vo.Notification" >
     <id column="NTF_NUM" property="ntfNum" jdbcType="DECIMAL" />
     <result column="RSV_NUM" property="rsvNum" jdbcType="DECIMAL" />
     <result column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
@@ -70,9 +70,9 @@
     <result column="CST_ONECLICK" property="cstOneclick" jdbcType="DECIMAL" />
     
     <collection property="oneclickPayments" ofType="OneclickPayment" resultMap="OneclickPaymentResultMap" />
-    <collection property="reservations" ofType="Reservation" resultMap="ReservationResultMap" />
-    <collection property="notifications" ofType="Notification" resultMap="NotificationResultMap" />
-    <collection property="reviews" ofType="Review" resultMap="ReviewResultMap" />
+    <collection property="reservations" ofType="Reservation" resultMap="ReservationResultMapForCustomer" />
+    <collection property="notifications" ofType="Notification" resultMap="NotificationResultMapForCustomer" />
+    <collection property="reviews" ofType="Review" resultMap="ReviewResultMapForCustomer" />
      <collection property="paymentRecords" ofType="PaymentRecord" resultMap="PaymentRecordResultMap" />
   </resultMap>
   

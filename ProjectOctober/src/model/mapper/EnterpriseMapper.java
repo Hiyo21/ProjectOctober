@@ -30,4 +30,7 @@ public interface EnterpriseMapper {
     int updateByPrimaryKeySelective(Enterprise record);
 
     int updateByPrimaryKey(Enterprise record);
+    
+    Enterprise retrieveEnterpriseReservations();
+    
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.MemberMapper" >
  
-   <resultMap id="CustomerResultMap" type="model.vo.Customer" >
+   <resultMap id="CustomerResultMapForMember" type="model.vo.Customer" >
     <id column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
     <result column="CST_ADDRESS" property="cstAddress" jdbcType="VARCHAR" />
     <result column="CST_ZIPCODE" property="cstZipcode" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
   </resultMap>
   
   
-   <resultMap id="EnterpriseResultMap" type="model.vo.Enterprise">
+   <resultMap id="EnterpriseResultMapForMember" type="model.vo.Enterprise">
     <id column="ETP_NUM" jdbcType="VARCHAR" property="etpNum" />
     <id column="ETP_EMAIL" jdbcType="VARCHAR" property="etpEmail" />
     <result column="ETP_OWNER" jdbcType="VARCHAR" property="etpOwner" />
@@ -47,8 +47,8 @@
     <result column="MEM_PHONE" property="memPhone" jdbcType="VARCHAR" />
     <result column="MEM_JOINED_DATE" property="memJoinedDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
     
-    <collection property="enterprises" ofType="Enterprise" resultMap="EnterpriseResultMap" />
-    <collection property="customers" ofType="Customer" resultMap="CustomerResultMap" />
+    <collection property="enterprises" ofType="Enterprise" resultMap="EnterpriseResultMapForMember" />
+    <collection property="customers" ofType="Customer" resultMap="CustomerResultMapForMember" />
   </resultMap>
   
   <resultMap id="MemberCodeResultMap" type="model.vo.MemberCode" >

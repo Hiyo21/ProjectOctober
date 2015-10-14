@@ -78,7 +78,7 @@
 			selectHelper: true,
 			eventSources: function(start, end, timezone, callback){
 				$.ajax({
-					url: '${pageContext.request.contextPath}/enterprise/retrieveEvents.action',
+					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
 					type: 'GET',
 					dataType: 'json',
 					success: function(doc){

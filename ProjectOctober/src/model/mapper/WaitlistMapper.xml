@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.WaitlistMapper" >
-  <resultMap id="BaseResultMap" type="model.vo.Waitlist" >
+  <resultMap id="WaitlistResultMap" type="model.vo.Waitlist" >
     <id column="WTL_NUM" property="wtlNum" jdbcType="DECIMAL" />
     <result column="WTL_ETP_NUM" property="wtlEtpNum" jdbcType="VARCHAR" />
     <result column="WTL_WAITING" property="wtlWaiting" jdbcType="DECIMAL" />
@@ -107,7 +107,7 @@
   <sql id="Base_Column_List" >
     WTL_NUM, WTL_ETP_NUM, WTL_WAITING, WTL_APPLY_TIME, WTL_REG_CARD
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.WaitlistExample" >
+  <select id="selectByExample" resultMap="WaitlistResultMap" parameterType="model.vo.WaitlistExample" >
     select
     <if test="distinct" >
       distinct
@@ -121,7 +121,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+  <select id="selectByPrimaryKey" resultMap="WaitlistResultMap" parameterType="java.lang.Short" >
     select 
     <include refid="Base_Column_List" />
     from HR.WAITLIST
@@ -249,7 +249,7 @@
     where WTL_NUM = #{wtlNum,jdbcType=DECIMAL}
   </update>
   <cache />
-  <select resultMap="BaseResultMap" parameterType="model.vo.WaitlistExample" id="selectByExampleWithRowbounds" >
+  <select resultMap="WaitlistResultMap" parameterType="model.vo.WaitlistExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
       distinct

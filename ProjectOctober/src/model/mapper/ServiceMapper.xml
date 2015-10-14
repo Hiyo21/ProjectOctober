@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.ServiceMapper" >
-  <resultMap id="BaseResultMap" type="model.vo.Service" >
+  <resultMap id="ServiceResultMap" type="model.vo.Service" >
     <id column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
@@ -113,7 +113,7 @@
     SVC_NUM, ETP_NUM, ETP_EMAIL, SVC_TITLE, SVC_COST, SVC_TIME, SVC_DESCRIPTION, SVC_CATEGORY, 
     SVC_SPECIALIZE, SVC_COUNT
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.ServiceExample" >
+  <select id="selectByExample" resultMap="ServiceResultMap" parameterType="model.vo.ServiceExample" >
     select
     <if test="distinct" >
       distinct
@@ -127,7 +127,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+  <select id="selectByPrimaryKey" resultMap="ServiceResultMap" parameterType="java.lang.Short" >
     select 
     <include refid="Base_Column_List" />
     from HR.SERVICE
@@ -327,7 +327,7 @@
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </update>
   <cache />
-  <select resultMap="BaseResultMap" parameterType="model.vo.ServiceExample" id="selectByExampleWithRowbounds" >
+  <select resultMap="ServiceResultMap" parameterType="model.vo.ServiceExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
       distinct
