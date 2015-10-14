@@ -79,4 +79,4 @@ local.properties
 .texlipse
 
 #JRebel config file
-＋rebel.xml
+ProjectOctober/src/rebel.xml
