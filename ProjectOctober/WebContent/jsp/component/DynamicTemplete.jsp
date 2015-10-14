@@ -18,13 +18,23 @@
 
 <style>
 	
-	.grid-stack-item{
+	.grid-stack-item-content{
 		border-style: dotted;
 		border-width: 1px;
 	}
-
+	
+	.delBT{
+		position: absolute;
+	}
+			
+	#page {
+		background-color: white;
+		border-style: solid;
+		border-color: green;
+		padding: 20px;
+	}
+	
 </style>
-
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -36,17 +46,38 @@
 
 <script>
 $(function () {
+	
     var options = {
         cell_height: 80,
         vertical_margin: 10
     };
     $('.grid-stack').gridstack({
+    	always_show_resize_handle : false,
     	placeholder_class : 'grid-stack-placeholder',
     	resizable: {
             handles: 'e, se, s, sw, w'
         }
     });
+   
 });
+
+
+function remove_widget(item){
+	alert(item);
+	
+	var grid = $('.grid-stack').data('gridstack');
+	grid.remove_widget(item, true);
+};
+
+function makeDelBt(item){
+	$(item).find('.delBT')
+	.html('<img src="https://cdn3.iconfinder.com/data/icons/iconic-1/32/x_alt-16.png">');
+}
+
+function removeDelBt(item){
+	$(item).find('.delBT').html('');
+}
+
 </script>
 
 
@@ -55,71 +86,126 @@ $(function () {
 
 <s:include value="../Header.jsp"/>
 
-<div class="grid-stack">
-    <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="6" data-gs-height="2">
-		<div class="grid-stack-item-content">
-			<h1>haha</h1>
-			<s:include value="./StaticTop.jsp"/>
-		</div>
-    </div>
-    <div class="grid-stack-item" data-gs-x="6" data-gs-y="0" data-gs-width="2" data-gs-height="2">
-		<div class="grid-stack-item-content">
-			<a href=""><label role="button" class="btn btn-default btn-lg" id="phoneBT" style="width: 250px;">전화 예약(000-0000-0000)</label></a>
-  			<a href=""><label role="button" class="btn btn-success btn-lg" id="rsvBT" style="width: 250px;">예약 하기</label></a>
-		</div>
-    </div>
-    <div class="grid-stack-item" data-gs-x="8" data-gs-y="0" data-gs-width="4" data-gs-height="2">
-		<div class="grid-stack-item-content">
-			<s:include value="./InfoComponent.jsp"/>
-		</div>
-    </div>
-    <div class="grid-stack-item" data-gs-x="0" data-gs-y="2" data-gs-width="6" data-gs-height="4">
-		<div class="grid-stack-item-content">
-			<s:include value="./SvcComponent.jsp"/>
-		</div>
-    </div>
-    <div class="grid-stack-item" data-gs-x="6" data-gs-y="2" data-gs-width="4" data-gs-height="4">
-		<div class="grid-stack-item-content">
-			<s:include value="./GalleryComponent.jsp"/>
-		</div>
-    </div>
-    <div class="grid-stack-item" data-gs-x="0" data-gs-y="6" data-gs-width="4" data-gs-height="4">
-		<div class="grid-stack-item-content">
-			<s:include value="./LocationComponent.jsp"/>
-		</div>
-    </div>
-    <div class="grid-stack-item" data-gs-x="4" data-gs-y="6" data-gs-width="4" data-gs-height="4">
-		<div class="grid-stack-item-content">
-			<s:include value="./ReviewComponent.jsp"/>
-		</div>
-    </div>
-    
-</div>
+<div class="container" id="page">
 
-<%-- <div class="container" id="pageWrapper">
-	<div id='top' class='cp'>
-		<s:include value="./StaticTop.jsp"/>
+	<div class="grid-stack">
+			<!-- 상단 컴포넌트 -->
+		    <div class="grid-stack-item" id='topCP'
+		    data-gs-x="1" data-gs-y="0" data-gs-width="10" data-gs-height="2"
+		    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
+		    	<!-- 삭제버튼  -->
+		    	<a onclick="remove_widget(topCP)">
+		    		<span class="delBT"></span>
+		   		</a>
+		   		
+				<div class="grid-stack-item-content">				
+					<s:include value="./StaticTop.jsp"/>
+				</div>
+				
+		    </div>
+	   		
+	   		<!-- 사업자 전용 버튼 -->
+		    <div class="grid-stack-item" id="etpBtBar"  
+		    data-gs-x="1" data-gs-y="3" data-gs-width="4" data-gs-height="1"
+		    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
+		    	<!-- 삭제버튼  -->
+	    		<a href='javascript:remove_widget(etpBtBar)'>
+					<span class="delBT"></span>
+				</a>
+		    
+				<div class="grid-stack-item-content">
+					<s:include value="./EtpBT.jsp"/>
+				</div>
+		    </div>
+		    
+		    <!-- 예약 버튼 -->
+		    <div class="grid-stack-item" id="rsvBt"
+		    data-gs-x="5" data-gs-y="3" data-gs-width="6" data-gs-height="1"
+		    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
+		    	<!-- 삭제버튼  -->
+	    		<a href='javascript:remove_widget(rsvBt)'>
+					<span class="delBT"></span>
+				</a>
+		    
+				<div class="grid-stack-item-content">
+					<a href=""><label role="button" class="btn btn-default btn-lg" id="phoneBT" style="width: 250px;">전화 예약(000-0000-0000)</label></a>
+		  			<a href=""><label role="button" class="btn btn-success btn-lg" id="rsvBT" style="width: 250px;">예약 하기</label></a>
+				</div>
+		    </div>
+	    
+	    
+	    <div class="grid-stack-item" id="infoCP"
+	    data-gs-x="1" data-gs-y="4" data-gs-width="10" data-gs-height="3"
+	    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
+	    	<!-- 삭제버튼  -->
+	    	<a href='javascript:remove_widget(infoCP)'>
+				<span class="delBT"></span>
+			</a>
+	    
+			<div class="grid-stack-item-content">
+				<s:include value="./InfoComponent.jsp"/>
+			</div>
+	    </div>
+	    
+	    
+	    <div class="grid-stack-item"  id="svcCP"
+	    data-gs-x="1" data-gs-y="7" data-gs-width="7" data-gs-height="5"
+	    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
+	    	<!-- 삭제버튼  -->
+    		<a href='javascript:remove_widget(svcCP)'>
+				<span class="delBT"></span>
+			</a>
+	    
+			<div class="grid-stack-item-content">
+				<s:include value="./SvcComponent.jsp"/>
+			</div>
+	    </div>
+	    
+	    
+	    <div class="grid-stack-item" id="galCP"
+	    data-gs-x="8" data-gs-y="7" data-gs-width="3" data-gs-height="5"
+	    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
+	    	<!-- 삭제버튼  -->
+    		<a href='javascript:remove_widget(galCP)'>
+				<span class="delBT"></span>
+			</a>
+	    
+			<div class="grid-stack-item-content">
+				<s:include value="./GalleryComponent.jsp"/>
+			</div>
+	    </div>
+	    
+	    
+	    <div class="grid-stack-item" id="locaCP"
+	    data-gs-x="1" data-gs-y="12" data-gs-width="10" data-gs-height="4"
+	   	onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
+	   		<!-- 삭제버튼  -->
+	    	<a href='javascript:remove_widget(locaCP)'>
+				<span class="delBT"></span>
+			</a>
+	   	
+			<div class="grid-stack-item-content">
+				<s:include value="./LocationComponent.jsp"/>
+			</div>
+	    </div>
+	    
+	    
+	    <div class="grid-stack-item" id="reviewCP"
+	    data-gs-x="1" data-gs-y="17" data-gs-width="10" data-gs-height="4"
+	    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
+	    	<!-- 삭제버튼  -->
+	    	<a href='javascript:remove_widget(reviewCP)'>
+				<span class="delBT"></span>
+			</a>
+	    
+			<div class="grid-stack-item-content">
+				<s:include value="./ReviewComponent.jsp"/>
+			</div>
+	    </div>
+	    
 	</div>
-	<div id='rsvCP' class='cp' draggable="true" style="width: 510px;">
-		<a href=""><label role="button" class="btn btn-default btn-lg" id="phoneBT" style="width: 250px;">전화 예약(000-0000-0000)</label></a>
-  		<a href=""><label role="button" class="btn btn-success btn-lg" id="rsvBT" style="width: 250px;">예약 하기</label></a>
-	</div>
-	<div id='infoCP' class='cp' draggable="true">
-	  <s:include value="./InfoComponent.jsp"/>
-	</div>
-	<div id='svcListCP' class='cp' draggable="true">
-	  <s:include value="./SvcComponent.jsp"/>
-	</div>
-	<div id='galCP' class='cp' draggable="true">
-	  <s:include value="./GalleryComponent.jsp"/>
-	</div>
-	<div id='locationCP' class='cp' draggable="true">
-	  <s:include value="./LocationComponent.jsp"/>
-	</div>
-	<div id='reviewCP' class='cp' draggable="true">
-	  <s:include value="./ReviewComponent.jsp"/>
-	</div>
-</div>  --%>
+
+</div>
 
 </body>
 </html>

@@ -25,7 +25,9 @@
 
 	<div class="container">
 		<!-- page-top -->
-		<s:include value="./StaticTop.jsp"></s:include>
+		<s:include value="./StaticTop.jsp"/>
+		
+		<s:include value="./EtpBT.jsp"/>
 		
 		<div class="buttonBars">
 			<div class="btn-group btn-group-justified" role="group" aria-label="...">
