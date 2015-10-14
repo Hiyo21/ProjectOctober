@@ -26,6 +26,17 @@
 	<div class="container">
 		<!-- page-top -->
 		<s:include value="./StaticTop.jsp"></s:include>
+		
+		<div class="buttonBars">
+			<div class="btn-group btn-group-justified" role="group" aria-label="...">
+				<div class="btn-group" role="group">
+			    	<button type="button" class="btn btn-default btn-lg">전화 예약(000-0000-0000)</button>
+			  	</div>
+			  	<div class="btn-group" role="group">
+			    	<button type="button" class="btn btn-success btn-lg">예약 하기</button>
+			  	</div>
+			</div>
+		</div>
 
 		<!------- 업체 소개 ------->
 		<br>
@@ -36,7 +47,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./InfoComponent.jsp"></s:include>
+				<s:include value="./InfoComponent.jsp"/>
 			</div>	
 				
 			<!------- 서비스 메뉴 ------->
@@ -46,7 +57,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./SvcComponent.jsp"></s:include>
+				<s:include value="./SvcComponent.jsp"/>
 			</div>
 				
 			<!------- 갤러리 메뉴 ------->
@@ -56,7 +67,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./GalleryComponent.jsp"></s:include>
+				<s:include value="./GalleryComponent.jsp"/>
 			</div>
 				
 			<!------- 오시는 길 ------->
@@ -66,7 +77,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./LocationComponent.jsp"></s:include>
+				<s:include value="./LocationComponent.jsp"/>
 			</div>	
 				
 			<!------- 고객 평가 ------->
@@ -76,7 +87,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./ReviewComponent.jsp"></s:include>
+				<s:include value="./ReviewComponent.jsp"/>
 			</div>		
 		</div>
 	</div>

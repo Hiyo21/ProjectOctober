@@ -46,7 +46,18 @@
 	<div class="container">
 	
 		<!-- page-top -->
-		<s:include value="./StaticTop.jsp"></s:include>
+		<s:include value="./StaticTop.jsp"/>
+		
+		<div class="buttonBars">
+			<div class="btn-group btn-group-justified" role="group" aria-label="...">
+				<div class="btn-group" role="group">
+			    	<button type="button" class="btn btn-default btn-lg">전화 예약(000-0000-0000)</button>
+			  	</div>
+			  	<div class="btn-group" role="group">
+			    	<button type="button" class="btn btn-success btn-lg">예약 하기</button>
+			  	</div>
+			</div>
+		</div>
 		
 		<br>	
 		<ul class="nav nav-tabs">
@@ -59,23 +70,23 @@
 		<div class="tab-content">
 			<div id="infoCP" class="tab-pane fade in active">
 				<div class="panel panel-default">
-					<s:include value="./InfoComponent.jsp"></s:include>
+					<s:include value="./InfoComponent.jsp"/>
 				</div>
 			</div>
 			<div id="svcListCP" class="tab-pane fade">
-				<s:include value="./SvcComponent.jsp"></s:include>			
+				<s:include value="./SvcComponent.jsp"/>			
 			</div>
 				<div id="galCP" class="tab-pane fade">
-		 				<s:include value="./GalleryComponent.jsp"></s:include>	
+		 				<s:include value="./GalleryComponent.jsp"/>	
 				</div>
 			<div id="locationCP" class="tab-pane fade">
 				<div class="panel panel-default">
-					<s:include value="./LocationComponent.jsp"></s:include>
+					<s:include value="./LocationComponent.jsp"/>
 				</div>
 			</div>
 			<div id="reviewCP" class="tab-pane fade">
 				<div class="panel panel-default">
-					<s:include value="./ReviewComponent.jsp"></s:include>				
+					<s:include value="./ReviewComponent.jsp"/>				
 				</div>
 			</div>
 		</div>	

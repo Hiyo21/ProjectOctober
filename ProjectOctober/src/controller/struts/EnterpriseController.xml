@@ -3,6 +3,7 @@
 
 <struts>
 	<package name="enterprise" namespace="/enterprise" extends="default">
+
 		<action name="retrieveEvents" class="controller.action.EnterpriseAction" method="retrieveEvents">
 			<result type="json"></result>
 		</action>
@@ -10,5 +11,6 @@
 		<action name="insertEvent" class="controller.action.EnterpriseAction" method="insertEvent">
 			<result type="json"></result>
 		</action>
+
 	</package>
 </struts>

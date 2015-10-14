@@ -9,6 +9,7 @@ import model.dao.EnterpriseDAO;
 import model.vo.Enterprise;
 import model.vo.Reservation;
 
+
 public class EnterpriseAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
