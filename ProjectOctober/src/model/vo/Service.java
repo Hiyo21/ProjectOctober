@@ -1,27 +1,30 @@
 package model.vo;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
-public class Service {
+public class Service implements Serializable {
     private Integer svcNum;
 
     private String etpNum;
 
     private String etpEmail;
 
-    private String title;
+    private String svcTitle;
 
-    private Integer cost;
+    private Integer svcCost;
 
-    private LocalTime time;
+    private LocalTime svcTime;
 
-    private String description;
+    private String svcDescription;
 
-    private String category;
+    private String svcCategory;
 
-    private String specialty;
+    private String svcSpecialize;
 
     private Integer svcCount;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getSvcNum() {
         return svcNum;
@@ -47,52 +50,52 @@ public class Service {
         this.etpEmail = etpEmail;
     }
 
-    public String getTitle() {
-        return title;
+    public String getSvcTitle() {
+        return svcTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSvcTitle(String svcTitle) {
+        this.svcTitle = svcTitle;
     }
 
-    public Integer getCost() {
-        return cost;
+    public Integer getSvcCost() {
+        return svcCost;
     }
 
-    public void setCost(Integer cost) {
-        this.cost = cost;
+    public void setSvcCost(Integer svcCost) {
+        this.svcCost = svcCost;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public LocalTime getSvcTime() {
+        return svcTime;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
+    public void setSvcTime(LocalTime svcTime) {
+        this.svcTime = svcTime;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSvcDescription() {
+        return svcDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSvcDescription(String svcDescription) {
+        this.svcDescription = svcDescription;
     }
 
-    public String getCategory() {
-        return category;
+    public String getSvcCategory() {
+        return svcCategory;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setSvcCategory(String svcCategory) {
+        this.svcCategory = svcCategory;
     }
 
-    public String getSpecialty() {
-        return specialty;
+    public String getSvcSpecialize() {
+        return svcSpecialize;
     }
 
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
+    public void setSvcSpecialize(String svcSpecialize) {
+        this.svcSpecialize = svcSpecialize;
     }
 
     public Integer getSvcCount() {
@@ -112,12 +115,12 @@ public class Service {
         sb.append(", svcNum=").append(svcNum);
         sb.append(", etpNum=").append(etpNum);
         sb.append(", etpEmail=").append(etpEmail);
-        sb.append(", title=").append(title);
-        sb.append(", cost=").append(cost);
-        sb.append(", time=").append(time);
-        sb.append(", description=").append(description);
-        sb.append(", category=").append(category);
-        sb.append(", specialty=").append(specialty);
+        sb.append(", svcTitle=").append(svcTitle);
+        sb.append(", svcCost=").append(svcCost);
+        sb.append(", svcTime=").append(svcTime);
+        sb.append(", svcDescription=").append(svcDescription);
+        sb.append(", svcCategory=").append(svcCategory);
+        sb.append(", svcSpecialize=").append(svcSpecialize);
         sb.append(", svcCount=").append(svcCount);
         sb.append("]");
         return sb.toString();

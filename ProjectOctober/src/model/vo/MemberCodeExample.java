@@ -104,138 +104,138 @@ public class MemberCodeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andMemberCodeIsNull() {
-            addCriterion("MCODE is null");
+        public Criteria andMemCodeIsNull() {
+            addCriterion("MEM_CODE is null");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeIsNotNull() {
-            addCriterion("MCODE is not null");
+        public Criteria andMemCodeIsNotNull() {
+            addCriterion("MEM_CODE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeEqualTo(Integer value) {
-            addCriterion("MCODE =", value, "memberCode");
+        public Criteria andMemCodeEqualTo(Integer value) {
+            addCriterion("MEM_CODE =", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeNotEqualTo(Integer value) {
-            addCriterion("MCODE <>", value, "memberCode");
+        public Criteria andMemCodeNotEqualTo(Integer value) {
+            addCriterion("MEM_CODE <>", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeGreaterThan(Integer value) {
-            addCriterion("MCODE >", value, "memberCode");
+        public Criteria andMemCodeGreaterThan(Integer value) {
+            addCriterion("MEM_CODE >", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("MCODE >=", value, "memberCode");
+        public Criteria andMemCodeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("MEM_CODE >=", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeLessThan(Integer value) {
-            addCriterion("MCODE <", value, "memberCode");
+        public Criteria andMemCodeLessThan(Integer value) {
+            addCriterion("MEM_CODE <", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeLessThanOrEqualTo(Integer value) {
-            addCriterion("MCODE <=", value, "memberCode");
+        public Criteria andMemCodeLessThanOrEqualTo(Integer value) {
+            addCriterion("MEM_CODE <=", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeIn(List<Integer> values) {
-            addCriterion("MCODE in", values, "memberCode");
+        public Criteria andMemCodeIn(List<Integer> values) {
+            addCriterion("MEM_CODE in", values, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeNotIn(List<Integer> values) {
-            addCriterion("MCODE not in", values, "memberCode");
+        public Criteria andMemCodeNotIn(List<Integer> values) {
+            addCriterion("MEM_CODE not in", values, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeBetween(Integer value1, Integer value2) {
-            addCriterion("MCODE between", value1, value2, "memberCode");
+        public Criteria andMemCodeBetween(Integer value1, Integer value2) {
+            addCriterion("MEM_CODE between", value1, value2, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeNotBetween(Integer value1, Integer value2) {
-            addCriterion("MCODE not between", value1, value2, "memberCode");
+        public Criteria andMemCodeNotBetween(Integer value1, Integer value2) {
+            addCriterion("MEM_CODE not between", value1, value2, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeIsNull() {
-            addCriterion("TYPE is null");
+        public Criteria andMemTypeIsNull() {
+            addCriterion("MEM_TYPE is null");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeIsNotNull() {
-            addCriterion("TYPE is not null");
+        public Criteria andMemTypeIsNotNull() {
+            addCriterion("MEM_TYPE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeEqualTo(String value) {
-            addCriterion("TYPE =", value, "memberType");
+        public Criteria andMemTypeEqualTo(String value) {
+            addCriterion("MEM_TYPE =", value, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeNotEqualTo(String value) {
-            addCriterion("TYPE <>", value, "memberType");
+        public Criteria andMemTypeNotEqualTo(String value) {
+            addCriterion("MEM_TYPE <>", value, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeGreaterThan(String value) {
-            addCriterion("TYPE >", value, "memberType");
+        public Criteria andMemTypeGreaterThan(String value) {
+            addCriterion("MEM_TYPE >", value, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("TYPE >=", value, "memberType");
+        public Criteria andMemTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("MEM_TYPE >=", value, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeLessThan(String value) {
-            addCriterion("TYPE <", value, "memberType");
+        public Criteria andMemTypeLessThan(String value) {
+            addCriterion("MEM_TYPE <", value, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeLessThanOrEqualTo(String value) {
-            addCriterion("TYPE <=", value, "memberType");
+        public Criteria andMemTypeLessThanOrEqualTo(String value) {
+            addCriterion("MEM_TYPE <=", value, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeLike(String value) {
-            addCriterion("TYPE like", value, "memberType");
+        public Criteria andMemTypeLike(String value) {
+            addCriterion("MEM_TYPE like", value, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeNotLike(String value) {
-            addCriterion("TYPE not like", value, "memberType");
+        public Criteria andMemTypeNotLike(String value) {
+            addCriterion("MEM_TYPE not like", value, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeIn(List<String> values) {
-            addCriterion("TYPE in", values, "memberType");
+        public Criteria andMemTypeIn(List<String> values) {
+            addCriterion("MEM_TYPE in", values, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeNotIn(List<String> values) {
-            addCriterion("TYPE not in", values, "memberType");
+        public Criteria andMemTypeNotIn(List<String> values) {
+            addCriterion("MEM_TYPE not in", values, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeBetween(String value1, String value2) {
-            addCriterion("TYPE between", value1, value2, "memberType");
+        public Criteria andMemTypeBetween(String value1, String value2) {
+            addCriterion("MEM_TYPE between", value1, value2, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeNotBetween(String value1, String value2) {
-            addCriterion("TYPE not between", value1, value2, "memberType");
+        public Criteria andMemTypeNotBetween(String value1, String value2) {
+            addCriterion("MEM_TYPE not between", value1, value2, "memType");
             return (Criteria) this;
         }
 
-        public Criteria andMemberTypeLikeInsensitive(String value) {
-            addCriterion("upper(TYPE) like", value.toUpperCase(), "memberType");
+        public Criteria andMemTypeLikeInsensitive(String value) {
+            addCriterion("upper(MEM_TYPE) like", value.toUpperCase(), "memType");
             return (Criteria) this;
         }
     }

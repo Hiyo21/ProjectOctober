@@ -65,19 +65,50 @@ public class PaymentRecordExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> pmtTimeCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            pmtTimeCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getPmtTimeCriteria() {
+            return pmtTimeCriteria;
+        }
+
+        protected void addPmtTimeCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            pmtTimeCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addPmtTimeCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            pmtTimeCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || pmtTimeCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(pmtTimeCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +120,7 @@ public class PaymentRecordExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +128,7 @@ public class PaymentRecordExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +136,7 @@ public class PaymentRecordExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andPmtNumIsNull() {
@@ -225,123 +259,123 @@ public class PaymentRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andTimeIsNull() {
-            addCriterion("TIME is null");
+        public Criteria andPmtTimeIsNull() {
+            addCriterion("PMT_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIsNotNull() {
-            addCriterion("TIME is not null");
+        public Criteria andPmtTimeIsNotNull() {
+            addCriterion("PMT_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTimeEqualTo(LocalDateTime value) {
-            addCriterion("TIME =", value, "time");
+        public Criteria andPmtTimeEqualTo(LocalDateTime value) {
+            addPmtTimeCriterion("PMT_TIME =", value, "pmtTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotEqualTo(LocalDateTime value) {
-            addCriterion("TIME <>", value, "time");
+        public Criteria andPmtTimeNotEqualTo(LocalDateTime value) {
+            addPmtTimeCriterion("PMT_TIME <>", value, "pmtTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThan(LocalDateTime value) {
-            addCriterion("TIME >", value, "time");
+        public Criteria andPmtTimeGreaterThan(LocalDateTime value) {
+            addPmtTimeCriterion("PMT_TIME >", value, "pmtTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("TIME >=", value, "time");
+        public Criteria andPmtTimeGreaterThanOrEqualTo(LocalDateTime value) {
+            addPmtTimeCriterion("PMT_TIME >=", value, "pmtTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThan(LocalDateTime value) {
-            addCriterion("TIME <", value, "time");
+        public Criteria andPmtTimeLessThan(LocalDateTime value) {
+            addPmtTimeCriterion("PMT_TIME <", value, "pmtTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("TIME <=", value, "time");
+        public Criteria andPmtTimeLessThanOrEqualTo(LocalDateTime value) {
+            addPmtTimeCriterion("PMT_TIME <=", value, "pmtTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIn(List<LocalDateTime> values) {
-            addCriterion("TIME in", values, "time");
+        public Criteria andPmtTimeIn(List<LocalDateTime> values) {
+            addPmtTimeCriterion("PMT_TIME in", values, "pmtTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotIn(List<LocalDateTime> values) {
-            addCriterion("TIME not in", values, "time");
+        public Criteria andPmtTimeNotIn(List<LocalDateTime> values) {
+            addPmtTimeCriterion("PMT_TIME not in", values, "pmtTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("TIME between", value1, value2, "time");
+        public Criteria andPmtTimeBetween(LocalDateTime value1, LocalDateTime value2) {
+            addPmtTimeCriterion("PMT_TIME between", value1, value2, "pmtTime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("TIME not between", value1, value2, "time");
+        public Criteria andPmtTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addPmtTimeCriterion("PMT_TIME not between", value1, value2, "pmtTime");
             return (Criteria) this;
         }
 
-        public Criteria andAmountIsNull() {
-            addCriterion("AMOUNT is null");
+        public Criteria andPmtAmountIsNull() {
+            addCriterion("PMT_AMOUNT is null");
             return (Criteria) this;
         }
 
-        public Criteria andAmountIsNotNull() {
-            addCriterion("AMOUNT is not null");
+        public Criteria andPmtAmountIsNotNull() {
+            addCriterion("PMT_AMOUNT is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAmountEqualTo(Integer value) {
-            addCriterion("AMOUNT =", value, "amount");
+        public Criteria andPmtAmountEqualTo(Integer value) {
+            addCriterion("PMT_AMOUNT =", value, "pmtAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotEqualTo(Integer value) {
-            addCriterion("AMOUNT <>", value, "amount");
+        public Criteria andPmtAmountNotEqualTo(Integer value) {
+            addCriterion("PMT_AMOUNT <>", value, "pmtAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThan(Integer value) {
-            addCriterion("AMOUNT >", value, "amount");
+        public Criteria andPmtAmountGreaterThan(Integer value) {
+            addCriterion("PMT_AMOUNT >", value, "pmtAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("AMOUNT >=", value, "amount");
+        public Criteria andPmtAmountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("PMT_AMOUNT >=", value, "pmtAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThan(Integer value) {
-            addCriterion("AMOUNT <", value, "amount");
+        public Criteria andPmtAmountLessThan(Integer value) {
+            addCriterion("PMT_AMOUNT <", value, "pmtAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThanOrEqualTo(Integer value) {
-            addCriterion("AMOUNT <=", value, "amount");
+        public Criteria andPmtAmountLessThanOrEqualTo(Integer value) {
+            addCriterion("PMT_AMOUNT <=", value, "pmtAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountIn(List<Integer> values) {
-            addCriterion("AMOUNT in", values, "amount");
+        public Criteria andPmtAmountIn(List<Integer> values) {
+            addCriterion("PMT_AMOUNT in", values, "pmtAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotIn(List<Integer> values) {
-            addCriterion("AMOUNT not in", values, "amount");
+        public Criteria andPmtAmountNotIn(List<Integer> values) {
+            addCriterion("PMT_AMOUNT not in", values, "pmtAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountBetween(Integer value1, Integer value2) {
-            addCriterion("AMOUNT between", value1, value2, "amount");
+        public Criteria andPmtAmountBetween(Integer value1, Integer value2) {
+            addCriterion("PMT_AMOUNT between", value1, value2, "pmtAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotBetween(Integer value1, Integer value2) {
-            addCriterion("AMOUNT not between", value1, value2, "amount");
+        public Criteria andPmtAmountNotBetween(Integer value1, Integer value2) {
+            addCriterion("PMT_AMOUNT not between", value1, value2, "pmtAmount");
             return (Criteria) this;
         }
     }

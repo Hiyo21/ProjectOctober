@@ -4,6 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>
+	#review{
+		overflow-x : auto;
+		overflow-y : scroll;
+	}
+
+</style>
+
+
 <script type="text/javascript">
 $(function () {
     $('#chart').highcharts({
@@ -59,7 +69,7 @@ $(function () {
 </script>
 </head>
 <body>
-<div class="panel panel-default">
+<div class="panel panel-default" id="review">
 	<div class="container"> 
 		<div class="row">
 			<div class="col-md-6" id="chart" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto"></div>

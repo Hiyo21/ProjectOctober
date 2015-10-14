@@ -65,19 +65,50 @@ public class PhotoLocationExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> phtUploadDateCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            phtUploadDateCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getPhtUploadDateCriteria() {
+            return phtUploadDateCriteria;
+        }
+
+        protected void addPhtUploadDateCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            phtUploadDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addPhtUploadDateCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            phtUploadDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || phtUploadDateCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(phtUploadDateCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +120,7 @@ public class PhotoLocationExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +128,7 @@ public class PhotoLocationExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +136,7 @@ public class PhotoLocationExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andPhotoNumIsNull() {
@@ -305,273 +339,273 @@ public class PhotoLocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andUsageIsNull() {
-            addCriterion("USAGE is null");
+        public Criteria andPhtUsageIsNull() {
+            addCriterion("PHT_USAGE is null");
             return (Criteria) this;
         }
 
-        public Criteria andUsageIsNotNull() {
-            addCriterion("USAGE is not null");
+        public Criteria andPhtUsageIsNotNull() {
+            addCriterion("PHT_USAGE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUsageEqualTo(String value) {
-            addCriterion("USAGE =", value, "usage");
+        public Criteria andPhtUsageEqualTo(String value) {
+            addCriterion("PHT_USAGE =", value, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageNotEqualTo(String value) {
-            addCriterion("USAGE <>", value, "usage");
+        public Criteria andPhtUsageNotEqualTo(String value) {
+            addCriterion("PHT_USAGE <>", value, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageGreaterThan(String value) {
-            addCriterion("USAGE >", value, "usage");
+        public Criteria andPhtUsageGreaterThan(String value) {
+            addCriterion("PHT_USAGE >", value, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageGreaterThanOrEqualTo(String value) {
-            addCriterion("USAGE >=", value, "usage");
+        public Criteria andPhtUsageGreaterThanOrEqualTo(String value) {
+            addCriterion("PHT_USAGE >=", value, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageLessThan(String value) {
-            addCriterion("USAGE <", value, "usage");
+        public Criteria andPhtUsageLessThan(String value) {
+            addCriterion("PHT_USAGE <", value, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageLessThanOrEqualTo(String value) {
-            addCriterion("USAGE <=", value, "usage");
+        public Criteria andPhtUsageLessThanOrEqualTo(String value) {
+            addCriterion("PHT_USAGE <=", value, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageLike(String value) {
-            addCriterion("USAGE like", value, "usage");
+        public Criteria andPhtUsageLike(String value) {
+            addCriterion("PHT_USAGE like", value, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageNotLike(String value) {
-            addCriterion("USAGE not like", value, "usage");
+        public Criteria andPhtUsageNotLike(String value) {
+            addCriterion("PHT_USAGE not like", value, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageIn(List<String> values) {
-            addCriterion("USAGE in", values, "usage");
+        public Criteria andPhtUsageIn(List<String> values) {
+            addCriterion("PHT_USAGE in", values, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageNotIn(List<String> values) {
-            addCriterion("USAGE not in", values, "usage");
+        public Criteria andPhtUsageNotIn(List<String> values) {
+            addCriterion("PHT_USAGE not in", values, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageBetween(String value1, String value2) {
-            addCriterion("USAGE between", value1, value2, "usage");
+        public Criteria andPhtUsageBetween(String value1, String value2) {
+            addCriterion("PHT_USAGE between", value1, value2, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageNotBetween(String value1, String value2) {
-            addCriterion("USAGE not between", value1, value2, "usage");
+        public Criteria andPhtUsageNotBetween(String value1, String value2) {
+            addCriterion("PHT_USAGE not between", value1, value2, "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNull() {
-            addCriterion("DESCRIPTION is null");
+        public Criteria andPhtDescriptionIsNull() {
+            addCriterion("PHT_DESCRIPTION is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNotNull() {
-            addCriterion("DESCRIPTION is not null");
+        public Criteria andPhtDescriptionIsNotNull() {
+            addCriterion("PHT_DESCRIPTION is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionEqualTo(String value) {
-            addCriterion("DESCRIPTION =", value, "description");
+        public Criteria andPhtDescriptionEqualTo(String value) {
+            addCriterion("PHT_DESCRIPTION =", value, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotEqualTo(String value) {
-            addCriterion("DESCRIPTION <>", value, "description");
+        public Criteria andPhtDescriptionNotEqualTo(String value) {
+            addCriterion("PHT_DESCRIPTION <>", value, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionGreaterThan(String value) {
-            addCriterion("DESCRIPTION >", value, "description");
+        public Criteria andPhtDescriptionGreaterThan(String value) {
+            addCriterion("PHT_DESCRIPTION >", value, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("DESCRIPTION >=", value, "description");
+        public Criteria andPhtDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("PHT_DESCRIPTION >=", value, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLessThan(String value) {
-            addCriterion("DESCRIPTION <", value, "description");
+        public Criteria andPhtDescriptionLessThan(String value) {
+            addCriterion("PHT_DESCRIPTION <", value, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("DESCRIPTION <=", value, "description");
+        public Criteria andPhtDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("PHT_DESCRIPTION <=", value, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLike(String value) {
-            addCriterion("DESCRIPTION like", value, "description");
+        public Criteria andPhtDescriptionLike(String value) {
+            addCriterion("PHT_DESCRIPTION like", value, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotLike(String value) {
-            addCriterion("DESCRIPTION not like", value, "description");
+        public Criteria andPhtDescriptionNotLike(String value) {
+            addCriterion("PHT_DESCRIPTION not like", value, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIn(List<String> values) {
-            addCriterion("DESCRIPTION in", values, "description");
+        public Criteria andPhtDescriptionIn(List<String> values) {
+            addCriterion("PHT_DESCRIPTION in", values, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotIn(List<String> values) {
-            addCriterion("DESCRIPTION not in", values, "description");
+        public Criteria andPhtDescriptionNotIn(List<String> values) {
+            addCriterion("PHT_DESCRIPTION not in", values, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionBetween(String value1, String value2) {
-            addCriterion("DESCRIPTION between", value1, value2, "description");
+        public Criteria andPhtDescriptionBetween(String value1, String value2) {
+            addCriterion("PHT_DESCRIPTION between", value1, value2, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotBetween(String value1, String value2) {
-            addCriterion("DESCRIPTION not between", value1, value2, "description");
+        public Criteria andPhtDescriptionNotBetween(String value1, String value2) {
+            addCriterion("PHT_DESCRIPTION not between", value1, value2, "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressIsNull() {
-            addCriterion("ADDRESS is null");
+        public Criteria andPhtAddressIsNull() {
+            addCriterion("PHT_ADDRESS is null");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressIsNotNull() {
-            addCriterion("ADDRESS is not null");
+        public Criteria andPhtAddressIsNotNull() {
+            addCriterion("PHT_ADDRESS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressEqualTo(String value) {
-            addCriterion("ADDRESS =", value, "webAddress");
+        public Criteria andPhtAddressEqualTo(String value) {
+            addCriterion("PHT_ADDRESS =", value, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressNotEqualTo(String value) {
-            addCriterion("ADDRESS <>", value, "webAddress");
+        public Criteria andPhtAddressNotEqualTo(String value) {
+            addCriterion("PHT_ADDRESS <>", value, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressGreaterThan(String value) {
-            addCriterion("ADDRESS >", value, "webAddress");
+        public Criteria andPhtAddressGreaterThan(String value) {
+            addCriterion("PHT_ADDRESS >", value, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("ADDRESS >=", value, "webAddress");
+        public Criteria andPhtAddressGreaterThanOrEqualTo(String value) {
+            addCriterion("PHT_ADDRESS >=", value, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressLessThan(String value) {
-            addCriterion("ADDRESS <", value, "webAddress");
+        public Criteria andPhtAddressLessThan(String value) {
+            addCriterion("PHT_ADDRESS <", value, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressLessThanOrEqualTo(String value) {
-            addCriterion("ADDRESS <=", value, "webAddress");
+        public Criteria andPhtAddressLessThanOrEqualTo(String value) {
+            addCriterion("PHT_ADDRESS <=", value, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressLike(String value) {
-            addCriterion("ADDRESS like", value, "webAddress");
+        public Criteria andPhtAddressLike(String value) {
+            addCriterion("PHT_ADDRESS like", value, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressNotLike(String value) {
-            addCriterion("ADDRESS not like", value, "webAddress");
+        public Criteria andPhtAddressNotLike(String value) {
+            addCriterion("PHT_ADDRESS not like", value, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressIn(List<String> values) {
-            addCriterion("ADDRESS in", values, "webAddress");
+        public Criteria andPhtAddressIn(List<String> values) {
+            addCriterion("PHT_ADDRESS in", values, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressNotIn(List<String> values) {
-            addCriterion("ADDRESS not in", values, "webAddress");
+        public Criteria andPhtAddressNotIn(List<String> values) {
+            addCriterion("PHT_ADDRESS not in", values, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressBetween(String value1, String value2) {
-            addCriterion("ADDRESS between", value1, value2, "webAddress");
+        public Criteria andPhtAddressBetween(String value1, String value2) {
+            addCriterion("PHT_ADDRESS between", value1, value2, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressNotBetween(String value1, String value2) {
-            addCriterion("ADDRESS not between", value1, value2, "webAddress");
+        public Criteria andPhtAddressNotBetween(String value1, String value2) {
+            addCriterion("PHT_ADDRESS not between", value1, value2, "phtAddress");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateIsNull() {
-            addCriterion("UPLOAD_DATE is null");
+        public Criteria andPhtUploadDateIsNull() {
+            addCriterion("PHT_UPLOAD_DATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateIsNotNull() {
-            addCriterion("UPLOAD_DATE is not null");
+        public Criteria andPhtUploadDateIsNotNull() {
+            addCriterion("PHT_UPLOAD_DATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateEqualTo(LocalDateTime value) {
-            addCriterion("UPLOAD_DATE =", value, "uploadDate");
+        public Criteria andPhtUploadDateEqualTo(LocalDateTime value) {
+            addPhtUploadDateCriterion("PHT_UPLOAD_DATE =", value, "phtUploadDate");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateNotEqualTo(LocalDateTime value) {
-            addCriterion("UPLOAD_DATE <>", value, "uploadDate");
+        public Criteria andPhtUploadDateNotEqualTo(LocalDateTime value) {
+            addPhtUploadDateCriterion("PHT_UPLOAD_DATE <>", value, "phtUploadDate");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateGreaterThan(LocalDateTime value) {
-            addCriterion("UPLOAD_DATE >", value, "uploadDate");
+        public Criteria andPhtUploadDateGreaterThan(LocalDateTime value) {
+            addPhtUploadDateCriterion("PHT_UPLOAD_DATE >", value, "phtUploadDate");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("UPLOAD_DATE >=", value, "uploadDate");
+        public Criteria andPhtUploadDateGreaterThanOrEqualTo(LocalDateTime value) {
+            addPhtUploadDateCriterion("PHT_UPLOAD_DATE >=", value, "phtUploadDate");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateLessThan(LocalDateTime value) {
-            addCriterion("UPLOAD_DATE <", value, "uploadDate");
+        public Criteria andPhtUploadDateLessThan(LocalDateTime value) {
+            addPhtUploadDateCriterion("PHT_UPLOAD_DATE <", value, "phtUploadDate");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("UPLOAD_DATE <=", value, "uploadDate");
+        public Criteria andPhtUploadDateLessThanOrEqualTo(LocalDateTime value) {
+            addPhtUploadDateCriterion("PHT_UPLOAD_DATE <=", value, "phtUploadDate");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateIn(List<LocalDateTime> values) {
-            addCriterion("UPLOAD_DATE in", values, "uploadDate");
+        public Criteria andPhtUploadDateIn(List<LocalDateTime> values) {
+            addPhtUploadDateCriterion("PHT_UPLOAD_DATE in", values, "phtUploadDate");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateNotIn(List<LocalDateTime> values) {
-            addCriterion("UPLOAD_DATE not in", values, "uploadDate");
+        public Criteria andPhtUploadDateNotIn(List<LocalDateTime> values) {
+            addPhtUploadDateCriterion("PHT_UPLOAD_DATE not in", values, "phtUploadDate");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("UPLOAD_DATE between", value1, value2, "uploadDate");
+        public Criteria andPhtUploadDateBetween(LocalDateTime value1, LocalDateTime value2) {
+            addPhtUploadDateCriterion("PHT_UPLOAD_DATE between", value1, value2, "phtUploadDate");
             return (Criteria) this;
         }
 
-        public Criteria andUploadDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("UPLOAD_DATE not between", value1, value2, "uploadDate");
+        public Criteria andPhtUploadDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addPhtUploadDateCriterion("PHT_UPLOAD_DATE not between", value1, value2, "phtUploadDate");
             return (Criteria) this;
         }
 
@@ -585,18 +619,18 @@ public class PhotoLocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andUsageLikeInsensitive(String value) {
-            addCriterion("upper(USAGE) like", value.toUpperCase(), "usage");
+        public Criteria andPhtUsageLikeInsensitive(String value) {
+            addCriterion("upper(PHT_USAGE) like", value.toUpperCase(), "phtUsage");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLikeInsensitive(String value) {
-            addCriterion("upper(DESCRIPTION) like", value.toUpperCase(), "description");
+        public Criteria andPhtDescriptionLikeInsensitive(String value) {
+            addCriterion("upper(PHT_DESCRIPTION) like", value.toUpperCase(), "phtDescription");
             return (Criteria) this;
         }
 
-        public Criteria andWebAddressLikeInsensitive(String value) {
-            addCriterion("upper(ADDRESS) like", value.toUpperCase(), "webAddress");
+        public Criteria andPhtAddressLikeInsensitive(String value) {
+            addCriterion("upper(PHT_ADDRESS) like", value.toUpperCase(), "phtAddress");
             return (Criteria) this;
         }
     }

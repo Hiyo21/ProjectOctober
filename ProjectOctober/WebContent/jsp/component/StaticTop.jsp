@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 	textarea{
+		width : 500px;
 		resize : none;
 	}
 

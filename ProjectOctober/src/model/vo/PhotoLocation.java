@@ -1,21 +1,24 @@
 package model.vo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class PhotoLocation {
+public class PhotoLocation implements Serializable {
     private Integer photoNum;
 
     private String etpNum;
 
     private String etpEmail;
 
-    private String usage;
+    private String phtUsage;
 
-    private String description;
+    private String phtDescription;
 
-    private String webAddress;
+    private String phtAddress;
 
-    private LocalDateTime uploadDate;
+    private LocalDateTime phtUploadDate;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getPhotoNum() {
         return photoNum;
@@ -41,36 +44,36 @@ public class PhotoLocation {
         this.etpEmail = etpEmail;
     }
 
-    public String getUsage() {
-        return usage;
+    public String getPhtUsage() {
+        return phtUsage;
     }
 
-    public void setUsage(String usage) {
-        this.usage = usage;
+    public void setPhtUsage(String phtUsage) {
+        this.phtUsage = phtUsage;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPhtDescription() {
+        return phtDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPhtDescription(String phtDescription) {
+        this.phtDescription = phtDescription;
     }
 
-    public String getWebAddress() {
-        return webAddress;
+    public String getPhtAddress() {
+        return phtAddress;
     }
 
-    public void setWebAddress(String webAddress) {
-        this.webAddress = webAddress;
+    public void setPhtAddress(String phtAddress) {
+        this.phtAddress = phtAddress;
     }
 
-    public LocalDateTime getUploadDate() {
-        return uploadDate;
+    public LocalDateTime getPhtUploadDate() {
+        return phtUploadDate;
     }
 
-    public void setUploadDate(LocalDateTime uploadDate) {
-        this.uploadDate = uploadDate;
+    public void setPhtUploadDate(LocalDateTime phtUploadDate) {
+        this.phtUploadDate = phtUploadDate;
     }
 
     @Override
@@ -82,10 +85,10 @@ public class PhotoLocation {
         sb.append(", photoNum=").append(photoNum);
         sb.append(", etpNum=").append(etpNum);
         sb.append(", etpEmail=").append(etpEmail);
-        sb.append(", usage=").append(usage);
-        sb.append(", description=").append(description);
-        sb.append(", webAddress=").append(webAddress);
-        sb.append(", uploadDate=").append(uploadDate);
+        sb.append(", phtUsage=").append(phtUsage);
+        sb.append(", phtDescription=").append(phtDescription);
+        sb.append(", phtAddress=").append(phtAddress);
+        sb.append(", phtUploadDate=").append(phtUploadDate);
         sb.append("]");
         return sb.toString();
     }

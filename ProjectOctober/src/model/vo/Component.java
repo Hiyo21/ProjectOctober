@@ -1,10 +1,12 @@
 package model.vo;
 
-public class Component{
+import java.io.Serializable;
+
+public class Component implements Serializable {
 	private String etpNum;
 
-	private String etpEmail;
-	
+    private String etpEmail;
+    
     private Integer logoComponent;
 
     private Integer logoTheme;
@@ -126,6 +128,8 @@ public class Component{
     private Integer reviewPosY;
 
     private Integer backgroundTheme;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getLogoComponent() {
         return logoComponent;

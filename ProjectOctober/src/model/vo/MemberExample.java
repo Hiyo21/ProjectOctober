@@ -1,6 +1,6 @@
 package model.vo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +65,7 @@ public class MemberExample {
     }
 
     protected abstract static class GeneratedCriteria {
-        protected List<Criterion> joinedDateCriteria;
+        protected List<Criterion> memJoinedDateCriteria;
 
         protected List<Criterion> allCriteria;
 
@@ -74,39 +74,39 @@ public class MemberExample {
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
-            joinedDateCriteria = new ArrayList<Criterion>();
+            memJoinedDateCriteria = new ArrayList<Criterion>();
         }
 
-        public List<Criterion> getJoinedDateCriteria() {
-            return joinedDateCriteria;
+        public List<Criterion> getMemJoinedDateCriteria() {
+            return memJoinedDateCriteria;
         }
 
-        protected void addJoinedDateCriterion(String condition, Object value, String property) {
+        protected void addMemJoinedDateCriterion(String condition, Object value, String property) {
             if (value == null) {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
-            joinedDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateHandler"));
+            memJoinedDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateHandler"));
             allCriteria = null;
         }
 
-        protected void addJoinedDateCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+        protected void addMemJoinedDateCriterion(String condition, LocalDate value1, LocalDate value2, String property) {
             if (value1 == null || value2 == null) {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
-            joinedDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateHandler"));
+            memJoinedDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateHandler"));
             allCriteria = null;
         }
 
         public boolean isValid() {
             return criteria.size() > 0
-                || joinedDateCriteria.size() > 0;
+                || memJoinedDateCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
             if (allCriteria == null) {
                 allCriteria = new ArrayList<Criterion>();
                 allCriteria.addAll(criteria);
-                allCriteria.addAll(joinedDateCriteria);
+                allCriteria.addAll(memJoinedDateCriteria);
             }
             return allCriteria;
         }
@@ -139,423 +139,423 @@ public class MemberExample {
             allCriteria = null;
         }
 
-        public Criteria andEmailIsNull() {
-            addCriterion("EMAIL is null");
+        public Criteria andMemEmailIsNull() {
+            addCriterion("MEM_EMAIL is null");
             return (Criteria) this;
         }
 
-        public Criteria andEmailIsNotNull() {
-            addCriterion("EMAIL is not null");
+        public Criteria andMemEmailIsNotNull() {
+            addCriterion("MEM_EMAIL is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEmailEqualTo(String value) {
-            addCriterion("EMAIL =", value, "email");
+        public Criteria andMemEmailEqualTo(String value) {
+            addCriterion("MEM_EMAIL =", value, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailNotEqualTo(String value) {
-            addCriterion("EMAIL <>", value, "email");
+        public Criteria andMemEmailNotEqualTo(String value) {
+            addCriterion("MEM_EMAIL <>", value, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailGreaterThan(String value) {
-            addCriterion("EMAIL >", value, "email");
+        public Criteria andMemEmailGreaterThan(String value) {
+            addCriterion("MEM_EMAIL >", value, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailGreaterThanOrEqualTo(String value) {
-            addCriterion("EMAIL >=", value, "email");
+        public Criteria andMemEmailGreaterThanOrEqualTo(String value) {
+            addCriterion("MEM_EMAIL >=", value, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailLessThan(String value) {
-            addCriterion("EMAIL <", value, "email");
+        public Criteria andMemEmailLessThan(String value) {
+            addCriterion("MEM_EMAIL <", value, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailLessThanOrEqualTo(String value) {
-            addCriterion("EMAIL <=", value, "email");
+        public Criteria andMemEmailLessThanOrEqualTo(String value) {
+            addCriterion("MEM_EMAIL <=", value, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailLike(String value) {
-            addCriterion("EMAIL like", value, "email");
+        public Criteria andMemEmailLike(String value) {
+            addCriterion("MEM_EMAIL like", value, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailNotLike(String value) {
-            addCriterion("EMAIL not like", value, "email");
+        public Criteria andMemEmailNotLike(String value) {
+            addCriterion("MEM_EMAIL not like", value, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailIn(List<String> values) {
-            addCriterion("EMAIL in", values, "email");
+        public Criteria andMemEmailIn(List<String> values) {
+            addCriterion("MEM_EMAIL in", values, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailNotIn(List<String> values) {
-            addCriterion("EMAIL not in", values, "email");
+        public Criteria andMemEmailNotIn(List<String> values) {
+            addCriterion("MEM_EMAIL not in", values, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailBetween(String value1, String value2) {
-            addCriterion("EMAIL between", value1, value2, "email");
+        public Criteria andMemEmailBetween(String value1, String value2) {
+            addCriterion("MEM_EMAIL between", value1, value2, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andEmailNotBetween(String value1, String value2) {
-            addCriterion("EMAIL not between", value1, value2, "email");
+        public Criteria andMemEmailNotBetween(String value1, String value2) {
+            addCriterion("MEM_EMAIL not between", value1, value2, "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeIsNull() {
-            addCriterion("MCODE is null");
+        public Criteria andMemCodeIsNull() {
+            addCriterion("MEM_CODE is null");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeIsNotNull() {
-            addCriterion("MCODE is not null");
+        public Criteria andMemCodeIsNotNull() {
+            addCriterion("MEM_CODE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeEqualTo(Integer value) {
-            addCriterion("MCODE =", value, "memberCode");
+        public Criteria andMemCodeEqualTo(Integer value) {
+            addCriterion("MEM_CODE =", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeNotEqualTo(Integer value) {
-            addCriterion("MCODE <>", value, "memberCode");
+        public Criteria andMemCodeNotEqualTo(Integer value) {
+            addCriterion("MEM_CODE <>", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeGreaterThan(Integer value) {
-            addCriterion("MCODE >", value, "memberCode");
+        public Criteria andMemCodeGreaterThan(Integer value) {
+            addCriterion("MEM_CODE >", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("MCODE >=", value, "memberCode");
+        public Criteria andMemCodeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("MEM_CODE >=", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeLessThan(Integer value) {
-            addCriterion("MCODE <", value, "memberCode");
+        public Criteria andMemCodeLessThan(Integer value) {
+            addCriterion("MEM_CODE <", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeLessThanOrEqualTo(Integer value) {
-            addCriterion("MCODE <=", value, "memberCode");
+        public Criteria andMemCodeLessThanOrEqualTo(Integer value) {
+            addCriterion("MEM_CODE <=", value, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeIn(List<Integer> values) {
-            addCriterion("MCODE in", values, "memberCode");
+        public Criteria andMemCodeIn(List<Integer> values) {
+            addCriterion("MEM_CODE in", values, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeNotIn(List<Integer> values) {
-            addCriterion("MCODE not in", values, "memberCode");
+        public Criteria andMemCodeNotIn(List<Integer> values) {
+            addCriterion("MEM_CODE not in", values, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeBetween(Integer value1, Integer value2) {
-            addCriterion("MCODE between", value1, value2, "memberCode");
+        public Criteria andMemCodeBetween(Integer value1, Integer value2) {
+            addCriterion("MEM_CODE between", value1, value2, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andMemberCodeNotBetween(Integer value1, Integer value2) {
-            addCriterion("MCODE not between", value1, value2, "memberCode");
+        public Criteria andMemCodeNotBetween(Integer value1, Integer value2) {
+            addCriterion("MEM_CODE not between", value1, value2, "memCode");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNull() {
-            addCriterion("NAME is null");
+        public Criteria andMemNameIsNull() {
+            addCriterion("MEM_NAME is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNotNull() {
-            addCriterion("NAME is not null");
+        public Criteria andMemNameIsNotNull() {
+            addCriterion("MEM_NAME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualTo(String value) {
-            addCriterion("NAME =", value, "name");
+        public Criteria andMemNameEqualTo(String value) {
+            addCriterion("MEM_NAME =", value, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotEqualTo(String value) {
-            addCriterion("NAME <>", value, "name");
+        public Criteria andMemNameNotEqualTo(String value) {
+            addCriterion("MEM_NAME <>", value, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThan(String value) {
-            addCriterion("NAME >", value, "name");
+        public Criteria andMemNameGreaterThan(String value) {
+            addCriterion("MEM_NAME >", value, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("NAME >=", value, "name");
+        public Criteria andMemNameGreaterThanOrEqualTo(String value) {
+            addCriterion("MEM_NAME >=", value, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThan(String value) {
-            addCriterion("NAME <", value, "name");
+        public Criteria andMemNameLessThan(String value) {
+            addCriterion("MEM_NAME <", value, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("NAME <=", value, "name");
+        public Criteria andMemNameLessThanOrEqualTo(String value) {
+            addCriterion("MEM_NAME <=", value, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameLike(String value) {
-            addCriterion("NAME like", value, "name");
+        public Criteria andMemNameLike(String value) {
+            addCriterion("MEM_NAME like", value, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotLike(String value) {
-            addCriterion("NAME not like", value, "name");
+        public Criteria andMemNameNotLike(String value) {
+            addCriterion("MEM_NAME not like", value, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameIn(List<String> values) {
-            addCriterion("NAME in", values, "name");
+        public Criteria andMemNameIn(List<String> values) {
+            addCriterion("MEM_NAME in", values, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotIn(List<String> values) {
-            addCriterion("NAME not in", values, "name");
+        public Criteria andMemNameNotIn(List<String> values) {
+            addCriterion("MEM_NAME not in", values, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("NAME between", value1, value2, "name");
+        public Criteria andMemNameBetween(String value1, String value2) {
+            addCriterion("MEM_NAME between", value1, value2, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("NAME not between", value1, value2, "name");
+        public Criteria andMemNameNotBetween(String value1, String value2) {
+            addCriterion("MEM_NAME not between", value1, value2, "memName");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordIsNull() {
-            addCriterion("PASSWORD is null");
+        public Criteria andMemPasswordIsNull() {
+            addCriterion("MEM_PASSWORD is null");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordIsNotNull() {
-            addCriterion("PASSWORD is not null");
+        public Criteria andMemPasswordIsNotNull() {
+            addCriterion("MEM_PASSWORD is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordEqualTo(String value) {
-            addCriterion("PASSWORD =", value, "password");
+        public Criteria andMemPasswordEqualTo(String value) {
+            addCriterion("MEM_PASSWORD =", value, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordNotEqualTo(String value) {
-            addCriterion("PASSWORD <>", value, "password");
+        public Criteria andMemPasswordNotEqualTo(String value) {
+            addCriterion("MEM_PASSWORD <>", value, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordGreaterThan(String value) {
-            addCriterion("PASSWORD >", value, "password");
+        public Criteria andMemPasswordGreaterThan(String value) {
+            addCriterion("MEM_PASSWORD >", value, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordGreaterThanOrEqualTo(String value) {
-            addCriterion("PASSWORD >=", value, "password");
+        public Criteria andMemPasswordGreaterThanOrEqualTo(String value) {
+            addCriterion("MEM_PASSWORD >=", value, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordLessThan(String value) {
-            addCriterion("PASSWORD <", value, "password");
+        public Criteria andMemPasswordLessThan(String value) {
+            addCriterion("MEM_PASSWORD <", value, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordLessThanOrEqualTo(String value) {
-            addCriterion("PASSWORD <=", value, "password");
+        public Criteria andMemPasswordLessThanOrEqualTo(String value) {
+            addCriterion("MEM_PASSWORD <=", value, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordLike(String value) {
-            addCriterion("PASSWORD like", value, "password");
+        public Criteria andMemPasswordLike(String value) {
+            addCriterion("MEM_PASSWORD like", value, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordNotLike(String value) {
-            addCriterion("PASSWORD not like", value, "password");
+        public Criteria andMemPasswordNotLike(String value) {
+            addCriterion("MEM_PASSWORD not like", value, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordIn(List<String> values) {
-            addCriterion("PASSWORD in", values, "password");
+        public Criteria andMemPasswordIn(List<String> values) {
+            addCriterion("MEM_PASSWORD in", values, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordNotIn(List<String> values) {
-            addCriterion("PASSWORD not in", values, "password");
+        public Criteria andMemPasswordNotIn(List<String> values) {
+            addCriterion("MEM_PASSWORD not in", values, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordBetween(String value1, String value2) {
-            addCriterion("PASSWORD between", value1, value2, "password");
+        public Criteria andMemPasswordBetween(String value1, String value2) {
+            addCriterion("MEM_PASSWORD between", value1, value2, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordNotBetween(String value1, String value2) {
-            addCriterion("PASSWORD not between", value1, value2, "password");
+        public Criteria andMemPasswordNotBetween(String value1, String value2) {
+            addCriterion("MEM_PASSWORD not between", value1, value2, "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneIsNull() {
-            addCriterion("PHONE is null");
+        public Criteria andMemPhoneIsNull() {
+            addCriterion("MEM_PHONE is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneIsNotNull() {
-            addCriterion("PHONE is not null");
+        public Criteria andMemPhoneIsNotNull() {
+            addCriterion("MEM_PHONE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneEqualTo(String value) {
-            addCriterion("PHONE =", value, "phone");
+        public Criteria andMemPhoneEqualTo(String value) {
+            addCriterion("MEM_PHONE =", value, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNotEqualTo(String value) {
-            addCriterion("PHONE <>", value, "phone");
+        public Criteria andMemPhoneNotEqualTo(String value) {
+            addCriterion("MEM_PHONE <>", value, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneGreaterThan(String value) {
-            addCriterion("PHONE >", value, "phone");
+        public Criteria andMemPhoneGreaterThan(String value) {
+            addCriterion("MEM_PHONE >", value, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneGreaterThanOrEqualTo(String value) {
-            addCriterion("PHONE >=", value, "phone");
+        public Criteria andMemPhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("MEM_PHONE >=", value, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneLessThan(String value) {
-            addCriterion("PHONE <", value, "phone");
+        public Criteria andMemPhoneLessThan(String value) {
+            addCriterion("MEM_PHONE <", value, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneLessThanOrEqualTo(String value) {
-            addCriterion("PHONE <=", value, "phone");
+        public Criteria andMemPhoneLessThanOrEqualTo(String value) {
+            addCriterion("MEM_PHONE <=", value, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneLike(String value) {
-            addCriterion("PHONE like", value, "phone");
+        public Criteria andMemPhoneLike(String value) {
+            addCriterion("MEM_PHONE like", value, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNotLike(String value) {
-            addCriterion("PHONE not like", value, "phone");
+        public Criteria andMemPhoneNotLike(String value) {
+            addCriterion("MEM_PHONE not like", value, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneIn(List<String> values) {
-            addCriterion("PHONE in", values, "phone");
+        public Criteria andMemPhoneIn(List<String> values) {
+            addCriterion("MEM_PHONE in", values, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNotIn(List<String> values) {
-            addCriterion("PHONE not in", values, "phone");
+        public Criteria andMemPhoneNotIn(List<String> values) {
+            addCriterion("MEM_PHONE not in", values, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneBetween(String value1, String value2) {
-            addCriterion("PHONE between", value1, value2, "phone");
+        public Criteria andMemPhoneBetween(String value1, String value2) {
+            addCriterion("MEM_PHONE between", value1, value2, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNotBetween(String value1, String value2) {
-            addCriterion("PHONE not between", value1, value2, "phone");
+        public Criteria andMemPhoneNotBetween(String value1, String value2) {
+            addCriterion("MEM_PHONE not between", value1, value2, "memPhone");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateIsNull() {
-            addCriterion("JOINED_DATE is null");
+        public Criteria andMemJoinedDateIsNull() {
+            addCriterion("MEM_JOINED_DATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateIsNotNull() {
-            addCriterion("JOINED_DATE is not null");
+        public Criteria andMemJoinedDateIsNotNull() {
+            addCriterion("MEM_JOINED_DATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateEqualTo(LocalDateTime value) {
-            addJoinedDateCriterion("JOINED_DATE =", value, "joinedDate");
+        public Criteria andMemJoinedDateEqualTo(LocalDate value) {
+            addMemJoinedDateCriterion("MEM_JOINED_DATE =", value, "memJoinedDate");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateNotEqualTo(LocalDateTime value) {
-            addJoinedDateCriterion("JOINED_DATE <>", value, "joinedDate");
+        public Criteria andMemJoinedDateNotEqualTo(LocalDate value) {
+            addMemJoinedDateCriterion("MEM_JOINED_DATE <>", value, "memJoinedDate");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateGreaterThan(LocalDateTime value) {
-            addJoinedDateCriterion("JOINED_DATE >", value, "joinedDate");
+        public Criteria andMemJoinedDateGreaterThan(LocalDate value) {
+            addMemJoinedDateCriterion("MEM_JOINED_DATE >", value, "memJoinedDate");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addJoinedDateCriterion("JOINED_DATE >=", value, "joinedDate");
+        public Criteria andMemJoinedDateGreaterThanOrEqualTo(LocalDate value) {
+            addMemJoinedDateCriterion("MEM_JOINED_DATE >=", value, "memJoinedDate");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateLessThan(LocalDateTime value) {
-            addJoinedDateCriterion("JOINED_DATE <", value, "joinedDate");
+        public Criteria andMemJoinedDateLessThan(LocalDate value) {
+            addMemJoinedDateCriterion("MEM_JOINED_DATE <", value, "memJoinedDate");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateLessThanOrEqualTo(LocalDateTime value) {
-            addJoinedDateCriterion("JOINED_DATE <=", value, "joinedDate");
+        public Criteria andMemJoinedDateLessThanOrEqualTo(LocalDate value) {
+            addMemJoinedDateCriterion("MEM_JOINED_DATE <=", value, "memJoinedDate");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateIn(List<LocalDateTime> values) {
-            addJoinedDateCriterion("JOINED_DATE in", values, "joinedDate");
+        public Criteria andMemJoinedDateIn(List<LocalDate> values) {
+            addMemJoinedDateCriterion("MEM_JOINED_DATE in", values, "memJoinedDate");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateNotIn(List<LocalDateTime> values) {
-            addJoinedDateCriterion("JOINED_DATE not in", values, "joinedDate");
+        public Criteria andMemJoinedDateNotIn(List<LocalDate> values) {
+            addMemJoinedDateCriterion("MEM_JOINED_DATE not in", values, "memJoinedDate");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addJoinedDateCriterion("JOINED_DATE between", value1, value2, "joinedDate");
+        public Criteria andMemJoinedDateBetween(LocalDate value1, LocalDate value2) {
+            addMemJoinedDateCriterion("MEM_JOINED_DATE between", value1, value2, "memJoinedDate");
             return (Criteria) this;
         }
 
-        public Criteria andJoinedDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addJoinedDateCriterion("JOINED_DATE not between", value1, value2, "joinedDate");
+        public Criteria andMemJoinedDateNotBetween(LocalDate value1, LocalDate value2) {
+            addMemJoinedDateCriterion("MEM_JOINED_DATE not between", value1, value2, "memJoinedDate");
             return (Criteria) this;
         }
 
-        public Criteria andEmailLikeInsensitive(String value) {
-            addCriterion("upper(EMAIL) like", value.toUpperCase(), "email");
+        public Criteria andMemEmailLikeInsensitive(String value) {
+            addCriterion("upper(MEM_EMAIL) like", value.toUpperCase(), "memEmail");
             return (Criteria) this;
         }
 
-        public Criteria andNameLikeInsensitive(String value) {
-            addCriterion("upper(NAME) like", value.toUpperCase(), "name");
+        public Criteria andMemNameLikeInsensitive(String value) {
+            addCriterion("upper(MEM_NAME) like", value.toUpperCase(), "memName");
             return (Criteria) this;
         }
 
-        public Criteria andPasswordLikeInsensitive(String value) {
-            addCriterion("upper(PASSWORD) like", value.toUpperCase(), "password");
+        public Criteria andMemPasswordLikeInsensitive(String value) {
+            addCriterion("upper(MEM_PASSWORD) like", value.toUpperCase(), "memPassword");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneLikeInsensitive(String value) {
-            addCriterion("upper(PHONE) like", value.toUpperCase(), "phone");
+        public Criteria andMemPhoneLikeInsensitive(String value) {
+            addCriterion("upper(MEM_PHONE) like", value.toUpperCase(), "memPhone");
             return (Criteria) this;
         }
     }

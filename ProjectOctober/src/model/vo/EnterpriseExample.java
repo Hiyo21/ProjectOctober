@@ -65,19 +65,75 @@ public class EnterpriseExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> etpStartHourCriteria;
+
+        protected List<Criterion> etpEndHourCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            etpStartHourCriteria = new ArrayList<Criterion>();
+            etpEndHourCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getEtpStartHourCriteria() {
+            return etpStartHourCriteria;
+        }
+
+        protected void addEtpStartHourCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            etpStartHourCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addEtpStartHourCriterion(String condition, LocalTime value1, LocalTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            etpStartHourCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalTimeHandler"));
+            allCriteria = null;
+        }
+
+        public List<Criterion> getEtpEndHourCriteria() {
+            return etpEndHourCriteria;
+        }
+
+        protected void addEtpEndHourCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            etpEndHourCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addEtpEndHourCriterion(String condition, LocalTime value1, LocalTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            etpEndHourCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalTimeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || etpStartHourCriteria.size() > 0
+                || etpEndHourCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(etpStartHourCriteria);
+                allCriteria.addAll(etpEndHourCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +145,7 @@ public class EnterpriseExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +153,7 @@ public class EnterpriseExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +161,7 @@ public class EnterpriseExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andEtpNumIsNull() {
@@ -245,1383 +304,1443 @@ public class EnterpriseExample {
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIsNull() {
-            addCriterion("OWNER is null");
+        public Criteria andEtpOwnerIsNull() {
+            addCriterion("ETP_OWNER is null");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIsNotNull() {
-            addCriterion("OWNER is not null");
+        public Criteria andEtpOwnerIsNotNull() {
+            addCriterion("ETP_OWNER is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerEqualTo(String value) {
-            addCriterion("OWNER =", value, "owner");
+        public Criteria andEtpOwnerEqualTo(String value) {
+            addCriterion("ETP_OWNER =", value, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerNotEqualTo(String value) {
-            addCriterion("OWNER <>", value, "owner");
+        public Criteria andEtpOwnerNotEqualTo(String value) {
+            addCriterion("ETP_OWNER <>", value, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerGreaterThan(String value) {
-            addCriterion("OWNER >", value, "owner");
+        public Criteria andEtpOwnerGreaterThan(String value) {
+            addCriterion("ETP_OWNER >", value, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerGreaterThanOrEqualTo(String value) {
-            addCriterion("OWNER >=", value, "owner");
+        public Criteria andEtpOwnerGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_OWNER >=", value, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerLessThan(String value) {
-            addCriterion("OWNER <", value, "owner");
+        public Criteria andEtpOwnerLessThan(String value) {
+            addCriterion("ETP_OWNER <", value, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerLessThanOrEqualTo(String value) {
-            addCriterion("OWNER <=", value, "owner");
+        public Criteria andEtpOwnerLessThanOrEqualTo(String value) {
+            addCriterion("ETP_OWNER <=", value, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerLike(String value) {
-            addCriterion("OWNER like", value, "owner");
+        public Criteria andEtpOwnerLike(String value) {
+            addCriterion("ETP_OWNER like", value, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerNotLike(String value) {
-            addCriterion("OWNER not like", value, "owner");
+        public Criteria andEtpOwnerNotLike(String value) {
+            addCriterion("ETP_OWNER not like", value, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIn(List<String> values) {
-            addCriterion("OWNER in", values, "owner");
+        public Criteria andEtpOwnerIn(List<String> values) {
+            addCriterion("ETP_OWNER in", values, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerNotIn(List<String> values) {
-            addCriterion("OWNER not in", values, "owner");
+        public Criteria andEtpOwnerNotIn(List<String> values) {
+            addCriterion("ETP_OWNER not in", values, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerBetween(String value1, String value2) {
-            addCriterion("OWNER between", value1, value2, "owner");
+        public Criteria andEtpOwnerBetween(String value1, String value2) {
+            addCriterion("ETP_OWNER between", value1, value2, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerNotBetween(String value1, String value2) {
-            addCriterion("OWNER not between", value1, value2, "owner");
+        public Criteria andEtpOwnerNotBetween(String value1, String value2) {
+            addCriterion("ETP_OWNER not between", value1, value2, "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassIsNull() {
-            addCriterion("SUPERCLASS is null");
+        public Criteria andEtpSuperclassIsNull() {
+            addCriterion("ETP_SUPERCLASS is null");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassIsNotNull() {
-            addCriterion("SUPERCLASS is not null");
+        public Criteria andEtpSuperclassIsNotNull() {
+            addCriterion("ETP_SUPERCLASS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassEqualTo(String value) {
-            addCriterion("SUPERCLASS =", value, "superclass");
+        public Criteria andEtpSuperclassEqualTo(String value) {
+            addCriterion("ETP_SUPERCLASS =", value, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassNotEqualTo(String value) {
-            addCriterion("SUPERCLASS <>", value, "superclass");
+        public Criteria andEtpSuperclassNotEqualTo(String value) {
+            addCriterion("ETP_SUPERCLASS <>", value, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassGreaterThan(String value) {
-            addCriterion("SUPERCLASS >", value, "superclass");
+        public Criteria andEtpSuperclassGreaterThan(String value) {
+            addCriterion("ETP_SUPERCLASS >", value, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassGreaterThanOrEqualTo(String value) {
-            addCriterion("SUPERCLASS >=", value, "superclass");
+        public Criteria andEtpSuperclassGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_SUPERCLASS >=", value, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassLessThan(String value) {
-            addCriterion("SUPERCLASS <", value, "superclass");
+        public Criteria andEtpSuperclassLessThan(String value) {
+            addCriterion("ETP_SUPERCLASS <", value, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassLessThanOrEqualTo(String value) {
-            addCriterion("SUPERCLASS <=", value, "superclass");
+        public Criteria andEtpSuperclassLessThanOrEqualTo(String value) {
+            addCriterion("ETP_SUPERCLASS <=", value, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassLike(String value) {
-            addCriterion("SUPERCLASS like", value, "superclass");
+        public Criteria andEtpSuperclassLike(String value) {
+            addCriterion("ETP_SUPERCLASS like", value, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassNotLike(String value) {
-            addCriterion("SUPERCLASS not like", value, "superclass");
+        public Criteria andEtpSuperclassNotLike(String value) {
+            addCriterion("ETP_SUPERCLASS not like", value, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassIn(List<String> values) {
-            addCriterion("SUPERCLASS in", values, "superclass");
+        public Criteria andEtpSuperclassIn(List<String> values) {
+            addCriterion("ETP_SUPERCLASS in", values, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassNotIn(List<String> values) {
-            addCriterion("SUPERCLASS not in", values, "superclass");
+        public Criteria andEtpSuperclassNotIn(List<String> values) {
+            addCriterion("ETP_SUPERCLASS not in", values, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassBetween(String value1, String value2) {
-            addCriterion("SUPERCLASS between", value1, value2, "superclass");
+        public Criteria andEtpSuperclassBetween(String value1, String value2) {
+            addCriterion("ETP_SUPERCLASS between", value1, value2, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassNotBetween(String value1, String value2) {
-            addCriterion("SUPERCLASS not between", value1, value2, "superclass");
+        public Criteria andEtpSuperclassNotBetween(String value1, String value2) {
+            addCriterion("ETP_SUPERCLASS not between", value1, value2, "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIsNull() {
-            addCriterion("ADDRESS is null");
+        public Criteria andEtpAddressIsNull() {
+            addCriterion("ETP_ADDRESS is null");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIsNotNull() {
-            addCriterion("ADDRESS is not null");
+        public Criteria andEtpAddressIsNotNull() {
+            addCriterion("ETP_ADDRESS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAddressEqualTo(String value) {
-            addCriterion("ADDRESS =", value, "address");
+        public Criteria andEtpAddressEqualTo(String value) {
+            addCriterion("ETP_ADDRESS =", value, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotEqualTo(String value) {
-            addCriterion("ADDRESS <>", value, "address");
+        public Criteria andEtpAddressNotEqualTo(String value) {
+            addCriterion("ETP_ADDRESS <>", value, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressGreaterThan(String value) {
-            addCriterion("ADDRESS >", value, "address");
+        public Criteria andEtpAddressGreaterThan(String value) {
+            addCriterion("ETP_ADDRESS >", value, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("ADDRESS >=", value, "address");
+        public Criteria andEtpAddressGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_ADDRESS >=", value, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLessThan(String value) {
-            addCriterion("ADDRESS <", value, "address");
+        public Criteria andEtpAddressLessThan(String value) {
+            addCriterion("ETP_ADDRESS <", value, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLessThanOrEqualTo(String value) {
-            addCriterion("ADDRESS <=", value, "address");
+        public Criteria andEtpAddressLessThanOrEqualTo(String value) {
+            addCriterion("ETP_ADDRESS <=", value, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLike(String value) {
-            addCriterion("ADDRESS like", value, "address");
+        public Criteria andEtpAddressLike(String value) {
+            addCriterion("ETP_ADDRESS like", value, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotLike(String value) {
-            addCriterion("ADDRESS not like", value, "address");
+        public Criteria andEtpAddressNotLike(String value) {
+            addCriterion("ETP_ADDRESS not like", value, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIn(List<String> values) {
-            addCriterion("ADDRESS in", values, "address");
+        public Criteria andEtpAddressIn(List<String> values) {
+            addCriterion("ETP_ADDRESS in", values, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotIn(List<String> values) {
-            addCriterion("ADDRESS not in", values, "address");
+        public Criteria andEtpAddressNotIn(List<String> values) {
+            addCriterion("ETP_ADDRESS not in", values, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressBetween(String value1, String value2) {
-            addCriterion("ADDRESS between", value1, value2, "address");
+        public Criteria andEtpAddressBetween(String value1, String value2) {
+            addCriterion("ETP_ADDRESS between", value1, value2, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotBetween(String value1, String value2) {
-            addCriterion("ADDRESS not between", value1, value2, "address");
+        public Criteria andEtpAddressNotBetween(String value1, String value2) {
+            addCriterion("ETP_ADDRESS not between", value1, value2, "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeIsNull() {
-            addCriterion("ZIPCODE is null");
+        public Criteria andEtpZipcodeIsNull() {
+            addCriterion("ETP_ZIPCODE is null");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeIsNotNull() {
-            addCriterion("ZIPCODE is not null");
+        public Criteria andEtpZipcodeIsNotNull() {
+            addCriterion("ETP_ZIPCODE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeEqualTo(String value) {
-            addCriterion("ZIPCODE =", value, "zipcode");
+        public Criteria andEtpZipcodeEqualTo(String value) {
+            addCriterion("ETP_ZIPCODE =", value, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeNotEqualTo(String value) {
-            addCriterion("ZIPCODE <>", value, "zipcode");
+        public Criteria andEtpZipcodeNotEqualTo(String value) {
+            addCriterion("ETP_ZIPCODE <>", value, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeGreaterThan(String value) {
-            addCriterion("ZIPCODE >", value, "zipcode");
+        public Criteria andEtpZipcodeGreaterThan(String value) {
+            addCriterion("ETP_ZIPCODE >", value, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeGreaterThanOrEqualTo(String value) {
-            addCriterion("ZIPCODE >=", value, "zipcode");
+        public Criteria andEtpZipcodeGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_ZIPCODE >=", value, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeLessThan(String value) {
-            addCriterion("ZIPCODE <", value, "zipcode");
+        public Criteria andEtpZipcodeLessThan(String value) {
+            addCriterion("ETP_ZIPCODE <", value, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeLessThanOrEqualTo(String value) {
-            addCriterion("ZIPCODE <=", value, "zipcode");
+        public Criteria andEtpZipcodeLessThanOrEqualTo(String value) {
+            addCriterion("ETP_ZIPCODE <=", value, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeLike(String value) {
-            addCriterion("ZIPCODE like", value, "zipcode");
+        public Criteria andEtpZipcodeLike(String value) {
+            addCriterion("ETP_ZIPCODE like", value, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeNotLike(String value) {
-            addCriterion("ZIPCODE not like", value, "zipcode");
+        public Criteria andEtpZipcodeNotLike(String value) {
+            addCriterion("ETP_ZIPCODE not like", value, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeIn(List<String> values) {
-            addCriterion("ZIPCODE in", values, "zipcode");
+        public Criteria andEtpZipcodeIn(List<String> values) {
+            addCriterion("ETP_ZIPCODE in", values, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeNotIn(List<String> values) {
-            addCriterion("ZIPCODE not in", values, "zipcode");
+        public Criteria andEtpZipcodeNotIn(List<String> values) {
+            addCriterion("ETP_ZIPCODE not in", values, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeBetween(String value1, String value2) {
-            addCriterion("ZIPCODE between", value1, value2, "zipcode");
+        public Criteria andEtpZipcodeBetween(String value1, String value2) {
+            addCriterion("ETP_ZIPCODE between", value1, value2, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeNotBetween(String value1, String value2) {
-            addCriterion("ZIPCODE not between", value1, value2, "zipcode");
+        public Criteria andEtpZipcodeNotBetween(String value1, String value2) {
+            addCriterion("ETP_ZIPCODE not between", value1, value2, "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andTitleIsNull() {
-            addCriterion("TITLE is null");
+        public Criteria andEtpTitleIsNull() {
+            addCriterion("ETP_TITLE is null");
             return (Criteria) this;
         }
 
-        public Criteria andTitleIsNotNull() {
-            addCriterion("TITLE is not null");
+        public Criteria andEtpTitleIsNotNull() {
+            addCriterion("ETP_TITLE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTitleEqualTo(String value) {
-            addCriterion("TITLE =", value, "title");
+        public Criteria andEtpTitleEqualTo(String value) {
+            addCriterion("ETP_TITLE =", value, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotEqualTo(String value) {
-            addCriterion("TITLE <>", value, "title");
+        public Criteria andEtpTitleNotEqualTo(String value) {
+            addCriterion("ETP_TITLE <>", value, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleGreaterThan(String value) {
-            addCriterion("TITLE >", value, "title");
+        public Criteria andEtpTitleGreaterThan(String value) {
+            addCriterion("ETP_TITLE >", value, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleGreaterThanOrEqualTo(String value) {
-            addCriterion("TITLE >=", value, "title");
+        public Criteria andEtpTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_TITLE >=", value, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLessThan(String value) {
-            addCriterion("TITLE <", value, "title");
+        public Criteria andEtpTitleLessThan(String value) {
+            addCriterion("ETP_TITLE <", value, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLessThanOrEqualTo(String value) {
-            addCriterion("TITLE <=", value, "title");
+        public Criteria andEtpTitleLessThanOrEqualTo(String value) {
+            addCriterion("ETP_TITLE <=", value, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLike(String value) {
-            addCriterion("TITLE like", value, "title");
+        public Criteria andEtpTitleLike(String value) {
+            addCriterion("ETP_TITLE like", value, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotLike(String value) {
-            addCriterion("TITLE not like", value, "title");
+        public Criteria andEtpTitleNotLike(String value) {
+            addCriterion("ETP_TITLE not like", value, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleIn(List<String> values) {
-            addCriterion("TITLE in", values, "title");
+        public Criteria andEtpTitleIn(List<String> values) {
+            addCriterion("ETP_TITLE in", values, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotIn(List<String> values) {
-            addCriterion("TITLE not in", values, "title");
+        public Criteria andEtpTitleNotIn(List<String> values) {
+            addCriterion("ETP_TITLE not in", values, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleBetween(String value1, String value2) {
-            addCriterion("TITLE between", value1, value2, "title");
+        public Criteria andEtpTitleBetween(String value1, String value2) {
+            addCriterion("ETP_TITLE between", value1, value2, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotBetween(String value1, String value2) {
-            addCriterion("TITLE not between", value1, value2, "title");
+        public Criteria andEtpTitleNotBetween(String value1, String value2) {
+            addCriterion("ETP_TITLE not between", value1, value2, "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourIsNull() {
-            addCriterion("START_HOUR is null");
+        public Criteria andEtpStartHourIsNull() {
+            addCriterion("ETP_START_HOUR is null");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourIsNotNull() {
-            addCriterion("START_HOUR is not null");
+        public Criteria andEtpStartHourIsNotNull() {
+            addCriterion("ETP_START_HOUR is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourEqualTo(LocalTime value) {
-            addCriterion("START_HOUR =", value, "startHour");
+        public Criteria andEtpStartHourEqualTo(LocalTime value) {
+            addEtpStartHourCriterion("ETP_START_HOUR =", value, "etpStartHour");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourNotEqualTo(LocalTime value) {
-            addCriterion("START_HOUR <>", value, "startHour");
+        public Criteria andEtpStartHourNotEqualTo(LocalTime value) {
+            addEtpStartHourCriterion("ETP_START_HOUR <>", value, "etpStartHour");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourGreaterThan(LocalTime value) {
-            addCriterion("START_HOUR >", value, "startHour");
+        public Criteria andEtpStartHourGreaterThan(LocalTime value) {
+            addEtpStartHourCriterion("ETP_START_HOUR >", value, "etpStartHour");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourGreaterThanOrEqualTo(LocalTime value) {
-            addCriterion("START_HOUR >=", value, "startHour");
+        public Criteria andEtpStartHourGreaterThanOrEqualTo(LocalTime value) {
+            addEtpStartHourCriterion("ETP_START_HOUR >=", value, "etpStartHour");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourLessThan(LocalTime value) {
-            addCriterion("START_HOUR <", value, "startHour");
+        public Criteria andEtpStartHourLessThan(LocalTime value) {
+            addEtpStartHourCriterion("ETP_START_HOUR <", value, "etpStartHour");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourLessThanOrEqualTo(LocalTime value) {
-            addCriterion("START_HOUR <=", value, "startHour");
+        public Criteria andEtpStartHourLessThanOrEqualTo(LocalTime value) {
+            addEtpStartHourCriterion("ETP_START_HOUR <=", value, "etpStartHour");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourIn(List<LocalTime> values) {
-            addCriterion("START_HOUR in", values, "startHour");
+        public Criteria andEtpStartHourIn(List<LocalTime> values) {
+            addEtpStartHourCriterion("ETP_START_HOUR in", values, "etpStartHour");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourNotIn(List<LocalTime> values) {
-            addCriterion("START_HOUR not in", values, "startHour");
+        public Criteria andEtpStartHourNotIn(List<LocalTime> values) {
+            addEtpStartHourCriterion("ETP_START_HOUR not in", values, "etpStartHour");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourBetween(LocalTime value1, LocalTime value2) {
-            addCriterion("START_HOUR between", value1, value2, "startHour");
+        public Criteria andEtpStartHourBetween(LocalTime value1, LocalTime value2) {
+            addEtpStartHourCriterion("ETP_START_HOUR between", value1, value2, "etpStartHour");
             return (Criteria) this;
         }
 
-        public Criteria andStartHourNotBetween(LocalTime value1, LocalTime value2) {
-            addCriterion("START_HOUR not between", value1, value2, "startHour");
+        public Criteria andEtpStartHourNotBetween(LocalTime value1, LocalTime value2) {
+            addEtpStartHourCriterion("ETP_START_HOUR not between", value1, value2, "etpStartHour");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourIsNull() {
-            addCriterion("END_HOUR is null");
+        public Criteria andEtpEndHourIsNull() {
+            addCriterion("ETP_END_HOUR is null");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourIsNotNull() {
-            addCriterion("END_HOUR is not null");
+        public Criteria andEtpEndHourIsNotNull() {
+            addCriterion("ETP_END_HOUR is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourEqualTo(LocalTime value) {
-            addCriterion("END_HOUR =", value, "endHour");
+        public Criteria andEtpEndHourEqualTo(LocalTime value) {
+            addEtpEndHourCriterion("ETP_END_HOUR =", value, "etpEndHour");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourNotEqualTo(LocalTime value) {
-            addCriterion("END_HOUR <>", value, "endHour");
+        public Criteria andEtpEndHourNotEqualTo(LocalTime value) {
+            addEtpEndHourCriterion("ETP_END_HOUR <>", value, "etpEndHour");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourGreaterThan(LocalTime value) {
-            addCriterion("END_HOUR >", value, "endHour");
+        public Criteria andEtpEndHourGreaterThan(LocalTime value) {
+            addEtpEndHourCriterion("ETP_END_HOUR >", value, "etpEndHour");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourGreaterThanOrEqualTo(LocalTime value) {
-            addCriterion("END_HOUR >=", value, "endHour");
+        public Criteria andEtpEndHourGreaterThanOrEqualTo(LocalTime value) {
+            addEtpEndHourCriterion("ETP_END_HOUR >=", value, "etpEndHour");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourLessThan(LocalTime value) {
-            addCriterion("END_HOUR <", value, "endHour");
+        public Criteria andEtpEndHourLessThan(LocalTime value) {
+            addEtpEndHourCriterion("ETP_END_HOUR <", value, "etpEndHour");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourLessThanOrEqualTo(LocalTime value) {
-            addCriterion("END_HOUR <=", value, "endHour");
+        public Criteria andEtpEndHourLessThanOrEqualTo(LocalTime value) {
+            addEtpEndHourCriterion("ETP_END_HOUR <=", value, "etpEndHour");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourIn(List<LocalTime> values) {
-            addCriterion("END_HOUR in", values, "endHour");
+        public Criteria andEtpEndHourIn(List<LocalTime> values) {
+            addEtpEndHourCriterion("ETP_END_HOUR in", values, "etpEndHour");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourNotIn(List<LocalTime> values) {
-            addCriterion("END_HOUR not in", values, "endHour");
+        public Criteria andEtpEndHourNotIn(List<LocalTime> values) {
+            addEtpEndHourCriterion("ETP_END_HOUR not in", values, "etpEndHour");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourBetween(LocalTime value1, LocalTime value2) {
-            addCriterion("END_HOUR between", value1, value2, "endHour");
+        public Criteria andEtpEndHourBetween(LocalTime value1, LocalTime value2) {
+            addEtpEndHourCriterion("ETP_END_HOUR between", value1, value2, "etpEndHour");
             return (Criteria) this;
         }
 
-        public Criteria andEndHourNotBetween(LocalTime value1, LocalTime value2) {
-            addCriterion("END_HOUR not between", value1, value2, "endHour");
+        public Criteria andEtpEndHourNotBetween(LocalTime value1, LocalTime value2) {
+            addEtpEndHourCriterion("ETP_END_HOUR not between", value1, value2, "etpEndHour");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneIsNull() {
-            addCriterion("PHONE is null");
+        public Criteria andEtpPhoneIsNull() {
+            addCriterion("ETP_PHONE is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneIsNotNull() {
-            addCriterion("PHONE is not null");
+        public Criteria andEtpPhoneIsNotNull() {
+            addCriterion("ETP_PHONE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneEqualTo(String value) {
-            addCriterion("PHONE =", value, "phone");
+        public Criteria andEtpPhoneEqualTo(String value) {
+            addCriterion("ETP_PHONE =", value, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNotEqualTo(String value) {
-            addCriterion("PHONE <>", value, "phone");
+        public Criteria andEtpPhoneNotEqualTo(String value) {
+            addCriterion("ETP_PHONE <>", value, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneGreaterThan(String value) {
-            addCriterion("PHONE >", value, "phone");
+        public Criteria andEtpPhoneGreaterThan(String value) {
+            addCriterion("ETP_PHONE >", value, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneGreaterThanOrEqualTo(String value) {
-            addCriterion("PHONE >=", value, "phone");
+        public Criteria andEtpPhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_PHONE >=", value, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneLessThan(String value) {
-            addCriterion("PHONE <", value, "phone");
+        public Criteria andEtpPhoneLessThan(String value) {
+            addCriterion("ETP_PHONE <", value, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneLessThanOrEqualTo(String value) {
-            addCriterion("PHONE <=", value, "phone");
+        public Criteria andEtpPhoneLessThanOrEqualTo(String value) {
+            addCriterion("ETP_PHONE <=", value, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneLike(String value) {
-            addCriterion("PHONE like", value, "phone");
+        public Criteria andEtpPhoneLike(String value) {
+            addCriterion("ETP_PHONE like", value, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNotLike(String value) {
-            addCriterion("PHONE not like", value, "phone");
+        public Criteria andEtpPhoneNotLike(String value) {
+            addCriterion("ETP_PHONE not like", value, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneIn(List<String> values) {
-            addCriterion("PHONE in", values, "phone");
+        public Criteria andEtpPhoneIn(List<String> values) {
+            addCriterion("ETP_PHONE in", values, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNotIn(List<String> values) {
-            addCriterion("PHONE not in", values, "phone");
+        public Criteria andEtpPhoneNotIn(List<String> values) {
+            addCriterion("ETP_PHONE not in", values, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneBetween(String value1, String value2) {
-            addCriterion("PHONE between", value1, value2, "phone");
+        public Criteria andEtpPhoneBetween(String value1, String value2) {
+            addCriterion("ETP_PHONE between", value1, value2, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNotBetween(String value1, String value2) {
-            addCriterion("PHONE not between", value1, value2, "phone");
+        public Criteria andEtpPhoneNotBetween(String value1, String value2) {
+            addCriterion("ETP_PHONE not between", value1, value2, "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountIsNull() {
-            addCriterion("MALE_STAFF is null");
+        public Criteria andEtpMaleStaffIsNull() {
+            addCriterion("ETP_MALE_STAFF is null");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountIsNotNull() {
-            addCriterion("MALE_STAFF is not null");
+        public Criteria andEtpMaleStaffIsNotNull() {
+            addCriterion("ETP_MALE_STAFF is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountEqualTo(Integer value) {
-            addCriterion("MALE_STAFF =", value, "maleStaffCount");
+        public Criteria andEtpMaleStaffEqualTo(Integer value) {
+            addCriterion("ETP_MALE_STAFF =", value, "etpMaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountNotEqualTo(Integer value) {
-            addCriterion("MALE_STAFF <>", value, "maleStaffCount");
+        public Criteria andEtpMaleStaffNotEqualTo(Integer value) {
+            addCriterion("ETP_MALE_STAFF <>", value, "etpMaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountGreaterThan(Integer value) {
-            addCriterion("MALE_STAFF >", value, "maleStaffCount");
+        public Criteria andEtpMaleStaffGreaterThan(Integer value) {
+            addCriterion("ETP_MALE_STAFF >", value, "etpMaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("MALE_STAFF >=", value, "maleStaffCount");
+        public Criteria andEtpMaleStaffGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ETP_MALE_STAFF >=", value, "etpMaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountLessThan(Integer value) {
-            addCriterion("MALE_STAFF <", value, "maleStaffCount");
+        public Criteria andEtpMaleStaffLessThan(Integer value) {
+            addCriterion("ETP_MALE_STAFF <", value, "etpMaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountLessThanOrEqualTo(Integer value) {
-            addCriterion("MALE_STAFF <=", value, "maleStaffCount");
+        public Criteria andEtpMaleStaffLessThanOrEqualTo(Integer value) {
+            addCriterion("ETP_MALE_STAFF <=", value, "etpMaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountIn(List<Integer> values) {
-            addCriterion("MALE_STAFF in", values, "maleStaffCount");
+        public Criteria andEtpMaleStaffIn(List<Integer> values) {
+            addCriterion("ETP_MALE_STAFF in", values, "etpMaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountNotIn(List<Integer> values) {
-            addCriterion("MALE_STAFF not in", values, "maleStaffCount");
+        public Criteria andEtpMaleStaffNotIn(List<Integer> values) {
+            addCriterion("ETP_MALE_STAFF not in", values, "etpMaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountBetween(Integer value1, Integer value2) {
-            addCriterion("MALE_STAFF between", value1, value2, "maleStaffCount");
+        public Criteria andEtpMaleStaffBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_MALE_STAFF between", value1, value2, "etpMaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andMaleStaffCountNotBetween(Integer value1, Integer value2) {
-            addCriterion("MALE_STAFF not between", value1, value2, "maleStaffCount");
+        public Criteria andEtpMaleStaffNotBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_MALE_STAFF not between", value1, value2, "etpMaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountIsNull() {
-            addCriterion("FEMALE_STAFF is null");
+        public Criteria andEtpFemaleStaffIsNull() {
+            addCriterion("ETP_FEMALE_STAFF is null");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountIsNotNull() {
-            addCriterion("FEMALE_STAFF is not null");
+        public Criteria andEtpFemaleStaffIsNotNull() {
+            addCriterion("ETP_FEMALE_STAFF is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountEqualTo(Integer value) {
-            addCriterion("FEMALE_STAFF =", value, "femaleStaffCount");
+        public Criteria andEtpFemaleStaffEqualTo(Integer value) {
+            addCriterion("ETP_FEMALE_STAFF =", value, "etpFemaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountNotEqualTo(Integer value) {
-            addCriterion("FEMALE_STAFF <>", value, "femaleStaffCount");
+        public Criteria andEtpFemaleStaffNotEqualTo(Integer value) {
+            addCriterion("ETP_FEMALE_STAFF <>", value, "etpFemaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountGreaterThan(Integer value) {
-            addCriterion("FEMALE_STAFF >", value, "femaleStaffCount");
+        public Criteria andEtpFemaleStaffGreaterThan(Integer value) {
+            addCriterion("ETP_FEMALE_STAFF >", value, "etpFemaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("FEMALE_STAFF >=", value, "femaleStaffCount");
+        public Criteria andEtpFemaleStaffGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ETP_FEMALE_STAFF >=", value, "etpFemaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountLessThan(Integer value) {
-            addCriterion("FEMALE_STAFF <", value, "femaleStaffCount");
+        public Criteria andEtpFemaleStaffLessThan(Integer value) {
+            addCriterion("ETP_FEMALE_STAFF <", value, "etpFemaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountLessThanOrEqualTo(Integer value) {
-            addCriterion("FEMALE_STAFF <=", value, "femaleStaffCount");
+        public Criteria andEtpFemaleStaffLessThanOrEqualTo(Integer value) {
+            addCriterion("ETP_FEMALE_STAFF <=", value, "etpFemaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountIn(List<Integer> values) {
-            addCriterion("FEMALE_STAFF in", values, "femaleStaffCount");
+        public Criteria andEtpFemaleStaffIn(List<Integer> values) {
+            addCriterion("ETP_FEMALE_STAFF in", values, "etpFemaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountNotIn(List<Integer> values) {
-            addCriterion("FEMALE_STAFF not in", values, "femaleStaffCount");
+        public Criteria andEtpFemaleStaffNotIn(List<Integer> values) {
+            addCriterion("ETP_FEMALE_STAFF not in", values, "etpFemaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountBetween(Integer value1, Integer value2) {
-            addCriterion("FEMALE_STAFF between", value1, value2, "femaleStaffCount");
+        public Criteria andEtpFemaleStaffBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_FEMALE_STAFF between", value1, value2, "etpFemaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andFemaleStaffCountNotBetween(Integer value1, Integer value2) {
-            addCriterion("FEMALE_STAFF not between", value1, value2, "femaleStaffCount");
+        public Criteria andEtpFemaleStaffNotBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_FEMALE_STAFF not between", value1, value2, "etpFemaleStaff");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityIsNull() {
-            addCriterion("HOURLY_CAPACITY is null");
+        public Criteria andEtpCapacityIsNull() {
+            addCriterion("ETP_CAPACITY is null");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityIsNotNull() {
-            addCriterion("HOURLY_CAPACITY is not null");
+        public Criteria andEtpCapacityIsNotNull() {
+            addCriterion("ETP_CAPACITY is not null");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityEqualTo(Integer value) {
-            addCriterion("HOURLY_CAPACITY =", value, "hourlyCapacity");
+        public Criteria andEtpCapacityEqualTo(Integer value) {
+            addCriterion("ETP_CAPACITY =", value, "etpCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityNotEqualTo(Integer value) {
-            addCriterion("HOURLY_CAPACITY <>", value, "hourlyCapacity");
+        public Criteria andEtpCapacityNotEqualTo(Integer value) {
+            addCriterion("ETP_CAPACITY <>", value, "etpCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityGreaterThan(Integer value) {
-            addCriterion("HOURLY_CAPACITY >", value, "hourlyCapacity");
+        public Criteria andEtpCapacityGreaterThan(Integer value) {
+            addCriterion("ETP_CAPACITY >", value, "etpCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityGreaterThanOrEqualTo(Integer value) {
-            addCriterion("HOURLY_CAPACITY >=", value, "hourlyCapacity");
+        public Criteria andEtpCapacityGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ETP_CAPACITY >=", value, "etpCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityLessThan(Integer value) {
-            addCriterion("HOURLY_CAPACITY <", value, "hourlyCapacity");
+        public Criteria andEtpCapacityLessThan(Integer value) {
+            addCriterion("ETP_CAPACITY <", value, "etpCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityLessThanOrEqualTo(Integer value) {
-            addCriterion("HOURLY_CAPACITY <=", value, "hourlyCapacity");
+        public Criteria andEtpCapacityLessThanOrEqualTo(Integer value) {
+            addCriterion("ETP_CAPACITY <=", value, "etpCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityIn(List<Integer> values) {
-            addCriterion("HOURLY_CAPACITY in", values, "hourlyCapacity");
+        public Criteria andEtpCapacityIn(List<Integer> values) {
+            addCriterion("ETP_CAPACITY in", values, "etpCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityNotIn(List<Integer> values) {
-            addCriterion("HOURLY_CAPACITY not in", values, "hourlyCapacity");
+        public Criteria andEtpCapacityNotIn(List<Integer> values) {
+            addCriterion("ETP_CAPACITY not in", values, "etpCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityBetween(Integer value1, Integer value2) {
-            addCriterion("HOURLY_CAPACITY between", value1, value2, "hourlyCapacity");
+        public Criteria andEtpCapacityBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_CAPACITY between", value1, value2, "etpCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andHourlyCapacityNotBetween(Integer value1, Integer value2) {
-            addCriterion("HOURLY_CAPACITY not between", value1, value2, "hourlyCapacity");
+        public Criteria andEtpCapacityNotBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_CAPACITY not between", value1, value2, "etpCapacity");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineIsNull() {
-            addCriterion("RSV_DEADLINE is null");
+        public Criteria andEtpRsvDeadlineIsNull() {
+            addCriterion("ETP_RSV_DEADLINE is null");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineIsNotNull() {
-            addCriterion("RSV_DEADLINE is not null");
+        public Criteria andEtpRsvDeadlineIsNotNull() {
+            addCriterion("ETP_RSV_DEADLINE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineEqualTo(Integer value) {
-            addCriterion("RSV_DEADLINE =", value, "modificationDeadline");
+        public Criteria andEtpRsvDeadlineEqualTo(Integer value) {
+            addCriterion("ETP_RSV_DEADLINE =", value, "etpRsvDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineNotEqualTo(Integer value) {
-            addCriterion("RSV_DEADLINE <>", value, "modificationDeadline");
+        public Criteria andEtpRsvDeadlineNotEqualTo(Integer value) {
+            addCriterion("ETP_RSV_DEADLINE <>", value, "etpRsvDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineGreaterThan(Integer value) {
-            addCriterion("RSV_DEADLINE >", value, "modificationDeadline");
+        public Criteria andEtpRsvDeadlineGreaterThan(Integer value) {
+            addCriterion("ETP_RSV_DEADLINE >", value, "etpRsvDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineGreaterThanOrEqualTo(Integer value) {
-            addCriterion("RSV_DEADLINE >=", value, "modificationDeadline");
+        public Criteria andEtpRsvDeadlineGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ETP_RSV_DEADLINE >=", value, "etpRsvDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineLessThan(Integer value) {
-            addCriterion("RSV_DEADLINE <", value, "modificationDeadline");
+        public Criteria andEtpRsvDeadlineLessThan(Integer value) {
+            addCriterion("ETP_RSV_DEADLINE <", value, "etpRsvDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineLessThanOrEqualTo(Integer value) {
-            addCriterion("RSV_DEADLINE <=", value, "modificationDeadline");
+        public Criteria andEtpRsvDeadlineLessThanOrEqualTo(Integer value) {
+            addCriterion("ETP_RSV_DEADLINE <=", value, "etpRsvDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineIn(List<Integer> values) {
-            addCriterion("RSV_DEADLINE in", values, "modificationDeadline");
+        public Criteria andEtpRsvDeadlineIn(List<Integer> values) {
+            addCriterion("ETP_RSV_DEADLINE in", values, "etpRsvDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineNotIn(List<Integer> values) {
-            addCriterion("RSV_DEADLINE not in", values, "modificationDeadline");
+        public Criteria andEtpRsvDeadlineNotIn(List<Integer> values) {
+            addCriterion("ETP_RSV_DEADLINE not in", values, "etpRsvDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineBetween(Integer value1, Integer value2) {
-            addCriterion("RSV_DEADLINE between", value1, value2, "modificationDeadline");
+        public Criteria andEtpRsvDeadlineBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_RSV_DEADLINE between", value1, value2, "etpRsvDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andModificationDeadlineNotBetween(Integer value1, Integer value2) {
-            addCriterion("RSV_DEADLINE not between", value1, value2, "modificationDeadline");
+        public Criteria andEtpRsvDeadlineNotBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_RSV_DEADLINE not between", value1, value2, "etpRsvDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpIsNull() {
-            addCriterion("ETP_NOTIFICATION is null");
+        public Criteria andEtpSelfNotificationIsNull() {
+            addCriterion("ETP_SELF_NOTIFICATION is null");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpIsNotNull() {
-            addCriterion("ETP_NOTIFICATION is not null");
+        public Criteria andEtpSelfNotificationIsNotNull() {
+            addCriterion("ETP_SELF_NOTIFICATION is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpEqualTo(Integer value) {
-            addCriterion("ETP_NOTIFICATION =", value, "ntfFrequencyToEtp");
+        public Criteria andEtpSelfNotificationEqualTo(Integer value) {
+            addCriterion("ETP_SELF_NOTIFICATION =", value, "etpSelfNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpNotEqualTo(Integer value) {
-            addCriterion("ETP_NOTIFICATION <>", value, "ntfFrequencyToEtp");
+        public Criteria andEtpSelfNotificationNotEqualTo(Integer value) {
+            addCriterion("ETP_SELF_NOTIFICATION <>", value, "etpSelfNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpGreaterThan(Integer value) {
-            addCriterion("ETP_NOTIFICATION >", value, "ntfFrequencyToEtp");
+        public Criteria andEtpSelfNotificationGreaterThan(Integer value) {
+            addCriterion("ETP_SELF_NOTIFICATION >", value, "etpSelfNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpGreaterThanOrEqualTo(Integer value) {
-            addCriterion("ETP_NOTIFICATION >=", value, "ntfFrequencyToEtp");
+        public Criteria andEtpSelfNotificationGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ETP_SELF_NOTIFICATION >=", value, "etpSelfNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpLessThan(Integer value) {
-            addCriterion("ETP_NOTIFICATION <", value, "ntfFrequencyToEtp");
+        public Criteria andEtpSelfNotificationLessThan(Integer value) {
+            addCriterion("ETP_SELF_NOTIFICATION <", value, "etpSelfNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpLessThanOrEqualTo(Integer value) {
-            addCriterion("ETP_NOTIFICATION <=", value, "ntfFrequencyToEtp");
+        public Criteria andEtpSelfNotificationLessThanOrEqualTo(Integer value) {
+            addCriterion("ETP_SELF_NOTIFICATION <=", value, "etpSelfNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpIn(List<Integer> values) {
-            addCriterion("ETP_NOTIFICATION in", values, "ntfFrequencyToEtp");
+        public Criteria andEtpSelfNotificationIn(List<Integer> values) {
+            addCriterion("ETP_SELF_NOTIFICATION in", values, "etpSelfNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpNotIn(List<Integer> values) {
-            addCriterion("ETP_NOTIFICATION not in", values, "ntfFrequencyToEtp");
+        public Criteria andEtpSelfNotificationNotIn(List<Integer> values) {
+            addCriterion("ETP_SELF_NOTIFICATION not in", values, "etpSelfNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpBetween(Integer value1, Integer value2) {
-            addCriterion("ETP_NOTIFICATION between", value1, value2, "ntfFrequencyToEtp");
+        public Criteria andEtpSelfNotificationBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_SELF_NOTIFICATION between", value1, value2, "etpSelfNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToEtpNotBetween(Integer value1, Integer value2) {
-            addCriterion("ETP_NOTIFICATION not between", value1, value2, "ntfFrequencyToEtp");
+        public Criteria andEtpSelfNotificationNotBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_SELF_NOTIFICATION not between", value1, value2, "etpSelfNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstIsNull() {
-            addCriterion("CST_NOTIFICATION is null");
+        public Criteria andEtpCstNotificationIsNull() {
+            addCriterion("ETP_CST_NOTIFICATION is null");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstIsNotNull() {
-            addCriterion("CST_NOTIFICATION is not null");
+        public Criteria andEtpCstNotificationIsNotNull() {
+            addCriterion("ETP_CST_NOTIFICATION is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstEqualTo(Integer value) {
-            addCriterion("CST_NOTIFICATION =", value, "ntfFrequencyToCst");
+        public Criteria andEtpCstNotificationEqualTo(Integer value) {
+            addCriterion("ETP_CST_NOTIFICATION =", value, "etpCstNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstNotEqualTo(Integer value) {
-            addCriterion("CST_NOTIFICATION <>", value, "ntfFrequencyToCst");
+        public Criteria andEtpCstNotificationNotEqualTo(Integer value) {
+            addCriterion("ETP_CST_NOTIFICATION <>", value, "etpCstNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstGreaterThan(Integer value) {
-            addCriterion("CST_NOTIFICATION >", value, "ntfFrequencyToCst");
+        public Criteria andEtpCstNotificationGreaterThan(Integer value) {
+            addCriterion("ETP_CST_NOTIFICATION >", value, "etpCstNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstGreaterThanOrEqualTo(Integer value) {
-            addCriterion("CST_NOTIFICATION >=", value, "ntfFrequencyToCst");
+        public Criteria andEtpCstNotificationGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ETP_CST_NOTIFICATION >=", value, "etpCstNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstLessThan(Integer value) {
-            addCriterion("CST_NOTIFICATION <", value, "ntfFrequencyToCst");
+        public Criteria andEtpCstNotificationLessThan(Integer value) {
+            addCriterion("ETP_CST_NOTIFICATION <", value, "etpCstNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstLessThanOrEqualTo(Integer value) {
-            addCriterion("CST_NOTIFICATION <=", value, "ntfFrequencyToCst");
+        public Criteria andEtpCstNotificationLessThanOrEqualTo(Integer value) {
+            addCriterion("ETP_CST_NOTIFICATION <=", value, "etpCstNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstIn(List<Integer> values) {
-            addCriterion("CST_NOTIFICATION in", values, "ntfFrequencyToCst");
+        public Criteria andEtpCstNotificationIn(List<Integer> values) {
+            addCriterion("ETP_CST_NOTIFICATION in", values, "etpCstNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstNotIn(List<Integer> values) {
-            addCriterion("CST_NOTIFICATION not in", values, "ntfFrequencyToCst");
+        public Criteria andEtpCstNotificationNotIn(List<Integer> values) {
+            addCriterion("ETP_CST_NOTIFICATION not in", values, "etpCstNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstBetween(Integer value1, Integer value2) {
-            addCriterion("CST_NOTIFICATION between", value1, value2, "ntfFrequencyToCst");
+        public Criteria andEtpCstNotificationBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_CST_NOTIFICATION between", value1, value2, "etpCstNotification");
             return (Criteria) this;
         }
 
-        public Criteria andNtfFrequencyToCstNotBetween(Integer value1, Integer value2) {
-            addCriterion("CST_NOTIFICATION not between", value1, value2, "ntfFrequencyToCst");
+        public Criteria andEtpCstNotificationNotBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_CST_NOTIFICATION not between", value1, value2, "etpCstNotification");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeIsNull() {
-            addCriterion("TEMPLATE_TYPE is null");
+        public Criteria andEtpTemplateTypeIsNull() {
+            addCriterion("ETP_TEMPLATE_TYPE is null");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeIsNotNull() {
-            addCriterion("TEMPLATE_TYPE is not null");
+        public Criteria andEtpTemplateTypeIsNotNull() {
+            addCriterion("ETP_TEMPLATE_TYPE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeEqualTo(Integer value) {
-            addCriterion("TEMPLATE_TYPE =", value, "pageTemplateType");
+        public Criteria andEtpTemplateTypeEqualTo(Integer value) {
+            addCriterion("ETP_TEMPLATE_TYPE =", value, "etpTemplateType");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeNotEqualTo(Integer value) {
-            addCriterion("TEMPLATE_TYPE <>", value, "pageTemplateType");
+        public Criteria andEtpTemplateTypeNotEqualTo(Integer value) {
+            addCriterion("ETP_TEMPLATE_TYPE <>", value, "etpTemplateType");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeGreaterThan(Integer value) {
-            addCriterion("TEMPLATE_TYPE >", value, "pageTemplateType");
+        public Criteria andEtpTemplateTypeGreaterThan(Integer value) {
+            addCriterion("ETP_TEMPLATE_TYPE >", value, "etpTemplateType");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("TEMPLATE_TYPE >=", value, "pageTemplateType");
+        public Criteria andEtpTemplateTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ETP_TEMPLATE_TYPE >=", value, "etpTemplateType");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeLessThan(Integer value) {
-            addCriterion("TEMPLATE_TYPE <", value, "pageTemplateType");
+        public Criteria andEtpTemplateTypeLessThan(Integer value) {
+            addCriterion("ETP_TEMPLATE_TYPE <", value, "etpTemplateType");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("TEMPLATE_TYPE <=", value, "pageTemplateType");
+        public Criteria andEtpTemplateTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("ETP_TEMPLATE_TYPE <=", value, "etpTemplateType");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeIn(List<Integer> values) {
-            addCriterion("TEMPLATE_TYPE in", values, "pageTemplateType");
+        public Criteria andEtpTemplateTypeIn(List<Integer> values) {
+            addCriterion("ETP_TEMPLATE_TYPE in", values, "etpTemplateType");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeNotIn(List<Integer> values) {
-            addCriterion("TEMPLATE_TYPE not in", values, "pageTemplateType");
+        public Criteria andEtpTemplateTypeNotIn(List<Integer> values) {
+            addCriterion("ETP_TEMPLATE_TYPE not in", values, "etpTemplateType");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeBetween(Integer value1, Integer value2) {
-            addCriterion("TEMPLATE_TYPE between", value1, value2, "pageTemplateType");
+        public Criteria andEtpTemplateTypeBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_TEMPLATE_TYPE between", value1, value2, "etpTemplateType");
             return (Criteria) this;
         }
 
-        public Criteria andPageTemplateTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("TEMPLATE_TYPE not between", value1, value2, "pageTemplateType");
+        public Criteria andEtpTemplateTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_TEMPLATE_TYPE not between", value1, value2, "etpTemplateType");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressIsNull() {
-            addCriterion("MAP_API_ADDRESS is null");
+        public Criteria andEtpMapAddressIsNull() {
+            addCriterion("ETP_MAP_ADDRESS is null");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressIsNotNull() {
-            addCriterion("MAP_API_ADDRESS is not null");
+        public Criteria andEtpMapAddressIsNotNull() {
+            addCriterion("ETP_MAP_ADDRESS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressEqualTo(String value) {
-            addCriterion("MAP_API_ADDRESS =", value, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressEqualTo(String value) {
+            addCriterion("ETP_MAP_ADDRESS =", value, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressNotEqualTo(String value) {
-            addCriterion("MAP_API_ADDRESS <>", value, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressNotEqualTo(String value) {
+            addCriterion("ETP_MAP_ADDRESS <>", value, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressGreaterThan(String value) {
-            addCriterion("MAP_API_ADDRESS >", value, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressGreaterThan(String value) {
+            addCriterion("ETP_MAP_ADDRESS >", value, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("MAP_API_ADDRESS >=", value, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_MAP_ADDRESS >=", value, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressLessThan(String value) {
-            addCriterion("MAP_API_ADDRESS <", value, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressLessThan(String value) {
+            addCriterion("ETP_MAP_ADDRESS <", value, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressLessThanOrEqualTo(String value) {
-            addCriterion("MAP_API_ADDRESS <=", value, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressLessThanOrEqualTo(String value) {
+            addCriterion("ETP_MAP_ADDRESS <=", value, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressLike(String value) {
-            addCriterion("MAP_API_ADDRESS like", value, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressLike(String value) {
+            addCriterion("ETP_MAP_ADDRESS like", value, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressNotLike(String value) {
-            addCriterion("MAP_API_ADDRESS not like", value, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressNotLike(String value) {
+            addCriterion("ETP_MAP_ADDRESS not like", value, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressIn(List<String> values) {
-            addCriterion("MAP_API_ADDRESS in", values, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressIn(List<String> values) {
+            addCriterion("ETP_MAP_ADDRESS in", values, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressNotIn(List<String> values) {
-            addCriterion("MAP_API_ADDRESS not in", values, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressNotIn(List<String> values) {
+            addCriterion("ETP_MAP_ADDRESS not in", values, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressBetween(String value1, String value2) {
-            addCriterion("MAP_API_ADDRESS between", value1, value2, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressBetween(String value1, String value2) {
+            addCriterion("ETP_MAP_ADDRESS between", value1, value2, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressNotBetween(String value1, String value2) {
-            addCriterion("MAP_API_ADDRESS not between", value1, value2, "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressNotBetween(String value1, String value2) {
+            addCriterion("ETP_MAP_ADDRESS not between", value1, value2, "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideIsNull() {
-            addCriterion("LOCATION_DESC is null");
+        public Criteria andEtpDirectionIsNull() {
+            addCriterion("ETP_DIRECTION is null");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideIsNotNull() {
-            addCriterion("LOCATION_DESC is not null");
+        public Criteria andEtpDirectionIsNotNull() {
+            addCriterion("ETP_DIRECTION is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideEqualTo(String value) {
-            addCriterion("LOCATION_DESC =", value, "etpLocationGuide");
+        public Criteria andEtpDirectionEqualTo(String value) {
+            addCriterion("ETP_DIRECTION =", value, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideNotEqualTo(String value) {
-            addCriterion("LOCATION_DESC <>", value, "etpLocationGuide");
+        public Criteria andEtpDirectionNotEqualTo(String value) {
+            addCriterion("ETP_DIRECTION <>", value, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideGreaterThan(String value) {
-            addCriterion("LOCATION_DESC >", value, "etpLocationGuide");
+        public Criteria andEtpDirectionGreaterThan(String value) {
+            addCriterion("ETP_DIRECTION >", value, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideGreaterThanOrEqualTo(String value) {
-            addCriterion("LOCATION_DESC >=", value, "etpLocationGuide");
+        public Criteria andEtpDirectionGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_DIRECTION >=", value, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideLessThan(String value) {
-            addCriterion("LOCATION_DESC <", value, "etpLocationGuide");
+        public Criteria andEtpDirectionLessThan(String value) {
+            addCriterion("ETP_DIRECTION <", value, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideLessThanOrEqualTo(String value) {
-            addCriterion("LOCATION_DESC <=", value, "etpLocationGuide");
+        public Criteria andEtpDirectionLessThanOrEqualTo(String value) {
+            addCriterion("ETP_DIRECTION <=", value, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideLike(String value) {
-            addCriterion("LOCATION_DESC like", value, "etpLocationGuide");
+        public Criteria andEtpDirectionLike(String value) {
+            addCriterion("ETP_DIRECTION like", value, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideNotLike(String value) {
-            addCriterion("LOCATION_DESC not like", value, "etpLocationGuide");
+        public Criteria andEtpDirectionNotLike(String value) {
+            addCriterion("ETP_DIRECTION not like", value, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideIn(List<String> values) {
-            addCriterion("LOCATION_DESC in", values, "etpLocationGuide");
+        public Criteria andEtpDirectionIn(List<String> values) {
+            addCriterion("ETP_DIRECTION in", values, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideNotIn(List<String> values) {
-            addCriterion("LOCATION_DESC not in", values, "etpLocationGuide");
+        public Criteria andEtpDirectionNotIn(List<String> values) {
+            addCriterion("ETP_DIRECTION not in", values, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideBetween(String value1, String value2) {
-            addCriterion("LOCATION_DESC between", value1, value2, "etpLocationGuide");
+        public Criteria andEtpDirectionBetween(String value1, String value2) {
+            addCriterion("ETP_DIRECTION between", value1, value2, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideNotBetween(String value1, String value2) {
-            addCriterion("LOCATION_DESC not between", value1, value2, "etpLocationGuide");
+        public Criteria andEtpDirectionNotBetween(String value1, String value2) {
+            addCriterion("ETP_DIRECTION not between", value1, value2, "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListIsNull() {
-            addCriterion("SVC_LIST is null");
+        public Criteria andEtpSvcOfferedIsNull() {
+            addCriterion("ETP_SVC_OFFERED is null");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListIsNotNull() {
-            addCriterion("SVC_LIST is not null");
+        public Criteria andEtpSvcOfferedIsNotNull() {
+            addCriterion("ETP_SVC_OFFERED is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListEqualTo(String value) {
-            addCriterion("SVC_LIST =", value, "svcList");
+        public Criteria andEtpSvcOfferedEqualTo(String value) {
+            addCriterion("ETP_SVC_OFFERED =", value, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListNotEqualTo(String value) {
-            addCriterion("SVC_LIST <>", value, "svcList");
+        public Criteria andEtpSvcOfferedNotEqualTo(String value) {
+            addCriterion("ETP_SVC_OFFERED <>", value, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListGreaterThan(String value) {
-            addCriterion("SVC_LIST >", value, "svcList");
+        public Criteria andEtpSvcOfferedGreaterThan(String value) {
+            addCriterion("ETP_SVC_OFFERED >", value, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListGreaterThanOrEqualTo(String value) {
-            addCriterion("SVC_LIST >=", value, "svcList");
+        public Criteria andEtpSvcOfferedGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_SVC_OFFERED >=", value, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListLessThan(String value) {
-            addCriterion("SVC_LIST <", value, "svcList");
+        public Criteria andEtpSvcOfferedLessThan(String value) {
+            addCriterion("ETP_SVC_OFFERED <", value, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListLessThanOrEqualTo(String value) {
-            addCriterion("SVC_LIST <=", value, "svcList");
+        public Criteria andEtpSvcOfferedLessThanOrEqualTo(String value) {
+            addCriterion("ETP_SVC_OFFERED <=", value, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListLike(String value) {
-            addCriterion("SVC_LIST like", value, "svcList");
+        public Criteria andEtpSvcOfferedLike(String value) {
+            addCriterion("ETP_SVC_OFFERED like", value, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListNotLike(String value) {
-            addCriterion("SVC_LIST not like", value, "svcList");
+        public Criteria andEtpSvcOfferedNotLike(String value) {
+            addCriterion("ETP_SVC_OFFERED not like", value, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListIn(List<String> values) {
-            addCriterion("SVC_LIST in", values, "svcList");
+        public Criteria andEtpSvcOfferedIn(List<String> values) {
+            addCriterion("ETP_SVC_OFFERED in", values, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListNotIn(List<String> values) {
-            addCriterion("SVC_LIST not in", values, "svcList");
+        public Criteria andEtpSvcOfferedNotIn(List<String> values) {
+            addCriterion("ETP_SVC_OFFERED not in", values, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListBetween(String value1, String value2) {
-            addCriterion("SVC_LIST between", value1, value2, "svcList");
+        public Criteria andEtpSvcOfferedBetween(String value1, String value2) {
+            addCriterion("ETP_SVC_OFFERED between", value1, value2, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListNotBetween(String value1, String value2) {
-            addCriterion("SVC_LIST not between", value1, value2, "svcList");
+        public Criteria andEtpSvcOfferedNotBetween(String value1, String value2) {
+            addCriterion("ETP_SVC_OFFERED not between", value1, value2, "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassIsNull() {
-            addCriterion("SUBCLASS is null");
+        public Criteria andEtpSubclassIsNull() {
+            addCriterion("ETP_SUBCLASS is null");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassIsNotNull() {
-            addCriterion("SUBCLASS is not null");
+        public Criteria andEtpSubclassIsNotNull() {
+            addCriterion("ETP_SUBCLASS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassEqualTo(String value) {
-            addCriterion("SUBCLASS =", value, "subclass");
+        public Criteria andEtpSubclassEqualTo(String value) {
+            addCriterion("ETP_SUBCLASS =", value, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassNotEqualTo(String value) {
-            addCriterion("SUBCLASS <>", value, "subclass");
+        public Criteria andEtpSubclassNotEqualTo(String value) {
+            addCriterion("ETP_SUBCLASS <>", value, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassGreaterThan(String value) {
-            addCriterion("SUBCLASS >", value, "subclass");
+        public Criteria andEtpSubclassGreaterThan(String value) {
+            addCriterion("ETP_SUBCLASS >", value, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassGreaterThanOrEqualTo(String value) {
-            addCriterion("SUBCLASS >=", value, "subclass");
+        public Criteria andEtpSubclassGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_SUBCLASS >=", value, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassLessThan(String value) {
-            addCriterion("SUBCLASS <", value, "subclass");
+        public Criteria andEtpSubclassLessThan(String value) {
+            addCriterion("ETP_SUBCLASS <", value, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassLessThanOrEqualTo(String value) {
-            addCriterion("SUBCLASS <=", value, "subclass");
+        public Criteria andEtpSubclassLessThanOrEqualTo(String value) {
+            addCriterion("ETP_SUBCLASS <=", value, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassLike(String value) {
-            addCriterion("SUBCLASS like", value, "subclass");
+        public Criteria andEtpSubclassLike(String value) {
+            addCriterion("ETP_SUBCLASS like", value, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassNotLike(String value) {
-            addCriterion("SUBCLASS not like", value, "subclass");
+        public Criteria andEtpSubclassNotLike(String value) {
+            addCriterion("ETP_SUBCLASS not like", value, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassIn(List<String> values) {
-            addCriterion("SUBCLASS in", values, "subclass");
+        public Criteria andEtpSubclassIn(List<String> values) {
+            addCriterion("ETP_SUBCLASS in", values, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassNotIn(List<String> values) {
-            addCriterion("SUBCLASS not in", values, "subclass");
+        public Criteria andEtpSubclassNotIn(List<String> values) {
+            addCriterion("ETP_SUBCLASS not in", values, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassBetween(String value1, String value2) {
-            addCriterion("SUBCLASS between", value1, value2, "subclass");
+        public Criteria andEtpSubclassBetween(String value1, String value2) {
+            addCriterion("ETP_SUBCLASS between", value1, value2, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassNotBetween(String value1, String value2) {
-            addCriterion("SUBCLASS not between", value1, value2, "subclass");
+        public Criteria andEtpSubclassNotBetween(String value1, String value2) {
+            addCriterion("ETP_SUBCLASS not between", value1, value2, "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListIsNull() {
-            addCriterion("SPECIALTY_LIST is null");
+        public Criteria andEtpSpecializeIsNull() {
+            addCriterion("ETP_SPECIALIZE is null");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListIsNotNull() {
-            addCriterion("SPECIALTY_LIST is not null");
+        public Criteria andEtpSpecializeIsNotNull() {
+            addCriterion("ETP_SPECIALIZE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListEqualTo(String value) {
-            addCriterion("SPECIALTY_LIST =", value, "specialtyList");
+        public Criteria andEtpSpecializeEqualTo(String value) {
+            addCriterion("ETP_SPECIALIZE =", value, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListNotEqualTo(String value) {
-            addCriterion("SPECIALTY_LIST <>", value, "specialtyList");
+        public Criteria andEtpSpecializeNotEqualTo(String value) {
+            addCriterion("ETP_SPECIALIZE <>", value, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListGreaterThan(String value) {
-            addCriterion("SPECIALTY_LIST >", value, "specialtyList");
+        public Criteria andEtpSpecializeGreaterThan(String value) {
+            addCriterion("ETP_SPECIALIZE >", value, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListGreaterThanOrEqualTo(String value) {
-            addCriterion("SPECIALTY_LIST >=", value, "specialtyList");
+        public Criteria andEtpSpecializeGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_SPECIALIZE >=", value, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListLessThan(String value) {
-            addCriterion("SPECIALTY_LIST <", value, "specialtyList");
+        public Criteria andEtpSpecializeLessThan(String value) {
+            addCriterion("ETP_SPECIALIZE <", value, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListLessThanOrEqualTo(String value) {
-            addCriterion("SPECIALTY_LIST <=", value, "specialtyList");
+        public Criteria andEtpSpecializeLessThanOrEqualTo(String value) {
+            addCriterion("ETP_SPECIALIZE <=", value, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListLike(String value) {
-            addCriterion("SPECIALTY_LIST like", value, "specialtyList");
+        public Criteria andEtpSpecializeLike(String value) {
+            addCriterion("ETP_SPECIALIZE like", value, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListNotLike(String value) {
-            addCriterion("SPECIALTY_LIST not like", value, "specialtyList");
+        public Criteria andEtpSpecializeNotLike(String value) {
+            addCriterion("ETP_SPECIALIZE not like", value, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListIn(List<String> values) {
-            addCriterion("SPECIALTY_LIST in", values, "specialtyList");
+        public Criteria andEtpSpecializeIn(List<String> values) {
+            addCriterion("ETP_SPECIALIZE in", values, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListNotIn(List<String> values) {
-            addCriterion("SPECIALTY_LIST not in", values, "specialtyList");
+        public Criteria andEtpSpecializeNotIn(List<String> values) {
+            addCriterion("ETP_SPECIALIZE not in", values, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListBetween(String value1, String value2) {
-            addCriterion("SPECIALTY_LIST between", value1, value2, "specialtyList");
+        public Criteria andEtpSpecializeBetween(String value1, String value2) {
+            addCriterion("ETP_SPECIALIZE between", value1, value2, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListNotBetween(String value1, String value2) {
-            addCriterion("SPECIALTY_LIST not between", value1, value2, "specialtyList");
+        public Criteria andEtpSpecializeNotBetween(String value1, String value2) {
+            addCriterion("ETP_SPECIALIZE not between", value1, value2, "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNull() {
-            addCriterion("DESCRIPTION is null");
+        public Criteria andEtpDescriptionIsNull() {
+            addCriterion("ETP_DESCRIPTION is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNotNull() {
-            addCriterion("DESCRIPTION is not null");
+        public Criteria andEtpDescriptionIsNotNull() {
+            addCriterion("ETP_DESCRIPTION is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionEqualTo(String value) {
-            addCriterion("DESCRIPTION =", value, "description");
+        public Criteria andEtpDescriptionEqualTo(String value) {
+            addCriterion("ETP_DESCRIPTION =", value, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotEqualTo(String value) {
-            addCriterion("DESCRIPTION <>", value, "description");
+        public Criteria andEtpDescriptionNotEqualTo(String value) {
+            addCriterion("ETP_DESCRIPTION <>", value, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionGreaterThan(String value) {
-            addCriterion("DESCRIPTION >", value, "description");
+        public Criteria andEtpDescriptionGreaterThan(String value) {
+            addCriterion("ETP_DESCRIPTION >", value, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("DESCRIPTION >=", value, "description");
+        public Criteria andEtpDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("ETP_DESCRIPTION >=", value, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLessThan(String value) {
-            addCriterion("DESCRIPTION <", value, "description");
+        public Criteria andEtpDescriptionLessThan(String value) {
+            addCriterion("ETP_DESCRIPTION <", value, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("DESCRIPTION <=", value, "description");
+        public Criteria andEtpDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("ETP_DESCRIPTION <=", value, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLike(String value) {
-            addCriterion("DESCRIPTION like", value, "description");
+        public Criteria andEtpDescriptionLike(String value) {
+            addCriterion("ETP_DESCRIPTION like", value, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotLike(String value) {
-            addCriterion("DESCRIPTION not like", value, "description");
+        public Criteria andEtpDescriptionNotLike(String value) {
+            addCriterion("ETP_DESCRIPTION not like", value, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIn(List<String> values) {
-            addCriterion("DESCRIPTION in", values, "description");
+        public Criteria andEtpDescriptionIn(List<String> values) {
+            addCriterion("ETP_DESCRIPTION in", values, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotIn(List<String> values) {
-            addCriterion("DESCRIPTION not in", values, "description");
+        public Criteria andEtpDescriptionNotIn(List<String> values) {
+            addCriterion("ETP_DESCRIPTION not in", values, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionBetween(String value1, String value2) {
-            addCriterion("DESCRIPTION between", value1, value2, "description");
+        public Criteria andEtpDescriptionBetween(String value1, String value2) {
+            addCriterion("ETP_DESCRIPTION between", value1, value2, "etpDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotBetween(String value1, String value2) {
-            addCriterion("DESCRIPTION not between", value1, value2, "description");
+        public Criteria andEtpDescriptionNotBetween(String value1, String value2) {
+            addCriterion("ETP_DESCRIPTION not between", value1, value2, "etpDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusIsNull() {
+            addCriterion("ETP_STATUS is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusIsNotNull() {
+            addCriterion("ETP_STATUS is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusEqualTo(Integer value) {
+            addCriterion("ETP_STATUS =", value, "etpStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusNotEqualTo(Integer value) {
+            addCriterion("ETP_STATUS <>", value, "etpStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusGreaterThan(Integer value) {
+            addCriterion("ETP_STATUS >", value, "etpStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ETP_STATUS >=", value, "etpStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusLessThan(Integer value) {
+            addCriterion("ETP_STATUS <", value, "etpStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("ETP_STATUS <=", value, "etpStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusIn(List<Integer> values) {
+            addCriterion("ETP_STATUS in", values, "etpStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusNotIn(List<Integer> values) {
+            addCriterion("ETP_STATUS not in", values, "etpStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_STATUS between", value1, value2, "etpStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andEtpStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("ETP_STATUS not between", value1, value2, "etpStatus");
             return (Criteria) this;
         }
 
@@ -1635,63 +1754,63 @@ public class EnterpriseExample {
             return (Criteria) this;
         }
 
-        public Criteria andOwnerLikeInsensitive(String value) {
-            addCriterion("upper(OWNER) like", value.toUpperCase(), "owner");
+        public Criteria andEtpOwnerLikeInsensitive(String value) {
+            addCriterion("upper(ETP_OWNER) like", value.toUpperCase(), "etpOwner");
             return (Criteria) this;
         }
 
-        public Criteria andSuperclassLikeInsensitive(String value) {
-            addCriterion("upper(SUPERCLASS) like", value.toUpperCase(), "superclass");
+        public Criteria andEtpSuperclassLikeInsensitive(String value) {
+            addCriterion("upper(ETP_SUPERCLASS) like", value.toUpperCase(), "etpSuperclass");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLikeInsensitive(String value) {
-            addCriterion("upper(ADDRESS) like", value.toUpperCase(), "address");
+        public Criteria andEtpAddressLikeInsensitive(String value) {
+            addCriterion("upper(ETP_ADDRESS) like", value.toUpperCase(), "etpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andZipcodeLikeInsensitive(String value) {
-            addCriterion("upper(ZIPCODE) like", value.toUpperCase(), "zipcode");
+        public Criteria andEtpZipcodeLikeInsensitive(String value) {
+            addCriterion("upper(ETP_ZIPCODE) like", value.toUpperCase(), "etpZipcode");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLikeInsensitive(String value) {
-            addCriterion("upper(TITLE) like", value.toUpperCase(), "title");
+        public Criteria andEtpTitleLikeInsensitive(String value) {
+            addCriterion("upper(ETP_TITLE) like", value.toUpperCase(), "etpTitle");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneLikeInsensitive(String value) {
-            addCriterion("upper(PHONE) like", value.toUpperCase(), "phone");
+        public Criteria andEtpPhoneLikeInsensitive(String value) {
+            addCriterion("upper(ETP_PHONE) like", value.toUpperCase(), "etpPhone");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationMapAPIAddressLikeInsensitive(String value) {
-            addCriterion("upper(MAP_API_ADDRESS) like", value.toUpperCase(), "etpLocationMapAPIAddress");
+        public Criteria andEtpMapAddressLikeInsensitive(String value) {
+            addCriterion("upper(ETP_MAP_ADDRESS) like", value.toUpperCase(), "etpMapAddress");
             return (Criteria) this;
         }
 
-        public Criteria andEtpLocationGuideLikeInsensitive(String value) {
-            addCriterion("upper(LOCATION_DESC) like", value.toUpperCase(), "etpLocationGuide");
+        public Criteria andEtpDirectionLikeInsensitive(String value) {
+            addCriterion("upper(ETP_DIRECTION) like", value.toUpperCase(), "etpDirection");
             return (Criteria) this;
         }
 
-        public Criteria andSvcListLikeInsensitive(String value) {
-            addCriterion("upper(SVC_LIST) like", value.toUpperCase(), "svcList");
+        public Criteria andEtpSvcOfferedLikeInsensitive(String value) {
+            addCriterion("upper(ETP_SVC_OFFERED) like", value.toUpperCase(), "etpSvcOffered");
             return (Criteria) this;
         }
 
-        public Criteria andSubclassLikeInsensitive(String value) {
-            addCriterion("upper(SUBCLASS) like", value.toUpperCase(), "subclass");
+        public Criteria andEtpSubclassLikeInsensitive(String value) {
+            addCriterion("upper(ETP_SUBCLASS) like", value.toUpperCase(), "etpSubclass");
             return (Criteria) this;
         }
 
-        public Criteria andSpecialtyListLikeInsensitive(String value) {
-            addCriterion("upper(SPECIALTY_LIST) like", value.toUpperCase(), "specialtyList");
+        public Criteria andEtpSpecializeLikeInsensitive(String value) {
+            addCriterion("upper(ETP_SPECIALIZE) like", value.toUpperCase(), "etpSpecialize");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLikeInsensitive(String value) {
-            addCriterion("upper(DESCRIPTION) like", value.toUpperCase(), "description");
+        public Criteria andEtpDescriptionLikeInsensitive(String value) {
+            addCriterion("upper(ETP_DESCRIPTION) like", value.toUpperCase(), "etpDescription");
             return (Criteria) this;
         }
     }

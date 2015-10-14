@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="model.mapper.HolidayMapper" >
-
-  <resultMap id="BaseResultMap" type="model.vo.Holiday" >
-    <id column="HOL_NUM" property="holNum" jdbcType="DECIMAL" />
-    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
-    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
-    <result column="HOL_DATE" property="holDate" jdbcType="DATE" />
+<mapper namespace="model.mapper.UnregisteredMapper" >
+  <resultMap id="UnregisteredResultMap" type="model.vo.Unregistered" >
+    <id column="URG_NUM" property="urgNum" jdbcType="DECIMAL" />
+    <result column="URG_NAME" property="urgName" jdbcType="VARCHAR" />
+    <result column="URG_EMAIL" property="urgEmail" jdbcType="VARCHAR" />
+    <result column="URG_PHONE" property="urgPhone" jdbcType="VARCHAR" />
+    
+    <collection property="unregisteredReservations" ofType="UnregisteredReservation" resultMap="UnregisteredReservationResultMap" />
+  </resultMap>
+  
+    <resultMap id="UnregisteredReservationResultMap" type="model.vo.UnregisteredReservation" >
+    <id column="URG_RSV_NUM" property="urgRsvNum" jdbcType="DECIMAL" />
+    <result column="RSV_NUM" property="rsvNum" jdbcType="DECIMAL" />
+    <result column="URG_NUM" property="urgNum" jdbcType="DECIMAL" />
+    <result column="URG_RSV_PASSWORD" property="urgRsvPassword" jdbcType="VARCHAR" />
   </resultMap>
   
   
@@ -39,8 +47,6 @@
       </foreach>
     </where>
   </sql>
-  
-  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -70,20 +76,16 @@
       </foreach>
     </where>
   </sql>
-  
-  
   <sql id="Base_Column_List" >
-    HOL_NUM, ETP_NUM, ETP_EMAIL, HOL_DATE
+    URG_NUM, URG_NAME, URG_EMAIL, URG_PHONE
   </sql>
-  
-  
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.HolidayExample" >
+  <select id="selectByExample" resultMap="UnregisteredResultMap" parameterType="model.vo.UnregisteredExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from HR.HOLIDAY
+    from HR.UNREGISTERED
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,147 +93,125 @@
       order by ${orderByClause}
     </if>
   </select>
-  
-  
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="UnregisteredResultMap" parameterType="java.lang.Short" >
     select 
     <include refid="Base_Column_List" />
-    from HR.HOLIDAY
-    where HOL_NUM = #{holNum,jdbcType=DECIMAL}
+    from HR.UNREGISTERED
+    where URG_NUM = #{urgNum,jdbcType=DECIMAL}
   </select>
-  
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from HR.HOLIDAY
-    where HOL_NUM = #{holNum,jdbcType=DECIMAL}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from HR.UNREGISTERED
+    where URG_NUM = #{urgNum,jdbcType=DECIMAL}
   </delete>
-  
-  
-  <delete id="deleteByExample" parameterType="model.vo.HolidayExample" >
-    delete from HR.HOLIDAY
+  <delete id="deleteByExample" parameterType="model.vo.UnregisteredExample" >
+    delete from HR.UNREGISTERED
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  
-  
-  <insert id="insert" parameterType="model.vo.Holiday" >
-    insert into HR.HOLIDAY (HOL_NUM, ETP_NUM, ETP_EMAIL, 
-      HOL_DATE)
-    values (#{holNum,jdbcType=DECIMAL}, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
-      #{holDate,jdbcType=DATE})
+  <insert id="insert" parameterType="model.vo.Unregistered" >
+    insert into HR.UNREGISTERED (URG_NUM, URG_NAME, URG_EMAIL, 
+      URG_PHONE)
+    values (#{urgNum,jdbcType=DECIMAL}, #{urgName,jdbcType=VARCHAR}, #{urgEmail,jdbcType=VARCHAR}, 
+      #{urgPhone,jdbcType=VARCHAR})
   </insert>
-  
-  
-  <insert id="insertSelective" parameterType="model.vo.Holiday" >
-    insert into HR.HOLIDAY
+  <insert id="insertSelective" parameterType="model.vo.Unregistered" >
+    insert into HR.UNREGISTERED
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="holNum != null" >
-        HOL_NUM,
+      <if test="urgNum != null" >
+        URG_NUM,
       </if>
-      <if test="etpNum != null" >
-        ETP_NUM,
+      <if test="urgName != null" >
+        URG_NAME,
       </if>
-      <if test="etpEmail != null" >
-        ETP_EMAIL,
+      <if test="urgEmail != null" >
+        URG_EMAIL,
       </if>
-      <if test="holDate != null" >
-        HOL_DATE,
+      <if test="urgPhone != null" >
+        URG_PHONE,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="holNum != null" >
-        #{holNum,jdbcType=DECIMAL},
+      <if test="urgNum != null" >
+        #{urgNum,jdbcType=DECIMAL},
       </if>
-      <if test="etpNum != null" >
-        #{etpNum,jdbcType=VARCHAR},
+      <if test="urgName != null" >
+        #{urgName,jdbcType=VARCHAR},
       </if>
-      <if test="etpEmail != null" >
-        #{etpEmail,jdbcType=VARCHAR},
+      <if test="urgEmail != null" >
+        #{urgEmail,jdbcType=VARCHAR},
       </if>
-      <if test="holDate != null" >
-        #{holDate,jdbcType=DATE},
+      <if test="urgPhone != null" >
+        #{urgPhone,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  
-  
-  <select id="countByExample" parameterType="model.vo.HolidayExample" resultType="java.lang.Integer" >
-    select count(*) from HR.HOLIDAY
+  <select id="countByExample" parameterType="model.vo.UnregisteredExample" resultType="java.lang.Integer" >
+    select count(*) from HR.UNREGISTERED
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  
-  
   <update id="updateByExampleSelective" parameterType="map" >
-    update HR.HOLIDAY
+    update HR.UNREGISTERED
     <set >
-      <if test="record.holNum != null" >
-        HOL_NUM = #{record.holNum,jdbcType=DECIMAL},
+      <if test="record.urgNum != null" >
+        URG_NUM = #{record.urgNum,jdbcType=DECIMAL},
       </if>
-      <if test="record.etpNum != null" >
-        ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      <if test="record.urgName != null" >
+        URG_NAME = #{record.urgName,jdbcType=VARCHAR},
       </if>
-      <if test="record.etpEmail != null" >
-        ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      <if test="record.urgEmail != null" >
+        URG_EMAIL = #{record.urgEmail,jdbcType=VARCHAR},
       </if>
-      <if test="record.holDate != null" >
-        HOL_DATE = #{record.holDate,jdbcType=DATE},
+      <if test="record.urgPhone != null" >
+        URG_PHONE = #{record.urgPhone,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  
-  
   <update id="updateByExample" parameterType="map" >
-    update HR.HOLIDAY
-    set HOL_NUM = #{record.holNum,jdbcType=DECIMAL},
-      ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
-      ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
-      HOL_DATE = #{record.holDate,jdbcType=DATE}
+    update HR.UNREGISTERED
+    set URG_NUM = #{record.urgNum,jdbcType=DECIMAL},
+      URG_NAME = #{record.urgName,jdbcType=VARCHAR},
+      URG_EMAIL = #{record.urgEmail,jdbcType=VARCHAR},
+      URG_PHONE = #{record.urgPhone,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  
-  
-  <update id="updateByPrimaryKeySelective" parameterType="model.vo.Holiday" >
-    update HR.HOLIDAY
+  <update id="updateByPrimaryKeySelective" parameterType="model.vo.Unregistered" >
+    update HR.UNREGISTERED
     <set >
-      <if test="etpNum != null" >
-        ETP_NUM = #{etpNum,jdbcType=VARCHAR},
+      <if test="urgName != null" >
+        URG_NAME = #{urgName,jdbcType=VARCHAR},
       </if>
-      <if test="etpEmail != null" >
-        ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
+      <if test="urgEmail != null" >
+        URG_EMAIL = #{urgEmail,jdbcType=VARCHAR},
       </if>
-      <if test="holDate != null" >
-        HOL_DATE = #{holDate,jdbcType=DATE},
+      <if test="urgPhone != null" >
+        URG_PHONE = #{urgPhone,jdbcType=VARCHAR},
       </if>
     </set>
-    where HOL_NUM = #{holNum,jdbcType=DECIMAL}
+    where URG_NUM = #{urgNum,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKey" parameterType="model.vo.Holiday" >
-    update HR.HOLIDAY
-    set ETP_NUM = #{etpNum,jdbcType=VARCHAR},
-      ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
-      HOL_DATE = #{holDate,jdbcType=DATE}
-    where HOL_NUM = #{holNum,jdbcType=DECIMAL}
+  <update id="updateByPrimaryKey" parameterType="model.vo.Unregistered" >
+    update HR.UNREGISTERED
+    set URG_NAME = #{urgName,jdbcType=VARCHAR},
+      URG_EMAIL = #{urgEmail,jdbcType=VARCHAR},
+      URG_PHONE = #{urgPhone,jdbcType=VARCHAR}
+    where URG_NUM = #{urgNum,jdbcType=DECIMAL}
   </update>
-  
-  
   <cache />
-  
-  
-  <select resultMap="BaseResultMap" parameterType="model.vo.HolidayExample" id="selectByExampleWithRowbounds" >
+  <select resultMap="UnregisteredResultMap" parameterType="model.vo.UnregisteredExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from HR.HOLIDAY
+    from HR.UNREGISTERED
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>

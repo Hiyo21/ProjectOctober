@@ -76,38 +76,40 @@
 			timezone: 'local',
 			selectble: false,
 			selectHelper: true,
-			events: function(start, end, timezone, callback){
+			eventSources: function(start, end, timezone, callback){
 				$.ajax({
-					url: '${pageContext.request.contextPath}/enterprise/retrieveEvents.action',
+					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
 					type: 'GET',
 					dataType: 'json',
-					
 					success: function(doc){
-						alert("hello");
+						var enterprise = doc.enterprise;
+						alert(enterprise);
 						var events = [];
-						events.push({
-							title: doc.title,
-							start: doc.start,
-							end: doc.end
-						});
+		
+						for(var i = 0; i < enterprise.reservations.length; i++){
+							events.push({
+								id: enterprise.reservations[i].rsvNum,
+								title: enterprise.reservations[i].title,
+								start: enterprise.reservations[i].start,
+								end: enterprise.reservations[i].end
+							});
+						}
+						callback(events);
 					},
-					
 					error: function(doc){
-						alert("Error");
+						console.log("Error");
 					}
-				})
+				});
+			
 			},
 			
 			dayClick: function(date, jsEvent, view){
 				$(this).html(
 						'Clicked on: ' + date.format() + '<br>' +
 						'Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY + '<br>' + 
-						'Current View: ' + view.name
-						
+						'Current View: ' + view.name	
 				);
 			}
-			
-			
 			});
 		});
 </script>

@@ -1,221 +1,110 @@
 package model.vo;
 
+import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.List;
 
-public class Enterprise{
-	private String etpNum;
+public class Enterprise implements Serializable {
+	private Component component;
+	private Holiday holiday;
+	private PhotoLocation photoLocation;
+	private WorkingDays workingDays;
+	private List<Review> reviews;
+	private List<Notification> notifications;
+	private List<Reservation> reservations;
+	private List<SaleRecord> saleRecords;
+	private List<Service> services;
+	private List<Coupon> coupons;
+	
+    private String etpNum;
 
     private String etpEmail;
 	
-    private String owner;
+	private String etpOwner;
 
-    private String superclass;
+    private String etpSuperclass;
 
-    private String address;
+    private String etpAddress;
 
-    private String zipcode;
+    private String etpZipcode;
 
-    private String title;
+    private String etpTitle;
 
-    private LocalTime startHour;
+    private LocalTime etpStartHour;
 
-    private LocalTime endHour;
+    private LocalTime etpEndHour;
 
-    private String phone;
+    private String etpPhone;
 
-    private Integer maleStaffCount;
+    private Integer etpMaleStaff;
 
-    private Integer femaleStaffCount;
+    private Integer etpFemaleStaff;
 
-    private Integer hourlyCapacity;
+    private Integer etpCapacity;
 
-    private Integer modificationDeadline;
+    private Integer etpRsvDeadline;
 
-    private Integer ntfFrequencyToEtp;
+    private Integer etpSelfNotification;
 
-    private Integer ntfFrequencyToCst;
+    private Integer etpCstNotification;
 
-    private Integer pageTemplateType;
+    private Integer etpTemplateType;
 
-    private String etpLocationMapAPIAddress;
+    private String etpMapAddress;
 
-    private String etpLocationGuide;
+    private String etpDirection;
 
-    private String svcList;
+    private String etpSvcOffered;
 
-    private String subclass;
+    private String etpSubclass;
 
-    private String specialtyList;
+    private String etpSpecialize;
 
-    private String description;
+    private String etpDescription;
 
-    public String getOwner() {
-        return owner;
-    }
+    private Integer etpStatus;
 
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
+    private static final long serialVersionUID = 1L;
 
-    public String getSuperclass() {
-        return superclass;
-    }
+	public Component getComponent() {
+		return component;
+	}
 
-    public void setSuperclass(String superclass) {
-        this.superclass = superclass;
-    }
+	public Holiday getHoliday() {
+		return holiday;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public PhotoLocation getPhotoLocation() {
+		return photoLocation;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public WorkingDays getWorkingDays() {
+		return workingDays;
+	}
 
-    public String getZipcode() {
-        return zipcode;
-    }
+	public List<Review> getReviews() {
+		return reviews;
+	}
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public List<SaleRecord> getSaleRecords() {
+		return saleRecords;
+	}
 
-    public LocalTime getStartHour() {
-        return startHour;
-    }
+	public List<Service> getServices() {
+		return services;
+	}
 
-    public void setStartHour(LocalTime startHour) {
-        this.startHour = startHour;
-    }
-
-    public LocalTime getEndHour() {
-        return endHour;
-    }
-
-    public void setEndHour(LocalTime endHour) {
-        this.endHour = endHour;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Integer getMaleStaffCount() {
-        return maleStaffCount;
-    }
-
-    public void setMaleStaffCount(Integer maleStaffCount) {
-        this.maleStaffCount = maleStaffCount;
-    }
-
-    public Integer getFemaleStaffCount() {
-        return femaleStaffCount;
-    }
-
-    public void setFemaleStaffCount(Integer femaleStaffCount) {
-        this.femaleStaffCount = femaleStaffCount;
-    }
-
-    public Integer getHourlyCapacity() {
-        return hourlyCapacity;
-    }
-
-    public void setHourlyCapacity(Integer hourlyCapacity) {
-        this.hourlyCapacity = hourlyCapacity;
-    }
-
-    public Integer getModificationDeadline() {
-        return modificationDeadline;
-    }
-
-    public void setModificationDeadline(Integer modificationDeadline) {
-        this.modificationDeadline = modificationDeadline;
-    }
-
-    public Integer getNtfFrequencyToEtp() {
-        return ntfFrequencyToEtp;
-    }
-
-    public void setNtfFrequencyToEtp(Integer ntfFrequencyToEtp) {
-        this.ntfFrequencyToEtp = ntfFrequencyToEtp;
-    }
-
-    public Integer getNtfFrequencyToCst() {
-        return ntfFrequencyToCst;
-    }
-
-    public void setNtfFrequencyToCst(Integer ntfFrequencyToCst) {
-        this.ntfFrequencyToCst = ntfFrequencyToCst;
-    }
-
-    public Integer getPageTemplateType() {
-        return pageTemplateType;
-    }
-
-    public void setPageTemplateType(Integer pageTemplateType) {
-        this.pageTemplateType = pageTemplateType;
-    }
-
-    public String getEtpLocationMapAPIAddress() {
-        return etpLocationMapAPIAddress;
-    }
-
-    public void setEtpLocationMapAPIAddress(String etpLocationMapAPIAddress) {
-        this.etpLocationMapAPIAddress = etpLocationMapAPIAddress;
-    }
-
-    public String getEtpLocationGuide() {
-        return etpLocationGuide;
-    }
-
-    public void setEtpLocationGuide(String etpLocationGuide) {
-        this.etpLocationGuide = etpLocationGuide;
-    }
-
-    public String getSvcList() {
-        return svcList;
-    }
-
-    public void setSvcList(String svcList) {
-        this.svcList = svcList;
-    }
-
-    public String getSubclass() {
-        return subclass;
-    }
-
-    public void setSubclass(String subclass) {
-        this.subclass = subclass;
-    }
-
-    public String getSpecialtyList() {
-        return specialtyList;
-    }
-
-    public void setSpecialtyList(String specialtyList) {
-        this.specialtyList = specialtyList;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public List<Coupon> getCoupons() {
+		return coupons;
+	}
 
 	public String getEtpNum() {
 		return etpNum;
@@ -223,6 +112,134 @@ public class Enterprise{
 
 	public String getEtpEmail() {
 		return etpEmail;
+	}
+
+	public String getEtpOwner() {
+		return etpOwner;
+	}
+
+	public String getEtpSuperclass() {
+		return etpSuperclass;
+	}
+
+	public String getEtpAddress() {
+		return etpAddress;
+	}
+
+	public String getEtpZipcode() {
+		return etpZipcode;
+	}
+
+	public String getEtpTitle() {
+		return etpTitle;
+	}
+
+	public LocalTime getEtpStartHour() {
+		return etpStartHour;
+	}
+
+	public LocalTime getEtpEndHour() {
+		return etpEndHour;
+	}
+
+	public String getEtpPhone() {
+		return etpPhone;
+	}
+
+	public Integer getEtpMaleStaff() {
+		return etpMaleStaff;
+	}
+
+	public Integer getEtpFemaleStaff() {
+		return etpFemaleStaff;
+	}
+
+	public Integer getEtpCapacity() {
+		return etpCapacity;
+	}
+
+	public Integer getEtpRsvDeadline() {
+		return etpRsvDeadline;
+	}
+
+	public Integer getEtpSelfNotification() {
+		return etpSelfNotification;
+	}
+
+	public Integer getEtpCstNotification() {
+		return etpCstNotification;
+	}
+
+	public Integer getEtpTemplateType() {
+		return etpTemplateType;
+	}
+
+	public String getEtpMapAddress() {
+		return etpMapAddress;
+	}
+
+	public String getEtpDirection() {
+		return etpDirection;
+	}
+
+	public String getEtpSvcOffered() {
+		return etpSvcOffered;
+	}
+
+	public String getEtpSubclass() {
+		return etpSubclass;
+	}
+
+	public String getEtpSpecialize() {
+		return etpSpecialize;
+	}
+
+	public String getEtpDescription() {
+		return etpDescription;
+	}
+
+	public Integer getEtpStatus() {
+		return etpStatus;
+	}
+
+	public void setComponent(Component component) {
+		this.component = component;
+	}
+
+	public void setHoliday(Holiday holiday) {
+		this.holiday = holiday;
+	}
+
+	public void setPhotoLocation(PhotoLocation photoLocation) {
+		this.photoLocation = photoLocation;
+	}
+
+	public void setWorkingDays(WorkingDays workingDays) {
+		this.workingDays = workingDays;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+	public void setSaleRecords(List<SaleRecord> saleRecords) {
+		this.saleRecords = saleRecords;
+	}
+
+	public void setServices(List<Service> services) {
+		this.services = services;
+	}
+
+	public void setCoupons(List<Coupon> coupons) {
+		this.coupons = coupons;
 	}
 
 	public void setEtpNum(String etpNum) {
@@ -233,21 +250,117 @@ public class Enterprise{
 		this.etpEmail = etpEmail;
 	}
 
+	public void setEtpOwner(String etpOwner) {
+		this.etpOwner = etpOwner;
+	}
+
+	public void setEtpSuperclass(String etpSuperclass) {
+		this.etpSuperclass = etpSuperclass;
+	}
+
+	public void setEtpAddress(String etpAddress) {
+		this.etpAddress = etpAddress;
+	}
+
+	public void setEtpZipcode(String etpZipcode) {
+		this.etpZipcode = etpZipcode;
+	}
+
+	public void setEtpTitle(String etpTitle) {
+		this.etpTitle = etpTitle;
+	}
+
+	public void setEtpStartHour(LocalTime etpStartHour) {
+		this.etpStartHour = etpStartHour;
+	}
+
+	public void setEtpEndHour(LocalTime etpEndHour) {
+		this.etpEndHour = etpEndHour;
+	}
+
+	public void setEtpPhone(String etpPhone) {
+		this.etpPhone = etpPhone;
+	}
+
+	public void setEtpMaleStaff(Integer etpMaleStaff) {
+		this.etpMaleStaff = etpMaleStaff;
+	}
+
+	public void setEtpFemaleStaff(Integer etpFemaleStaff) {
+		this.etpFemaleStaff = etpFemaleStaff;
+	}
+
+	public void setEtpCapacity(Integer etpCapacity) {
+		this.etpCapacity = etpCapacity;
+	}
+
+	public void setEtpRsvDeadline(Integer etpRsvDeadline) {
+		this.etpRsvDeadline = etpRsvDeadline;
+	}
+
+	public void setEtpSelfNotification(Integer etpSelfNotification) {
+		this.etpSelfNotification = etpSelfNotification;
+	}
+
+	public void setEtpCstNotification(Integer etpCstNotification) {
+		this.etpCstNotification = etpCstNotification;
+	}
+
+	public void setEtpTemplateType(Integer etpTemplateType) {
+		this.etpTemplateType = etpTemplateType;
+	}
+
+	public void setEtpMapAddress(String etpMapAddress) {
+		this.etpMapAddress = etpMapAddress;
+	}
+
+	public void setEtpDirection(String etpDirection) {
+		this.etpDirection = etpDirection;
+	}
+
+	public void setEtpSvcOffered(String etpSvcOffered) {
+		this.etpSvcOffered = etpSvcOffered;
+	}
+
+	public void setEtpSubclass(String etpSubclass) {
+		this.etpSubclass = etpSubclass;
+	}
+
+	public void setEtpSpecialize(String etpSpecialize) {
+		this.etpSpecialize = etpSpecialize;
+	}
+
+	public void setEtpDescription(String etpDescription) {
+		this.etpDescription = etpDescription;
+	}
+
+	public void setEtpStatus(Integer etpStatus) {
+		this.etpStatus = etpStatus;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Enterprise [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail).append(", owner=")
-				.append(owner).append(", superclass=").append(superclass).append(", address=").append(address)
-				.append(", zipcode=").append(zipcode).append(", title=").append(title).append(", startHour=")
-				.append(startHour).append(", endHour=").append(endHour).append(", phone=").append(phone)
-				.append(", maleStaffCount=").append(maleStaffCount).append(", femaleStaffCount=")
-				.append(femaleStaffCount).append(", hourlyCapacity=").append(hourlyCapacity)
-				.append(", modificationDeadline=").append(modificationDeadline).append(", ntfFrequencyToEtp=")
-				.append(ntfFrequencyToEtp).append(", ntfFrequencyToCst=").append(ntfFrequencyToCst)
-				.append(", pageTemplateType=").append(pageTemplateType).append(", etpLocationMapAPIAddress=")
-				.append(etpLocationMapAPIAddress).append(", etpLocationGuide=").append(etpLocationGuide)
-				.append(", svcList=").append(svcList).append(", subclass=").append(subclass).append(", specialtyList=")
-				.append(specialtyList).append(", description=").append(description).append("]");
+		builder.append("Enterprise [component=").append(component).append(", holiday=").append(holiday)
+				.append(", photoLocation=").append(photoLocation).append(", workingDays=").append(workingDays)
+				.append(", reviews=").append(reviews).append(", notifications=").append(notifications)
+				.append(", reservations=").append(reservations).append(", saleRecords=").append(saleRecords)
+				.append(", services=").append(services).append(", coupons=").append(coupons).append(", etpNum=")
+				.append(etpNum).append(", etpEmail=").append(etpEmail).append(", etpOwner=").append(etpOwner)
+				.append(", etpSuperclass=").append(etpSuperclass).append(", etpAddress=").append(etpAddress)
+				.append(", etpZipcode=").append(etpZipcode).append(", etpTitle=").append(etpTitle)
+				.append(", etpStartHour=").append(etpStartHour).append(", etpEndHour=").append(etpEndHour)
+				.append(", etpPhone=").append(etpPhone).append(", etpMaleStaff=").append(etpMaleStaff)
+				.append(", etpFemaleStaff=").append(etpFemaleStaff).append(", etpCapacity=").append(etpCapacity)
+				.append(", etpRsvDeadline=").append(etpRsvDeadline).append(", etpSelfNotification=")
+				.append(etpSelfNotification).append(", etpCstNotification=").append(etpCstNotification)
+				.append(", etpTemplateType=").append(etpTemplateType).append(", etpMapAddress=").append(etpMapAddress)
+				.append(", etpDirection=").append(etpDirection).append(", etpSvcOffered=").append(etpSvcOffered)
+				.append(", etpSubclass=").append(etpSubclass).append(", etpSpecialize=").append(etpSpecialize)
+				.append(", etpDescription=").append(etpDescription).append(", etpStatus=").append(etpStatus)
+				.append("]");
 		return builder.toString();
 	}
+
+
 }

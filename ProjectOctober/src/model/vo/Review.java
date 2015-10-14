@@ -1,8 +1,9 @@
 package model.vo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Review {
+public class Review implements Serializable {
     private Integer rvwNum;
 
     private String cstEmail;
@@ -11,23 +12,25 @@ public class Review {
 
     private String etpEmail;
 
-    private LocalDateTime inputDate;
+    private LocalDateTime rvwInputDate;
 
     private String cstIpAddress;
 
-    private String content;
+    private String rvwContent;
 
     private String cstJob;
 
-    private Integer hygiene;
+    private Integer rvwHygiene;
 
-    private Integer comfort;
+    private Integer rvwComfort;
 
-    private Integer technique;
+    private Integer rvwTechnique;
 
-    private Integer price;
+    private Integer rvwPrice;
 
-    private Integer service;
+    private Integer rvwService;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getRvwNum() {
         return rvwNum;
@@ -61,12 +64,12 @@ public class Review {
         this.etpEmail = etpEmail;
     }
 
-    public LocalDateTime getInputDate() {
-        return inputDate;
+    public LocalDateTime getRvwInputDate() {
+        return rvwInputDate;
     }
 
-    public void setInputDate(LocalDateTime inputDate) {
-        this.inputDate = inputDate;
+    public void setRvwInputDate(LocalDateTime rvwInputDate) {
+        this.rvwInputDate = rvwInputDate;
     }
 
     public String getCstIpAddress() {
@@ -77,12 +80,12 @@ public class Review {
         this.cstIpAddress = cstIpAddress;
     }
 
-    public String getContent() {
-        return content;
+    public String getRvwContent() {
+        return rvwContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setRvwContent(String rvwContent) {
+        this.rvwContent = rvwContent;
     }
 
     public String getCstJob() {
@@ -93,44 +96,44 @@ public class Review {
         this.cstJob = cstJob;
     }
 
-    public Integer getHygiene() {
-        return hygiene;
+    public Integer getRvwHygiene() {
+        return rvwHygiene;
     }
 
-    public void setHygiene(Integer hygiene) {
-        this.hygiene = hygiene;
+    public void setRvwHygiene(Integer rvwHygiene) {
+        this.rvwHygiene = rvwHygiene;
     }
 
-    public Integer getComfort() {
-        return comfort;
+    public Integer getRvwComfort() {
+        return rvwComfort;
     }
 
-    public void setComfort(Integer comfort) {
-        this.comfort = comfort;
+    public void setRvwComfort(Integer rvwComfort) {
+        this.rvwComfort = rvwComfort;
     }
 
-    public Integer getTechnique() {
-        return technique;
+    public Integer getRvwTechnique() {
+        return rvwTechnique;
     }
 
-    public void setTechnique(Integer technique) {
-        this.technique = technique;
+    public void setRvwTechnique(Integer rvwTechnique) {
+        this.rvwTechnique = rvwTechnique;
     }
 
-    public Integer getPrice() {
-        return price;
+    public Integer getRvwPrice() {
+        return rvwPrice;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setRvwPrice(Integer rvwPrice) {
+        this.rvwPrice = rvwPrice;
     }
 
-    public Integer getService() {
-        return service;
+    public Integer getRvwService() {
+        return rvwService;
     }
 
-    public void setService(Integer service) {
-        this.service = service;
+    public void setRvwService(Integer rvwService) {
+        this.rvwService = rvwService;
     }
 
     @Override
@@ -143,15 +146,15 @@ public class Review {
         sb.append(", cstEmail=").append(cstEmail);
         sb.append(", etpNum=").append(etpNum);
         sb.append(", etpEmail=").append(etpEmail);
-        sb.append(", inputDate=").append(inputDate);
+        sb.append(", rvwInputDate=").append(rvwInputDate);
         sb.append(", cstIpAddress=").append(cstIpAddress);
-        sb.append(", content=").append(content);
+        sb.append(", rvwContent=").append(rvwContent);
         sb.append(", cstJob=").append(cstJob);
-        sb.append(", hygiene=").append(hygiene);
-        sb.append(", comfort=").append(comfort);
-        sb.append(", technique=").append(technique);
-        sb.append(", price=").append(price);
-        sb.append(", service=").append(service);
+        sb.append(", rvwHygiene=").append(rvwHygiene);
+        sb.append(", rvwComfort=").append(rvwComfort);
+        sb.append(", rvwTechnique=").append(rvwTechnique);
+        sb.append(", rvwPrice=").append(rvwPrice);
+        sb.append(", rvwService=").append(rvwService);
         sb.append("]");
         return sb.toString();
     }

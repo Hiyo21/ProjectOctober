@@ -1,24 +1,28 @@
 package model.vo;
 
-public class MemberCode {
-    private Integer memberCode;
+import java.io.Serializable;
 
-    private String memberType;
+public class MemberCode implements Serializable {
+    private Integer memCode;
 
-    public Integer getMemberCode() {
-        return memberCode;
+    private String memType;
+
+    private static final long serialVersionUID = 1L;
+
+    public Integer getMemCode() {
+        return memCode;
     }
 
-    public void setMemberCode(Integer memberCode) {
-        this.memberCode = memberCode;
+    public void setMemCode(Integer memCode) {
+        this.memCode = memCode;
     }
 
-    public String getMemberType() {
-        return memberType;
+    public String getMemType() {
+        return memType;
     }
 
-    public void setMemberType(String memberType) {
-        this.memberType = memberType;
+    public void setMemType(String memType) {
+        this.memType = memType;
     }
 
     @Override
@@ -27,8 +31,8 @@ public class MemberCode {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", memberCode=").append(memberCode);
-        sb.append(", memberType=").append(memberType);
+        sb.append(", memCode=").append(memCode);
+        sb.append(", memType=").append(memType);
         sb.append("]");
         return sb.toString();
     }

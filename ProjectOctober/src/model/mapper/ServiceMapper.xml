@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.ServiceMapper" >
-
-
-  <resultMap id="BaseResultMap" type="model.vo.Service" >
+  <resultMap id="ServiceResultMap" type="model.vo.Service" >
     <id column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
-    <result column="TITLE" property="title" jdbcType="VARCHAR" />
-    <result column="COST" property="cost" jdbcType="DECIMAL" />
-    <result column="TIME" property="time" jdbcType="DATE" />
-    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
-    <result column="CATEGORY" property="category" jdbcType="VARCHAR" />
-    <result column="SPECIALTY" property="specialty" jdbcType="VARCHAR" />
+    <result column="SVC_TITLE" property="svcTitle" jdbcType="VARCHAR" />
+    <result column="SVC_COST" property="svcCost" jdbcType="DECIMAL" />
+    <result column="SVC_TIME" property="svcTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    <result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
+    <result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
+    <result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
     <result column="SVC_COUNT" property="svcCount" jdbcType="DECIMAL" />
   </resultMap>
-  
-  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -41,13 +37,30 @@
                 </when>
               </choose>
             </foreach>
+            <foreach collection="criteria.svcTimeCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
           </trim>
         </if>
       </foreach>
     </where>
   </sql>
-  
-  
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -72,20 +85,35 @@
                 </when>
               </choose>
             </foreach>
+            <foreach collection="criteria.svcTimeCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
           </trim>
         </if>
       </foreach>
     </where>
   </sql>
-  
-  
   <sql id="Base_Column_List" >
-    SVC_NUM, ETP_NUM, ETP_EMAIL, TITLE, COST, TIME, DESCRIPTION, CATEGORY, SPECIALTY, 
-    SVC_COUNT
+    SVC_NUM, ETP_NUM, ETP_EMAIL, SVC_TITLE, SVC_COST, SVC_TIME, SVC_DESCRIPTION, SVC_CATEGORY, 
+    SVC_SPECIALIZE, SVC_COUNT
   </sql>
-  
-  
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.vo.ServiceExample" >
+  <select id="selectByExample" resultMap="ServiceResultMap" parameterType="model.vo.ServiceExample" >
     select
     <if test="distinct" >
       distinct
@@ -99,15 +127,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  
-  
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="ServiceResultMap" parameterType="java.lang.Short" >
     select 
     <include refid="Base_Column_List" />
     from HR.SERVICE
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
     delete from HR.SERVICE
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </delete>
@@ -117,20 +143,16 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  
-  
   <insert id="insert" parameterType="model.vo.Service" >
     insert into HR.SERVICE (SVC_NUM, ETP_NUM, ETP_EMAIL, 
-      TITLE, COST, TIME, DESCRIPTION, 
-      CATEGORY, SPECIALTY, SVC_COUNT
-      )
+      SVC_TITLE, SVC_COST, SVC_TIME, 
+      SVC_DESCRIPTION, SVC_CATEGORY, SVC_SPECIALIZE, 
+      SVC_COUNT)
     values (#{svcNum,jdbcType=DECIMAL}, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
-      #{title,jdbcType=VARCHAR}, #{cost,jdbcType=DECIMAL}, #{time,jdbcType=DATE}, #{description,jdbcType=VARCHAR}, 
-      #{category,jdbcType=VARCHAR}, #{specialty,jdbcType=VARCHAR}, #{svcCount,jdbcType=DECIMAL}
-      )
+      #{svcTitle,jdbcType=VARCHAR}, #{svcCost,jdbcType=DECIMAL}, #{svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler}, 
+      #{svcDescription,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}, #{svcSpecialize,jdbcType=VARCHAR}, 
+      #{svcCount,jdbcType=DECIMAL})
   </insert>
-  
-  
   <insert id="insertSelective" parameterType="model.vo.Service" >
     insert into HR.SERVICE
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -143,23 +165,23 @@
       <if test="etpEmail != null" >
         ETP_EMAIL,
       </if>
-      <if test="title != null" >
-        TITLE,
+      <if test="svcTitle != null" >
+        SVC_TITLE,
       </if>
-      <if test="cost != null" >
-        COST,
+      <if test="svcCost != null" >
+        SVC_COST,
       </if>
-      <if test="time != null" >
-        TIME,
+      <if test="svcTime != null" >
+        SVC_TIME,
       </if>
-      <if test="description != null" >
-        DESCRIPTION,
+      <if test="svcDescription != null" >
+        SVC_DESCRIPTION,
       </if>
-      <if test="category != null" >
-        CATEGORY,
+      <if test="svcCategory != null" >
+        SVC_CATEGORY,
       </if>
-      <if test="specialty != null" >
-        SPECIALTY,
+      <if test="svcSpecialize != null" >
+        SVC_SPECIALIZE,
       </if>
       <if test="svcCount != null" >
         SVC_COUNT,
@@ -175,39 +197,35 @@
       <if test="etpEmail != null" >
         #{etpEmail,jdbcType=VARCHAR},
       </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
+      <if test="svcTitle != null" >
+        #{svcTitle,jdbcType=VARCHAR},
       </if>
-      <if test="cost != null" >
-        #{cost,jdbcType=DECIMAL},
+      <if test="svcCost != null" >
+        #{svcCost,jdbcType=DECIMAL},
       </if>
-      <if test="time != null" >
-        #{time,jdbcType=DATE},
+      <if test="svcTime != null" >
+        #{svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
       </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
+      <if test="svcDescription != null" >
+        #{svcDescription,jdbcType=VARCHAR},
       </if>
-      <if test="category != null" >
-        #{category,jdbcType=VARCHAR},
+      <if test="svcCategory != null" >
+        #{svcCategory,jdbcType=VARCHAR},
       </if>
-      <if test="specialty != null" >
-        #{specialty,jdbcType=VARCHAR},
+      <if test="svcSpecialize != null" >
+        #{svcSpecialize,jdbcType=VARCHAR},
       </if>
       <if test="svcCount != null" >
         #{svcCount,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
-  
-  
   <select id="countByExample" parameterType="model.vo.ServiceExample" resultType="java.lang.Integer" >
     select count(*) from HR.SERVICE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  
-  
   <update id="updateByExampleSelective" parameterType="map" >
     update HR.SERVICE
     <set >
@@ -220,23 +238,23 @@
       <if test="record.etpEmail != null" >
         ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
       </if>
-      <if test="record.title != null" >
-        TITLE = #{record.title,jdbcType=VARCHAR},
+      <if test="record.svcTitle != null" >
+        SVC_TITLE = #{record.svcTitle,jdbcType=VARCHAR},
       </if>
-      <if test="record.cost != null" >
-        COST = #{record.cost,jdbcType=DECIMAL},
+      <if test="record.svcCost != null" >
+        SVC_COST = #{record.svcCost,jdbcType=DECIMAL},
       </if>
-      <if test="record.time != null" >
-        TIME = #{record.time,jdbcType=DATE},
+      <if test="record.svcTime != null" >
+        SVC_TIME = #{record.svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
       </if>
-      <if test="record.description != null" >
-        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      <if test="record.svcDescription != null" >
+        SVC_DESCRIPTION = #{record.svcDescription,jdbcType=VARCHAR},
       </if>
-      <if test="record.category != null" >
-        CATEGORY = #{record.category,jdbcType=VARCHAR},
+      <if test="record.svcCategory != null" >
+        SVC_CATEGORY = #{record.svcCategory,jdbcType=VARCHAR},
       </if>
-      <if test="record.specialty != null" >
-        SPECIALTY = #{record.specialty,jdbcType=VARCHAR},
+      <if test="record.svcSpecialize != null" >
+        SVC_SPECIALIZE = #{record.svcSpecialize,jdbcType=VARCHAR},
       </if>
       <if test="record.svcCount != null" >
         SVC_COUNT = #{record.svcCount,jdbcType=DECIMAL},
@@ -246,26 +264,22 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  
-  
   <update id="updateByExample" parameterType="map" >
     update HR.SERVICE
     set SVC_NUM = #{record.svcNum,jdbcType=DECIMAL},
       ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
       ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
-      TITLE = #{record.title,jdbcType=VARCHAR},
-      COST = #{record.cost,jdbcType=DECIMAL},
-      TIME = #{record.time,jdbcType=DATE},
-      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
-      CATEGORY = #{record.category,jdbcType=VARCHAR},
-      SPECIALTY = #{record.specialty,jdbcType=VARCHAR},
+      SVC_TITLE = #{record.svcTitle,jdbcType=VARCHAR},
+      SVC_COST = #{record.svcCost,jdbcType=DECIMAL},
+      SVC_TIME = #{record.svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+      SVC_DESCRIPTION = #{record.svcDescription,jdbcType=VARCHAR},
+      SVC_CATEGORY = #{record.svcCategory,jdbcType=VARCHAR},
+      SVC_SPECIALIZE = #{record.svcSpecialize,jdbcType=VARCHAR},
       SVC_COUNT = #{record.svcCount,jdbcType=DECIMAL}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  
-  
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.Service" >
     update HR.SERVICE
     <set >
@@ -275,23 +289,23 @@
       <if test="etpEmail != null" >
         ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
       </if>
-      <if test="title != null" >
-        TITLE = #{title,jdbcType=VARCHAR},
+      <if test="svcTitle != null" >
+        SVC_TITLE = #{svcTitle,jdbcType=VARCHAR},
       </if>
-      <if test="cost != null" >
-        COST = #{cost,jdbcType=DECIMAL},
+      <if test="svcCost != null" >
+        SVC_COST = #{svcCost,jdbcType=DECIMAL},
       </if>
-      <if test="time != null" >
-        TIME = #{time,jdbcType=DATE},
+      <if test="svcTime != null" >
+        SVC_TIME = #{svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
       </if>
-      <if test="description != null" >
-        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      <if test="svcDescription != null" >
+        SVC_DESCRIPTION = #{svcDescription,jdbcType=VARCHAR},
       </if>
-      <if test="category != null" >
-        CATEGORY = #{category,jdbcType=VARCHAR},
+      <if test="svcCategory != null" >
+        SVC_CATEGORY = #{svcCategory,jdbcType=VARCHAR},
       </if>
-      <if test="specialty != null" >
-        SPECIALTY = #{specialty,jdbcType=VARCHAR},
+      <if test="svcSpecialize != null" >
+        SVC_SPECIALIZE = #{svcSpecialize,jdbcType=VARCHAR},
       </if>
       <if test="svcCount != null" >
         SVC_COUNT = #{svcCount,jdbcType=DECIMAL},
@@ -299,25 +313,21 @@
     </set>
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </update>
-  
-  
   <update id="updateByPrimaryKey" parameterType="model.vo.Service" >
     update HR.SERVICE
     set ETP_NUM = #{etpNum,jdbcType=VARCHAR},
       ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
-      TITLE = #{title,jdbcType=VARCHAR},
-      COST = #{cost,jdbcType=DECIMAL},
-      TIME = #{time,jdbcType=DATE},
-      DESCRIPTION = #{description,jdbcType=VARCHAR},
-      CATEGORY = #{category,jdbcType=VARCHAR},
-      SPECIALTY = #{specialty,jdbcType=VARCHAR},
+      SVC_TITLE = #{svcTitle,jdbcType=VARCHAR},
+      SVC_COST = #{svcCost,jdbcType=DECIMAL},
+      SVC_TIME = #{svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+      SVC_DESCRIPTION = #{svcDescription,jdbcType=VARCHAR},
+      SVC_CATEGORY = #{svcCategory,jdbcType=VARCHAR},
+      SVC_SPECIALIZE = #{svcSpecialize,jdbcType=VARCHAR},
       SVC_COUNT = #{svcCount,jdbcType=DECIMAL}
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </update>
   <cache />
-  
-  
-  <select resultMap="BaseResultMap" parameterType="model.vo.ServiceExample" id="selectByExampleWithRowbounds" >
+  <select resultMap="ServiceResultMap" parameterType="model.vo.ServiceExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
       distinct

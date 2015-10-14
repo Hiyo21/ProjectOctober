@@ -1,81 +1,128 @@
 package model.vo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
-public class Customer {
+import javax.management.Notification;
+
+public class Customer implements Serializable {
+	private List<OneclickPayment> oneclickPayments;
+	private List<Reservation> reservations;
+	private List<Notification> notifications;
+	private List<Review> reviews;
+	private List<PaymentRecord> paymentRecords;
+	
     private String cstEmail;
 
-    private String address;
+    private String cstAddress;
 
-    private String zipcode;
+    private String cstZipcode;
 
-    private LocalDate birthday;
+    private LocalDate cstBirthday;
 
-    private String gender;
+    private String cstGender;
 
-    private Integer oneclickStatus;
+    private Integer cstOneclick;
 
-    public String getCstEmail() {
-        return cstEmail;
-    }
+    private static final long serialVersionUID = 1L;
 
-    public void setCstEmail(String cstEmail) {
-        this.cstEmail = cstEmail;
-    }
+	public List<OneclickPayment> getOneclickPayments() {
+		return oneclickPayments;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
 
-    public String getZipcode() {
-        return zipcode;
-    }
+	public List<Review> getReviews() {
+		return reviews;
+	}
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
+	public String getCstEmail() {
+		return cstEmail;
+	}
 
-    public LocalDate getBirthday() {
-        return birthday;
-    }
+	public String getCstAddress() {
+		return cstAddress;
+	}
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
+	public String getCstZipcode() {
+		return cstZipcode;
+	}
 
-    public String getGender() {
-        return gender;
-    }
+	public LocalDate getCstBirthday() {
+		return cstBirthday;
+	}
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+	public String getCstGender() {
+		return cstGender;
+	}
 
-    public Integer getOneclickStatus() {
-        return oneclickStatus;
-    }
+	public Integer getCstOneclick() {
+		return cstOneclick;
+	}
 
-    public void setOneclickStatus(Integer oneclickStatus) {
-        this.oneclickStatus = oneclickStatus;
-    }
+	public void setOneclickPayments(List<OneclickPayment> oneclickPayments) {
+		this.oneclickPayments = oneclickPayments;
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", cstEmail=").append(cstEmail);
-        sb.append(", address=").append(address);
-        sb.append(", zipcode=").append(zipcode);
-        sb.append(", birthday=").append(birthday);
-        sb.append(", gender=").append(gender);
-        sb.append(", oneclickStatus=").append(oneclickStatus);
-        sb.append("]");
-        return sb.toString();
-    }
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public void setCstEmail(String cstEmail) {
+		this.cstEmail = cstEmail;
+	}
+
+	public void setCstAddress(String cstAddress) {
+		this.cstAddress = cstAddress;
+	}
+
+	public void setCstZipcode(String cstZipcode) {
+		this.cstZipcode = cstZipcode;
+	}
+
+	public void setCstBirthday(LocalDate cstBirthday) {
+		this.cstBirthday = cstBirthday;
+	}
+
+	public void setCstGender(String cstGender) {
+		this.cstGender = cstGender;
+	}
+
+	public void setCstOneclick(Integer cstOneclick) {
+		this.cstOneclick = cstOneclick;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Customer [oneclickPayments=").append(oneclickPayments).append(", reservations=")
+				.append(reservations).append(", notifications=").append(notifications).append(", reviews=")
+				.append(reviews).append(", cstEmail=").append(cstEmail).append(", cstAddress=").append(cstAddress)
+				.append(", cstZipcode=").append(cstZipcode).append(", cstBirthday=").append(cstBirthday)
+				.append(", cstGender=").append(cstGender).append(", cstOneclick=").append(cstOneclick).append(", paymentRecords=").append(paymentRecords).append("]");
+		return builder.toString();
+	}
+
+	public List<PaymentRecord> getPaymentRecords() {
+		return paymentRecords;
+	}
+
+	public void setPaymentRecords(List<PaymentRecord> paymentRecords) {
+		this.paymentRecords = paymentRecords;
+	}
 }

@@ -65,19 +65,50 @@ public class ReviewExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> rvwInputDateCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            rvwInputDateCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getRvwInputDateCriteria() {
+            return rvwInputDateCriteria;
+        }
+
+        protected void addRvwInputDateCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            rvwInputDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addRvwInputDateCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            rvwInputDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || rvwInputDateCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(rvwInputDateCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +120,7 @@ public class ReviewExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +128,7 @@ public class ReviewExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +136,7 @@ public class ReviewExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andRvwNumIsNull() {
@@ -375,573 +409,573 @@ public class ReviewExample {
             return (Criteria) this;
         }
 
-        public Criteria andInputDateIsNull() {
-            addCriterion("INPUTDATE is null");
+        public Criteria andRvwInputDateIsNull() {
+            addCriterion("RVW_INPUT_DATE is null");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateIsNotNull() {
-            addCriterion("INPUTDATE is not null");
+        public Criteria andRvwInputDateIsNotNull() {
+            addCriterion("RVW_INPUT_DATE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateEqualTo(LocalDateTime value) {
-            addCriterion("INPUTDATE =", value, "inputDate");
+        public Criteria andRvwInputDateEqualTo(LocalDateTime value) {
+            addRvwInputDateCriterion("RVW_INPUT_DATE =", value, "rvwInputDate");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateNotEqualTo(LocalDateTime value) {
-            addCriterion("INPUTDATE <>", value, "inputDate");
+        public Criteria andRvwInputDateNotEqualTo(LocalDateTime value) {
+            addRvwInputDateCriterion("RVW_INPUT_DATE <>", value, "rvwInputDate");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateGreaterThan(LocalDateTime value) {
-            addCriterion("INPUTDATE >", value, "inputDate");
+        public Criteria andRvwInputDateGreaterThan(LocalDateTime value) {
+            addRvwInputDateCriterion("RVW_INPUT_DATE >", value, "rvwInputDate");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("INPUTDATE >=", value, "inputDate");
+        public Criteria andRvwInputDateGreaterThanOrEqualTo(LocalDateTime value) {
+            addRvwInputDateCriterion("RVW_INPUT_DATE >=", value, "rvwInputDate");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateLessThan(LocalDateTime value) {
-            addCriterion("INPUTDATE <", value, "inputDate");
+        public Criteria andRvwInputDateLessThan(LocalDateTime value) {
+            addRvwInputDateCriterion("RVW_INPUT_DATE <", value, "rvwInputDate");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("INPUTDATE <=", value, "inputDate");
+        public Criteria andRvwInputDateLessThanOrEqualTo(LocalDateTime value) {
+            addRvwInputDateCriterion("RVW_INPUT_DATE <=", value, "rvwInputDate");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateIn(List<LocalDateTime> values) {
-            addCriterion("INPUTDATE in", values, "inputDate");
+        public Criteria andRvwInputDateIn(List<LocalDateTime> values) {
+            addRvwInputDateCriterion("RVW_INPUT_DATE in", values, "rvwInputDate");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateNotIn(List<LocalDateTime> values) {
-            addCriterion("INPUTDATE not in", values, "inputDate");
+        public Criteria andRvwInputDateNotIn(List<LocalDateTime> values) {
+            addRvwInputDateCriterion("RVW_INPUT_DATE not in", values, "rvwInputDate");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("INPUTDATE between", value1, value2, "inputDate");
+        public Criteria andRvwInputDateBetween(LocalDateTime value1, LocalDateTime value2) {
+            addRvwInputDateCriterion("RVW_INPUT_DATE between", value1, value2, "rvwInputDate");
             return (Criteria) this;
         }
 
-        public Criteria andInputDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("INPUTDATE not between", value1, value2, "inputDate");
+        public Criteria andRvwInputDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addRvwInputDateCriterion("RVW_INPUT_DATE not between", value1, value2, "rvwInputDate");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressIsNull() {
-            addCriterion("IP_ADDRESS is null");
+            addCriterion("CST_IP_ADDRESS is null");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressIsNotNull() {
-            addCriterion("IP_ADDRESS is not null");
+            addCriterion("CST_IP_ADDRESS is not null");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressEqualTo(String value) {
-            addCriterion("IP_ADDRESS =", value, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS =", value, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressNotEqualTo(String value) {
-            addCriterion("IP_ADDRESS <>", value, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS <>", value, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressGreaterThan(String value) {
-            addCriterion("IP_ADDRESS >", value, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS >", value, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("IP_ADDRESS >=", value, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS >=", value, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressLessThan(String value) {
-            addCriterion("IP_ADDRESS <", value, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS <", value, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressLessThanOrEqualTo(String value) {
-            addCriterion("IP_ADDRESS <=", value, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS <=", value, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressLike(String value) {
-            addCriterion("IP_ADDRESS like", value, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS like", value, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressNotLike(String value) {
-            addCriterion("IP_ADDRESS not like", value, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS not like", value, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressIn(List<String> values) {
-            addCriterion("IP_ADDRESS in", values, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS in", values, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressNotIn(List<String> values) {
-            addCriterion("IP_ADDRESS not in", values, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS not in", values, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressBetween(String value1, String value2) {
-            addCriterion("IP_ADDRESS between", value1, value2, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS between", value1, value2, "cstIpAddress");
             return (Criteria) this;
         }
 
         public Criteria andCstIpAddressNotBetween(String value1, String value2) {
-            addCriterion("IP_ADDRESS not between", value1, value2, "cstIpAddress");
+            addCriterion("CST_IP_ADDRESS not between", value1, value2, "cstIpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andContentIsNull() {
-            addCriterion("CONTENT is null");
+        public Criteria andRvwContentIsNull() {
+            addCriterion("RVW_CONTENT is null");
             return (Criteria) this;
         }
 
-        public Criteria andContentIsNotNull() {
-            addCriterion("CONTENT is not null");
+        public Criteria andRvwContentIsNotNull() {
+            addCriterion("RVW_CONTENT is not null");
             return (Criteria) this;
         }
 
-        public Criteria andContentEqualTo(String value) {
-            addCriterion("CONTENT =", value, "content");
+        public Criteria andRvwContentEqualTo(String value) {
+            addCriterion("RVW_CONTENT =", value, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentNotEqualTo(String value) {
-            addCriterion("CONTENT <>", value, "content");
+        public Criteria andRvwContentNotEqualTo(String value) {
+            addCriterion("RVW_CONTENT <>", value, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentGreaterThan(String value) {
-            addCriterion("CONTENT >", value, "content");
+        public Criteria andRvwContentGreaterThan(String value) {
+            addCriterion("RVW_CONTENT >", value, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentGreaterThanOrEqualTo(String value) {
-            addCriterion("CONTENT >=", value, "content");
+        public Criteria andRvwContentGreaterThanOrEqualTo(String value) {
+            addCriterion("RVW_CONTENT >=", value, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentLessThan(String value) {
-            addCriterion("CONTENT <", value, "content");
+        public Criteria andRvwContentLessThan(String value) {
+            addCriterion("RVW_CONTENT <", value, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentLessThanOrEqualTo(String value) {
-            addCriterion("CONTENT <=", value, "content");
+        public Criteria andRvwContentLessThanOrEqualTo(String value) {
+            addCriterion("RVW_CONTENT <=", value, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentLike(String value) {
-            addCriterion("CONTENT like", value, "content");
+        public Criteria andRvwContentLike(String value) {
+            addCriterion("RVW_CONTENT like", value, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentNotLike(String value) {
-            addCriterion("CONTENT not like", value, "content");
+        public Criteria andRvwContentNotLike(String value) {
+            addCriterion("RVW_CONTENT not like", value, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentIn(List<String> values) {
-            addCriterion("CONTENT in", values, "content");
+        public Criteria andRvwContentIn(List<String> values) {
+            addCriterion("RVW_CONTENT in", values, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentNotIn(List<String> values) {
-            addCriterion("CONTENT not in", values, "content");
+        public Criteria andRvwContentNotIn(List<String> values) {
+            addCriterion("RVW_CONTENT not in", values, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentBetween(String value1, String value2) {
-            addCriterion("CONTENT between", value1, value2, "content");
+        public Criteria andRvwContentBetween(String value1, String value2) {
+            addCriterion("RVW_CONTENT between", value1, value2, "rvwContent");
             return (Criteria) this;
         }
 
-        public Criteria andContentNotBetween(String value1, String value2) {
-            addCriterion("CONTENT not between", value1, value2, "content");
+        public Criteria andRvwContentNotBetween(String value1, String value2) {
+            addCriterion("RVW_CONTENT not between", value1, value2, "rvwContent");
             return (Criteria) this;
         }
 
         public Criteria andCstJobIsNull() {
-            addCriterion("JOB is null");
+            addCriterion("CST_JOB is null");
             return (Criteria) this;
         }
 
         public Criteria andCstJobIsNotNull() {
-            addCriterion("JOB is not null");
+            addCriterion("CST_JOB is not null");
             return (Criteria) this;
         }
 
         public Criteria andCstJobEqualTo(String value) {
-            addCriterion("JOB =", value, "cstJob");
+            addCriterion("CST_JOB =", value, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobNotEqualTo(String value) {
-            addCriterion("JOB <>", value, "cstJob");
+            addCriterion("CST_JOB <>", value, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobGreaterThan(String value) {
-            addCriterion("JOB >", value, "cstJob");
+            addCriterion("CST_JOB >", value, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobGreaterThanOrEqualTo(String value) {
-            addCriterion("JOB >=", value, "cstJob");
+            addCriterion("CST_JOB >=", value, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobLessThan(String value) {
-            addCriterion("JOB <", value, "cstJob");
+            addCriterion("CST_JOB <", value, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobLessThanOrEqualTo(String value) {
-            addCriterion("JOB <=", value, "cstJob");
+            addCriterion("CST_JOB <=", value, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobLike(String value) {
-            addCriterion("JOB like", value, "cstJob");
+            addCriterion("CST_JOB like", value, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobNotLike(String value) {
-            addCriterion("JOB not like", value, "cstJob");
+            addCriterion("CST_JOB not like", value, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobIn(List<String> values) {
-            addCriterion("JOB in", values, "cstJob");
+            addCriterion("CST_JOB in", values, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobNotIn(List<String> values) {
-            addCriterion("JOB not in", values, "cstJob");
+            addCriterion("CST_JOB not in", values, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobBetween(String value1, String value2) {
-            addCriterion("JOB between", value1, value2, "cstJob");
+            addCriterion("CST_JOB between", value1, value2, "cstJob");
             return (Criteria) this;
         }
 
         public Criteria andCstJobNotBetween(String value1, String value2) {
-            addCriterion("JOB not between", value1, value2, "cstJob");
+            addCriterion("CST_JOB not between", value1, value2, "cstJob");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneIsNull() {
-            addCriterion("HYGIENE is null");
+        public Criteria andRvwHygieneIsNull() {
+            addCriterion("RVW_HYGIENE is null");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneIsNotNull() {
-            addCriterion("HYGIENE is not null");
+        public Criteria andRvwHygieneIsNotNull() {
+            addCriterion("RVW_HYGIENE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneEqualTo(Integer value) {
-            addCriterion("HYGIENE =", value, "hygiene");
+        public Criteria andRvwHygieneEqualTo(Integer value) {
+            addCriterion("RVW_HYGIENE =", value, "rvwHygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneNotEqualTo(Integer value) {
-            addCriterion("HYGIENE <>", value, "hygiene");
+        public Criteria andRvwHygieneNotEqualTo(Integer value) {
+            addCriterion("RVW_HYGIENE <>", value, "rvwHygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneGreaterThan(Integer value) {
-            addCriterion("HYGIENE >", value, "hygiene");
+        public Criteria andRvwHygieneGreaterThan(Integer value) {
+            addCriterion("RVW_HYGIENE >", value, "rvwHygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneGreaterThanOrEqualTo(Integer value) {
-            addCriterion("HYGIENE >=", value, "hygiene");
+        public Criteria andRvwHygieneGreaterThanOrEqualTo(Integer value) {
+            addCriterion("RVW_HYGIENE >=", value, "rvwHygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneLessThan(Integer value) {
-            addCriterion("HYGIENE <", value, "hygiene");
+        public Criteria andRvwHygieneLessThan(Integer value) {
+            addCriterion("RVW_HYGIENE <", value, "rvwHygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneLessThanOrEqualTo(Integer value) {
-            addCriterion("HYGIENE <=", value, "hygiene");
+        public Criteria andRvwHygieneLessThanOrEqualTo(Integer value) {
+            addCriterion("RVW_HYGIENE <=", value, "rvwHygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneIn(List<Integer> values) {
-            addCriterion("HYGIENE in", values, "hygiene");
+        public Criteria andRvwHygieneIn(List<Integer> values) {
+            addCriterion("RVW_HYGIENE in", values, "rvwHygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneNotIn(List<Integer> values) {
-            addCriterion("HYGIENE not in", values, "hygiene");
+        public Criteria andRvwHygieneNotIn(List<Integer> values) {
+            addCriterion("RVW_HYGIENE not in", values, "rvwHygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneBetween(Integer value1, Integer value2) {
-            addCriterion("HYGIENE between", value1, value2, "hygiene");
+        public Criteria andRvwHygieneBetween(Integer value1, Integer value2) {
+            addCriterion("RVW_HYGIENE between", value1, value2, "rvwHygiene");
             return (Criteria) this;
         }
 
-        public Criteria andHygieneNotBetween(Integer value1, Integer value2) {
-            addCriterion("HYGIENE not between", value1, value2, "hygiene");
+        public Criteria andRvwHygieneNotBetween(Integer value1, Integer value2) {
+            addCriterion("RVW_HYGIENE not between", value1, value2, "rvwHygiene");
             return (Criteria) this;
         }
 
-        public Criteria andComfortIsNull() {
-            addCriterion("COMFORT is null");
+        public Criteria andRvwComfortIsNull() {
+            addCriterion("RVW_COMFORT is null");
             return (Criteria) this;
         }
 
-        public Criteria andComfortIsNotNull() {
-            addCriterion("COMFORT is not null");
+        public Criteria andRvwComfortIsNotNull() {
+            addCriterion("RVW_COMFORT is not null");
             return (Criteria) this;
         }
 
-        public Criteria andComfortEqualTo(Integer value) {
-            addCriterion("COMFORT =", value, "comfort");
+        public Criteria andRvwComfortEqualTo(Integer value) {
+            addCriterion("RVW_COMFORT =", value, "rvwComfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortNotEqualTo(Integer value) {
-            addCriterion("COMFORT <>", value, "comfort");
+        public Criteria andRvwComfortNotEqualTo(Integer value) {
+            addCriterion("RVW_COMFORT <>", value, "rvwComfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortGreaterThan(Integer value) {
-            addCriterion("COMFORT >", value, "comfort");
+        public Criteria andRvwComfortGreaterThan(Integer value) {
+            addCriterion("RVW_COMFORT >", value, "rvwComfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortGreaterThanOrEqualTo(Integer value) {
-            addCriterion("COMFORT >=", value, "comfort");
+        public Criteria andRvwComfortGreaterThanOrEqualTo(Integer value) {
+            addCriterion("RVW_COMFORT >=", value, "rvwComfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortLessThan(Integer value) {
-            addCriterion("COMFORT <", value, "comfort");
+        public Criteria andRvwComfortLessThan(Integer value) {
+            addCriterion("RVW_COMFORT <", value, "rvwComfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortLessThanOrEqualTo(Integer value) {
-            addCriterion("COMFORT <=", value, "comfort");
+        public Criteria andRvwComfortLessThanOrEqualTo(Integer value) {
+            addCriterion("RVW_COMFORT <=", value, "rvwComfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortIn(List<Integer> values) {
-            addCriterion("COMFORT in", values, "comfort");
+        public Criteria andRvwComfortIn(List<Integer> values) {
+            addCriterion("RVW_COMFORT in", values, "rvwComfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortNotIn(List<Integer> values) {
-            addCriterion("COMFORT not in", values, "comfort");
+        public Criteria andRvwComfortNotIn(List<Integer> values) {
+            addCriterion("RVW_COMFORT not in", values, "rvwComfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortBetween(Integer value1, Integer value2) {
-            addCriterion("COMFORT between", value1, value2, "comfort");
+        public Criteria andRvwComfortBetween(Integer value1, Integer value2) {
+            addCriterion("RVW_COMFORT between", value1, value2, "rvwComfort");
             return (Criteria) this;
         }
 
-        public Criteria andComfortNotBetween(Integer value1, Integer value2) {
-            addCriterion("COMFORT not between", value1, value2, "comfort");
+        public Criteria andRvwComfortNotBetween(Integer value1, Integer value2) {
+            addCriterion("RVW_COMFORT not between", value1, value2, "rvwComfort");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueIsNull() {
-            addCriterion("TECHNIQUE is null");
+        public Criteria andRvwTechniqueIsNull() {
+            addCriterion("RVW_TECHNIQUE is null");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueIsNotNull() {
-            addCriterion("TECHNIQUE is not null");
+        public Criteria andRvwTechniqueIsNotNull() {
+            addCriterion("RVW_TECHNIQUE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueEqualTo(Integer value) {
-            addCriterion("TECHNIQUE =", value, "technique");
+        public Criteria andRvwTechniqueEqualTo(Integer value) {
+            addCriterion("RVW_TECHNIQUE =", value, "rvwTechnique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueNotEqualTo(Integer value) {
-            addCriterion("TECHNIQUE <>", value, "technique");
+        public Criteria andRvwTechniqueNotEqualTo(Integer value) {
+            addCriterion("RVW_TECHNIQUE <>", value, "rvwTechnique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueGreaterThan(Integer value) {
-            addCriterion("TECHNIQUE >", value, "technique");
+        public Criteria andRvwTechniqueGreaterThan(Integer value) {
+            addCriterion("RVW_TECHNIQUE >", value, "rvwTechnique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueGreaterThanOrEqualTo(Integer value) {
-            addCriterion("TECHNIQUE >=", value, "technique");
+        public Criteria andRvwTechniqueGreaterThanOrEqualTo(Integer value) {
+            addCriterion("RVW_TECHNIQUE >=", value, "rvwTechnique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueLessThan(Integer value) {
-            addCriterion("TECHNIQUE <", value, "technique");
+        public Criteria andRvwTechniqueLessThan(Integer value) {
+            addCriterion("RVW_TECHNIQUE <", value, "rvwTechnique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueLessThanOrEqualTo(Integer value) {
-            addCriterion("TECHNIQUE <=", value, "technique");
+        public Criteria andRvwTechniqueLessThanOrEqualTo(Integer value) {
+            addCriterion("RVW_TECHNIQUE <=", value, "rvwTechnique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueIn(List<Integer> values) {
-            addCriterion("TECHNIQUE in", values, "technique");
+        public Criteria andRvwTechniqueIn(List<Integer> values) {
+            addCriterion("RVW_TECHNIQUE in", values, "rvwTechnique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueNotIn(List<Integer> values) {
-            addCriterion("TECHNIQUE not in", values, "technique");
+        public Criteria andRvwTechniqueNotIn(List<Integer> values) {
+            addCriterion("RVW_TECHNIQUE not in", values, "rvwTechnique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueBetween(Integer value1, Integer value2) {
-            addCriterion("TECHNIQUE between", value1, value2, "technique");
+        public Criteria andRvwTechniqueBetween(Integer value1, Integer value2) {
+            addCriterion("RVW_TECHNIQUE between", value1, value2, "rvwTechnique");
             return (Criteria) this;
         }
 
-        public Criteria andTechniqueNotBetween(Integer value1, Integer value2) {
-            addCriterion("TECHNIQUE not between", value1, value2, "technique");
+        public Criteria andRvwTechniqueNotBetween(Integer value1, Integer value2) {
+            addCriterion("RVW_TECHNIQUE not between", value1, value2, "rvwTechnique");
             return (Criteria) this;
         }
 
-        public Criteria andPriceIsNull() {
-            addCriterion("PRICE is null");
+        public Criteria andRvwPriceIsNull() {
+            addCriterion("RVW_PRICE is null");
             return (Criteria) this;
         }
 
-        public Criteria andPriceIsNotNull() {
-            addCriterion("PRICE is not null");
+        public Criteria andRvwPriceIsNotNull() {
+            addCriterion("RVW_PRICE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPriceEqualTo(Integer value) {
-            addCriterion("PRICE =", value, "price");
+        public Criteria andRvwPriceEqualTo(Integer value) {
+            addCriterion("RVW_PRICE =", value, "rvwPrice");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotEqualTo(Integer value) {
-            addCriterion("PRICE <>", value, "price");
+        public Criteria andRvwPriceNotEqualTo(Integer value) {
+            addCriterion("RVW_PRICE <>", value, "rvwPrice");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThan(Integer value) {
-            addCriterion("PRICE >", value, "price");
+        public Criteria andRvwPriceGreaterThan(Integer value) {
+            addCriterion("RVW_PRICE >", value, "rvwPrice");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThanOrEqualTo(Integer value) {
-            addCriterion("PRICE >=", value, "price");
+        public Criteria andRvwPriceGreaterThanOrEqualTo(Integer value) {
+            addCriterion("RVW_PRICE >=", value, "rvwPrice");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThan(Integer value) {
-            addCriterion("PRICE <", value, "price");
+        public Criteria andRvwPriceLessThan(Integer value) {
+            addCriterion("RVW_PRICE <", value, "rvwPrice");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThanOrEqualTo(Integer value) {
-            addCriterion("PRICE <=", value, "price");
+        public Criteria andRvwPriceLessThanOrEqualTo(Integer value) {
+            addCriterion("RVW_PRICE <=", value, "rvwPrice");
             return (Criteria) this;
         }
 
-        public Criteria andPriceIn(List<Integer> values) {
-            addCriterion("PRICE in", values, "price");
+        public Criteria andRvwPriceIn(List<Integer> values) {
+            addCriterion("RVW_PRICE in", values, "rvwPrice");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotIn(List<Integer> values) {
-            addCriterion("PRICE not in", values, "price");
+        public Criteria andRvwPriceNotIn(List<Integer> values) {
+            addCriterion("RVW_PRICE not in", values, "rvwPrice");
             return (Criteria) this;
         }
 
-        public Criteria andPriceBetween(Integer value1, Integer value2) {
-            addCriterion("PRICE between", value1, value2, "price");
+        public Criteria andRvwPriceBetween(Integer value1, Integer value2) {
+            addCriterion("RVW_PRICE between", value1, value2, "rvwPrice");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotBetween(Integer value1, Integer value2) {
-            addCriterion("PRICE not between", value1, value2, "price");
+        public Criteria andRvwPriceNotBetween(Integer value1, Integer value2) {
+            addCriterion("RVW_PRICE not between", value1, value2, "rvwPrice");
             return (Criteria) this;
         }
 
-        public Criteria andServiceIsNull() {
-            addCriterion("SERVICE is null");
+        public Criteria andRvwServiceIsNull() {
+            addCriterion("RVW_SERVICE is null");
             return (Criteria) this;
         }
 
-        public Criteria andServiceIsNotNull() {
-            addCriterion("SERVICE is not null");
+        public Criteria andRvwServiceIsNotNull() {
+            addCriterion("RVW_SERVICE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andServiceEqualTo(Integer value) {
-            addCriterion("SERVICE =", value, "service");
+        public Criteria andRvwServiceEqualTo(Integer value) {
+            addCriterion("RVW_SERVICE =", value, "rvwService");
             return (Criteria) this;
         }
 
-        public Criteria andServiceNotEqualTo(Integer value) {
-            addCriterion("SERVICE <>", value, "service");
+        public Criteria andRvwServiceNotEqualTo(Integer value) {
+            addCriterion("RVW_SERVICE <>", value, "rvwService");
             return (Criteria) this;
         }
 
-        public Criteria andServiceGreaterThan(Integer value) {
-            addCriterion("SERVICE >", value, "service");
+        public Criteria andRvwServiceGreaterThan(Integer value) {
+            addCriterion("RVW_SERVICE >", value, "rvwService");
             return (Criteria) this;
         }
 
-        public Criteria andServiceGreaterThanOrEqualTo(Integer value) {
-            addCriterion("SERVICE >=", value, "service");
+        public Criteria andRvwServiceGreaterThanOrEqualTo(Integer value) {
+            addCriterion("RVW_SERVICE >=", value, "rvwService");
             return (Criteria) this;
         }
 
-        public Criteria andServiceLessThan(Integer value) {
-            addCriterion("SERVICE <", value, "service");
+        public Criteria andRvwServiceLessThan(Integer value) {
+            addCriterion("RVW_SERVICE <", value, "rvwService");
             return (Criteria) this;
         }
 
-        public Criteria andServiceLessThanOrEqualTo(Integer value) {
-            addCriterion("SERVICE <=", value, "service");
+        public Criteria andRvwServiceLessThanOrEqualTo(Integer value) {
+            addCriterion("RVW_SERVICE <=", value, "rvwService");
             return (Criteria) this;
         }
 
-        public Criteria andServiceIn(List<Integer> values) {
-            addCriterion("SERVICE in", values, "service");
+        public Criteria andRvwServiceIn(List<Integer> values) {
+            addCriterion("RVW_SERVICE in", values, "rvwService");
             return (Criteria) this;
         }
 
-        public Criteria andServiceNotIn(List<Integer> values) {
-            addCriterion("SERVICE not in", values, "service");
+        public Criteria andRvwServiceNotIn(List<Integer> values) {
+            addCriterion("RVW_SERVICE not in", values, "rvwService");
             return (Criteria) this;
         }
 
-        public Criteria andServiceBetween(Integer value1, Integer value2) {
-            addCriterion("SERVICE between", value1, value2, "service");
+        public Criteria andRvwServiceBetween(Integer value1, Integer value2) {
+            addCriterion("RVW_SERVICE between", value1, value2, "rvwService");
             return (Criteria) this;
         }
 
-        public Criteria andServiceNotBetween(Integer value1, Integer value2) {
-            addCriterion("SERVICE not between", value1, value2, "service");
+        public Criteria andRvwServiceNotBetween(Integer value1, Integer value2) {
+            addCriterion("RVW_SERVICE not between", value1, value2, "rvwService");
             return (Criteria) this;
         }
 
@@ -961,17 +995,17 @@ public class ReviewExample {
         }
 
         public Criteria andCstIpAddressLikeInsensitive(String value) {
-            addCriterion("upper(IP_ADDRESS) like", value.toUpperCase(), "cstIpAddress");
+            addCriterion("upper(CST_IP_ADDRESS) like", value.toUpperCase(), "cstIpAddress");
             return (Criteria) this;
         }
 
-        public Criteria andContentLikeInsensitive(String value) {
-            addCriterion("upper(CONTENT) like", value.toUpperCase(), "content");
+        public Criteria andRvwContentLikeInsensitive(String value) {
+            addCriterion("upper(RVW_CONTENT) like", value.toUpperCase(), "rvwContent");
             return (Criteria) this;
         }
 
         public Criteria andCstJobLikeInsensitive(String value) {
-            addCriterion("upper(JOB) like", value.toUpperCase(), "cstJob");
+            addCriterion("upper(CST_JOB) like", value.toUpperCase(), "cstJob");
             return (Criteria) this;
         }
     }

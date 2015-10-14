@@ -65,19 +65,50 @@ public class HolidayExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> holDateCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            holDateCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getHolDateCriteria() {
+            return holDateCriteria;
+        }
+
+        protected void addHolDateCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            holDateCriteria.add(new Criterion(condition, value, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addHolDateCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            holDateCriteria.add(new Criterion(condition, value1, value2, "model.mapper.typehandler.LocalDateTimeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || holDateCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(holDateCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +120,7 @@ public class HolidayExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +128,7 @@ public class HolidayExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +136,7 @@ public class HolidayExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andHolNumIsNull() {
@@ -316,52 +350,52 @@ public class HolidayExample {
         }
 
         public Criteria andHolDateEqualTo(LocalDateTime value) {
-            addCriterion("HOL_DATE =", value, "holDate");
+            addHolDateCriterion("HOL_DATE =", value, "holDate");
             return (Criteria) this;
         }
 
         public Criteria andHolDateNotEqualTo(LocalDateTime value) {
-            addCriterion("HOL_DATE <>", value, "holDate");
+            addHolDateCriterion("HOL_DATE <>", value, "holDate");
             return (Criteria) this;
         }
 
         public Criteria andHolDateGreaterThan(LocalDateTime value) {
-            addCriterion("HOL_DATE >", value, "holDate");
+            addHolDateCriterion("HOL_DATE >", value, "holDate");
             return (Criteria) this;
         }
 
         public Criteria andHolDateGreaterThanOrEqualTo(LocalDateTime value) {
-            addCriterion("HOL_DATE >=", value, "holDate");
+            addHolDateCriterion("HOL_DATE >=", value, "holDate");
             return (Criteria) this;
         }
 
         public Criteria andHolDateLessThan(LocalDateTime value) {
-            addCriterion("HOL_DATE <", value, "holDate");
+            addHolDateCriterion("HOL_DATE <", value, "holDate");
             return (Criteria) this;
         }
 
         public Criteria andHolDateLessThanOrEqualTo(LocalDateTime value) {
-            addCriterion("HOL_DATE <=", value, "holDate");
+            addHolDateCriterion("HOL_DATE <=", value, "holDate");
             return (Criteria) this;
         }
 
         public Criteria andHolDateIn(List<LocalDateTime> values) {
-            addCriterion("HOL_DATE in", values, "holDate");
+            addHolDateCriterion("HOL_DATE in", values, "holDate");
             return (Criteria) this;
         }
 
         public Criteria andHolDateNotIn(List<LocalDateTime> values) {
-            addCriterion("HOL_DATE not in", values, "holDate");
+            addHolDateCriterion("HOL_DATE not in", values, "holDate");
             return (Criteria) this;
         }
 
         public Criteria andHolDateBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("HOL_DATE between", value1, value2, "holDate");
+            addHolDateCriterion("HOL_DATE between", value1, value2, "holDate");
             return (Criteria) this;
         }
 
         public Criteria andHolDateNotBetween(LocalDateTime value1, LocalDateTime value2) {
-            addCriterion("HOL_DATE not between", value1, value2, "holDate");
+            addHolDateCriterion("HOL_DATE not between", value1, value2, "holDate");
             return (Criteria) this;
         }
 
