@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+	<!-- 이건 사람마다 달라질 수 있으니 고칠 것 -->
+	<classPathEntry location="C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar"/>
+	
+  <context id="ProjectOctoberAutoCreationContext" >
+  	<property name="javaFileEncoding" value="UTF-8"/>
+  	<plugin type="org.mybatis.generator.plugins.CachePlugin" />
+  	<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+  	<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+  	<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+  	<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+  	
+  	<commentGenerator>
+  		<property name="suppressAllComments" value="true"/>
+  		<property name="suppressDate" value="true"/>
+  	</commentGenerator>
+  	
+    <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:xe" userId="hr" password="hr" />
+    
+    <javaModelGenerator targetPackage="model.vo" targetProject="ProjectOctober/src" />
+    
+    <sqlMapGenerator targetPackage="model.mapper" targetProject="ProjectOctober/src" />
+    
+    <javaClientGenerator targetPackage="model.mapper" targetProject="ProjectOctober/src" type="XMLMAPPER" />
+    
+        
+    <table schema="HR" tableName="MEMBER">	
+    	<columnOverride column="mem_joined_date" javaType="java.time.LocalDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
+    </table>
+    
+    <table schema="HR" tableName="MEMBER_CODE" />
+    
+    <table schema="HR" tableName="CUSTOMER">
+    	<columnOverride column="cst_birthday" javaType="java.time.LocalDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
+    </table>
+    
+    <table schema="HR" tableName="ENTERPRISE">
+    	<columnOverride column="etp_start_hour" javaType="java.time.LocalTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    	<columnOverride column="etp_end_hour" javaType="java.time.LocalTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    </table>
+    
+    <table schema="HR" tableName="RESERVATION">
+    	<columnOverride column="rsv_gender" property="employeeGender" javaType="char" />
+    	<columnOverride column="rsv_start_date" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler"/>
+    	<columnOverride column="rsv_end_date" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    </table>
+    
+    <table schema="HR" tableName="SERVICE">
+   		<columnOverride column="svc_time" javaType="java.time.LocalTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    </table>
+    
+    <table tableName="ONECLICK_PAYMENT" schema="HR" />
+
+    <table schema="HR" tableName="COUPON">
+    	<columnOverride column="cpn_start_date" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    	<columnOverride column="cpn_end_date" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    </table>
+    
+    <table schema="HR" tableName="COMPONENT">
+    	<columnOverride column="logo" property="logoComponent" javaType="java.lang.Integer" />
+    	<columnOverride column="outline" property="outlineComponenet" javaType="java.lang.Integer" />
+    	<columnOverride column="rsv_mgm" property="rsvMgmComponent" javaType="java.lang.Integer" />
+    	<columnOverride column="misc_setting" property="miscSettingComponent" javaType="java.lang.Integer" />
+    	<columnOverride column="rsv_btn_bar" property="rsvBtnBarComponent" javaType="java.lang.Integer" />
+    	<columnOverride column="etp_info" property="etpInfoComponent" javaType="java.lang.Integer" />
+    	<columnOverride column="svc_list" property="svcListComponent" javaType="java.lang.Integer" />
+    	<columnOverride column="gallery" property="galleryComponent" javaType="java.lang.Integer" />
+    	<columnOverride column="location" property="locationComponent" javaType="java.lang.Integer" />
+    	<columnOverride column="review" property="reviewComponent" javaType="java.lang.Integer" />
+    </table>
+    
+    <table schema="HR" tableName="REVIEW">
+    	<columnOverride column="rvw_input_date" property="rvwInputDate" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler"/>
+    </table>
+    
+    <table schema="HR" tableName="PHOTO_LOCATION">
+    	<columnOverride column="pht_upload_date" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler"/>
+    </table>
+    
+    <table schema="HR" tableName="PAYMENT_RECORD">
+    	<columnOverride column="pmt_time" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler"/>
+    </table>
+    
+    <table schema="HR" tableName="HOLIDAY">
+    	<columnOverride column="hol_date" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler"/>
+    </table>
+    
+    <table schema="HR" tableName="SALE_RECORD">
+    	<columnOverride column="sale_time" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler"/>
+    </table>
+    
+    <table schema="HR" tableName="UNREGISTERED" />
+    
+    <table tableName="UNREGISTERED_RESERVATION" schema="HR" />
+    
+    <table tableName="NOTIFICATION" schema="HR">
+    	<columnOverride column="ntf_time" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler"/>
+    </table>
+    
+    <table tableName="WORKING_DAYS" schema="HR" />
+    
+    <table tableName="WAITLIST" schema="HR">
+    	<columnOverride column="wtl_apply_time" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler"/>
+    </table>
+    
+  </context>
+</generatorConfiguration>

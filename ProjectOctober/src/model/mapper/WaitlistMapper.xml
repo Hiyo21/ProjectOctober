@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="model.mapper.WaitlistMapper" >
+  <resultMap id="WaitlistResultMap" type="model.vo.Waitlist" >
+    <id column="WTL_NUM" property="wtlNum" jdbcType="DECIMAL" />
+    <result column="WTL_ETP_NUM" property="wtlEtpNum" jdbcType="VARCHAR" />
+    <result column="WTL_WAITING" property="wtlWaiting" jdbcType="DECIMAL" />
+    <result column="WTL_APPLY_TIME" property="wtlApplyTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    <result column="WTL_REG_CARD" property="wtlRegCard" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.wtlApplyTimeCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalDateTimeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalDateTimeHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalDateTimeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=model.mapper.typehandler.LocalDateTimeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.wtlApplyTimeCriteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalDateTimeHandler}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalDateTimeHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalDateTimeHandler}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem,typeHandler=model.mapper.typehandler.LocalDateTimeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    WTL_NUM, WTL_ETP_NUM, WTL_WAITING, WTL_APPLY_TIME, WTL_REG_CARD
+  </sql>
+  <select id="selectByExample" resultMap="WaitlistResultMap" parameterType="model.vo.WaitlistExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.WAITLIST
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="WaitlistResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from HR.WAITLIST
+    where WTL_NUM = #{wtlNum,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from HR.WAITLIST
+    where WTL_NUM = #{wtlNum,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.vo.WaitlistExample" >
+    delete from HR.WAITLIST
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.vo.Waitlist" >
+    insert into HR.WAITLIST (WTL_NUM, WTL_ETP_NUM, WTL_WAITING, 
+      WTL_APPLY_TIME, 
+      WTL_REG_CARD)
+    values (#{wtlNum,jdbcType=DECIMAL}, #{wtlEtpNum,jdbcType=VARCHAR}, #{wtlWaiting,jdbcType=DECIMAL}, 
+      #{wtlApplyTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalDateTimeHandler}, 
+      #{wtlRegCard,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="model.vo.Waitlist" >
+    insert into HR.WAITLIST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wtlNum != null" >
+        WTL_NUM,
+      </if>
+      <if test="wtlEtpNum != null" >
+        WTL_ETP_NUM,
+      </if>
+      <if test="wtlWaiting != null" >
+        WTL_WAITING,
+      </if>
+      <if test="wtlApplyTime != null" >
+        WTL_APPLY_TIME,
+      </if>
+      <if test="wtlRegCard != null" >
+        WTL_REG_CARD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wtlNum != null" >
+        #{wtlNum,jdbcType=DECIMAL},
+      </if>
+      <if test="wtlEtpNum != null" >
+        #{wtlEtpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="wtlWaiting != null" >
+        #{wtlWaiting,jdbcType=DECIMAL},
+      </if>
+      <if test="wtlApplyTime != null" >
+        #{wtlApplyTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalDateTimeHandler},
+      </if>
+      <if test="wtlRegCard != null" >
+        #{wtlRegCard,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.vo.WaitlistExample" resultType="java.lang.Integer" >
+    select count(*) from HR.WAITLIST
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update HR.WAITLIST
+    <set >
+      <if test="record.wtlNum != null" >
+        WTL_NUM = #{record.wtlNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wtlEtpNum != null" >
+        WTL_ETP_NUM = #{record.wtlEtpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wtlWaiting != null" >
+        WTL_WAITING = #{record.wtlWaiting,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wtlApplyTime != null" >
+        WTL_APPLY_TIME = #{record.wtlApplyTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalDateTimeHandler},
+      </if>
+      <if test="record.wtlRegCard != null" >
+        WTL_REG_CARD = #{record.wtlRegCard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update HR.WAITLIST
+    set WTL_NUM = #{record.wtlNum,jdbcType=DECIMAL},
+      WTL_ETP_NUM = #{record.wtlEtpNum,jdbcType=VARCHAR},
+      WTL_WAITING = #{record.wtlWaiting,jdbcType=DECIMAL},
+      WTL_APPLY_TIME = #{record.wtlApplyTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalDateTimeHandler},
+      WTL_REG_CARD = #{record.wtlRegCard,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.vo.Waitlist" >
+    update HR.WAITLIST
+    <set >
+      <if test="wtlEtpNum != null" >
+        WTL_ETP_NUM = #{wtlEtpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="wtlWaiting != null" >
+        WTL_WAITING = #{wtlWaiting,jdbcType=DECIMAL},
+      </if>
+      <if test="wtlApplyTime != null" >
+        WTL_APPLY_TIME = #{wtlApplyTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalDateTimeHandler},
+      </if>
+      <if test="wtlRegCard != null" >
+        WTL_REG_CARD = #{wtlRegCard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WTL_NUM = #{wtlNum,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.vo.Waitlist" >
+    update HR.WAITLIST
+    set WTL_ETP_NUM = #{wtlEtpNum,jdbcType=VARCHAR},
+      WTL_WAITING = #{wtlWaiting,jdbcType=DECIMAL},
+      WTL_APPLY_TIME = #{wtlApplyTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalDateTimeHandler},
+      WTL_REG_CARD = #{wtlRegCard,jdbcType=VARCHAR}
+    where WTL_NUM = #{wtlNum,jdbcType=DECIMAL}
+  </update>
+  <cache />
+  <select resultMap="WaitlistResultMap" parameterType="model.vo.WaitlistExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.WAITLIST
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
