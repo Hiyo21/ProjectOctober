@@ -37,6 +37,7 @@
 			<result>/jsp/Login.jsp</result>
 		</action>
 		
+
 		<action name="test1" class="controller.action.TestAction" method="insertComponent">
 			<result type="json"/>
 		</action>
@@ -47,5 +48,4 @@
 	<include file="controller/struts/MemberController.xml"/>
 	<include file="controller/struts/CustomerController.xml"/>
 	<include file="controller/struts/EnterpriseController.xml"/>
-	<include file="controller/struts/AdminController.xml"/>
 </struts>

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import model.dao.DAOFactory;
+import model.common.DAOFactory;
 import model.dao.SearchDAO;
 import model.vo.Enterprise;
 

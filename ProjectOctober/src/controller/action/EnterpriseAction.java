@@ -1,6 +1,11 @@
 package controller.action;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -8,13 +13,16 @@ import model.common.DAOFactory;
 import model.dao.EnterpriseDAO;
 import model.vo.Enterprise;
 import model.vo.Reservation;
+import model.vo.Test;
 
 
-public class EnterpriseAction extends ActionSupport {
+public class EnterpriseAction extends ActionSupport{
 
 	private static final long serialVersionUID = 1L;
 	private EnterpriseDAO etpDAO;
 	private Enterprise enterprise;
+	private Reservation reservation;
+	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
 	
 	public EnterpriseAction() {
@@ -22,23 +30,37 @@ public class EnterpriseAction extends ActionSupport {
 	}
 	
 	public String insertReservation() throws Exception{
-		int result = etpDAO.insertEvent(enterprise);
+		if(reservation != null){
+			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(), DateTimeFormatter.ISO_DATE_TIME));
+			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(), DateTimeFormatter.ISO_DATE_TIME));
+			//시험용!
+			//svc_num 필요,
+			reservation.setSvcNum(7);
+			//etp_num 필요
+			reservation.setEtpNum("1234567890");
+			//etp_email 필요
+			reservation.setEtpEmail("test1@test.com");
+			//cst_email 필요
+			reservation.setCstEmail("test2@test.com");
+			
+		}
+		int result = etpDAO.insertReservation(reservation);
+		System.out.println(result);
+		
 		if(result != 0) return SUCCESS;
 		else return ERROR;
 	}
 	
 	public String retrieveReservations() throws Exception{
-		enterprise = etpDAO.retrieveEnterpriseReservations();
-		System.out.println(enterprise);
-		if (enterprise != null) {
-			List<Reservation> resList = enterprise.getReservations();
-			System.out.println(resList.size());
-			for(int i = 0 ; i < resList.size() ; i++ ){
-				resList.get(i).setStart(resList.get(i).getRsvStartDate().toString());
-				resList.get(i).setEnd(resList.get(i).getRsvEndDate().toString());
+		reservationList = etpDAO.retrieveReservations();
+		if (reservationList != null) {
+			System.out.println(reservationList.size());
+			for(int i = 0 ; i < reservationList.size() ; i++ ){
+				reservationList.get(i).setStart(reservationList.get(i).getRsvStartDate().toString());
+				reservationList.get(i).setEnd(reservationList.get(i).getRsvEndDate().toString());
 				//Reservation 상태에 따라 변화
-				if(resList.get(i).getRsvStatus() == 0){
-					resList.get(i).setBordercolor("#DDDDDD");
+				if(reservationList.get(i).getRsvStatus() == 0){
+					reservationList.get(i).setBordercolor("#DDDDDD");
 				}
 			}
 			return SUCCESS;
@@ -46,9 +68,26 @@ public class EnterpriseAction extends ActionSupport {
 			return ERROR;
 		}
 	}
+	
+	public String changeReservationTime() throws Exception{
+		reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0, 19)));
+		reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0, 19)));
+		System.err.println(reservation);
+		int result = etpDAO.changeReservationTime(reservation);
+		if(result == 1) return SUCCESS;
+		else return ERROR;
+	}
 
 	public Enterprise getEnterprise() {
 		return enterprise;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public List<Reservation> getReservationList() {
+		return reservationList;
 	}
 
 	public List<Enterprise> getEnterpriseList() {
@@ -59,8 +98,15 @@ public class EnterpriseAction extends ActionSupport {
 		this.enterprise = enterprise;
 	}
 
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
+
+	public void setReservationList(List<Reservation> reservationList) {
+		this.reservationList = reservationList;
+	}
+
 	public void setEnterpriseList(List<Enterprise> enterpriseList) {
 		this.enterpriseList = enterpriseList;
 	}
-	
 }

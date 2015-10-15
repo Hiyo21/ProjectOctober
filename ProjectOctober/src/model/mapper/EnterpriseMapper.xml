@@ -217,6 +217,33 @@
     <result column="SAT" property="sat" jdbcType="DECIMAL" />
     <result column="SUN" property="sun" jdbcType="DECIMAL" />
   </resultMap>
+  
+  <resultMap id="EnterpriseBaseResultMap" type="model.vo.Enterprise">
+    <id column="ETP_NUM" jdbcType="VARCHAR" property="etpNum" />
+    <id column="ETP_EMAIL" jdbcType="VARCHAR" property="etpEmail" />
+    <result column="ETP_OWNER" jdbcType="VARCHAR" property="etpOwner" />
+    <result column="ETP_SUPERCLASS" jdbcType="VARCHAR" property="etpSuperclass" />
+    <result column="ETP_ADDRESS" jdbcType="VARCHAR" property="etpAddress" />
+    <result column="ETP_ZIPCODE" jdbcType="VARCHAR" property="etpZipcode" />
+    <result column="ETP_TITLE" jdbcType="VARCHAR" property="etpTitle" />
+    <result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    <result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    <result column="ETP_PHONE" jdbcType="VARCHAR" property="etpPhone" />
+    <result column="ETP_MALE_STAFF" jdbcType="DECIMAL" property="etpMaleStaff" />
+    <result column="ETP_FEMALE_STAFF" jdbcType="DECIMAL" property="etpFemaleStaff" />
+    <result column="ETP_CAPACITY" jdbcType="DECIMAL" property="etpCapacity" />
+    <result column="ETP_RSV_DEADLINE" jdbcType="DECIMAL" property="etpRsvDeadline" />
+    <result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
+    <result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
+    <result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
+    <result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
+    <result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
+    <result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
+    <result column="ETP_SUBCLASS" jdbcType="VARCHAR" property="etpSubclass" />
+    <result column="ETP_SPECIALIZE" jdbcType="VARCHAR" property="etpSpecialize" />
+    <result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
+    <result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
+  </resultMap>
 
 
   <sql id="Example_Where_Clause">
@@ -795,9 +822,5 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-  </select>
-
-  <select id="retrieveEnterpriseReservations" resultMap="EnterpriseResultMap">
-  	select r.*, e.*, s.* from reservation r, enterprise e, service s where e.etp_num = r.etp_num and r.etp_num = s.etp_num
   </select>
 </mapper>
