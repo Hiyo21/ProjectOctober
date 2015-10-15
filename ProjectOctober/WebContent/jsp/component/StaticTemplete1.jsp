@@ -48,6 +48,9 @@
 		<!-- page-top -->
 		<s:include value="./StaticTop.jsp"/>
 		
+		<!-- 사업자 전용 버튼 -->
+		<s:include value="./EtpBT.jsp"/>
+		
 		<div class="buttonBars">
 			<div class="btn-group btn-group-justified" role="group" aria-label="...">
 				<div class="btn-group" role="group">
