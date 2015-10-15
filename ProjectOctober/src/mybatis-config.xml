@@ -67,6 +67,7 @@
 		<mapper resource="model/mapper/CustomerMapper.xml" />
 		<mapper resource="model/mapper/EnterpriseMapper.xml" />
 		<mapper resource="model/mapper/MemberMapper.xml" />
+		<mapper resource="model/mapper/ReservationMapper.xml"/>
 		<mapper resource="model/mapper/ServiceMapper.xml"/>
 		<mapper resource="model/mapper/WaitlistMapper.xml"/>
 		<mapper resource="model/mapper/UnregisteredMapper.xml"/>

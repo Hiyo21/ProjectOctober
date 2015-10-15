@@ -1,10 +1,15 @@
-package model.vo;
+ package model.vo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Reservation implements Serializable {
-    private Integer rsvNum;
+    private Customer customer;
+    private Enterprise enterprise;
+    private Service service;
+    private Coupon coupon;
+	
+	private Integer rsvNum;
     private Integer svcNum;
     private Integer cpnNum;
     private String etpNum;
@@ -17,6 +22,7 @@ public class Reservation implements Serializable {
     private String rsvTitle;
     private String start;
     private String end;
+    private String duration;
     private String bordercolor;
 
     private static final long serialVersionUID = 1L;
@@ -109,27 +115,6 @@ public class Reservation implements Serializable {
         this.rsvTitle = rsvTitle;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", rsvNum=").append(rsvNum);
-        sb.append(", svcNum=").append(svcNum);
-        sb.append(", cpnNum=").append(cpnNum);
-        sb.append(", etpNum=").append(etpNum);
-        sb.append(", etpEmail=").append(etpEmail);
-        sb.append(", cstEmail=").append(cstEmail);
-        sb.append(", rsvStartDate=").append(rsvStartDate);
-        sb.append(", rsvEndDate=").append(rsvEndDate);
-        sb.append(", rsvStatus=").append(rsvStatus);
-        sb.append(", employeeGender=").append(employeeGender);
-        sb.append(", rsvTitle=").append(rsvTitle);
-        sb.append("]");
-        return sb.toString();
-    }
-
 	public String getStart() {
 		return start;
 	}
@@ -152,5 +137,59 @@ public class Reservation implements Serializable {
 
 	public void setBordercolor(String bordercolor) {
 		this.bordercolor = bordercolor;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public Enterprise getEnterprise() {
+		return enterprise;
+	}
+
+	public Service getService() {
+		return service;
+	}
+
+	public Coupon getCoupon() {
+		return coupon;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public void setEnterprise(Enterprise enterprise) {
+		this.enterprise = enterprise;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
+	}
+
+	public void setCoupon(Coupon coupon) {
+		this.coupon = coupon;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Reservation [customer=").append(customer).append(", enterprise=").append(enterprise)
+				.append(", service=").append(service).append(", coupon=").append(coupon).append(", rsvNum=")
+				.append(rsvNum).append(", svcNum=").append(svcNum).append(", cpnNum=").append(cpnNum)
+				.append(", etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail).append(", cstEmail=")
+				.append(cstEmail).append(", rsvStartDate=").append(rsvStartDate).append(", rsvEndDate=")
+				.append(rsvEndDate).append(", rsvStatus=").append(rsvStatus).append(", employeeGender=")
+				.append(employeeGender).append(", rsvTitle=").append(rsvTitle).append(", start=").append(start)
+				.append(", end=").append(end).append(", bordercolor=").append(bordercolor).append("]");
+		return builder.toString();
+	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
 	}
 }

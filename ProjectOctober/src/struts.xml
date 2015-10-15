@@ -42,5 +42,4 @@
 	<include file="controller/struts/MemberController.xml"/>
 	<include file="controller/struts/CustomerController.xml"/>
 	<include file="controller/struts/EnterpriseController.xml"/>
-	<include file="controller/struts/AdminController.xml"/>
 </struts>

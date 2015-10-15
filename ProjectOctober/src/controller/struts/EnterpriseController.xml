@@ -9,7 +9,9 @@
 		</action>
 		
 		<action name="insertReservation" class="controller.action.EnterpriseAction" method="insertReservation">
-			<result type="json"></result>
+			<result type="json">
+				<param name="root">reservation</param>
+			</result>
 		</action>
 
 	</package>
