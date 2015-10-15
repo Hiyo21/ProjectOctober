@@ -26,9 +26,26 @@ public class EnterpriseDAO {
 	public Integer insertReservation(Reservation reservation){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			return session.getMapper(ReservationMapper.class).insertReservation(reservation);
+			int result = session.getMapper(ReservationMapper.class).insertReservation(reservation);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
 		}finally{
 			session.close();
 		}
 	}
+	
+	public Integer changeReservationTime(Reservation reservation){
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			int result = session.getMapper(ReservationMapper.class).changeReservationTime(reservation);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
+		}finally{
+			session.close();
+		}
+	}
+	
+	
 }

@@ -9,9 +9,15 @@
 		</action>
 		
 		<action name="insertReservation" class="controller.action.EnterpriseAction" method="insertReservation">
+			<result type="json"></result>
+		</action>
+		
+		<action name="changeReservationTime" class="controller.action.EnterpriseAction" method="changeReservationTime">
 			<result type="json">
-				<param name="root">reservation</param>
+				<param name="root">test</param>
+				<param name="defaultEncoding">UTF-8</param>
 			</result>
+			
 		</action>
 
 	</package>
