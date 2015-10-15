@@ -36,6 +36,11 @@
 		<action name="toLoginPage">
 			<result>/jsp/Login.jsp</result>
 		</action>
+		
+		<action name="test1" class="controller.action.TestAction" method="insertComponent">
+			<result type="json"/>
+		</action>
+		
 	</package> 
 	
 	<include file="controller/struts/SearchController.xml"/>
