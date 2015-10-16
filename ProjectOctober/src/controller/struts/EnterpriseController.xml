@@ -3,13 +3,12 @@
 
 <struts>
 	<package name="enterprise" namespace="/enterprise" extends="default">
-
 		<action name="retrieveReservations" class="controller.action.EnterpriseAction" method="retrieveReservations">
-			<result type="json"></result>
+			<result type="json" />
 		</action>
 		
 		<action name="insertReservation" class="controller.action.EnterpriseAction" method="insertReservation">
-			<result type="json"></result>
+			<result type="json" />
 		</action>
 		
 		<action name="changeReservationTime" class="controller.action.EnterpriseAction" method="changeReservationTime">
@@ -17,8 +16,10 @@
 				<param name="root">test</param>
 				<param name="defaultEncoding">UTF-8</param>
 			</result>
-			
 		</action>
-
+		
+		<action name="deleteReservation" class="controller.action.EnterpriseAction" method="deleteReservation">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>
