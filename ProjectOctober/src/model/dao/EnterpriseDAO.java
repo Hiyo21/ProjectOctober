@@ -6,9 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
 import model.common.MyBatisSqlSessionFactory;
-import model.mapper.EnterpriseMapper;
 import model.mapper.ReservationMapper;
-import model.vo.Enterprise;
+
 import model.vo.Reservation;
 
 public class EnterpriseDAO {
@@ -47,5 +46,15 @@ public class EnterpriseDAO {
 		}
 	}
 	
-	
+	public Integer deleteReservation(Reservation reservation){
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			int result = session.getMapper(ReservationMapper.class).deleteReservation(reservation);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
+		}finally{
+			session.close();
+		}
+	}
 }

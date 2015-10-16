@@ -77,6 +77,13 @@ public class EnterpriseAction extends ActionSupport{
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
+	
+	public String deleteReservation() throws Exception{
+		int result = etpDAO.deleteReservation(reservation);
+		if(result == 1) return SUCCESS;
+		else return ERROR;
+	}
+	
 
 	public Enterprise getEnterprise() {
 		return enterprise;

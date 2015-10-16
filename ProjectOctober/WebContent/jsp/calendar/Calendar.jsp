@@ -26,12 +26,18 @@
 
 
 <script>
-	
-
-	
 	$(function(){
-
 		$('.datepickers').datepicker();
+		
+		var currentMousePos = {
+			    x: -1,
+			    y: -1
+			};
+			
+		$(document).on("mousemove", function (event) {
+			currentMousePos.x = event.pageX;
+		 	currentMousePos.y = event.pageY;
+		});
 		
 		var calendar = $('#calendar').fullCalendar({
 			header: {
@@ -245,19 +251,13 @@
 
 			},
 			eventDrop: function(event, delta, revertFunc, jsEvent, view) {
-				calendar.fullCalendar('unselect');
-				calendar.fullCalendar('deleteEvents');
-				calendar.fullCalendar('refetchEvents');
 				$(this).unbind();
-				alert(event.title + " was dropped on " + event.start.format());
-				if (!confirm("Are you sure about this change?")) {
+				if (!confirm("시간대를 변경하시겠습니까?")) {
 					revertFunc();
 				}else{
-					console.log(event);
 					var reservation = {
 						"reservation.rsvNum" : event.id, 
 						"reservation.rsvTitle": event.description,
-						"jsonString": event.description,
 						"reservation.start" : event.start.toISOString(),
 						"reservation.end" : event.end.toISOString(),
 					}
@@ -282,6 +282,74 @@
 				calendar.fullCalendar('deleteEvents');
 				calendar.fullCalendar('refetchEvents');
 			},
+			eventResize: function(event, delta, revertFunc, jsEvent, ui, view){
+				$(this).unbind();
+				if(! confirm("시간대를 변경하시겠습니까?")){
+					revertFunc();
+				}else{
+					var reservation = {
+							"reservation.rsvNum" : event.id, 
+							"reservation.rsvTitle": event.description,
+							"reservation.start" : event.start.toISOString(),
+							"reservation.end" : event.end.toISOString(),
+						}
+					
+					console.log(reservation);
+					$.ajax({
+						url: '${pageContext.request.contextPath}/enterprise/changeReservationTime.action',
+						dataType: 'json',
+						data: reservation,
+						contentType: 'application/json',
+						success: function(data){
+							alert('success!'); //이거 popup으로 변경...
+						},
+						error: function(){
+							console.log('fail!');
+							$('#calendar').fullCalendar('refetchEvents');							
+						}
+					});
+				}
+				calendar.fullCalendar('unselect');
+				calendar.fullCalendar('deleteEvents');
+				calendar.fullCalendar('refetchEvents');
+			},
+			eventDragStop: function(event, jsEvent, ui, view){
+				var isElementOverDiv = function(){
+				    var trashEl = jQuery('#trash');
+				    var ofs = trashEl.offset();
+				    var x1 = ofs.left;
+				    var x2 = ofs.left + trashEl.outerWidth(true);
+				    var y1 = ofs.top;
+				    var y2 = ofs.top + trashEl.outerHeight(true);
+				   	
+				    if (currentMousePos.x >= x1 && currentMousePos.x <= x2 && currentMousePos.y >= y1 && currentMousePos.y <= y2) {
+				    	return true;
+				    }else{
+						return false;
+				    }
+				};
+				
+				if(isElementOverDiv()){
+					if(confirm('지우시겠습니까?')){
+						$.ajax({
+							url: '${pageContext.request.contextPath}/enterprise/deleteReservation.action',
+							dataType: 'json',
+							data: {"reservation.rsvNum" : event.id},
+							contentType: 'application/json',
+							success: function(data){
+								if(data.status == 'success'){
+									$('#calendar').fullCalendar('deleteEvents');
+									$('#calendar').fullCalendar('refetchEvents');
+								}
+							},
+							error: function(){
+								console.log("deletion error");
+							},
+						});
+					};
+				};
+				$(this).unbind();
+			},
 		});
 	});	
 </script>
@@ -291,6 +359,14 @@
 	<jsp:include page="CalHeader.jsp"></jsp:include>
 	<h1>Calendar for testing</h1>
 	<br>
+	<div id='external-events'>
+    <h4>Delete Events</h4>
+    <div class='fc-event'>New Event</div>
+    <p>
+      <img src="../../image/trash-can.png" id="trash" alt="쓰레기통">
+    </p>
+	</div>
+	
 	<div id='calendar' class='container'></div>
 	
 	<div id="insertModal" class="modal fade">
