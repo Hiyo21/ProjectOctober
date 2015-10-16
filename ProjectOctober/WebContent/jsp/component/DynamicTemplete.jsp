@@ -69,48 +69,47 @@ $(function () {
 
 
 function save_grid(){
-	alert("click saveBT");
+	
 
- 	var tests = _.map($('.grid-stack .grid-stack-item:visible'), function(el) {
+ 	var testList = _.map($('.grid-stack .grid-stack-item:visible'), function(el) {
 	    el = $(el);
 	    var node = el.data('_gridstack_node'); //node : Object와 같은 모든 것을 담을 수 있는 부모 객체
-	    return {
-	        x: node.x,
-	        y: node.y,
-	        width: node.width,
-	        height: node.height
-	    };//return 받는 객체 형식
+	    var test = {
+	    	"test.id" : el.attr('id'),
+	        "test.x" : node.x,
+	        "test.y" : node.y,
+	        "test.width" : node.width,
+	        "test.height" : node.height
+		    };
+	    return test; //return 받는 객체 형식
 	}); 
- 	
- /* 	for(var i in tests){
- 		
- 		$.ajax({
- 			url: 'test1.action', 
- 			type: 'post',
- 			data :  tests[i],
- 			dataType : 'json',
- 			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
- 			success : success
- 		}); 
 
- 	}; */
- 	var test = {
- 		x : 1,
- 		y : 2,
- 		width : 3,
- 		height : 4 			
- 	}
- 	console.log(test);
- 	
- 	$.ajax({
-			url: 'test1.action', 
-			data :  test,
-			success : success
+ 	alert("for test");
+ 	for(var i in testList){
+ 		console.log(testList[i]);
+
+ 		$.ajax({
+			url: '${pageContext.request.contextPath}/test1.action', 
+			data :  testList[i],
+			contentType: 
+				'application/x-www-form-urlencoded; charset=utf-8',
 		}); 
+ 	} 
  	
+ 	 /* 
+ 	//객체 리스트로 보내는 법 물어보기!!!!
+ 	alert("testList");
+ 	$.ajax({
+		url: '${pageContext.request.contextPath}/test1.action', 
+		data :  $('testList').serializeArray(),
+		contentType: 
+			'application/x-www-form-urlencoded; charset=utf-8',
+		success : success
+	});
+ 	  */
 	
 	
-	$('#saved-data').val(JSON.stringify(tests));
+	$('#saved-data').val(JSON.stringify(testList));
 	//JSON.stringify : 배열을 JSON 문자열로 변환 JSON.stringify(value[, replacer[, space]])
     //replacer, space는 옵션
 			
@@ -132,7 +131,7 @@ function removeDelBt(item){
 }
 
 function success(){
-	alert("success");
+	
 }
 
 </script>
@@ -150,7 +149,7 @@ function success(){
 	<div class="grid-stack">
 	
 			<!-- 상단 컴포넌트 -->
-		    <div class="grid-stack-item" id='topCP'
+		    <div class="grid-stack-item" id ='topCP'
 		    data-gs-x="1" data-gs-y="0" data-gs-width="10" data-gs-height="2"
 		    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
 		    	<!-- 삭제버튼  -->
@@ -189,7 +188,7 @@ function success(){
 				</div>
 		    </div>
 	    
-	    
+	    <!-- 기본 정보 컴포넌트 -->
 	    <div class="grid-stack-item" id="infoCP"
 	    data-gs-x="1" data-gs-y="4" data-gs-width="10" data-gs-height="3"
 	    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
@@ -203,7 +202,7 @@ function success(){
 			</div>
 	    </div>
 	    
-	    
+	    <!-- 서비스 메뉴 컴포넌트 -->
 	    <div class="grid-stack-item"  id="svcCP"
 	    data-gs-x="1" data-gs-y="7" data-gs-width="7" data-gs-height="5"
 	    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
@@ -217,7 +216,7 @@ function success(){
 			</div>
 	    </div>
 	    
-	    
+	    <!-- 갤러리 컴포넌트 -->
 	    <div class="grid-stack-item" id="galCP"
 	    data-gs-x="8" data-gs-y="7" data-gs-width="3" data-gs-height="5"
 	    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
@@ -231,7 +230,7 @@ function success(){
 			</div>
 	    </div>
 	    
-	    
+	    <!-- 오시는 길 컴포넌트 -->
 	    <div class="grid-stack-item" id="locaCP"
 	    data-gs-x="1" data-gs-y="12" data-gs-width="10" data-gs-height="4"
 	   	onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">
@@ -245,7 +244,7 @@ function success(){
 			</div>
 	    </div>
 	    
-	    
+	    <!-- 고객 평가 컴포넌트 -->
 	    <div class="grid-stack-item" id="reviewCP"
 	    data-gs-x="1" data-gs-y="17" data-gs-width="10" data-gs-height="4"
 	    onmouseenter='makeDelBt(this)' onmouseleave="removeDelBt(this)">

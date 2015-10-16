@@ -16,8 +16,7 @@
 			<result type="json">
 				<param name="root">test</param>
 				<param name="defaultEncoding">UTF-8</param>
-			</result>
-			
+			</result>			
 		</action>
 
 	</package>
