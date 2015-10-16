@@ -40,6 +40,8 @@
 		<typeAlias type="model.vo.UnregisteredReservationExample" alias="UnregisteredReservationExample" />
 		<typeAlias type="model.vo.Waitlist" alias="Waitlist" />
 		<typeAlias type="model.vo.WaitlistExample" alias="WaitlistExample" />
+		<!-- 손은희 컴포넌트 시험용 -->
+		<typeAlias type="model.vo.Test" alias="Test" />
 	</typeAliases>
 	
 	<typeHandlers>
@@ -71,6 +73,8 @@
 		<mapper resource="model/mapper/ServiceMapper.xml"/>
 		<mapper resource="model/mapper/WaitlistMapper.xml"/>
 		<mapper resource="model/mapper/UnregisteredMapper.xml"/>
+		<!-- 손은희 컴포넌트 시험용 -->
+		<mapper resource="model/mapper/TestMapper.xml"/>
 	</mappers>
 	
 </configuration>
