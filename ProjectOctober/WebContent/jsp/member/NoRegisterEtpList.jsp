@@ -31,6 +31,7 @@ function sendData(ev){
 </script>
 </head>
 
+<ceneter>
 <body>
 <div class="header-wrap">
 	<header id="header">
@@ -161,6 +162,7 @@ function sendData(ev){
 		<th>이메일</th>
 		<th>연락처</th>
 		<th>주소</th>
+		<th>승인여부</th>
 		<th></th>
 	</tr>
 	
@@ -171,12 +173,23 @@ function sendData(ev){
 				<td><s:property value="etpEmail"/></td><!-- 이메일 -->
 				<td><s:property value="etpPhone"/></td><!-- 연락처 -->
 				<td><s:property value="etpAddress"/></td><!-- 주소 -->
-				<td><a href="<s:url value="/enterprise/NoRegisterEtpList.action?etpNum="/>${etpNum}"><input type="button" value="보기"></a></td>
-
+			<s:if test="etpStatus==2"><!-- 승인여부 -->
+				<td style="COLOR: red">승인거부</td>
+			</s:if>
+			<s:if test="etpStatus==1">
+				<td style="COLOR: blue">승인완료</td>
+			</s:if>
+			<s:if test="etpStatus==0">
+				<td style="COLOR: green">승인대기</td>
+			</s:if>
+			
+				
+				<td><input type="button" value="보기" onclick="sendData('${etpNum}')"></td>
 			</tr>			
 		</s:iterator>	
 	</s:if>
 </table>
 
 </body>
+</ceneter> 
 </html> 

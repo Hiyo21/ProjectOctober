@@ -141,22 +141,46 @@ public class EnterpriseAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	public String AllNoRegisterEtpList() throws Exception{
+	public String allNoRegisterEtpList() throws Exception{
 		enterpriseList = etpDAO.AllNoRegisterEtpList();
 		System.out.println(enterpriseList);
 		
 		return SUCCESS;
 	}
 	
-	public String NoRegisterEtpList() throws Exception{
+	public String noRegisterEtpList() throws Exception{
 		System.err.println(etpNum);
-		enterprise = etpDAO.NoRegisterEtpList(etpNum);
+		enterpriseList = etpDAO.NoRegisterEtpList(etpNum);
 		System.out.println(enterprise);
 		
 		return SUCCESS;
 	}
 	
+	public String confirm() throws Exception{
+		System.err.println("cofirm : "+etpNum);
+		int result=etpDAO.updateEtpStatus(etpNum);
+		
+		enterpriseList = etpDAO.AllNoRegisterEtpList();
+		
+		if(result !=1){	
+			return ERROR;			
+		}
+		return SUCCESS;			
+	}
 	
+	public String reject() throws Exception{
+		System.err.println("reject : "+etpNum);
+		int result=etpDAO.rejectEtpStatus(etpNum);
+		
+		enterpriseList = etpDAO.AllNoRegisterEtpList();
+		
+		if(result !=1){	
+			return ERROR;			
+		}
+		return SUCCESS;			
+	}
+
+
 	
 	@Override
 	public String execute() throws Exception {

@@ -95,16 +95,16 @@ public class EnterpriseDAO {
 		}
 	}
 	
-	public Enterprise NoRegisterEtpList(String etpNum){
+	public List<Enterprise> NoRegisterEtpList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
 		try{			
-			Enterprise etp = session.selectOne("model.mapper.EnterpriseMapper.NoRegisterEtpList",etpNum);
-			System.out.println("DAO:"+etp);
-			if(etp != null) session.commit();
+			List<Enterprise> etpList = session.selectList("model.mapper.EnterpriseMapper.noRegisterEtpList",etpNum);
+			System.out.println("DAO:"+etpList);
+			if(etpList != null) session.commit();
 			else session.rollback();
 		
-			return etp;
+			return etpList;
 		}finally{session.close();}
 	}
 	
@@ -112,11 +112,35 @@ public class EnterpriseDAO {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
 		try{
-			List<Enterprise> etpList = session.selectList("model.mapper.EnterpriseMapper.AllNoRegisterEtpList");
+			List<Enterprise> etpList = session.selectList("model.mapper.EnterpriseMapper.allNoRegisterEtpList");
 			if(etpList !=null)session.commit();
 			else session.rollback();
 			
 			return etpList;
+		}finally{session.close();}
+	}
+	
+	public Integer updateEtpStatus(String etpNum){
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			int result =session.update("model.mapper.EnterpriseMapper.updateEtpStatus",etpNum);
+			if(result ==1)session.commit();
+			else session.rollback();
+			
+			return result;
+		}finally{session.close();}
+	}
+	
+	public Integer rejectEtpStatus(String etpNum){
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			int result =session.update("model.mapper.EnterpriseMapper.rejectEtpStatus",etpNum);
+			if(result ==1)session.commit();
+			else session.rollback();
+			
+			return result;
 		}finally{session.close();}
 	}
 

@@ -22,6 +22,13 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery.ui.min.js"></script>
 
+
+<script>
+function sendData(ev){
+	location.href="/ProjectOctober/enterprise/confrim.action?etpNum="+ev;
+	
+}
+</script>
 </head>
 <body>
 <div class="header-wrap">
@@ -151,7 +158,7 @@
         <div class="row">
           <div class="col-md-6">
           	<div class="container">
-		<img src="../jpg/Clean.jpg" width="300" height="300" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"/>
+		<img src="../image/Clean.jpg" width="300" height="300" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"/>
 		
 		<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
@@ -163,7 +170,7 @@
 	          <h4 class="modal-title">사업자 인증서</h4>
 	        </div>
 	        <div class="modal-body">
-	          <img src="../jpg/Clean.jpg" width="500" height="500"/>
+	          <img src="../image/Clean.jpg" width="500" height="500"/>
 	        </div>
 	        <div class="modal-footer">
 	          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -177,7 +184,8 @@
           
           </div>
           <div class="col-md-6">
-          	<s:form name="NoRegisterEtpConfirm" action="Confirm.action" method="post" theme="simple">
+          	<s:form name="NoRegisterEtpConfirm" action="/enterprise/Confirm.action" method="post" theme="simple">
+          	<input type="hidden" name="etpNum" value="<s:property value="etpNum"/>" >
 			<table id="divSearch" class="table table-hover table-condensed table-striped">
 				<s:if test="enterpriseList !=null">
 					<s:iterator value="enterpriseList">	
@@ -202,7 +210,8 @@
 				
 			</table>
 				<br><br><br><br>
-				<center> <s:submit value="승인"/>  <a href="Reject.action"><input type="button" value="승인거부"></a>	</center>
+				<center> <s:submit value="승인"/>  <a href="<s:url value="/enterprise/Reject.action?etpNum="/>${etpNum}"><input type="button" value="승인거부"></a>	</center>
+												
 			</s:form>  
 	</div>
         </div>

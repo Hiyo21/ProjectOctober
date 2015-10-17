@@ -40,4 +40,6 @@ public interface EnterpriseMapper {
     int insertComponent(Component component);
     
     List<Component> receiveComponentList(String etpNum);
+    
+    int updateEtpStatus(Enterprise record);
 }

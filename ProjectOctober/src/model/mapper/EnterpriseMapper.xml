@@ -787,13 +787,21 @@
 		select * from component
 	</select>
 	
-	<select id="NoRegisterEtpList" parameterType="String" resultMap="EnterpriseBaseResultMap">
+	<select id="noRegisterEtpList" parameterType="String" resultMap="EnterpriseBaseResultMap">
 	select * from Enterprise where etp_num=#{etpNum}
 	</select>
 
-	<select id="AllNoRegisterEtpList" resultMap="EnterpriseBaseResultMap">
-	select * from Enterprise
+	<select id="allNoRegisterEtpList" resultMap="EnterpriseBaseResultMap">
+	select * from Enterprise order by etp_status desc
 	</select>
+	
+	<update id="updateEtpStatus" parameterType="String">
+		update HR.Enterprise set etp_status=1 where etp_num=#{etpNum}
+	</update>	
+	
+	<update id="rejectEtpStatus" parameterType="String">
+		update HR.Enterprise set etp_status=2 where etp_num=#{etpNum}
+	</update>	
 
 	<select id="receiveComponentList" resultMap="ComponentResultMap" parameterType="String">
 		select * from component where etp_num = #{etpNum}
