@@ -22,9 +22,11 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	private String email;
 	private String emailInput;
+	private String etpNumInput;
 	private String password;
 	private MemberDAO memDAO;
 	private boolean emailExists;
+	private boolean etpNumExists;
 	
 	
 	public MemberAction() {
@@ -45,6 +47,11 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	public String checkEnterpriseDuplicateEmail() throws Exception{
 		emailExists = memDAO.retrieveEmail(emailInput);
+		return SUCCESS;
+	}
+	
+	public String checkEnterpriseDuplicateEtpNum() throws Exception{
+		etpNumExists = memDAO.retrieveEtpNum(etpNumInput);
 		return SUCCESS;
 	}
 	
@@ -117,5 +124,21 @@ public class MemberAction extends ActionSupport implements SessionAware{
 
 	public void setEmailInput(String emailInput) {
 		this.emailInput = emailInput;
+	}
+
+	public boolean isEtpNumExists() {
+		return etpNumExists;
+	}
+
+	public void setEtpNumExists(boolean etpNumExists) {
+		this.etpNumExists = etpNumExists;
+	}
+
+	public String getEtpNumInput() {
+		return etpNumInput;
+	}
+
+	public void setEtpNumInput(String etpNumInput) {
+		this.etpNumInput = etpNumInput;
 	}
 }
