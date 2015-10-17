@@ -780,8 +780,10 @@
 		, #{componentID}, #{componentTheme}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY}
 		, #{backgroundTheme} , #{etpNum}, #{etpEmail})	
 	</insert>
+
 	
 	<select id="receiveComponentList" resultMap="ComponentResultMap" parameterType="String">
 		select * from component where etp_num = #{etpNum}
 	</select>
+
 </mapper>

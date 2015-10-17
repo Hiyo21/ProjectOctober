@@ -14,40 +14,52 @@
 <div align="center">
 <h1><b>사업분류 및 특징</b></h1>
 <h4>모두 필수 입력사항입니다</h4><br>
-<form>
-<div class="container">
+<form role="form">
+<div class="container-fluid">
 	<div class="form-group" align="left">
+		<div class="row ">
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				<div class="panel panel-success">
+					<div class="panel-heading"><h3><strong>업종</strong></h3></div>
+					<div class="panel-body">
+						<div class="btn-group" data-toggle="buttons">
+		  					<label class="btn btn-primary active">
+		  						<input type="radio" name="etp.etpSuperclass" id="superclassRad1" autocomplete="off" checked> 마사지샵
+		 					</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="etp.etpSuperclass" id="superclassRad2" autocomplete="off"> 네일샵
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row">
-			<div class="col-lg-6">
-				<h3><b>업종</b></h3>
-				<input type="radio" id="superclass" name="etp.superclass">마시지샵&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" id="superclass" name="etp.superclass">네일샵
-				<br><br>
-				<h3><b>종류</b>&nbsp;&nbsp;<font pont size="2" color="orange">종류 선택 가능합니다</font></h3>
-				<div class="row">
-				<div class="col-lg-8">
-				<div class="panel panel-default">
-				<div class="panel-body">
-					<table>
-					<tr>
-						<td><label><input type="checkbox" id="subclass" name="etp.subclass" value="타이마사지">타이마사지</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="경락마사지">경락마사지</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="카이로프랙틱">카이로프랙틱</label></td>
-					</tr>
-					<tr>
-						<td><label><input type="checkbox" id="subclass" name="etp.subclass" value="발마사지">발마사지</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="페이스마사지">페이스마사지</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="바디마사지">바디마사지</label></td>
-					</tr>
-					<tr>
-						<td><label><input type="checkbox" id="subclass" name="etp.subclass" value="아로마마사지">아로마마사지</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="슬리밍케어">슬리밍케어</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="웨딩관리">웨딩관리</label></td>
-					</tr>
-					</table>
-				</div> <!-- panel-body -->
-				</div> <!-- panel panel-default -->
-				</div> <!-- col-lg-8 -->
+			<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+				<div class="panel panel-success">
+					<div class="panel-heading"><h3><b>종류</b><font size="2" color="orange">종류 선택 가능합니다</font></h3></div>
+					<div class="panel-body">
+						<table>
+							<tr>
+								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="타이마사지">타이마사지</label></td>
+								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="경락마사지">경락마사지</label></td>
+								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="카이로프랙틱">카이로프랙틱</label></td>
+							</tr>
+							<tr>
+								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="발마사지">발마사지</label></td>
+								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="페이스마사지">페이스마사지</label></td>
+								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="바디마사지">바디마사지</label></td>
+							</tr>
+							<tr>
+								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="아로마마사지">아로마마사지</label></td>
+								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="슬리밍케어">슬리밍케어</label></td>
+								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="웨딩관리">웨딩관리</label></td>
+							</tr>
+						</table>
+					</div> <!-- col-lg-8 -->
+				</div>
+			</div>
+		</div>
 				<div class="col-lg-4">
 				<div class="panel panel-default">
 				<div class="panel-body">

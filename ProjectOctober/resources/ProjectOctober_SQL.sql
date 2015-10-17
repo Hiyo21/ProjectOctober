@@ -41,6 +41,7 @@ insert into customer values('test12@test.com', '���� ���', '76544'
 
 /-----------------ENTERPRISE test data--------------/
 select * from enterprise;
+select to_char(etp_start_hour,'hh24:mm:ss'),to_char(etp_end_hour,'hh24:mm:ss') from enterprise;
 
 insert into enterprise values('1234567890', 'test1@test.com', 'tester', '������','����� ������ �Ｚ�� 539', '13575' , 'test������', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('22:00:00', 'hh24:mi:ss')), '123-456-7890', 1, 2, 3, 3, 4, 4, 2, null, null, 'Ÿ�̸�����,���������','Ÿ�̸�����','������','Hello world!',1);
 insert into enterprise values('2345678901', 'company2@company.com', 'company2', '������','���� �ϻ꼭�� ��ȭ�� 32', '25566', '�ϻ긶����', (TO_DATE('11:00:00', 'hh24:mi:ss')), (TO_DATE('21:00:00', 'hh24:mi:ss')), '234-567-8901', 2, 2, 2, 1, 1, 1, 3, null, null, '�ڵ帶����,���������','�ڵ帶����','���Ͽ���','����� �ϻ� ��ü. 2��°',1);
@@ -92,21 +93,25 @@ select component_seq.currval from dual;
   
 /* 컴포넌트_요소 */
 CREATE TABLE COMPONENT (
-	component_num NUMBER NOT NULL, /* 컴포넌트 일련번호 */
-	component_id VARCHAR2(30) NOT NULL, /* 컴포넌트 id */
-	component_theme NUMBER, /* 컴포넌트 테마 */
-	component_width NUMBER, /* 컴포넌트 width */
-	component_height NUMBER, /* 컴포넌트 height */
-	component_pos_x NUMBER, /* 컴포넌트 위치 x */
-	component_pos_y NUMBER, /* 컴포넌트 위치 y */
-	background_theme NUMBER, /* 백그라운드 테마 */
-	etp_num2 VARCHAR2(10) NOT NULL, /* 사업자번호2 */
-	etp_email2 VARCHAR2(40) /* 사업자EMAIL2 */
+	component_num NUMBER NOT NULL, /* ������Ʈ �Ϸù�ȣ */
+	component_id VARCHAR2(30) NOT NULL, /* ������Ʈ id */
+	component_theme NUMBER, /* ������Ʈ �׸� */
+	component_width NUMBER, /* ������Ʈ width */
+	component_height NUMBER, /* ������Ʈ height */
+	component_pos_x NUMBER, /* ������Ʈ ��ġ x */
+	component_pos_y NUMBER, /* ������Ʈ ��ġ y */
+	background_theme NUMBER, /* ��׶��� �׸� */
+	etp_num VARCHAR2(10) NOT NULL, /* ����ڹ�ȣ */
+	etp_email VARCHAR2(40) /* �����EMAIL */
 );
 
 COMMENT ON TABLE COMPONENT IS '컴포넌트_요소';
 
+<<<<<<< HEAD
 COMMENT ON COLUMN COMPONENT.component_num IS '컴포넌트 일련번호';
+=======
+COMMENT ON COLUMN COMPONENT.component_num IS '������Ʈ �Ϸù�ȣ';
+>>>>>>> refs/remotes/origin/master
 
 COMMENT ON COLUMN COMPONENT.component_id IS 'logoComponent';
 
@@ -122,9 +127,10 @@ COMMENT ON COLUMN COMPONENT.component_pos_y IS 'logoPosY';
 
 COMMENT ON COLUMN COMPONENT.background_theme IS 'backgroundTheme';
 
-COMMENT ON COLUMN COMPONENT.etp_num2 IS '사업자번호2';
+COMMENT ON COLUMN COMPONENT.etp_num IS '����ڹ�ȣ';
 
-COMMENT ON COLUMN COMPONENT.etp_email2 IS '사업자EMAIL2';
+COMMENT ON COLUMN COMPONENT.etp_email IS '�����EMAIL';
+
 
 CREATE UNIQUE INDEX PK_COMPONENT
 	ON COMPONENT (
@@ -149,8 +155,10 @@ ALTER TABLE COMPONENT
 			etp_num,
 			etp_email
 		);
-
+		
+--테이블 명 바꾸기 쿼리
 ALTER TABLE component RENAME COLUMN etp_num2 TO etp_num;
 ALTER TABLE component RENAME COLUMN etp_email2 TO etp_email;
+
 
 /---------------------------------------/

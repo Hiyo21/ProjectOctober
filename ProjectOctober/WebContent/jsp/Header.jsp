@@ -65,7 +65,7 @@
 						</div>
 					</div>
 				</s:if>
-				<s:if test="#session.loginId != null && #session.loginId == 'enterprise' || #session.loginId == 'customer'">
+				<s:if test="#session.loginId != null">
 					<div class="row">
 					<div class="col-sm-6 col-md-6 col-lg-12">
 						<h1><s:property value="#session.loginName"/> 님, 환영합니다!</h1>
@@ -88,7 +88,7 @@
 			<div class="container">
 				<div class="row">					
 					<div class="navbar-collapse collapse">
-						<s:if test="#session.loginId == null || #session.loginId == 'customer'">
+						<s:if test="#session.loginId != null || #session.memCode == 1">
 							<ul class="nav navbar-nav" id="test1">
 								<li>
 									<a href="${pageContext.request.contextPath}/search/toAreaCategoryPage.action">
@@ -113,7 +113,7 @@
 							</ul>
 						</s:if>
 						
-						<s:if test="#session.loginId == 'enterprise'">
+						<s:if test="#session.memCode == 2">
 							<ul class="nav navbar-nav">
 								<li>
 									<a href="toEnterpriseMyPage.action">
@@ -138,7 +138,7 @@
 							</ul>
 						</s:if>
 						
-						<s:if test ="#session.loginId == null || #session.loginId == 'customer'">
+						<s:if test ="#session.loginId != null || #session.memCode == '2'">
 						<form action="searchFreeKeyword" id="searchFreeKeywordForm" class="navbar-form navbar-right" role="form" method="get" accept-charset="utf-8">
 	
 						<div class="input-group input-group-sm">

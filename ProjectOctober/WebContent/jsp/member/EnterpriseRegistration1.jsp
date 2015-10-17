@@ -7,9 +7,19 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="../../Polymer/components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcd.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title>사업자 회원가입 1</title>
 <script>
+	/* TODO 밑의 제약조건 메소드에 추가할 것.
+		1. 비밀번호 3자리 이하면 경고.
+		2. 이메일 주소 5자리 이하면 경고.
+		3. 사업자 번호 10자리 아니면 경고.
+		4. 주소는 새 창 띄워서 ZIPCODE에서 받아오도록. 주소는 기본 주소 (ZIPCODE 창에서 받아오는거 ) + 상세 주소 -> readonly에서 입력 가능하게 변경.
+		5. 연락처 7자리 이하 아니면 경고
+		6. 업체 대표 연락처 7자리 이하면 경고
+		using form-validation!
+	*/
+
 	function check() {
 		var email = document.getElementById('email');
 		var password = document.getElementById('password');
@@ -81,36 +91,64 @@
 			etpPhone.select();
 			return false;
 		}
-		return true;
+		
+			$("#toSecondPage").submit();
 	}
 	
-	//Email주소 입력시 중복 체크하는 AJAX 기능.
+	
 	$(function(){
+		//Email주소 입력시 중복 체크하는 AJAX 기능.
 		$('#email').keyup(function(){
-			console.log($('#email').val());
-			var temp = $('#email').val();
+			var tempEmail = $('#email').val();
 			$.ajax({
 				url:"member/checkEnterpriseDuplicateEmail.action",
 				type: "POST",
-				data: {"emailInput" : temp},
+				data: {"emailInput" : tempEmail},
 				cache: false,
 				success: function(data){
-					if(temp.length == 0){
-						$('#duplicateCheckResult').html('');
+					if(tempEmail.length == 0){
+						$('#duplicateCheckResultEmail').html('');
 					}
 					else{
 						if(data.emailExists){
-							$('#duplicateCheckResult').html('사용 가능합니다.').css('color', 'green');
+							$('#duplicateCheckResultEmail').html('사용 가능합니다.').css('color', 'green');
 							$('#toNextPageBtn').attr('disabled', false);
 						}
 						else{
-							$('#duplicateCheckResult').html('사용 불가능합니다.').css('color', 'red');
+							$('#duplicateCheckResultEmail').html('사용 불가능합니다.').css('color', 'red');
 							$('#toNextPageBtn').attr('disabled', true);
 						}
 					}
 				}			
 			});
 		});
+		
+		//사업자번호 입력시 중복 체크하는 AJAX 기능.
+		$('#etpNum').keyup(function(){
+			var tempNum = $('#etpNum').val();
+			$.ajax({
+				url:"member/checkEnterpriseDuplicateEtpNum.action",
+				type: "POST",
+				data: {"etpNumInput" : tempNum},
+				cache: false,
+				success: function(data){
+					if(tempNum.length == 0){
+						$('#duplicateCheckResultEtpNum').html('');
+					}
+					else{
+						if(data.etpNumExists){
+							$('#duplicateCheckResultEtpNum').html('사용 가능합니다.').css('color', 'green');
+							$('#toNextPageBtn').attr('disabled', false);
+						}
+						else{
+							$('#duplicateCheckResultEtpNum').html('사용 불가능합니다.').css('color', 'red');
+							$('#toNextPageBtn').attr('disabled', true);
+						}
+					}
+				}			
+			});
+		});
+			
 	});
 	
 	
@@ -123,14 +161,14 @@
 	<h1><b>사업자 회원가입</b></h1>
 	<h4>모두 필수 입력사항입니다</h4>
 	<br>
-	<form>
+	<form action="member/toEnterpriseRegistraionSecondPage" id="toSecondPage">
 	<div class="container">
 		<div class="form-group" align="left">
 			<div class="row">
 				<div class="col-lg-6">
 					<label for="email">이메일 주소</label>
 					<s:textfield class="form-control" id="email" name="member.memEmail" placeholder="ID로 사용됩니다."/>
-					<p id="duplicateCheckResult"></p>
+					<p id="duplicateCheckResultEmail"></p>
 					
 					<br>
 					<label for="password">비밀번호</label>
@@ -144,7 +182,9 @@
 					<label for="owner">사업자 대표명</label>
 					<s:textfield class="form-control" id="owner" name="member.memName"/>
 					<br><label for="etpNum">사업자 번호</label>
-					<s:textfield class="form-control" id="etpNum" name="member.enterprise.etpNum"/>
+					<s:textfield class="form-control" id="etpNum" name="member.enterprise.etpNum" placeholder="- 는 없이 입력해 주세요. (10자리)"/>
+					<p id="duplicateCheckResultEtpNum"></p>
+					
 					<br><label for="title">점포명</label>
 					<s:textfield class="form-control" id="title" name="member.enterprise.etpTitle"/>
 					<br><label for="address">주소</label>
@@ -167,7 +207,6 @@
 				<h3>1 / 3</h3>
 			</div>
 			<div class="col-lg-6" align="right">
-				<a href="member/toEnterpriseRegistraionSecondPage.action">
 				<button type="button" class="btn btn-primary" onclick="return check()" id="toNextPageBtn" >다음</button>
 				</a>
 			</div>

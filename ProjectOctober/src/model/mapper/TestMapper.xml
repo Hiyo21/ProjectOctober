@@ -7,7 +7,7 @@
 		insert into component values (#{id}, #{x}, #{y}, #{width}, #{height}) 
 	</insert>
 	
-	<select id="getComponentList" resultType="Test">
+	<select id="getComponentList" resultType="Test1">
 		select * from component
 	</select>
 
