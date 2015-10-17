@@ -62,8 +62,8 @@ public class EnterpriseDAO {
 	
 	public int insertComponent(Component component) {
 		System.out.println("============check DAO :: insertComponet()");
-		
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		System.out.println(session);
 		try{
 			int result = session.insert("model.mapper.EnterpriseMapper.insertComponent", component);
 			
