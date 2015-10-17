@@ -21,6 +21,14 @@
 
 <script src="js/jquery.js"></script>
 <script src="js/jquery.ui.min.js"></script>
+
+
+<script>
+function sendData(ev){
+	location.href="/ProjectOctober/enterprise/NoRegisterEtpList.action?etpNum="+ev;
+	
+}
+</script>
 </head>
 
 <ceneter>
@@ -164,7 +172,7 @@
 				<td><s:property value="etpEmail"/></td><!-- 이메일 -->
 				<td><s:property value="etpPhone"/></td><!-- 연락처 -->
 				<td><s:property value="etpAddress"/></td><!-- 주소 -->
-				<td><a href="<s:url value="/member/NoRegisterEtpList.action?etpNum="/>${etpNum}"><input type="button" value="보기"></a></td>
+				<td><a href="<s:url value="/member/NoRegisterEtpList.action?etpNum="/>">보기</a><input type="button" value="보기" onclick="sendData('${etpNum}')"></td>
 			</tr>			
 		</s:iterator>	
 	</s:if>

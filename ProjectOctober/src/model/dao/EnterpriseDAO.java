@@ -99,7 +99,7 @@ public class EnterpriseDAO {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
 		try{
-			List<Enterprise> etpList = session.selectOne("model.mapper.EnterpriseMapper.NoRegisterEtpList",etpNum);
+			List<Enterprise> etpList = session.selectList("model.mapper.EnterpriseMapper.NoRegisterEtpList",etpNum);
 			System.out.println("DAO:"+etpList);
 			if(etpList != null) session.commit();
 			else session.rollback();
