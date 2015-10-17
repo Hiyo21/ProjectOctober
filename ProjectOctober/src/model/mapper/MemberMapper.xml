@@ -333,4 +333,8 @@
   <select id="retrieveEmail" resultType="string" parameterType="string">
   	select mem_email from MEMBER where mem_email = #{value}
   </select>
+  
+   <select id="retrieveEtpNum" resultType="string" parameterType="string">
+  	select etp_num from ENTERPRISE where etp_num = #{value}
+  </select>
 </mapper>
