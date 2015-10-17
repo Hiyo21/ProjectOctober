@@ -76,3 +76,67 @@ select r.*, e.*, s.* from reservation r, enterprise e, service s where r.etp_num
 /-----------------misc ---------------------------/
 commit;
 rollback;
+
+/-----------------component test data ---------------/
+DROP TABLE COMPONENT 
+	CASCADE CONSTRAINTS;
+  
+CREATE TABLE COMPONENT (
+	etp_num VARCHAR2(10) NOT NULL, /* 사업자번호 */
+	etp_email VARCHAR2(40) NOT NULL, /* 사업자EMAIL */
+	component_id VARCHAR2(30) NOT NULL, /* 컴포넌트 id */
+	component_theme NUMBER NOT NULL, /* 컴포넌트 테마 */
+	component_width NUMBER NOT NULL, /* 컴포넌트 width */
+	component_height NUMBER NOT NULL, /* 컴포넌트 height */
+	component_pos_x NUMBER NOT NULL, /* 컴포넌트 위치 x */
+	component_pos_y NUMBER NOT NULL, /* 컴포넌트 위치 y */
+	background_theme NUMBER /* 백그라운드 테마 */
+);
+
+COMMENT ON TABLE COMPONENT IS '컴포넌트_요소';
+
+COMMENT ON COLUMN COMPONENT.etp_num IS 'etpNum';
+
+COMMENT ON COLUMN COMPONENT.etp_email IS 'etpEmail';
+
+COMMENT ON COLUMN COMPONENT.component_id IS 'logoComponent';
+
+COMMENT ON COLUMN COMPONENT.component_theme IS 'logoTheme';
+
+COMMENT ON COLUMN COMPONENT.component_width IS 'logoSizeX';
+
+COMMENT ON COLUMN COMPONENT.component_height IS 'logoSizeY';
+
+COMMENT ON COLUMN COMPONENT.component_pos_x IS 'logoPosX';
+
+COMMENT ON COLUMN COMPONENT.component_pos_y IS 'logoPosY';
+
+COMMENT ON COLUMN COMPONENT.background_theme IS 'backgroundTheme';
+
+CREATE UNIQUE INDEX PK_COMPONENT
+	ON COMPONENT (
+		etp_num ASC,
+		etp_email ASC
+	);
+
+ALTER TABLE COMPONENT
+	ADD
+		CONSTRAINT PK_COMPONENT
+		PRIMARY KEY (
+			etp_num,
+			etp_email
+		);
+
+ALTER TABLE COMPONENT
+	ADD
+		CONSTRAINT FK_ETP_TO_PHLO
+		FOREIGN KEY (
+			etp_num,
+			etp_email
+		)
+		REFERENCES ENTERPRISE (
+			etp_num,
+			etp_email
+		)
+		ON DELETE CASCADE;
+/---------------------------------------/

@@ -84,6 +84,7 @@
 		return true;
 	}
 	
+	//Email주소 입력시 중복 체크하는 AJAX 기능.
 	$(function(){
 		$('#email').keyup(function(){
 			console.log($('#email').val());
@@ -94,18 +95,26 @@
 				data: {"emailInput" : temp},
 				cache: false,
 				success: function(data){
-					if(data.emailExists){
-						$('#duplicateCheckResult').html('사용 가능합니다.').css('color', 'green');
-						$('#toNextPageBtn').attr('disabled', false);
+					if(temp.length == 0){
+						$('#duplicateCheckResult').html('');
 					}
 					else{
-						$('#duplicateCheckResult').html('사용 불가능합니다.').css('color', 'red');
-						$('#toNextPageBtn').attr('disabled', true);
+						if(data.emailExists){
+							$('#duplicateCheckResult').html('사용 가능합니다.').css('color', 'green');
+							$('#toNextPageBtn').attr('disabled', false);
+						}
+						else{
+							$('#duplicateCheckResult').html('사용 불가능합니다.').css('color', 'red');
+							$('#toNextPageBtn').attr('disabled', true);
+						}
 					}
-				}
+				}			
 			});
 		});
 	});
+	
+	
+	
 </script>
 </head>
 <body>

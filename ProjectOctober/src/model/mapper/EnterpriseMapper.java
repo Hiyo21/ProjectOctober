@@ -1,6 +1,8 @@
 package model.mapper;
 
 import java.util.List;
+
+import model.vo.Component;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
 import org.apache.ibatis.annotations.Param;
@@ -30,4 +32,8 @@ public interface EnterpriseMapper {
     int updateByPrimaryKeySelective(Enterprise record);
 
     int updateByPrimaryKey(Enterprise record);
+    
+    int insertComponent(Component component);
+    
+    List<Component> receiveComponentList();
 }
