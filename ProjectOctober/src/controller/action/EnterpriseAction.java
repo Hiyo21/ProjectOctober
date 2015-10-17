@@ -90,7 +90,7 @@ public class EnterpriseAction extends ActionSupport{
 	}
 	
 	public String receiveServiceList() throws Exception{
-		enterprise = etpDAO.receiveServiceList(etpNum);
+		enterprise = etpDAO.receiveServiceList();
 		if(enterprise != null) return SUCCESS;
 		else return ERROR;
 	}
@@ -125,6 +125,23 @@ public class EnterpriseAction extends ActionSupport{
 		
 		return SUCCESS;
 	}
+	
+	public String AllNoRegisterEtpList() throws Exception{
+		enterpriseList = etpDAO.AllNoRegisterEtpList();
+		System.out.println(enterpriseList);
+		
+		return SUCCESS;
+	}
+	
+	public String NoRegisterEtpList() throws Exception{
+		System.err.println(etpNum);
+		enterpriseList = etpDAO.NoRegisterEtpList(etpNum);
+		System.out.println(enterpriseList);
+		
+		return SUCCESS;
+	}
+	
+	
 	
 	@Override
 	public String execute() throws Exception {

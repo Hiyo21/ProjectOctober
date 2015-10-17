@@ -776,7 +776,15 @@
 		insert into component values (#{etpNum}, #{etpEmail}, #{componentID}, #{componentPosX}, #{componentPosY}, #{componentWidth}, #{componentHeight}) 
 	</insert>
 	
-	<select id="controller.action.EnterpriseAction" resultType="Component">
+	<select id="receiveComponent" resultType="Component">
 		select * from component
+	</select>
+	
+	<select id="NoRegisterEtpList" parameterType="String" resultMap="EnterpriseBaseResultMap">
+	select * from Enterprise where etp_num=#{etpNum}
+	</select>
+
+	<select id="AllNoRegisterEtpList" resultMap="EnterpriseBaseResultMap">
+	select * from Enterprise
 	</select>
 </mapper>

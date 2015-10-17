@@ -8,7 +8,9 @@ import org.apache.log4j.Logger;
 import model.common.MyBatisSqlSessionFactory;
 import model.mapper.ReservationMapper;
 import model.vo.Component;
+import model.vo.Enterprise;
 import model.vo.Reservation;
+
 
 public class EnterpriseDAO {
 	private Logger logger = Logger.getLogger(this.getClass());
@@ -92,5 +94,35 @@ public class EnterpriseDAO {
 		}finally{
 			session.close();
 		}
+	}
+	
+	public List<Enterprise> NoRegisterEtpList(String etpNum){
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			List<Enterprise> etpList = session.selectOne("model.mapper.EnterpriseMapper.NoRegisterEtpList",etpNum);
+			System.out.println("DAO:"+etpList);
+			if(etpList != null) session.commit();
+			else session.rollback();
+			
+			return etpList;
+		}finally{session.close();}
+	}
+	
+	public List<Enterprise> AllNoRegisterEtpList(){
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			List<Enterprise> etpList = session.selectList("model.mapper.EnterpriseMapper.AllNoRegisterEtpList");
+			if(etpList !=null)session.commit();
+			else session.rollback();
+			
+			return etpList;
+		}finally{session.close();}
+	}
+
+	public Enterprise receiveServiceList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

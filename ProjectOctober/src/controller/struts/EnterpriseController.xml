@@ -26,6 +26,26 @@
 			<result type="json" />
 		</action>
 		
+		<!-- 미승인 사업 목록 -->
+		<action name="AllNoRegisterEtpList" class="controller.action.EnterpriseAction" method="AllNoRegisterEtpList">
+			<result name="success">/jsp/member/NoRegisterEtpList.jsp</result>
+		</action>
+		
+		<!-- 미승인 사업 정보(ONE) -->
+		<action name="NoRegisterEtpList" class="controller.action.EnterpriseAction" method="NoRegisterEtpList">
+			<result name="success">/jsp/member/NoRegisterEtpConfirm.jsp</result>
+		</action>	
+		
+		<!-- 미승인 사업 승인-->
+		<action name="Confirm" class="controller.action.EnterpriseAction" method="Confirm">
+			<result name="success">/jsp/member/NoRegisterEtpList.jsp</result>
+		</action>
+		
+		<!-- 미승인 사업 승인거부 -->
+		<action name="Reject" class="controller.action.EnterpriseAction" method="Reject">
+			<result name="success">/jsp/member/NoRegisterEtpList.jsp</result>
+		</action>
+		
 				
 		<!--     Component Action     -->
 		
