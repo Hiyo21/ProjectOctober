@@ -26,7 +26,7 @@
 	<div class="container">
 		<!-- page-top -->
 		<s:include value="./StaticTop.jsp"/>
-		
+			
 		<s:include value="./EtpBT.jsp"/>
 		
 		<div class="buttonBars">

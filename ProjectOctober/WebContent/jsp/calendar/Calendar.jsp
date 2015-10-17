@@ -27,18 +27,15 @@
 
 <script>
 	$(function(){
-		$('.datepickers').datepicker();
+		var currentMousePos = {x: -1, y: -1};
 		
-		var currentMousePos = {
-			    x: -1,
-			    y: -1
-			};
-			
-		$(document).on("mousemove", function (event) {
+		$(document).mousemove(function (event) {
 			currentMousePos.x = event.pageX;
 		 	currentMousePos.y = event.pageY;
 		});
 		
+		$('.datepickers').datepicker();
+			
 		var calendar = $('#calendar').fullCalendar({
 			header: {
 				left:'prev,next today',
@@ -50,8 +47,8 @@
 			defaultView : 'agendaWeek',
 			selectable: true,
 			selectHelper: true,
-			//minTime: '10:00:00',
-			//maxTime: '23:00:00',
+			minTime: '10:00:00',
+			maxTime: '23:00:00',
 			businessHours : {
 				start: '11:00',
 				end: '23:00',
@@ -63,16 +60,60 @@
 				$(this).attr('href', 'javascript:void(0);');
 		        $(this).click(function() {
 		        	$("#updateModalTitle").html(event.title);
-		        	$("#updateModalEventId").html("예약 일련번호: " + event.id);
-		        	$("#updateModalCustomerEmail").html("회원 이메일: " + event.customerEmail);
-		            $("#updateModalStartTime").html("시작 시간: " + moment(event.start).format('MMM Do A h:mm '));
-		            $("#updateModalEndTime").html("종료 시간: " + moment(event.end).format('MMM Do A h:mm '));
+		        	$("#updateModalEventId").html(event.id);
+		        	$("#updateModalCustomerEmail").html(event.customerEmail);
+		            $("#updateModalStartTime").html(moment(event.start).format('MMM Do A h:mm '));
+		            $("#updateModalEndTime").html(moment(event.end).format('MMM Do A h:mm '));
 		            $("#updateModalEventInfo").html(event.description);
 		            $('#updateModal').modal();
 		        });
 		        
 		        $("#updateReservationBtn").click(function(){
-		        	$('#reservationUpdateField').html("<input type='date'></input>").toggle('slow');
+		        	/* $('#reservationUpdateField').html("<input type='date'></input>").toggle('slow'); */
+		        	$('#reservationUpdateSelectService').attr('list',function(index){
+		        		$.ajax({
+		        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+		        			dataType: 'json',
+		        			type: 'GET',
+		        			success: function(data){
+		        				var serviceList = [];
+		        				var services = data.reservation.services;
+		        				for(item in services){
+		        					serviceList.push(item.svcTitle);
+		        				}
+		        				return serviceList;
+		        			}
+		        		});
+		        	});
+		        	$('#reservationUpdateField').toggle('slow');
+		        });
+		        
+		        $("#updateReservationBtnGo").click(function(){
+		        	console.log($("#reservationUpdateDateStartTime").val());
+					/* var reservation = {
+							"reservation.rsvNum" : event.id, 
+							"reservation.rsvTitle": event.description,
+							"reservation.start" : event.start.toISOString(),
+							"reservation.end" : event.end.toISOString(),
+						}
+					
+					console.log(reservation);
+					$.ajax({
+						url: '${pageContext.request.contextPath}/enterprise/changeReservationTime.action',
+						dataType: 'json',
+						data: reservation,
+						contentType: 'application/json',
+						success: function(data){
+							alert('success!');
+							//$('#calendar').fullCalendar('removeEvents');
+							//$('#calendar').fullCalendar('addEventSource', event);
+							$('#calendar').fullCalendar('refetchEvents');
+						},
+						error: function(){
+							console.log('fail!');
+							
+						}
+					}); */
 		        });
 		      
 			},
@@ -96,12 +137,12 @@
 					str += "</div>"
 					str += "<div class='form-group'>"
 					str += "<tr>";
-					str += "<td><label for='inputDescription' class='control-label'>서비스 시작 시간: </label></td><td><input type='text' id='inputStartTime' name='reservation.start' value='" + start.toISOString() + "' readonly class='form-control'/></td>";
+					str += "<td><label for='inputDescription' class='control-label'>서비스 시작 시간: </label></td><td><input type='text' id='inputStartTime' name='reservation.start' value='" + start.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/></td>";
 					str += "</tr>";
 					str += "</div>"
 					str += "<div class='form-group'>"
 					str += "<tr>";
-					str += "<td><label for='inputDescription' class='control-label'>서비스 끝 시간: </label></td><td><input type='text' id='inputEndTime' name='reservation.end' value='" + end.toISOString() + "' readonly class='form-control'/></td>";
+					str += "<td><label for='inputDescription' class='control-label'>서비스 끝 시간: </label></td><td><input type='text' id='inputEndTime' name='reservation.end' value='" + end.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/></td>";
 					str += "</tr>";
 					str += "<div class='form-group'>"
 					str += "<tr>";
@@ -145,10 +186,6 @@
 					$('#insertReservationBtn').click(function(){
 						if($('#insertAgreementCheckbox').prop('checked') == false){
 							alert('동의해라!');
-							$('#calendar').fullCalendar('removeEvents');
-							$('#calendar').fullCalendar('refetchEvents');
-							$('#insertModal').modal('destroy').remove();
-							$(this).unbind();
 							return false;
 						}
 						
@@ -186,7 +223,7 @@
 							data: $('#inputForm').serialize(),
 							contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 							success: function(doc){
-								
+					            $('#calendar').fullCalendar('refetchEvents');
 								$('#insertModal').modal('hide');
 							},
 							error: function(doc){
@@ -194,15 +231,12 @@
 							}
 						});
 						$(this).unbind();
-						$('#calendar').fullCalendar('removeEvents');
-						$('#calendar').fullCalendar('refetchEvents');
 					});
 					
 					//----------------------------//
 					
 				calendar.fullCalendar('unselect');
 				$(this).unbind();
-				calendar.fullCalendar('refetchEvents');
 			},
 			
 			themeButtonIcons: {
@@ -229,16 +263,25 @@
 					success: function(doc, index, value){
 						var resList = doc.reservationList;
 						var events = [];
+						console.log(doc);
 		
 						$(resList).each(function(index,item){
 							events.push({
 								etpNum: item.etpNum,
+								etpEmail: item.etpEmail,
+								cpnNum: item.cpnNum,
+								startDate: item.rsvStartDate,
+								endDate: item.rsvEndDate,
+								status: item.rsvStatus,
+								employeeGender: item.employeeGender,
+								svcCost: item.service.svcCost,
+								svcDescription: item.service.svcDescription,
 								id: item.rsvNum,
-								title: item.title,
+								title: item.rsvTitle,
 								start: item.start,
 								end: item.end,
 								description: item.service.svcTitle,
-								customerEmail: item.customer.cstEmail 
+								customerEmail: item.customer.cstEmail
 							});
 						});
 						callback(events);
@@ -271,6 +314,7 @@
 						contentType: 'application/json',
 						success: function(data){
 							alert('success!'); //이거 popup으로 변경...
+							$('#calendar').fullCalendar('refetchEvents');
 						},
 						error: function(){
 							console.log('fail!');
@@ -279,8 +323,10 @@
 					});
 				}
 				calendar.fullCalendar('unselect');
-				calendar.fullCalendar('deleteEvents');
-				calendar.fullCalendar('refetchEvents');
+				//$('#calendar').fullCalendar('removeEvents');
+				//$('#calendar').fullCalendar('addEventSource', event);
+				//$('#calendar').fullCalendar('rerenderEvents');
+				 
 			},
 			eventResize: function(event, delta, revertFunc, jsEvent, ui, view){
 				$(this).unbind();
@@ -301,22 +347,29 @@
 						data: reservation,
 						contentType: 'application/json',
 						success: function(data){
-							alert('success!'); //이거 popup으로 변경...
+							alert('success!');
+							//$('#calendar').fullCalendar('removeEvents');
+							//$('#calendar').fullCalendar('addEventSource', event);
+							$('#calendar').fullCalendar('refetchEvents');
 						},
 						error: function(){
 							console.log('fail!');
-							$('#calendar').fullCalendar('refetchEvents');							
+							
 						}
 					});
 				}
 				calendar.fullCalendar('unselect');
-				calendar.fullCalendar('deleteEvents');
-				calendar.fullCalendar('refetchEvents');
 			},
 			eventDragStop: function(event, jsEvent, ui, view){
+
+				
+				console.log(currentMousePos);
+				
 				var isElementOverDiv = function(){
-				    var trashEl = jQuery('#trash');
-				    var ofs = trashEl.offset();
+					var trashEl = $('#trash');
+					var ofs = trashEl.offset();
+					console.log(ofs);
+					console.log(trashEl);
 				    var x1 = ofs.left;
 				    var x2 = ofs.left + trashEl.outerWidth(true);
 				    var y1 = ofs.top;
@@ -327,8 +380,8 @@
 				    }else{
 						return false;
 				    }
-				};
-				
+				}
+				console.log(event);
 				if(isElementOverDiv()){
 					if(confirm('지우시겠습니까?')){
 						$.ajax({
@@ -337,15 +390,16 @@
 							data: {"reservation.rsvNum" : event.id},
 							contentType: 'application/json',
 							success: function(data){
-								if(data.status == 'success'){
-									$('#calendar').fullCalendar('deleteEvents');
-									$('#calendar').fullCalendar('refetchEvents');
-								}
+								alert('삭제되었습니다.');
+								$('#calendar').fullCalendar('removeEvents');
+								$('#calendar').fullCalendar('addEventSource', event);
+								$('#calendar').fullCalendar('refetchEvents');
 							},
 							error: function(){
 								console.log("deletion error");
 							},
 						});
+						$(this).unbind();
 					};
 				};
 				$(this).unbind();
@@ -363,7 +417,7 @@
     <h4>Delete Events</h4>
     <div class='fc-event'>New Event</div>
     <p>
-      <img src="../../image/trash-can.png" id="trash" alt="쓰레기통">
+      <img src="../../image/trash-can1.jpg" id="trash" alt="쓰레기통">
     </p>
 	</div>
 	
@@ -406,20 +460,59 @@
 	                <h4 id="updateModalTitle" class="modal-title"></h4>
 	            </div>
 	            <div id="updateModalBody" class="modal-body">
-	            	<span id="updateModalEventId"></span><br>
-	   	 			<span id="updateModalStartTime"></span><br>
-	   				<span id="updateModalEndTime"></span><br>
-	   				<span id="updateModalCustomerEmail"></span><br>
-	   				<p id="updateModalEventInfo"></p>
-	   				
-	   				<br>
+	            	<table class="table table-condensed">
+	            		<tr>
+	            			<td><label for="updateModalEventId">예약 일련번호:</label></td>
+	            			<td><span id="updateModalEventId"></span></td>
+	            		</tr>
+		            	<tr>
+		            		<td><label for="updateModalStartTime">시작 시간:</label></td>
+		            		<td><span id="updateModalStartTime"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td><label for="updateModalEndTime">종료 시간:</label></td>
+		            		<td><span id="updateModalEndTime"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td><label for="updateModalCustomerEmail">회원 이메일:</label></td>
+		            		<td><span id="updateModalCustomerEmail"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td><label for="updateModalEventInfo">상세 내용:</label></td>
+		            		<td><p id="updateModalEventInfo"></p></td>
+		            		<!-- TODO: 여기에 HTML 에디터 넣기!!!!! -->
+		            	</tr>
+	   				</table>
 	   				<hr>
-	   				<br>
-	   				<p id="reservationUpdateField"></p>
+	   				<div id="reservationUpdateField" class="form-group" style="display: none;">
+	   					<table class="table table-condensed">
+	   						<!-- TODO: 시간은 바꾸는 방법 다른 거 있으니까 이거 말고, 다른 정보 변경가능하도록 하자. -->
+	   						<%-- tr>
+	   							<td><label for="reservationUpdateDateStartTime">시작시간을 변경해 주세요!</label>
+	   							<td><input type='datetime-local' id="reservationUpdateDateStartTime" class="form-control"></input></td>
+	   						</tr>
+	   						<tr>
+	   							<td><label for="reservationUpdateDateEndtime">종료시간을 변경해 주세요!</label>
+	   							<td>
+	   								<s:select headerkey="-1" headerValue="종료 시간" list="#{'1':'09:00','2':'09:30'}" value="2" name="" class="select"/>
+	   							</td>
+	   						</tr> --%>
+	   						
+	   						<!-- TODO: 그 업체가 제공하는 서비스 목록을 AJAX로 받아오고, select로 뿌려주고,  -->
+	   						<tr>
+	   							<td><label for="reservationUpdateSelectService">변경하실 서비스를 선택해 주세요!</label></td>
+	   							<td><s:select list="" headerKey="-1" headerValue="선택하세요" id="reservationUpdateSelectService"></s:select></td>
+	   						<tr>
+	   							<td><label for="reservationUpdateTitle">제목을 변경해 주세요!</label>
+	   							<td><input type='text' id="reservationUpdateTitle" class="form-control" value=""></input></td>
+	   						</tr>
+	   					</table>
+	   				</div>
 	            </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal" id="closeReservationBtn">Close</button>
-	               	<button class="btn btn-primary" id="updateReservationBtn">예약 정보 수정</button>
+	               	<button class="btn btn-primary" id="updateReservationBtn">예약 정보 수정란 활성화</button>
+	               	<button class="btn btn-warning" id="updateReservationBtnGo">예약 정보 수정 확인</button>
 	            </div>
 	        </div>
 		</div>

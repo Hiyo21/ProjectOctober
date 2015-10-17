@@ -1,11 +1,9 @@
 package controller.action;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -13,7 +11,7 @@ import model.common.DAOFactory;
 import model.dao.EnterpriseDAO;
 import model.vo.Enterprise;
 import model.vo.Reservation;
-import model.vo.Test;
+
 
 
 public class EnterpriseAction extends ActionSupport{
@@ -24,6 +22,9 @@ public class EnterpriseAction extends ActionSupport{
 	private Reservation reservation;
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
+	private String etpNum;
+	private String etpEmail;
+	
 	
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -45,7 +46,6 @@ public class EnterpriseAction extends ActionSupport{
 			
 		}
 		int result = etpDAO.insertReservation(reservation);
-		System.out.println(result);
 		
 		if(result != 0) return SUCCESS;
 		else return ERROR;
@@ -54,7 +54,6 @@ public class EnterpriseAction extends ActionSupport{
 	public String retrieveReservations() throws Exception{
 		reservationList = etpDAO.retrieveReservations();
 		if (reservationList != null) {
-			System.out.println(reservationList.size());
 			for(int i = 0 ; i < reservationList.size() ; i++ ){
 				reservationList.get(i).setStart(reservationList.get(i).getRsvStartDate().toString());
 				reservationList.get(i).setEnd(reservationList.get(i).getRsvEndDate().toString());
@@ -72,7 +71,6 @@ public class EnterpriseAction extends ActionSupport{
 	public String changeReservationTime() throws Exception{
 		reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0, 19)));
 		reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0, 19)));
-		System.err.println(reservation);
 		int result = etpDAO.changeReservationTime(reservation);
 		if(result == 1) return SUCCESS;
 		else return ERROR;
@@ -81,6 +79,12 @@ public class EnterpriseAction extends ActionSupport{
 	public String deleteReservation() throws Exception{
 		int result = etpDAO.deleteReservation(reservation);
 		if(result == 1) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String receiveServiceList() throws Exception{
+		enterprise = etpDAO.receiveServiceList(etpNum);
+		if(enterprise != null) return SUCCESS;
 		else return ERROR;
 	}
 	
@@ -115,5 +119,21 @@ public class EnterpriseAction extends ActionSupport{
 
 	public void setEnterpriseList(List<Enterprise> enterpriseList) {
 		this.enterpriseList = enterpriseList;
+	}
+
+	public String getEtpNum() {
+		return etpNum;
+	}
+
+	public String getEtpEmail() {
+		return etpEmail;
+	}
+
+	public void setEtpNum(String etpNum) {
+		this.etpNum = etpNum;
+	}
+
+	public void setEtpEmail(String etpEmail) {
+		this.etpEmail = etpEmail;
 	}
 }

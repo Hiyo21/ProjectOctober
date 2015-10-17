@@ -3,13 +3,52 @@
 
 <struts>
 	<package name="member" namespace="/member" extends="default">
-		<action name="toRegistrationPage">
-			<result>/jsp/member/</result>
+		<action name="toEnterpriseRegistrationPage">
+			<result>/jsp/member/EnterpriseRegistration1.jsp</result>
+		</action>
+		
+		<action name="toEnterpriseRegistraionSecondPage" class="controller.action.MemberAction" method="toSecondRegistrationPage">
+			<result>/jsp/member/EnterpriseRegistration2.jsp</result>
+		</action>
+		
+		<action name="toEnterpriseRegistraionThirdPage" class="controller.action.MemberAction" method="toThirdPage">
+			<result>/jsp/member/EnterpriseRegistration3.jsp</result>
+		</action>
+		
+		<action name="toCustomerRegistrationPage">
+			<result>/jsp/member/CustomerRegistration.jsp</result>
+		</action>
+		
+		<action name="checkEnterpriseDuplicateEmail" class="controller.action.MemberAction" method="checkEnterpriseDuplicateEmail">
+			<result type="json" />
+		</action>
+		
+		<action name="checkCustomerDuplicateEmail" class="controller.action.MemberAction" method="checkCustomerDuplicateEmail">
+			<result type="json" />
 		</action>
 		
 		<action name="toLoginPage">
-			<result>/jsp/member/</result>
+			<result>/jsp/member/Login.jsp</result>
+		</action>
+		
+		<action name="loginProcess" class="controller.action.MemberAction" method="loginProcess">
+			<result name="enterprise" type="chain">toEnterpriseMainPage.action</result>
+			<result name="customer" type="chain">toCustomerMainPage.action</result>
+			<result name="admin" type="chain">toAdminMainPage.action</result>
+		</action>
+		
+		<action name="toEnterpriseMainPage" class="controller.action.MemberAction" method="retrieveEnterpriseInfo">
+			<result name="template1"><!-- Enterprise 메인 페이지 (동적) --></result>
+			<result name="template2"><!-- Enterprise 메인 페이지 (정적1) --></result>
+			<result name="template3"><!-- Enterprise 메인 페이지 (정적2) --></result>	
+		</action>
+		
+		<action name="toCustomerMainPage" class="controller.action.MemberAction" method="retrieveCustomerInfo">
+			<result>Main.jsp</result>
+		</action>
+		
+		<action name="toAdminMainPage">
+			<result><!-- Admin 메인 페이지 --></result>
 		</action>
 	</package>
-
 </struts>

@@ -29,18 +29,6 @@
 			<result>/jsp/Error.jsp</result>
 		</action>
 		
-		<action name="toRegistrationPage">
-			<result>/jsp/Join.jsp</result>
-		</action>
-		
-		<action name="toLoginPage">
-			<result>/jsp/Login.jsp</result>
-		</action>
-		
-
-		<action name="test1" class="controller.action.TestAction" method="insertComponent">
-			<result type="json"/>
-		</action>
 		
 	</package> 
 	

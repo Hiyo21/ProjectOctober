@@ -41,9 +41,12 @@
 							<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							  <div class="modal-dialog">
 							    <div class="modal-content">
+							    	<div class="modal-header">
+							    		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+							    		<h3 class="modal-title" style="color: gray;">회원가입 선택</h3>
+							    	</div>
 							      <div class="modal-body">
 							      <br><br><br>
-							      <h2 style="color: black">회원가입 선택</h2>
 							      <br><br>
 							        <a class="btn btn-primary btn-lg" href="member/toEnterpriseRegistrationPage.action" 
 									role="button" style="vertical-align:center" id="etpBT"><h1>사업자</h1></a>

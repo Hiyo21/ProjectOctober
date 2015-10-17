@@ -325,4 +325,12 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  <select id="loginResult" resultMap="MemberResultMap" parameterType="hashmap" >
+    select * from MEMBER where MEM_EMAIL = #{loginEmail} and MEM_PASSWORD = #{loginPassword}
+  </select>
+  
+  <select id="retrieveEmail" resultType="string" parameterType="string">
+  	select mem_email from MEMBER where mem_email = #{value}
+  </select>
 </mapper>

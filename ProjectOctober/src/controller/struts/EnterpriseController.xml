@@ -21,5 +21,8 @@
 		<action name="deleteReservation" class="controller.action.EnterpriseAction" method="deleteReservation">
 			<result type="json"/>
 		</action>
+		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
+			<result type="json" />
+		</action>
 	</package>
 </struts>
