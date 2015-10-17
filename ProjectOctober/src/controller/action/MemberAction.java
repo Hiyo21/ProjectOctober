@@ -52,19 +52,22 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		Map<String, String> loginInfo = new HashMap<>();
 		loginInfo.put("loginEmail", email);
 		loginInfo.put("loginPassword", password);
-		
 		member = memDAO.loginResult(loginInfo);
-		if(member == null) return LOGIN;
-		else {
+		if(member == null) {
+			System.out.println(0);
+			return LOGIN;
+		} else {
 			if(member.getMemCode() == ENTERPRISE_CODE){
+				System.out.println(1);
 				return "enterprise";
 			}else if(member.getMemCode() == CUSTOMER_CODE){
-				
+				System.out.println(2);
 				return "customer";
 			}else if(member.getMemCode() == ADMIN_CODE){
-				
+				System.out.println(3);
 				return "admin";
 			}else{
+				System.out.println(4);
 				return LOGIN;
 			}
 		}

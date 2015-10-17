@@ -37,22 +37,59 @@
 
 </style>
 
+<script>
+$(document).ready(function() {
+	$('#enterprise').on('click', enter);
+	$('#customer').on('click', cust);
+});
+function enter() {
+	$('#type').attr('value', 'enterprise');
+}
+function cust() {
+	$('#type').attr('value', 'customer');
+}
+
+function check() {
+	var email = document.getElementById('email');
+	var pwd = document.getElementById('pwd');
+	var type = document.getElementById('type');
+	
+	if (type.value == '') {		
+		alert('회원 유형을 선택해주세요');
+		return false;
+	}
+	if (email.value == '') {
+		alert('이메일을 입력하세요');
+		email.focus();
+		email.select();
+		return false;
+	}
+	if (pwd.value == '') {
+		alert('비밀번호를 입력하세요');
+		pwd.focus();
+		pwd.select();
+		return false;
+	}
+	return true;
+}
+</script>
+
 <title>로그인</title>
 
 </head>
 <body>
-<s:include value="Header.jsp"></s:include>
+<s:include value="../Header.jsp"></s:include>
 
-<h1><a href="../jsp/Main.jsp">메인화면</a></h1>
+<h1><a href="../Main.jsp">메인화면</a></h1>
 
 	<div class = "container" id="joinWindow">
 		<div class="well well-lg" align="center">
 			<div class="btn-group">
-				<a class="btn btn-primary btn-lg" href="#" role="button" style="vertical-align:center"><h1>사업자</h1></a>
-				<a class="btn btn-success btn-lg" href="#" role="button" style="vertical-align:center"><h1>이용자</h1></a>
+				<a class="btn btn-primary btn-lg" href="#" role="button" style="vertical-align:center" id="enterprise"><h1>사업자</h1></a>
+				<a class="btn btn-success btn-lg" href="#" role="button" style="vertical-align:center" id="customer"><h1>이용자</h1></a>
 			</div>
 			<br><br><br>
-			<form class="form-inline" role="form">
+			<form class="form-inline" role="form" onsubmit="return check()" action="${pageContext.request.contextPath}/member/loginProcess" method="post">
     			<div class="form-group">
     				<table>
     					<tr>
@@ -65,17 +102,18 @@
 			    		<tr>
 			    		<tr>
 			    			<td width="100px">
-					    		<label for="pwd">Password:</label>
+					    		<label for="password">Password:</label>
 			    			</td>
 			    			<td>
 					    		<input type="password" class="form-control" id="pwd" placeholder="Enter password">
 			    			</td>
 			    			<td rowspan="2" width="100px" align="center">
-			    				<button type="submit" class="btn btn-default">Login</button>
+			    				<input type="submit" class="btn btn-default" value="Login">
 			    			</td>
 			    		</tr>
 			    	</table>
 			    </div>
+			<input type="hidden" id="type" value="">
 			</form>
 		</div>
 	</div>
