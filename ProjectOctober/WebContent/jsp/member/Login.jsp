@@ -97,7 +97,7 @@ function check() {
 			    				<label for="email">Email:</label>
 			    			</td>
 			    			<td>
-			    				<input type="email" class="form-control" id="email" placeholder="Enter email">
+			    				<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
 			    			</td>
 			    		<tr>
 			    		<tr>
@@ -105,7 +105,7 @@ function check() {
 					    		<label for="password">Password:</label>
 			    			</td>
 			    			<td>
-					    		<input type="password" class="form-control" id="pwd" placeholder="Enter password">
+					    		<input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password">
 			    			</td>
 			    			<td rowspan="2" width="100px" align="center">
 			    				<input type="submit" class="btn btn-default" value="Login">
