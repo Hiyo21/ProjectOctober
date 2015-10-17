@@ -17,6 +17,7 @@
 		4. 주소는 새 창 띄워서 ZIPCODE에서 받아오도록. 주소는 기본 주소 (ZIPCODE 창에서 받아오는거 ) + 상세 주소 -> readonly에서 입력 가능하게 변경.
 		5. 연락처 7자리 이하 아니면 경고
 		6. 업체 대표 연락처 7자리 이하면 경고
+		using form-validation!
 	*/
 
 	function check() {

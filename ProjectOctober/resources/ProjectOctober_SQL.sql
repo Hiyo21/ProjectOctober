@@ -41,6 +41,7 @@ insert into customer values('test12@test.com', '포항 어딘가', '76544', (TO_DATE(
 
 /-----------------ENTERPRISE test data--------------/
 select * from enterprise;
+select to_char(etp_start_hour,'hh24:mm:ss'),to_char(etp_end_hour,'hh24:mm:ss') from enterprise;
 
 insert into enterprise values('1234567890', 'test1@test.com', 'tester', '마사지','서울시 강남구 삼성동 539', '13575' , 'test마사지', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('22:00:00', 'hh24:mi:ss')), '123-456-7890', 1, 2, 3, 3, 4, 4, 2, null, null, '타이마사지,경락마사지','타이마사지','주차장','Hello world!',1);
 insert into enterprise values('2345678901', 'company2@company.com', 'company2', '마사지','고양시 일산서구 대화동 32', '25566', '일산마사지', (TO_DATE('11:00:00', 'hh24:mi:ss')), (TO_DATE('21:00:00', 'hh24:mi:ss')), '234-567-8901', 2, 2, 2, 1, 1, 1, 3, null, null, '핸드마사지,경락마사지','핸드마사지','당일예약','여기는 일산 업체. 2번째',1);
@@ -81,23 +82,23 @@ rollback;
 DROP TABLE COMPONENT 
 	CASCADE CONSTRAINTS;
   
+  /* 컴포넌트_요소 */
 CREATE TABLE COMPONENT (
-	etp_num VARCHAR2(10) NOT NULL, /* 사업자번호 */
-	etp_email VARCHAR2(40) NOT NULL, /* 사업자EMAIL */
+	component_num NUMBER NOT NULL, /* 컴포넌트 일련번호 */
 	component_id VARCHAR2(30) NOT NULL, /* 컴포넌트 id */
-	component_theme NUMBER NOT NULL, /* 컴포넌트 테마 */
-	component_width NUMBER NOT NULL, /* 컴포넌트 width */
-	component_height NUMBER NOT NULL, /* 컴포넌트 height */
-	component_pos_x NUMBER NOT NULL, /* 컴포넌트 위치 x */
-	component_pos_y NUMBER NOT NULL, /* 컴포넌트 위치 y */
-	background_theme NUMBER /* 백그라운드 테마 */
+	component_theme NUMBER, /* 컴포넌트 테마 */
+	component_width NUMBER, /* 컴포넌트 width */
+	component_height NUMBER, /* 컴포넌트 height */
+	component_pos_x NUMBER, /* 컴포넌트 위치 x */
+	component_pos_y NUMBER, /* 컴포넌트 위치 y */
+	background_theme NUMBER, /* 백그라운드 테마 */
+	etp_num VARCHAR2(10) NOT NULL, /* 사업자번호 */
+	etp_email VARCHAR2(40) /* 사업자EMAIL */
 );
 
 COMMENT ON TABLE COMPONENT IS '컴포넌트_요소';
 
-COMMENT ON COLUMN COMPONENT.etp_num IS 'etpNum';
-
-COMMENT ON COLUMN COMPONENT.etp_email IS 'etpEmail';
+COMMENT ON COLUMN COMPONENT.component_num IS '컴포넌트 일련번호';
 
 COMMENT ON COLUMN COMPONENT.component_id IS 'logoComponent';
 
@@ -113,23 +114,25 @@ COMMENT ON COLUMN COMPONENT.component_pos_y IS 'logoPosY';
 
 COMMENT ON COLUMN COMPONENT.background_theme IS 'backgroundTheme';
 
+COMMENT ON COLUMN COMPONENT.etp_num IS '사업자번호';
+
+COMMENT ON COLUMN COMPONENT.etp_email IS '사업자EMAIL';
+
 CREATE UNIQUE INDEX PK_COMPONENT
 	ON COMPONENT (
-		etp_num ASC,
-		etp_email ASC
+		component_num ASC
 	);
 
 ALTER TABLE COMPONENT
 	ADD
 		CONSTRAINT PK_COMPONENT
 		PRIMARY KEY (
-			etp_num,
-			etp_email
+			component_num
 		);
 
 ALTER TABLE COMPONENT
 	ADD
-		CONSTRAINT FK_ETP_TO_PHLO
+		CONSTRAINT FK_ENTERPRISE_TO_COMPONENT
 		FOREIGN KEY (
 			etp_num,
 			etp_email
@@ -137,6 +140,5 @@ ALTER TABLE COMPONENT
 		REFERENCES ENTERPRISE (
 			etp_num,
 			etp_email
-		)
-		ON DELETE CASCADE;
+		);
 /---------------------------------------/
