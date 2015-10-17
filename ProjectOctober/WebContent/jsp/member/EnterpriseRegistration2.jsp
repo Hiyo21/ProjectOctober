@@ -10,107 +10,118 @@
 <title>사업자 회원가입 2</title>
 </head>
 <body>
-<s:include value="../Header.jsp"></s:include>
-<div align="center">
-<h1><b>사업분류 및 특징</b></h1>
-<h4>모두 필수 입력사항입니다</h4><br>
-<form role="form">
-<div class="container-fluid">
-	<div class="form-group" align="left">
-		<div class="row ">
-			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-				<div class="panel panel-success">
-					<div class="panel-heading"><h3><strong>업종</strong></h3></div>
-					<div class="panel-body">
-						<div class="btn-group" data-toggle="buttons">
-		  					<label class="btn btn-primary active">
-		  						<input type="radio" name="etp.etpSuperclass" id="superclassRad1" autocomplete="off" checked> 마사지샵
-		 					</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="etp.etpSuperclass" id="superclassRad2" autocomplete="off"> 네일샵
-							</label>
+	<s:include value="../Header.jsp"></s:include>
+	<h1><b>사업분류 및 특징</b></h1>
+	<h4>모두 필수 입력사항입니다</h4><br>
+	<form action ="toEnterpriseRegistraionThirdPage" role="form">
+	<div class="container-fluid">
+		<div class="form-group" align="left">
+			<div class="row ">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<div class="panel panel-success">
+						<div class="panel-heading"><h3><strong>업종</strong></h3></div>
+						<div class="panel-body">
+							<div class="btn-group" data-toggle="buttons">
+			  					<label class="btn btn-primary active">
+			  						<input type="radio" name="etp.etpSuperclass" id="superclassRad1" autocomplete="off" checked> 마사지샵
+			 					</label>
+								<label class="btn btn-primary">
+									<input type="radio" name="etp.etpSuperclass" id="superclassRad2" autocomplete="off"> 네일샵
+								</label>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-				<div class="panel panel-success">
-					<div class="panel-heading"><h3><b>종류</b><font size="2" color="orange">종류 선택 가능합니다</font></h3></div>
-					<div class="panel-body">
-						<table>
-							<tr>
-								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="타이마사지">타이마사지</label></td>
-								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="경락마사지">경락마사지</label></td>
-								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="카이로프랙틱">카이로프랙틱</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="발마사지">발마사지</label></td>
-								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="페이스마사지">페이스마사지</label></td>
-								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="바디마사지">바디마사지</label></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="아로마마사지">아로마마사지</label></td>
-								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="슬리밍케어">슬리밍케어</label></td>
-								<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="웨딩관리">웨딩관리</label></td>
-							</tr>
-						</table>
-					</div> <!-- col-lg-8 -->
+			<div class="row">
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+					<div class="panel panel-success">
+						<div class="panel-heading"><h3><b>종류</b><font size="2" color="orange">종류 선택 가능합니다</font></h3></div>
+						<div class="panel-body">
+							<table>
+								<tr>
+									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="타이마사지">타이마사지</label></td>
+									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="경락마사지">경락마사지</label></td>
+									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="카이로프랙틱">카이로프랙틱</label></td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="발마사지">발마사지</label></td>
+									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="페이스마사지">페이스마사지</label></td>
+									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="바디마사지">바디마사지</label></td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="아로마마사지">아로마마사지</label></td>
+									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="슬리밍케어">슬리밍케어</label></td>
+									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="웨딩관리">웨딩관리</label></td>
+								</tr>
+							</table>
+						</div> <!-- col-lg-8 -->
+					</div>
 				</div>
 			</div>
-		</div>
-				<div class="col-lg-4">
-				<div class="panel panel-default">
-				<div class="panel-body">
+					<div class="col-lg-4">
+					<div class="panel panel-default">
+					<div class="panel-body">
+						<table>
+						<tr>
+							<td>&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="네일케어">네일케어</label></td>
+						</tr>
+						<tr>
+							<td>&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="랩핑/연장">랩핑/연장</label></td>
+						</tr>
+						<tr>
+							<td>&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="프리미엄젤">프리미엄젤</label></td>
+						</tr>
+						</table>
+					</div> <!-- panel-body -->
+					</div> <!-- panel panel-default -->
+					</div> <!-- col-lg-4 -->
+					</div> <!-- row -->
+					<br>
+					<h3><b>특징</b>&nbsp;&nbsp;<font pont size="2" color="orange">종류 선택 가능합니다</font></h3>
+					<div class="panel panel-default">
+					<div class="panel-body">
 					<table>
 					<tr>
-						<td>&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="네일케어">네일케어</label></td>
+						<td><label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="여성전용">여성전용</label></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="남녀가능">남녀가능</label></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="커플룸">커플룸</label></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="주차가능">주차가능</label></td>
 					</tr>
 					<tr>
-						<td>&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="랩핑/연장">랩핑/연장</label></td>
+						<td><label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="연중무휴">연중무휴</label></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="심야영업">심야영업</label></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="24시간 운영">24시간 운영</label></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="회원권제도">회원권제도</label></td>
 					</tr>
 					<tr>
-						<td>&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="프리미엄젤">프리미엄젤</label></td>
+						<td><label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="샤워실">샤워실</label></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="파우더룸">파우더룸</label></td>
 					</tr>
 					</table>
-				</div> <!-- panel-body -->
-				</div> <!-- panel panel-default -->
-				</div> <!-- col-lg-4 -->
-				</div> <!-- row -->
-				<br>
-				<h3><b>특징</b>&nbsp;&nbsp;<font pont size="2" color="orange">종류 선택 가능합니다</font></h3>
-				<div class="panel panel-default">
-				<div class="panel-body">
-				<table>
-				<tr>
-					<td><label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="여성전용">여성전용</label></td>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="남녀가능">남녀가능</label></td>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="커플룸">커플룸</label></td>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="주차가능">주차가능</label></td>
-				</tr>
-				<tr>
-					<td><label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="연중무휴">연중무휴</label></td>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="심야영업">심야영업</label></td>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="24시간 운영">24시간 운영</label></td>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="회원권제도">회원권제도</label></td>
-				</tr>
-				<tr>
-					<td><label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="샤워실">샤워실</label></td>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="파우더룸">파우더룸</label></td>
-				</tr>
-				</table>
-				</div> <!-- panel-body -->
-				</div> <!-- panel panel-default -->
-			</div>
-			<div class="col-lg-6">
-				<h3><b>선택사항</b></h3>
-				<table>
-				<tr>
-					<td><h4><b>사업장 규모</b></h4></td>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;남성 staff&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td>
-						<select class="form-control" id="maleStaffCount" name="etp.maleStaffCount">
+					</div> <!-- panel-body -->
+					</div> <!-- panel panel-default -->
+				</div>
+				<div class="col-lg-6">
+					<h3><b>선택사항</b></h3>
+					<table>
+					<tr>
+						<td><h4><b>사업장 규모</b></h4></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;남성 staff&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td>
+							<select class="form-control" id="maleStaffCount" name="etp.maleStaffCount">
+								<option>0</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;여성 staff&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td><select class="form-control" id="femaleStaffCount" name="etp.femaleStaffCount">
 							<option>0</option>
 							<option>1</option>
 							<option>2</option>
@@ -118,86 +129,73 @@
 							<option>4</option>
 							<option>5</option>
 						</select></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;여성 staff&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td><select class="form-control" id="femaleStaffCount" name="etp.femaleStaffCount">
-						<option>0</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select></td>
-				</tr>
-				</table>
-				<br><br>
-				<h4><b>영업일</b></h4>
-					<label><input type="checkbox" value="">월</label>&nbsp;&nbsp;
-					<label><input type="checkbox" value="">화</label>&nbsp;&nbsp;
-					<label><input type="checkbox" value="">수</label>&nbsp;&nbsp;
-					<label><input type="checkbox" value="">목</label>&nbsp;&nbsp;
-					<label><input type="checkbox" value="">금</label>&nbsp;&nbsp;
-					<label><input type="checkbox" value="">토</label>&nbsp;&nbsp;
-					<label><input type="checkbox" value="">일</label>&nbsp;&nbsp;
-				<br>
-				<table>
-				<tr>
-					<td>시간당 수용 가능 고객&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td><select class="form-control" id="hourlyCapacity" name="etp.hourlyCapacity">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td>영업 시작 시간</td>
-					<td><select class="form-control" id="startHour" name="etp.startHour">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select></td><td>&nbsp;&nbsp;시&nbsp;&nbsp;&nbsp;&nbsp;<td><select class="form-control" id="startHour" name="etp.startHour">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select><td>&nbsp;&nbsp;분&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				</tr>
-				<tr>
-					<td>영업 종료 시간</td>
-					<td><select class="form-control" id="endHour" name="etp.endHour">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select></td><td>&nbsp;&nbsp;시&nbsp;&nbsp;&nbsp;&nbsp;<td><select class="form-control" id="endHour" name="etp.endHour">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select><td>&nbsp;&nbsp;분&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				</tr>
-				</table>
+					</tr>
+					</table>
+					<br><br>
+					<h4><b>영업일</b></h4>
+						<label><input type="checkbox" value="">월</label>&nbsp;&nbsp;
+						<label><input type="checkbox" value="">화</label>&nbsp;&nbsp;
+						<label><input type="checkbox" value="">수</label>&nbsp;&nbsp;
+						<label><input type="checkbox" value="">목</label>&nbsp;&nbsp;
+						<label><input type="checkbox" value="">금</label>&nbsp;&nbsp;
+						<label><input type="checkbox" value="">토</label>&nbsp;&nbsp;
+						<label><input type="checkbox" value="">일</label>&nbsp;&nbsp;
+					<br>
+					<table>
+					<tr>
+						<td>시간당 수용 가능 고객&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td><select class="form-control" id="hourlyCapacity" name="etp.hourlyCapacity">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>영업 시작 시간</td>
+						<td><select class="form-control" id="startHour" name="etp.startHour">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select></td><td>&nbsp;&nbsp;시&nbsp;&nbsp;&nbsp;&nbsp;<td><select class="form-control" id="startHour" name="etp.startHour">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select><td>&nbsp;&nbsp;분&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					</tr>
+					<tr>
+						<td>영업 종료 시간</td>
+						<td><select class="form-control" id="endHour" name="etp.endHour">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select></td><td>&nbsp;&nbsp;시&nbsp;&nbsp;&nbsp;&nbsp;<td><select class="form-control" id="endHour" name="etp.endHour">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select><td>&nbsp;&nbsp;분&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					</tr>
+					</table>
+				</div>
 			</div>
+	<div class="container" align="center">
+		<div class="row">
+			<div class="col-lg-4" align="left"><button type="button" class="btn btn-primary">이전</button></div>
+			<div class="col-lg-4" align="center"><h3>2 / 3</h3></div>
+			<div class="col-lg-4" align="right"><button type="button" class="btn btn-primary">다음</button></div>
 		</div>
 	</div>
-</div>
-<p>
-<div class="container" align="center">
-	<div class="row">
-		<div class="col-lg-4" align="left"><button type="button" class="btn btn-primary">이전</button></div>
-		<div class="col-lg-4" align="center"><h3>2 / 3</h3></div>
-		<div class="col-lg-4" align="right"><button type="button" class="btn btn-primary">다음</button></div>
 	</div>
-</div>
-</form></div>
+	
+	</form>
 </body>
 </html>

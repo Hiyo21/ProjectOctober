@@ -31,7 +31,6 @@ function sendData(ev){
 </script>
 </head>
 
-<ceneter>
 <body>
 <div class="header-wrap">
 	<header id="header">
@@ -172,12 +171,12 @@ function sendData(ev){
 				<td><s:property value="etpEmail"/></td><!-- 이메일 -->
 				<td><s:property value="etpPhone"/></td><!-- 연락처 -->
 				<td><s:property value="etpAddress"/></td><!-- 주소 -->
-				<td><a href="<s:url value="/member/NoRegisterEtpList.action?etpNum="/>">보기</a><input type="button" value="보기" onclick="sendData('${etpNum}')"></td>
+				<td><a href="<s:url value="/enterprise/NoRegisterEtpList.action?etpNum="/>${etpNum}"><input type="button" value="보기"></a></td>
+
 			</tr>			
 		</s:iterator>	
 	</s:if>
 </table>
 
 </body>
-</ceneter> 
 </html> 
