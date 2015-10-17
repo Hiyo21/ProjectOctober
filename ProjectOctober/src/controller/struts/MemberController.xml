@@ -45,6 +45,10 @@
 			<result name="admin" type="chain">toAdminMainPage.action</result>
 		</action>
 		
+		<action name="logoutProcess" class="controller.action.MemberAction" method="logoutProcess">
+			<result>/jsp/Main.jsp</result>
+		</action>
+		
 		<action name="toEnterpriseMainPage" class="controller.action.MemberAction" method="retrieveEnterpriseInfo">
 			<result name="template1"><!-- Enterprise 메인 페이지 (동적) --></result>
 			<result name="template2"><!-- Enterprise 메인 페이지 (정적1) --></result>

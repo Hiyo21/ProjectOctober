@@ -85,6 +85,11 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		}
 	}
 	
+	public String logoutProcess() throws Exception{
+		session.clear();
+		return SUCCESS;
+	}
+	
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
