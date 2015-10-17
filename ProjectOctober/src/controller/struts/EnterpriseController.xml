@@ -15,9 +15,9 @@
 			<result type="json">
 				<param name="root">test</param>
 				<param name="defaultEncoding">UTF-8</param>
-			</result>
+			</result>			
 		</action>
-		
+
 		<action name="deleteReservation" class="controller.action.EnterpriseAction" method="deleteReservation">
 			<result type="json"/>
 		</action>

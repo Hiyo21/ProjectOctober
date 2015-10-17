@@ -3,7 +3,7 @@
 
 <struts>
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="false" />
 
     <package name="default" namespace="/" extends="json-default">
     	<interceptors>
@@ -27,6 +27,22 @@
 		
 		<action name="toErrorPage">
 			<result>/jsp/Error.jsp</result>
+		</action>
+		
+		<action name="toRegistrationPage">
+			<result>/jsp/Join.jsp</result>
+		</action>
+		
+		<action name="toLoginPage">
+			<result>/jsp/Login.jsp</result>
+		</action>
+		
+		<action name="insertComponent" class="controller.action.TestAction" method="insertComponent">
+			<result type="json"/>
+		</action>
+		
+		<action name="getComponentList" class="controller.action.TestAction" method="receiveComponentList">
+			<result type="json"/>
 		</action>
 		
 		
