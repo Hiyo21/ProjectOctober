@@ -89,17 +89,22 @@ public class EnterpriseAction extends ActionSupport{
 		else return ERROR;
 	}
 	
-	public String receiveServiceList() throws Exception{
+	/*public String receiveServiceList() throws Exception{
 		enterprise = etpDAO.receiveServiceList(etpNum);
 		if(enterprise != null) return SUCCESS;
 		else return ERROR;
-	}
+	}*/
 	
 	
 	//////////////// Component Method ////////////////
 	
 	public String insertComponent(){
 		System.out.println("============check Action :: insertComponet()");
+		
+		////// 연결 후 페이지 정보 혹은 세션에서 etpnum, etpemail, etpTheme 불러오기
+		component.setEtpNum("151017");
+		component.setEtpEmail("24HourPlus@24HourPlus.com");
+		component.setComponentTheme(1);
 		
 		System.out.println(component);
 		
@@ -167,19 +172,19 @@ public class EnterpriseAction extends ActionSupport{
 	}
 
 
-	public Component getCompo() {
+	public Component getComponent() {
 		return component;
 	}
 
-	public void setCompo(Component component) {
+	public void setComponent(Component component) {
 		this.component = component;
 	}
 
-	public List<Component> getCompoList() {
+	public List<Component> getComponentList() {
 		return componentList;
 	}
 
-	public void setCompoList(List<Component> componentList) {
+	public void setComponentList(List<Component> componentList) {
 		this.componentList = componentList;
 	}
 	
