@@ -3,9 +3,9 @@ select tname from tab;
 /------------MEMBER_CODE test data----------------/
 select * from member_code;
 
-insert into member_code values('1','»ç¾÷ÀÚ');
-insert into member_code values('2','ÀÌ¿ëÀÚ');
-insert into member_code values('3','°ü¸®ÀÚ');
+insert into member_code values('1','ï¿½ï¿½ï¿½ï¿½ï¿½');
+insert into member_code values('2','ï¿½Ì¿ï¿½ï¿½ï¿½');
+insert into member_code values('3','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
 /---------------MEMBER test data---------------/
 select * from member;
 
@@ -27,41 +27,42 @@ insert into member values('company2@company.com',1,'company2','com','332-3453-41
 /------------------CUSTOMER test data---------------/
 select * from customer;
 
-insert into customer values('test2@test.com', '¼­¿ï ¾îµò°¡', '34433', (TO_DATE('2003/05/03 21:02:14', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
-insert into customer values('test3@test.com', 'ºÎ»ê ¾îµò°¡', '12345', (TO_DATE('2002/04/04 22:03:54', 'yyyy/mm/dd hh24:mi:ss')), 'f', 0);
-insert into customer values('test4@test.com', '¿ï»ê ¾îµò°¡', '23456', (TO_DATE('2001/03/05 23:04:34', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
-insert into customer values('test5@test.com', '´ëÀü ¾îµò°¡', '34567', (TO_DATE('2000/02/06 01:05:54', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
-insert into customer values('test6@test.com', '±¤ÁÖ ¾îµò°¡', '45678', (TO_DATE('1999/01/07 02:06:44', 'yyyy/mm/dd hh24:mi:ss')), 'f', 0);
-insert into customer values('test7@test.com', 'ÀÎÃµ ¾îµò°¡', '56789', (TO_DATE('1998/12/08 00:07:34', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
-insert into customer values('test8@test.com', 'ÀÏ»ê ¾îµò°¡', '67890', (TO_DATE('1997/11/09 03:08:24', 'yyyy/mm/dd hh24:mi:ss')), 'f', 0);
-insert into customer values('test9@test.com', 'ºÎÃµ ¾îµò°¡', '78901', (TO_DATE('1996/10/10 04:09:14', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
-insert into customer values('test10@test.com', '´ë±¸ ¾îµò°¡', '09876', (TO_DATE('1995/09/11 05:10:24', 'yyyy/mm/dd hh24:mi:ss')), 'f', 0);
-insert into customer values('test11@test.com', 'Á¦ÁÖµµ ¾îµò°¡', '98776', (TO_DATE('1994/08/12 06:22:34', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
-insert into customer values('test12@test.com', 'Æ÷Ç× ¾îµò°¡', '76544', (TO_DATE('1993/07/13 07:32:54', 'yyyy/mm/dd hh24:mi:ss')), 'f', 0);
+insert into customer values('test2@test.com', 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½', '34433', (TO_DATE('2003/05/03 21:02:14', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
+insert into customer values('test3@test.com', 'ï¿½Î»ï¿½ ï¿½ï¿½ï¿½', '12345', (TO_DATE('2002/04/04 22:03:54', 'yyyy/mm/dd hh24:mi:ss')), 'f', 0);
+insert into customer values('test4@test.com', 'ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½', '23456', (TO_DATE('2001/03/05 23:04:34', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
+insert into customer values('test5@test.com', 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½', '34567', (TO_DATE('2000/02/06 01:05:54', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
+insert into customer values('test6@test.com', 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½', '45678', (TO_DATE('1999/01/07 02:06:44', 'yyyy/mm/dd hh24:mi:ss')), 'f', 0);
+insert into customer values('test7@test.com', 'ï¿½ï¿½Ãµ ï¿½ï¿½ï¿½', '56789', (TO_DATE('1998/12/08 00:07:34', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
+insert into customer values('test8@test.com', 'ï¿½Ï»ï¿½ ï¿½ï¿½ï¿½', '67890', (TO_DATE('1997/11/09 03:08:24', 'yyyy/mm/dd hh24:mi:ss')), 'f', 0);
+insert into customer values('test9@test.com', 'ï¿½ï¿½Ãµ ï¿½ï¿½ï¿½', '78901', (TO_DATE('1996/10/10 04:09:14', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
+insert into customer values('test10@test.com', 'ï¿½ë±¸ ï¿½ï¿½ï¿½', '09876', (TO_DATE('1995/09/11 05:10:24', 'yyyy/mm/dd hh24:mi:ss')), 'f', 0);
+insert into customer values('test11@test.com', 'ï¿½ï¿½ï¿½Öµï¿½ ï¿½ï¿½ï¿½', '98776', (TO_DATE('1994/08/12 06:22:34', 'yyyy/mm/dd hh24:mi:ss')), 'm', 0);
+insert into customer values('test12@test.com', 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½', '76544', (TO_DATE('1993/07/13 07:32:54', 'yyyy/mm/dd hh24:mi:ss')), 'f', 0);
 
 /-----------------ENTERPRISE test data--------------/
 select * from enterprise;
+select to_char(etp_start_hour,'hh24:mm:ss'),to_char(etp_end_hour,'hh24:mm:ss') from enterprise;
 
-insert into enterprise values('1234567890', 'test1@test.com', 'tester', '¸¶»çÁö','¼­¿ï½Ã °­³²±¸ »ï¼ºµ¿ 539', '13575' , 'test¸¶»çÁö', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('22:00:00', 'hh24:mi:ss')), '123-456-7890', 1, 2, 3, 3, 4, 4, 2, null, null, 'Å¸ÀÌ¸¶»çÁö,°æ¶ô¸¶»çÁö','Å¸ÀÌ¸¶»çÁö','ÁÖÂ÷Àå','Hello world!',1);
-insert into enterprise values('2345678901', 'company2@company.com', 'company2', '¸¶»çÁö','°í¾ç½Ã ÀÏ»ê¼­±¸ ´ëÈ­µ¿ 32', '25566', 'ÀÏ»ê¸¶»çÁö', (TO_DATE('11:00:00', 'hh24:mi:ss')), (TO_DATE('21:00:00', 'hh24:mi:ss')), '234-567-8901', 2, 2, 2, 1, 1, 1, 3, null, null, 'ÇÚµå¸¶»çÁö,°æ¶ô¸¶»çÁö','ÇÚµå¸¶»çÁö','´çÀÏ¿¹¾à','¿©±â´Â ÀÏ»ê ¾÷Ã¼. 2¹øÂ°',1);
+insert into enterprise values('1234567890', 'test1@test.com', 'tester', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¼ºï¿½ï¿½ 539', '13575' , 'testï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('22:00:00', 'hh24:mi:ss')), '123-456-7890', 1, 2, 3, 3, 4, 4, 2, null, null, 'Å¸ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','Å¸ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','Hello world!',1);
+insert into enterprise values('2345678901', 'company2@company.com', 'company2', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ ï¿½Ï»ê¼­ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ 32', '25566', 'ï¿½Ï»ê¸¶ï¿½ï¿½ï¿½ï¿½', (TO_DATE('11:00:00', 'hh24:mi:ss')), (TO_DATE('21:00:00', 'hh24:mi:ss')), '234-567-8901', 2, 2, 2, 1, 1, 1, 3, null, null, 'ï¿½Úµå¸¶ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Úµå¸¶ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï»ï¿½ ï¿½ï¿½Ã¼. 2ï¿½ï¿½Â°',1);
 /----------------SERVICE test data-------------/
 select * from service;
 
-insert into service values(1, '1234567890', 'test1@test.com', '30ºĞ °æ¶ô ¸¶»çÁö', 10000, (TO_DATE('30:00', 'mi:ss')), 'ÀÌ°Ç 1¹ø', '°æ¶ô¸¶»çÁö', '¹«·á ¼­ºñ½º ÀÖÀ½', 1);
-insert into service values(2, '1234567890', 'test1@test.com', '60ºĞ °æ¶ô ¸¶»çÁö', 20000, (TO_DATE('01:00:00', 'hh:mi:ss')), 'ÀÌ°Ç 2¹ø', '°æ¶ô¸¶»çÁö', '»ùÇÃ ÁÜ', 1);
-insert into service values(3, '1234567890', 'test1@test.com', '30ºĞ ÇÚµå ¸¶»çÁö', 15000, (TO_DATE('30:00', 'mi:ss')), 'ÀÌ°Ç 3¹ø', 'ÇÚµå¸¶»çÁö', '»çÀºÇ° ÁõÁ¤', 1);
-insert into service values(4, '1234567890', 'test1@test.com', '60ºĞ ÇÚµå ¸¶»çÁö', 30000, (TO_DATE('01:00:00', 'hh:mi:ss')), 'ÀÌ°Ç 4¹ø', 'ÇÚµå¸¶»çÁö', '»çÀºÇ° ÁõÁ¤', 1);
-insert into service values(5, '1234567890', 'test1@test.com', '30ºĞ Ç² ¸¶»çÁö', 20000, (TO_DATE('30:00', 'mi:ss')), 'ÀÌ°Ç 5¹ø', 'Ç²¸¶»çÁö', 'HOT', 1);
-insert into service values(6, '1234567890', 'test1@test.com', '60ºĞ Ç² ¸¶»çÁö', 40000, (TO_DATE('01:00:00', 'hh:mi:ss')), 'ÀÌ°Ç 6¹ø', 'Ç²¸¶»çÁö', 'HOT', 1);
-insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30ºĞ Å¸ÀÌ ¸¶»çÁö', 30000, (TO_DATE('30:00', 'mi:ss')), 'ÀÌ°Ç 8¹ø', 'Å¸ÀÌ¸¶»çÁö', 'ÇÒÀÎÁß', 1);
-insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60ºĞ Å¸ÀÌ ¸¶»çÁö', 60000, (TO_DATE('01:00:00', 'hh:mi:ss')), 'ÀÌ°Ç 9¹ø', 'Å¸ÀÌ¸¶»çÁö', 'ÇÒÀÎÁß', 1);
-insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '90ºĞ Å¸ÀÌ ¸¶»çÁö', 90000, (TO_DATE('01:30:00', 'hh:mi:ss')), 'ÀÌ°Ç 10¹ø', 'Å¸ÀÌ¸¶»çÁö', 'VIP¿ë', 1);
+insert into service values(1, '1234567890', 'test1@test.com', '30ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 10000, (TO_DATE('30:00', 'mi:ss')), 'ï¿½Ì°ï¿½ 1ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½', 1);
+insert into service values(2, '1234567890', 'test1@test.com', '60ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 20000, (TO_DATE('01:00:00', 'hh:mi:ss')), 'ï¿½Ì°ï¿½ 2ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½', 1);
+insert into service values(3, '1234567890', 'test1@test.com', '30ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 15000, (TO_DATE('30:00', 'mi:ss')), 'ï¿½Ì°ï¿½ 3ï¿½ï¿½', 'ï¿½Úµå¸¶ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½', 1);
+insert into service values(4, '1234567890', 'test1@test.com', '60ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 30000, (TO_DATE('01:00:00', 'hh:mi:ss')), 'ï¿½Ì°ï¿½ 4ï¿½ï¿½', 'ï¿½Úµå¸¶ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½', 1);
+insert into service values(5, '1234567890', 'test1@test.com', '30ï¿½ï¿½ Ç² ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 20000, (TO_DATE('30:00', 'mi:ss')), 'ï¿½Ì°ï¿½ 5ï¿½ï¿½', 'Ç²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'HOT', 1);
+insert into service values(6, '1234567890', 'test1@test.com', '60ï¿½ï¿½ Ç² ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 40000, (TO_DATE('01:00:00', 'hh:mi:ss')), 'ï¿½Ì°ï¿½ 6ï¿½ï¿½', 'Ç²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'HOT', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 30000, (TO_DATE('30:00', 'mi:ss')), 'ï¿½Ì°ï¿½ 8ï¿½ï¿½', 'Å¸ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 60000, (TO_DATE('01:00:00', 'hh:mi:ss')), 'ï¿½Ì°ï¿½ 9ï¿½ï¿½', 'Å¸ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '90ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 90000, (TO_DATE('01:30:00', 'hh:mi:ss')), 'ï¿½Ì°ï¿½ 10ï¿½ï¿½', 'Å¸ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½', 'VIPï¿½ï¿½', 1);
 
 /-----------------COUPON test data---------------------------/
 select * from coupon;
 create sequence coupon_seq;
 
-insert into coupon values(coupon_seq.nextval, '1234567890', 'test1@test.com', 'ÇÒ·ÎÀ© Æ¯º° 30% ÇÒÀÎ', 'hw', 0.3, (TO_DATE('2015-10-15','yyyy-MM-dd')), (TO_DATE('2015-10-25','yyyy-MM-dd')));
+insert into coupon values(coupon_seq.nextval, '1234567890', 'test1@test.com', 'ï¿½Ò·ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ 30% ï¿½ï¿½ï¿½ï¿½', 'hw', 0.3, (TO_DATE('2015-10-15','yyyy-MM-dd')), (TO_DATE('2015-10-25','yyyy-MM-dd')));
 
 /------------RESERVATION test data------------------------/
 select * from reservation;
@@ -78,26 +79,39 @@ commit;
 rollback;
 
 /-----------------component test data ---------------/
+ * 
+select * from component;
+
+delete component where etp_num2 = '1111-11111';
+
 DROP TABLE COMPONENT 
 	CASCADE CONSTRAINTS;
+	
+create sequence component_seq;
+
+select component_seq.currval from dual;
   
+/* ì»´í¬ë„ŒíŠ¸_ìš”ì†Œ */
 CREATE TABLE COMPONENT (
-	etp_num VARCHAR2(10) NOT NULL, /* »ç¾÷ÀÚ¹øÈ£ */
-	etp_email VARCHAR2(40) NOT NULL, /* »ç¾÷ÀÚEMAIL */
-	component_id VARCHAR2(30) NOT NULL, /* ÄÄÆ÷³ÍÆ® id */
-	component_theme NUMBER NOT NULL, /* ÄÄÆ÷³ÍÆ® Å×¸¶ */
-	component_width NUMBER NOT NULL, /* ÄÄÆ÷³ÍÆ® width */
-	component_height NUMBER NOT NULL, /* ÄÄÆ÷³ÍÆ® height */
-	component_pos_x NUMBER NOT NULL, /* ÄÄÆ÷³ÍÆ® À§Ä¡ x */
-	component_pos_y NUMBER NOT NULL, /* ÄÄÆ÷³ÍÆ® À§Ä¡ y */
-	background_theme NUMBER /* ¹é±×¶ó¿îµå Å×¸¶ */
+	component_num NUMBER NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ï·Ã¹ï¿½È£ */
+	component_id VARCHAR2(30) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® id */
+	component_theme NUMBER, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½×¸ï¿½ */
+	component_width NUMBER, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® width */
+	component_height NUMBER, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® height */
+	component_pos_x NUMBER, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Ä¡ x */
+	component_pos_y NUMBER, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Ä¡ y */
+	background_theme NUMBER, /* ï¿½ï¿½×¶ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ */
+	etp_num VARCHAR2(10) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½Ú¹ï¿½È£ */
+	etp_email VARCHAR2(40) /* ï¿½ï¿½ï¿½ï¿½ï¿½EMAIL */
 );
 
-COMMENT ON TABLE COMPONENT IS 'ÄÄÆ÷³ÍÆ®_¿ä¼Ò';
+COMMENT ON TABLE COMPONENT IS 'ì»´í¬ë„ŒíŠ¸_ìš”ì†Œ';
 
-COMMENT ON COLUMN COMPONENT.etp_num IS 'etpNum';
-
-COMMENT ON COLUMN COMPONENT.etp_email IS 'etpEmail';
+<<<<<<< HEAD
+COMMENT ON COLUMN COMPONENT.component_num IS 'ì»´í¬ë„ŒíŠ¸ ì¼ë ¨ë²ˆí˜¸';
+=======
+COMMENT ON COLUMN COMPONENT.component_num IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ï·Ã¹ï¿½È£';
+>>>>>>> refs/remotes/origin/master
 
 COMMENT ON COLUMN COMPONENT.component_id IS 'logoComponent';
 
@@ -113,30 +127,38 @@ COMMENT ON COLUMN COMPONENT.component_pos_y IS 'logoPosY';
 
 COMMENT ON COLUMN COMPONENT.background_theme IS 'backgroundTheme';
 
+COMMENT ON COLUMN COMPONENT.etp_num IS 'ï¿½ï¿½ï¿½ï¿½Ú¹ï¿½È£';
+
+COMMENT ON COLUMN COMPONENT.etp_email IS 'ï¿½ï¿½ï¿½ï¿½ï¿½EMAIL';
+
+
 CREATE UNIQUE INDEX PK_COMPONENT
 	ON COMPONENT (
-		etp_num ASC,
-		etp_email ASC
+		component_num ASC
 	);
 
 ALTER TABLE COMPONENT
 	ADD
 		CONSTRAINT PK_COMPONENT
 		PRIMARY KEY (
-			etp_num,
-			etp_email
+			component_num
 		);
 
 ALTER TABLE COMPONENT
 	ADD
-		CONSTRAINT FK_ETP_TO_PHLO
+		CONSTRAINT FK_ENTERPRISE_TO_COMPONENT
 		FOREIGN KEY (
-			etp_num,
-			etp_email
+			etp_num2,
+			etp_email2
 		)
 		REFERENCES ENTERPRISE (
 			etp_num,
 			etp_email
-		)
-		ON DELETE CASCADE;
+		);
+		
+--í…Œì´ë¸” ëª… ë°”ê¾¸ê¸° ì¿¼ë¦¬
+ALTER TABLE component RENAME COLUMN etp_num2 TO etp_num;
+ALTER TABLE component RENAME COLUMN etp_email2 TO etp_email;
+
+
 /---------------------------------------/

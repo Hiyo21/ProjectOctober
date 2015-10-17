@@ -1,6 +1,8 @@
 package model.mapper;
 
 import java.util.List;
+
+import model.vo.Component;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
 import org.apache.ibatis.annotations.Param;
@@ -34,4 +36,8 @@ public interface EnterpriseMapper {
     List<Enterprise> NoRegisterEtpList(String key);
     
     List<Enterprise> AllNoRegisterEtpList();
+
+    int insertComponent(Component component);
+    
+    List<Component> receiveComponentList(String etpNum);
 }

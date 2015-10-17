@@ -3,6 +3,7 @@
 
 <struts>
 	<package name="member" namespace="/member" extends="default">
+	
 		<action name="toEnterpriseRegistrationPage">
 			<result>/jsp/member/EnterpriseRegistration1.jsp</result>
 		</action>
@@ -23,6 +24,10 @@
 			<result type="json" />
 		</action>
 		
+		<action name="checkEnterpriseDuplicateEtpNum" class="controller.action.MemberAction" method="checkEnterpriseDuplicateEtpNum">
+			<result type="json" />
+		</action>
+		
 		<action name="checkCustomerDuplicateEmail" class="controller.action.MemberAction" method="checkCustomerDuplicateEmail">
 			<result type="json" />
 		</action>
@@ -32,6 +37,9 @@
 		</action>
 		
 		<action name="loginProcess" class="controller.action.MemberAction" method="loginProcess">
+			<result name="login" type="redirectAction">
+				<param name="actionName">toLoginPage</param>
+			</result>
 			<result name="enterprise" type="chain">toEnterpriseMainPage.action</result>
 			<result name="customer" type="chain">toCustomerMainPage.action</result>
 			<result name="admin" type="chain">toAdminMainPage.action</result>

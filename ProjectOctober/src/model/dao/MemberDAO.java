@@ -28,6 +28,22 @@ public class MemberDAO extends DAOTemplate {
 		}
 	}
 	
+
+
+	public boolean retrieveEtpNum(String etpNumInput) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			String etpNum = session.getMapper(MemberMapper.class).retrieveEtpNum(etpNumInput);
+			if(etpNum == null || etpNum.trim().length() == 0){
+				return true;
+			}else{
+				return false;
+			}
+		}finally{
+			session.close();
+		}
+	}
+	
 	public MemberMapper fromMapper(SqlSession s){
 		return s.getMapper(MemberMapper.class);
 	}

@@ -3,9 +3,9 @@ package model.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.log4j.Logger;
 
 import model.common.MyBatisSqlSessionFactory;
+import model.mapper.EnterpriseMapper;
 import model.mapper.ReservationMapper;
 import model.vo.Component;
 import model.vo.Enterprise;
@@ -13,7 +13,7 @@ import model.vo.Reservation;
 
 
 public class EnterpriseDAO {
-	private Logger logger = Logger.getLogger(this.getClass());
+	
 	
 	public List<Reservation> retrieveReservations(){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
@@ -64,10 +64,9 @@ public class EnterpriseDAO {
 	
 	public int insertComponent(Component component) {
 		System.out.println("============check DAO :: insertComponet()");
-		
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			int result = session.insert("model.mapper.EnterpriseMapper.insertComponent", component);
+			int result = session.getMapper(EnterpriseMapper.class).insertComponent(component);
 			
 			if(result == 1) session.commit();
 			else session.rollback();
@@ -78,12 +77,12 @@ public class EnterpriseDAO {
 		}
 	}
 
-	public List<Component> receiveComponentList() {
+	public List<Component> receiveComponentList(String etpNum) {
 		System.out.println("============check DAO :: getComponentList()");
-		
+
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			List<Component> componentList = session.selectList("model.mapper.EnterpriseMapper.receiveComponentList");
+			List<Component> componentList = session.getMapper(EnterpriseMapper.class).receiveComponentList(etpNum);
 		
 			if(componentList != null) session.commit();
 			else session.rollback();

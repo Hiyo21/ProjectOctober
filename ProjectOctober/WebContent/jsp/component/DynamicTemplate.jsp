@@ -92,7 +92,7 @@ function save_grid(){
 	    var component = {  
 	    	"component.componentID" : el.attr('id'),
 	        "component.componentPosX" : node.x,
-	        "component.componentPosy" : node.y,
+	        "component.componentPosY" : node.y,
 	        "component.componentWidth" : node.width,
 	        "component.componentHeight" : node.height
 	    };
@@ -134,7 +134,7 @@ function remove_widget(item){
 
 
 function print(object){
-	var items = object.testList;
+	var items = object.componentList;
     items = GridStackUI.Utils.sort(items); // 각 컴포넌트를 원래 순서대로 정렬. 안하면 랜덤으로 섞여서 배치됨
     
     console.log(items);	// 컴포넌트 위치값 확인
@@ -143,8 +143,10 @@ function print(object){
     grid.remove_all();
     
     _.each(items, function (node) {
-
-   	switch (node.id) {
+	
+    	console.log(node);
+	
+   	switch (node.componentID) {
 		case 'topCP':
         	grid.add_widget(
         		$('<div id="topCP">'
@@ -152,7 +154,7 @@ function print(object){
         		+'<span class="delBT"></span></a>'
         		+'<div class="grid-stack-item-content" id="inTopCP">'
         		+'</div></div>')
-        		,node.x, node.y, node.width, node.height);
+        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
 			
 		case 'etpBtBar':
@@ -162,7 +164,7 @@ function print(object){
         		+'<span class="delBT"></span></a>'
         		+'<div class="grid-stack-item-content" id="inEtpBtBar">'
         		+'</div></div>')
-        		,node.x, node.y, node.width, node.height);
+        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
 			
 		case 'rsvBt':
@@ -173,7 +175,7 @@ function print(object){
         		+'<div class="grid-stack-item-content">'
         		+'<a href=""><label role="button" class="btn btn-default btn-lg" id="phoneBT" style="width: 250px;">전화 예약(000-0000-0000)</label></a>'
         		+'<a href=""><label role="button" class="btn btn-success btn-lg" id="rsvBT" style="width: 250px;">예약 하기</label></a></div></div>')
-        		,node.x, node.y, node.width, node.height);
+        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
 			
 		case 'infoCP':
@@ -183,7 +185,7 @@ function print(object){
         		+'<span class="delBT"></span></a>'
         		+'<div class="grid-stack-item-content" id="inInfoCP">'
         		+'</div></div>')
-        		,node.x, node.y, node.width, node.height);
+        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
 			
 		case 'svcCP':
@@ -193,7 +195,7 @@ function print(object){
         		+'<span class="delBT"></span></a>'
         		+'<div class="grid-stack-item-content" id="inSvcCP">'
         		+'</div></div>')
-        		,node.x, node.y, node.width, node.height);
+        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
 			
 		case 'galCP':
@@ -203,7 +205,7 @@ function print(object){
         		+'<span class="delBT"></span></a>'
         		+'<div class="grid-stack-item-content" id="inGalCP">'
         		+'</div></div>')
-        		,node.x, node.y, node.width, node.height);
+        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
 			
 		case 'locaCP':
@@ -213,7 +215,7 @@ function print(object){
         		+'<span class="delBT"></span></a>'
         		+'<div class="grid-stack-item-content" id="inLocaCP">'
         		+'</div></div>')
-        		,node.x, node.y, node.width, node.height);
+        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
 			
 		case 'reviewCP':
@@ -223,7 +225,7 @@ function print(object){
         		+'<span class="delBT"></span></a>'
         		+'<div class="grid-stack-item-content" id="inReviewCP">'
         		+'</div></div>')
-        		,node.x, node.y, node.width, node.height);
+        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;				
    		} //switch, grid.add_widget end
     });

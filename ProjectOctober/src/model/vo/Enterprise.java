@@ -384,5 +384,21 @@ public class Enterprise implements Serializable {
 		return builder.toString();
 	}
 
+	public String getStart() {
+		return start;
+	}
+
+	public String getEnd() {
+		return end;
+	}
+
+	public void setStart(String start) {
+		this.start = start;
+	}
+
+	public void setEnd(String end) {
+		this.end = end;
+	}
+
 
 }

@@ -36,4 +36,6 @@ public interface MemberMapper {
     Member loginResult(Map<String, String> loginInfo);
 
 	String retrieveEmail(String email);
+
+	String retrieveEtpNum(String etpNumInput);
 }

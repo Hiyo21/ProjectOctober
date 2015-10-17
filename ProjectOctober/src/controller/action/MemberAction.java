@@ -22,9 +22,11 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	private String email;
 	private String emailInput;
+	private String etpNumInput;
 	private String password;
 	private MemberDAO memDAO;
 	private boolean emailExists;
+	private boolean etpNumExists;
 	
 	
 	public MemberAction() {
@@ -33,6 +35,10 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	public String toSecondRegistrationPage() throws Exception{
 		System.err.println(member);
+		System.err.println(member.getEnterprise());
+		member.getEnterprise().setEtpEmail(member.getMemEmail());
+		member.getEnterprise().setEtpOwner(member.getMemName());
+		member.getEnterprise().setEtpStatus(0);
 		if(member != null) return SUCCESS;
 		else return ERROR;
 	}
@@ -48,21 +54,34 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+	public String checkEnterpriseDuplicateEtpNum() throws Exception{
+		etpNumExists = memDAO.retrieveEtpNum(etpNumInput);
+		return SUCCESS;
+	}
+	
 	public String loginProcess() throws Exception{
 		Map<String, String> loginInfo = new HashMap<>();
 		loginInfo.put("loginEmail", email);
 		loginInfo.put("loginPassword", password);
-		
 		member = memDAO.loginResult(loginInfo);
-		if(member == null) return LOGIN;
-		else {
+		System.out.println(member);
+		if(member == null) {
+			return LOGIN;
+		} else {
 			if(member.getMemCode() == ENTERPRISE_CODE){
+				session.put("loginId", member.getMemEmail());
+				session.put("loginName", member.getMemName());
+				session.put("memCode", member.getMemCode());
 				return "enterprise";
 			}else if(member.getMemCode() == CUSTOMER_CODE){
-				
+				session.put("loginId", member.getMemEmail());
+				session.put("loginName", member.getMemName());
+				session.put("memCode", member.getMemCode());
 				return "customer";
 			}else if(member.getMemCode() == ADMIN_CODE){
-				
+				session.put("loginId", member.getMemEmail());
+				session.put("loginName", member.getMemName());
+				session.put("memCode", member.getMemCode());
 				return "admin";
 			}else{
 				return LOGIN;
@@ -117,5 +136,21 @@ public class MemberAction extends ActionSupport implements SessionAware{
 
 	public void setEmailInput(String emailInput) {
 		this.emailInput = emailInput;
+	}
+
+	public boolean isEtpNumExists() {
+		return etpNumExists;
+	}
+
+	public void setEtpNumExists(boolean etpNumExists) {
+		this.etpNumExists = etpNumExists;
+	}
+
+	public String getEtpNumInput() {
+		return etpNumInput;
+	}
+
+	public void setEtpNumInput(String etpNumInput) {
+		this.etpNumInput = etpNumInput;
 	}
 }
