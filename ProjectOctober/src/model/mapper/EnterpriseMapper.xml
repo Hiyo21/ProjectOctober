@@ -776,7 +776,7 @@
 		insert into component values (#{etpNum}, #{etpEmail}, #{componentID}, #{componentPosX}, #{componentPosY}, #{componentWidth}, #{componentHeight}) 
 	</insert>
 	
-	<select id="controller.action.EnterpriseAction" resultType="Component">
+	<select id="receiveComponentList" resultType="Component">
 		select * from component
 	</select>
 </mapper>
