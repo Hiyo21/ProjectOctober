@@ -34,7 +34,7 @@
 		</action>
 		
 		<action name="toLoginPage">
-			<result>/jsp/Login.jsp</result>
+			<result>/jsp/member/Login.jsp</result>
 		</action>
 		
 	</package> 
