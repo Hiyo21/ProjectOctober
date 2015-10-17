@@ -47,7 +47,7 @@ img {border:none}
 
 </head>
 <body>
-<%@include file="Header.jsp"%>
+<%@include file="../Header.jsp"%>
 <form method="post" action="">
 <fieldset>
 

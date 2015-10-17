@@ -71,8 +71,8 @@
 					    		<input type="password" class="form-control" id="pwd" placeholder="Enter password">
 			    			</td>
 			    			<td rowspan="2" width="100px" align="center">
-			    				<button type="submit" class="btn btn-default">Login</button>	
-			    			</td>		
+			    				<button type="submit" class="btn btn-default">Login</button>
+			    			</td>
 			    		</tr>
 			    	</table>
 			    </div>

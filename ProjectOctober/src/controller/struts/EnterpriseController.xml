@@ -21,8 +21,12 @@
 		<action name="deleteReservation" class="controller.action.EnterpriseAction" method="deleteReservation">
 			<result type="json"/>
 		</action>
+
+		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
+			<result type="json" />
+		</action>
 		
-		
+				
 		<!--     Component Action     -->
 		
 		<action name="insertComponent" class="controller.action.EnterpriseAction" method="insertComponent">
@@ -32,5 +36,6 @@
 		<action name="receiveComponentList" class="controller.action.EnterpriseAction" method="receiveComponentList">
 			<result type="json"/>
 		</action>
+		
 	</package>
 </struts>

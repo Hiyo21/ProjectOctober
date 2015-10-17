@@ -7,17 +7,13 @@ import java.util.List;
 public class Member implements Serializable {
 	private List<Customer> customers;
 	private List<Enterprise> enterprises;
-	
+	private Customer customer;
+	private Enterprise enterprise;
     private String memEmail;
-
     private Integer memCode;
-
     private String memName;
-
     private String memPassword;
-
     private String memPhone;
-
     private LocalDate memJoinedDate;
 
     private static final long serialVersionUID = 1L;
@@ -89,11 +85,26 @@ public class Member implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Member [customers=").append(customers).append(", enterprises=").append(enterprises)
-				.append(", memEmail=").append(memEmail).append(", memCode=").append(memCode).append(", memName=")
+		builder.append("Member memEmail=").append(memEmail).append(", memCode=").append(memCode).append(", memName=")
 				.append(memName).append(", memPassword=").append(memPassword).append(", memPhone=").append(memPhone)
 				.append(", memJoinedDate=").append(memJoinedDate).append("]");
 		return builder.toString();
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public Enterprise getEnterprise() {
+		return enterprise;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public void setEnterprise(Enterprise enterprise) {
+		this.enterprise = enterprise;
 	}
 
    

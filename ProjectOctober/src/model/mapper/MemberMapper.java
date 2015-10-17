@@ -1,6 +1,8 @@
 package model.mapper;
 
 import java.util.List;
+import java.util.Map;
+
 import model.vo.Member;
 import model.vo.MemberExample;
 import org.apache.ibatis.annotations.Param;
@@ -30,4 +32,8 @@ public interface MemberMapper {
     int updateByPrimaryKeySelective(Member record);
 
     int updateByPrimaryKey(Member record);
+    
+    Member loginResult(Map<String, String> loginInfo);
+
+	String retrieveEmail(String email);
 }
