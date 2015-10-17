@@ -44,66 +44,12 @@
 	<resultMap id="ComponentResultMap" type="model.vo.Component" >
     <id column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <id column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
-    <result column="LOGO" property="logoComponent" jdbcType="DECIMAL" />
-    <result column="LOGO_THEME" property="logoTheme" jdbcType="DECIMAL" />
-    <result column="LOGO_SIZE_X" property="logoSizeX" jdbcType="DECIMAL" />
-    <result column="LOGO_SIZE_Y" property="logoSizeY" jdbcType="DECIMAL" />
-    <result column="LOGO_POS_X" property="logoPosX" jdbcType="DECIMAL" />
-    <result column="LOGO_POS_Y" property="logoPosY" jdbcType="DECIMAL" />
-    <result column="OUTLINE" property="outlineComponenet" jdbcType="DECIMAL" />
-    <result column="OUTLINE_THEME" property="outlineTheme" jdbcType="DECIMAL" />
-    <result column="OUTLINE_SIZE_X" property="outlineSizeX" jdbcType="DECIMAL" />
-    <result column="OUTLINE_SIZE_Y" property="outlineSizeY" jdbcType="DECIMAL" />
-    <result column="OUTLINE_POS_X" property="outlinePosX" jdbcType="DECIMAL" />
-    <result column="OUTLINE_POS_Y" property="outlinePosY" jdbcType="DECIMAL" />
-    <result column="RSV_MGM" property="rsvMgmComponent" jdbcType="DECIMAL" />
-    <result column="RSV_MGM_THEME" property="rsvMgmTheme" jdbcType="DECIMAL" />
-    <result column="RSV_MGM_SIZE_X" property="rsvMgmSizeX" jdbcType="DECIMAL" />
-    <result column="RSV_MGM_SIZE_Y" property="rsvMgmSizeY" jdbcType="DECIMAL" />
-    <result column="RSV_MGM_POS_X" property="rsvMgmPosX" jdbcType="DECIMAL" />
-    <result column="RSV_MGM_POS_Y" property="rsvMgmPosY" jdbcType="DECIMAL" />
-    <result column="MISC_SETTING" property="miscSettingComponent" jdbcType="DECIMAL" />
-    <result column="MISC_SETTING_THEME" property="miscSettingTheme" jdbcType="DECIMAL" />
-    <result column="MISC_SETTING_SIZE_X" property="miscSettingSizeX" jdbcType="DECIMAL" />
-    <result column="MISC_SETTING_SIZE_Y" property="miscSettingSizeY" jdbcType="DECIMAL" />
-    <result column="MISC_SETTING_POS_X" property="miscSettingPosX" jdbcType="DECIMAL" />
-    <result column="MISC_SETTING_POS_Y" property="miscSettingPosY" jdbcType="DECIMAL" />
-    <result column="RSV_BTN_BAR" property="rsvBtnBarComponent" jdbcType="DECIMAL" />
-    <result column="RSV_BTN_BAR_THEME" property="rsvBtnBarTheme" jdbcType="DECIMAL" />
-    <result column="RSV_BTN_BAR_SIZE_X" property="rsvBtnBarSizeX" jdbcType="DECIMAL" />
-    <result column="RSV_BTN_BAR_SIZE_Y" property="rsvBtnBarSizeY" jdbcType="DECIMAL" />
-    <result column="RSV_BTN_BAR_POS_X" property="rsvBtnBarPosX" jdbcType="DECIMAL" />
-    <result column="RSV_BTN_BAR_POS_Y" property="rsvBtnBarPosY" jdbcType="DECIMAL" />
-    <result column="ETP_INFO" property="etpInfoComponent" jdbcType="DECIMAL" />
-    <result column="ETP_INFO_THEME" property="etpInfoTheme" jdbcType="DECIMAL" />
-    <result column="ETP_INFO_SIZE_X" property="etpInfoSizeX" jdbcType="DECIMAL" />
-    <result column="ETP_INFO_SIZE_Y" property="etpInfoSizeY" jdbcType="DECIMAL" />
-    <result column="ETP_INFO_POS_X" property="etpInfoPosX" jdbcType="DECIMAL" />
-    <result column="ETP_INFO_POS_Y" property="etpInfoPosY" jdbcType="DECIMAL" />
-    <result column="SVC_LIST" property="svcListComponent" jdbcType="DECIMAL" />
-    <result column="SVC_LIST_THEME" property="svcListTheme" jdbcType="DECIMAL" />
-    <result column="SVC_LIST_SIZE_X" property="svcListSizeX" jdbcType="DECIMAL" />
-    <result column="SVC_LIST_SIZE_Y" property="svcListSizeY" jdbcType="DECIMAL" />
-    <result column="SVC_LIST_POS_X" property="svcListPosX" jdbcType="DECIMAL" />
-    <result column="SVC_LIST_POS_Y" property="svcListPosY" jdbcType="DECIMAL" />
-    <result column="GALLERY" property="galleryComponent" jdbcType="DECIMAL" />
-    <result column="GALLERY_THEME" property="galleryTheme" jdbcType="DECIMAL" />
-    <result column="GALLERY_SIZE_X" property="gallerySizeX" jdbcType="DECIMAL" />
-    <result column="GALLERY_SIZE_Y" property="gallerySizeY" jdbcType="DECIMAL" />
-    <result column="GALLERY_POS_X" property="galleryPosX" jdbcType="DECIMAL" />
-    <result column="GALLERY_POS_Y" property="galleryPosY" jdbcType="DECIMAL" />
-    <result column="LOCATION" property="locationComponent" jdbcType="DECIMAL" />
-    <result column="LOCATION_THEME" property="locationTheme" jdbcType="DECIMAL" />
-    <result column="LOCATION_SIZE_X" property="locationSizeX" jdbcType="DECIMAL" />
-    <result column="LOCATION_SIZE_Y" property="locationSizeY" jdbcType="DECIMAL" />
-    <result column="LOCATION_POS_X" property="locationPosX" jdbcType="DECIMAL" />
-    <result column="LOCATION_POS_Y" property="locationPosY" jdbcType="DECIMAL" />
-    <result column="REVIEW" property="reviewComponent" jdbcType="DECIMAL" />
-    <result column="REVIEW_THEME" property="reviewTheme" jdbcType="DECIMAL" />
-    <result column="REVIEW_SIZE_X" property="reviewSizeX" jdbcType="DECIMAL" />
-    <result column="REVIEW_SIZE_Y" property="reviewSizeY" jdbcType="DECIMAL" />
-    <result column="REVIEW_POS_X" property="reviewPosX" jdbcType="DECIMAL" />
-    <result column="REVIEW_POS_Y" property="reviewPosY" jdbcType="DECIMAL" />
+    <result column="COMPONENT" property="componentID" jdbcType="VARCHAR" />
+    <result column="COMPONENT_THEME" property="componentTheme" jdbcType="DECIMAL" />
+    <result column="COMPONENT_Width" property="componentWidth" jdbcType="DECIMAL" />
+    <result column="COMPONENT_Height" property="componentHeight" jdbcType="DECIMAL" />
+    <result column="COMPONENT_POS_X" property="componentPosX" jdbcType="DECIMAL" />
+    <result column="COMPONENT_POS_Y" property="componentPosY" jdbcType="DECIMAL" />
     <result column="BACKGROUND_THEME" property="backgroundTheme" jdbcType="DECIMAL" />
   </resultMap>
   
@@ -823,4 +769,14 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  	<!--  Component Mapper  -->
+  	
+	<insert id="insertComponent" parameterType="Component">
+		insert into component values (#{etpNum}, #{etpEmail}, #{componentID}, #{componentPosX}, #{componentPosY}, #{componentWidth}, #{componentHeight}) 
+	</insert>
+	
+	<select id="controller.action.EnterpriseAction" resultType="Component">
+		select * from component
+	</select>
 </mapper>

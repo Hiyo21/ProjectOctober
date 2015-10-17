@@ -37,15 +37,6 @@
 			<result>/jsp/Login.jsp</result>
 		</action>
 		
-		<action name="insertComponent" class="controller.action.TestAction" method="insertComponent">
-			<result type="json"/>
-		</action>
-		
-		<action name="getComponentList" class="controller.action.TestAction" method="receiveComponentList">
-			<result type="json"/>
-		</action>
-		
-		
 	</package> 
 	
 	<include file="controller/struts/SearchController.xml"/>

@@ -11,10 +11,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
 import model.dao.EnterpriseDAO;
+import model.vo.Component;
 import model.vo.Enterprise;
 import model.vo.Reservation;
-import model.vo.Test;
-
 
 public class EnterpriseAction extends ActionSupport{
 
@@ -24,6 +23,12 @@ public class EnterpriseAction extends ActionSupport{
 	private Reservation reservation;
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
+	
+	//////// Component Member ////////  
+	private Component component;
+	private List<Component> componentList;
+
+	
 	
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -84,6 +89,44 @@ public class EnterpriseAction extends ActionSupport{
 		else return ERROR;
 	}
 	
+	
+	//////////////// Component Method ////////////////
+	
+	public String insertComponent(){
+		System.out.println("============check Action :: insertComponet()");
+		
+		System.out.println(component);
+		
+		int result = etpDAO.insertComponent(component);
+		
+		if(result != 1) {
+			return ERROR;
+		}
+		
+		return SUCCESS;
+	}
+	
+	public String receiveComponentList(){
+		System.out.println("============check Action :: getComponentList()");
+		
+		componentList = etpDAO.receiveComponentList();
+		
+		if(componentList == null) {
+			return ERROR;
+		}
+		
+		System.out.println("============check Action :: componentList ::" + componentList);
+		
+		return SUCCESS;
+	}
+	
+	@Override
+	public String execute() throws Exception {
+		System.out.println("check Action Execute");
+		return SUCCESS;
+	}
+	
+    ///////////////////////// GET&SET ///////////////////////// 
 
 	public Enterprise getEnterprise() {
 		return enterprise;
@@ -116,4 +159,23 @@ public class EnterpriseAction extends ActionSupport{
 	public void setEnterpriseList(List<Enterprise> enterpriseList) {
 		this.enterpriseList = enterpriseList;
 	}
+
+	public Component getCompo() {
+		return component;
+	}
+
+	public void setCompo(Component component) {
+		this.component = component;
+	}
+
+	public List<Component> getCompoList() {
+		return componentList;
+	}
+
+	public void setCompoList(List<Component> componentList) {
+		this.componentList = componentList;
+	}
+	
+	
+	
 }

@@ -86,39 +86,40 @@ function eventOn(){
 
 function save_grid(){
 	
- 	var testList = _.map($('.grid-stack .grid-stack-item:visible'), function(el) {
+ 	var componentList = _.map($('.grid-stack .grid-stack-item:visible'), function(el) {
 	    el = $(el);
 	    var node = el.data('_gridstack_node'); //node : Object와 같은 모든 것을 담을 수 있는 부모 객체
-	    var test = {  
-	    	"test.id" : el.attr('id'),
-	        "test.x" : node.x,
-	        "test.y" : node.y,
-	        "test.width" : node.width,
-	        "test.height" : node.height
+	    var component = {  
+	    	"component.componentID" : el.attr('id'),
+	        "component.componentPosX" : node.x,
+	        "component.componentPosy" : node.y,
+	        "component.componentWidth" : node.width,
+	        "component.componentHeight" : node.height
 	    };
-	    return test; //return 받는 객체 형식
+	    return component; //return 받는 객체 형식
 	}); 
  
- 	for(var i in testList){
- 		console.log(testList[i]);
+ 	console.log(componentList);
+ 	
+ 	for(var i in componentList){
 
  		$.ajax({
-			url: 'insertComponent.action', 
+			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action', 
 			type:'POST',
-			data :  testList[i],
+			data :  componentList[i],
 			contentType: 
 				'application/x-www-form-urlencoded; charset=utf-8',
 		}); 
  	} 
  	
-	$('#saved-data').val(JSON.stringify(testList));
+	$('#saved-data').val(JSON.stringify(componentList));
 	//JSON.stringify : 배열을 JSON 문자열로 변환 JSON.stringify(value[, replacer[, space]])
     //replacer, space는 옵션
 };
 
 function load_grid(){	
 	$.ajax({
-		url: 'getComponentList.action',
+		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action',
 		type:'GET',
 		dataType: 'json',
 		success : print				
@@ -236,7 +237,8 @@ function print(object){
     $('#inEtpBtBar').load('./EtpBT.jsp');
     $('#inTopCP').load('./StaticTop.jsp');
     
-    eventOn();
+    // 세이브, 로드, 삭제버튼 생성 및 사라짐
+    eventOn(); 
 }
 
 
@@ -246,8 +248,6 @@ function print(object){
 <body>
 
 <s:include value="../Header.jsp"/>
-
-<textarea rows="10" cols="100" id="saved-data"></textarea>
 
 <div class="container" id="page">
 
