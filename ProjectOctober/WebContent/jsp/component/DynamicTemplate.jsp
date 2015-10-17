@@ -53,29 +53,35 @@
 
 <script>
 $(function () {
-	var options = {
-        always_show_resize_handle : false,
+	
+    $('.grid-stack').gridstack({	
+   		always_show_resize_handle : false,
     	placeholder_class : 'grid-stack-placeholder',
     	resizable: {
             handles: 'e, se, s, sw, w'
-        }
-	};
-	
-    $('.grid-stack').gridstack(options);
+        }	
+	});
     
+    eventOn();
+
+});
+
+function eventOn(){
+	//save, load 버튼에 클릭 이벤트와 함수 연결
     $('#saveBT').on('click', save_grid);
     $('#loadBT').on('click', load_grid);
     
+    //컴포넌트에 마우스가 들어가면 삭제 버튼 생성
     $('.grid-stack-item').on('mouseenter', function(){
     	$(this).find('.delBT')
     	.html('<img src="https://cdn3.iconfinder.com/data/icons/iconic-1/32/x_alt-16.png">');
     });
     
+	//컴포넌트에 마우스가 나오면 삭제 버튼 사라짐
     $('.grid-stack-item').on('mouseleave', function(){
     	$(this).find('.delBT').html('');
     });
-
-});
+}
 
 
 function save_grid(){
@@ -108,7 +114,6 @@ function save_grid(){
 	$('#saved-data').val(JSON.stringify(testList));
 	//JSON.stringify : 배열을 JSON 문자열로 변환 JSON.stringify(value[, replacer[, space]])
     //replacer, space는 옵션
-			
 };
 
 function load_grid(){	
@@ -128,28 +133,25 @@ function remove_widget(item){
 
 
 function print(object){
-	console.log(object);
-
 	var items = object.testList;
-
-    $('#saved-data').val(JSON.stringify(items));
+    items = GridStackUI.Utils.sort(items); // 각 컴포넌트를 원래 순서대로 정렬. 안하면 랜덤으로 섞여서 배치됨
+    
+    console.log(items);	// 컴포넌트 위치값 확인
     
     var grid = $('.grid-stack').data('gridstack');
     grid.remove_all();
     
-    
     _.each(items, function (node) {
- 		
-   		switch (node.id) {
+
+   	switch (node.id) {
 		case 'topCP':
         	grid.add_widget(
         		$('<div id="topCP">'
         		+'<a onclick="remove_widget(topCP)">'
         		+'<span class="delBT"></span></a>'
-        		+'<div class="grid-stack-item-content">'
-        		+'<\jsp:include value="./StaticTop.jsp"/>'
-        		+'</div></div>'),node.x, node.y, node.width, node.height);
-        		 $('#topCP').load("./StaticTop.jsp"),function(){};
+        		+'<div class="grid-stack-item-content" id="inTopCP">'
+        		+'</div></div>')
+        		,node.x, node.y, node.width, node.height);
 			break;
 			
 		case 'etpBtBar':
@@ -157,8 +159,9 @@ function print(object){
 				$('<div id="etpBtBar">'
         		+'<a onclick="remove_widget(etpBtBar)">'
         		+'<span class="delBT"></span></a>'
-        		+'<div class="grid-stack-item-content">'
-        		+'<\s:include value="./EtpBT.jsp"/></div>'),node.x, node.y, node.width, node.height);
+        		+'<div class="grid-stack-item-content" id="inEtpBtBar">'
+        		+'</div></div>')
+        		,node.x, node.y, node.width, node.height);
 			break;
 			
 		case 'rsvBt':
@@ -168,7 +171,8 @@ function print(object){
         		+'<span class="delBT"></span></a>'
         		+'<div class="grid-stack-item-content">'
         		+'<a href=""><label role="button" class="btn btn-default btn-lg" id="phoneBT" style="width: 250px;">전화 예약(000-0000-0000)</label></a>'
-        		+'<a href=""><label role="button" class="btn btn-success btn-lg" id="rsvBT" style="width: 250px;">예약 하기</label></a></div>'),node.x, node.y, node.width, node.height);
+        		+'<a href=""><label role="button" class="btn btn-success btn-lg" id="rsvBT" style="width: 250px;">예약 하기</label></a></div></div>')
+        		,node.x, node.y, node.width, node.height);
 			break;
 			
 		case 'infoCP':
@@ -176,8 +180,9 @@ function print(object){
 				$('<div id="infoCP">'
         		+'<a onclick="remove_widget(infoCP)">'
         		+'<span class="delBT"></span></a>'
-        		+'<div class="grid-stack-item-content">'
-        		+'<\s:include value="./InfoComponent.jsp"/></div>'),node.x, node.y, node.width, node.height);
+        		+'<div class="grid-stack-item-content" id="inInfoCP">'
+        		+'</div></div>')
+        		,node.x, node.y, node.width, node.height);
 			break;
 			
 		case 'svcCP':
@@ -185,8 +190,9 @@ function print(object){
 				$('<div id="svcCP">'
         		+'<a onclick="remove_widget(svcCP)">'
         		+'<span class="delBT"></span></a>'
-        		+'<div class="grid-stack-item-content">'
-        		+'<\s:include value="./SvcComponent.jsp"/></div>'),node.x, node.y, node.width, node.height);
+        		+'<div class="grid-stack-item-content" id="inSvcCP">'
+        		+'</div></div>')
+        		,node.x, node.y, node.width, node.height);
 			break;
 			
 		case 'galCP':
@@ -194,8 +200,9 @@ function print(object){
 				$('<div id="galCP">'
         		+'<a onclick="remove_widget(galCP)">'
         		+'<span class="delBT"></span></a>'
-        		+'<div class="grid-stack-item-content">'
-        		+'<\s:include value="./GalleryComponent.jsp"/></div>'),node.x, node.y, node.width, node.height);
+        		+'<div class="grid-stack-item-content" id="inGalCP">'
+        		+'</div></div>')
+        		,node.x, node.y, node.width, node.height);
 			break;
 			
 		case 'locaCP':
@@ -203,8 +210,9 @@ function print(object){
 				$('<div id="locaCP">'
         		+'<a onclick="remove_widget(locaCP)">'
         		+'<span class="delBT"></span></a>'
-        		+'<div class="grid-stack-item-content">'
-        		+'<\s:include value="./LocationComponent.jsp"/></div>'),node.x, node.y, node.width, node.height);
+        		+'<div class="grid-stack-item-content" id="inLocaCP">'
+        		+'</div></div>')
+        		,node.x, node.y, node.width, node.height);
 			break;
 			
 		case 'reviewCP':
@@ -212,12 +220,25 @@ function print(object){
 				$('<div id="reviewCP">'
         		+'<a onclick="remove_widget(reviewCP)">'
         		+'<span class="delBT"></span></a>'
-        		+'<div class="grid-stack-item-content">'
-        		+'<\s:include value="./ReviewComponent.jsp"/></div>'),node.x, node.y, node.width, node.height);
+        		+'<div class="grid-stack-item-content" id="inReviewCP">'
+        		+'</div></div>')
+        		,node.x, node.y, node.width, node.height);
 			break;				
-   		} 
-    }); 
-} 
+   		} //switch, grid.add_widget end
+    });
+    
+    //각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
+    $('#inReviewCP').load('./ReviewComponent.jsp');
+    $('#inLocaCP').load('./LocationComponent.jsp');
+    $('#inGalCP').load('./GalleryComponent.jsp');
+    $('#inSvcCP').load('./SvcComponent.jsp');
+    $('#inInfoCP').load('./InfoComponent.jsp');
+    $('#inEtpBtBar').load('./EtpBT.jsp');
+    $('#inTopCP').load('./StaticTop.jsp');
+    
+    eventOn();
+}
+
 
 </script>
 
