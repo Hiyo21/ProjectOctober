@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="model.mapper.ReservationMapper">
+	<!-- Enterprise Info -->
+	<resultMap id="ReservationResultMap" type="model.vo.Reservation" >
+		<id column="RSV_NUM" property="rsvNum" jdbcType="DECIMAL" />
+		<result column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
+		<result column="CPN_NUM" property="cpnNum" jdbcType="DECIMAL" />
+		<result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+		<result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+		<result column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
+		<result column="RSV_START_DATE" property="rsvStartDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="RSV_END_DATE" property="rsvEndDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="RSV_STATUS" property="rsvStatus" jdbcType="DECIMAL" />
+		<result column="RSV_GENDER" property="employeeGender" jdbcType="VARCHAR" />
+		<result column="RSV_TITLE" property="rsvTitle" jdbcType="VARCHAR" />
+		
+		<association property="enterprise" javaType="Enterprise" resultMap="EnterpriseBaseResultMap"/>
+		<association property="customer" javaType="Customer" resultMap="CustomerBaseResultMap"/>
+		<association property="service" javaType="Service" resultMap="ServiceResultMap"/>
+		<association property="coupon" javaType="Coupon" resultMap="CouponResultMap"/>
+    </resultMap>
+    
+      <resultMap id="EnterpriseBaseResultMap" type="model.vo.Enterprise">
+    <id column="ETP_NUM" jdbcType="VARCHAR" property="etpNum" />
+    <id column="ETP_EMAIL" jdbcType="VARCHAR" property="etpEmail" />
+    <result column="ETP_OWNER" jdbcType="VARCHAR" property="etpOwner" />
+    <result column="ETP_SUPERCLASS" jdbcType="VARCHAR" property="etpSuperclass" />
+    <result column="ETP_ADDRESS" jdbcType="VARCHAR" property="etpAddress" />
+    <result column="ETP_ZIPCODE" jdbcType="VARCHAR" property="etpZipcode" />
+    <result column="ETP_TITLE" jdbcType="VARCHAR" property="etpTitle" />
+    <result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    <result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    <result column="ETP_PHONE" jdbcType="VARCHAR" property="etpPhone" />
+    <result column="ETP_MALE_STAFF" jdbcType="DECIMAL" property="etpMaleStaff" />
+    <result column="ETP_FEMALE_STAFF" jdbcType="DECIMAL" property="etpFemaleStaff" />
+    <result column="ETP_CAPACITY" jdbcType="DECIMAL" property="etpCapacity" />
+    <result column="ETP_RSV_DEADLINE" jdbcType="DECIMAL" property="etpRsvDeadline" />
+    <result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
+    <result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
+    <result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
+    <result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
+    <result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
+    <result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
+    <result column="ETP_SUBCLASS" jdbcType="VARCHAR" property="etpSubclass" />
+    <result column="ETP_SPECIALIZE" jdbcType="VARCHAR" property="etpSpecialize" />
+    <result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
+    <result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
+  </resultMap>
+  
+      <resultMap id="CustomerBaseResultMap" type="model.vo.Customer" >
+    <id column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
+    <result column="CST_ADDRESS" property="cstAddress" jdbcType="VARCHAR" />
+    <result column="CST_ZIPCODE" property="cstZipcode" jdbcType="VARCHAR" />
+    <result column="CST_BIRTHDAY" property="cstBirthday" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
+    <result column="CST_GENDER" property="cstGender" jdbcType="VARCHAR" />
+    <result column="CST_ONECLICK" property="cstOneclick" jdbcType="DECIMAL" />
+	</resultMap>
+	
+	    <resultMap id="ServiceResultMap" type="model.vo.Service" >
+    <id column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="SVC_TITLE" property="svcTitle" jdbcType="VARCHAR" />
+    <result column="SVC_COST" property="svcCost" jdbcType="DECIMAL" />
+    <result column="SVC_TIME" property="svcTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    <result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
+    <result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
+    <result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
+    <result column="SVC_COUNT" property="svcCount" jdbcType="DECIMAL" />
+  </resultMap>
+  
+    <resultMap id="CouponResultMap" type="model.vo.Coupon" >
+    <id column="CPN_NUM" property="cpnNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="CPN_TITLE" property="cpnTitle" jdbcType="VARCHAR" />
+    <result column="CPN_CODE" property="cpnCode" jdbcType="VARCHAR" />
+    <result column="CPN_RATE" property="cpnRate" jdbcType="DECIMAL" />
+    <result column="CPN_START_DATE" property="cpnStartDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    <result column="CPN_END_DATE" property="cpnEndDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+  </resultMap>
+  
+  
+	<select id="retrieveReservations" resultMap="ReservationResultMap">
+  		select r.*, c.*, e.*, s.* from reservation r, enterprise e, service s, customer c where e.etp_num = r.etp_num and r.etp_num = s.etp_num and r.cst_email = c.cst_email
+	</select>
+	
+	<insert id="insertReservation" parameterType="Reservation">
+		insert into reservation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		rsv_num, svc_num,
+		<if test="cpnNum != null">
+		cpn_num,
+		</if>
+		etp_num, etp_email, cst_email, rsv_start_date, rsv_end_date, rsv_status,
+		<if test="employeeGender != null">
+		rsv_gender,
+		</if>
+		<if test="rsvTitle != null">
+		rsv_title,
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		reservation_seq.nextval, #{svcNum},
+		<if test="cpnNum != null">
+		#{cpnNum},
+		</if>
+		#{etpNum}, #{etpEmail}, #{cstEmail}, #{rsvStartDate}, #{rsvEndDate}, #{rsvStatus},
+		<if test="employeeGender != null">
+		#{employeeGender},
+		</if>
+		<if test="rsvTitle != null">
+		#{rsvTitle},
+		</if>
+		</trim>
+	</insert>
+	
+	<update id="changeReservationTime" parameterType="Reservation">
+		update RESERVATION
+		
+		<set>
+			<if test="rsvStartDate != null">
+		    	RSV_START_DATE = #{rsvStartDate},
+		  	</if>
+		  	<if test="rsvEndDate != null">
+		    	RSV_END_DATE = #{rsvEndDate},
+		  	</if>
+		</set>
+		where RSV_NUM = #{rsvNum}
+  </update>
+  
+	<delete id="deleteReservation" parameterType="Reservation">
+		delete from RESERVATION
+		<where>
+			<trim suffixOverrides=",">
+				<if test="rsvNum != null">
+					rsv_num = #{rsvNum},
+				</if>
+			</trim>
+		</where>
+	</delete>
+</mapper>
