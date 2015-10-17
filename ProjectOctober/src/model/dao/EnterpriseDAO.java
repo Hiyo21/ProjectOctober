@@ -95,16 +95,16 @@ public class EnterpriseDAO {
 		}
 	}
 	
-	public List<Enterprise> NoRegisterEtpList(String etpNum){
+	public Enterprise NoRegisterEtpList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
 		try{
-			List<Enterprise> etpList = session.selectOne("model.mapper.EnterpriseMapper.NoRegisterEtpList",etpNum);
-			System.out.println("DAO:"+etpList);
-			if(etpList != null) session.commit();
+			Enterprise etp = session.selectOne("model.mapper.EnterpriseMapper.NoRegisterEtpList",etpNum);
+			System.out.println("DAO:"+etp);
+			if(etp != null) session.commit();
 			else session.rollback();
-			
-			return etpList;
+		
+			return etp;
 		}finally{session.close();}
 	}
 	

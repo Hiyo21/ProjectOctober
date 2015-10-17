@@ -23,7 +23,6 @@
 <script src="js/jquery.ui.min.js"></script>
 </head>
 
-<ceneter>
 <body>
 <div class="header-wrap">
 	<header id="header">
@@ -164,12 +163,11 @@
 				<td><s:property value="etpEmail"/></td><!-- 이메일 -->
 				<td><s:property value="etpPhone"/></td><!-- 연락처 -->
 				<td><s:property value="etpAddress"/></td><!-- 주소 -->
-				<td><a href="<s:url value="/member/NoRegisterEtpList.action?etpNum="/>${etpNum}"><input type="button" value="보기"></a></td>
+				<td><a href="<s:url value="/enterprise/NoRegisterEtpList.action?etpNum="/>${etpNum}"><input type="button" value="보기"></a></td>
 			</tr>			
 		</s:iterator>	
 	</s:if>
 </table>
 
 </body>
-</ceneter> 
 </html> 

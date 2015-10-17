@@ -150,8 +150,8 @@ public class EnterpriseAction extends ActionSupport{
 	
 	public String NoRegisterEtpList() throws Exception{
 		System.err.println(etpNum);
-		enterpriseList = etpDAO.NoRegisterEtpList(etpNum);
-		System.out.println(enterpriseList);
+		enterprise = etpDAO.NoRegisterEtpList(etpNum);
+		System.out.println(enterprise);
 		
 		return SUCCESS;
 	}
