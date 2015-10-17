@@ -99,18 +99,26 @@ public class EnterpriseAction extends ActionSupport{
 	//////////////// Component Method ////////////////
 	
 	public String insertComponent(){
-		System.out.println("============check Action :: insertComponet()");
+		System.out.println("============check Action :: insertComponet()");		
 		
 		////// 연결 후 페이지 정보 혹은 세션에서 etpnum, etpemail, etpTheme 불러오기
-		component.setEtpNum("151017");
-		component.setEtpEmail("24HourPlus@24HourPlus.com");
+		component.setEtpNum("1111-11111");
+		component.setEtpEmail("24hourplus@24hourplus.com");
 		component.setComponentTheme(1);
+		component.setBackgroundTheme(1);
 		
-		System.out.println(component);
+		System.out.println("============check Action :: component :: " +component);
 		
-		int result = etpDAO.insertComponent(component);
-		
-		if(result != 1) {
+		///// insert 전에 사업자 번호를 확인 후 입력 for 중복 제거
+		if(etpDAO.receiveComponentList(component.getEtpNum())==null){
+				
+			int result = etpDAO.insertComponent(component);
+				if(result != 1) {
+					return ERROR;
+				}
+			System.out.println("============check Action :: result :: " + result);
+		}else{
+			System.out.println("이미 등록된 페이지가 있는 사업자입니다!!!!!!");
 			return ERROR;
 		}
 		
@@ -119,13 +127,14 @@ public class EnterpriseAction extends ActionSupport{
 	
 	public String receiveComponentList(){
 		System.out.println("============check Action :: getComponentList()");
-		
-		componentList = etpDAO.receiveComponentList();
+		component = new Component();
+		component.setEtpNum("1111-11111");
+		///// 사업자 번호와 일치하는 컴포넌트만 갖고 오기
+		componentList = etpDAO.receiveComponentList(component.getEtpNum());
 		
 		if(componentList == null) {
 			return ERROR;
 		}
-		
 		System.out.println("============check Action :: componentList ::" + componentList);
 		
 		return SUCCESS;

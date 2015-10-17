@@ -7,7 +7,9 @@ public class Component implements Serializable {
 
     private String etpEmail;
     
-    private String componentID;
+    private Integer componentNum;
+    
+	private String componentID;
 
     private Integer componentTheme;
 
@@ -26,12 +28,31 @@ public class Component implements Serializable {
     ///////////////////////// GET&SET ///////////////////////// 
     
     
+	public String getEtpNum() {
+		return etpNum;
+	}
 
-	public Integer getBackgroundTheme() {
-        return backgroundTheme;
-    }
+	public void setEtpNum(String etpNum) {
+		this.etpNum = etpNum;
+	}
 
-    public String getComponentID() {
+	public String getEtpEmail() {
+		return etpEmail;
+	}
+
+	public void setEtpEmail(String etpEmail) {
+		this.etpEmail = etpEmail;
+	}
+
+	public Integer getComponentNum() {
+		return componentNum;
+	}
+
+	public void setComponentNum(Integer componentNum) {
+		this.componentNum = componentNum;
+	}
+
+	public String getComponentID() {
 		return componentID;
 	}
 
@@ -79,25 +100,14 @@ public class Component implements Serializable {
 		this.componentPosY = componentPosY;
 	}
 
+	public Integer getBackgroundTheme() {
+		return backgroundTheme;
+	}
+
 	public void setBackgroundTheme(Integer backgroundTheme) {
-        this.backgroundTheme = backgroundTheme;
-    }
-
-	public String getEtpNum() {
-		return etpNum;
+		this.backgroundTheme = backgroundTheme;
 	}
 
-	public String getEtpEmail() {
-		return etpEmail;
-	}
-
-	public void setEtpNum(String etpNum) {
-		this.etpNum = etpNum;
-	}
-
-	public void setEtpEmail(String etpEmail) {
-		this.etpEmail = etpEmail;
-	}
 	
 	///////////////////////// ToString ///////////////////////// 
 	
@@ -105,7 +115,7 @@ public class Component implements Serializable {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder
-		.append("Component [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail)
+		.append("Component [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail).append(", componentNum=").append(componentNum)
 		.append(", componentID=").append(componentID).append(", componentTheme=").append(componentTheme)
 		.append(", componentWidth=").append(componentWidth).append(", componentHeight=").append(componentHeight)
 		.append(", componentPosX=").append(componentPosX).append(", componentPosY=").append(componentPosY)

@@ -35,5 +35,5 @@ public interface EnterpriseMapper {
     
     int insertComponent(Component component);
     
-    List<Component> receiveComponentList();
+    List<Component> receiveComponentList(String etpNum);
 }
