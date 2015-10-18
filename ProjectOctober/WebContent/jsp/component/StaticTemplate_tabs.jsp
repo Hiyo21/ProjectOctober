@@ -14,10 +14,11 @@
 <link href="navbar-fixed-top.css" rel="stylesheet">
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Static Templete 1</title>
+<title>Static Template ver.Tab</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//cdn.ckeditor.com/4.5.4/basic/ckeditor.js"></script>
 
 
 <script>
@@ -31,6 +32,12 @@
 	        $(".act span").text(x);
 	        $(".prev span").text(y);
 	    });
+	    
+	    CKEDITOR.replace('textedit');
+	    CKEDITOR.editorConfig = function( config ) {
+	    	config.language = 'ko';
+	    }
+	    	
 	});
 	
 </script>

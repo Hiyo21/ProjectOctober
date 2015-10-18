@@ -59,7 +59,9 @@ insert into enterprise values('2345678901', 'company2@company.com', 'company2', 
 insert into enterprise values('1010101010', 'company0@company.com', 'company0', '마사지','서울시 금천구 독산동', '25566', '드래곤마사지', (TO_DATE('12:00:00', 'hh24:mi:ss')), (TO_DATE('22:00:00', 'hh24:mi:ss')), '234-567-1234', 2, 2, 2, 1, 1, 1, 3, null, null, '타이','타이','주차장','뼛속까지 시원한 마사지', 0);
 insert into enterprise values('1919191919', 'company9@company.com', 'company9', '네일','서울시 금천구 독산동', '25566', '엔젤네일', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('20:00:00', 'hh24:mi:ss')), '234-567-9999', 2, 2, 2, 1, 1, 1, 3, null, null, '네일','네일','여성전용','섬섬옥수는 손톱에서 부터', 0);
 
-update enterprise set etp_status = 0 where etp_status = 1
+update enterprise set etp_status = 0 where etp_status = 2
+
+commit
 
 
 
