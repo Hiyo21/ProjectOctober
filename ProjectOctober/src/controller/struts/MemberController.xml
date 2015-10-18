@@ -32,6 +32,19 @@
 			<result type="json" />
 		</action>
 		
+		<action name="toZipcodePage">
+			<result>/jsp/member/Zipcode.jsp</result>
+		</action>
+		
+		<action name="zipcode" class="controller.action.MemberAction" method="searchZipcode">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/member/Zipcode.jsp</param>
+			</result>
+			<result name="error" type="dispatcher">
+				<param name="location">/jsp/member/Zipcode.jsp</param>
+			</result>
+		</action>
+		
 		<action name="toLoginPage">
 			<result>/jsp/member/Login.jsp</result>
 		</action>

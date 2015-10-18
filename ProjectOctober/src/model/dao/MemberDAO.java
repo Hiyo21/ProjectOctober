@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -7,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import model.common.MyBatisSqlSessionFactory;
 import model.mapper.MemberMapper;
 import model.vo.Member;
+import model.vo.Zipcode;
 
 public class MemberDAO extends DAOTemplate {
 	
@@ -40,6 +42,19 @@ public class MemberDAO extends DAOTemplate {
 				return false;
 			}
 		}finally{
+			session.close();
+		}
+	}
+	
+	
+	public List<Zipcode> searchZipcode(String searchText) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			System.out.println(searchText);
+			List<Zipcode> list = session.getMapper(MemberMapper.class).searchZipcode(searchText);
+			System.out.println("DAO"+ list);
+			return list;
+		} finally {
 			session.close();
 		}
 	}
