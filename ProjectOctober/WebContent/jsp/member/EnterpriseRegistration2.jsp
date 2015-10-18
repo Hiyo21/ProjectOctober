@@ -5,105 +5,127 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/iron-form/iron-form.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-radio-button/paper-radio-button.html">
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/Polymer/components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
+<script>
+	$(function(){
+		$("#superclassRad1").click(function(){
+			console.log($("#superclassGrp").attr("selected"));
+			$('#group3').hide();
+			$('#group2').hide();
+			$('#group1').show();
+		});
+		$("#superclassRad2").click(function(){
+			console.log($(this).attr("value"));
+			$('#group3').hide();
+			$('#group1').hide();
+			$('#group2').show();
+		});
+		$('.subclassChkTds').click(function(){
+			console.log($(this).attr('value'));
+		});
+	});
+	
+	$(function(){
+		var x = '';
+		$('.subclassChkTds').click(function(){
+		var arr = $.map($(this), function(e,i) {
+		    return e.value;
+		});
+		x.pus
+		h(arr.join());
+		console.log(x);
+		});
+	});
+
+
+</script>
+
+<style>
+	.subclassChkTds, .specialtyChkTds{
+		padding: 10px;
+	}
+</style>
 <title>사업자 회원가입 2</title>
+
 </head>
-<body>
+<body unresolved>
 	<s:include value="../Header.jsp"></s:include>
 	<h1><b>사업분류 및 특징</b></h1>
 	<h4>모두 필수 입력사항입니다</h4><br>
-	<form action ="toEnterpriseRegistraionThirdPage" role="form">
+	<form action ="toEnterpriseRegistraionThirdPage" role="form" is="iron-form" method="post">
 	<div class="container-fluid">
 		<div class="form-group" align="left">
 			<div class="row ">
-				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-					<div class="panel panel-success">
+				<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+					<div class="panel panel-info">
 						<div class="panel-heading"><h3><strong>업종</strong></h3></div>
 						<div class="panel-body">
-							<div class="btn-group" data-toggle="buttons">
-			  					<label class="btn btn-primary active">
-			  						<input type="radio" name="etp.etpSuperclass" id="superclassRad1" autocomplete="off" checked> 마사지샵
-			 					</label>
-								<label class="btn btn-primary">
-									<input type="radio" name="etp.etpSuperclass" id="superclassRad2" autocomplete="off"> 네일샵
-								</label>
-							</div>
+			  					<paper-radio-group selected="네일샵" id="superclassGrp" selected="{{selection}}">
+			  						<paper-radio-button value="마사지샵" name="1" id="superclassRad1"><strong>마사지샵</strong></paper-radio-button>
+			  						<paper-radio-button value="네일샵" name="2" id="superclassRad2" ><strong>네일샵</strong></paper-radio-button>
+			  					</paper-radio-group>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xs-6 col-sm-8 col-md-10 col-lg-10">
+					<div class="panel panel-info">
+						<div class="panel-heading"><h3><b>종류</b><font size="2" color="orange">당 업소에서 제공하는 서비스를 선택해 주세요</font></h3></div>
+						<div class="panel-body" id="group1" hidden>
+								<paper-checkbox name="etp.etpSubclass" value="타이마사지" id="subclassChk" class="subclassChkTds" checked><strong>타이마사지</strong></paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="경락마사지" id="subclassChk" class="subclassChkTds" toggles><strong>경락마사지</strong></paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="카이로프랙틱"id="subclassChk" class="subclassChkTds" toggles><strong>카이로프랙틱</strong> </paper-checkbox>
+	
+								<paper-checkbox name="etp.etpSubclass" value="발마사지" id="subclassChk" class="subclassChkTds" toggles><strong>발마사지</strong></paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="바디마사지" id="subclassChk" class="subclassChkTds" toggles><strong>바디마사지</strong></paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="페이스마사지" id="subclassChk" class="subclassChkTds" toggles><strong>페이스마사지</strong></paper-checkbox>
+						
+								<paper-checkbox name="etp.etpSubclass" value="아로마마사지" id="subclassChk" class="subclassChkTds" toggles><strong>아로마마사지</strong></paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="슬리밍케어" id="subclassChk" class="subclassChkTds" toggles><strong>슬리밍케어</strong></paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="웨딩관리" id="subclassChk" class="subclassChkTds" toggles><strong>웨딩관리</strong></paper-checkbox>
+						</div>
+						<div class="panel-body" id="group2" hidden>
+								<paper-checkbox name="etp.etpSubclass" value="네일케어" id="subclassChk" class="subclassChkTds" toggles><strong>네일케어</strong></paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="랩핑 / 연장" id="subclassChk" class="subclassChkTds" toggles><strong>랩핑 / 연장</strong></paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="프리미엄젤" id="subclassChk" class="subclassChkTds" toggles><strong>프리미엄젤</strong></paper-checkbox>
+						</div>
+						<div class="panel-body" id="group3">
+							<h4><i>왼쪽의 업종을 먼저 선택해 주세요</i></h4>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-					<div class="panel panel-success">
-						<div class="panel-heading"><h3><b>종류</b><font size="2" color="orange">종류 선택 가능합니다</font></h3></div>
-						<div class="panel-body">
-							<table>
-								<tr>
-									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="타이마사지">타이마사지</label></td>
-									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="경락마사지">경락마사지</label></td>
-									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="카이로프랙틱">카이로프랙틱</label></td>
-								</tr>
-								<tr>
-									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="발마사지">발마사지</label></td>
-									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="페이스마사지">페이스마사지</label></td>
-									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="바디마사지">바디마사지</label></td>
-								</tr>
-								<tr>
-									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="아로마마사지">아로마마사지</label></td>
-									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="슬리밍케어">슬리밍케어</label></td>
-									<td><label><input type="checkbox" id="subclassChk" name="etp.etpSubclass" value="웨딩관리">웨딩관리</label></td>
-								</tr>
-							</table>
-						</div> <!-- col-lg-8 -->
-					</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="panel panel-info">
+						<div class="panel-heading"><h3><b>특징</b>&nbsp;&nbsp;<font pont size="2" color="orange">종류 선택 가능합니다</font></h3></div>	
+							<div class="panel-body">
+								<paper-checkbox name="etp.etpSubclass" value="여성전용" name="member.enterprise.etpSpecialize" id="specialtyList1" class="specialtyChkTds">여성전용</paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="남녀전용" name="member.enterprise.etpSpecialize" id="specialtyList2" class="specialtyChkTds">남녀가능</paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="커플룸" name="member.enterprise.etpSpecialize" id="specialtyList3" class="specialtyChkTds">커플룸</paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="주차가능" name="member.enterprise.etpSpecialize" id="specialtyList4" class="specialtyChkTds">주차가능</paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="연중무휴" name="member.enterprise.etpSpecialize" id="specialtyList5" class="specialtyChkTds">연중무휴</paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="심야영업" name="member.enterprise.etpSpecialize" id="specialtyList6" class="specialtyChkTds">심야영업</paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="24시간 운영" name="member.enterprise.etpSpecialize" id="specialtyList7" class="specialtyChkTds">24시간 운영</paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="회원권 제도" name="member.enterprise.etpSpecialize" id="specialtyList8" class="specialtyChkTds">회원권 제도</paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="샤워실" name="member.enterprise.etpSpecialize" id="specialtyList9" class="specialtyChkTds">샤워실</paper-checkbox>
+								<paper-checkbox name="etp.etpSubclass" value="파우더룸" name="member.enterprise.etpSpecialize" id="specialtyList10" class="specialtyChkTds">파우더룸</paper-checkbox>
+							</div> <!-- panel-body -->
+						</div> <!-- panel panel-default -->
+					</div>	
 				</div>
-			</div>
-					<div class="col-lg-4">
-					<div class="panel panel-default">
-					<div class="panel-body">
-						<table>
-						<tr>
-							<td>&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="네일케어">네일케어</label></td>
-						</tr>
-						<tr>
-							<td>&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="랩핑/연장">랩핑/연장</label></td>
-						</tr>
-						<tr>
-							<td>&nbsp;&nbsp;<label><input type="checkbox" id="subclass" name="etp.subclass" value="프리미엄젤">프리미엄젤</label></td>
-						</tr>
-						</table>
-					</div> <!-- panel-body -->
-					</div> <!-- panel panel-default -->
-					</div> <!-- col-lg-4 -->
-					</div> <!-- row -->
-					<br>
-					<h3><b>특징</b>&nbsp;&nbsp;<font pont size="2" color="orange">종류 선택 가능합니다</font></h3>
-					<div class="panel panel-default">
-					<div class="panel-body">
-					<table>
-					<tr>
-						<td><label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="여성전용">여성전용</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="남녀가능">남녀가능</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="커플룸">커플룸</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="주차가능">주차가능</label></td>
-					</tr>
-					<tr>
-						<td><label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="연중무휴">연중무휴</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="심야영업">심야영업</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="24시간 운영">24시간 운영</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="회원권제도">회원권제도</label></td>
-					</tr>
-					<tr>
-						<td><label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="샤워실">샤워실</label></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" id="specialtyList" name="etp.specialtyList" value="파우더룸">파우더룸</label></td>
-					</tr>
-					</table>
-					</div> <!-- panel-body -->
-					</div> <!-- panel panel-default -->
-				</div>
-				<div class="col-lg-6">
 					<h3><b>선택사항</b></h3>
+					<div class="col-lg-6">
 					<table>
 					<tr>
 						<td><h4><b>사업장 규모</b></h4></td>
@@ -187,6 +209,8 @@
 					</table>
 				</div>
 			</div>
+		</div>
+			
 	<div class="container" align="center">
 		<div class="row">
 			<div class="col-lg-4" align="left"><button type="button" class="btn btn-primary">이전</button></div>
@@ -197,5 +221,11 @@
 	</div>
 	
 	</form>
+	
+  <paper-checkbox checked="{{checked}}"></paper-checkbox>
+  <br>
+  <paper-checkbox id="box"></paper-checkbox>
+  <br>
+  <button on-tap="{{doIt}}">{{text}}</button>
 </body>
 </html>
