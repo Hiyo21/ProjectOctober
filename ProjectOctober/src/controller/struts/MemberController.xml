@@ -8,8 +8,12 @@
 			<result>/jsp/member/EnterpriseRegistration1.jsp</result>
 		</action>
 		
-		<action name="toFirstRegistrationPage" class="controller.action.MemberAction" method="toFirstRegistrationPage">
+		<action name="backToFirstRegistrationPage" class="controller.action.MemberAction" method="backToFirstRegistrationPage">
 			<result >/jsp/member/EnterpriseRegistration1.jsp</result>
+		</action>
+		
+		<action name="toRegCardCheckPage" class="controller.action.MemberAction" method="toRegCardCheckPage">
+			<result>/jsp/member/UploadRegCard.jsp</result>
 		</action>
 		
 		<action name="toEnterpriseRegistraionSecondPage" class="controller.action.MemberAction" method="toSecondRegistrationPage">
@@ -80,18 +84,16 @@
 			<result>Main.jsp</result>
 		</action>
 		
-		<action name="toRegCardPage" class="controller.action.MemberAction" method="toRegCard">
-			<result>/jsp/member/UploadRegCard.jsp</result>
-		</action>
 		
-		<action name="regCardUploadAction" class="controller.action.FileUploadAction">
+		<action name="regCardUploadAction" class="controller.action.FileUploadAction" method="uploadRegCard">
 			<interceptor-ref name="fileUpload">
 				<param name="allowedTypes">
-					image/png, image/gif, image/jpeg, image/jpg
+					image/png,image/gif,image/jpeg,image/jpg
 				</param>
 			</interceptor-ref>
 			<interceptor-ref name="defaultStack" />
-			<result>/jsp/member/UploadRegCard.jsp</result>
+			<result name="success">/jsp/member/UploadRegCard.jsp</result>
+			<result name="input">/jsp/member/UploadRegCard.jsp</result>
 		</action>
 		
 

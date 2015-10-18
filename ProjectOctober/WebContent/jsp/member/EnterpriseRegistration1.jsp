@@ -131,7 +131,7 @@
 			return false;
 		}
 		
-			$("#toSecondPage").submit();
+			$("#toRegCardCheck").submit();
 	}
 	
 	
@@ -175,7 +175,7 @@
 						$('#duplicateCheckResultEtpNum').html('');
 					}
 					else{
-						if(data.etpNumExists){
+						if(data.etpNumExists && tempNum.length == 10){
 							$('#duplicateCheckResultEtpNum').html('사용 가능합니다.').css('color', 'green');
 							$('#toNextPageBtn').attr('disabled', false);
 						}
@@ -191,10 +191,6 @@
 
 	function zipcodeOpen() {
 		window.open("${pageContext.request.contextPath}/member/toZipcodePage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
-	}	
-	
-	function uploadWindowOpen() {
-		window.open("${pageContext.request.contextPath}/member/toRegCardPage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=no");
 	}
 
 </script>
@@ -206,7 +202,7 @@
 	<h4>모두 필수 입력사항입니다</h4>
 	<br>
 
-	<form action="toEnterpriseRegistraionSecondPage" method="post" id="toSecondPage">
+	<form action="toRegCardCheckPage" method="post" id="toRegCardCheck">
 
 	<div class="container">
 		<div class="form-group" align="left">
@@ -237,10 +233,11 @@
 					
 					<br><label for="address">주소</label>
 					<div class="form-inline">
-					<s:textfield class="form-control" id="zipcode" name="zipcode" readonly="true" size="22" placeholder="클릭해서 우편번호를 검색" onclick="zipcodeOpen()"/>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<s:textfield class="form-control" id="address1" name="address1" readonly="true" size="40"/>
+					<s:textfield class="form-control" id="zipcode" name="zipcode" readonly="true" size="20" placeholder="클릭해서 우편번호를 검색" onclick="zipcodeOpen()"/>
 					</div>
+					
+					<s:textfield class="form-control" id="address1" name="address1" readonly="true"/>
+					
 					<s:textfield class="form-control" id="address2" name="address2" placeholder="상세주소를 입력하세요"/>
 					
 					<br><label for="phone">업체 대표 연락처</label>
@@ -258,9 +255,9 @@
 							</select>
 						</div>
 						&nbsp;&nbsp;-&nbsp;&nbsp;
-						<s:textfield class="form-control" id="phone1" name="phone1"/>
+						<s:textfield class="form-control" size="10" id="phone1" name="phone1"/>
 						&nbsp;&nbsp;-&nbsp;&nbsp;
-						<s:textfield class="form-control" id="phone2" name="phone2"/>
+						<s:textfield class="form-control" size="10" id="phone2" name="phone2"/>
 					</div>
 					
 					<br><label for="etpPhone">업체 연락처</label>
@@ -285,18 +282,16 @@
 								<option value="064">064</option>
 							</select>
 						</div>
+						<div class="form-group">
 						&nbsp;&nbsp;-&nbsp;&nbsp;
-						<s:textfield class="form-control" id="etpPhone1" name="etpPhone1"/>
+						<s:textfield class="form-control" size="10" id="etpPhone1" name="etpPhone1"/>
 						&nbsp;&nbsp;-&nbsp;&nbsp;
-						<s:textfield class="form-control" id="etpPhone2" name="etpPhone2"/>
-					
-					<br><label for="certificate">사업증명서 업로드</label>
-					<!-- TODO: 사업 증명서 업로드는 파일 업로드 되어야 함! -->
-					<button class="btn btn-warning" onclick="uploadWindowOpen()">업로드...</button> 
-
+						<s:textfield class="form-control" size="10" id="etpPhone2" name="etpPhone2"/>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>	
+			</div>	
+		</div>
 	</div>
 	<br>
 	<div class="container" align="center">

@@ -2,54 +2,203 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.MemberMapper" >
  
-   <resultMap id="CustomerResultMapForMember" type="model.vo.Customer" >
-    <id column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
-    <result column="CST_ADDRESS" property="cstAddress" jdbcType="VARCHAR" />
-    <result column="CST_ZIPCODE" property="cstZipcode" jdbcType="VARCHAR" />
-    <result column="CST_BIRTHDAY" property="cstBirthday" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
-    <result column="CST_GENDER" property="cstGender" jdbcType="VARCHAR" />
-    <result column="CST_ONECLICK" property="cstOneclick" jdbcType="DECIMAL" />
+	<resultMap id="CustomerResultMapForMember" type="model.vo.Customer" >
+	    <id column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
+	    <result column="CST_ADDRESS" property="cstAddress" jdbcType="VARCHAR" />
+	    <result column="CST_ZIPCODE" property="cstZipcode" jdbcType="VARCHAR" />
+	    <result column="CST_BIRTHDAY" property="cstBirthday" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
+	    <result column="CST_GENDER" property="cstGender" jdbcType="VARCHAR" />
+	    <result column="CST_ONECLICK" property="cstOneclick" jdbcType="DECIMAL" />
+	</resultMap>
+	
+	<!-- Component Result Map -->
+	<resultMap id="ComponentResultMap" type="model.vo.Component" >
+	
+    <id column="COMPONENT_NUM" property="componentNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="COMPONENT_ID" property="componentID" jdbcType="VARCHAR" />
+    <result column="COMPONENT_THEME" property="componentTheme" jdbcType="DECIMAL" />
+    <result column="COMPONENT_Width" property="componentWidth" jdbcType="DECIMAL" />
+    <result column="COMPONENT_Height" property="componentHeight" jdbcType="DECIMAL" />
+    <result column="COMPONENT_POS_X" property="componentPosX" jdbcType="DECIMAL" />
+    <result column="COMPONENT_POS_Y" property="componentPosY" jdbcType="DECIMAL" />
+    <result column="BACKGROUND_THEME" property="backgroundTheme" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <!-- Coupon ResultMap -->
+  <resultMap id="CouponResultMap" type="model.vo.Coupon" >
+    <id column="CPN_NUM" property="cpnNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="CPN_TITLE" property="cpnTitle" jdbcType="VARCHAR" />
+    <result column="CPN_CODE" property="cpnCode" jdbcType="VARCHAR" />
+    <result column="CPN_RATE" property="cpnRate" jdbcType="DECIMAL" />
+    <result column="CPN_START_DATE" property="cpnStartDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    <result column="CPN_END_DATE" property="cpnEndDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+  </resultMap>
+  
+  <!-- Holiday ResultMap -->
+  <resultMap id="HolidayResultMap" type="model.vo.Holiday" >
+    <id column="HOL_NUM" property="holNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="HOL_DATE" property="holDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+  </resultMap>
+  
+  <!--  Photo Location ResultMap -->
+   <resultMap id="PhotoLocationResultMap" type="model.vo.PhotoLocation" >
+    <id column="PHOTO_NUM" property="photoNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="PHT_USAGE" property="phtUsage" jdbcType="VARCHAR" />
+    <result column="PHT_DESCRIPTION" property="phtDescription" jdbcType="VARCHAR" />
+    <result column="PHT_ADDRESS" property="phtAddress" jdbcType="VARCHAR" />
+    <result column="PHT_UPLOAD_DATE" property="phtUploadDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+  </resultMap>
+  
+  <!-- Reservation ResultMap -->
+   <resultMap id="ReservationResultMap" type="model.vo.Reservation" >
+    <id column="RSV_NUM" property="rsvNum" jdbcType="DECIMAL" />
+    <result column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
+    <result column="CPN_NUM" property="cpnNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
+    <result column="RSV_START_DATE" property="rsvStartDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    <result column="RSV_END_DATE" property="rsvEndDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    <result column="RSV_STATUS" property="rsvStatus" jdbcType="DECIMAL" />
+    <result column="RSV_GENDER" property="employeeGender" jdbcType="VARCHAR" />
+    <result column="RSV_TITLE" property="rsvTitle" jdbcType="VARCHAR" />
+  </resultMap>
+  
+    <!-- Review ResultMap -->
+   <resultMap id="ReviewResultMap" type="model.vo.Review" >
+    <id column="RVW_NUM" property="rvwNum" jdbcType="DECIMAL" />
+    <result column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="RVW_INPUT_DATE" property="rvwInputDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    <result column="CST_IP_ADDRESS" property="cstIpAddress" jdbcType="VARCHAR" />
+    <result column="RVW_CONTENT" property="rvwContent" jdbcType="VARCHAR" />
+    <result column="CST_JOB" property="cstJob" jdbcType="VARCHAR" />
+    <result column="RVW_HYGIENE" property="rvwHygiene" jdbcType="DECIMAL" />
+    <result column="RVW_COMFORT" property="rvwComfort" jdbcType="DECIMAL" />
+    <result column="RVW_TECHNIQUE" property="rvwTechnique" jdbcType="DECIMAL" />
+    <result column="RVW_PRICE" property="rvwPrice" jdbcType="DECIMAL" />
+    <result column="RVW_SERVICE" property="rvwService" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <!--  NotificationResultMap -->
+   <resultMap id="NotificationResultMap" type="model.vo.Notification" >
+    <id column="NTF_NUM" property="ntfNum" jdbcType="DECIMAL" />
+    <result column="RSV_NUM" property="rsvNum" jdbcType="DECIMAL" />
+    <result column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="NTF_MESSAGE" property="ntfMessage" jdbcType="VARCHAR" />
+    <result column="NTF_TIME" property="ntfTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    <result column="NTF_READ" property="ntfRead" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <!--  Sale Record ResultMap -->
+	  <resultMap id="SaleRecordResultMap" type="model.vo.SaleRecord" >
+    <id column="SALE_NUM" property="saleNum" jdbcType="DECIMAL" />
+    <result column="PMT_NUM" property="pmtNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="SALE_TIME" property="saleTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    <result column="SALE_AMOUNT" property="saleAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <!-- Service Record ResultMap -->
+    <resultMap id="ServiceResultMapForEnterprise" type="model.vo.Service" >
+    <id column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="SVC_TITLE" property="svcTitle" jdbcType="VARCHAR" />
+    <result column="SVC_COST" property="svcCost" jdbcType="DECIMAL" />
+    <result column="SVC_TIME" property="svcTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    <result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
+    <result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
+    <result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
+    <result column="SVC_COUNT" property="svcCount" jdbcType="DECIMAL" />
+  </resultMap>
+  
+    <resultMap id="WorkingDaysResultMap" type="model.vo.WorkingDays" >
+    <id column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <id column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="MON" property="mon" jdbcType="DECIMAL" />
+    <result column="TUE" property="tue" jdbcType="DECIMAL" />
+    <result column="WED" property="wed" jdbcType="DECIMAL" />
+    <result column="THU" property="thu" jdbcType="DECIMAL" />
+    <result column="FRI" property="fri" jdbcType="DECIMAL" />
+    <result column="SAT" property="sat" jdbcType="DECIMAL" />
+    <result column="SUN" property="sun" jdbcType="DECIMAL" />
   </resultMap>
   
   
-   <resultMap id="EnterpriseResultMapForMember" type="model.vo.Enterprise">
-    <id column="ETP_NUM" jdbcType="VARCHAR" property="etpNum" />
-    <id column="ETP_EMAIL" jdbcType="VARCHAR" property="etpEmail" />
-    <result column="ETP_OWNER" jdbcType="VARCHAR" property="etpOwner" />
-    <result column="ETP_SUPERCLASS" jdbcType="VARCHAR" property="etpSuperclass" />
-    <result column="ETP_ADDRESS" jdbcType="VARCHAR" property="etpAddress" />
-    <result column="ETP_ZIPCODE" jdbcType="VARCHAR" property="etpZipcode" />
-    <result column="ETP_TITLE" jdbcType="VARCHAR" property="etpTitle" />
-    <result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
-    <result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
-    <result column="ETP_PHONE" jdbcType="VARCHAR" property="etpPhone" />
-    <result column="ETP_MALE_STAFF" jdbcType="DECIMAL" property="etpMaleStaff" />
-    <result column="ETP_FEMALE_STAFF" jdbcType="DECIMAL" property="etpFemaleStaff" />
-    <result column="ETP_CAPACITY" jdbcType="DECIMAL" property="etpCapacity" />
-    <result column="ETP_RSV_DEADLINE" jdbcType="DECIMAL" property="etpRsvDeadline" />
-    <result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
-    <result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
-    <result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
-    <result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
-    <result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
-    <result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
-    <result column="ETP_SUBCLASS" jdbcType="VARCHAR" property="etpSubclass" />
-    <result column="ETP_SPECIALIZE" jdbcType="VARCHAR" property="etpSpecialize" />
-    <result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
-    <result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
-  </resultMap>
+	<resultMap id="EnterpriseResultMap" type="model.vo.Enterprise">
+	    <id column="ETP_NUM" jdbcType="VARCHAR" property="etpNum" />
+	    <id column="ETP_EMAIL" jdbcType="VARCHAR" property="etpEmail" />
+	    <result column="ETP_OWNER" jdbcType="VARCHAR" property="etpOwner" />
+	    <result column="ETP_SUPERCLASS" jdbcType="VARCHAR" property="etpSuperclass" />
+	    <result column="ETP_ADDRESS" jdbcType="VARCHAR" property="etpAddress" />
+	    <result column="ETP_ZIPCODE" jdbcType="VARCHAR" property="etpZipcode" />
+	    <result column="ETP_TITLE" jdbcType="VARCHAR" property="etpTitle" />
+	    <result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+	    <result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+	    <result column="ETP_PHONE" jdbcType="VARCHAR" property="etpPhone" />
+	    <result column="ETP_MALE_STAFF" jdbcType="DECIMAL" property="etpMaleStaff" />
+	    <result column="ETP_FEMALE_STAFF" jdbcType="DECIMAL" property="etpFemaleStaff" />
+	    <result column="ETP_CAPACITY" jdbcType="DECIMAL" property="etpCapacity" />
+	    <result column="ETP_RSV_DEADLINE" jdbcType="DECIMAL" property="etpRsvDeadline" />
+	    <result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
+	    <result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
+	    <result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
+	    <result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
+	    <result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
+	    <result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
+	    <result column="ETP_SUBCLASS" jdbcType="VARCHAR" property="etpSubclass" />
+	    <result column="ETP_SPECIALIZE" jdbcType="VARCHAR" property="etpSpecialize" />
+	    <result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
+	    <result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
+	  	
+	  	<association property="workingDays" javaType="WorkingDays" resultMap="WorkingDaysResultMap" />
+	  	<association property="component" javaType="Component" resultMap="ComponentResultMap" />
+	  	<association property="holiday" javaType="Holiday" resultMap="HolidayResultMap" />
+	  	<association property="photoLocation" javaType="PhotoLocation" resultMap="PhotoLocationResultMap"/>
+	  	
+	  	<collection property="reviews" ofType="Review" resultMap="ReviewResultMap"/>
+	  	<collection property="notifications" ofType="Notification" resultMap="NotificationResultMap"/>
+	  	<collection property="reservations" ofType="Reservation" resultMap="ReservationResultMap" />
+	  	<collection property="services" ofType="Service" resultMap="ServiceResultMapForEnterprise" />
+	  	<collection property="coupons" ofType="Coupon" resultMap="CouponResultMap" />
+	  	<collection property="saleRecords" ofType="SaleRecord" resultMap="SaleRecordResultMap" />
+	</resultMap>
+	
+	<resultMap id="MemberEnterpriseTotalMap" type="model.vo.Member" >
+		<id column="MEM_EMAIL" property="memEmail" jdbcType="VARCHAR" />
+	  	<result column="MEM_CODE" property="memCode" jdbcType="DECIMAL" />
+	  	<result column="MEM_NAME" property="memName" jdbcType="VARCHAR" />
+	  	<result column="MEM_PASSWORD" property="memPassword" jdbcType="VARCHAR" />
+	  	<result column="MEM_PHONE" property="memPhone" jdbcType="VARCHAR" />
+	  	<result column="MEM_JOINED_DATE" property="memJoinedDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
+	  
+	  	<association property="enterprise" javaType="Enterprise" resultMap="EnterpriseResultMap" />
+	</resultMap>
  
-  <resultMap id="MemberResultMap" type="model.vo.Member" >
-    <id column="MEM_EMAIL" property="memEmail" jdbcType="VARCHAR" />
-    <result column="MEM_CODE" property="memCode" jdbcType="DECIMAL" />
-    <result column="MEM_NAME" property="memName" jdbcType="VARCHAR" />
-    <result column="MEM_PASSWORD" property="memPassword" jdbcType="VARCHAR" />
-    <result column="MEM_PHONE" property="memPhone" jdbcType="VARCHAR" />
-    <result column="MEM_JOINED_DATE" property="memJoinedDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
-    
-    <collection property="enterprises" ofType="Enterprise" resultMap="EnterpriseResultMapForMember" />
-    <collection property="customers" ofType="Customer" resultMap="CustomerResultMapForMember" />
-  </resultMap>
+	<resultMap id="MemberResultMap" type="model.vo.Member" >
+		<id column="MEM_EMAIL" property="memEmail" jdbcType="VARCHAR" />
+	  	<result column="MEM_CODE" property="memCode" jdbcType="DECIMAL" />
+	  	<result column="MEM_NAME" property="memName" jdbcType="VARCHAR" />
+	  	<result column="MEM_PASSWORD" property="memPassword" jdbcType="VARCHAR" />
+	  	<result column="MEM_PHONE" property="memPhone" jdbcType="VARCHAR" />
+	  	<result column="MEM_JOINED_DATE" property="memJoinedDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
+	  
+	  	<collection property="enterprises" ofType="Enterprise" resultMap="EnterpriseResultMap" />
+	  	<collection property="customers" ofType="Customer" resultMap="CustomerResultMapForMember" />
+	</resultMap>
   
   <resultMap id="MemberCodeResultMap" type="model.vo.MemberCode" >
     <id column="MEM_CODE" property="memCode" jdbcType="DECIMAL" />
@@ -342,4 +491,24 @@
 	select * from zipcode where area3 like '%'||#{area3}||'%'
   </select>
   
+  <insert id="insertMemberInfo" parameterType="Member">
+	insert into MEMBER values(#{memEmail},#{memCode},#{memName},#{memPassword},#{memPhone},sysdate)
+  </insert>
+  
+  <insert id="insertEnterpriseInfoFirstStep" parameterType="Enterprise">
+    insert into ENTERPRISE (ETP_NUM, ETP_EMAIL, ETP_OWNER, ETP_ADDRESS, ETP_ZIPCODE, ETP_TITLE, ETP_PHONE, ETP_STATUS)
+    values (#{etpNum}, #{etpEmail}, #{etpOwner}, #{etpAddress}, #{etpZipcode}, #{etpTitle}, #{etpPhone}, #{etpStatus})
+  </insert>
+  
+  <delete id="deleteMemberInfo" parameterType="String">
+  	delete from MEMBER where MEM_EMAIL = #{value}
+  </delete>
+  
+  <delete id="deleteEnterpriseInfoFirstStep" parameterType="String">
+  	delete from ENTERPRISE where ETP_EMAIL = #{value}
+  </delete>
+  
+   <select id="selectByPrimaryNumber" resultMap="MemberResultMap" parameterType="String" >
+    select * from MEMBER m, ENTERPRISE e, PHOTO_LOCATION p where e.etp_num = #{value} and m.mem_email = e.etp_email and e.etp_email = p.etp_email
+  </select>
 </mapper>

@@ -11,8 +11,8 @@
 <script language="javascript">
 //검색어 입력 여부 확인
 function formCheck() {
-	var searchText = document.getElementById('searchText');
-	if (searchText.value == '') {
+	var searchText = document.getElementById('searchText').value;
+	if (searchText.trim().length == 0 || searchText == '') {
 		alert('검색어를 입력하세요.');
 		return false;
 	}
@@ -21,8 +21,8 @@ function formCheck() {
 
 //ID 사용
 function selectZipcode(zipcode, address) {
-	opener.joinform.zipcode.value = zipcode;
-	opener.joinform.address1.value = address;
+	opener.document.getElementById("zipcode").value = zipcode;
+	opener.document.getElementById("address1").value = address;
 	this.close();
 }
 </script>
@@ -34,7 +34,7 @@ function selectZipcode(zipcode, address) {
 
 <s:form name="zipcodeform" action="zipcode" method="post" onSubmit="return formCheck();" theme="simple">
 
-주소 : <s:textfield name="searchText" />
+주소 : <s:textfield id="searchText" name="searchText" />
 	 <s:submit value="검색" />
 </s:form>
 <br><br>

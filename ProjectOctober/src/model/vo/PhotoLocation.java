@@ -24,56 +24,63 @@ public class PhotoLocation implements Serializable {
         return photoNum;
     }
 
-    public void setPhotoNum(Integer photoNum) {
+    public PhotoLocation setPhotoNum(Integer photoNum) {
         this.photoNum = photoNum;
+        return this;
     }
 
     public String getEtpNum() {
         return etpNum;
     }
 
-    public void setEtpNum(String etpNum) {
+    public PhotoLocation setEtpNum(String etpNum) {
         this.etpNum = etpNum;
+        return this;
     }
 
     public String getEtpEmail() {
         return etpEmail;
     }
 
-    public void setEtpEmail(String etpEmail) {
+    public PhotoLocation setEtpEmail(String etpEmail) {
         this.etpEmail = etpEmail;
+        return this;
     }
 
     public String getPhtUsage() {
         return phtUsage;
     }
 
-    public void setPhtUsage(String phtUsage) {
+    public PhotoLocation setPhtUsage(String phtUsage) {
         this.phtUsage = phtUsage;
+        return this;
     }
 
     public String getPhtDescription() {
         return phtDescription;
     }
 
-    public void setPhtDescription(String phtDescription) {
+    public PhotoLocation setPhtDescription(String phtDescription) {
         this.phtDescription = phtDescription;
+        return this;
     }
 
     public String getPhtAddress() {
         return phtAddress;
     }
 
-    public void setPhtAddress(String phtAddress) {
+    public PhotoLocation setPhtAddress(String phtAddress) {
         this.phtAddress = phtAddress;
+        return this;
     }
 
     public LocalDateTime getPhtUploadDate() {
         return phtUploadDate;
     }
 
-    public void setPhtUploadDate(LocalDateTime phtUploadDate) {
+    public PhotoLocation setPhtUploadDate(LocalDateTime phtUploadDate) {
         this.phtUploadDate = phtUploadDate;
+        return this;
     }
 
     @Override

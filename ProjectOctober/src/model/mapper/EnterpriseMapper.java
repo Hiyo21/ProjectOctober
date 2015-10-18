@@ -5,6 +5,8 @@ import java.util.List;
 import model.vo.Component;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
+import model.vo.PhotoLocation;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
@@ -23,7 +25,7 @@ public interface EnterpriseMapper {
 
     List<Enterprise> selectByExample(EnterpriseExample example);
 
-    Enterprise selectByPrimaryKey(String key);
+    Enterprise selectByEtpNum(String key);
 
     int updateByExampleSelective(@Param("record") Enterprise record, @Param("example") EnterpriseExample example);
 
@@ -46,4 +48,6 @@ public interface EnterpriseMapper {
     Enterprise noRegisterEtp(String key);
     
     List<Enterprise> allNoRegisterEtpList();
+
+	Integer insertRegCard(PhotoLocation loc);
 }
