@@ -337,4 +337,9 @@
    <select id="retrieveEtpNum" resultType="string" parameterType="string">
   	select etp_num from ENTERPRISE where etp_num = #{value}
   </select>
+  
+  <select id="searchZipcode" parameterType="string" resultType="Zipcode">
+	select * from zipcode where area3 like '%'||#{area3}||'%'
+  </select>
+  
 </mapper>
