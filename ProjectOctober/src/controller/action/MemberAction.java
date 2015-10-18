@@ -49,6 +49,10 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	public String toSecondRegistrationPage() throws Exception{
 		System.err.println(member);
+		System.err.println(member.getEnterprise());
+		member.getEnterprise().setEtpEmail(member.getMemEmail());
+		member.getEnterprise().setEtpOwner(member.getMemName());
+		member.getEnterprise().setEtpStatus(0);
 		if(member != null) return SUCCESS;
 		else return ERROR;
 	}

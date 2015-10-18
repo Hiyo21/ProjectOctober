@@ -5,9 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="../../Polymer/components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcd.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/Polymer/components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 <title>사업자 회원가입 1</title>
 <script>
 	/* TODO 밑의 제약조건 메소드에 추가할 것.
@@ -15,8 +16,13 @@
 		2. 이메일 주소 5자리 이하면 경고. complete!!
 		3. 사업자 번호 10자리 아니면 경고. complete!!
 		4. 주소는 새 창 띄워서 ZIPCODE에서 받아오도록. 주소는 기본 주소 (ZIPCODE 창에서 받아오는거 ) + 상세 주소 -> readonly에서 입력 가능하게 변경.
-		5. 연락처 7자리 이하 아니면 경고. change>>>>>>>>>
-		6. 업체 대표 연락처 7자리 이하면 경고 change>>>>>>>>>
+
+		5. 연락처 7자리 이하 아니면 경고.
+		6. 업체 대표 연락처 7자리 이하면 경고
+
+		5. 연락처 7자리 이하 아니면 경고
+		6. 업체 대표 연락처 7자리 이하면 경고
+
 	*/
 
 	function check() {

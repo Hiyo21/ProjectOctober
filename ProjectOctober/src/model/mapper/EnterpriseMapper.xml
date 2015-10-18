@@ -42,9 +42,11 @@
   
 	<!-- Component Result Map -->
 	<resultMap id="ComponentResultMap" type="model.vo.Component" >
-    <id column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
-    <id column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
-    <result column="COMPONENT" property="componentID" jdbcType="VARCHAR" />
+	
+    <id column="COMPONENT_NUM" property="componentNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="COMPONENT_ID" property="componentID" jdbcType="VARCHAR" />
     <result column="COMPONENT_THEME" property="componentTheme" jdbcType="DECIMAL" />
     <result column="COMPONENT_Width" property="componentWidth" jdbcType="DECIMAL" />
     <result column="COMPONENT_Height" property="componentHeight" jdbcType="DECIMAL" />
@@ -773,11 +775,35 @@
   	<!--  Component Mapper  -->
   	
 	<insert id="insertComponent" parameterType="Component">
-		insert into component values (#{etpNum}, #{etpEmail}, #{componentID}, #{componentTheme}, #{componentPosX}, #{componentPosY}, #{componentWidth}, #{componentHeight}) 
+		insert into component values 
+		(component_seq.nextval
+		, #{componentID}, #{componentTheme}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY}
+		, #{backgroundTheme} , #{etpNum}, #{etpEmail})	
 	</insert>
+
 	
-	<select id="receiveComponentList" resultType="Component">
+
+	<select id="receiveComponent" resultType="Component">
 		select * from component
 	</select>
+	
+	<select id="noRegisterEtpList" parameterType="String" resultMap="EnterpriseBaseResultMap">
+	select * from Enterprise where etp_num=#{etpNum}
+	</select>
 
+	<select id="allNoRegisterEtpList" resultMap="EnterpriseBaseResultMap">
+	select * from Enterprise order by etp_status desc
+	</select>
+	
+	<update id="updateEtpStatus" parameterType="String">
+		update HR.Enterprise set etp_status=1 where etp_num=#{etpNum}
+	</update>	
+	
+	<update id="rejectEtpStatus" parameterType="String">
+		update HR.Enterprise set etp_status=2 where etp_num=#{etpNum}
+	</update>	
+
+	<select id="receiveComponentList" resultMap="ComponentResultMap" parameterType="String">
+		select * from component where etp_num = #{etpNum}
+	</select>
 </mapper>

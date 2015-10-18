@@ -63,8 +63,30 @@ public class Enterprise implements Serializable {
     private String etpDescription;
 
     private Integer etpStatus;
+    
+    private String start;
+    
+    private String end;
 
     private static final long serialVersionUID = 1L;
+    
+    
+
+	public String getStart() {
+		return start;
+	}
+
+	public void setStart(String start) {
+		this.start = start;
+	}
+
+	public String getEnd() {
+		return end;
+	}
+
+	public void setEnd(String end) {
+		this.end = end;
+	}
 
 	public Component getComponent() {
 		return component;
@@ -361,6 +383,7 @@ public class Enterprise implements Serializable {
 				.append("]");
 		return builder.toString();
 	}
+
 
 
 }
