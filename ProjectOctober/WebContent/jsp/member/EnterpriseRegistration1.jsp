@@ -22,7 +22,6 @@
 
 		5. 연락처 7자리 이하 아니면 경고
 		6. 업체 대표 연락처 7자리 이하면 경고
-
 	*/
 
 	function check() {
@@ -193,6 +192,10 @@
 	function zipcodeOpen() {
 		window.open("${pageContext.request.contextPath}/member/toZipcodePage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
 	}	
+	
+	function uploadWindowOpen() {
+		window.open("${pageContext.request.contextPath}/member/toRegCardPage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=no");
+	}
 
 </script>
 </head>
@@ -289,7 +292,7 @@
 					
 					<br><label for="certificate">사업증명서 업로드</label>
 					<!-- TODO: 사업 증명서 업로드는 파일 업로드 되어야 함! -->
-					<s:
+					
 				</div>
 			</div>
 		</div>	

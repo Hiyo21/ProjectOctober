@@ -1,12 +1,17 @@
 package controller.action;
 
+import java.io.File;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.SerializationUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -15,8 +20,6 @@ import model.common.DAOFactory;
 import model.common.VOFactory;
 import model.dao.MemberDAO;
 import model.vo.Member;
-
-import model.vo.WorkingDays;
 
 import model.vo.Zipcode;
 
@@ -48,6 +51,12 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private String etpPhone1;
 	private String etpPhone2;
 	
+	private File fileToUpload;
+	private String fileToUploadContentType;		
+	private String fileToUploadFileName;
+	
+	private File saveFile;
+	
 	
 	public MemberAction() {
 		memDAO = DAOFactory.createMemberDAO();
@@ -58,8 +67,17 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String toSecondRegistrationPage() throws Exception{
-		System.err.println(member);
-		System.err.println(member.getEnterprise());
+		String uploadPath = ServletActionContext.getServletContext().getRealPath("/") + "resources/regcards/";
+		System.out.println(uploadPath);
+		
+		File dir = new File(uploadPath);
+		if (!dir.isDirectory()) dir.mkdirs();
+		
+		if(fileToUpload != null && fileToUpload.exists()){
+			saveFile = new File(uploadPath + member.getEnterprise().getEtpNum() + fileToUploadFileName);
+			FileUtils.copyFile(fileToUpload, saveFile);
+		}
+	
 		member.setMemCode(ENTERPRISE_CODE);
 		member.getEnterprise().setEtpEmail(member.getMemEmail());
 		member.getEnterprise().setEtpOwner(member.getMemName());
@@ -304,5 +322,37 @@ public class MemberAction extends ActionSupport implements SessionAware{
 
 	public void setEtpPhone2(String etpPhone2) {
 		this.etpPhone2 = etpPhone2;
+	}
+
+	public File getFileToUpload() {
+		return fileToUpload;
+	}
+
+	public String getFileToUploadContentType() {
+		return fileToUploadContentType;
+	}
+
+	public String getFileToUploadFileName() {
+		return fileToUploadFileName;
+	}
+
+	public void setFileToUpload(File fileToUpload) {
+		this.fileToUpload = fileToUpload;
+	}
+
+	public void setFileToUploadContentType(String fileToUploadContentType) {
+		this.fileToUploadContentType = fileToUploadContentType;
+	}
+
+	public void setFileToUploadFileName(String fileToUploadFileName) {
+		this.fileToUploadFileName = fileToUploadFileName;
+	}
+
+	public File getSaveFile() {
+		return saveFile;
+	}
+
+	public void setSaveFile(File saveFile) {
+		this.saveFile = saveFile;
 	}
 }
