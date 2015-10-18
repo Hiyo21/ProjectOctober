@@ -17,60 +17,34 @@ public class Enterprise implements Serializable {
 	private List<Coupon> coupons;
 	
     private String etpNum;
-
     private String etpEmail;
-	
 	private String etpOwner;
-
     private String etpSuperclass;
-
     private String etpAddress;
-
     private String etpZipcode;
-
     private String etpTitle;
-
     private LocalTime etpStartHour;
-
     private LocalTime etpEndHour;
-
     private String etpPhone;
-
     private Integer etpMaleStaff;
-
     private Integer etpFemaleStaff;
-
     private Integer etpCapacity;
-
     private Integer etpRsvDeadline;
-
     private Integer etpSelfNotification;
-
     private Integer etpCstNotification;
-
     private Integer etpTemplateType;
-
     private String etpMapAddress;
-
     private String etpDirection;
-
     private String etpSvcOffered;
-
     private String etpSubclass;
-
     private String etpSpecialize;
-
     private String etpDescription;
-
     private Integer etpStatus;
     
     private String start;
-    
     private String end;
 
     private static final long serialVersionUID = 1L;
-    
-    
 
 	public String getStart() {
 		return start;
@@ -380,10 +354,7 @@ public class Enterprise implements Serializable {
 				.append(", etpDirection=").append(etpDirection).append(", etpSvcOffered=").append(etpSvcOffered)
 				.append(", etpSubclass=").append(etpSubclass).append(", etpSpecialize=").append(etpSpecialize)
 				.append(", etpDescription=").append(etpDescription).append(", etpStatus=").append(etpStatus)
-				.append("]");
+				.append(", start=").append(start).append(", end=").append(end).append("]");
 		return builder.toString();
 	}
-
-
-
 }

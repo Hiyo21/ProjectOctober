@@ -149,11 +149,7 @@
 				}			
 			});
 		});
-			
 	});
-	
-	
-	
 </script>
 </head>
 <body>
@@ -162,7 +158,7 @@
 	<h1><b>사업자 회원가입</b></h1>
 	<h4>모두 필수 입력사항입니다</h4>
 	<br>
-	<form action="member/toEnterpriseRegistraionSecondPage" id="toSecondPage">
+	<form action="toEnterpriseRegistraionSecondPage" method="post" id="toSecondPage">
 	<div class="container">
 		<div class="form-group" align="left">
 			<div class="row">
@@ -196,7 +192,7 @@
 					<s:textfield class="form-control" id="etpPhone" name="member.memPhone"/>
 					<br><label for="certificate">사업증명서 업로드</label>
 					<!-- TODO: 사업 증명서 업로드는 파일 업로드 되어야 함! -->
-					<%-- <s:textfield class="form-control" id="etpRegCard" name=""/> --%>
+					<s:
 				</div>
 			</div>
 		</div>	

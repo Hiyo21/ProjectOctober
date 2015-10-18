@@ -8,11 +8,15 @@
 			<result>/jsp/member/EnterpriseRegistration1.jsp</result>
 		</action>
 		
+		<action name="toFirstRegistrationPage" class="controller.action.MemberAction" method="toFirstRegistrationPage">
+			<result >/jsp/member/EnterpriseRegistration1.jsp</result>
+		</action>
+		
 		<action name="toEnterpriseRegistraionSecondPage" class="controller.action.MemberAction" method="toSecondRegistrationPage">
 			<result>/jsp/member/EnterpriseRegistration2.jsp</result>
 		</action>
 		
-		<action name="toEnterpriseRegistraionThirdPage" class="controller.action.MemberAction" method="toThirdPage">
+		<action name="toEnterpriseRegistraionThirdPage" class="controller.action.MemberAction" method="toThirdRegistrationPage">
 			<result>/jsp/member/EnterpriseRegistration3.jsp</result>
 		</action>
 		

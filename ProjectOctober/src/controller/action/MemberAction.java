@@ -1,15 +1,20 @@
 package controller.action;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.SerializationUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
+import model.common.VOFactory;
 import model.dao.MemberDAO;
 import model.vo.Member;
+import model.vo.WorkingDays;
 
 public class MemberAction extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 5672648613791884055L;
@@ -19,7 +24,6 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	private Map<String, Object> session;
 	private Member member;
-	
 	private String email;
 	private String emailInput;
 	private String etpNumInput;
@@ -33,19 +37,48 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		memDAO = DAOFactory.createMemberDAO();
 	}
 	
+	public String toFirstRegistrationPage() throws Exception{
+		return SUCCESS;
+	}
+	
 	public String toSecondRegistrationPage() throws Exception{
 		System.err.println(member);
 		System.err.println(member.getEnterprise());
+		member.setMemCode(ENTERPRISE_CODE);
 		member.getEnterprise().setEtpEmail(member.getMemEmail());
 		member.getEnterprise().setEtpOwner(member.getMemName());
 		member.getEnterprise().setEtpStatus(0);
+		session.put("tempMember", member);
+
 		if(member != null) return SUCCESS;
 		else return ERROR;
 	}
 	
 	public String toThirdRegistrationPage() throws Exception{
+		Member tempMember = (Member) session.get("tempMember");
+		System.err.println(member.getEnterprise());
+		System.err.println(member.getEnterprise().getWorkingDays().getTemp());
+		tempMember.getEnterprise().setWorkingDays(VOFactory.createWorkingDays());
+		tempMember.getEnterprise().getWorkingDays().setEtpNum(tempMember.getEnterprise().getEtpNum());
+		tempMember.getEnterprise().getWorkingDays().setEtpEmail(tempMember.getEnterprise().getEtpEmail());
+		tempMember.getEnterprise().getWorkingDays().setTemp(member.getEnterprise().getWorkingDays().getTemp());
+		System.err.println(tempMember.getEnterprise().getWorkingDays());
+		tempMember.getEnterprise().setEtpSuperclass(member.getEnterprise().getEtpSuperclass());
+		tempMember.getEnterprise().setEtpMaleStaff(member.getEnterprise().getEtpMaleStaff());
+		tempMember.getEnterprise().setEtpFemaleStaff(member.getEnterprise().getEtpFemaleStaff());
+		tempMember.getEnterprise().setEtpCapacity(member.getEnterprise().getEtpCapacity());
+		tempMember.getEnterprise().setEtpSubclass(member.getEnterprise().getEtpSubclass());
+		tempMember.getEnterprise().setEtpSpecialize(member.getEnterprise().getEtpSpecialize());
+		tempMember.getEnterprise().setEtpStartHour(LocalTime.parse(member.getEnterprise().getStart(),DateTimeFormatter.ISO_LOCAL_TIME));
+		tempMember.getEnterprise().setEtpEndHour(LocalTime.parse(member.getEnterprise().getEnd(),DateTimeFormatter.ISO_LOCAL_TIME));
+		
+		member = SerializationUtils.clone(tempMember);
 		System.err.println(member);
-		if(member != null) return SUCCESS;
+		System.err.println(member.getEnterprise());
+		System.err.println(member.getEnterprise().getWorkingDays());
+		if(member != null){
+			return SUCCESS;
+		}
 		else return ERROR;
 	}
 	
@@ -153,4 +186,5 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	public void setEtpNumInput(String etpNumInput) {
 		this.etpNumInput = etpNumInput;
 	}
+
 }
