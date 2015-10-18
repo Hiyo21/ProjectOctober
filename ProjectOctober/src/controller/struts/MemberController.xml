@@ -36,19 +36,39 @@
 			<result type="json" />
 		</action>
 		
+		<action name="toZipcodePage">
+			<result>/jsp/member/Zipcode.jsp</result>
+		</action>
+		
+		<action name="zipcode" class="controller.action.MemberAction" method="searchZipcode">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/member/Zipcode.jsp</param>
+			</result>
+			<result name="error" type="dispatcher">
+				<param name="location">/jsp/member/Zipcode.jsp</param>
+			</result>
+		</action>
+		
 		<action name="toLoginPage">
 			<result>/jsp/member/Login.jsp</result>
 		</action>
 		
 		<action name="loginProcess" class="controller.action.MemberAction" method="loginProcess">
-			<result name="login" type="redirectAction">
-				<param name="actionName">toLoginPage</param>
-			</result>
 			<result name="enterprise" type="chain">toEnterpriseMainPage.action</result>
 			<result name="customer" type="chain">toCustomerMainPage.action</result>
-			<result name="admin" type="chain">toAdminMainPage.action</result>
+			<result name="admin" type="chain">
+				<param name="actionName">AllNoRegisterEtpList</param>
+				<param name="namespace">/enterprise</param> 
+			</result>
 		</action>
 		
+		<action name="logoutProcess" class="controller.action.MemberAction" method="logoutProcess">
+			<result type="chain">
+				<param name="actionName">toMainPage</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+				
 		<action name="toEnterpriseMainPage" class="controller.action.MemberAction" method="retrieveEnterpriseInfo">
 			<result name="template1"><!-- Enterprise 메인 페이지 (동적) --></result>
 			<result name="template2"><!-- Enterprise 메인 페이지 (정적1) --></result>
@@ -58,9 +78,6 @@
 		<action name="toCustomerMainPage" class="controller.action.MemberAction" method="retrieveCustomerInfo">
 			<result>Main.jsp</result>
 		</action>
-		
-		<action name="toAdminMainPage">
-			<result><!-- Admin 메인 페이지 --></result>
-		</action>
+
 	</package>
 </struts>

@@ -5,6 +5,8 @@ import java.util.Map;
 
 import model.vo.Member;
 import model.vo.MemberExample;
+import model.vo.Zipcode;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
@@ -38,4 +40,6 @@ public interface MemberMapper {
 	String retrieveEmail(String email);
 
 	String retrieveEtpNum(String etpNumInput);
+	
+	List<Zipcode> searchZipcode(String searchText);
 }

@@ -33,13 +33,17 @@ public interface EnterpriseMapper {
 
     int updateByPrimaryKey(Enterprise record);
     
-    Enterprise NoRegisterEtpList(String key);
+    ///////////////// 컴포넌트
     
-    List<Enterprise> AllNoRegisterEtpList();
-
     int insertComponent(Component component);
     
     List<Component> receiveComponentList(String etpNum);
     
+    //////////////// 사업자 승인 게시판
+    
     int updateEtpStatus(Enterprise record);
+    
+    Enterprise noRegisterEtp(String key);
+    
+    List<Enterprise> allNoRegisterEtpList();
 }

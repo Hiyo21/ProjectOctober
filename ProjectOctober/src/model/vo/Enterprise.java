@@ -1,6 +1,7 @@
 package model.vo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class Enterprise implements Serializable {
     
     private String start;
     private String end;
+    private LocalDate memJoinedDate;
 
     private static final long serialVersionUID = 1L;
 
@@ -196,6 +198,14 @@ public class Enterprise implements Serializable {
 
 	public Integer getEtpStatus() {
 		return etpStatus;
+	}
+
+	public LocalDate getMemJoinedDate() {
+		return memJoinedDate;
+	}
+
+	public void setMemJoinedDate(LocalDate memJoinedDate) {
+		this.memJoinedDate = memJoinedDate;
 	}
 
 	public void setComponent(Component component) {

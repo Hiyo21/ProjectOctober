@@ -84,9 +84,6 @@ public class EnterpriseDAO {
 		try{
 			List<Component> componentList = session.getMapper(EnterpriseMapper.class).receiveComponentList(etpNum);
 		
-			if(componentList != null) session.commit();
-			else session.rollback();
-			
 			System.out.println("============check DAO :: componentList.size() ::" + componentList.size());
 			
 			return componentList;
@@ -95,26 +92,24 @@ public class EnterpriseDAO {
 		}
 	}
 	
-	public List<Enterprise> NoRegisterEtpList(String etpNum){
+	//////////////////////// 미승인 사업자 DAO ////////////////////////
+	
+	public Enterprise noRegisterEtp(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
 		try{			
-			List<Enterprise> etpList = session.selectList("model.mapper.EnterpriseMapper.noRegisterEtpList",etpNum);
-			System.out.println("DAO:"+etpList);
-			if(etpList != null) session.commit();
-			else session.rollback();
-		
-			return etpList;
+			Enterprise etp = session.getMapper(EnterpriseMapper.class).noRegisterEtp(etpNum);
+			System.out.println("DAO:"+etp);
+
+			return etp;
 		}finally{session.close();}
 	}
 	
-	public List<Enterprise> AllNoRegisterEtpList(){
+	public List<Enterprise> allNoRegisterEtpList(){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
 		try{
-			List<Enterprise> etpList = session.selectList("model.mapper.EnterpriseMapper.allNoRegisterEtpList");
-			if(etpList !=null)session.commit();
-			else session.rollback();
+			List<Enterprise> etpList = session.getMapper(EnterpriseMapper.class).allNoRegisterEtpList();
 			
 			return etpList;
 		}finally{session.close();}

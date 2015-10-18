@@ -3,6 +3,7 @@ package controller.action;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.SerializationUtils;
@@ -14,13 +15,16 @@ import model.common.DAOFactory;
 import model.common.VOFactory;
 import model.dao.MemberDAO;
 import model.vo.Member;
+
 import model.vo.WorkingDays;
+
+import model.vo.Zipcode;
 
 public class MemberAction extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 5672648613791884055L;
-	private static final Integer ENTERPRISE_CODE = 1;
-	private static final Integer CUSTOMER_CODE = 2;
-	private static final Integer ADMIN_CODE = 3;
+	private static final int ENTERPRISE_CODE = 1;
+	private static final int CUSTOMER_CODE = 2;
+	private static final int ADMIN_CODE = 3;
 	
 	private Map<String, Object> session;
 	private Member member;
@@ -31,6 +35,18 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private MemberDAO memDAO;
 	private boolean emailExists;
 	private boolean etpNumExists;
+	
+	private String searchText;
+	private List<Zipcode> zipcodeList;
+	private String zipcode;
+	private String address1;
+	private String address2;
+	private String phone;
+	private String phone1;
+	private String phone2;
+	private String etpPhone;
+	private String etpPhone1;
+	private String etpPhone2;
 	
 	
 	public MemberAction() {
@@ -122,6 +138,21 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		}
 	}
 	
+	public String logoutProcess() throws Exception{
+		session.clear();
+		return SUCCESS;
+	}
+	
+	public String searchZipcode() throws Exception{
+		System.out.println("action in");
+		zipcodeList = memDAO.searchZipcode(searchText);
+		if (zipcodeList != null) {
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+	}
+	
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
@@ -187,4 +218,91 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		this.etpNumInput = etpNumInput;
 	}
 
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
+
+	public List<Zipcode> getZipcodeList() {
+		return zipcodeList;
+	}
+
+	public void setZipcodeList(List<Zipcode> zipcodeList) {
+		this.zipcodeList = zipcodeList;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getPhone1() {
+		return phone1;
+	}
+
+	public void setPhone1(String phone1) {
+		this.phone1 = phone1;
+	}
+
+	public String getPhone2() {
+		return phone2;
+	}
+
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
+	}
+
+	public String getEtpPhone() {
+		return etpPhone;
+	}
+
+	public void setEtpPhone(String etpPhone) {
+		this.etpPhone = etpPhone;
+	}
+
+	public String getEtpPhone1() {
+		return etpPhone1;
+	}
+
+	public void setEtpPhone1(String etpPhone1) {
+		this.etpPhone1 = etpPhone1;
+	}
+
+	public String getEtpPhone2() {
+		return etpPhone2;
+	}
+
+	public void setEtpPhone2(String etpPhone2) {
+		this.etpPhone2 = etpPhone2;
+	}
 }
