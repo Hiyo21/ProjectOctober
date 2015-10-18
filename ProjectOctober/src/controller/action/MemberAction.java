@@ -1,17 +1,12 @@
 package controller.action;
 
-import java.io.File;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -33,6 +28,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private Member member;
 	private String email;
 	private String emailInput;
+	private String etpNum;
 	private String etpNumInput;
 	private String password;
 	private MemberDAO memDAO;
@@ -51,13 +47,6 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private String etpPhone1;
 	private String etpPhone2;
 	
-	private File fileToUpload;
-	private String fileToUploadContentType;		
-	private String fileToUploadFileName;
-	
-	private File saveFile;
-	
-	
 	public MemberAction() {
 		memDAO = DAOFactory.createMemberDAO();
 	}
@@ -66,18 +55,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
-	public String toSecondRegistrationPage() throws Exception{
-		String uploadPath = ServletActionContext.getServletContext().getRealPath("/") + "resources/regcards/";
-		System.out.println(uploadPath);
-		
-		File dir = new File(uploadPath);
-		if (!dir.isDirectory()) dir.mkdirs();
-		
-		if(fileToUpload != null && fileToUpload.exists()){
-			saveFile = new File(uploadPath + member.getEnterprise().getEtpNum() + fileToUploadFileName);
-			FileUtils.copyFile(fileToUpload, saveFile);
-		}
-	
+	public String toSecondRegistrationPage() throws Exception{	
 		member.setMemCode(ENTERPRISE_CODE);
 		member.getEnterprise().setEtpEmail(member.getMemEmail());
 		member.getEnterprise().setEtpOwner(member.getMemName());
@@ -169,6 +147,11 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		} else {
 			return ERROR;
 		}
+	}
+	
+	public String toRegCard() throws Exception{
+		System.out.println(etpNumInput);
+		return SUCCESS;
 	}
 	
 	@Override
@@ -324,35 +307,11 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		this.etpPhone2 = etpPhone2;
 	}
 
-	public File getFileToUpload() {
-		return fileToUpload;
+	public String getEtpNum() {
+		return etpNum;
 	}
 
-	public String getFileToUploadContentType() {
-		return fileToUploadContentType;
-	}
-
-	public String getFileToUploadFileName() {
-		return fileToUploadFileName;
-	}
-
-	public void setFileToUpload(File fileToUpload) {
-		this.fileToUpload = fileToUpload;
-	}
-
-	public void setFileToUploadContentType(String fileToUploadContentType) {
-		this.fileToUploadContentType = fileToUploadContentType;
-	}
-
-	public void setFileToUploadFileName(String fileToUploadFileName) {
-		this.fileToUploadFileName = fileToUploadFileName;
-	}
-
-	public File getSaveFile() {
-		return saveFile;
-	}
-
-	public void setSaveFile(File saveFile) {
-		this.saveFile = saveFile;
+	public void setEtpNum(String etpNum) {
+		this.etpNum = etpNum;
 	}
 }

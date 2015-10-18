@@ -292,7 +292,8 @@
 					
 					<br><label for="certificate">사업증명서 업로드</label>
 					<!-- TODO: 사업 증명서 업로드는 파일 업로드 되어야 함! -->
-					
+					<button class="btn btn-warning" onclick="uploadWindowOpen()">업로드...</button> 
+
 				</div>
 			</div>
 		</div>	

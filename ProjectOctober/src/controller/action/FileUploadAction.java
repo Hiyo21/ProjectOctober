@@ -13,7 +13,7 @@ public class FileUploadAction extends ActionSupport implements ServletRequestAwa
 	private static final long serialVersionUID = 1L;
 
 	//private static final String uploadPath = servletReques; //끝나는 라인에 / 꼭 넣기.
-	
+	private String etpNum;
 	private File fileToUpload;
 	private String fileToUploadContentType;		
 	private String fileToUploadFileName;
@@ -25,12 +25,13 @@ public class FileUploadAction extends ActionSupport implements ServletRequestAwa
 		String uploadPath = servletRequest.getSession().getServletContext().getRealPath("/");
 		System.out.println(uploadPath);
 		
+		File dir = new File(uploadPath + "resources/images/regcards/");
+		if (!dir.isDirectory()) dir.mkdirs();
+		
 		if(fileToUpload != null && fileToUpload.exists()){
-			saveFile = new File(uploadPath + fileToUploadFileName);
+			saveFile = new File(uploadPath + etpNum + fileToUploadFileName);
 			FileUtils.copyFile(fileToUpload, saveFile);
 		}
-		
-		
 		return "success";
 	}
 
@@ -65,5 +66,13 @@ public class FileUploadAction extends ActionSupport implements ServletRequestAwa
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		this.servletRequest = request;
+	}
+
+	public String getEtpNum() {
+		return etpNum;
+	}
+
+	public void setEtpNum(String etpNum) {
+		this.etpNum = etpNum;
 	}
 }

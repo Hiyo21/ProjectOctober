@@ -29,8 +29,6 @@ public class MemberDAO extends DAOTemplate {
 			session.close();
 		}
 	}
-	
-
 
 	public boolean retrieveEtpNum(String etpNumInput) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
@@ -62,4 +60,5 @@ public class MemberDAO extends DAOTemplate {
 	public MemberMapper fromMapper(SqlSession s){
 		return s.getMapper(MemberMapper.class);
 	}
+
 }
