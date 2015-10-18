@@ -50,4 +50,7 @@ public interface EnterpriseMapper {
     List<Enterprise> allNoRegisterEtpList();
 
 	Integer insertRegCard(PhotoLocation loc);
+
+    //////////////// 고객 자유 검색 리스트
+    List<Enterprise> CustomerFreeSearchingList(String keyword);
 }

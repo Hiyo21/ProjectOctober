@@ -786,6 +786,20 @@
 	<select id="receiveComponent" resultType="Component">
 		select * from component
 	</select>
+	<!-- 고객 검색 자유 리스트 Mapper -->
+	 
+ 	 <select id="CustomerFreeSearchingList" parameterType="String" resultMap="EnterpriseBaseResultMap">
+ 	 	select * from hr.enterprise where ETP_SUPERCLASS like '%'||#{searchLanguage}||'%'
+			<!-- <where>
+				<if test="etpOwner==null">
+					ETP_OWNER like '%'||#{searchLanguage}||'%' 
+				</if>
+				 	
+				<if test="etpEmail==null">
+					AND etp_email like '%'||#{searchLanguage}||'%'
+				</if>
+			</where>	 -->
+ 	 </select>
 	
 	<!--  사업자 승인 게시판 Mapper  -->
 	

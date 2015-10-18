@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import model.common.MyBatisSqlSessionFactory;
+import model.mapper.CustomerMapper;
 import model.mapper.EnterpriseMapper;
 import model.mapper.MemberMapper;
 import model.mapper.ReservationMapper;

@@ -59,11 +59,11 @@
             <li role="presentation"><a href="#genre">장르</a></li>
             <li role="presentation"><a href="#condition">상태</a></li>
             <li role="presentation">
-            	<form class="navbar-form navbar-left" role="search">
+            	<form action="/ProjectOctober/search/searchFreeKeyword.action" class="navbar-form navbar-left" role="search">
 			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="Search">
+			          <input type="text" name="searchKeyword" class="form-control" placeholder="Search">
 			        </div>
-			        <button type="submit" class="btn btn-default">Submit</button>
+			        <button type="submit" class="btn btn-default">Search</button>
 			     </form>
             </li>
           </ul>

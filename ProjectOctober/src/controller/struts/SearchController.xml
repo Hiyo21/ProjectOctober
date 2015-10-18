@@ -19,8 +19,8 @@
 			<result>/jsp/search/MoodCategory.jsp</result>
 		</action>
 		
-		<action name="searchFreeKeyword" class="controller.action.SearchAction" method="">
-			<result name="success">/jsp/search/searchResult.jsp</result>
+		<action name="searchFreeKeyword" class="controller.action.SearchAction" method="takeEnterpriseList">
+			<result name="success">/jsp/search/SearchResult.jsp</result>
 			<result name="error" type="redirect">toErrorPage.action</result>
 		</action>
 	</package>

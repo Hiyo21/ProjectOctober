@@ -2217,7 +2217,7 @@ window.CustomElements.addModule(function(scope) {
     scope.upgradeDocumentTree = nop;
     scope.upgradeSubtree = nop;
     scope.takeRecords = nop;
-    scope.instanceof = function(obj, base) {
+    scope.instanceof=function(obj, base) {
       return obj instanceof base;
     };
   } else {
