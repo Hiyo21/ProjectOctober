@@ -289,8 +289,14 @@ function print(object){
 			</a>
 	    
 			<div class="grid-stack-item-content">
-				<a href=""><label role="button" class="btn btn-default btn-lg" id="phoneBT" style="width: 250px;">전화 예약(000-0000-0000)</label></a>
-	  			<a href=""><label role="button" class="btn btn-success btn-lg" id="rsvBT" style="width: 250px;">예약 하기</label></a>
+				<div class="btn-group btn-group-justified" role="group" aria-label="..." draggable="true">
+					<div class="btn-group" role="group">
+					 <button type="button" class="btn btn-default btn-lg" id="phoneBT" >전화 예약(000-0000-0000)</button>
+					</div>
+					<div class="btn-group" role="group">
+		 				<button type="button" class="btn btn-success btn-lg" id="rsvBT">예약 하기</button>
+					</div>
+				</div>
 			</div>
 	    </div>
 	    
