@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-checkbox/paper-checkbox.html">
-<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/iron-form/iron-form.html">
 <link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-radio-group/paper-radio-group.html">
 <link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-radio-button/paper-radio-button.html">
 <link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-dropdown-menu/paper-dropdown-menu.html">

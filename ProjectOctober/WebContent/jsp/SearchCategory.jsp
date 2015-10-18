@@ -15,9 +15,61 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-button/paper-button.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/iron-form/iron-form.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-item/paper-item.html">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/Polymer/components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
 <script>
 	$(function(){
 		$('[data-toggle="notification-popover"]').popover();
+	});
+	
+	$("#superclassRad1").click(function(){
+		 $('#group3').hide();
+		$('#group2').hide();
+		$('#group1').show(); 
+		$(".subclassChkTds").prop("checked", false);
+		x= [];
+		document.getElementById("superclass").value = $(this).val();
+	});
+	
+	$("#superclassRad2").click(function(){
+		 $('#group3').hide();
+		$('#group1').hide();
+		$('#group2').show(); 
+		$(".subclassChkTds").prop("checked", false);
+		x= [];
+		document.getElementById("superclass").value = $(this).val();
+	});
+	
+	$('.subclassChkTds').click(function(){
+		var arr = $.map($(this), function(e,i) {
+		    return e.value;
+		});
+		
+		if($(this).prop('checked') == true){
+			x.push(arr.join());
+		}else{
+			x.pop(arr.join());
+		}
+		
+		document.getElementById("je").value = x;
+		var tempt = '' + document.getElementById("je").value;
+		tempt.replace(",", " ").trim();
+		document.getElementById("je").value = tempt;
 	});
 </script>
 <style type="text/css">
@@ -33,7 +85,8 @@ textarea {width:800px; height:300px;overflow:visible;}
 
 <div class="container">
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">특징</a></li>
+    <li class="active">
+    <a data-toggle="tab" href="#home">특징</a></li>
     <li><a data-toggle="tab" href="#menu1">상태</a></li>
     <li><a data-toggle="tab" href="#menu2">장르</a></li>
     <li><a data-toggle="tab" href="#menu3">지역</a></li>
@@ -51,7 +104,10 @@ textarea {width:800px; height:300px;overflow:visible;}
 		                <div class="row">
 		                  <div class="col-md-6"><!-- 왼쪽 -->
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">주차장 여부</button>
+			                  <paper-button toggles>
+			                  custom button content					  
+			                  </paper-button>
+			                  <!-- <button type="button" style="width:300px; height:50px;" class="btn btn-primary">주차장 여부</button> -->
 			                  <br>
 			                  <br>
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
@@ -84,7 +140,7 @@ textarea {width:800px; height:300px;overflow:visible;}
 		                </div>
 		              </div>
 		            </div>
-		          </div>
+		          </div>		          
 		        </div>
 		      </div>
 		    </div>

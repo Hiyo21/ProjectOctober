@@ -3,7 +3,7 @@
 
 <struts>
 	<package name="customer" namespace="/customer" extends="default">
-	
+		
 	</package>
 
 </struts>

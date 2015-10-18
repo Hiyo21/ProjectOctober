@@ -46,4 +46,7 @@ public interface EnterpriseMapper {
     Enterprise noRegisterEtp(String key);
     
     List<Enterprise> allNoRegisterEtpList();
+    
+    //////////////// 고객 자유 검색 리스트
+    List<Enterprise> CustomerFreeSearchingList(String keyword);
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import model.common.MyBatisSqlSessionFactory;
+import model.mapper.CustomerMapper;
 import model.mapper.EnterpriseMapper;
 import model.mapper.ReservationMapper;
 import model.vo.Component;
@@ -138,6 +139,8 @@ public class EnterpriseDAO {
 			return result;
 		}finally{session.close();}
 	}
+	
+	
 
 	public Enterprise receiveServiceList() {
 		// TODO Auto-generated method stub
