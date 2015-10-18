@@ -50,12 +50,12 @@
 		</action>
 		
 		<action name="loginProcess" class="controller.action.MemberAction" method="loginProcess">
-			<result name="login" type="redirectAction">
-				<param name="actionName">toLoginPage</param>
-			</result>
 			<result name="enterprise" type="chain">toEnterpriseMainPage.action</result>
 			<result name="customer" type="chain">toCustomerMainPage.action</result>
-			<result name="admin" type="chain">/enterprise/AllNoRegisterEtpList.action</result>
+			<result name="admin" type="chain">
+				<param name="actionName">AllNoRegisterEtpList</param>
+				<param name="namespace">/enterprise</param> 
+			</result>
 		</action>
 		
 		<action name="logoutProcess" class="controller.action.MemberAction" method="logoutProcess">

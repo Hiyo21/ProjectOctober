@@ -31,7 +31,7 @@
 							<img src="${pageContext.request.contextPath}/image/relaxation_logo_test.jpg" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
 						</div>
 						<div class="col-sm-5 col-md-5 col-lg-7">
-							<h1>[Service Name]</h1>
+							<h1><a href="toMainPage.action">[Service Name]</a></h1>
 						</div>
 						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
 							<br>

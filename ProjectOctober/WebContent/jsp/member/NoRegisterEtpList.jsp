@@ -9,23 +9,21 @@
 <title>NoRegisterEtpList.jsp</title>
 
 <!-- Latest compiled minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 
-<link href="css/web.css" rel="stylesheet">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<!-- Latest complied JavaScript -->
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-<script src="js/jquery.js"></script>
-<script src="js/jquery.ui.min.js"></script>
+<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
 
 
 <script>
 function sendData(ev){
-	location.href= ${pageContext.request.contextPath}+"/enterprise/NoRegisterEtpList.action?etpNum="+ev;
+	alert(ev);
+	location.href= '${pageContext.request.contextPath}'+'/enterprise/NoRegisterEtpList.action?etpNum='+ev;
 	
 }
 </script>
@@ -56,7 +54,8 @@ function sendData(ev){
 				<td><s:property value="etpAddress"/></td><!-- 주소 -->
 				<td><s:property value="memJoinedDate"/></td><!-- 가입신청일 -->
 				
-			<s:if test="etpStatus==2"><!-- 승인여부 -->
+			<!-- 승인여부 -->	
+			<s:if test="etpStatus==2">
 				<td style="COLOR: red">승인거부</td>
 			</s:if>
 			<s:if test="etpStatus==1">
@@ -66,7 +65,7 @@ function sendData(ev){
 				<td style="COLOR: green">승인대기</td>
 			</s:if>
 	
-				<td><input type="button" value="보기" onclick="sendData('${etpNum}')"></td>
+				<td><input type="button" value="보기" onclick="sendData(<s:property value="etpNum"/>)"></td>
 			</tr>			
 		</s:iterator>	
 	</s:if>

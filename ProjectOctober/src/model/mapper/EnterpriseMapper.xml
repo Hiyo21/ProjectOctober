@@ -790,11 +790,11 @@
 	</select>
 	
 	<select id="noRegisterEtpList" parameterType="String" resultMap="EnterpriseBaseResultMap">
-	select * from Enterprise where etp_num=#{etpNum}
+		select * from Enterprise where etp_num=#{etpNum}
 	</select>
 
 	<select id="allNoRegisterEtpList" resultMap="EnterpriseBaseResultMap">
-		select etp.etp_owner, etp.etp_email, etp.etp_phone, etp.etp_address, etp.etp_status, mem.mem_joined_date  
+		select etp.etp_owner, etp.etp_email, etp.etp_phone, etp.etp_address, etp.etp_status, etp.etp_num, mem.mem_joined_date  
 			from Enterprise etp, member mem
 			where etp.etp_email = mem.mem_email 
 			order by etp.etp_status, mem.mem_joined_date

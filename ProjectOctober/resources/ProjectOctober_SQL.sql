@@ -49,6 +49,9 @@ insert into customer values('test12@test.com', '���� ���?', '76544
 
 /-----------------ENTERPRISE test data--------------/
 select * from enterprise;
+
+delete enterprise where etp_num = '1111-11111'
+
 select to_char(etp_start_hour,'hh24:mm:ss'),to_char(etp_end_hour,'hh24:mm:ss') from enterprise;
 
 insert into enterprise values('1234567890', 'test1@test.com', 'tester', '������','����� ������ �Ｚ�� 539', '13575' , 'test������', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('22:00:00', 'hh24:mi:ss')), '123-456-7890', 1, 2, 3, 3, 4, 4, 2, null, null, 'Ÿ�̸�����,���������','Ÿ�̸�����','������','Hello world!',1);
