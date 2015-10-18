@@ -20,13 +20,6 @@
 <script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
 
 
-<script>
-function sendData(ev){
-	alert(ev);
-	location.href='${pageContext.request.contextPath}'+'/enterprise/confrim.action?etpNum='+ev;
-	
-}
-</script>
 </head>
 <body>
 <s:include value="../Header.jsp"/>
@@ -37,9 +30,11 @@ function sendData(ev){
 	<div class="container">
 		<div class="row">
 		
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<div class="container">
+					<!-- 사업자 등록증 업로드 된 이미지 불러오기 -->
 					<img src="../image/Clean.jpg" width="300" height="300" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"/>
+					
 					<!-- modal -->
 					<div class="modal fade" id="myModal" role="dialog">
 						<div class="modal-dialog">
@@ -62,65 +57,69 @@ function sendData(ev){
           	</div><!-- col-md-3 end -->
           	
           <div class="col-md-6">
-          	<s:form name="NoRegisterEtpConfirm" action="/enterprise/Confirm.action" method="post" theme="simple">
           	<input type="hidden" name="etpNum" value="<s:property value="etpNum"/>" >
 
 			<table id="divSearch" class="table table-hover table-condensed table-striped">
-				<s:if test="enterpriseList !=null">
-					<s:iterator value="enterpriseList">	
-						<tr>				
-							<th>사업자명</th>
-							<td><s:property value="etpOwner"/></td>
-						</tr>
-						<tr>
-							<th>이메일</th>
-							<td><s:property value="etpEmail"/></td>
-						</tr>
-						<tr>
-							<th>연락처</th>
-							<td><s:property value="etpPhone"/></td>
-						</tr>
-						<tr>
-							<th>주소</th>	
-							<td><s:property value="etpAddress"/></td>
-						</tr>	
-						<tr>
-							<th>승인여부</th>	
-							<td>
-								<s:if test="etpStatus==2">
-									<h5 style="COLOR: red">승인거부</h5>
-								</s:if>
-								<s:if test="etpStatus==1">
-									<h5 style="COLOR: blue">승인완료</h5>
-								</s:if>
-								<s:if test="etpStatus==0">
-									<h5 style="COLOR: green">승인대기</h5>
-								</s:if>
-							</td>
-						</tr>								
-					</s:iterator>	
+				
+				<s:if test="enterprise !=null">
+					<tr>				
+						<th>사업자명</th>
+						<td><s:property value="enterprise.etpOwner"/></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><s:property value="enterprise.etpEmail"/></td>
+					</tr>
+					<tr>
+						<th>연락처</th>
+						<td><s:property value="enterprise.etpPhone"/></td>
+					</tr>
+					<tr>
+						<th>주소</th>	
+						<td><s:property value="enterprise.etpAddress"/></td>
+					</tr>	
+					<tr>
+						<th>승인여부</th>	
+						<td>
+							<s:if test="enterprise.etpStatus==2">
+								<h5 style="COLOR: red">승인거부</h5>
+							</s:if>
+							<s:if test="enterprise.etpStatus==1">
+								<h5 style="COLOR: blue">승인완료</h5>
+							</s:if>
+							<s:if test="enterprise.etpStatus==0">
+								<h5 style="COLOR: green">승인대기</h5>
+							</s:if>
+						</td>
+					</tr>								
+
 				</s:if>
 			</table>
 			
-			<br><br><br><br>
-	
-			<s:if test='etpStatus==0'>
-				<center>
-				<s:submit value="승인"/>  
+		<br><br><br><br>
+		
+		<s:if test='enterprise.etpStatus==0'>
+			<p align="center">
+				<a href="<s:url value="/enterprise/Confirm.action?etpNum="/>${etpNum}">
+				<button class="btn btn-success btn-md-2">승인</button></a>
 				<a href="<s:url value="/enterprise/Reject.action?etpNum="/>${etpNum}">
-				<input type="button" value="승인거부">	</a>
-				</center>
-			</s:if>					
-			<s:if test='etpStatus==1'>
-				<h2 style="COLOR: blue">승인완료</h2>
-			</s:if>
-			<s:if test='etpStatus==2'>
-				<h2 style="COLOR: red">승인거부</h2>
-			</s:if>
-			
-		</s:form>  
-	</div>
-        </div>
+				<button class="btn btn-danger btn-md-2">승인거부</button></a>
+				<!-- 공통 -->
+				<a href='${pageContext.request.contextPath}/enterprise/AllNoRegisterEtpList.action'>
+				<button class="btn btn-default btn-md-2">돌아가기</button></a>
+			</p>
+		</s:if>					
+		<s:if test='enterprise.etpStatus!=0'>
+			<p align="center">
+				<!-- 공통 -->
+				<a href='${pageContext.request.contextPath}/enterprise/AllNoRegisterEtpList.action'>
+				<button class="btn btn-default btn-md-2">돌아가기</button></a>
+			</p>
+		</s:if> 
+		
+		</div><!-- col-md-5 end -->
+
+        </div> <!-- row end -->
       </div>
     </div>
 

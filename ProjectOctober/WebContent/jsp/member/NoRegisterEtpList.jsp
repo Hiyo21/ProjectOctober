@@ -22,9 +22,7 @@
 
 <script>
 function sendData(ev){
-	alert(ev);
-	location.href= '${pageContext.request.contextPath}'+'/enterprise/NoRegisterEtpList.action?etpNum='+ev;
-	
+	location.href= '${pageContext.request.contextPath}'+'/enterprise/NoRegisterEtp.action?etpNum='+ev;
 }
 </script>
 </head>

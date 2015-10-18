@@ -783,13 +783,14 @@
 		, #{backgroundTheme} , #{etpNum}, #{etpEmail})	
 	</insert>
 
-	
 
 	<select id="receiveComponent" resultType="Component">
 		select * from component
 	</select>
 	
-	<select id="noRegisterEtpList" parameterType="String" resultMap="EnterpriseBaseResultMap">
+	<!--  사업자 승인 게시판 Mapper  -->
+	
+	<select id="noRegisterEtp" parameterType="String" resultMap="EnterpriseBaseResultMap">
 		select * from Enterprise where etp_num=#{etpNum}
 	</select>
 

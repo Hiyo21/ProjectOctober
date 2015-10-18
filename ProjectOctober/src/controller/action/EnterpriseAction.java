@@ -153,9 +153,9 @@ public class EnterpriseAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	public String noRegisterEtpList() throws Exception{
+	public String noRegisterEtp() throws Exception{
 		System.err.println(etpNum);
-		enterpriseList = etpDAO.noRegisterEtpList(etpNum);
+		enterprise = etpDAO.noRegisterEtp(etpNum);
 		System.out.println(enterprise);
 		
 		return SUCCESS;
@@ -164,9 +164,7 @@ public class EnterpriseAction extends ActionSupport{
 	public String confirm() throws Exception{
 		System.err.println("cofirm : "+etpNum);
 		int result=etpDAO.updateEtpStatus(etpNum);
-		
-		enterpriseList = etpDAO.allNoRegisterEtpList();
-		
+				
 		if(result !=1){	
 			return ERROR;			
 		}
