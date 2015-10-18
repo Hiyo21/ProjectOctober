@@ -208,17 +208,16 @@
 									<paper-item value="일">일요일</paper-item>
 								</paper-menu>
 							</paper-dropdown-menu>
+							
+							<paper-dropdown-menu label="시간당 수용 가능 고객">
+								<paper-menu class="dropdown-content">
+									<paper-item value="1">1</paper-item>
+									<paper-item value="2">2</paper-item>
+									<paper-item value="3">3</paper-item>
+									<paper-item value="4">4</paper-item>
+								</paper-menu>
+							</paper-dropdown-menu>
 					<table>
-					<tr>
-						<td>시간당 수용 가능 고객&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td><select class="form-control" id="hourlyCapacity" name="etp.hourlyCapacity">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-						</select></td>
-					</tr>
 					<tr>
 						<td>영업 시작 시간</td>
 						<td><select class="form-control" id="startHour" name="etp.startHour">
