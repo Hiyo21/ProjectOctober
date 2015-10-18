@@ -98,7 +98,7 @@ public class EnterpriseDAO {
 	public Enterprise NoRegisterEtpList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
-		try{
+		try{			
 			Enterprise etp = session.selectOne("model.mapper.EnterpriseMapper.NoRegisterEtpList",etpNum);
 			System.out.println("DAO:"+etp);
 			if(etp != null) session.commit();

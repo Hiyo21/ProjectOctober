@@ -90,7 +90,7 @@ public class EnterpriseAction extends ActionSupport{
 	}
 	
 	public String receiveServiceList() throws Exception{
-		enterprise = etpDAO.receiveServiceList(etpNum);
+		//enterprise = etpDAO.receiveServiceList(etpNum);
 
 		if(enterprise != null) return SUCCESS;
 		else return ERROR;
