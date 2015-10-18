@@ -1,6 +1,7 @@
 package model.vo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -17,56 +18,33 @@ public class Enterprise implements Serializable {
 	private List<Coupon> coupons;
 	
     private String etpNum;
-
     private String etpEmail;
-	
 	private String etpOwner;
-
     private String etpSuperclass;
-
     private String etpAddress;
-
     private String etpZipcode;
-
     private String etpTitle;
-
     private LocalTime etpStartHour;
-
     private LocalTime etpEndHour;
-
     private String etpPhone;
-
     private Integer etpMaleStaff;
-
     private Integer etpFemaleStaff;
-
     private Integer etpCapacity;
-
     private Integer etpRsvDeadline;
-
     private Integer etpSelfNotification;
-
     private Integer etpCstNotification;
-
     private Integer etpTemplateType;
-
     private String etpMapAddress;
-
     private String etpDirection;
-
     private String etpSvcOffered;
-
     private String etpSubclass;
-
     private String etpSpecialize;
-
     private String etpDescription;
-
     private Integer etpStatus;
     
     private String start;
-    
     private String end;
+    private LocalDate memJoinedDate;
 
     private static final long serialVersionUID = 1L;
     
@@ -222,6 +200,14 @@ public class Enterprise implements Serializable {
 
 	public Integer getEtpStatus() {
 		return etpStatus;
+	}
+
+	public LocalDate getMemJoinedDate() {
+		return memJoinedDate;
+	}
+
+	public void setMemJoinedDate(LocalDate memJoinedDate) {
+		this.memJoinedDate = memJoinedDate;
 	}
 
 	public void setComponent(Component component) {

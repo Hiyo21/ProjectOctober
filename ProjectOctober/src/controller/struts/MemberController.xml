@@ -42,7 +42,7 @@
 			</result>
 			<result name="enterprise" type="chain">toEnterpriseMainPage.action</result>
 			<result name="customer" type="chain">toCustomerMainPage.action</result>
-			<result name="admin" type="chain">toAdminMainPage.action</result>
+			<result name="admin" type="chain">/enterprise/AllNoRegisterEtpList.action</result>
 		</action>
 		
 		<action name="toEnterpriseMainPage" class="controller.action.MemberAction" method="retrieveEnterpriseInfo">
@@ -54,9 +54,6 @@
 		<action name="toCustomerMainPage" class="controller.action.MemberAction" method="retrieveCustomerInfo">
 			<result>Main.jsp</result>
 		</action>
-		
-		<action name="toAdminMainPage">
-			<result><!-- Admin 메인 페이지 --></result>
-		</action>
+
 	</package>
 </struts>

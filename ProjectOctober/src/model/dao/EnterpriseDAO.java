@@ -95,7 +95,9 @@ public class EnterpriseDAO {
 		}
 	}
 	
-	public List<Enterprise> NoRegisterEtpList(String etpNum){
+	//////////////////////// 미승인 사업자 DAO ////////////////////////
+	
+	public List<Enterprise> noRegisterEtpList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
 		try{			
@@ -108,11 +110,11 @@ public class EnterpriseDAO {
 		}finally{session.close();}
 	}
 	
-	public List<Enterprise> AllNoRegisterEtpList(){
+	public List<Enterprise> allNoRegisterEtpList(){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
 		try{
-			List<Enterprise> etpList = session.selectList("model.mapper.EnterpriseMapper.allNoRegisterEtpList");
+			List<Enterprise> etpList = session.getMapper(EnterpriseMapper.class).allNoRegisterEtpList();
 			if(etpList !=null)session.commit();
 			else session.rollback();
 			

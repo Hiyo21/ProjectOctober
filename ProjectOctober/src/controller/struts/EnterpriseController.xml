@@ -26,9 +26,11 @@
 			<result type="json" />
 		</action>
 		
+		<!--     미승인 사업자 승인 게시판 Action     -->
+		
 		<!-- 미승인 사업 목록 -->
 		<action name="AllNoRegisterEtpList" class="controller.action.EnterpriseAction" method="allNoRegisterEtpList">
-			<result name="success">/jsp/member/NoRegisterEtpList.jsp</result>
+			<result>/jsp/member/NoRegisterEtpList.jsp</result>
 		</action>
 		
 		<!-- 미승인 사업 정보(ONE) -->

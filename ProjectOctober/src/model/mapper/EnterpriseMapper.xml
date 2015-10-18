@@ -191,6 +191,8 @@
     <result column="ETP_SPECIALIZE" jdbcType="VARCHAR" property="etpSpecialize" />
     <result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
     <result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
+    
+    <result column="MEM_JOINED_DATE" jdbcType="DATE" property="memJoinedDate" typeHandler="model.mapper.typehandler.LocalDateHandler" />
   </resultMap>
 
 
@@ -792,7 +794,10 @@
 	</select>
 
 	<select id="allNoRegisterEtpList" resultMap="EnterpriseBaseResultMap">
-	select * from Enterprise order by etp_status desc
+		select etp.etp_owner, etp.etp_email, etp.etp_phone, etp.etp_address, etp.etp_status, mem.mem_joined_date  
+			from Enterprise etp, member mem
+			where etp.etp_email = mem.mem_email 
+			order by etp.etp_status, mem.mem_joined_date
 	</select>
 	
 	<update id="updateEtpStatus" parameterType="String">

@@ -1,11 +1,14 @@
 select tname from tab;
 
+
 /------------MEMBER_CODE test data----------------/
 select * from member_code;
 
-insert into member_code values('1','�����');
-insert into member_code values('2','�̿���');
-insert into member_code values('3','������');
+insert into member_code values('1','enterprise');
+insert into member_code values('2','customer');
+insert into member_code values('3','administer');
+
+delete member_code where mem_code = 151017;
 /---------------MEMBER test data---------------/
 select * from member;
 
@@ -22,7 +25,11 @@ insert into member values('test10@test.com',2,'tester10','test','123-345-3224',s
 insert into member values('test11@test.com',2,'tester11','test','234-234-5674',sysdate);
 insert into member values('test12@test.com',2,'tester12','test','234-345-4564',sysdate);
 insert into member values('admin',3,'admin','1','000-000-0000',sysdate);
+insert into member values('admin@admin.com',3,'admin','1','999-999-9999',sysdate);
 insert into member values('company2@company.com',1,'company2','com','332-3453-4134',sysdate);
+insert into member values('company0@company.com',1,'company0','com','332-3453-1234',sysdate);
+insert into member values('company9@company.com',1,'company9','com','332-3453-9999',sysdate);
+
 
 /------------------CUSTOMER test data---------------/
 select * from customer;
@@ -45,8 +52,19 @@ select to_char(etp_start_hour,'hh24:mm:ss'),to_char(etp_end_hour,'hh24:mm:ss') f
 
 insert into enterprise values('1234567890', 'test1@test.com', 'tester', '������','����� ������ �Ｚ�� 539', '13575' , 'test������', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('22:00:00', 'hh24:mi:ss')), '123-456-7890', 1, 2, 3, 3, 4, 4, 2, null, null, 'Ÿ�̸�����,���������','Ÿ�̸�����','������','Hello world!',1);
 insert into enterprise values('2345678901', 'company2@company.com', 'company2', '������','���� �ϻ꼭�� ��ȭ�� 32', '25566', '�ϻ긶����', (TO_DATE('11:00:00', 'hh24:mi:ss')), (TO_DATE('21:00:00', 'hh24:mi:ss')), '234-567-8901', 2, 2, 2, 1, 1, 1, 3, null, null, '�ڵ帶����,���������','�ڵ帶����','���Ͽ���','����� �ϻ� ��ü. 2��°',1);
+insert into enterprise values('1010101010', 'company0@company.com', 'company0', '마사지','서울시 금천구 독산동', '25566', '드래곤마사지', (TO_DATE('12:00:00', 'hh24:mi:ss')), (TO_DATE('22:00:00', 'hh24:mi:ss')), '234-567-1234', 2, 2, 2, 1, 1, 1, 3, null, null, '타이','타이','주차장','뼛속까지 시원한 마사지', 0);
+insert into enterprise values('1919191919', 'company9@company.com', 'company9', '네일','서울시 금천구 독산동', '25566', '엔젤네일', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('20:00:00', 'hh24:mi:ss')), '234-567-9999', 2, 2, 2, 1, 1, 1, 3, null, null, '네일','네일','여성전용','섬섬옥수는 손톱에서 부터', 0);
+
+
+	select etp.etp_owner, etp.etp_email, etp.etp_phone, etp.etp_address, etp.etp_status, mem.mem_joined_date  
+		from Enterprise etp, member mem 
+		where mem.mem_email = etp.etp_email
+		order by etp.etp_status, mem.mem_joined_date
+		
 /----------------SERVICE test data-------------/
 select * from service;
+
+create sequence service_seq start with 7;
 
 insert into service values(1, '1234567890', 'test1@test.com', '30�� ��� ������', 10000, (TO_DATE('30:00', 'mi:ss')), '�̰� 1��', '���������', '���� ���� ����', 1);
 insert into service values(2, '1234567890', 'test1@test.com', '60�� ��� ������', 20000, (TO_DATE('01:00:00', 'hh:mi:ss')), '�̰� 2��', '���������', '���� ��', 1);
@@ -75,19 +93,21 @@ select r.*, e.*, s.* from reservation r, enterprise e, service s where r.etp_num
 
 
 /-----------------misc ---------------------------/
-commit;
+commit
 rollback;
 
 /-----------------component test data ---------------/
  * 
 select * from component;
 
-delete component where etp_num2 = '1111-11111';
+delete component where etp_num = '1111-11111';
 
 DROP TABLE COMPONENT 
 	CASCADE CONSTRAINTS;
 	
 create sequence component_seq;
+
+drop sequence component_seq;
 
 select component_seq.currval from dual;
   
