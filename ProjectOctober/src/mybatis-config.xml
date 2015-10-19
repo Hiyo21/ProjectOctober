@@ -41,6 +41,9 @@
 		<typeAlias type="model.vo.Waitlist" alias="Waitlist" />
 		<typeAlias type="model.vo.WaitlistExample" alias="WaitlistExample" />
 		<typeAlias type="model.vo.Zipcode" alias="Zipcode"/>
+		<typeAlias type="test.vo.Highchart1" alias="Highchart1"/>
+		<typeAlias type="test.vo.Highchart2" alias="Highchart2"/>
+		<typeAlias type="test.vo.Highchart3" alias="Highchart3"/>
 	</typeAliases>
 	
 	<typeHandlers>
@@ -72,6 +75,9 @@
 		<mapper resource="model/mapper/ServiceMapper.xml"/>
 		<mapper resource="model/mapper/WaitlistMapper.xml"/>
 		<mapper resource="model/mapper/UnregisteredMapper.xml"/>
+		<mapper resource="test/mapper/Highchart1Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart2Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart3Mapper.xml"/>
 	</mappers>
 	
 </configuration>

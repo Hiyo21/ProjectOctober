@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<!-- 통계를 위한 struts -->
+<struts>
+	<package name="statistics" extends="struts-default" namespace="/">
+		
+		<!-- 고객 성별에 따른 STAFF성별 선호도 -->
+		<action name="highchart1" class="test.action.Action1" method="highchart1">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart2</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+			
+		
+		<!-- 연령대별 고객의 평가 척도  -->
+		<action name="highchart2" class="test.action.Action2" method="highchart2">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart3</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+	
+		<!-- 계절별 선호 서비스 -->
+		<action name="highchart3" class="test.action.Action3" method="highchart3">
+			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>
+		</action>
+	
+	
+	
+	
+	
+	
+	</package>
+</struts>
