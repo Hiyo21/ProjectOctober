@@ -42,4 +42,6 @@ public interface EnterpriseMapper {
     List<Component> receiveComponentList(String etpNum);
     
     int updateEtpStatus(Enterprise record);
+    
+    String showMap(String etpEmail);
 }

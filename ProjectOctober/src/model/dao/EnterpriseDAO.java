@@ -148,4 +148,16 @@ public class EnterpriseDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	////////////////////MAP////////////////////
+	public String showMap(String etpEmail) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			String address = session.selectOne("model.mapper.EnterpriseMapper.showMap", etpEmail);
+			return address;
+		} finally {
+			session.close();
+		}
+	}
 }

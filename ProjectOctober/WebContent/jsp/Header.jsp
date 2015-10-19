@@ -77,8 +77,8 @@
 					</div>
 					<div class="col-xs-6 col-sm-3 col-md-3">
 						<br>
-						<a href="toEnterpriseMyPage" class="btn btn-primary btn-block header-mypage-btn">마이 페이지</a>
-						<a href="logoutProcess" class="btn btn-primary btn-block header-mypage-btn">로그아웃</a>
+						<a href="${pageContext.request.contextPath}/member/toEnterpriseMyPage.action" class="btn btn-primary btn-block header-mypage-btn">마이 페이지</a>
+						<a href="${pageContext.request.contextPath}/member/logoutProcess.action" class="btn btn-primary btn-block header-mypage-btn">로그아웃</a>
 					</div>
 				</div>
 				</s:if>

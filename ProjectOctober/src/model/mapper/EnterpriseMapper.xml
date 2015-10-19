@@ -806,4 +806,9 @@
 	<select id="receiveComponentList" resultMap="ComponentResultMap" parameterType="String">
 		select * from component where etp_num = #{etpNum}
 	</select>
+	
+	
+	<select id="showMap" parameterType="String" resultType="String">
+		select ETP_ADDRESS from ENTERPRISE where ETP_EMAIL = #{etpEmail}
+	</select>
 </mapper>

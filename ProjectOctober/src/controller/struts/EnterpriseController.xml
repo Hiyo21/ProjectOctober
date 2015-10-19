@@ -57,5 +57,13 @@
 			<result type="json"/>
 		</action>
 		
+		
+		<!-- 지도 -->
+		<action name="showMap" class="controller.action.EnterpriseAction" method="showMap">
+			<result name="success">
+				/jsp/component/LocationComponent.jsp
+			</result>
+		</action>
+		
 	</package>
 </struts>

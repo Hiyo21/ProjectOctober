@@ -136,7 +136,7 @@
 	}
 	
 	
-/* 	$(function(){
+ 	$(function(){
 		//Email주소 입력시 중복 체크하는 AJAX 기능.
 		$('#email').keyup(function(){
 			var tempEmail = $('#email').val();
@@ -189,7 +189,7 @@
 			});
 		});
 			
-	}); */
+	});
 	
 	function zipcodeOpen() {
 		window.open("${pageContext.request.contextPath}/member/toZipcodePage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
