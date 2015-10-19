@@ -7,14 +7,15 @@ import org.apache.ibatis.session.SqlSession;
 import model.common.MyBatisSqlSessionFactory;
 import model.mapper.CustomerMapper;
 import model.mapper.EnterpriseMapper;
+import model.mapper.MemberMapper;
 import model.mapper.ReservationMapper;
 import model.vo.Component;
 import model.vo.Enterprise;
+import model.vo.PhotoLocation;
 import model.vo.Reservation;
 
 
-public class EnterpriseDAO {
-	
+public class EnterpriseDAO extends DAOTemplate{
 	
 	public List<Reservation> retrieveReservations(){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
@@ -140,10 +141,29 @@ public class EnterpriseDAO {
 		}finally{session.close();}
 	}
 	
-	
+	public Integer uploadRegCard(PhotoLocation loc) {
+		return dataModificationTemplate(s -> {return fromMapper(s).insertRegCard(loc);});
+	}
 
-	public Enterprise receiveServiceList() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	////////////////////MAP////////////////////
+	public String showMap(String etpEmail) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			String address = session.selectOne("model.mapper.EnterpriseMapper.showMap", etpEmail);
+			return address;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public Enterprise selectByEtpNum(String etpNum){
+		return dataRetrievalTemplate(s -> {return fromMapper(s).selectByEtpNum(etpNum);});
+	}
+	
+	
+	
+	public EnterpriseMapper fromMapper(SqlSession s){
+		return s.getMapper(EnterpriseMapper.class);
 	}
 }

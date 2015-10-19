@@ -75,6 +75,7 @@
 						<!-- jQuery로 새로운 팝업창/dialog창 열고 notification 리스트 불러오게 링크는 JS 메소드로..어떻게?-->
 						<a href="#~~method~~(#session.loginId)" data-toggle="notification-popover" placement="auto" title="${session.loginName}님의 알림" data-content="여기서가 문제. 리스트를 받아와야 함"><button class="btn btn-warning btn-btn block"> 알림 <span class="badge">1<!-- 여기에는  notification 넘버...어떻게??--></span></button></a>
 					</div>
+
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-md-2">메인페이지</a>
 						<s:if test="#session.memCode == 1">

@@ -80,3 +80,4 @@ local.properties
 #JRebel config file
 ProjectOctober/src/rebel.xml
 *.exerd
+/build/

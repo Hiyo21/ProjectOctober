@@ -51,19 +51,33 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		memDAO = DAOFactory.createMemberDAO();
 	}
 	
-	public String toFirstRegistrationPage() throws Exception{
-		return SUCCESS;
+	public String backToFirstRegistrationPage() throws Exception{
+		System.out.println(email);
+		int result = memDAO.deleteEnterpriseInfoFirstStep(email);
+		if(result != 1) return ERROR;
+		else result = memDAO.deleteMemberInfo(email);
+			
+		if(result == 1) return SUCCESS;
+		else return ERROR;
 	}
 	
-	public String toSecondRegistrationPage() throws Exception{	
-		member.setMemCode(ENTERPRISE_CODE);
-		member.getEnterprise().setEtpEmail(member.getMemEmail());
-		member.getEnterprise().setEtpOwner(member.getMemName());
-		member.getEnterprise().setEtpStatus(0);
-		session.put("tempMember", member);
-
-		if(member != null) return SUCCESS;
+	public String toRegCardCheckPage() throws Exception{
+		doPreliminarySteps(member);
+		int result = memDAO.insertMemberInfo(member);
+		
+		if(result != 1) return ERROR;
+		else result = memDAO.insertEnterpriseInfoFirstStep(member.getEnterprise());
+		
+		if(result == 1) return SUCCESS;
 		else return ERROR;
+	}
+
+	public String toSecondRegistrationPage() throws Exception{
+		member = memDAO.retrieveMemberInfo(etpNum);
+		System.err.println(member);
+		System.err.println(member.getEnterprise());
+		System.err.println(member.getEnterprise().getPhotoLocation());
+		return SUCCESS;
 	}
 	
 	public String toThirdRegistrationPage() throws Exception{
@@ -149,10 +163,18 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		}
 	}
 	
-	public String toRegCard() throws Exception{
-		System.out.println(etpNumInput);
-		return SUCCESS;
+	//======================================================/
+	private void doPreliminarySteps(Member member) {
+		member.getEnterprise().setEtpOwner(member.getMemName());
+		member.setMemCode(ENTERPRISE_CODE);
+		member.getEnterprise().setEtpEmail(member.getMemEmail());
+		member.getEnterprise().setEtpAddress(address1 + " " + address2);
+		member.getEnterprise().setEtpZipcode(zipcode);
+		member.setMemPhone(phone + "-" + phone1 + "-" + phone2);
+		member.getEnterprise().setEtpPhone(etpPhone + "-" + etpPhone1 + "-" + etpPhone2);
+		member.getEnterprise().setEtpStatus(0);
 	}
+	
 	
 	@Override
 	public void setSession(Map<String, Object> session) {
