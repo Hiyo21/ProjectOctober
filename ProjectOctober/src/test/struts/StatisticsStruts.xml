@@ -26,9 +26,16 @@
 	
 		<!-- 계절별 선호 서비스 -->
 		<action name="highchart3" class="test.action.Action3" method="highchart3">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart4</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<!-- 직업별 평균 소비 지출액 -->
+		<action name="highchart4" class="test.action.Action4" method="highchart4">
 			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>
 		</action>
-	
 	
 	
 	

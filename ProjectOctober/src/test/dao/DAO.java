@@ -8,6 +8,7 @@ import model.common.MyBatisSqlSessionFactory;
 import test.vo.Highchart1;
 import test.vo.Highchart2;
 import test.vo.Highchart3;
+import test.vo.Highchart4;
 
 public class DAO {
 
@@ -48,6 +49,20 @@ public class DAO {
 			sqlsession.close();
 		}		
 	 		 
+		
+		return list;
+	}
+
+	//직업별 평균 소비 지출액
+	public List<Highchart4> highchart4DAO() {
+		List<Highchart4> list = null;
+		
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("highchart4");				
+		}finally{
+			sqlsession.close();
+		}		 		
 		
 		return list;
 	}

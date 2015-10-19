@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 $(function () {
-    $('#container').highcharts({
+    $('#container3').highcharts({
         chart: {
             type: 'column'
         },
@@ -146,6 +146,6 @@ $(function () {
 <title>계절별 선호하는 서비스</title>
 </head>
 <body>
-<div id="container" style="min-width: 1300px; height: 400px; margin: 0 auto"></div>
+<div id="container3" style="min-width: 1300px; height: 400px; margin: 0 auto"></div>
 </body>
 </html>

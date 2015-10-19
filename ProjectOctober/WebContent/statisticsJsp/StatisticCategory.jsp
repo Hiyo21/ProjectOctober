@@ -55,26 +55,33 @@ textarea {width:800px; height:300px;overflow:visible;}
       <h3>통계1</h3>
          <s:include value="Highchart1.jsp"/>        
      </div> <!-- 통계1 -->
+     
    	 <div id="menu1" class="tab-pane fade" >
    		  <h3>통계2</h3>
    		 <s:include value="Highchart2.jsp"/>       	
    	  </div>	<!-- 통계2 -->
+   	 
    	  <div id="menu2" class="tab-pane fade">
       	<h3>통계3</h3>	
    		  <s:include value="Highchart3.jsp"/>  		   
    	  </div><!-- 통계3 -->
-   	   <div id="menu3" class="tab-pane fade">
-     	  <h3>통계4</h3>
-      	   
+   	 
+   	  <div id="menu3" class="tab-pane fade">
+     	 <h3>통계4</h3>
+      	  <s:include value="Highchart4.jsp"/>  
       </div><!-- 통계4 -->
-       <div id="menu4" class="tab-pane fade">
+      
+      <div id="menu4" class="tab-pane fade">
      	  <h3>통계5</h3>
       	   
       </div><!-- 통계5 -->
-       <div id="menu5" class="tab-pane fade">
+      
+      <div id="menu5" class="tab-pane fade">
      	  <h3>통계6</h3>
       	   
+      
       </div><!-- 통계6 --> 
+      
       <div id="menu6" class="tab-pane fade">
      	  <h3>통계7</h3>
       	   

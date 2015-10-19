@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.mapper.highchart4Mapper.xml" >
+	<select id="highchart4" resultType="Highchart4">
+		select cst_job cstJob, floor(avg(MONEY)) moneyflow
+		from
+		(
+		select cst_email, sum(pmt_amount) as MONEY from
+		(
+		select r.cst_email ,pmt_amount from payment_record p, Reservation r
+		where p.rsv_num = r.rsv_num
+		)
+		group by cst_email
+		)
+		 A RIGHT OUTER JOIN REVIEW B
+		ON A.cst_email = B.cst_email group by 
+		cst_job
+				
+	</select>
+</mapper>

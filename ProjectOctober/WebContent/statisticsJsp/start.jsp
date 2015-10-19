@@ -10,7 +10,7 @@
 <a href="highchart1.action">고객 성별, staff성별 선호도</a>
 <a href="highchart2.action">연령대별 고객 평가 척도</a>
 <a href="highchart3.action">계절별 선호 서비스</a>
-
+<a href="highchart4.action">직업별 평균 소비지출액 통계</a>
 
 
 </body>
