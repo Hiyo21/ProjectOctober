@@ -47,9 +47,10 @@ function saveInfo() {
 
 </script>
 
-
 </head>
+
 <body>
+
 <div class="container-fluid" style="vertical-align: middle;">
 	<div class="row">
 		<div class="col-md-4">
@@ -61,10 +62,10 @@ function saveInfo() {
 	  			<div id="infoContentIn">
 			  		<h3>정보를 적어주세요</h3>
 	  			</div>
-				<p><a class="btn btn-default btn-md" href="#" role="button" data-toggle="modal" data-target="#infoModal">편집</a></p>
+				<p><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#infoModal">편집</a></p>
 			</div>
-		</div>
-	</div>
+		</div><!-- col-md-8 end -->
+	</div><!-- row end -->
 </div>	
 
 <!-- htmleditor modal -->
@@ -85,5 +86,6 @@ function saveInfo() {
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
 </body>
 </html>

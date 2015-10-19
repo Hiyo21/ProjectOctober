@@ -77,17 +77,18 @@ insert into enterprise values('2345678901', 'company2@company.com', 'company2', 
 /----------------SERVICE test data-------------/
 select * from service;
 
-create sequence service_seq start with 7;
+drop sequence service_seq;
+create sequence service_seq;
 
-insert into service values(1, '1234567890', 'test1@test.com', '30占쏙옙 占쏙옙占?? 占쏙옙占쏙옙占쏙옙', 10000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 1占쏙옙', '占쏙옙占쏙옙占쏙옙占쏙옙占??', '占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙', 1);
-insert into service values(2, '1234567890', 'test1@test.com', '60占쏙옙 占쏙옙占?? 占쏙옙占쏙옙占쏙옙', 20000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 2占쏙옙', '占쏙옙占쏙옙占쏙옙占쏙옙占??', '占쏙옙占쏙옙 占쏙옙', 1);
-insert into service values(3, '1234567890', 'test1@test.com', '30占쏙옙 占쌘듸옙 占쏙옙占쏙옙占쏙옙', 15000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 3占쏙옙', '占쌘드마占쏙옙占쏙옙', '占쏙옙占쏙옙품 占쏙옙占쏙옙', 1);
-insert into service values(4, '1234567890', 'test1@test.com', '60占쏙옙 占쌘듸옙 占쏙옙占쏙옙占쏙옙', 30000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 4占쏙옙', '占쌘드마占쏙옙占쏙옙', '占쏙옙占쏙옙품 占쏙옙占쏙옙', 1);
-insert into service values(5, '1234567890', 'test1@test.com', '30占쏙옙 풋 占쏙옙占쏙옙占쏙옙', 20000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 5占쏙옙', '풋占쏙옙占쏙옙占쏙옙', 'HOT', 1);
-insert into service values(6, '1234567890', 'test1@test.com', '60占쏙옙 풋 占쏙옙占쏙옙占쏙옙', 40000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 6占쏙옙', '풋占쏙옙占쏙옙占쏙옙', 'HOT', 1);
-insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30占쏙옙 타占쏙옙 占쏙옙占쏙옙占쏙옙', 30000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 8占쏙옙', '타占싱몌옙占쏙옙占쏙옙', '占쏙옙占쏙옙占쏙옙', 1);
-insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60占쏙옙 타占쏙옙 占쏙옙占쏙옙占쏙옙', 60000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 9占쏙옙', '타占싱몌옙占쏙옙占쏙옙', '占쏙옙占쏙옙占쏙옙', 1);
-insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '90占쏙옙 타占쏙옙 占쏙옙占쏙옙占쏙옙', 90000, (TO_DATE('01:30:00', 'hh:mi:ss')), '占싱곤옙 10占쏙옙', '타占싱몌옙占쏙옙占쏙옙', 'VIP占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 상반신마사지', 10000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 1占쏙옙', '占쏙옙占쏙옙占쏙옙占쏙옙占??', '占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60분 전신 마사지', 20000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 2占쏙옙', '占쏙옙占쏙옙占쏙옙占쏙옙占??', '占쏙옙占쏙옙 占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 상반신 마사지', 15000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 3占쏙옙', '占쌘드마占쏙옙占쏙옙', '占쏙옙占쏙옙품 占쏙옙占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60분 아로마 전신 마사지', 30000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 4占쏙옙', '占쌘드마占쏙옙占쏙옙', '占쏙옙占쏙옙품 占쏙옙占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 아로마 상반신 마사지', 20000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 5占쏙옙', '풋占쏙옙占쏙옙占쏙옙', 'HOT', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60분 스페셜 전신 마사지', 40000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 6占쏙옙', '풋占쏙옙占쏙옙占쏙옙', 'HOT', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 스페셜 상반신 마사지', 30000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 8占쏙옙', '타占싱몌옙占쏙옙占쏙옙', '占쏙옙占쏙옙占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60분 프리미엄 전신 마사지', 60000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 9占쏙옙', '타占싱몌옙占쏙옙占쏙옙', '占쏙옙占쏙옙占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '90분 VVIP 전신 마사지', 90000, (TO_DATE('01:30:00', 'hh:mi:ss')), '占싱곤옙 10占쏙옙', '타占싱몌옙占쏙옙占쏙옙', 'VIP占쏙옙', 1);
 
 /-----------------COUPON test data---------------------------/
 select * from coupon;
