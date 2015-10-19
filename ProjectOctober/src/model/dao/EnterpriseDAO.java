@@ -144,6 +144,18 @@ public class EnterpriseDAO extends DAOTemplate{
 	public Integer uploadRegCard(PhotoLocation loc) {
 		return dataModificationTemplate(s -> {return fromMapper(s).insertRegCard(loc);});
 	}
+
+	
+	////////////////////MAP////////////////////
+	public String showMap(String etpEmail) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			String address = session.selectOne("model.mapper.EnterpriseMapper.showMap", etpEmail);
+			return address;
+		} finally {
+			session.close();
+		}
+	}
 	
 	public Enterprise selectByEtpNum(String etpNum){
 		return dataRetrievalTemplate(s -> {return fromMapper(s).selectByEtpNum(etpNum);});
@@ -154,5 +166,4 @@ public class EnterpriseDAO extends DAOTemplate{
 	public EnterpriseMapper fromMapper(SqlSession s){
 		return s.getMapper(EnterpriseMapper.class);
 	}
-
 }

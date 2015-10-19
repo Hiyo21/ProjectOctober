@@ -53,4 +53,14 @@ public interface MemberMapper {
 	Integer deleteMemberInfo(String email);
 
 	Integer deleteEnterpriseInfoFirstStep(String email);
+
+	Integer updateWorkingDays(Member member);
+
+	Integer updateEtpDetailsFirst(Member tempMember);
+
+	Integer updateWorkingHours(Member tempMember);
+
+	Integer insertWorkingDays(Member tempMember);
+
+	Integer finalizeRegistration(Member tempMember);
 }

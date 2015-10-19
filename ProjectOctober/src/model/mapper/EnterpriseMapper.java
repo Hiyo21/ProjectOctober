@@ -41,10 +41,12 @@ public interface EnterpriseMapper {
     
     List<Component> receiveComponentList(String etpNum);
     
-    //////////////// 사업자 승인 게시판
-    
     int updateEtpStatus(Enterprise record);
     
+    String showMap(String etpEmail);
+
+    //////////////// 사업자 승인 게시판
+
     Enterprise noRegisterEtp(String key);
     
     List<Enterprise> allNoRegisterEtpList();

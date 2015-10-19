@@ -9,16 +9,12 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
-
-<!-- Custom styles for this template -->
-<link href="navbar-fixed-top.css" rel="stylesheet">
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Static Template ver.Tab</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="//cdn.ckeditor.com/4.5.4/basic/ckeditor.js"></script>
 
 
 <script>
@@ -31,13 +27,12 @@
 	        var y = $(event.relatedTarget).text();  // previous tab
 	        $(".act span").text(x);
 	        $(".prev span").text(y);
-	    });
-	    
-	    CKEDITOR.replace('textedit');
-	    CKEDITOR.editorConfig = function( config ) {
-	    	config.language = 'ko';
-	    }
+	    });  
 	    	
+	});
+	
+	$(function(){
+		$('#outLineContentIn').hide();
 	});
 	
 </script>
@@ -87,7 +82,7 @@
 				<s:include value="./SvcComponent.jsp"/>			
 			</div>
 				<div id="galCP" class="tab-pane fade">
-		 				<s:include value="./GalleryComponent.jsp"/>	
+		 			<s:include value="./GalleryComponent.jsp"/>	
 				</div>
 			<div id="locationCP" class="tab-pane fade">
 				<div class="panel panel-default">

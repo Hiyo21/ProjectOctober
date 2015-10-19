@@ -96,6 +96,9 @@
 			<result name="input">/jsp/member/UploadRegCard.jsp</result>
 		</action>
 		
+		<action name="finalizeRegistration" class="controller.action.MemberAction" method="finalizeRegistration">
+			<result>/jsp/member/WelcomeEnterprise.jsp</result>
+		</action>
 
 	</package>
 </struts>
