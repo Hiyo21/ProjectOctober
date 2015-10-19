@@ -826,6 +826,10 @@
 		select * from component where etp_num = #{etpNum}
 	</select>
 	
+	<select id="showMap" parameterType="String" resultType="String">
+		select ETP_ADDRESS from ENTERPRISE where ETP_EMAIL = #{etpEmail}
+	</select>
+
 	<insert id="insertRegCard" parameterType="PhotoLocation">
 		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
 	</insert>
