@@ -313,6 +313,8 @@ $(document).ready(function(){
 					  <div class="panel panel-default">
 					    <div class="panel-heading">
 					      <h4 class="panel-title">
+					      
+		<!-- 코랩스를 쓰려면 href와 id를 연결해 줘야 하는데 href="#<s:property value=""/>"값으로 href값을 줘야함 -->
 					        <a data-toggle="collapse" href="#reservation1">15/09/20 릴렉스 마사지</a>
 					      </h4>      
 					      </div>

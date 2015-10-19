@@ -351,12 +351,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="model.vo.Enterprise" resultMap="EnterpriseResultMap">
+  <select id="selectByEtpNum" parameterType="model.vo.Enterprise" resultMap="EnterpriseResultMap">
     select 
     <include refid="Base_Column_List" />
     from HR.ENTERPRISE
-    where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
-      and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
+    where ETP_NUM = #{etpNum}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="model.vo.Enterprise">
     delete from HR.ENTERPRISE
@@ -787,6 +786,20 @@
 	<select id="receiveComponent" resultType="Component">
 		select * from component
 	</select>
+	<!-- 고객 검색 자유 리스트 Mapper -->
+	 
+ 	 <select id="CustomerFreeSearchingList" parameterType="String" resultMap="EnterpriseBaseResultMap">
+ 	 	select * from hr.enterprise where ETP_SUPERCLASS like '%'||#{searchLanguage}||'%'
+			<!-- <where>
+				<if test="etpOwner==null">
+					ETP_OWNER like '%'||#{searchLanguage}||'%' 
+				</if>
+				 	
+				<if test="etpEmail==null">
+					AND etp_email like '%'||#{searchLanguage}||'%'
+				</if>
+			</where>	 -->
+ 	 </select>
 	
 	<!--  사업자 승인 게시판 Mapper  -->
 	
@@ -812,4 +825,12 @@
 	<select id="receiveComponentList" resultMap="ComponentResultMap" parameterType="String">
 		select * from component where etp_num = #{etpNum}
 	</select>
+	
+	<select id="showMap" parameterType="String" resultType="String">
+		select ETP_ADDRESS from ENTERPRISE where ETP_EMAIL = #{etpEmail}
+	</select>
+
+	<insert id="insertRegCard" parameterType="PhotoLocation">
+		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
+	</insert>
 </mapper>

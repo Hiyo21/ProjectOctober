@@ -30,6 +30,7 @@ public class EnterpriseAction extends ActionSupport{
 
 	private String etpNum;
 	private String etpEmail;
+	private String address;
 
 	
 	
@@ -182,6 +183,18 @@ public class EnterpriseAction extends ActionSupport{
 		}
 		return SUCCESS;			
 	}
+	
+	
+	
+	////////////////////MAP////////////////////
+	public String showMap() {
+		etpEmail = "111";
+		address = etpDAO.showMap(etpEmail);
+		System.out.println(address);
+		return SUCCESS;
+	}
+	
+	
 
 
 	
@@ -258,4 +271,12 @@ public class EnterpriseAction extends ActionSupport{
 		this.etpEmail = etpEmail;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
 }
