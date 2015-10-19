@@ -64,6 +64,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	public String backToFirstRegistrationPage() throws Exception{
 		System.out.println(email);
+		if(email == null) email = (String) ActionContext.getContext().getSession().get("email");
 		int result = memDAO.deleteEnterpriseInfoFirstStep(email);
 		if(result != 1) return ERROR;
 		else result = memDAO.deleteMemberInfo(email);
@@ -75,7 +76,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	public String toRegCardCheckPage() throws Exception{
 		doPreliminarySteps(member);
 		int result = memDAO.insertMemberInfo(member);
-		
+		ActionContext.getContext().getSession().put("email", member.getEnterprise().getEtpEmail());
 		if(result != 1) return ERROR;
 		else result = memDAO.insertEnterpriseInfoFirstStep(member.getEnterprise());
 		
@@ -180,7 +181,6 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		int result = memDAO.finalizeRegistration(tempMember);
 		if(result == 0) return ERROR;
 		else return SUCCESS;
-	
 	}
 	
 	
