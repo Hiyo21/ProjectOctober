@@ -8,5 +8,6 @@
 </head>
 <body>
 	<s:include value="../Header.jsp" />
+	<h2>특징 카테고리</h2>
 </body>
 </html>

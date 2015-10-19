@@ -33,49 +33,18 @@
 <script src="${pageContext.request.contextPath}/Polymer/components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
 <script>
-	$(function(){
-		$('[data-toggle="notification-popover"]').popover();
-	});
-	
-	$("#superclassRad1").click(function(){
-		 $('#group3').hide();
-		$('#group2').hide();
-		$('#group1').show(); 
-		$(".subclassChkTds").prop("checked", false);
-		x= [];
-		document.getElementById("superclass").value = $(this).val();
-	});
-	
-	$("#superclassRad2").click(function(){
-		 $('#group3').hide();
-		$('#group1').hide();
-		$('#group2').show(); 
-		$(".subclassChkTds").prop("checked", false);
-		x= [];
-		document.getElementById("superclass").value = $(this).val();
-	});
-	
-	$('.subclassChkTds').click(function(){
-		var arr = $.map($(this), function(e,i) {
-		    return e.value;
-		});
-		
-		if($(this).prop('checked') == true){
-			x.push(arr.join());
-		}else{
-			x.pop(arr.join());
-		}
-		
-		document.getElementById("je").value = x;
-		var tempt = '' + document.getElementById("je").value;
-		tempt.replace(",", " ").trim();
-		document.getElementById("je").value = tempt;
-	});
+$(document).ready(function(){
+    $("#button1").click(function(){
+    	alert($("#button1").val());
+    	location.href= '${pageContext.request.contextPath}'+'/enterprise/categorySearch.action?button='+$("#button1").val();
+    });
+});
 </script>
 <style type="text/css">
 textarea {width:800px; height:300px;overflow:visible;}
 
 </style>
+
 <title>이용자 검색 카테고리</title>
 
 </head>
@@ -104,14 +73,11 @@ textarea {width:800px; height:300px;overflow:visible;}
 		                <div class="row">
 		                  <div class="col-md-6"><!-- 왼쪽 -->
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <paper-button toggles>
-			                  custom button content					  
-			                  </paper-button>
-			                  <!-- <button type="button" style="width:300px; height:50px;" class="btn btn-primary">주차장 여부</button> -->
+			                  <button type="button" id="button1" style="width:300px; height:50px;" class="btn btn-primary" value="남성전용">남성전용</button>
 			                  <br>
 			                  <br>
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">남성전용</button>
+				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary" value="주차장여부">주차장여부</button>
 				  			  <br>
 				  			  <br>
 				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
