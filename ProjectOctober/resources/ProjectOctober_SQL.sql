@@ -13,6 +13,8 @@ delete member_code where mem_code = 151017;
 /---------------MEMBER test data---------------/
 select * from member;
 
+select * from MEMBER m, ENTERPRISE e, PHOTO_LOCATION p where e.etp_num = '3456789017' and m.mem_email = e.etp_email and e.etp_email = p.etp_email;
+
 insert into member values('test1@test.com',1,'tester','zxc','987-654-398',sysdate);
 insert into member values('test2@test.com',2,'tester2','asd','453-234-1674',sysdate);
 insert into member values('test3@test.com',2,'tester3','test','234-345-3764',sysdate);
@@ -95,7 +97,7 @@ select * from coupon;
 create sequence coupon_seq;
 
 insert into coupon values(coupon_seq.nextval, '1234567890', 'test1@test.com', '占쌀뤄옙占쏙옙 특占쏙옙 30% 占쏙옙占쏙옙', 'hw', 0.3, (TO_DATE('2015-10-15','yyyy-MM-dd')), (TO_DATE('2015-10-25','yyyy-MM-dd')));
-
+(TO_DATE '02:00:00')
 /------------RESERVATION test data------------------------/
 select * from reservation;
 create sequence reservation_seq;
@@ -105,10 +107,13 @@ insert into reservation values(reservation_seq.nextval, 6, null, '1234567890', '
 /----------------select queries--------------------------/
 select r.*, e.*, s.* from reservation r, enterprise e, service s where r.etp_num = e.ETP_NUM and e.ETP_NUM = s.ETP_NUM and r.svc_num = s.svc_num order by rsv_num;
 
+select m.*, e.* from member m, enterprise e where m.mem_email = e.etp_email and e.etp_e;
 
 /-----------------misc ---------------------------/
 commit
 rollback;
+
+
 
 /-----------------component test data ---------------/
  * 
@@ -195,10 +200,13 @@ ALTER TABLE component RENAME COLUMN etp_email2 TO etp_email;
 
 
 /---------------------------------------/
-
+commit;
 /----------WAITLIST 지우기------------/
 drop table WAITLIST cascade constraints;
 
 /------------PHOTO_LOCATION----------/
 select * from photo_location;
 create sequence photo_location_seq;
+
+/------------Working Days----------/
+select * from working_days;

@@ -6,8 +6,9 @@
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
     <result column="SVC_TITLE" property="svcTitle" jdbcType="VARCHAR" />
+    <result column="SVC_CODE" property="svcCode" jdbcType="VARCHAR" />
     <result column="SVC_COST" property="svcCost" jdbcType="DECIMAL" />
-    <result column="SVC_TIME" property="svcTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    <result column="SVC_TIME" property="svcTime" jdbcType="VARCHAR" />
     <result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
     <result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
     <result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
@@ -33,25 +34,6 @@
                   and ${criterion.condition}
                   <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-            <foreach collection="criteria.svcTimeCriteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalTimeHandler}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem,typeHandler=model.mapper.typehandler.LocalTimeHandler}
                   </foreach>
                 </when>
               </choose>
@@ -85,33 +67,14 @@
                 </when>
               </choose>
             </foreach>
-            <foreach collection="criteria.svcTimeCriteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalTimeHandler}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem,typeHandler=model.mapper.typehandler.LocalTimeHandler}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
           </trim>
         </if>
       </foreach>
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    SVC_NUM, ETP_NUM, ETP_EMAIL, SVC_TITLE, SVC_COST, SVC_TIME, SVC_DESCRIPTION, SVC_CATEGORY, 
-    SVC_SPECIALIZE, SVC_COUNT
+    SVC_NUM, ETP_NUM, ETP_EMAIL, SVC_TITLE, SVC_CODE, SVC_COST, SVC_TIME, SVC_DESCRIPTION, 
+    SVC_CATEGORY, SVC_SPECIALIZE, SVC_COUNT
   </sql>
   <select id="selectByExample" resultMap="ServiceResultMap" parameterType="model.vo.ServiceExample" >
     select
@@ -145,13 +108,13 @@
   </delete>
   <insert id="insert" parameterType="model.vo.Service" >
     insert into HR.SERVICE (SVC_NUM, ETP_NUM, ETP_EMAIL, 
-      SVC_TITLE, SVC_COST, SVC_TIME, 
-      SVC_DESCRIPTION, SVC_CATEGORY, SVC_SPECIALIZE, 
-      SVC_COUNT)
+      SVC_TITLE, SVC_CODE, SVC_COST, 
+      SVC_TIME, SVC_DESCRIPTION, SVC_CATEGORY, 
+      SVC_SPECIALIZE, SVC_COUNT)
     values (#{svcNum,jdbcType=DECIMAL}, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
-      #{svcTitle,jdbcType=VARCHAR}, #{svcCost,jdbcType=DECIMAL}, #{svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler}, 
-      #{svcDescription,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}, #{svcSpecialize,jdbcType=VARCHAR}, 
-      #{svcCount,jdbcType=DECIMAL})
+      #{svcTitle,jdbcType=VARCHAR}, #{svcCode,jdbcType=VARCHAR}, #{svcCost,jdbcType=DECIMAL}, 
+      #{svcTime,jdbcType=VARCHAR}, #{svcDescription,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}, 
+      #{svcSpecialize,jdbcType=VARCHAR}, #{svcCount,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="model.vo.Service" >
     insert into HR.SERVICE
@@ -167,6 +130,9 @@
       </if>
       <if test="svcTitle != null" >
         SVC_TITLE,
+      </if>
+      <if test="svcCode != null" >
+        SVC_CODE,
       </if>
       <if test="svcCost != null" >
         SVC_COST,
@@ -200,11 +166,14 @@
       <if test="svcTitle != null" >
         #{svcTitle,jdbcType=VARCHAR},
       </if>
+      <if test="svcCode != null" >
+        #{svcCode,jdbcType=VARCHAR},
+      </if>
       <if test="svcCost != null" >
         #{svcCost,jdbcType=DECIMAL},
       </if>
       <if test="svcTime != null" >
-        #{svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+        #{svcTime,jdbcType=VARCHAR},
       </if>
       <if test="svcDescription != null" >
         #{svcDescription,jdbcType=VARCHAR},
@@ -241,11 +210,14 @@
       <if test="record.svcTitle != null" >
         SVC_TITLE = #{record.svcTitle,jdbcType=VARCHAR},
       </if>
+      <if test="record.svcCode != null" >
+        SVC_CODE = #{record.svcCode,jdbcType=VARCHAR},
+      </if>
       <if test="record.svcCost != null" >
         SVC_COST = #{record.svcCost,jdbcType=DECIMAL},
       </if>
       <if test="record.svcTime != null" >
-        SVC_TIME = #{record.svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+        SVC_TIME = #{record.svcTime,jdbcType=VARCHAR},
       </if>
       <if test="record.svcDescription != null" >
         SVC_DESCRIPTION = #{record.svcDescription,jdbcType=VARCHAR},
@@ -270,8 +242,9 @@
       ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
       ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
       SVC_TITLE = #{record.svcTitle,jdbcType=VARCHAR},
+      SVC_CODE = #{record.svcCode,jdbcType=VARCHAR},
       SVC_COST = #{record.svcCost,jdbcType=DECIMAL},
-      SVC_TIME = #{record.svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+      SVC_TIME = #{record.svcTime,jdbcType=VARCHAR},
       SVC_DESCRIPTION = #{record.svcDescription,jdbcType=VARCHAR},
       SVC_CATEGORY = #{record.svcCategory,jdbcType=VARCHAR},
       SVC_SPECIALIZE = #{record.svcSpecialize,jdbcType=VARCHAR},
@@ -292,11 +265,14 @@
       <if test="svcTitle != null" >
         SVC_TITLE = #{svcTitle,jdbcType=VARCHAR},
       </if>
+      <if test="svcCode != null" >
+        SVC_CODE = #{svcCode,jdbcType=VARCHAR},
+      </if>
       <if test="svcCost != null" >
         SVC_COST = #{svcCost,jdbcType=DECIMAL},
       </if>
       <if test="svcTime != null" >
-        SVC_TIME = #{svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+        SVC_TIME = #{svcTime,jdbcType=VARCHAR},
       </if>
       <if test="svcDescription != null" >
         SVC_DESCRIPTION = #{svcDescription,jdbcType=VARCHAR},
@@ -318,8 +294,9 @@
     set ETP_NUM = #{etpNum,jdbcType=VARCHAR},
       ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
       SVC_TITLE = #{svcTitle,jdbcType=VARCHAR},
+      SVC_CODE = #{svcCode,jdbcType=VARCHAR},
       SVC_COST = #{svcCost,jdbcType=DECIMAL},
-      SVC_TIME = #{svcTime,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+      SVC_TIME = #{svcTime,jdbcType=VARCHAR},
       SVC_DESCRIPTION = #{svcDescription,jdbcType=VARCHAR},
       SVC_CATEGORY = #{svcCategory,jdbcType=VARCHAR},
       SVC_SPECIALIZE = #{svcSpecialize,jdbcType=VARCHAR},

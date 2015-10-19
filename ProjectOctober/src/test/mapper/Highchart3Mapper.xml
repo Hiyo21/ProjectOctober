@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.mapper.highchart3Mapper.xml" >
+	<select id="highchart3" resultType="Highchart3">
+	SELECT B.SEASON as wea,nvl(A.CNT,0) as cnt, B.SERVICE as title,
+		 CASE B.SEASON 
+		 WHEN '봄' THEN 1
+		 WHEN '여름' THEN 2
+		 WHEN '가을' THEN 3
+		 WHEN '겨울' THEN 4
+		 END AS ord FROM
+		(
+		select WEA, COUNT(SVC_Num) as cnt, svc_code
+		from
+		(
+		select  TO_CHAR(rsv_start_date, 'mm'), r.SVC_Num, s.svc_code
+		,
+    <![CDATA[ 
+		case
+		when TO_CHAR(rsv_start_date, 'mm') >= 3 and TO_CHAR(rsv_start_date, 'mm') <6 THEN '봄'
+		WHEN TO_CHAR(rsv_start_date, 'mm') >=6 and TO_CHAR(rsv_start_date, 'mm') <9 THEN '여름'
+		when TO_CHAR(rsv_start_date, 'mm') >=9 and TO_CHAR(rsv_start_date, 'mm') <12 THEN '가을'
+		ELSE '겨울'
+		END
+		AS WEA
+		]]>
+		FROM RESERVATION r, SERVICE s
+		where r.svc_num = s.svc_num
+		) 
+		group by WEA, svc_code
+		ORDER BY WEA, svc_code
+		) A RIGHT OUTER JOIN SEASON_MAPPING B
+		ON A.WEA = B.SEASON AND A.svc_code = B.SERVICE
+		order by season, ord
+	
+	
+	</select>
+</mapper>

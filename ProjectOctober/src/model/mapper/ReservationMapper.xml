@@ -58,13 +58,14 @@
     <result column="CST_ONECLICK" property="cstOneclick" jdbcType="DECIMAL" />
 	</resultMap>
 	
-	    <resultMap id="ServiceResultMap" type="model.vo.Service" >
+  <resultMap id="ServiceResultMap" type="model.vo.Service" >
     <id column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
     <result column="SVC_TITLE" property="svcTitle" jdbcType="VARCHAR" />
+    <result column="SVC_CODE" property="svcCode" jdbcType="VARCHAR" />
     <result column="SVC_COST" property="svcCost" jdbcType="DECIMAL" />
-    <result column="SVC_TIME" property="svcTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    <result column="SVC_TIME" property="svcTime" jdbcType="VARCHAR" />
     <result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
     <result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
     <result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
