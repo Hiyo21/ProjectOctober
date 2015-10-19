@@ -11,7 +11,7 @@
 <script>
 	$(function(){
 		$('#backBtn').click(function(){
-			if($('#etpEmailHidden').val().length() != 0){
+			if($('#etpEmailHidden').val().length != 0){
 				location.assign('backToFirstRegistrationPage.action?email=' + $('#etpEmailHidden').val());
 			}else{
 				location.assign('backToFirstRegistrationPage.action?email=' + $('#etpEmailHidden2').val());

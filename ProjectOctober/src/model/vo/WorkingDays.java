@@ -29,56 +29,63 @@ public class WorkingDays implements Serializable {
         return mon;
     }
 
-    public void setMon(Integer mon) {
+    public WorkingDays setMon(Integer mon) {
         this.mon = mon;
+        return this;
     }
 
     public Integer getTue() {
         return tue;
     }
 
-    public void setTue(Integer tue) {
+    public WorkingDays setTue(Integer tue) {
         this.tue = tue;
+        return this;
     }
 
     public Integer getWed() {
         return wed;
     }
 
-    public void setWed(Integer wed) {
+    public WorkingDays setWed(Integer wed) {
         this.wed = wed;
+        return this;
     }
 
     public Integer getThu() {
         return thu;
     }
 
-    public void setThu(Integer thu) {
+    public WorkingDays setThu(Integer thu) {
         this.thu = thu;
+        return this;
     }
 
     public Integer getFri() {
         return fri;
     }
 
-    public void setFri(Integer fri) {
+    public WorkingDays setFri(Integer fri) {
         this.fri = fri;
+        return this;
     }
 
     public Integer getSat() {
         return sat;
     }
 
-    public void setSat(Integer sat) {
+    public WorkingDays setSat(Integer sat) {
         this.sat = sat;
+        return this;
     }
 
     public Integer getSun() {
         return sun;
     }
 
-    public void setSun(Integer sun) {
+    public WorkingDays setSun(Integer sun) {
         this.sun = sun;
+        return this;
     }
 
 	public String getEtpNum() {
@@ -89,12 +96,14 @@ public class WorkingDays implements Serializable {
 		return etpEmail;
 	}
 
-	public void setEtpNum(String etpNum) {
+	public WorkingDays setEtpNum(String etpNum) {
 		this.etpNum = etpNum;
+		return this;
 	}
 
-	public void setEtpEmail(String etpEmail) {
+	public WorkingDays setEtpEmail(String etpEmail) {
 		this.etpEmail = etpEmail;
+		return this;
 	}
 
 
@@ -102,8 +111,9 @@ public class WorkingDays implements Serializable {
 		return temp;
 	}
 
-	public void setTemp(String temp) {
+	public WorkingDays setTemp(String temp) {
 		this.temp = temp;
+		return this;
 	}
 
 	@Override

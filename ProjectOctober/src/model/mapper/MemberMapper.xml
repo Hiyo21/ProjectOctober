@@ -2,6 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.MemberMapper" >
  
+ 
+ 	<resultMap id="EnterpriseResultMap" type="model.vo.Enterprise">
+	    <id column="ETP_NUM" jdbcType="VARCHAR" property="etpNum" />
+	    <id column="ETP_EMAIL" jdbcType="VARCHAR" property="etpEmail" />
+	    <result column="ETP_OWNER" jdbcType="VARCHAR" property="etpOwner" />
+	    <result column="ETP_SUPERCLASS" jdbcType="VARCHAR" property="etpSuperclass" />
+	    <result column="ETP_ADDRESS" jdbcType="VARCHAR" property="etpAddress" />
+	    <result column="ETP_ZIPCODE" jdbcType="VARCHAR" property="etpZipcode" />
+	    <result column="ETP_TITLE" jdbcType="VARCHAR" property="etpTitle" />
+	    <result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+	    <result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+	    <result column="ETP_PHONE" jdbcType="VARCHAR" property="etpPhone" />
+	    <result column="ETP_MALE_STAFF" jdbcType="DECIMAL" property="etpMaleStaff" />
+	    <result column="ETP_FEMALE_STAFF" jdbcType="DECIMAL" property="etpFemaleStaff" />
+	    <result column="ETP_CAPACITY" jdbcType="DECIMAL" property="etpCapacity" />
+	    <result column="ETP_RSV_DEADLINE" jdbcType="DECIMAL" property="etpRsvDeadline" />
+	    <result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
+	    <result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
+	    <result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
+	    <result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
+	    <result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
+	    <result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
+	    <result column="ETP_SUBCLASS" jdbcType="VARCHAR" property="etpSubclass" />
+	    <result column="ETP_SPECIALIZE" jdbcType="VARCHAR" property="etpSpecialize" />
+	    <result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
+	    <result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
+	  	
+	  	<association property="workingDays" javaType="WorkingDays" column="etp_num" resultMap="WorkingDaysResultMap" />
+	  	<association property="holiday" javaType="Holiday" column="etp_num" resultMap="HolidayResultMap" />
+	  	<association property="photoLocation" javaType="PhotoLocation" column="etp_num" resultMap="PhotoLocationResultMap"/>
+	  	
+	  	<collection property="reviews" ofType="Review" resultMap="ReviewResultMap"/>
+	  	<collection property="notifications" ofType="Notification" resultMap="NotificationResultMap"/>
+	  	<collection property="reservations" ofType="Reservation" resultMap="ReservationResultMap" />
+	  	<collection property="services" ofType="Service" resultMap="ServiceResultMapForEnterprise" />
+	  	<collection property="coupons" ofType="Coupon" resultMap="CouponResultMap" />
+	  	<collection property="saleRecords" ofType="SaleRecord" resultMap="SaleRecordResultMap" />
+	</resultMap>
+ <!-- Component 없음!!! -->
 	<resultMap id="CustomerResultMapForMember" type="model.vo.Customer" >
 	    <id column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
 	    <result column="CST_ADDRESS" property="cstAddress" jdbcType="VARCHAR" />
@@ -10,21 +49,6 @@
 	    <result column="CST_GENDER" property="cstGender" jdbcType="VARCHAR" />
 	    <result column="CST_ONECLICK" property="cstOneclick" jdbcType="DECIMAL" />
 	</resultMap>
-	
-	<!-- Component Result Map -->
-	<resultMap id="ComponentResultMap" type="model.vo.Component" >
-	
-    <id column="COMPONENT_NUM" property="componentNum" jdbcType="DECIMAL" />
-    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
-    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
-    <result column="COMPONENT_ID" property="componentID" jdbcType="VARCHAR" />
-    <result column="COMPONENT_THEME" property="componentTheme" jdbcType="DECIMAL" />
-    <result column="COMPONENT_Width" property="componentWidth" jdbcType="DECIMAL" />
-    <result column="COMPONENT_Height" property="componentHeight" jdbcType="DECIMAL" />
-    <result column="COMPONENT_POS_X" property="componentPosX" jdbcType="DECIMAL" />
-    <result column="COMPONENT_POS_Y" property="componentPosY" jdbcType="DECIMAL" />
-    <result column="BACKGROUND_THEME" property="backgroundTheme" jdbcType="DECIMAL" />
-  </resultMap>
   
   <!-- Coupon ResultMap -->
   <resultMap id="CouponResultMap" type="model.vo.Coupon" >
@@ -138,44 +162,7 @@
   </resultMap>
   
   
-	<resultMap id="EnterpriseResultMap" type="model.vo.Enterprise">
-	    <id column="ETP_NUM" jdbcType="VARCHAR" property="etpNum" />
-	    <id column="ETP_EMAIL" jdbcType="VARCHAR" property="etpEmail" />
-	    <result column="ETP_OWNER" jdbcType="VARCHAR" property="etpOwner" />
-	    <result column="ETP_SUPERCLASS" jdbcType="VARCHAR" property="etpSuperclass" />
-	    <result column="ETP_ADDRESS" jdbcType="VARCHAR" property="etpAddress" />
-	    <result column="ETP_ZIPCODE" jdbcType="VARCHAR" property="etpZipcode" />
-	    <result column="ETP_TITLE" jdbcType="VARCHAR" property="etpTitle" />
-	    <result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
-	    <result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
-	    <result column="ETP_PHONE" jdbcType="VARCHAR" property="etpPhone" />
-	    <result column="ETP_MALE_STAFF" jdbcType="DECIMAL" property="etpMaleStaff" />
-	    <result column="ETP_FEMALE_STAFF" jdbcType="DECIMAL" property="etpFemaleStaff" />
-	    <result column="ETP_CAPACITY" jdbcType="DECIMAL" property="etpCapacity" />
-	    <result column="ETP_RSV_DEADLINE" jdbcType="DECIMAL" property="etpRsvDeadline" />
-	    <result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
-	    <result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
-	    <result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
-	    <result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
-	    <result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
-	    <result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
-	    <result column="ETP_SUBCLASS" jdbcType="VARCHAR" property="etpSubclass" />
-	    <result column="ETP_SPECIALIZE" jdbcType="VARCHAR" property="etpSpecialize" />
-	    <result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
-	    <result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
-	  	
-	  	<association property="workingDays" javaType="WorkingDays" resultMap="WorkingDaysResultMap" />
-	  	<association property="component" javaType="Component" resultMap="ComponentResultMap" />
-	  	<association property="holiday" javaType="Holiday" resultMap="HolidayResultMap" />
-	  	<association property="photoLocation" javaType="PhotoLocation" resultMap="PhotoLocationResultMap"/>
-	  	
-	  	<collection property="reviews" ofType="Review" resultMap="ReviewResultMap"/>
-	  	<collection property="notifications" ofType="Notification" resultMap="NotificationResultMap"/>
-	  	<collection property="reservations" ofType="Reservation" resultMap="ReservationResultMap" />
-	  	<collection property="services" ofType="Service" resultMap="ServiceResultMapForEnterprise" />
-	  	<collection property="coupons" ofType="Coupon" resultMap="CouponResultMap" />
-	  	<collection property="saleRecords" ofType="SaleRecord" resultMap="SaleRecordResultMap" />
-	</resultMap>
+	
 	
 	<resultMap id="MemberEnterpriseTotalMap" type="model.vo.Member" >
 		<id column="MEM_EMAIL" property="memEmail" jdbcType="VARCHAR" />
@@ -508,7 +495,29 @@
   	delete from ENTERPRISE where ETP_EMAIL = #{value}
   </delete>
   
-   <select id="selectByPrimaryNumber" resultMap="MemberResultMap" parameterType="String" >
-    select * from MEMBER m, ENTERPRISE e, PHOTO_LOCATION p where e.etp_num = #{value} and m.mem_email = e.etp_email and e.etp_email = p.etp_email
+   <select id="selectByPrimaryNumber" resultMap="MemberEnterpriseTotalMap" parameterType="String" >
+    select m.*, e.*, p.* from MEMBER m, ENTERPRISE e, PHOTO_LOCATION p where e.etp_num = #{value} and m.mem_email = e.etp_email and e.etp_email = p.etp_email
   </select>
+  
+	<update id="updateWorkingDays" parameterType="Member">
+		update WORKING_DAYS set mon = #{enterprise.workingDays.mon}, tue = #{enterprise.workingDays.tue}, wed = #{enterprise.workingDays.wed}, 
+		thu = #{enterprise.workingDays.thu}, fri = #{enterprise.workingDays.fri}, sat = #{enterprise.workingDays.sat}, sun = #{enterprise.workingDays.sun} 
+		where etp_num = #{enterprise.etpNum}
+	</update>
+	
+	<update id="updateEtpDetailsFirst" parameterType="Member">
+		update ENTERPRISE set etp_superclass = #{enterprise.etpSuperclass}, etp_male_staff = #{enterprise.etpMaleStaff}, etp_female_staff = #{enterprise.etpFemaleStaff},
+		etp_capacity = #{enterprise.etpCapacity}, etp_subclass = #{enterprise.etpSubclass}, etp_specialize = #{enterprise.etpSpecialize}, etp_start_hour = #{enterprise.etpStartHour},
+		etp_end_hour = #{enterprise.etpEndHour} where etp_num = #{enterprise.etpNum}
+	</update>
+	
+	<insert id="insertWorkingDays" parameterType="Member">
+		insert into WORKING_DAYS values(#{enterprise.etpNum}, #{enterprise.etpEmail}, #{enterprise.workingDays.mon}, #{enterprise.workingDays.tue}, #{enterprise.workingDays.wed},
+		#{enterprise.workingDays.thu}, #{enterprise.workingDays.fri}, #{enterprise.workingDays.sat}, #{enterprise.workingDays.sun})
+	</insert>
+	
+	<update id="finalizeRegistration" parameterType="Member">
+		update ENTERPRISE set etp_rsv_deadline = #{enterprise.etpRsvDeadline}, etp_self_notification = #{enterprise.etpSelfNotification}, etp_cst_notification = #{enterprise.etpCstNotification}
+		where etp_num = #{enterprise.etpNum} 
+	</update>
 </mapper>

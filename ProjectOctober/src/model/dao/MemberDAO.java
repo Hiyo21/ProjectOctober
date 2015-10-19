@@ -79,7 +79,32 @@ public class MemberDAO extends DAOTemplate {
 	}
 
 	public Member retrieveMemberInfo(String etpNum) {
-		return dataRetrievalTemplate(s -> {return fromMapper(s).selectByPrimaryNumber(etpNum);});
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			return  session.selectOne("model.mapper.MemberMapper.selectByPrimaryNumber",etpNum);
+		}finally{
+			session.close();
+		}
+	}
+	
+	public Integer updateWorkingDays(Member tempMember){
+		return dataModificationTemplate(s -> {return fromMapper(s).updateWorkingDays(tempMember);});
+	}
+
+	public Integer updateEtpDetailsFirst(Member tempMember) {
+		return dataModificationTemplate(s -> {return fromMapper(s).updateEtpDetailsFirst(tempMember);});
+	}
+
+	public int updateWorkingHours(Member tempMember) {
+		return dataModificationTemplate(s -> {return fromMapper(s).updateWorkingHours(tempMember);});
+	}
+
+	public int insertWorkingDays(Member tempMember) {
+		return dataModificationTemplate(s -> {return fromMapper(s).insertWorkingDays(tempMember);});
+	}
+
+	public int finalizeRegistration(Member tempMember) {
+		return dataModificationTemplate(s -> {return fromMapper(s).finalizeRegistration(tempMember);});
 	}
 
 }
