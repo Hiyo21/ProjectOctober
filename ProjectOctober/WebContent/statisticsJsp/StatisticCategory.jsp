@@ -73,7 +73,7 @@ textarea {width:800px; height:300px;overflow:visible;}
       
       <div id="menu4" class="tab-pane fade">
      	  <h3>통계5</h3>
-      	   
+      	    <s:include value="Highchart5.jsp"/>  
       </div><!-- 통계5 -->
       
       <div id="menu5" class="tab-pane fade">

@@ -11,7 +11,7 @@
 <a href="highchart2.action">연령대별 고객 평가 척도</a>
 <a href="highchart3.action">계절별 선호 서비스</a>
 <a href="highchart4.action">직업별 평균 소비지출액 통계</a>
-
+<a href="highchart5.action">요일별 예약수(주말과 평일 비교)</a>
 
 </body>
 </html>

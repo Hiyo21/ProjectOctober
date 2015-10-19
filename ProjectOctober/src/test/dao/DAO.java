@@ -9,6 +9,7 @@ import test.vo.Highchart1;
 import test.vo.Highchart2;
 import test.vo.Highchart3;
 import test.vo.Highchart4;
+import test.vo.Highchart5;
 
 public class DAO {
 
@@ -63,6 +64,20 @@ public class DAO {
 		}finally{
 			sqlsession.close();
 		}		 		
+		
+		return list;
+	}
+
+	//요일별 예약수(주말 / 평일)
+	public List<Highchart5> highchart5DAO() {
+		List<Highchart5> list = null;
+
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("highchart5");				
+		}finally{
+			sqlsession.close();
+		}
 		
 		return list;
 	}

@@ -43,6 +43,7 @@
 		<typeAlias type="test.vo.Highchart2" alias="Highchart2"/>
 		<typeAlias type="test.vo.Highchart3" alias="Highchart3"/>
 		<typeAlias type="test.vo.Highchart4" alias="Highchart4"/>
+		<typeAlias type="test.vo.Highchart5" alias="Highchart5"/>
 	</typeAliases>
 	
 	<typeHandlers>
@@ -77,6 +78,7 @@
 		<mapper resource="test/mapper/Highchart2Mapper.xml"/>
 		<mapper resource="test/mapper/Highchart3Mapper.xml"/>
 		<mapper resource="test/mapper/Highchart4Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart5Mapper.xml"/>
 	</mappers>
 	
 </configuration>
