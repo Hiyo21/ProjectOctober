@@ -8,11 +8,20 @@
 			<result>/jsp/member/EnterpriseRegistration1.jsp</result>
 		</action>
 		
-		<action name="toEnterpriseRegistraionSecondPage" class="controller.action.MemberAction" method="toSecondRegistrationPage">
-			<result>/jsp/member/EnterpriseRegistration2.jsp</result>
+		<action name="backToFirstRegistrationPage" class="controller.action.MemberAction" method="backToFirstRegistrationPage">
+			<result >/jsp/member/EnterpriseRegistration1.jsp</result>
 		</action>
 		
-		<action name="toEnterpriseRegistraionThirdPage" class="controller.action.MemberAction" method="toThirdPage">
+		<action name="toRegCardCheckPage" class="controller.action.MemberAction" method="toRegCardCheckPage">
+			<result>/jsp/member/UploadRegCard.jsp</result>
+		</action>
+		
+		<action name="toEnterpriseRegistraionSecondPage" class="controller.action.MemberAction" method="toSecondRegistrationPage">
+			<result name="success">/jsp/member/EnterpriseRegistration2.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		
+		<action name="toEnterpriseRegistraionThirdPage" class="controller.action.MemberAction" method="toThirdRegistrationPage">
 			<result>/jsp/member/EnterpriseRegistration3.jsp</result>
 		</action>
 		
@@ -50,18 +59,21 @@
 		</action>
 		
 		<action name="loginProcess" class="controller.action.MemberAction" method="loginProcess">
-			<result name="login" type="redirectAction">
-				<param name="actionName">toLoginPage</param>
-			</result>
 			<result name="enterprise" type="chain">toEnterpriseMainPage.action</result>
 			<result name="customer" type="chain">toCustomerMainPage.action</result>
-			<result name="admin" type="chain">toAdminMainPage.action</result>
+			<result name="admin" type="chain">
+				<param name="actionName">AllNoRegisterEtpList</param>
+				<param name="namespace">/enterprise</param> 
+			</result>
 		</action>
 		
 		<action name="logoutProcess" class="controller.action.MemberAction" method="logoutProcess">
-			<result>/jsp/Main.jsp</result>
+			<result type="chain">
+				<param name="actionName">toMainPage</param>
+				<param name="namespace">/</param>
+			</result>
 		</action>
-		
+				
 		<action name="toEnterpriseMainPage" class="controller.action.MemberAction" method="retrieveEnterpriseInfo">
 			<result name="template1"><!-- Enterprise 메인 페이지 (동적) --></result>
 			<result name="template2"><!-- Enterprise 메인 페이지 (정적1) --></result>
@@ -72,8 +84,18 @@
 			<result>Main.jsp</result>
 		</action>
 		
-		<action name="toAdminMainPage">
-			<result><!-- Admin 메인 페이지 --></result>
+		
+		<action name="regCardUploadAction" class="controller.action.FileUploadAction" method="uploadRegCard">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/jsp/member/UploadRegCard.jsp</result>
+			<result name="input">/jsp/member/UploadRegCard.jsp</result>
 		</action>
+		
+
 	</package>
 </struts>

@@ -1,29 +1,34 @@
 package controller.action;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.SerializationUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
+import model.common.VOFactory;
 import model.dao.MemberDAO;
 import model.vo.Member;
+
 import model.vo.Zipcode;
 
 public class MemberAction extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 5672648613791884055L;
-	private static final Integer ENTERPRISE_CODE = 1;
-	private static final Integer CUSTOMER_CODE = 2;
-	private static final Integer ADMIN_CODE = 3;
+	private static final int ENTERPRISE_CODE = 1;
+	private static final int CUSTOMER_CODE = 2;
+	private static final int ADMIN_CODE = 3;
 	
 	private Map<String, Object> session;
 	private Member member;
-	
 	private String email;
 	private String emailInput;
+	private String etpNum;
 	private String etpNumInput;
 	private String password;
 	private MemberDAO memDAO;
@@ -42,24 +47,64 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private String etpPhone1;
 	private String etpPhone2;
 	
-	
 	public MemberAction() {
 		memDAO = DAOFactory.createMemberDAO();
 	}
 	
-	public String toSecondRegistrationPage() throws Exception{
-		System.err.println(member);
-		System.err.println(member.getEnterprise());
-		member.getEnterprise().setEtpEmail(member.getMemEmail());
-		member.getEnterprise().setEtpOwner(member.getMemName());
-		member.getEnterprise().setEtpStatus(0);
-		if(member != null) return SUCCESS;
+	public String backToFirstRegistrationPage() throws Exception{
+		System.out.println(email);
+		int result = memDAO.deleteEnterpriseInfoFirstStep(email);
+		if(result != 1) return ERROR;
+		else result = memDAO.deleteMemberInfo(email);
+			
+		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
 	
-	public String toThirdRegistrationPage() throws Exception{
+	public String toRegCardCheckPage() throws Exception{
+		doPreliminarySteps(member);
+		int result = memDAO.insertMemberInfo(member);
+		
+		if(result != 1) return ERROR;
+		else result = memDAO.insertEnterpriseInfoFirstStep(member.getEnterprise());
+		
+		if(result == 1) return SUCCESS;
+		else return ERROR;
+	}
+
+	public String toSecondRegistrationPage() throws Exception{
+		member = memDAO.retrieveMemberInfo(etpNum);
 		System.err.println(member);
-		if(member != null) return SUCCESS;
+		System.err.println(member.getEnterprise());
+		System.err.println(member.getEnterprise().getPhotoLocation());
+		return SUCCESS;
+	}
+	
+	public String toThirdRegistrationPage() throws Exception{
+		Member tempMember = (Member) session.get("tempMember");
+		System.err.println(member.getEnterprise());
+		System.err.println(member.getEnterprise().getWorkingDays().getTemp());
+		tempMember.getEnterprise().setWorkingDays(VOFactory.createWorkingDays());
+		tempMember.getEnterprise().getWorkingDays().setEtpNum(tempMember.getEnterprise().getEtpNum());
+		tempMember.getEnterprise().getWorkingDays().setEtpEmail(tempMember.getEnterprise().getEtpEmail());
+		tempMember.getEnterprise().getWorkingDays().setTemp(member.getEnterprise().getWorkingDays().getTemp());
+		System.err.println(tempMember.getEnterprise().getWorkingDays());
+		tempMember.getEnterprise().setEtpSuperclass(member.getEnterprise().getEtpSuperclass());
+		tempMember.getEnterprise().setEtpMaleStaff(member.getEnterprise().getEtpMaleStaff());
+		tempMember.getEnterprise().setEtpFemaleStaff(member.getEnterprise().getEtpFemaleStaff());
+		tempMember.getEnterprise().setEtpCapacity(member.getEnterprise().getEtpCapacity());
+		tempMember.getEnterprise().setEtpSubclass(member.getEnterprise().getEtpSubclass());
+		tempMember.getEnterprise().setEtpSpecialize(member.getEnterprise().getEtpSpecialize());
+		tempMember.getEnterprise().setEtpStartHour(LocalTime.parse(member.getEnterprise().getStart(),DateTimeFormatter.ISO_LOCAL_TIME));
+		tempMember.getEnterprise().setEtpEndHour(LocalTime.parse(member.getEnterprise().getEnd(),DateTimeFormatter.ISO_LOCAL_TIME));
+		
+		member = SerializationUtils.clone(tempMember);
+		System.err.println(member);
+		System.err.println(member.getEnterprise());
+		System.err.println(member.getEnterprise().getWorkingDays());
+		if(member != null){
+			return SUCCESS;
+		}
 		else return ERROR;
 	}
 	
@@ -117,6 +162,19 @@ public class MemberAction extends ActionSupport implements SessionAware{
 			return ERROR;
 		}
 	}
+	
+	//======================================================/
+	private void doPreliminarySteps(Member member) {
+		member.getEnterprise().setEtpOwner(member.getMemName());
+		member.setMemCode(ENTERPRISE_CODE);
+		member.getEnterprise().setEtpEmail(member.getMemEmail());
+		member.getEnterprise().setEtpAddress(address1 + " " + address2);
+		member.getEnterprise().setEtpZipcode(zipcode);
+		member.setMemPhone(phone + "-" + phone1 + "-" + phone2);
+		member.getEnterprise().setEtpPhone(etpPhone + "-" + etpPhone1 + "-" + etpPhone2);
+		member.getEnterprise().setEtpStatus(0);
+	}
+	
 	
 	@Override
 	public void setSession(Map<String, Object> session) {
@@ -270,6 +328,12 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	public void setEtpPhone2(String etpPhone2) {
 		this.etpPhone2 = etpPhone2;
 	}
-	
-	
+
+	public String getEtpNum() {
+		return etpNum;
+	}
+
+	public void setEtpNum(String etpNum) {
+		this.etpNum = etpNum;
+	}
 }

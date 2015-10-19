@@ -42,6 +42,7 @@
 
 	<s:include value="Header.jsp"></s:include>
 
+<%-- <<<<<<< HEAD
 	<div class="container">
 		<div class="row marketing">
 			<div class="col-md-2" id="introduce">
@@ -117,5 +118,76 @@
 			</div>
 		</div>
 	</div>
+======= --%>
+ <div class="container">
+ 	<div class="row marketing">
+		<div class="col-md-2" id="introduce">
+		   	<div class ="well">
+		     <h1>ASAP</h1>
+		     <h3>Made by 24Hour+</h3>
+		   	</div>
+	   	</div>
+	   	
+	   	<div class="col-md-10">
+	  		<div class ="well">
+          <ul class="nav nav-tabs">
+          <a class="navbar-brand">ASAP</a>
+            <li role="presentation" class="active"><a href="#location">지역</a></li>
+            <li role="presentation"><a href="#genre">장르</a></li>
+            <li role="presentation"><a href="#condition">상태</a></li>
+            <li role="presentation">
+            	<form action="/ProjectOctober/search/searchFreeKeyword.action" class="navbar-form navbar-left" role="search">
+			        <div class="form-group">
+			          <input type="text" name="searchKeyword" class="form-control" placeholder="Search">
+			        </div>
+			        <button type="submit" class="btn btn-default">Search</button>
+			     </form>
+            </li>
+          </ul>
+	        <div class="tab-content">
+	        	<div id="location" class="tab-pane fade in active">
+    				<div class="row">
+				      	<div class="col-md-7">	
+				      		<!-- 실제로 사용할 때는 DB에서 구역명을 가져와서 뿌리기 -->
+				      		<button type="button" class="btn btn-default btn-md">
+							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 서울특별시
+							</button>
+							<button type="button" class="btn btn-default btn-md">
+							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 부산광역시
+							</button>
+							<button type="button" class="btn btn-default btn-md">
+							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 충청북도
+							</button>
+							<button type="button" class="btn btn-default btn-md">
+							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 서울특별시
+							</button>
+							<button type="button" class="btn btn-default btn-md">
+							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 부산광역시
+							</button>
+							<button type="button" class="btn btn-default btn-md">
+							  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 충청북도
+							</button>
+				      	</div>
+		     			<div class="col-md-3" align="center">
+							<img src="http://k-ecm.co.kr/imgs/01/0202_con01.gif"/>
+		    			</div> 
+   					</div>
+   				</div>
+   				<div id="genre" class="tab-pane fade">
+    				<div class="row">	
+				      	<h1 align="center">업종 버튼s</h1>
+   					</div>
+   				</div>
+   				<div id="condition" class="tab-pane fade">
+    				<div class="row">	
+				      	<h1 align="center">컨디션 버튼s</h1>
+   					</div>
+   				</div>
+ 			</div>
+  		</div>
+  	</div>
+ </div>
+ </div>
+<!-- >>>>>>> refs/remotes/origin/master -->
 </body>
 </html>

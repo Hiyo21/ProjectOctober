@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import model.common.MyBatisSqlSessionFactory;
 import model.mapper.MemberMapper;
+import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.Zipcode;
 
@@ -29,8 +30,6 @@ public class MemberDAO extends DAOTemplate {
 			session.close();
 		}
 	}
-	
-
 
 	public boolean retrieveEtpNum(String etpNumInput) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
@@ -62,4 +61,25 @@ public class MemberDAO extends DAOTemplate {
 	public MemberMapper fromMapper(SqlSession s){
 		return s.getMapper(MemberMapper.class);
 	}
+
+	public Integer insertMemberInfo(Member member) {
+		return dataModificationTemplate(s -> {return fromMapper(s).insertMemberInfo(member);});
+	}
+
+	public Integer insertEnterpriseInfoFirstStep(Enterprise enterprise) {
+		return dataModificationTemplate(s -> {return fromMapper(s).insertEnterpriseInfoFirstStep(enterprise);});
+	}
+	
+	public Integer deleteMemberInfo(String email){
+		return dataModificationTemplate(s -> {return fromMapper(s).deleteMemberInfo(email);});
+	}
+
+	public Integer deleteEnterpriseInfoFirstStep(String email) {
+		return dataModificationTemplate(s -> {return fromMapper(s).deleteEnterpriseInfoFirstStep(email);});
+	}
+
+	public Member retrieveMemberInfo(String etpNum) {
+		return dataRetrievalTemplate(s -> {return fromMapper(s).selectByPrimaryNumber(etpNum);});
+	}
+
 }

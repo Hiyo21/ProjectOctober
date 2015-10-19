@@ -3,6 +3,7 @@ package model.mapper;
 import java.util.List;
 import java.util.Map;
 
+import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.MemberExample;
 import model.vo.Zipcode;
@@ -26,6 +27,8 @@ public interface MemberMapper {
     List<Member> selectByExample(MemberExample example);
 
     Member selectByPrimaryKey(String memEmail);
+    
+    Member selectByPrimaryNumber(String etpNum);
 
     int updateByExampleSelective(@Param("record") Member record, @Param("example") MemberExample example);
 
@@ -42,4 +45,12 @@ public interface MemberMapper {
 	String retrieveEtpNum(String etpNumInput);
 	
 	List<Zipcode> searchZipcode(String searchText);
+
+	Integer insertMemberInfo(Member member);
+
+	Integer insertEnterpriseInfoFirstStep(Enterprise enterprise);
+
+	Integer deleteMemberInfo(String email);
+
+	Integer deleteEnterpriseInfoFirstStep(String email);
 }

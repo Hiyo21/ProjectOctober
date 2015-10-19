@@ -31,7 +31,7 @@
 							<img src="${pageContext.request.contextPath}/image/relaxation_logo_test.jpg" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
 						</div>
 						<div class="col-sm-5 col-md-5 col-lg-7">
-							<h1>[Service Name]</h1>
+							<h1><a href="toMainPage.action">[Service Name]</a></h1>
 						</div>
 						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
 							<br>
@@ -75,10 +75,20 @@
 						<!-- jQuery로 새로운 팝업창/dialog창 열고 notification 리스트 불러오게 링크는 JS 메소드로..어떻게?-->
 						<a href="#~~method~~(#session.loginId)" data-toggle="notification-popover" placement="auto" title="${session.loginName}님의 알림" data-content="여기서가 문제. 리스트를 받아와야 함"><button class="btn btn-warning btn-btn block"> 알림 <span class="badge">1<!-- 여기에는  notification 넘버...어떻게??--></span></button></a>
 					</div>
-					<div class="col-xs-6 col-sm-3 col-md-3">
-						<br>
-						<a href="${pageContext.request.contextPath}/member/toEnterpriseMyPage.action" class="btn btn-primary btn-block header-mypage-btn">마이 페이지</a>
-						<a href="${pageContext.request.contextPath}/member/logoutProcess.action" class="btn btn-primary btn-block header-mypage-btn">로그아웃</a>
+
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-md-2">메인페이지</a>
+						<s:if test="#session.memCode == 1">
+							<a href="${pageContext.request.contextPath}/member/toEnterpriseMyPage.action" class="btn btn-primary btn-md-2">마이페이지</a>
+						</s:if>
+						<s:if test="#session.memCode == 2">
+							<a href="${pageContext.request.contextPath}/member/toCustomerMainPage.action" class="btn btn-primary btn-md-2">마이페이지</a>
+						</s:if>
+						<s:if test="#session.memCode == 3">
+							<a href="${pageContext.request.contextPath}/enterprise/AllNoRegisterEtpList.action" class="btn btn-primary btn-md-2">마이페이지</a>
+						</s:if>
+						<!-- 공통 로그아웃 -->
+							<a href="${pageContext.request.contextPath}/member/logoutProcess.action" class="btn btn-primary btn-md-2">로그아웃</a>
 					</div>
 				</div>
 				</s:if>

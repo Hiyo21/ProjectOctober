@@ -76,6 +76,8 @@ public class EnterpriseAction extends ActionSupport{
 		}
 	}
 	
+	
+	
 	public String changeReservationTime() throws Exception{
 		reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0, 19)));
 		reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0, 19)));
@@ -142,16 +144,19 @@ public class EnterpriseAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	
+	/////////////////////// 미승인 사업자 게시판 ////////////////////
+	
 	public String allNoRegisterEtpList() throws Exception{
-		enterpriseList = etpDAO.AllNoRegisterEtpList();
+		enterpriseList = etpDAO.allNoRegisterEtpList();
 		System.out.println(enterpriseList);
 		
 		return SUCCESS;
 	}
 	
-	public String noRegisterEtpList() throws Exception{
+	public String noRegisterEtp() throws Exception{
 		System.err.println(etpNum);
-		enterpriseList = etpDAO.NoRegisterEtpList(etpNum);
+		enterprise = etpDAO.noRegisterEtp(etpNum);
 		System.out.println(enterprise);
 		
 		return SUCCESS;
@@ -160,9 +165,7 @@ public class EnterpriseAction extends ActionSupport{
 	public String confirm() throws Exception{
 		System.err.println("cofirm : "+etpNum);
 		int result=etpDAO.updateEtpStatus(etpNum);
-		
-		enterpriseList = etpDAO.AllNoRegisterEtpList();
-		
+				
 		if(result !=1){	
 			return ERROR;			
 		}
@@ -173,7 +176,7 @@ public class EnterpriseAction extends ActionSupport{
 		System.err.println("reject : "+etpNum);
 		int result=etpDAO.rejectEtpStatus(etpNum);
 		
-		enterpriseList = etpDAO.AllNoRegisterEtpList();
+		enterpriseList = etpDAO.allNoRegisterEtpList();
 		
 		if(result !=1){	
 			return ERROR;			

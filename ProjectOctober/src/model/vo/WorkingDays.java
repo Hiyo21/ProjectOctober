@@ -20,6 +20,8 @@ public class WorkingDays implements Serializable {
     private Integer sat;
 
     private Integer sun;
+    
+    private String temp;
 
     private static final long serialVersionUID = 1L;
 
@@ -95,12 +97,22 @@ public class WorkingDays implements Serializable {
 		this.etpEmail = etpEmail;
 	}
 
+
+	public String getTemp() {
+		return temp;
+	}
+
+	public void setTemp(String temp) {
+		this.temp = temp;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("WorkingDays [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail).append(", mon=")
 				.append(mon).append(", tue=").append(tue).append(", wed=").append(wed).append(", thu=").append(thu)
-				.append(", fri=").append(fri).append(", sat=").append(sat).append(", sun=").append(sun).append("]");
+				.append(", fri=").append(fri).append(", sat=").append(sat).append(", sun=").append(sun)
+				.append(", temp=").append(temp).append("]");
 		return builder.toString();
 	}
 }

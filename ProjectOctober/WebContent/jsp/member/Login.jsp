@@ -80,8 +80,6 @@ function check() {
 <body>
 <s:include value="../Header.jsp"></s:include>
 
-<h1><a href="../Main.jsp">메인화면</a></h1>
-
 	<div class = "container" id="joinWindow">
 		<div class="well well-lg" align="center">
 			<div class="btn-group">

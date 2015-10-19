@@ -4,12 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<style type="text/css">
-	textarea{
-		resize : none;
-	}
-	
-</style>
+
 </head>
 <body>
 
@@ -30,7 +25,7 @@
 		<div class="col-md-6">
 			<div id='outLineCP'>
 			  	<div class="panel-body">
-			    	<textarea class="form-control" id="outLineText" placeholder="사업 개요"></textarea>
+			    	<textarea id="outLineText" name="textedit" placeholder="사업 개요"></textarea>
 			  	</div>
 			</div>
 		</div>

@@ -191,6 +191,8 @@
     <result column="ETP_SPECIALIZE" jdbcType="VARCHAR" property="etpSpecialize" />
     <result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
     <result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
+    
+    <result column="MEM_JOINED_DATE" jdbcType="DATE" property="memJoinedDate" typeHandler="model.mapper.typehandler.LocalDateHandler" />
   </resultMap>
 
 
@@ -349,12 +351,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="model.vo.Enterprise" resultMap="EnterpriseResultMap">
+  <select id="selectByEtpNum" parameterType="model.vo.Enterprise" resultMap="EnterpriseResultMap">
     select 
     <include refid="Base_Column_List" />
     from HR.ENTERPRISE
-    where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
-      and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
+    where ETP_NUM = #{etpNum}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="model.vo.Enterprise">
     delete from HR.ENTERPRISE
@@ -781,18 +782,36 @@
 		, #{backgroundTheme} , #{etpNum}, #{etpEmail})	
 	</insert>
 
-	
 
 	<select id="receiveComponent" resultType="Component">
 		select * from component
 	</select>
+	<!-- 고객 검색 자유 리스트 Mapper -->
+	 
+ 	 <select id="CustomerFreeSearchingList" parameterType="String" resultMap="EnterpriseBaseResultMap">
+ 	 	select * from hr.enterprise where ETP_SUPERCLASS like '%'||#{searchLanguage}||'%'
+			<!-- <where>
+				<if test="etpOwner==null">
+					ETP_OWNER like '%'||#{searchLanguage}||'%' 
+				</if>
+				 	
+				<if test="etpEmail==null">
+					AND etp_email like '%'||#{searchLanguage}||'%'
+				</if>
+			</where>	 -->
+ 	 </select>
 	
-	<select id="noRegisterEtpList" parameterType="String" resultMap="EnterpriseBaseResultMap">
-	select * from Enterprise where etp_num=#{etpNum}
+	<!--  사업자 승인 게시판 Mapper  -->
+	
+	<select id="noRegisterEtp" parameterType="String" resultMap="EnterpriseBaseResultMap">
+		select * from Enterprise where etp_num=#{etpNum}
 	</select>
 
 	<select id="allNoRegisterEtpList" resultMap="EnterpriseBaseResultMap">
-	select * from Enterprise order by etp_status desc
+		select etp.etp_owner, etp.etp_email, etp.etp_phone, etp.etp_address, etp.etp_status, etp.etp_num, mem.mem_joined_date  
+			from Enterprise etp, member mem
+			where etp.etp_email = mem.mem_email 
+			order by etp.etp_status, mem.mem_joined_date
 	</select>
 	
 	<update id="updateEtpStatus" parameterType="String">
@@ -807,8 +826,11 @@
 		select * from component where etp_num = #{etpNum}
 	</select>
 	
-	
 	<select id="showMap" parameterType="String" resultType="String">
 		select ETP_ADDRESS from ENTERPRISE where ETP_EMAIL = #{etpEmail}
 	</select>
+
+	<insert id="insertRegCard" parameterType="PhotoLocation">
+		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
+	</insert>
 </mapper>
