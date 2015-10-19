@@ -134,7 +134,7 @@
 		
 	}); 
 	
-	function submit(){
+	function submitSecondForm(){
 		$("#secondForm").submit();
 	};
 </script>
@@ -228,7 +228,7 @@
 			<h3><b>선택사항</b></h3>
 			
 			<div class="row">
-				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 					<div class="panel panel-info">
 						<div class="panel-heading"><h4><b>사업장 규모</b></h4></div>
 						<div class="panel-body">
@@ -386,20 +386,12 @@
 		</div>
 
 		<div class="row">
-			<div class="col-lg-4" align="left"><a href="toFirstRegistrationPage.action"><button type="button" class="btn btn-primary">이전</button></a></div>
+			<div class="col-lg-4" align="left"><a href="backToFirstRegistrationPage.action"><button type="button" class="btn btn-primary">이전</button></a></div>
 			<div class="col-lg-4" align="center"><h3>2 / 3</h3></div>
-			<div class="col-lg-4" align="right"><button type="button" class="btn btn-primary" onclick="return submit();">다음</button></div>
+			<div class="col-lg-4" align="right"><button type="button" class="btn btn-primary" onclick="return submitSecondForm();">다음</button></div>
 		</div>
-	</div>
-	
-	<input type="hidden" name="">
-	
+	</div>	
+	<input type="hidden" name="etpNum" value="${member.enterprise.etpNum}" id="etpNumHold"/>
 	</form>
-<br>
-<br>
-<br>
-<br>
-<br>
-
 </body>
 </html>
