@@ -5,6 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>사업자 등록증 업로드</title>
+<style>
+img {
+ 	display: block;
+    max-height:400px;
+    width: auto;
+    height: auto;
+}
+</style>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -26,6 +34,9 @@
 </script>
 </head>
 <body>
+<s:include value="../Header.jsp"></s:include>
+<div class="container">
+<div class="jumbotron" align="center">
 	<div class="container-fluid">
 		<!-- TODO: 뭐해야 하는지 소개 문구~~ -->
 		<div class="row">
@@ -37,19 +48,6 @@
 				</s:if>
 			</div>
 		</div>
-		
-		<div class="row">
-			<div class="col-xs-12">
-				<s:form action="regCardUploadAction" method="POST" enctype="multipart/form-data">
-					<h3>업로드할 파일을 선택해 주세요.</h3>
-					<s:file name="fileToUpload" />
-					<input type="hidden" name="etpNum" value="${member.enterprise.etpNum}" id="etpNumHidden"/>
-					<input type="hidden" name="etpEmail" value="${member.enterprise.etpEmail}" id="etpEmailHidden" />
-					<s:submit/>
-				</s:form>
-			</div>
-		</div>
-		
 		<div class="row">
 			<div class="col-xs-12">
 				<s:if test="uploaded != null">
@@ -67,11 +65,28 @@
 				</s:if>
 			</div>
 		</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<s:form action="regCardUploadAction" method="POST" enctype="multipart/form-data">
+					<h3>업로드할 파일을 선택해 주세요.</h3>
+					<div class="form-inline">
+					<s:file name="fileToUpload" class="btn btn-primary"/>
+					<input type="hidden" name="etpNum" value="${member.enterprise.etpNum}" id="etpNumHidden"/>
+					<input type="hidden" name="etpEmail" value="${member.enterprise.etpEmail}" id="etpEmailHidden" />
+					<s:submit class="btn btn-primary"/>
+					</div>
+				</s:form>
+			</div>
+		</div>
+
+		
 		
 	<div class="row">
 		<div class="col-lg-4" align="left"><button type="button" class="btn btn-primary" id="backBtn">이전</button></div>
 		<div class="col-lg-4" align="center"><h3>2 / 3</h3></div>
 		<div class="col-lg-4" align="right"><button type="button" class="btn btn-primary" id="forwardBtn">다음</button></div>
+	</div>
 	</div>
 </body>
 </html>

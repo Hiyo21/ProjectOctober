@@ -134,9 +134,69 @@
 		
 	}); 
 	
-	function submit(){
-		$("#secondForm").submit();
-	};
+
+</script>
+
+<script type="text/javascript">
+function check(){
+	var je = document.getElementById('je');//종류
+	var spec = document.getElementById('spec');//특징
+	var maleStaffVal = document.getElementById('maleStaffVal');//남자스태프
+	var femaleStaffVal = document.getElementById('femaleStaffVal');//여자스태프
+	var workingDaysVal = document.getElementById('workingDaysVal');//정기휴무
+	var capacityVal = document.getElementById('capacityVal');//시간당수용가능인원
+	var startHour = document.getElementById('startHour');//영업시작시간
+	var startMinute = document.getElementById('startMinute');//영업시작분
+	var endHour = document.getElementById('endHour');//영업종료시간
+	var endMinute = document.getElementById('endMinute');//영업종료분
+	
+	if (je.value.length < 1) {
+		alert('종류를 선택해주세요');
+		return false;
+	}
+	if (spec.value.length < 1) {
+		alert('특징을 선택해주세요');
+		return false;
+	}
+	if (maleStaffVal.value.length < 1) {
+		alert('남성 STAFF 수를 선택해주세요');
+		return false;
+	}
+	if (femaleStaffVal.value.length < 1) {
+		alert('여성 STAFF 수를 선택해주세요');
+		return false;
+	}
+	if (femaleStaffVal.value == '0' && femaleStaffVal.value == '0') {
+		alert('스태프의 수는 최소한 한 명 이상이어야 합니다.');
+		return false;
+	}
+	if (workingDaysVal.value.length < 1) {
+		alert('정기휴무일을 선택해주세요');
+		return false;
+	}
+	if (capacityVal.value.length < 1) {
+		alert('시간당 수용 가능 고객을 선택해주세요');
+		return false;
+	}
+	if (startHour.value.length < 1) {
+		alert('영업 시작 시간을 선택해주세요');
+		return false;
+	}
+	if (startMinute.value.length < 1) {
+		alert('영업 시작 시간을 선택해주세요');
+		return false;
+	}
+	if (endHour.value.length < 1) {
+		alert('영업 종료 시간을 선택해주세요');
+		return false;
+	}
+	if (endMinute.value.length < 1) {
+		alert('영업 종료 시간을 선택해주세요');
+		return false;
+	}
+	
+	$("#secondForm").submit();
+};
 </script>
 
 <style>
@@ -276,6 +336,7 @@
 									<paper-item value="fri">금요일</paper-item>
 									<paper-item value="sat">토요일</paper-item>
 									<paper-item value="sun">일요일</paper-item>
+									<paper-item value="no">없음</paper-item>
 								</paper-menu>
 							</paper-dropdown-menu>
 							
@@ -367,7 +428,7 @@
 								</paper-menu>
 							</paper-dropdown-menu>
 							
-							<input type="hidden" id="endHour" />
+							<input type="hidden" id="endHour" value="" />
 							
 							<paper-dropdown-menu label="영업 종료 시간: 분" id="endMinuteDD">
 								<paper-menu class="dropdown-content">
@@ -376,9 +437,8 @@
 								</paper-menu>
 							</paper-dropdown-menu>	
 							
-							<input type="hidden" id="endMinute" />
-							
-							<input type="text" id="endTimeVal" name="member.enterprise.end"/>
+							<input type="hidden" id="endMinute" value="" >
+							<input type="hidden" id="endTimeVal" value="">
 						</div>
 					</div>
 				</div>
@@ -388,7 +448,7 @@
 		<div class="row">
 			<div class="col-lg-4" align="left"><a href="toFirstRegistrationPage.action"><button type="button" class="btn btn-primary">이전</button></a></div>
 			<div class="col-lg-4" align="center"><h3>2 / 3</h3></div>
-			<div class="col-lg-4" align="right"><button type="button" class="btn btn-primary" onclick="return submit();">다음</button></div>
+			<div class="col-lg-4" align="right"><button type="button" class="btn btn-primary" onclick="return check()">다음</button></div>
 		</div>
 	</div>
 	
