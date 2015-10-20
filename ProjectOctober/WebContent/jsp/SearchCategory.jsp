@@ -34,10 +34,107 @@
 
 <script>
 $(document).ready(function(){
-    $("#button1").click(function(){
-    	alert($("#button1").val());
-    	location.href= '${pageContext.request.contextPath}'+'/enterprise/categorySearch.action?button='+$("#button1").val();
+	
+	/* 특징 버튼 */
+    $("#button1").click(function(){    	
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button1").val();
     });
+    
+    $("#button2").click(function(){    	
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button2").val();
+    });
+    
+    $("#button3").click(function(){    	
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3").val();
+    });
+    
+    $("#button4").click(function(){    
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button4").val();
+    });
+    
+    $("#button5").click(function(){    
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button5").val();
+    });
+    
+    $("#button6").click(function(){  
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button6").val();
+    });
+    
+    $("#button7").click(function(){   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button7").val();
+    });
+    
+    $("#button8").click(function(){   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button8").val();
+    });
+    
+    /* 상태 버튼 */
+    $("#button2-1").click(function(){    	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button2-1").val();
+    });
+    
+    $("#button2-2").click(function(){    	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button2-2").val();
+    });
+    
+    $("#button2-3").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button2-3").val();
+    });
+    
+    $("#button2-4").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button2-4").val();
+    });
+    
+    $("#button2-5").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button2-5").val();
+    });
+    
+    $("#button2-6").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button2-6").val();
+    });
+    
+    $("#button2-7").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button2-7").val();
+    });
+    
+    $("#button2-8").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button2-8").val();
+    });
+    
+    /* 장르 버튼 */
+    $("#button3-1").click(function(){    	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-1").val();
+    });
+    
+    $("#button3-2").click(function(){    	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-2").val();
+    });
+    
+    $("#button3-3").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-3").val();
+    });
+    
+    $("#button3-4").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-4").val();
+    });
+    
+    $("#button3-5").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-5").val();
+    });
+    
+    $("#button3-6").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-6").val();
+    });
+    
+    $("#button3-7").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-7").val();
+    });
+    
+    $("#button3-8").click(function(){ 	   
+    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-8").val();
+    });
+    
+    
 });
 </script>
 <style type="text/css">
@@ -77,31 +174,31 @@ textarea {width:800px; height:300px;overflow:visible;}
 			                  <br>
 			                  <br>
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary" value="주차장여부">주차장여부</button>
+				  			  <button type="button" id="button2" style="width:300px; height:50px;" class="btn btn-primary" value="주차장">주차장여부</button>
 				  			  <br>
 				  			  <br>
 				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">여성전용</button>
+  							  <button type="button" id="button3" style="width:300px; height:50px;" class="btn btn-primary" value="여성전용">여성전용</button>
   							  <br>
   							  <br>
   							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">역근처</button>
+	  						  <button type="button" id="button4" style="width:300px; height:50px;" class="btn btn-primary" value="역근처">역근처</button>
 		                  </div>
 		                  <div class="col-md-6"><!-- 오른쪽 -->
 		                  	  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">어린아이 동반여부</button>
+			                  <button type="button" id="button5" style="width:300px; height:50px;" class="btn btn-primary" value="어린아이">어린아이 동반여부</button>
 			                  <br>
 			                  <br>
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">패키지상품</button>
+				  			  <button type="button" id="button6" style="width:300px; height:50px;" class="btn btn-primary" value="커플석">커플석 여부</button>
 				  			  <br>
 				  			  <br>
 				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">예약 가능 여부</button>
+  							  <button type="button" id="button7" style="width:300px; height:50px;" class="btn btn-primary" value="예약가능">예약 가능 여부</button>
   							  <br>
   							  <br>
   							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">주말오픈</button>                  
+	  						  <button type="button" id="button8" style="width:300px; height:50px;" class="btn btn-primary" value="주말오픈">주말오픈</button>                  
 		                  </div>
 		                </div>
 		              </div>
@@ -124,35 +221,35 @@ textarea {width:800px; height:300px;overflow:visible;}
 		                <div class="row">
 		                  <div class="col-md-6"><!-- 왼쪽 -->
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">다리를 교정하고 싶을 때</button>
+			                  <button type="button" id="button2-1" style="width:300px; height:50px;" class="btn btn-primary" value="다리교정">다리를 교정하고 싶을 때</button>
 			                  <br>
 			                  <br>
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">허리디스크 교정</button>
+				  			  <button type="button" id="button2-2" style="width:300px; height:50px;" class="btn btn-primary" value="허리디스크교정">허리디스크 교정</button>
 				  			  <br>
 				  			  <br>
 				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">발관리</button>
+  							  <button type="button" id="button2-3" style="width:300px; height:50px;" class="btn btn-primary" value="발관리">발관리</button>
   							  <br>
   							  <br>
   							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">손관리</button>
+	  						  <button type="button" id="button2-4" style="width:300px; height:50px;" class="btn btn-primary" value="손관리">손관리</button>
 		                  </div>
 		                  <div class="col-md-6"><!-- 오른쪽 -->
 		                  	  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">골반교정</button>
+			                  <button type="button" id="button2-5" style="width:300px; height:50px;" class="btn btn-primary" value="골반교정">골반교정</button>
 			                  <br>
 			                  <br>
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">부종제거</button>
+				  			  <button type="button" id="button2-6" style="width:300px; height:50px;" class="btn btn-primary" value="부종제거">부종제거</button>
 				  			  <br>
 				  			  <br>
 				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">피부 화이트닝</button>
+  							  <button type="button" id="button2-7" style="width:300px; height:50px;" class="btn btn-primary" value="피부화이트닝">피부 화이트닝</button>
   							  <br>
   							  <br>
   							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">얼굴축소</button>                  
+	  						  <button type="button" id="button2-8" style="width:300px; height:50px;" class="btn btn-primary" value="손톱관리">손톱관리</button>                  
 		                  </div>
 		                </div>
 		              </div>
@@ -173,35 +270,35 @@ textarea {width:800px; height:300px;overflow:visible;}
 		                <div class="row">
 		                  <div class="col-md-6"><!-- 왼쪽 -->
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">타이식마사지</button>
+			                  <button type="button" id="button3-1" style="width:300px; height:50px;" class="btn btn-primary" value="타이마사지">타이식마사지</button>
 			                  <br>
 			                  <br>
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">경락마사지 교정</button>
+				  			  <button type="button" id="button3-2" style="width:300px; height:50px;" class="btn btn-primary" value="경락마사지">경락마사지 교정</button>
 				  			  <br>
 				  			  <br>
 				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">두피마사지</button>
+  							  <button type="button" id="button3-3" style="width:300px; height:50px;" class="btn btn-primary" value="두피마사지">두피마사지</button>
   							  <br>
   							  <br>
   							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">교정</button>
+	  						  <button type="button" id="button3-4" style="width:300px; height:50px;" class="btn btn-primary" value="교정">교정</button>
 		                  </div>
 		                  <div class="col-md-6"><!-- 오른쪽 -->
 		                  	  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">핸드케어</button>
+			                  <button type="button" id="button3-5" style="width:300px; height:50px;" class="btn btn-primary" value="핸드케어">핸드케어</button>
 			                  <br>
 			                  <br>
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">바디케어</button>
+				  			  <button type="button" id="button3-6" style="width:300px; height:50px;" class="btn btn-primary" value="바디케어">바디케어</button>
 				  			  <br>
 				  			  <br>
 				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">네일아트</button>
+  							  <button type="button" id="button3-7" style="width:300px; height:50px;" class="btn btn-primary" value="네일아트">네일아트</button>
   							  <br>
   							  <br>
   							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">발마사지</button>                  
+	  						  <button type="button" id="button3-8" style="width:300px; height:50px;" class="btn btn-primary" value="발마사지">발마사지</button>                  
 		                  </div>
 		                </div>
 		              </div>
@@ -222,35 +319,35 @@ textarea {width:800px; height:300px;overflow:visible;}
 		                <div class="row">
 		                  <div class="col-md-6"><!-- 왼쪽 -->
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">서울특별시</button>
+			                  <button type="button" id="button4-1" style="width:300px; height:50px;" class="btn btn-primary" value="서울">서울특별시</button>
 			                  <br>
 			                  <br>
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">경기도</button>
+				  			  <button type="button" id="button4-2" style="width:300px; height:50px;" class="btn btn-primary" value="경기도">경기도</button>
 				  			  <br>
 				  			  <br>
 				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">강원도</button>
+  							  <button type="button" id="button4-3" style="width:300px; height:50px;" class="btn btn-primary" value="강원도">강원도</button>
   							  <br>
   							  <br>
   							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">충청도</button>
+	  						  <button type="button" id="button4-4" style="width:300px; height:50px;" class="btn btn-primary" value="충청도">충청도</button>
 		                  </div>
 		                  <div class="col-md-6"><!-- 오른쪽 -->
 		                  	  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">경상도</button>
+			                  <button type="button" id="button4-5" style="width:300px; height:50px;" class="btn btn-primary" value="경상도">경상도</button>
 			                  <br>
 			                  <br>
 			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">전라도</button>
+				  			  <button type="button" id="button4-6" style="width:300px; height:50px;" class="btn btn-primary" value="전라도">전라도</button>
 				  			  <br>
 				  			  <br>
 				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  							  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">제주도</button>
+  							  <button type="button" id="button4-7" style="width:300px; height:50px;" class="btn btn-primary" value="제주도">제주도</button>
   							  <br>
   							  <br>
   							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  						  <button type="button" style="width:300px; height:50px;" class="btn btn-primary">기타 섬 지역</button>                  
+	  						  <button type="button" id="button4-8" style="width:300px; height:50px;" class="btn btn-primary" value="기타">기타 섬 지역</button>                  
 		                  </div>
 		                </div>
 		              </div>

@@ -28,8 +28,9 @@ public class SearchDAO {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
 		try{
+			System.err.println("DAO : "+button);
 			List<Enterprise> etpList = session.getMapper(EnterpriseMapper.class).CustomerFreeSearchingList(button);
-					
+			System.err.println("DAO : "+etpList);		
 			return etpList;
 		}finally{
 			session.close();

@@ -57,5 +57,5 @@ public interface EnterpriseMapper {
     List<Enterprise> CustomerFreeSearchingList(String keyword);
     
     //////////////// 카테고리 검색 리스트
-    List<Enterprise> categorySearch(String button);
+    List<Enterprise> categorySearch(String keyword);
 }
