@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 $(function () {
-    $('#container').highcharts({
+    $('#container6').highcharts({
         chart: {
             type: 'line'
         },
@@ -72,6 +72,6 @@ $(function () {
 <title>시간대별 매출액 변화</title>
 </head>
 <body>
-<div id="container" style="min-width: 1000px; height: 500px; margin: 0 auto"></div>
+<div id="container6" style="min-width: 1000px; height: 500px; margin: 0 auto"></div>
 </body>
 </html>

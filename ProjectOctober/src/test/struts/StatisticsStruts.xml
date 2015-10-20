@@ -50,8 +50,31 @@
 		
 		<!-- 시간대별 매출액 변화 -->
 		<action name="highchart6" class="test.action.Action6" method="highchart6">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart7</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<!-- 고객 평가의 분기별 변화 -->
+		<action name="highchart7" class="test.action.Action7" method="highchart7">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart8</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<!--항인쿠폰 사용시 매출액 변화  -->
+		<action name="highchart8" class="test.action.Action8" method="highchart8">
 			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>
 		</action>
-	
+		
+		
+		
+		
+		
+		
+		
+		
 	</package>
 </struts>

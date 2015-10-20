@@ -16,7 +16,10 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="http://code.highcharts.com/modules/data.js"></script>
+<script src="http://code.highcharts.com/modules/drilldown.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -83,11 +86,11 @@ textarea {width:800px; height:300px;overflow:visible;}
       
       <div id="menu6" class="tab-pane fade">
      	  <h3>통계7</h3>
-      	   
+      	   <s:include value="Highchart7.jsp"/>  
       </div><!-- 통계7 --> 
       <div id="menu7" class="tab-pane fade">
      	  <h3>통계8</h3>
-      	   
+      	  <s:include value="Highchart8.jsp"/>  
       </div><!-- 통계8 --> 
       <div id="menu8" class="tab-pane fade">
      	  <h3>통계9</h3>

@@ -6,7 +6,7 @@
 			
  		select to_char(sale_time,'HH24') timeHour ,sum(sale_amount) amountSum from
 		sale_record
-		where etp_num = 69
+		where etp_num = 69  <!-- #{etp_num}으로 바꾸기 -->
 		group by to_char(sale_time,'HH24')
 		order by to_char(sale_time,'HH24')
 		
