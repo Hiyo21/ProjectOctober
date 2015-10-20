@@ -44,11 +44,22 @@ public class Enterprise implements Serializable {
     private String etpDescription;
     private Integer etpStatus;
     
+    private String searchKeyword;    
     private String start;
     private String end;
     private LocalDate memJoinedDate;
 
     private static final long serialVersionUID = 1L;
+    
+    
+    
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 
 	public String getStart() {
 		return start;
@@ -364,25 +375,18 @@ public class Enterprise implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Enterprise [component=").append(component).append(", holiday=").append(holiday)
-				.append(", photoLocation=").append(photoLocation).append(", workingDays=").append(workingDays)
-				.append(", reviews=").append(reviews).append(", notifications=").append(notifications)
-				.append(", reservations=").append(reservations).append(", saleRecords=").append(saleRecords)
-				.append(", services=").append(services).append(", coupons=").append(coupons).append(", etpNum=")
-				.append(etpNum).append(", etpEmail=").append(etpEmail).append(", etpOwner=").append(etpOwner)
-				.append(", etpSuperclass=").append(etpSuperclass).append(", etpAddress=").append(etpAddress)
-				.append(", etpZipcode=").append(etpZipcode).append(", etpTitle=").append(etpTitle)
-				.append(", etpStartHour=").append(etpStartHour).append(", etpEndHour=").append(etpEndHour)
-				.append(", etpPhone=").append(etpPhone).append(", etpMaleStaff=").append(etpMaleStaff)
-				.append(", etpFemaleStaff=").append(etpFemaleStaff).append(", etpCapacity=").append(etpCapacity)
-				.append(", etpRsvDeadline=").append(etpRsvDeadline).append(", etpSelfNotification=")
-				.append(etpSelfNotification).append(", etpCstNotification=").append(etpCstNotification)
-				.append(", etpTemplateType=").append(etpTemplateType).append(", etpMapAddress=").append(etpMapAddress)
-				.append(", etpDirection=").append(etpDirection).append(", etpSvcOffered=").append(etpSvcOffered)
-				.append(", etpSubclass=").append(etpSubclass).append(", etpSpecialize=").append(etpSpecialize)
-				.append(", etpDescription=").append(etpDescription).append(", etpStatus=").append(etpStatus)
-				.append(", start=").append(start).append(", end=").append(end).append("]");
-		return builder.toString();
+		return "Enterprise [component=" + component + ", holiday=" + holiday + ", photoLocation=" + photoLocation
+				+ ", workingDays=" + workingDays + ", reviews=" + reviews + ", notifications=" + notifications
+				+ ", reservations=" + reservations + ", saleRecords=" + saleRecords + ", services=" + services
+				+ ", coupons=" + coupons + ", etpNum=" + etpNum + ", etpEmail=" + etpEmail + ", etpOwner=" + etpOwner
+				+ ", etpSuperclass=" + etpSuperclass + ", etpAddress=" + etpAddress + ", etpZipcode=" + etpZipcode
+				+ ", etpTitle=" + etpTitle + ", etpStartHour=" + etpStartHour + ", etpEndHour=" + etpEndHour
+				+ ", etpPhone=" + etpPhone + ", etpMaleStaff=" + etpMaleStaff + ", etpFemaleStaff=" + etpFemaleStaff
+				+ ", etpCapacity=" + etpCapacity + ", etpRsvDeadline=" + etpRsvDeadline + ", etpSelfNotification="
+				+ etpSelfNotification + ", etpCstNotification=" + etpCstNotification + ", etpTemplateType="
+				+ etpTemplateType + ", etpMapAddress=" + etpMapAddress + ", etpDirection=" + etpDirection
+				+ ", etpSvcOffered=" + etpSvcOffered + ", etpSubclass=" + etpSubclass + ", etpSpecialize="
+				+ etpSpecialize + ", etpDescription=" + etpDescription + ", etpStatus=" + etpStatus + ", searchKeyword="
+				+ searchKeyword + ", start=" + start + ", end=" + end + ", memJoinedDate=" + memJoinedDate + "]";
 	}
 }

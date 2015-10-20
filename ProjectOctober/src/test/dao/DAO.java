@@ -10,6 +10,9 @@ import test.vo.Highchart2;
 import test.vo.Highchart3;
 import test.vo.Highchart4;
 import test.vo.Highchart5;
+import test.vo.Highchart6;
+import test.vo.Highchart7;
+import test.vo.Highchart8;
 
 public class DAO {
 
@@ -82,6 +85,58 @@ public class DAO {
 		return list;
 	}
 
+	//시간대별 매출액 변화
+	public List<Highchart6> highchart6DAO() {
+		List<Highchart6> list = null;
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("highchart6");				
+		}finally{
+			sqlsession.close();
+		}
+		return list;
+	}
+
+	//고객 평가 척도(분기별)
+	public List<Highchart7> highchart7DAO() {
+		List<Highchart7> list = null;
+		
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("highchart7");				
+		}finally{
+			sqlsession.close();
+		}
+		return list;
+	}
+
+	//할인쿠폰 사용여부에 따른 매출액 변화- start
+	public List<Highchart8> highchart8DAO() {
+		List<Highchart8> list = null;
+
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("highchart8");				
+		}finally{
+			sqlsession.close();
+		}	
+		
+		return list;
+	}
+
+
+	public List<Highchart8> highchart8DAO1() {
+		List<Highchart8> list1 = null;
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list1 = sqlsession.selectList("highchart81");				
+		}finally{
+			sqlsession.close();
+		}	
+		
+		return list1;
+	}
+	//할인쿠폰 사용여부에 따른 매출액 변화-end
 	
 	
 	

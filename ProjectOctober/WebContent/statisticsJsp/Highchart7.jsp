@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>  
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" >
-
+ <script type="text/javascript">
 $(function () {
 
-    $('#container2').highcharts({
+    $('#container7').highcharts({
 
         chart: {
             polar: true,
@@ -17,7 +16,7 @@ $(function () {
         },
 
         title: {
-            text: '연령별 고객평가 척도',
+            text: '사업체의 고객 평가 시간별 변화도',
             x: -80
         },
 
@@ -39,7 +38,7 @@ $(function () {
         },
 
         tooltip: {
-            shared: true,
+        	shared: true,
             pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:.0f}</b><br/>'
         },
 
@@ -51,66 +50,53 @@ $(function () {
         },
 
         series: [{
-            name: '10대',
+            name: '1분기',
             data: [
-<s:iterator value="#request.list10">
-	<s:property value="hygiene"/>,<s:property value="comfort"/>,<s:property value="technique"/>,
-	<s:property value="price"/>,<s:property value="service"/>
-</s:iterator>
+<s:iterator value="#request.review">
+<s:property value="hygiene"/>,<s:property value="comfort"/>,<s:property value="technique"/>,
+<s:property value="price"/>,<s:property value="service"/>
+</s:iterator>                
+                   
                    ],
             pointPlacement: 'on'
         }, {
-            name: '20대',
+            name: '2분기',
             data: [
-<s:iterator value="#request.list20">
+<s:iterator value="#request.review1">
 <s:property value="hygiene"/>,<s:property value="comfort"/>,<s:property value="technique"/>,
 <s:property value="price"/>,<s:property value="service"/>
-</s:iterator>
+</s:iterator> 
+                   
+                  ],
+            pointPlacement: 'on'
+        }, {
+            name: '3분기',
+            data: [
+<s:iterator value="#request.review2">
+<s:property value="hygiene"/>,<s:property value="comfort"/>,<s:property value="technique"/>,
+<s:property value="price"/>,<s:property value="service"/>
+</s:iterator>  
                    ],
             pointPlacement: 'on'
         }, {
-            name: '30대',
+            name: '4분기',
             data: [
-<s:iterator value="#request.list30">
+<s:iterator value="#request.review3">
 <s:property value="hygiene"/>,<s:property value="comfort"/>,<s:property value="technique"/>,
 <s:property value="price"/>,<s:property value="service"/>
-</s:iterator>
+</s:iterator>       
                    ],
             pointPlacement: 'on'
-        }, {
-            name: '40대',
-            data: [
-<s:iterator value="#request.list40">
-<s:property value="hygiene"/>,<s:property value="comfort"/>,<s:property value="technique"/>,
-<s:property value="price"/>,<s:property value="service"/>
-</s:iterator>
-                   ],
-            pointPlacement: 'on'
-        }, {
-            name: '50대 이상',
-            data: [
-<s:iterator value="#request.list50">
-<s:property value="hygiene"/>,<s:property value="comfort"/>,<s:property value="technique"/>,
-<s:property value="price"/>,<s:property value="service"/>
-</s:iterator>
-                   ],
-            pointPlacement: 'on'
-        }
+        }       
         
         ]
 
     });
 });
-
-
-
-
-
 </script>
-<title>연령대별 고객의 평가 척도</title>
+<title>분기별 고객 평가 변화</title>
 </head>
 <body>
-
-<div id="container2" style="min-width: 700px; max-width: 500px; height: 500px; margin: 0 auto"></div>
+<div id="container7" style="min-width: 700px; max-width: 500px; height: 500px; margin: 0 auto"></div>
 </body>
 </html>

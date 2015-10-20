@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="test.mapper.Highchart10Mapper.xml" >
+	<select id="highchart10" resultType="Highchart10">
+		SELECT E.etp_num etpNum,to_char(rsv_start_date,'HH24') timeSet, count(*) countNum  FROM 
+		ENTERPRISE E, RESERVATION R
+		WHERE etp_ADDRESS LIKE '%강서구%' <!-- '%#{etp_address}#%' -->
+		AND E.etp_num = R.etp_num and E.etp_email = R.etp_email
+		group by to_char(rsv_start_date,'HH24'),E.etp_num
+		order by to_char(rsv_start_date,'HH24')
+	
+	</select>
+</mapper>

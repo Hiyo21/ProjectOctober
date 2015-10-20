@@ -1,18 +1,5 @@
 select tname from tab;
 
-  		select
-  			etp.etp_direction, etp.etp_specialize, etp.etp_description
-  			<if test="">
-  			, svc.svc_num, svc.svc_title, svc.svc_cost, svc.svc_time, svc.svc_description, svc.svc_category
-  			, pht.photo_num, pht.pht_usage, pht.pht_description, pht.pht_address, pht.pht_upload_date
-  			, rvw.rvw_num, rvw.cst_email, rvw.rvw_input_date, rvw.cst_ip_address, rvw.rvw_content, rvw.cst_job
-  			, rvw.rvw_hygiene, rvw.rvw_comfort, rvw.rvw_technique, rvw.rvw_price, rvw.rvw_service								
-  		from 
-  			enterprise etp, service svc, photo_location pht, review rvw
-  		where
-  			svc.etp_num = etp.etp_num and pht.etp_num = etp.etp_num and rvw.etp_num = etp.etp_num and etp.etp_num = '1234567890'
-
-
 /------------MEMBER_CODE test data----------------/
 select * from member_code;
 
@@ -74,6 +61,7 @@ insert into enterprise values('1010101010', 'company0@company.com', 'company0', 
 insert into enterprise values('1919191919', 'company9@company.com', 'company9', '웨딩케어', '동해 어딘가', '625-566', '테스트용4', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('20:00:00', 'hh24:mi:ss')), '234-567-9999', 2, 2, 2, 1, 1, 1, 3, null, null, '테스트10,테스트11,테스트12','테스트6','테스트7','테스트8', 0);
 
 update enterprise set etp_specialize = '특징1,특징2,특징3,특징4' where etp_num = '1234567890'
+update enterprise set etp_description= '어서옵숑' where etp_num = '1234567890'
 
 commit
 
