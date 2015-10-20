@@ -63,9 +63,19 @@ public interface EnterpriseMapper {
 
     //////////////// 고객 자유 검색 리스트
     List<Enterprise> CustomerFreeSearchingList(String keyword);
+<<<<<<< HEAD
 
     
     //////////////// 카테고리 검색 리스트
     List<Enterprise> categorySearch(String keyword);
+=======
+<<<<<<< HEAD
 
+>>>>>>> refs/heads/master
+
+=======
+    
+    //////////////// 카테고리 검색 리스트
+    List<Enterprise> categorySearch(String keyword);
+>>>>>>> refs/remotes/origin/master
 }
