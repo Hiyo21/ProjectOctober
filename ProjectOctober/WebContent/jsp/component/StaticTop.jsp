@@ -74,7 +74,7 @@ function saveOutline() {
 			  				<h3>사장님 안녕하세요!</h3>
 					  		<h5>이곳에 간단한 소개를 적어주세요</h5>
 			  			</div>
-						<p><a class="btn btn-default btn-md" href="#" role="button" data-toggle="modal" data-target="#outLineModal">편집</a></p>
+						<p><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#outLineModal">편집</a></p>
 					</div>
 			  	</div>
 			</div>
