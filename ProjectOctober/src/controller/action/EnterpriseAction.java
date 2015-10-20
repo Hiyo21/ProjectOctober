@@ -19,7 +19,10 @@ import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.Reservation;
 import model.vo.Service;
+<<<<<<< HEAD
 import model.vo.WorkingDays;
+=======
+>>>>>>> refs/remotes/origin/master
 
 
 public class EnterpriseAction extends ActionSupport implements SessionAware{
@@ -30,9 +33,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Reservation reservation;
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
+<<<<<<< HEAD
 	private List<Service> serviceList;
 	private Map<String, Object> session;
 	private Member member;
+=======
+>>>>>>> refs/remotes/origin/master
 	
 	//////// Component Member ////////  
 	private Component component;
@@ -41,7 +47,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpNum;
 	private String etpEmail;
 	private String address;
+<<<<<<< HEAD
 	private Integer rsvNum;
+=======
+	
+	Map<String, Object> session;
+
+	
+>>>>>>> refs/remotes/origin/master
 	
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -117,12 +130,56 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
+<<<<<<< HEAD
 	
 	public String receiveServiceList() throws Exception{
 		serviceList = etpDAO.retrieveServices(etpNum);
 		System.err.println(serviceList);
 		if(serviceList != null) return SUCCESS;
 		else return ERROR;	
+=======
+	
+	public String selectServiceList() throws Exception{
+		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
+		enterprise.setServices(etpDAO.selectServiceList(etpNum)); 
+
+		if(enterprise.getServices() != null) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String selectEtpList() throws Exception{
+		enterpriseList = etpDAO.selectEtpList();			
+		System.out.println("===========check Action :: enterpriseList :: " + enterpriseList);
+		return SUCCESS;
+	}
+	
+	public String takeEtp() throws Exception{
+		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
+		enterprise = etpDAO.selectByEtpNum(etpNum);
+		enterprise.setServices(etpDAO.selectServiceList(etpNum));
+		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
+		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
+		
+		if(enterprise != null) {
+			int type = enterprise.getEtpTemplateType();
+			session.put("pageId", etpNum);
+			
+			switch (type) {
+			case 1:
+				//dynamic
+				enterprise.setComponents(etpDAO.receiveComponentList(etpNum));
+				return "dynamic";
+			case 3:
+				//static_allInOne
+				return "static2";
+			default:
+				//static_tabs
+				return "static1";
+			}
+		}else{
+			return ERROR;
+		}
+>>>>>>> refs/remotes/origin/master
 	}
 	
 	public String updateReservationDetailsByEnterprise() throws Exception{
@@ -235,9 +292,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	
-
-
-	
 	@Override
 	public String execute() throws Exception {
 		System.out.println("check Action Execute");
@@ -319,6 +373,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.address = address;
 	}
 
+<<<<<<< HEAD
 
 	@Override
 	public void setSession(Map<String, Object> session) {
@@ -374,4 +429,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public void setMember(Member member) {
 		this.member = member;
 	}
+=======
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;		
+	}
+
+	
+>>>>>>> refs/remotes/origin/master
 }

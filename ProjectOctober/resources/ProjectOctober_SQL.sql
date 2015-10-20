@@ -1,6 +1,5 @@
 select tname from tab;
 
-
 /------------MEMBER_CODE test data----------------/
 select * from member_code;
 
@@ -62,7 +61,8 @@ insert into enterprise values('2345678901', 'company2@company.com', 'company2', 
 insert into enterprise values('1010101010', 'company0@company.com', 'company0', '풋마사지', '광주 어딘가', '325-566', '테스트용3', (TO_DATE('12:00:00', 'hh24:mi:ss')), (TO_DATE('22:00:00', 'hh24:mi:ss')), '234-567-1234', 2, 2, 2, 1, 1, 1, 3, null, null, '테스트7,테스트8,테스트9','테스트3','테스트4','테스트5', 0);
 insert into enterprise values('1919191919', 'company9@company.com', 'company9', '웨딩케어', '동해 어딘가', '625-566', '테스트용4', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('20:00:00', 'hh24:mi:ss')), '234-567-9999', 2, 2, 2, 1, 1, 1, 3, null, null, '테스트10,테스트11,테스트12','테스트6','테스트7','테스트8', 0);
 
-update enterprise set etp_status = 0 where etp_status = 2
+update enterprise set etp_specialize = '특징1,특징2,특징3,특징4' where etp_num = '1234567890'
+update enterprise set etp_description= '어서옵숑' where etp_num = '1234567890'
 
 commit
 
@@ -78,8 +78,10 @@ insert into enterprise values('2345678901', 'company2@company.com', 'company2', 
 /----------------SERVICE test data-------------/
 select * from service;
 
-create sequence service_seq start with 7;
+drop sequence service_seq;
+create sequence service_seq;
 
+<<<<<<< HEAD
 insert into service values(1, '1234567890', 'test1@test.com', '30분 풋마사지', 'h', 10000, '30:00', 'Test Message1', '풋마사지', 'specialty1', 1);
 insert into service values(2, '1234567890', 'test1@test.com', '60분 풋마사지', 'g', 20000, '01:00:00', 'Test Message2', '풋이마사지', 'specialty2', 1);
 insert into service values(3, '1234567890', 'test1@test.com', '30분 타이마사지', 'i', 15000, '30:00', 'Test Message3', '타이마사지', 'specialty3', 1);
@@ -89,6 +91,17 @@ insert into service values(6, '1234567890', 'test1@test.com', '60분 경락마�
 insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 핸드마사지', 'd', 30000, '30:00' 'Test Message7', '핸드마사지', 'specialty5', 1);
 insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60분 호화마사지', 'z', 60000, '01:00:00', 'Test Message8', '호화마사지', 'specialty6', 1);
 insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '90분 VIP마사지', 'g', 90000, '01:30:00', 'Test Message9', 'VIP마사지', 'specialty7', 1);
+=======
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 상반신마사지', 10000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 1占쏙옙', '占쏙옙占쏙옙占쏙옙占쏙옙占??', '占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60분 전신 마사지', 20000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 2占쏙옙', '占쏙옙占쏙옙占쏙옙占쏙옙占??', '占쏙옙占쏙옙 占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 상반신 마사지', 15000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 3占쏙옙', '占쌘드마占쏙옙占쏙옙', '占쏙옙占쏙옙품 占쏙옙占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60분 아로마 전신 마사지', 30000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 4占쏙옙', '占쌘드마占쏙옙占쏙옙', '占쏙옙占쏙옙품 占쏙옙占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 아로마 상반신 마사지', 20000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 5占쏙옙', '풋占쏙옙占쏙옙占쏙옙', 'HOT', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60분 스페셜 전신 마사지', 40000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 6占쏙옙', '풋占쏙옙占쏙옙占쏙옙', 'HOT', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 스페셜 상반신 마사지', 30000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 8占쏙옙', '타占싱몌옙占쏙옙占쏙옙', '占쏙옙占쏙옙占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60분 프리미엄 전신 마사지', 60000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 9占쏙옙', '타占싱몌옙占쏙옙占쏙옙', '占쏙옙占쏙옙占쏙옙', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '90분 VVIP 전신 마사지', 90000, (TO_DATE('01:30:00', 'hh:mi:ss')), '占싱곤옙 10占쏙옙', '타占싱몌옙占쏙옙占쏙옙', 'VIP占쏙옙', 1);
+>>>>>>> refs/remotes/origin/master
 
 /-----------------COUPON test data---------------------------/
 select * from coupon;
