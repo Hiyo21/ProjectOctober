@@ -42,10 +42,16 @@
 	
 		<!-- 요일별 예약수(주말 vs 평일) -->
 		<action name="highchart5" class="test.action.Action5" method="highchart5">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart6</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<!-- 시간대별 매출액 변화 -->
+		<action name="highchart6" class="test.action.Action6" method="highchart6">
 			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>
 		</action>
-	
-	
 	
 	</package>
 </struts>

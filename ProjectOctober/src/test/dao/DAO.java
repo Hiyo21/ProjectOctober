@@ -10,6 +10,7 @@ import test.vo.Highchart2;
 import test.vo.Highchart3;
 import test.vo.Highchart4;
 import test.vo.Highchart5;
+import test.vo.Highchart6;
 
 public class DAO {
 
@@ -79,6 +80,18 @@ public class DAO {
 			sqlsession.close();
 		}
 		
+		return list;
+	}
+
+	//시간대별 매출액 변화
+	public List<Highchart6> highchart6DAO() {
+		List<Highchart6> list = null;
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("highchart6");				
+		}finally{
+			sqlsession.close();
+		}
 		return list;
 	}
 

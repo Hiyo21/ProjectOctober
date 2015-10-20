@@ -12,6 +12,9 @@
 <a href="highchart3.action">계절별 선호 서비스</a>
 <a href="highchart4.action">직업별 평균 소비지출액 통계</a>
 <a href="highchart5.action">요일별 예약수(주말과 평일 비교)</a>
+<a href="highchart6.action">시간대별 매출액 변화</a>
+
+
 
 </body>
 </html>
