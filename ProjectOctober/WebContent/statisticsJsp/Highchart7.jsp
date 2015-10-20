@@ -97,6 +97,6 @@ $(function () {
 <title>분기별 고객 평가 변화</title>
 </head>
 <body>
-<div id="container7" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+<div id="container7" style="min-width: 700px; max-width: 500px; height: 500px; margin: 0 auto"></div>
 </body>
 </html>
