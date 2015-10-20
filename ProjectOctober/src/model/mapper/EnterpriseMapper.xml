@@ -774,6 +774,18 @@
     </if>
   </select>
   
+  	<select id="selectEtpList" resultMap="EnterpriseBaseResultMap">
+  		select * from enterprise
+  	</select>
+  	  	
+  	<select id="selectReviewList" parameterType="String" resultType="Review">
+  		select * from review where etp_num = #{etpNum}
+  	</select>
+  	
+  	<select id="selectPhotoList" parameterType="String" resultType="PhotoLocation">
+  		select * from review where etp_num = #{etpNum}
+  	</select>
+   
   	<!--  Component Mapper  -->
   	
 	<insert id="insertComponent" parameterType="Component">

@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
     
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Static Template ver.Tab</title>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Static Template ver.Tab</title>
 
 <script>
 	$(document).ready(function(){
@@ -78,7 +78,7 @@
 			    	<button type="button" class="btn btn-default btn-lg">전화 예약(${etpPhone})</button>
 			  	</div>
 			  	<div class="btn-group" role="group">
-			    	<button type="button" class="btn btn-success btn-lg" onclick='location.href="receiveSvcList.action?etpNum="${etpNum}'>예약 하기</button>
+			    	<button type="button" class="btn btn-success btn-lg" onclick='location.href="receiveServiceList.action?etpNum="${etpNum}'>예약 하기</button>
 			  	</div>
 			</div>
 		</div>
@@ -103,7 +103,7 @@
 		 			<s:include value="./GalleryComponent.jsp"/>	
 				</div>
 				<div id="locationCP" class="tab-pane fade">
-					<s:include value="./LocationComponent.jsp"/>
+					<%-- <s:include value="./LocationComponent.jsp"/> --%>
 				</div>
 				<div id="reviewCP" class="tab-pane fade">
 					<s:include value="./ReviewComponent.jsp"/>				

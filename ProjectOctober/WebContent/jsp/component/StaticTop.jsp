@@ -8,8 +8,8 @@
 <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
 
 <script type="text/javascript">
+
 $(document).ready(function(){	
-	
 	//textarea를 htmleditor로 대체, toolbar 설정
 	CKEDITOR.replace('outLineEdit', {
 		toolbarGroups : [
@@ -71,8 +71,13 @@ function saveOutline() {
 			  		<div class="jumbotron">
 			  			<!-- 입력된 내용을 바로 반영 -->
 			  			<div id="outLineContentIn">
-			  				<h3>사장님 안녕하세요!</h3>
-					  		<h5>이곳에 간단한 소개를 적어주세요</h5>
+			  				<s:if test="svcDescription == null">
+			  					<h3>사장님 안녕하세요!</h3>
+					  			<h5>이곳에 간단한 소개를 적어주세요</h5>
+					  		</s:if>
+					  		<s:if test="svcDescription != null">
+					  			<s:property value="svcDescription"/>
+					  		</s:if>
 			  			</div>
 						<p><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#outLineModal">편집</a></p>
 					</div>
