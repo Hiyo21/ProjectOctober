@@ -6,17 +6,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.SerializationUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
-import model.common.VOFactory;
+import model.dao.CustomerDAO;
 import model.dao.MemberDAO;
+import model.vo.Customer;
 import model.vo.Member;
-
 import model.vo.Zipcode;
 
 public class MemberAction extends ActionSupport implements SessionAware{
@@ -26,6 +25,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private static final int ADMIN_CODE = 3;
 	
 	private Map<String, Object> session;
+	private Customer customer;
 	private Member member;
 	private String email;
 	private String emailInput;
@@ -33,6 +33,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private String etpNumInput;
 	private String password;
 	private MemberDAO memDAO;
+	private CustomerDAO cstDAO;
 	private boolean emailExists;
 	private boolean etpNumExists;
 	
@@ -50,6 +51,21 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	public MemberAction() {
 		memDAO = DAOFactory.createMemberDAO();
+	}
+	
+	public String customerRegistration() throws Exception{
+		
+		System.err.println("action : "+member);		
+		int result = memDAO.insertMemberInfo2(member);
+		System.err.println(result);
+		
+		
+		customer.setCstEmail(member.getMemEmail());
+		customer.setCstOneclick(1);
+		int result2 = cstDAO.insertCustomerInfo(customer);
+		System.err.println(result2);
+		
+		return SUCCESS;
 	}
 	
 	public String checkEnterpriseDuplicateEmail() throws Exception{
@@ -386,4 +402,14 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	public void setEtpNum(String etpNum) {
 		this.etpNum = etpNum;
 	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
+	
 }
