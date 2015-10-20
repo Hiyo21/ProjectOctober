@@ -3,6 +3,7 @@ package model.mapper;
 import java.util.List;
 import java.util.Map;
 
+import model.vo.Customer;
 import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.MemberExample;
@@ -63,4 +64,9 @@ public interface MemberMapper {
 	Integer insertWorkingDays(Member tempMember);
 
 	Integer finalizeRegistration(Member tempMember);
+	
+	//이용자 회원가입
+	int insertMemberInfo2(Member member);
+	
+	int insertCustomerInfo(Customer customer);
 }
