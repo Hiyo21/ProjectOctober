@@ -115,6 +115,8 @@
         </div>
       </div>
 </div>
-
+<div align="center">
+	<button type="button" class="btn btn-primary" >PDF파일로 다운받기</button>
+  </div>
 </body>
 </html>
