@@ -4,30 +4,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript">
-	$(function(){
-		var etpNum = ${etpNum};
-		receiveSvcList(etpNum);
-	});
 
 	function svcDelete(item) {
 		alert("정말 " +item+"을(를) 삭제하시겠습니까?");
 		//ajax를 통해 테이블이 삭제 된 것을 보여줌
 	}
 	
-	function receiveSvcList(item){
-		//수정 및 삭제 성공시 다시 서비스 리스트를 뿌려주는 메소드
-		location.href='receiveSvcList.action?'
+	function selectSvcList(item) {
+		$.ajax({
+			url: '${pageContext.request.contextPath}/enterprise/selectServiceList.action?etpNum='+item,
+			type:'GET',
+			dataType: 'json',
+			success : printSvcList
+		});
 	}
+	
+	function printSvcList(object){
+		var svcList = object.svcList;
+		console.log(svcList);
+	}
+
 </script>
 </head>
 <body>
+<button onclick="selectSvcList('1234567890')">리스트 불러오기</button>
 <div class="container-fluid">
 <div class="panel panel-default">
-	<s:if test="svcList != null">
-	<s:iterator value="svcList">
+
+	<s:if test="services != null">
+	<s:iterator value="services">
 		<div class="panel-heading">
 		 	<s:property value="svcCategory"/>
 		 	<!-- 인서트시 한 사업자의 카데고리에 중복이 없게 해야 함//셀렉트 할때는 사업자와 카테고리를 조인하여 검색 -->

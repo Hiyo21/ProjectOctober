@@ -6,6 +6,8 @@ import model.vo.Component;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
 import model.vo.PhotoLocation;
+import model.vo.Review;
+import model.vo.Service;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
@@ -24,6 +26,8 @@ public interface EnterpriseMapper {
     List<Enterprise> selectByExampleWithRowbounds(EnterpriseExample example, RowBounds rowBounds);
 
     List<Enterprise> selectByExample(EnterpriseExample example);
+    
+    List<Enterprise> selectEtpList();
 
     Enterprise selectByEtpNum(String key);
 
@@ -34,6 +38,10 @@ public interface EnterpriseMapper {
     int updateByPrimaryKeySelective(Enterprise record);
 
     int updateByPrimaryKey(Enterprise record);
+    
+    
+    List<Review> selectReviewList(String etpNum);
+    List<PhotoLocation> selectPhotoList(String etpNum);
     
     ///////////////// 컴포넌트
     
@@ -55,7 +63,19 @@ public interface EnterpriseMapper {
 
     //////////////// 고객 자유 검색 리스트
     List<Enterprise> CustomerFreeSearchingList(String keyword);
+<<<<<<< HEAD
+
     
     //////////////// 카테고리 검색 리스트
     List<Enterprise> categorySearch(String keyword);
+=======
+<<<<<<< HEAD
+
+>>>>>>> refs/heads/master
+
+=======
+    
+    //////////////// 카테고리 검색 리스트
+    List<Enterprise> categorySearch(String keyword);
+>>>>>>> refs/remotes/origin/master
 }

@@ -1,6 +1,5 @@
 select tname from tab;
 
-
 /------------MEMBER_CODE test data----------------/
 select * from member_code;
 
@@ -61,7 +60,8 @@ insert into enterprise values('2345678901', 'company2@company.com', 'company2', 
 insert into enterprise values('1010101010', 'company0@company.com', 'company0', '풋마사지', '광주 어딘가', '325-566', '테스트용3', (TO_DATE('12:00:00', 'hh24:mi:ss')), (TO_DATE('22:00:00', 'hh24:mi:ss')), '234-567-1234', 2, 2, 2, 1, 1, 1, 3, null, null, '테스트7,테스트8,테스트9','테스트3','테스트4','테스트5', 0);
 insert into enterprise values('1919191919', 'company9@company.com', 'company9', '웨딩케어', '동해 어딘가', '625-566', '테스트용4', (TO_DATE('10:00:00', 'hh24:mi:ss')), (TO_DATE('20:00:00', 'hh24:mi:ss')), '234-567-9999', 2, 2, 2, 1, 1, 1, 3, null, null, '테스트10,테스트11,테스트12','테스트6','테스트7','테스트8', 0);
 
-update enterprise set etp_status = 0 where etp_status = 2
+update enterprise set etp_specialize = '특징1,특징2,특징3,특징4' where etp_num = '1234567890'
+update enterprise set etp_description= '어서옵숑' where etp_num = '1234567890'
 
 commit
 

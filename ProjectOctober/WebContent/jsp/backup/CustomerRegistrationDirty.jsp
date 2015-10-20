@@ -19,27 +19,6 @@
 		$('[data-toggle="notification-popover"]').popover();
 	});
 	
-	$('body').on('click','#send', function(){
-		var year = $("#year option:selected").text();
-		var month = $("#month option:selected").text();
-		var day = $("#day option:selected").text();
-		$.ajax({
-			url : "<s:url value='/member/customerRegistration.action'/>",
-			type : "post",
-			data : {
-				year : year,
-				month : month,
-				day : day
-			},
-			success : end
-		});
-		
-		function end(){
-			alert('다녀왔음');
-		}
-	}) 
-	
-	
 	function zipcodeOpen() {
 		window.open("${pageContext.request.contextPath}/member/toZipcodePage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
 	}
@@ -54,36 +33,39 @@
 <h2 align="center">이용자 회원가입</h2>
 
 <!-- 본문 시작 -->
-<form name="customerRegistration" action="/member/customerRegistration.action" method="post" >
+
 <div class="section">
       <div class="container">
         <div class="row">
         <!-- 오른쪽 -->
           <div class="col-md-6">
-			<label for="member.memName">이름</label>
-			<s:textfield class="form-control" id="custom.cstName" name="member.memName"/>          	
+			<label for="name">이름</label>
+			<s:textfield class="form-control" id="name" name="member.memName"/>          	
           	<br>
-          	<label for="member.memEmail">이메일 주소</label>
+          	<label for="email">이메일 주소</label>
 			<s:textfield class="form-control" id="email" name="member.memEmail" placeholder="ID로 사용됩니다."/>
 			<br>
-			<label for="member.memPassword">비밀번호</label>
+			<label for="password">비밀번호</label>
 			<s:password class="form-control" id="password" name="member.memPassword"/>					
 			<br>
 			<label for="passwordck">비밀번호 확인</label>
 			<s:password class="form-control" id="passwordck"/>
 			<br>
-			<label for="member.memGender">성별</label><br>
-			<input type="radio" name="member.memGender" value="M">남&nbsp;&nbsp;&nbsp;<input type="radio" name="member.memGender" value="F">여			
-			<br>							
+			<label for="sex">성별</label>
+			<input type="radio" id="sex">남 <input type="radio" id="sex">여
+			
+			<br>			
+				
           </div>
           
           <!-- 왼쪽 -->
-          <div class="col-md-6" >
-          		<label for="member.cstBirthday">생년월일</label>
+          <div class="col-md-6">
+          		<label for="birthday">생년월일</label>
 					<div class="form-inline">
 						<div class="form-group">
-							<select id="year" name="customer.cstBirthday" class="form-control">
+							<select id="year" name="year" class="form-control">
 								<option value="">년도선택</option>
+								<option value="1960">1960년</option>
 		          				<option value="1961">1961년</option>
 		          				<option value="1962">1962년</option>
 		          				<option value="1963">1963년</option>
@@ -188,13 +170,18 @@
 		          			
 		          			<br><label for="address">주소</label>
 						<div class="form-inline">
-						<s:textfield class="form-control" id="customer.cstZipcode" name="zipcode" readonly="true" size="20" placeholder="클릭해서 우편번호를 검색" onclick="zipcodeOpen()"/>
+						<s:textfield class="form-control" id="zipcode" name="zipcode" readonly="true" size="20" placeholder="클릭해서 우편번호를 검색" onclick="zipcodeOpen()"/>
 						</div>
 						
-						<s:textfield class="form-control" id="customer.cstAddress" name="customer.cstAddress" readonly="true" size="70"/><br>
+						<s:textfield class="form-control" id="address1" name="address1" readonly="true" size="70"/><br>
 						
-						<s:textfield class="form-control" id="address2" name="customer.cstAddress" placeholder="상세주소를 입력하세요" size="70"/>		         
-						</div>				
+						<s:textfield class="form-control" id="address2" name="address2" placeholder="상세주소를 입력하세요" size="70"/>
+		          			
+		          			
+		          			
+						</div>
+						
+						
 					</div>
           </div>
           </div>
@@ -207,15 +194,19 @@
 	      	 <div class="row" align="center">
 	      	  	<h1 align="center">이용약관</h1>
 				    <div class="col-sm-12" style="background-color:lavender;">
-				      <p>회원 이용약관</p><br>				      
+				      <p>회원 이용약관</p><br>
+				      
 				    </div>
 				    <br>
 				    <br>
 				    <br>
-				   <center> <input type="submit" id="send" value="회원가입">&nbsp;&nbsp;&nbsp;<input type="button" value="취소"></center>
+				   <center> <input type="button" value="회원가입">&nbsp;&nbsp;&nbsp;<input type="button" value="취소"></center>
      		 	</div>
 	    	  </div>
 	      </div>
-       </form> 
+        	
+      
+    	
+    
 </body>
 </html>

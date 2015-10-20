@@ -3,7 +3,9 @@ package controller.action;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -12,9 +14,10 @@ import model.dao.EnterpriseDAO;
 import model.vo.Component;
 import model.vo.Enterprise;
 import model.vo.Reservation;
+import model.vo.Service;
 
 
-public class EnterpriseAction extends ActionSupport{
+public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	private static final long serialVersionUID = 1L;
 	private EnterpriseDAO etpDAO;
@@ -22,7 +25,6 @@ public class EnterpriseAction extends ActionSupport{
 	private Reservation reservation;
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
-
 	
 	//////// Component Member ////////  
 	private Component component;
@@ -31,6 +33,8 @@ public class EnterpriseAction extends ActionSupport{
 	private String etpNum;
 	private String etpEmail;
 	private String address;
+	
+	Map<String, Object> session;
 
 	
 	
@@ -92,11 +96,46 @@ public class EnterpriseAction extends ActionSupport{
 		else return ERROR;
 	}
 	
-	public String receiveServiceList() throws Exception{
-		//enterprise = etpDAO.receiveServiceList(etpNum);
+	public String selectServiceList() throws Exception{
+		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
+		enterprise.setServices(etpDAO.selectServiceList(etpNum)); 
 
-		if(enterprise != null) return SUCCESS;
+		if(enterprise.getServices() != null) return SUCCESS;
 		else return ERROR;
+	}
+	
+	public String selectEtpList() throws Exception{
+		enterpriseList = etpDAO.selectEtpList();			
+		System.out.println("===========check Action :: enterpriseList :: " + enterpriseList);
+		return SUCCESS;
+	}
+	
+	public String takeEtp() throws Exception{
+		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
+		enterprise = etpDAO.selectByEtpNum(etpNum);
+		enterprise.setServices(etpDAO.selectServiceList(etpNum));
+		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
+		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
+		
+		if(enterprise != null) {
+			int type = enterprise.getEtpTemplateType();
+			session.put("pageId", etpNum);
+			
+			switch (type) {
+			case 1:
+				//dynamic
+				enterprise.setComponents(etpDAO.receiveComponentList(etpNum));
+				return "dynamic";
+			case 3:
+				//static_allInOne
+				return "static2";
+			default:
+				//static_tabs
+				return "static1";
+			}
+		}else{
+			return ERROR;
+		}
 	}
 	
 	
@@ -195,9 +234,6 @@ public class EnterpriseAction extends ActionSupport{
 	}
 	
 	
-
-
-	
 	@Override
 	public String execute() throws Exception {
 		System.out.println("check Action Execute");
@@ -278,5 +314,11 @@ public class EnterpriseAction extends ActionSupport{
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;		
+	}
+
 	
 }
