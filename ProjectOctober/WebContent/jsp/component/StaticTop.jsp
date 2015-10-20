@@ -5,12 +5,55 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){	
+	
+	//textarea를 htmleditor로 대체, toolbar 설정
+	CKEDITOR.replace('outLineEdit', {
+		toolbarGroups : [
+   			{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+   			{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+   			{ name: 'forms', groups: [ 'forms' ] },
+   			{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+   			{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+   			{ name: 'links', groups: [ 'links' ] },
+   			{ name: 'insert', groups: [ 'insert' ] },
+   			{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+   			{ name: 'styles', groups: [ 'styles' ] },
+   			{ name: 'colors', groups: [ 'colors' ] },
+   			{ name: 'tools', groups: [ 'tools' ] },
+   			{ name: 'others', groups: [ 'others' ] },
+   			{ name: 'about', groups: [ 'about' ] }
+   		],
+
+   		removeButtons : 'Source,Save,Templates,NewPage,Preview,Print,SelectAll,Find,Replace,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,BidiLtr,BidiRtl,Language,CreateDiv,Link,Unlink,Anchor,PageBreak,ShowBlocks,Maximize',
+   		language : 'ko'
+	});
+	
+	$('#outlinemodal').on('shown.bs.modal', function () {
+		$('#outlinemodal').focus();
+	});
+});
+
+function saveOutline() {
+	var editor=CKEDITOR.instances.outLineText.getData();
+	
+	console.log(editor);
+	//htmleditor에서 편집된 값을 반영
+	var div = document.getElementById("outLineContentIn");
+	div.innerHTML = editor;
+};
+
+</script>
+
 </head>
 <body>
 
 <!-- page-top -->
 <div class='container-fluid'>
-	
+	<div class="panel panel-default">
 	<div class="row" align="center">
 		<div class="col-md-3">
 			<div id='logoCP'>
@@ -25,7 +68,14 @@
 		<div class="col-md-6">
 			<div id='outLineCP'>
 			  	<div class="panel-body">
-			    	<textarea id="outLineText" name="textedit" placeholder="사업 개요"></textarea>
+			  		<div class="jumbotron">
+			  			<!-- 입력된 내용을 바로 반영 -->
+			  			<div id="outLineContentIn">
+			  				<h3>사장님 안녕하세요!</h3>
+					  		<h5>이곳에 간단한 소개를 적어주세요</h5>
+			  			</div>
+						<p><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#outLineModal">편집</a></p>
+					</div>
 			  	</div>
 			</div>
 		</div>
@@ -36,7 +86,29 @@
 			<span class="label label-primary">특징3</span>
 		</div>	
 	</div><!-- row end -->
+	</div>
 </div><!-- page-top end -->
+
+<!-- htmleditor modal -->
+<div class="modal fade" id="outLineModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">소개 작성</h4>
+      </div>
+      <div class="modal-body">
+        <textarea id="outLineText" name="outLineEdit"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveOutline()">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 
 </body>
 </html>

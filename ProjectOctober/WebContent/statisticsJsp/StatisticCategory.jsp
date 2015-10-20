@@ -13,13 +13,16 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="http://code.highcharts.com/modules/data.js"></script>
+<script src="http://code.highcharts.com/modules/drilldown.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-	$(function(){
-		$('[data-toggle="notification-popover"]').popover();
-	});
-</script>
+
 <style type="text/css">
 textarea {width:800px; height:300px;overflow:visible;}
 
@@ -53,37 +56,41 @@ textarea {width:800px; height:300px;overflow:visible;}
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
       <h3>통계1</h3>
-         
-      
+         <s:include value="Highchart1.jsp"/>        
      </div> <!-- 통계1 -->
-   	 <div id="menu1" class="tab-pane fade">
+     
+   	 <div id="menu1" class="tab-pane fade" >
    		  <h3>통계2</h3>
-   			
+   		 <s:include value="Highchart2.jsp"/>       	
    	  </div>	<!-- 통계2 -->
+   	 
    	  <div id="menu2" class="tab-pane fade">
       	<h3>통계3</h3>	
-   		  
-		   
+   		  <s:include value="Highchart3.jsp"/>  		   
    	  </div><!-- 통계3 -->
-   	   <div id="menu3" class="tab-pane fade">
-     	  <h3>통계4</h3>
-      	   
+   	 
+   	  <div id="menu3" class="tab-pane fade">
+     	 <h3>통계4</h3>
+      	  <s:include value="Highchart4.jsp"/>  
       </div><!-- 통계4 -->
-       <div id="menu4" class="tab-pane fade">
+      
+      <div id="menu4" class="tab-pane fade">
      	  <h3>통계5</h3>
-      	   
+      	   <s:include value="Highchart5.jsp"/>  
       </div><!-- 통계5 -->
-       <div id="menu5" class="tab-pane fade">
+      
+      <div id="menu5" class="tab-pane fade">
      	  <h3>통계6</h3>
-      	   
+      	   <s:include value="Highchart6.jsp"/>      
       </div><!-- 통계6 --> 
+      
       <div id="menu6" class="tab-pane fade">
      	  <h3>통계7</h3>
-      	   
+      	   <s:include value="Highchart7.jsp"/>  
       </div><!-- 통계7 --> 
       <div id="menu7" class="tab-pane fade">
      	  <h3>통계8</h3>
-      	   
+      	  <s:include value="Highchart8.jsp"/>  
       </div><!-- 통계8 --> 
       <div id="menu8" class="tab-pane fade">
      	  <h3>통계9</h3>

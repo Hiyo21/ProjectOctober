@@ -47,9 +47,7 @@
     	<columnOverride column="rsv_end_date" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
     </table>
     
-    <table schema="HR" tableName="SERVICE">
-   		<columnOverride column="svc_time" javaType="java.time.LocalTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
-    </table>
+    <table schema="HR" tableName="SERVICE" />
     
     <table tableName="ONECLICK_PAYMENT" schema="HR" />
 
@@ -100,10 +98,6 @@
     </table>
     
     <table tableName="WORKING_DAYS" schema="HR" />
-    
-    <table tableName="WAITLIST" schema="HR">
-    	<columnOverride column="wtl_apply_time" javaType="java.time.LocalDateTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler"/>
-    </table>
     
   </context>
 </generatorConfiguration>

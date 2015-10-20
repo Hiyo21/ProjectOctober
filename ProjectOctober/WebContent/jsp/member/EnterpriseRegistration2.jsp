@@ -130,14 +130,8 @@
 			tempStartTime = document.getElementById("endHour").value + ":" + t2 + ":00";
 			document.getElementById("endTimeVal").value = tempStartTime;
 		});
-		
-		
 	}); 
 	
-
-</script>
-
-<script type="text/javascript">
 function check(){
 	var je = document.getElementById('je');//종류
 	var spec = document.getElementById('spec');//특징
@@ -197,12 +191,14 @@ function check(){
 	
 	$("#secondForm").submit();
 };
+
 </script>
 
 <style>
 	.subclassChkTds, .specialtyChkTds{
-		padding: 10px;
+	padding: 10px;
 	}
+	
 	paper-menu {
           width: 120px;
     }
@@ -288,7 +284,7 @@ function check(){
 			<h3><b>선택사항</b></h3>
 			
 			<div class="row">
-				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 					<div class="panel panel-info">
 						<div class="panel-heading"><h4><b>사업장 규모</b></h4></div>
 						<div class="panel-body">
@@ -446,20 +442,13 @@ function check(){
 		</div>
 
 		<div class="row">
-			<div class="col-lg-4" align="left"><a href="toFirstRegistrationPage.action"><button type="button" class="btn btn-primary">이전</button></a></div>
+			<div class="col-lg-4" align="left"><a href="backToFirstRegistrationPage.action"><button type="button" class="btn btn-primary">이전</button></a></div>
 			<div class="col-lg-4" align="center"><h3>2 / 3</h3></div>
 			<div class="col-lg-4" align="right"><button type="button" class="btn btn-primary" onclick="return check()">다음</button></div>
-		</div>
-	</div>
-	
-	<input type="hidden" name="">
-	
-	</form>
-<br>
-<br>
-<br>
-<br>
-<br>
 
+		</div>
+	</div>	
+	<input type="hidden" name="etpNum" value="${member.enterprise.etpNum}" id="etpNumHold"/>
+	</form>
 </body>
 </html>

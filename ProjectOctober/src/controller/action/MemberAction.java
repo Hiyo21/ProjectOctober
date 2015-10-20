@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
@@ -51,8 +52,19 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		memDAO = DAOFactory.createMemberDAO();
 	}
 	
+	public String checkEnterpriseDuplicateEmail() throws Exception{
+		emailExists = memDAO.retrieveEmail(emailInput);
+		return SUCCESS;
+	}
+	
+	public String checkEnterpriseDuplicateEtpNum() throws Exception{
+		etpNumExists = memDAO.retrieveEtpNum(etpNumInput);
+		return SUCCESS;
+	}
+	
 	public String backToFirstRegistrationPage() throws Exception{
 		System.out.println(email);
+		if(email == null) email = (String) ActionContext.getContext().getSession().get("email");
 		int result = memDAO.deleteEnterpriseInfoFirstStep(email);
 		if(result != 1) return ERROR;
 		else result = memDAO.deleteMemberInfo(email);
@@ -64,7 +76,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	public String toRegCardCheckPage() throws Exception{
 		doPreliminarySteps(member);
 		int result = memDAO.insertMemberInfo(member);
-		
+		ActionContext.getContext().getSession().put("email", member.getEnterprise().getEtpEmail());
 		if(result != 1) return ERROR;
 		else result = memDAO.insertEnterpriseInfoFirstStep(member.getEnterprise());
 		
@@ -76,48 +88,42 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		member = memDAO.retrieveMemberInfo(etpNum);
 		System.err.println(member);
 		System.err.println(member.getEnterprise());
-		System.err.println(member.getEnterprise().getPhotoLocation());
 		return SUCCESS;
 	}
 	
 	public String toThirdRegistrationPage() throws Exception{
-		Member tempMember = (Member) session.get("tempMember");
-		System.err.println(member.getEnterprise());
-		System.err.println(member.getEnterprise().getWorkingDays().getTemp());
-		tempMember.getEnterprise().setWorkingDays(VOFactory.createWorkingDays());
-		tempMember.getEnterprise().getWorkingDays().setEtpNum(tempMember.getEnterprise().getEtpNum());
-		tempMember.getEnterprise().getWorkingDays().setEtpEmail(tempMember.getEnterprise().getEtpEmail());
-		tempMember.getEnterprise().getWorkingDays().setTemp(member.getEnterprise().getWorkingDays().getTemp());
-		System.err.println(tempMember.getEnterprise().getWorkingDays());
+		System.err.println(etpNum);
+		Member tempMember = memDAO.retrieveMemberInfo(etpNum);
+		
+		//---------------working days 셋업------------//
+		initializeWorkingDays(tempMember, member.getEnterprise().getWorkingDays().getTemp());
+		System.err.println((tempMember.getEnterprise().getWorkingDays()));
+		int result = memDAO.insertWorkingDays(tempMember);
+		//int result = memDAO.updateWorkingDays(tempMember);
+		if(result == 0) throw new Exception();
+		//-------------------------------------------//
+		
+		//-------그 외: 업종, 특징, 수용 인원, 스태프 수, 등등 ------//
 		tempMember.getEnterprise().setEtpSuperclass(member.getEnterprise().getEtpSuperclass());
 		tempMember.getEnterprise().setEtpMaleStaff(member.getEnterprise().getEtpMaleStaff());
 		tempMember.getEnterprise().setEtpFemaleStaff(member.getEnterprise().getEtpFemaleStaff());
 		tempMember.getEnterprise().setEtpCapacity(member.getEnterprise().getEtpCapacity());
 		tempMember.getEnterprise().setEtpSubclass(member.getEnterprise().getEtpSubclass());
 		tempMember.getEnterprise().setEtpSpecialize(member.getEnterprise().getEtpSpecialize());
+		
+		//-----------------------------------------------//
+		
+		//-----------시작 시간, 끝 시간 설정 ---------------------//
 		tempMember.getEnterprise().setEtpStartHour(LocalTime.parse(member.getEnterprise().getStart(),DateTimeFormatter.ISO_LOCAL_TIME));
 		tempMember.getEnterprise().setEtpEndHour(LocalTime.parse(member.getEnterprise().getEnd(),DateTimeFormatter.ISO_LOCAL_TIME));
-		
-		member = SerializationUtils.clone(tempMember);
-		System.err.println(member);
-		System.err.println(member.getEnterprise());
-		System.err.println(member.getEnterprise().getWorkingDays());
-		if(member != null){
-			return SUCCESS;
-		}
-		else return ERROR;
-	}
-	
-	public String checkEnterpriseDuplicateEmail() throws Exception{
-		emailExists = memDAO.retrieveEmail(emailInput);
+		result = memDAO.updateEtpDetailsFirst(tempMember);
+		if(result == 0) throw new Exception();
+		//-----------------------------------------------//
+	 	ActionContext.getContext().getSession().put("etpNum", tempMember.getEnterprise().getEtpNum());
 		return SUCCESS;
 	}
-	
-	public String checkEnterpriseDuplicateEtpNum() throws Exception{
-		etpNumExists = memDAO.retrieveEtpNum(etpNumInput);
-		return SUCCESS;
-	}
-	
+
+
 	public String loginProcess() throws Exception{
 		Map<String, String> loginInfo = new HashMap<>();
 		loginInfo.put("loginEmail", email);
@@ -163,6 +169,21 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		}
 	}
 	
+	public String finalizeRegistration() throws Exception{
+		etpNum = (String) ActionContext.getContext().getSession().get("etpNum");
+		System.err.println(etpNum);
+		Member tempMember = memDAO.retrieveMemberInfo(etpNum);
+		System.err.println(tempMember);
+		System.err.println(tempMember.getEnterprise());
+		tempMember.getEnterprise().setEtpRsvDeadline(member.getEnterprise().getEtpRsvDeadline());
+		tempMember.getEnterprise().setEtpSelfNotification(member.getEnterprise().getEtpSelfNotification());
+		tempMember.getEnterprise().setEtpCstNotification(member.getEnterprise().getEtpCstNotification());
+		int result = memDAO.finalizeRegistration(tempMember);
+		if(result == 0) return ERROR;
+		else return SUCCESS;
+	}
+	
+	
 	//======================================================/
 	private void doPreliminarySteps(Member member) {
 		member.getEnterprise().setEtpOwner(member.getMemName());
@@ -175,6 +196,35 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		member.getEnterprise().setEtpStatus(0);
 	}
 	
+	private void initializeWorkingDays(Member tempMember, String temp) {
+		tempMember.getEnterprise().getWorkingDays().setMon(0).setTue(0).setWed(0).setThu(0).setFri(0).setSat(0).setSun(0).setTemp(temp);
+		switch (temp) {
+		case "mon":
+			tempMember.getEnterprise().getWorkingDays().setMon(1);
+			break;
+		case "tue":
+			tempMember.getEnterprise().getWorkingDays().setTue(1);
+			break;
+		case "wed":
+			tempMember.getEnterprise().getWorkingDays().setWed(1);
+			break;
+		case "thu":
+			tempMember.getEnterprise().getWorkingDays().setThu(1);
+			break;
+		case "fri":
+			tempMember.getEnterprise().getWorkingDays().setFri(1);
+			break;
+		case "sat":
+			tempMember.getEnterprise().getWorkingDays().setSat(1);
+			break;
+		case "sun":
+			tempMember.getEnterprise().getWorkingDays().setSun(1);
+			break;
+		default:
+			break;
+		}
+	}
+
 	
 	@Override
 	public void setSession(Map<String, Object> session) {

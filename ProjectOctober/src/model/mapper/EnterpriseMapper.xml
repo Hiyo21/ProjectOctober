@@ -141,13 +141,14 @@
   </resultMap>
   
   <!-- Service Record ResultMap -->
-    <resultMap id="ServiceResultMapForEnterprise" type="model.vo.Service" >
+  <resultMap id="ServiceResultMapForEnterprise" type="model.vo.Service" >
     <id column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
     <result column="SVC_TITLE" property="svcTitle" jdbcType="VARCHAR" />
+    <result column="SVC_CODE" property="svcCode" jdbcType="VARCHAR" />
     <result column="SVC_COST" property="svcCost" jdbcType="DECIMAL" />
-    <result column="SVC_TIME" property="svcTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+    <result column="SVC_TIME" property="svcTime" jdbcType="VARCHAR" />
     <result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
     <result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
     <result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
@@ -786,20 +787,36 @@
 	<select id="receiveComponent" resultType="Component">
 		select * from component
 	</select>
-	<!-- 고객 검색 자유 리스트 Mapper -->
-	 
+	
+	
+	<!-- 고객 자유 검색 리스트 Mapper -->	 
  	 <select id="CustomerFreeSearchingList" parameterType="String" resultMap="EnterpriseBaseResultMap">
- 	 	select * from hr.enterprise where ETP_SUPERCLASS like '%'||#{searchLanguage}||'%'
-			<!-- <where>
-				<if test="etpOwner==null">
-					ETP_OWNER like '%'||#{searchLanguage}||'%' 
-				</if>
-				 	
-				<if test="etpEmail==null">
-					AND etp_email like '%'||#{searchLanguage}||'%'
-				</if>
-			</where>	 -->
- 	 </select>
+ 	 	select ETP_NUM,ETP_SUPERCLASS,ETP_OWNER,ETP_EMAIL,ETP_ADDRESS,ETP_ZIPCODE,ETP_TITLE,ETP_PHONE,
+ 	 		   ETP_DESCRIPTION,ETP_SPECIALIZE,SUBSTR(ETP_ADDRESS,1,2) addr1,ETP_START_HOUR,ETP_END_HOUR	
+ 	 	from hr.enterprise  
+ 	 	where ETP_SUPERCLASS like '%'||#{searchLanguage}||'%'  
+ 	 		  or ETP_OWNER like '%'||#{searchLanguage}||'%'
+ 	 		  or ETP_EMAIL like '%'||#{searchLanguage}||'%'
+ 	 		  or ETP_ADDRESS like '%'||#{searchLanguage}||'%'
+ 	 		  or ETP_ZIPCODE like '%'||#{searchLanguage}||'%'
+ 	 		  or ETP_TITLE like '%'||#{searchLanguage}||'%'
+ 	 		  or ETP_PHONE like '%'||#{searchLanguage}||'%'
+ 	 		  or ETP_DESCRIPTION like '%'||#{searchLanguage}||'%'
+ 	 		  or ETP_SPECIALIZE like '%'||#{searchLanguage}||'%' 
+ 	    order by addr1 ASC	 	 		  
+	</select>
+	
+	<!-- 카테고리 검색 -->
+	 <select id="categorySearch" parameterType="String" resultMap="EnterpriseBaseResultMap">
+ 	 	select ETP_NUM,ETP_SUPERCLASS,ETP_OWNER,ETP_EMAIL,ETP_ADDRESS,ETP_ZIPCODE,ETP_TITLE,ETP_PHONE,
+ 	 		   ETP_DESCRIPTION,ETP_SPECIALIZE,SUBSTR(ETP_ADDRESS,1,2) addr1,ETP_START_HOUR,ETP_END_HOUR,
+ 	 		   ETP_SUBCLASS	
+ 	 	from hr.enterprise  
+ 	 	where ETP_SPECIALIZE like '%'||#{searchLanguage}||'%'
+ 	 		  or ETP_DESCRIPTION like '%'||#{searchLanguage}||'%'
+ 	 		  or ETP_SUBCLASS like '%'||#{searchLanguage}||'%'    	 		  
+ 	 	order by addr1 ASC	 	 		  
+	</select>
 	
 	<!--  사업자 승인 게시판 Mapper  -->
 	

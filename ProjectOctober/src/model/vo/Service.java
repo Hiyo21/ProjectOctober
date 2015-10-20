@@ -1,7 +1,6 @@
 package model.vo;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 
 public class Service implements Serializable {
     private Integer svcNum;
@@ -12,9 +11,11 @@ public class Service implements Serializable {
 
     private String svcTitle;
 
+    private String svcCode;
+
     private Integer svcCost;
 
-    private LocalTime svcTime;
+    private String svcTime;
 
     private String svcDescription;
 
@@ -58,6 +59,14 @@ public class Service implements Serializable {
         this.svcTitle = svcTitle;
     }
 
+    public String getSvcCode() {
+        return svcCode;
+    }
+
+    public void setSvcCode(String svcCode) {
+        this.svcCode = svcCode;
+    }
+
     public Integer getSvcCost() {
         return svcCost;
     }
@@ -66,11 +75,11 @@ public class Service implements Serializable {
         this.svcCost = svcCost;
     }
 
-    public LocalTime getSvcTime() {
+    public String getSvcTime() {
         return svcTime;
     }
 
-    public void setSvcTime(LocalTime svcTime) {
+    public void setSvcTime(String svcTime) {
         this.svcTime = svcTime;
     }
 
@@ -116,6 +125,7 @@ public class Service implements Serializable {
         sb.append(", etpNum=").append(etpNum);
         sb.append(", etpEmail=").append(etpEmail);
         sb.append(", svcTitle=").append(svcTitle);
+        sb.append(", svcCode=").append(svcCode);
         sb.append(", svcCost=").append(svcCost);
         sb.append(", svcTime=").append(svcTime);
         sb.append(", svcDescription=").append(svcDescription);

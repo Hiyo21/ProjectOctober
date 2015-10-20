@@ -21,4 +21,19 @@ public class SearchDAO {
 			session.close();
 		}
 	}
+	
+///////////////////카테고리 검색 결과//////////////////////
+	
+	public List<Enterprise> categorySearch(String button){
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			System.err.println("DAO : "+button);
+			List<Enterprise> etpList = session.getMapper(EnterpriseMapper.class).CustomerFreeSearchingList(button);
+			System.err.println("DAO : "+etpList);		
+			return etpList;
+		}finally{
+			session.close();
+		}
+	}
 }
