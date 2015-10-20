@@ -30,10 +30,13 @@
 				year : year,
 				month : month,
 				day : day
-			}
+			},
+			success : end
 		});
 		
-		
+		function end(){
+			alert('다녀왔음');
+		}
 	}) 
 	
 	
