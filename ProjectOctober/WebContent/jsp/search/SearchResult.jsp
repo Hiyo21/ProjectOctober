@@ -28,7 +28,7 @@
 <title>검색 결과</title>
 </head>
 <body><s:include value="../Header.jsp" />	
-[검색 결과]
+
 <!-- 자유 검색 리스트 -->
  <div class="section">
       <div class="container">
@@ -55,25 +55,26 @@
 									          <div class="col-md-6">
 									          		<table>
 														<tr>
-															<th>전화번호</th>
+															<th>전화번호 : </th>
 															<td><s:property value="etpPhone"/></td>
 														</tr>
 														<tr>
-															<th>주소</th>
+															<th>주소 : </th>
 															<td><s:property value="etpAddress"/></td>
 														</tr>
 														<tr>
-															<th>이메일</th>
+															<th>이메일 : </th>
 															<td><s:property value="etpEmail"/></td>
 														</tr>
 														<tr>
-															<th>특이사항</th>
+															<th>특이사항 : </th>
 															<td><s:property value="etpSpecialize"/></td>
 														</tr>															
 													</table>
 									          
 									          </div>
 										          <div class="col-md-6">
+										          	<h2>오시는 길</h2>
 										          	<img class="img-responsive" src="http://maps.googleapis.com/maps/api/staticmap?center=Tombouctou,Mali&amp;zoom=12&amp;size=200x200&amp;sensor=false">
 										          
 										          </div>
