@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<!-- 통계를 위한 struts -->
+<struts>
+	<package name="statistics" extends="struts-default" namespace="/">
+		
+		<!-- 고객 성별에 따른 STAFF성별 선호도 -->
+		<action name="highchart1" class="test.action.Action1" method="highchart1">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart2</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+			
+		
+		<!-- 연령대별 고객의 평가 척도  -->
+		<action name="highchart2" class="test.action.Action2" method="highchart2">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart3</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+	
+		<!-- 계절별 선호 서비스 -->
+		<action name="highchart3" class="test.action.Action3" method="highchart3">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart4</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		
+		
+		<!-- 직업별 평균 소비 지출액 -->
+		<action name="highchart4" class="test.action.Action4" method="highchart4">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart5</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+	
+		<!-- 요일별 예약수(주말 vs 평일) -->
+		<action name="highchart5" class="test.action.Action5" method="highchart5">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart6</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<!-- 시간대별 매출액 변화 -->
+		<action name="highchart6" class="test.action.Action6" method="highchart6">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart7</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<!-- 고객 평가의 분기별 변화 -->
+		<action name="highchart7" class="test.action.Action7" method="highchart7">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart8</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<!--항인쿠폰 사용시 매출액 변화  -->
+		<action name="highchart8" class="test.action.Action8" method="highchart8">
+			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>
+		</action>
+		
+		
+		<!-- 결제 페이지에서 버튼 누르면 ->유료통계서비스 -->
+		<action name="highchartCost" class="test.action.Action9" method="highchartCost">
+			<result name="success" type="chain">
+        		<param name="actionName">highchartCost1</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<action name="highchartCost1">
+			<result name="success">/statisticsJsp/StatisticCostCategory.jsp</result>
+		</action>
+		
+		
+		
+		
+		
+				
+	</package>
+</struts>
