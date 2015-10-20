@@ -12,5 +12,6 @@ public interface ReservationMapper {
 	Integer changeReservationTime(Reservation reservation);
 	
 	Integer deleteReservation(Reservation reservation);
-	
+
+	int updateReservationDetailsInModal(Reservation reservation);
 }

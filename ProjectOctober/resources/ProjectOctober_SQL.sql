@@ -51,7 +51,8 @@ insert into customer values('test12@test.com', '제주도 어딘가', '76544', (
 
 /-----------------ENTERPRISE test data--------------/
 select * from enterprise;
-
+select e.*, w.*, h.* from ENTERPRISE e, WORKING_DAYS w, HOLIDAY h
+    where e.ETP_NUM = '1234567890' and e.etp_num = w.etp_num and e.etp_num = h.etp_num;
 delete enterprise where etp_num = '1111-11111'
 
 select to_char(etp_start_hour,'hh24:mm:ss'),to_char(etp_end_hour,'hh24:mm:ss') from enterprise;
@@ -64,8 +65,6 @@ insert into enterprise values('1919191919', 'company9@company.com', 'company9', 
 update enterprise set etp_status = 0 where etp_status = 2
 
 commit
-
-
 
 
 	select etp.etp_owner, etp.etp_email, etp.etp_phone, etp.etp_address, etp.etp_status, mem.mem_joined_date  
@@ -81,27 +80,28 @@ select * from service;
 
 create sequence service_seq start with 7;
 
-insert into service values(1, '1234567890', 'test1@test.com', '30占쏙옙 占쏙옙占?? 占쏙옙占쏙옙占쏙옙', 10000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 1占쏙옙', '占쏙옙占쏙옙占쏙옙占쏙옙占??', '占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙', 1);
-insert into service values(2, '1234567890', 'test1@test.com', '60占쏙옙 占쏙옙占?? 占쏙옙占쏙옙占쏙옙', 20000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 2占쏙옙', '占쏙옙占쏙옙占쏙옙占쏙옙占??', '占쏙옙占쏙옙 占쏙옙', 1);
-insert into service values(3, '1234567890', 'test1@test.com', '30占쏙옙 占쌘듸옙 占쏙옙占쏙옙占쏙옙', 15000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 3占쏙옙', '占쌘드마占쏙옙占쏙옙', '占쏙옙占쏙옙품 占쏙옙占쏙옙', 1);
-insert into service values(4, '1234567890', 'test1@test.com', '60占쏙옙 占쌘듸옙 占쏙옙占쏙옙占쏙옙', 30000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 4占쏙옙', '占쌘드마占쏙옙占쏙옙', '占쏙옙占쏙옙품 占쏙옙占쏙옙', 1);
-insert into service values(5, '1234567890', 'test1@test.com', '30占쏙옙 풋 占쏙옙占쏙옙占쏙옙', 20000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 5占쏙옙', '풋占쏙옙占쏙옙占쏙옙', 'HOT', 1);
-insert into service values(6, '1234567890', 'test1@test.com', '60占쏙옙 풋 占쏙옙占쏙옙占쏙옙', 40000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 6占쏙옙', '풋占쏙옙占쏙옙占쏙옙', 'HOT', 1);
-insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30占쏙옙 타占쏙옙 占쏙옙占쏙옙占쏙옙', 30000, (TO_DATE('30:00', 'mi:ss')), '占싱곤옙 8占쏙옙', '타占싱몌옙占쏙옙占쏙옙', '占쏙옙占쏙옙占쏙옙', 1);
-insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60占쏙옙 타占쏙옙 占쏙옙占쏙옙占쏙옙', 60000, (TO_DATE('01:00:00', 'hh:mi:ss')), '占싱곤옙 9占쏙옙', '타占싱몌옙占쏙옙占쏙옙', '占쏙옙占쏙옙占쏙옙', 1);
-insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '90占쏙옙 타占쏙옙 占쏙옙占쏙옙占쏙옙', 90000, (TO_DATE('01:30:00', 'hh:mi:ss')), '占싱곤옙 10占쏙옙', '타占싱몌옙占쏙옙占쏙옙', 'VIP占쏙옙', 1);
+insert into service values(1, '1234567890', 'test1@test.com', '30분 풋마사지', 'h', 10000, '30:00', 'Test Message1', '풋마사지', 'specialty1', 1);
+insert into service values(2, '1234567890', 'test1@test.com', '60분 풋마사지', 'g', 20000, '01:00:00', 'Test Message2', '풋이마사지', 'specialty2', 1);
+insert into service values(3, '1234567890', 'test1@test.com', '30분 타이마사지', 'i', 15000, '30:00', 'Test Message3', '타이마사지', 'specialty3', 1);
+insert into service values(4, '1234567890', 'test1@test.com', '60분 타이마사지', 'y', 30000, '01:00:00', 'Test Message4', '타이마사지', 'specialty4', 1);
+insert into service values(5, '1234567890', 'test1@test.com', '30분 경락마사지', 20000, 'h', '30:00', 'Test Message5', '경락마사지', 'HOT', 1);
+insert into service values(6, '1234567890', 'test1@test.com', '60분 경락마사지', 40000, 'z',  '01:00:00' 'Test Message6', '경락마사지', 'HOT', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 핸드마사지', 'd', 30000, '30:00' 'Test Message7', '핸드마사지', 'specialty5', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '60분 호화마사지', 'z', 60000, '01:00:00', 'Test Message8', '호화마사지', 'specialty6', 1);
+insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '90분 VIP마사지', 'g', 90000, '01:30:00', 'Test Message9', 'VIP마사지', 'specialty7', 1);
 
 /-----------------COUPON test data---------------------------/
 select * from coupon;
 create sequence coupon_seq;
 
-insert into coupon values(coupon_seq.nextval, '1234567890', 'test1@test.com', '占쌀뤄옙占쏙옙 특占쏙옙 30% 占쏙옙占쏙옙', 'hw', 0.3, (TO_DATE('2015-10-15','yyyy-MM-dd')), (TO_DATE('2015-10-25','yyyy-MM-dd')));
+insert into coupon values(coupon_seq.nextval, '1234567890', 'test1@test.com', '~~기념 30퍼 할인', 'hw', 0.3, (TO_DATE('2015-10-15','yyyy-MM-dd')), (TO_DATE('2015-10-25','yyyy-MM-dd')));
 (TO_DATE '02:00:00')
 /------------RESERVATION test data------------------------/
 select * from reservation;
 create sequence reservation_seq;
 
 insert into reservation values(reservation_seq.nextval, 6, null, '1234567890', 'test1@test.com', 'test2@test.com',sysdate, sysdate + 1/24, 1, 'f','Hello!');
+select r.*, c.*, e.*, s.*, m.* from reservation r, enterprise e, service s, customer c, member m where e.etp_num = r.etp_num and r.etp_num = s.etp_num and r.cst_email = c.cst_email and c.CST_EMAIL = m.MEM_EMAIL;
 
 /----------------select queries--------------------------/
 select r.*, e.*, s.* from reservation r, enterprise e, service s where r.etp_num = e.ETP_NUM and e.ETP_NUM = s.ETP_NUM and r.svc_num = s.svc_num order by rsv_num;
@@ -109,7 +109,7 @@ select r.*, e.*, s.* from reservation r, enterprise e, service s where r.etp_num
 select m.*, e.* from member m, enterprise e where m.mem_email = e.etp_email and e.etp_e;
 
 /-----------------misc ---------------------------/
-commit
+commit;
 rollback;
 
 

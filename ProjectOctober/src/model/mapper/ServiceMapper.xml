@@ -318,4 +318,8 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  <select id="retrieveServices" parameterType="String" resultMap="ServiceResultMap">
+  	select * from SERVICE where etp_num = #{value}
+  </select>
 </mapper>

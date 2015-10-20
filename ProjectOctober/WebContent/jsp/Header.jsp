@@ -80,6 +80,9 @@
 						<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-md-2">메인페이지</a>
 						<s:if test="#session.memCode == 1">
 							<a href="${pageContext.request.contextPath}/member/toEnterpriseMyPage.action" class="btn btn-primary btn-md-2">마이페이지</a>
+							<!-- 달력 Test code. Action에서 불러와야만 한다! -->
+							<a href="${pageContext.request.contextPath}/enterprise/toCalendarPage.action?etpNum=${session.loginEtpNum}" class="btn btn-danger btn-md-2">예약 페이지</a>
+							<!--  -->
 						</s:if>
 						<s:if test="#session.memCode == 2">
 							<a href="${pageContext.request.contextPath}/member/toCustomerMainPage.action" class="btn btn-primary btn-md-2">마이페이지</a>

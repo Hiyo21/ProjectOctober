@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="model.mapper.MemberMapper" >
  
- 
  	<resultMap id="EnterpriseResultMap" type="model.vo.Enterprise">
 	    <id column="ETP_NUM" jdbcType="VARCHAR" property="etpNum" />
 	    <id column="ETP_EMAIL" jdbcType="VARCHAR" property="etpEmail" />
@@ -36,12 +35,15 @@
 	  	<collection property="reviews" ofType="Review" resultMap="ReviewResultMap"/>
 	  	<collection property="notifications" ofType="Notification" resultMap="NotificationResultMap"/>
 	  	<collection property="reservations" ofType="Reservation" resultMap="ReservationResultMap" />
-	  	<collection property="services" ofType="Service" resultMap="ServiceResultMapForEnterprise" />
+	  	<collection property="services" ofType="Service" resultMap="ServiceResultMap" />
 	  	<collection property="coupons" ofType="Coupon" resultMap="CouponResultMap" />
 	  	<collection property="saleRecords" ofType="SaleRecord" resultMap="SaleRecordResultMap" />
 	</resultMap>
+	
  <!-- Component 없음!!! -->
-	<resultMap id="CustomerResultMapForMember" type="model.vo.Customer" >
+ 
+ <!-- Customer ResultMap -->
+	<resultMap id="CustomerResultMap" type="model.vo.Customer" >
 	    <id column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
 	    <result column="CST_ADDRESS" property="cstAddress" jdbcType="VARCHAR" />
 	    <result column="CST_ZIPCODE" property="cstZipcode" jdbcType="VARCHAR" />
@@ -136,7 +138,7 @@
   </resultMap>
   
   <!-- Service Record ResultMap -->
-  <resultMap id="ServiceResultMapForEnterprise" type="model.vo.Service" >
+  <resultMap id="ServiceResultMap" type="model.vo.Service" >
     <id column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
@@ -163,8 +165,7 @@
   </resultMap>
   
   
-	
-	
+	<!-- Member + Enterprise ResultMap -->
 	<resultMap id="MemberEnterpriseTotalMap" type="model.vo.Member" >
 		<id column="MEM_EMAIL" property="memEmail" jdbcType="VARCHAR" />
 	  	<result column="MEM_CODE" property="memCode" jdbcType="DECIMAL" />
@@ -176,7 +177,9 @@
 	  	<association property="enterprise" javaType="Enterprise" resultMap="EnterpriseResultMap" />
 	</resultMap>
  
-	<resultMap id="MemberResultMap" type="model.vo.Member" >
+ 	
+ 	<!-- Member + Customer ResultMap -->
+ 	<resultMap id="MemberCustomerTotalMap" type="model.vo.Member" >
 		<id column="MEM_EMAIL" property="memEmail" jdbcType="VARCHAR" />
 	  	<result column="MEM_CODE" property="memCode" jdbcType="DECIMAL" />
 	  	<result column="MEM_NAME" property="memName" jdbcType="VARCHAR" />
@@ -184,10 +187,19 @@
 	  	<result column="MEM_PHONE" property="memPhone" jdbcType="VARCHAR" />
 	  	<result column="MEM_JOINED_DATE" property="memJoinedDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
 	  
-	  	<collection property="enterprises" ofType="Enterprise" resultMap="EnterpriseResultMap" />
-	  	<collection property="customers" ofType="Customer" resultMap="CustomerResultMapForMember" />
+	  	<association property="customer" javaType="Customer" resultMap="CustomerResultMap" />
 	</resultMap>
   
+ 	<!--  Member Only ResultMap -->
+	<resultMap id="MemberResultMap" type="model.vo.Member" >
+		<id column="MEM_EMAIL" property="memEmail" jdbcType="VARCHAR" />
+	  	<result column="MEM_CODE" property="memCode" jdbcType="DECIMAL" />
+	  	<result column="MEM_NAME" property="memName" jdbcType="VARCHAR" />
+	  	<result column="MEM_PASSWORD" property="memPassword" jdbcType="VARCHAR" />
+	  	<result column="MEM_PHONE" property="memPhone" jdbcType="VARCHAR" />
+	  	<result column="MEM_JOINED_DATE" property="memJoinedDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateHandler" />
+	</resultMap>
+	
   <resultMap id="MemberCodeResultMap" type="model.vo.MemberCode" >
     <id column="MEM_CODE" property="memCode" jdbcType="DECIMAL" />
     <result column="MEM_TYPE" property="memType" jdbcType="VARCHAR" />
@@ -521,4 +533,12 @@
 		update ENTERPRISE set etp_rsv_deadline = #{enterprise.etpRsvDeadline}, etp_self_notification = #{enterprise.etpSelfNotification}, etp_cst_notification = #{enterprise.etpCstNotification}
 		where etp_num = #{enterprise.etpNum} 
 	</update>
+	
+	<select id="retrieveCustomerInfo" parameterType="String" resultMap="MemberCustomerTotalMap">
+		select m.*, c.* from MEMBER m, CUSTOMER c where m.mem_email = c.cst_email and c.cst_email =#{value}
+	</select>
+	
+	<select id="retrieveCustomerInfoPerReservation" parameterType="map" resultMap="MemberCustomerTotalMap">
+		select m.*, c.* from MEMBER m, CUSTOMER c, RESERVATION r where m.mem_email = c.cst_email and c.cst_email =#{cstEmail} and c.cst_email = r.cst_email and r.rsv_num = #{rsvNum}
+	</select>
 </mapper>

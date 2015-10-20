@@ -5,28 +5,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Calendar Page</title>
-<link rel="stylesheet" href="fullcalendar/lib/cupertino/jquery-ui.min.css" />
-<link rel="stylesheet" href="fullcalendar/fullcalendar.css" />
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/cupertino/jquery-ui.min.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.css" />
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
 
-<script src="fullcalendar/lib/jquery.min.js"></script>
-<script src="fullcalendar/lib/moment.min.js"></script>
-<script src="fullcalendar/jquery-ui.min.js"></script>
-<script src="fullcalendar/fullcalendar.min.js"></script>
-<script src="fullcalendar/lang-all.js"></script>
-<script src="fullcalendar/listview.js"></script>
+<script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.min.js"></script>
+<script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lang-all.js"></script>
+<script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/listview.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-<script src="fullcalendar/jquery.json.js"></script>
-<script src="fullcalendar/json2.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 
 
 <script>
+	var enterpriseInfo = {};
 	$(function(){
+		
+		//--------------삭제시, event 객체 드래그 할 때 좌표 읽는 데 사용 -------------//
+		
 		var currentMousePos = {x: -1, y: -1};
 		
 		$(document).mousemove(function (event) {
@@ -34,88 +37,172 @@
 		 	currentMousePos.y = event.pageY;
 		});
 		
+		//----------------------datepicker 활성화. 사용할 수도 있고 안 할 수도 있음.-------------------------//
+		
 		$('.datepickers').datepicker();
-			
+		
+		//-----------------------사전에 정보 불러오기 : Enterprise 정보 --------------------------------//
+		
+		
+		enterpriseInfo = $.ajax({
+			url: '${pageContext.request.contextPath}/enterprise/retrieveEnterpriseInfoForCalendar.action',
+			type: 'POST',
+			data: {"etpNum":${etpNum}},
+			async: false,
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			success: function retrieveEnt(data){
+				enterpriseInfo = data.enterprise;
+
+			},error: function(){
+				console.log('retrieveEnterpriseInfoForCalendar failed!');
+			}
+		});
+		
+		console.log(enterpriseInfo.responseJSON.enterprise.workingDays.dow);
+		
+		//업체 영업 시작 시간 설정
+		var startTT = enterpriseInfo.responseJSON.enterprise.start;
+		//업체 영업 끝 시간 설정
+		var endTT = enterpriseInfo.responseJSON.enterprise.end;
+		//업체 휴무일 설정
+		var dowTT = enterpriseInfo.responseJSON.enterprise.workingDays.dow;
+		
+		//----------------------------------Full Calendar 시작.------------------------------------//
+		
+		//TODO: session 검사해서, 사업자 일때랑, 일반 이용자일 때, 그리고 아무것도 안 했을 때 구분.
+		
 		var calendar = $('#calendar').fullCalendar({
 			header: {
 				left:'prev,next today',
 				center: 'title',
 				right: 'month, agendaWeek, agendaDay,list'
 			},
+			
 			lang: 'ko',
 			theme: true,
 			defaultView : 'agendaWeek',
 			selectable: true,
 			selectHelper: true,
-			minTime: '10:00:00',
-			maxTime: '23:00:00',
+			scrollTime: '09:00:00',	
+			minTime: startTT,
+			maxTime: endTT,
 			businessHours : {
-				start: '11:00',
-				end: '23:00',
-				dow: [0,1,2,3,4,5,6,7]
+				start: startTT,
+				end: endTT,
+				dow: dowTT,
 			},
 			
+			//----------------- 기존 존재하는 이벤트 클릭 시 -----------------------//
+			
 			eventClick: function(event, jsEvent, view){
-				$("#updateReservationBtn").unbind();
+				$("#updateReservationShowBtn").unbind();
 				$(this).attr('href', 'javascript:void(0);');
-		        $(this).click(function() {
+				$("#reservationUpdateBody").hide();
+		        
+				//---------------------각 예약당 회원 정보 + 변경 가능한 서비스 리스트 가지고 오기 ----------------//
+				$(this).click(function(index){
+		        	$.ajax({
+	        			url: '${pageContext.request.contextPath}/member/retrieveCustomerInfoPerReservation.action',
+	        			dataType: 'json',
+	        			async: false,
+	        			data: {"cstEmail": event.cstEmail,
+	        					"rsvNum": event.id
+	        				},
+	        			success: function(data){
+							event.cstPhone = data.member.memPhone;
+							event.cstAddress = data.member.customer.cstAddress;
+							event.cstZipcode = data.member.customer.cstZipcode;
+							event.cstOneclick = data.member.customer.cstOneclick;
+							event.cstGender = data.member.customer.cstGender;
+							event.cstName = data.member.memName;
+	        			},
+	        			error: function(){
+	        				console.log("receive service list error");
+	        			}
+	        		});
+		        	
+		        	$.ajax({
+	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+	        			dataType: 'json',
+	        			data: {"etpNum":${etpNum}},
+	        			success: function(data){
+	        				var serviceList = [];
+	        				var services = data.serviceList;
+	        				$("#reservationUpdateSelectService").append("<option value='' disabled selected hidden>선택하세요.</option>");
+	        				$.each(services, function(i, d){
+	        					$("#reservationUpdateSelectService").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
+	        				});   				
+	        			},
+	        			error: function(){
+	        				console.log("receive service list error");
+	        			}
+	        		});
+		        	
+		        	//--------------------- 받아온 값들로 기존 예약 상세내용 리스트 뿌리기 -----------------------//
+		        	
+		        	console.log(event);
 		        	$("#updateModalTitle").html(event.title);
 		        	$("#updateModalEventId").html(event.id);
-		        	$("#updateModalCustomerEmail").html(event.customerEmail);
+		        	$("#updateModalCustomerEmail").html(event.cstEmail);
+		        	$('#updateModalCustomerPhone').html(event.cstPhone);
 		            $("#updateModalStartTime").html(moment(event.start).format('MMM Do A h:mm '));
 		            $("#updateModalEndTime").html(moment(event.end).format('MMM Do A h:mm '));
-		            $("#updateModalEventInfo").html(event.description);
+		            $('#updateModalCustomerName').html(event.cstName);
+		            $("#updateModalSvcTitle").html(event.svcTitle);
+		            $('#updateModalSvcCost').html(event.svcCost + "원");
+		            $("#reservationUpdateTitle").attr("value", event.title);
+		            $("#reservationUpdateDescription").html(event.svcDescription);
 		            $('#updateModal').modal();
 		        });
-		        
-		        $("#updateReservationBtn").click(function(){
-		        	/* $('#reservationUpdateField').html("<input type='date'></input>").toggle('slow'); */
-		        	$('#reservationUpdateSelectService').attr('list',function(index){
-		        		$.ajax({
-		        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
-		        			dataType: 'json',
-		        			type: 'GET',
-		        			success: function(data){
-		        				var serviceList = [];
-		        				var services = data.reservation.services;
-		        				for(item in services){
-		        					serviceList.push(item.svcTitle);
-		        				}
-		        				return serviceList;
-		        			}
-		        		});
-		        	});
-		        	$('#reservationUpdateField').toggle('slow');
+
+				
+		        $("#updateReservationShowBtn").click(function(){
+		        	var options ={};
+		            $("#reservationUpdateBody").toggle("clip",options,500);
 		        });
 		        
+		        $("#reservationUpdateSelectService").change(function(){
+		        	console.log($(this).val());
+		        	console.log($("#reservationUpdateTitle").val());
+		        });
+		        
+     
 		        $("#updateReservationBtnGo").click(function(){
 		        	console.log($("#reservationUpdateDateStartTime").val());
-					/* var reservation = {
-							"reservation.rsvNum" : event.id, 
-							"reservation.rsvTitle": event.description,
+		        	
+					 var reservation = {
+							"reservation.rsvNum" : event.id,
+							"reservation.svcNum" : $("#reservationUpdateSelectService").val(),
+							"reservation.cpnNum" : event.cpnNum,
+							"reservation.etpNum" : event.etpNum,
+							"reservation.etpEmail" : event.etpEmail,
+							"reservation.cstEmail" : event.cstEmail,
+							"reservation.rsvStatus" : event.rsvStatus,
+							"reservation.rsvTitle": $("#reservationUpdateTitle").val(),
 							"reservation.start" : event.start.toISOString(),
 							"reservation.end" : event.end.toISOString(),
+							"reservation.status" : event.status,
+							"reservation.employeeGender" : event.employeeGender,
 						}
 					
 					console.log(reservation);
 					$.ajax({
-						url: '${pageContext.request.contextPath}/enterprise/changeReservationTime.action',
+						url: '${pageContext.request.contextPath}/enterprise/updateReservationDetailsByEnterprise.action',
 						dataType: 'json',
 						data: reservation,
-						contentType: 'application/json',
+						contentType: 'application/json; charset=UTF-8',
 						success: function(data){
 							alert('success!');
 							//$('#calendar').fullCalendar('removeEvents');
 							//$('#calendar').fullCalendar('addEventSource', event);
 							$('#calendar').fullCalendar('refetchEvents');
+							$('#updateModal').modal('hide');
 						},
 						error: function(){
 							console.log('fail!');
-							
 						}
-					}); */
+					});
 		        });
-		      
 			},
 			
 			//select: 빈 칸에 눌렀을 때 
@@ -137,12 +224,12 @@
 					str += "</div>"
 					str += "<div class='form-group'>"
 					str += "<tr>";
-					str += "<td><label for='inputDescription' class='control-label'>서비스 시작 시간: </label></td><td><input type='text' id='inputStartTime' name='reservation.start' value='" + start.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/></td>";
+					str += "<td><label for='inputDescription' class='control-label'>서비스 시작 시간: </label></td><td><input type='text' id='inputStartTime' value='" + start.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.start' id='inputStartTimeHidden' value='" + start.toISOString() + "'/></td>";
 					str += "</tr>";
 					str += "</div>"
 					str += "<div class='form-group'>"
 					str += "<tr>";
-					str += "<td><label for='inputDescription' class='control-label'>서비스 끝 시간: </label></td><td><input type='text' id='inputEndTime' name='reservation.end' value='" + end.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/></td>";
+					str += "<td><label for='inputDescription' class='control-label'>서비스 끝 시간: </label></td><td><input type='text' id='inputEndTime' value='" + end.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.end' id='inputEndTimeHidden' value='" + end.toISOString() + "'/></td>";
 					str += "</tr>";
 					str += "<div class='form-group'>"
 					str += "<tr>";
@@ -186,14 +273,16 @@
 					$('#insertReservationBtn').click(function(){
 						if($('#insertAgreementCheckbox').prop('checked') == false){
 							alert('동의해라!');
+							$(this).unbind();
 							return false;
+							
 						}
 						
 						//폼에서 받은 값 대응하는 그릇에 집어 넣기.
 						var inputTitle = $('#inputTitle').val();
 						var inputDescription = $('#inputDescription').val();
-						var inputStartTime = $('#inputStartTime').val();
-						var inputEndTime = $('#inputEndTime').val();
+						var inputStartTime = $('#inputStartTimeHidden').val();
+						var inputEndTime = $('#inputEndTimeHidden').val();
 						var inputEmployeeGender = ''; 
 							if($('#genderCheckField').html() == '남성') {
 								$('#genderCheckField').val('m');
@@ -254,34 +343,59 @@
 			selectble: false,
 			selectHelper: true,
 			
-			//이벤트들 불러오는 기능 -------------------------------------------//
+			//각 사업자당 예약들 불러오는 기능 -------------------------------------------//
 			events: function(start, end, timezone, callback){
 				$.ajax({
 					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
-					type: 'GET',
+					type: 'POST',
+					data: {"etpNum":${etpNum}},
 					dataType: 'json',
 					success: function(doc, index, value){
 						var resList = doc.reservationList;
 						var events = [];
-						console.log(doc);
-		
+						
 						$(resList).each(function(index,item){
 							events.push({
+								id: item.rsvNum,
+								start: item.start,
+								end: item.end,
+								title: item.rsvTitle,
+								
+								svcNum: item.svcNum,
+								cpnNum: item.cpnNum,
 								etpNum: item.etpNum,
 								etpEmail: item.etpEmail,
-								cpnNum: item.cpnNum,
+								cstEmail: item.cstEmail,
 								startDate: item.rsvStartDate,
 								endDate: item.rsvEndDate,
 								status: item.rsvStatus,
 								employeeGender: item.employeeGender,
+								
+								etpOwner: item.enterprise.etpOwner,
+								etpSuperclass: item.enterprise.etpSuperclass,
+								etpAddress: item.enterprise.etpAddress,
+								etpZipcode: item.enterprise.etpZipcode,
+								etpTitle: item.enterprise.etpTitle,
+								etpPhone: item.enterprise.etpPhone,
+								etpMaleStaff: item.enterprise.etpMaleStaff,
+								etpFemaleStaff: item.enterprise.etpFemalStaff,
+								etpCapacity: item.enterprise.etpCapacity,
+								etpRsvDeadline: item.enterprise.etpRsvDeadline,
+								etpSelfNotification: item.enterprise.etpSelfNotification,
+								etpCstNotification: item.enterprise.etpCstNotification,
+								etpTemplateType: item.enterprise.etpTemplateType,
+								etpSvcOfffered: item.enterprise.etpSvcOffered,
+								etpSubclass: item.enterprise.etpSubclass,
+								etpSpecialize: item.enterprise.specialize,
+								etpDescription: item.enterprise.etpDescription,
+								
+								svcTitle: item.service.svcTitle,
 								svcCost: item.service.svcCost,
 								svcDescription: item.service.svcDescription,
-								id: item.rsvNum,
-								title: item.rsvTitle,
-								start: item.start,
-								end: item.end,
-								description: item.service.svcTitle,
-								customerEmail: item.customer.cstEmail
+								svcCategory: item.service.svcCategory,
+								svcSpecialize: item.service.svcSpecialize,
+								svcCount: item.service.svcCount,
+								svcCode: item.service.Code,
 							});
 						});
 						callback(events);
@@ -360,9 +474,7 @@
 				}
 				calendar.fullCalendar('unselect');
 			},
-			eventDragStop: function(event, jsEvent, ui, view){
-
-				
+		 	eventDragStop: function(event, jsEvent, ui, view){
 				console.log(currentMousePos);
 				
 				var isElementOverDiv = function(){
@@ -375,7 +487,7 @@
 				    var y1 = ofs.top;
 				    var y2 = ofs.top + trashEl.outerHeight(true);
 				   	
-				    if (currentMousePos.x >= x1 && currentMousePos.x <= x2 && currentMousePos.y >= y1 && currentMousePos.y <= y2) {
+				    if (currentMousePos.x>=x1 && currentMousePos.x<=x2 && currentMousePos.y>=y1 && currentMousePos.y<=y2) {
 				    	return true;
 				    }else{
 						return false;
@@ -403,22 +515,22 @@
 					};
 				};
 				$(this).unbind();
-			},
+			},	
 		});
 	});	
 </script>
 
 </head>
 <body>
-	<jsp:include page="CalHeader.jsp"></jsp:include>
+	<jsp:include page="/jsp/Header.jsp"></jsp:include>
 	<h1>Calendar for testing</h1>
 	<br>
 	<div id='external-events'>
-    <h4>Delete Events</h4>
-    <div class='fc-event'>New Event</div>
-    <p>
-      <img src="../../image/trash-can1.jpg" id="trash" alt="쓰레기통">
-    </p>
+		<input type="hidden" id="starttt" />
+		<input type="hidden" id="endtt" />
+    	<div class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="195">
+      		<img src="${pageContext.request.contextPath}/image/trash-can1.jpg" id="trash" alt="쓰레기통" style="width: 100px; height: 100px;">
+    	</div>
 	</div>
 	
 	<div id='calendar' class='container'></div>
@@ -431,14 +543,14 @@
 	                <h4 id="insertModalTitle" class="modal-title"></h4>
 	            </div>
 		            <div id="insertModalBody" class="modal-body">
-		            	<%-- *메뉴: <span id="insertModalEventTitle"> </span><br>
+		            	*메뉴: <span id="insertModalEventTitle"> </span><br>
 		   	 			*예약 시작: <span id="insertModalStartTime"> </span><br>
 		   				*예약 소요시간:<span id="insertModalDuration"> </span><br>
 		   				*쿠폰 :<span id="insertModalCoupon"> </span><br>
 		   				*총 결제금:<span id="insertModalPrice"> </span><br>
 		   				<span id="insertModalCheckBox"></span>예약 수정/ 취소 관련 주의사항<br>
 		   				<span id="insertModalTextArea"></span><br>
-		   				<p id="insertModalEventInfo"></p> --%>
+		   				<p id="insertModalEventInfo"></p>
 		   				<hr>
 		   				<br>
 		            </div>
@@ -478,40 +590,47 @@
 		            		<td><span id="updateModalCustomerEmail"></span></td>
 		            	</tr>
 		            	<tr>
-		            		<td><label for="updateModalEventInfo">상세 내용:</label></td>
-		            		<td><p id="updateModalEventInfo"></p></td>
-		            		<!-- TODO: 여기에 HTML 에디터 넣기!!!!! -->
+		            		<td><label for="updateModalCustomerName">회원 이름:</label></td>
+		            		<td><p id="updateModalCustomerName"></p></td>
 		            	</tr>
+		            	<tr>
+		            		<td><label for="updateModalCustomerPhone">회원 전화번호:</label></td>
+		            		<td><p id="updateModalCustomerPhone"></p></td>
+		            	</tr>
+		            	<tr>
+		            		<td><label for="updateModalSvcTitle">서비스 명:</label></td>
+		            		<td><span id="updateModalSvcTitle"></span></td>
+		            	</tr>
+		            	<tr>
+		            		<td><label for="updateModalSvcCost">서비스 가격:</label></td>
+		            		<td><span id="updateModalSvcCost"></span></td>
+		            	</tr>
+		            	<tr>
+		   					<td><label for="reservationUpdateDescription">서비스 상세 설명:</label>
+		   					<td><span id="reservationUpdateDescription"></span></td>
+		   				</tr>
+		            	<!-- TODO: 여기에 HTML 에디터 넣기!!!!! -->
 	   				</table>
 	   				<hr>
-	   				<div id="reservationUpdateField" class="form-group" style="display: none;">
-	   					<table class="table table-condensed">
-	   						<!-- TODO: 시간은 바꾸는 방법 다른 거 있으니까 이거 말고, 다른 정보 변경가능하도록 하자. -->
-	   						<%-- tr>
-	   							<td><label for="reservationUpdateDateStartTime">시작시간을 변경해 주세요!</label>
-	   							<td><input type='datetime-local' id="reservationUpdateDateStartTime" class="form-control"></input></td>
-	   						</tr>
-	   						<tr>
-	   							<td><label for="reservationUpdateDateEndtime">종료시간을 변경해 주세요!</label>
-	   							<td>
-	   								<s:select headerkey="-1" headerValue="종료 시간" list="#{'1':'09:00','2':'09:30'}" value="2" name="" class="select"/>
-	   							</td>
-	   						</tr> --%>
-	   						
-	   						<!-- TODO: 그 업체가 제공하는 서비스 목록을 AJAX로 받아오고, select로 뿌려주고,  -->
-	   						<tr>
-	   							<td><label for="reservationUpdateSelectService">변경하실 서비스를 선택해 주세요!</label></td>
-	   							<td><s:select list="" headerKey="-1" headerValue="선택하세요" id="reservationUpdateSelectService"></s:select></td>
-	   						<tr>
-	   							<td><label for="reservationUpdateTitle">제목을 변경해 주세요!</label>
-	   							<td><input type='text' id="reservationUpdateTitle" class="form-control" value=""></input></td>
-	   						</tr>
-	   					</table>
+	   				<div id="reservationUpdateField" class="form-group">
+ 	   					<div class="panel" id="reservationUpdateBody" >
+	 	   					<table class="table table-condensed">
+		   						<!-- TODO: 그 업체가 제공하는 서비스 목록을 AJAX로 받아오고, select로 뿌려주고,  -->
+		   						<tr>
+		   							<td><label for="reservationUpdateTitle">예약건 제목을 변경해 주세요:</label>
+		   							<td><input type="text" id="reservationUpdateTitle" class="form-control"></input></td>
+		   						</tr>
+		   						<tr>
+		   							<td><label for="reservationUpdateSelectService">변경하실 서비스를 선택해 주세요:</label></td>
+		   							<td><select id="reservationUpdateSelectService" class="form-control"></select></td>
+		   						</tr>
+		   					</table>
+	   					</div>
 	   				</div>
 	            </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal" id="closeReservationBtn">Close</button>
-	               	<button class="btn btn-primary" id="updateReservationBtn">예약 정보 수정란 활성화</button>
+	               	<button class="btn btn-primary" id="updateReservationShowBtn">예약 정보 수정란 활성화</button>
 	               	<button class="btn btn-warning" id="updateReservationBtnGo">예약 정보 수정 확인</button>
 	            </div>
 	        </div>

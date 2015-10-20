@@ -85,7 +85,7 @@
   
   
 	<select id="retrieveReservations" resultMap="ReservationResultMap">
-  		select r.*, c.*, e.*, s.* from reservation r, enterprise e, service s, customer c where e.etp_num = r.etp_num and r.etp_num = s.etp_num and r.cst_email = c.cst_email
+  		select r.*, c.*, e.*, s.* from reservation r, enterprise e, service s, customer c where e.etp_num = r.etp_num and r.etp_num = s.etp_num and r.cst_email = c.cst_email and s.svc_num = r.svc_num and e.etp_num = s.etp_num
 	</select>
 	
 	<insert id="insertReservation" parameterType="Reservation">
@@ -142,4 +142,16 @@
 			</trim>
 		</where>
 	</delete>
+	
+	<update id="updateReservationDetailsInModal" parameterType="Reservation">
+		update RESERVATION
+		<set>
+			<if test="rsvTitle != null">
+				RSV_TITLE = #{rsvTitle},
+			</if>
+			<if test="svcNum != null or svcNum != 0">
+				SVC_NUM = #{svcNum}
+			</if>
+		</set>
+	</update>
 </mapper>

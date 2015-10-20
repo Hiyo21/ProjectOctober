@@ -26,6 +26,24 @@
 			<result type="json" />
 		</action>
 		
+		<!-- 달력 정보 관련  -->
+		
+		<action name="retrieveEnterpriseInfoForCalendar" class="controller.action.EnterpriseAction" method="retrieveEnterpriseInfoForCalendar">
+			<result type="json" />
+		</action>
+		
+		<action name="toCalendarPage" class="controller.action.EnterpriseAction" method="toCalendarPage">
+			<result>/jsp/calendar/Calendar.jsp</result>
+		</action>
+		
+		<action name="updateReservationDetailsByEnterprise" class="controller.action.EnterpriseAction" method="updateReservationDetailsByEnterprise">
+			<result type="json">
+				<param name="defaultEncoding">UTF-8</param>
+			</result>
+		</action>
+
+		
+		
 		<!--     미승인 사업자 승인 게시판 Action     -->
 		
 		<!-- 미승인 사업 목록 -->
