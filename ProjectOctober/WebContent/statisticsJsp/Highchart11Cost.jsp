@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
 $(function () {
-    $('#container11').highcharts({
+    $('#container111').highcharts({
         chart: {
             type: 'bar'
         },

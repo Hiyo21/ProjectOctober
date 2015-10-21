@@ -76,9 +76,22 @@
 		
 		<!-- 시간대별 고객 수 변화 -->
 		<action name="highchart9" class="test.action.Action9" method="highchart9">
-			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
+			<result name="success" type="chain">
+        		<param name="actionName">highchart10</param>
+            	<param name="namespace">/</param>
+			</result>	
 		</action>
 	
+		
+		<!-- 월별 매출액 변화 -->
+		<action name="highchart10" class="test.action.Action10" method="highchart10">
+			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
+		</action>
+		
+		
+		
+		
+		
 		
 		
 		

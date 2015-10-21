@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 $(function () {
-    $('#container10').highcharts({
+    $('#container100').highcharts({
         chart: {
             type: 'line'
         },
