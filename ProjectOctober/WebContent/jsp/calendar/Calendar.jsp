@@ -12,6 +12,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.css" />
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/FontTest.css"/>
+
+<style>
+	* {font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+</style>
 
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/moment.min.js"></script>
@@ -99,7 +104,7 @@
 				$(this).attr('href', 'javascript:void(0);');
 				$("#reservationUpdateBody").hide();
 		        
-				//---------------------각 예약당 회원 정보 + 변경 가능한 서비스 리스트 가지고 오기 ----------------//
+				//---------------------각 예약당 회원 정보  가지고 오기 ----------------//
 				$(this).click(function(index){
 		        	$.ajax({
 	        			url: '${pageContext.request.contextPath}/member/retrieveCustomerInfoPerReservation.action',
@@ -120,6 +125,8 @@
 	        				console.log("receive service list error");
 	        			}
 	        		});
+		        	
+		        	//--------------- 업체 당 변경 가능한 서비스 리스트 가져오기 --------------//
 		        	
 		        	$.ajax({
 	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
@@ -156,16 +163,22 @@
 		        });
 
 				
+				//----------------------변경 가능한 내용들 토글로 보이게 하기 --------------------------//
+				
 		        $("#updateReservationShowBtn").click(function(){
 		        	var options ={};
 		            $("#reservationUpdateBody").toggle("clip",options,500);
 		        });
+				
+				//---------------------- 변경 내용 중 서비스 리스트 클릭 하면 그 값 가져가는 거 확인 하는 곳 ----------------//
 		        
 		        $("#reservationUpdateSelectService").change(function(){
 		        	console.log($(this).val());
 		        	console.log($("#reservationUpdateTitle").val());
 		        });
-		        
+				
+				
+		        //--------------------- 예약 내용 변경 신청 AJAX로 하는 기능 ---------------------------------//
      
 		        $("#updateReservationBtnGo").click(function(){
 		        	console.log($("#reservationUpdateDateStartTime").val());
@@ -204,59 +217,18 @@
 					});
 		        });
 			},
+			//----------------------------------------------------------------------------------------//
 			
-			//select: 빈 칸에 눌렀을 때 
+			
+			
+			
+			//select: 빈 칸에 눌렀을 때  
 			select: function(start, end, allDay){				
-				  //여기는 사용자가 입력한 값이 체인으로 등장해야 하는거지만 일단...	누르면 창 보여주기 ---------------------//			
-					var reservation = '';
-					var str = ""; 
-					str += "<form action='test' id='inputForm' data-toggle='validator' role='form'>";
-					str += "<table class='table table-striped table-bordered'>";
-					str += "<div class='form-group'>"
-					str += "<tr>";
-					str += "<td><label for='inputTitle' class='control-label'>일정: </label></td><td><input type='text' id='inputTitle' name='reservation.rsvTitle' required class='form-control'></td>";
-					str += "</tr>";
-					str += "</div>"
-					str += "<div class='form-group'>"
-					str += "<tr>";
-					str += "<td><label for='inputDescription' class='control-label'>서비스 Description: </label></td><td><input type='text' id='inputDescription' name='reservation.service.svcDescription' required class='form-control'/><span class='glyphicon form-control-feedback' aria-hidden='true'></span>"
-					str += "</tr>";
-					str += "</div>"
-					str += "<div class='form-group'>"
-					str += "<tr>";
-					str += "<td><label for='inputDescription' class='control-label'>서비스 시작 시간: </label></td><td><input type='text' id='inputStartTime' value='" + start.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.start' id='inputStartTimeHidden' value='" + start.toISOString() + "'/></td>";
-					str += "</tr>";
-					str += "</div>"
-					str += "<div class='form-group'>"
-					str += "<tr>";
-					str += "<td><label for='inputDescription' class='control-label'>서비스 끝 시간: </label></td><td><input type='text' id='inputEndTime' value='" + end.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.end' id='inputEndTimeHidden' value='" + end.toISOString() + "'/></td>";
-					str += "</tr>";
-					str += "<div class='form-group'>"
-					str += "<tr>";
-					str += "<td><label for='inputPrice' class='control-label'>결제금: </label></td><td><input type='text' id='inputPrice' name='reservation.service.svcPrice' class='form-control'/></td>";
-					str += "</tr>";
-					str += "</div>"
-					str += "</div>"
-					str += "<div class='form-group'>";
-					str += "<tr>";
-					str += "<td><label for='inputEmployeeGenderCheckBox' class='control-label'>종업원 성별: </label></td><td><input type='checkbox' checked data-toggle='toggle' data-on='여성' data-off='남성' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='form-control'/></td>";
-					str += "</tr>";
-					str += "</div>";
-					str += "<div class='form-group'>";
-					str += "<tr>";
-					str += "<td colspan='2' align='center'><textarea rows='4' cols='50' id='insertAgreementTextArea' class='form-control'>Lorem Ipsum </textarea></td>";
-					str += "</tr>";
-					str += "</div>";
-					str += "<div class='form-group'>";
-					str += "<tr>";
-					str += "<td align='center' colspan='2'>서비스 약관에 동의합니다.<input type='checkbox' id='insertAgreementCheckbox'/></td>";
-					str += "</tr>";
-					str += "</div>";
-					str += "<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''></p>";
-					str += "<input type='hidden' id='inputStatus' name='reservation.rsvStatus' value='1'/>";
-					str += "</table>";
-					str += "</form>";
+				  //여기는 사용자가 입력한 값이 체인으로 등장해야 하는거지만 일단...	누르면 창 보여주기 ---------------------//	
+				  //이용자 이메일 => 내가 입력. 사업자 이메일, 번호 => 가지고 있음. 쿠폰 선택가능하도록 하기.
+				  //서비스 일련번호 => 서비스창 받을 때 같이 가져오기.
 					
+	
 					$('#insertModalBody').html(str);
 					$('#insertModal').modal();
 					
@@ -268,17 +240,24 @@
 						}
 						
 					});
-					//Insert 기능 ----------------------------//
+					
+					
+					//------------------------------Insert 기능 시작 ----------------------------//
 				
+					
+					// ----------------------- 약관 동의 안 하면, 못하게 하기 -------------------------//
+					
 					$('#insertReservationBtn').click(function(){
 						if($('#insertAgreementCheckbox').prop('checked') == false){
 							alert('동의해라!');
 							$(this).unbind();
 							return false;
 							
-						}
+						};
 						
-						//폼에서 받은 값 대응하는 그릇에 집어 넣기.
+					//-------------------------------------------//
+						
+			//-------------------------------- 폼에서 받은 값 대응하는 그릇에 집어 넣기. -------------------------//
 						var inputTitle = $('#inputTitle').val();
 						var inputDescription = $('#inputDescription').val();
 						var inputStartTime = $('#inputStartTimeHidden').val();
@@ -294,8 +273,9 @@
 							console.log(inputEmployeeGender);
 							console.log()
 						var inputStatus = $('#inputStatus').val();
-						
-						//각각의 그릇을 reservation이라는 객체 안에 담기.
+							var reservation = {};
+							
+			//---------------각각의 그릇을 reservation이라는 객체 안에 담기.-----------------------//
 						reservation = {
 								title: inputTitle,
 								description: inputDescription,
@@ -305,6 +285,7 @@
 								rsvStatus : inputStatus
 						}
 						
+			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
 						$.ajax({
 							url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
 							dataType: 'json',
@@ -322,7 +303,7 @@
 						$(this).unbind();
 					});
 					
-					//----------------------------//
+			//------------------------------ insert 마무리 작업  -----------------------------------//
 					
 				calendar.fullCalendar('unselect');
 				$(this).unbind();
@@ -343,7 +324,7 @@
 			selectble: false,
 			selectHelper: true,
 			
-			//각 사업자당 예약들 불러오는 기능 -------------------------------------------//
+			//------------------------------------- 각 사업자당 예약들 불러오는 기능  -------------------------------------------//
 			events: function(start, end, timezone, callback){
 				$.ajax({
 					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
@@ -543,6 +524,66 @@
 	                <h4 id="insertModalTitle" class="modal-title"></h4>
 	            </div>
 		            <div id="insertModalBody" class="modal-body">
+		            	<form action='test' id='inputForm' data-toggle='validator' role='form'>
+		            		<table class='table table-striped table-bordered'>
+							<tr>
+							<div class='form-group'>
+								<td><label for='inputTitle' class='control-label'>일정 제목: </label></td><td><input type='text' id='inputTitle' name='reservation.rsvTitle' required class='form-control'></td>
+							</div>
+					</tr>
+					
+				
+					<div class='form-group'>
+					<tr>
+					<td><label for='inputDescription' class='control-label'>서비스 Description: </label></td><td><input type='text' id='inputDescription' name='reservation.service.svcDescription' required class='form-control'/><span class='glyphicon form-control-feedback' aria-hidden='true'></span>
+					</tr>
+					</div>
+				
+					<div class='form-group'>
+					<tr>
+					<td><label for='inputDescription' class='control-label'>서비스 시작 시간: </label></td><td><input type='text' id='inputStartTime' value='" + start.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.start' id='inputStartTimeHidden' value='" + start.toISOString() + "'/></td>
+					</tr>
+					</div>
+					
+					<div class='form-group'>
+					<tr>
+					<td><label for='inputDescription' class='control-label'>서비스 끝 시간: </label></td><td><input type='text' id='inputEndTime' value='" + end.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.end' id='inputEndTimeHidden' value='" + end.toISOString() + "'/></td>
+					</tr>
+					
+					//서비스 버튼 클릭시 받아오는 값이 된다 : 서비스 비용
+					<div class='form-group'>
+					<tr>
+					<td><label for='inputPrice' class='control-label'>결제금: </label></td><td><input type='text' id='inputPrice' name='reservation.service.svcPrice' class='form-control'/></td>
+					</tr>
+					</div>
+					
+					//성별
+					<div class='form-group'>
+					<tr>
+					<td><label for='inputEmployeeGenderCheckBox' class='control-label'>종업원 성별: </label></td><td><input type='checkbox' checked data-toggle='toggle' data-on='여성' data-off='남성' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='form-control'/></td>
+					</tr>
+					</div>
+					
+					
+					//약관 동의
+					<div class='form-group'>
+					<tr>
+					<td colspan='2' align='center'><textarea rows='4' cols='50' id='insertAgreementTextArea' class='form-control'>Lorem Ipsum </textarea></td>
+					</tr>
+					</div>
+					
+					<div class='form-group'>
+					<tr>
+					<td align='center' colspan='2'>서비스 약관에 동의합니다.<input type='checkbox' id='insertAgreementCheckbox'/></td>
+					</tr>
+					</div>
+					
+					<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''></p>
+					<input type='hidden' id='inputStatus' name='reservation.rsvStatus' value='1'/>
+					</table>
+					</form>
+		            	
+		            	
 		            	*메뉴: <span id="insertModalEventTitle"> </span><br>
 		   	 			*예약 시작: <span id="insertModalStartTime"> </span><br>
 		   				*예약 소요시간:<span id="insertModalDuration"> </span><br>

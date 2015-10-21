@@ -5,7 +5,7 @@ import java.util.List;
 import model.vo.Reservation;
 
 public interface ReservationMapper {
-	List<Reservation> retrieveReservations();
+	List<Reservation> retrieveReservations(String etpNum);
 	
 	Integer insertReservation(Reservation reservation);
 	

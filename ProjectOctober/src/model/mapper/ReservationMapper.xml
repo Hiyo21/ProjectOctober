@@ -84,8 +84,8 @@
   </resultMap>
   
   
-	<select id="retrieveReservations" resultMap="ReservationResultMap">
-  		select r.*, c.*, e.*, s.* from reservation r, enterprise e, service s, customer c where e.etp_num = r.etp_num and r.etp_num = s.etp_num and r.cst_email = c.cst_email and s.svc_num = r.svc_num and e.etp_num = s.etp_num
+	<select id="retrieveReservations" resultMap="ReservationResultMap" parameterType="String">
+  		select r.*, c.*, e.*, s.* from reservation r, enterprise e, service s, customer c where e.etp_num = r.etp_num and r.etp_num = s.etp_num and r.cst_email = c.cst_email and s.svc_num = r.svc_num and e.etp_num = s.etp_num and r.etp_num = #{value}
 	</select>
 	
 	<insert id="insertReservation" parameterType="Reservation">

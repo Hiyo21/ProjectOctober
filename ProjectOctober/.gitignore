@@ -50,8 +50,8 @@ local.properties
 .settings/
 .loadpath
 
-<!-- # Eclipse Core
-.project -->
+# Eclipse Core
+.project
 
 # External tool builders
 .externalToolBuilders/
@@ -81,3 +81,4 @@ local.properties
 ProjectOctober/src/rebel.xml
 *.exerd
 /build/
+/.project

@@ -141,6 +141,20 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	 	ActionContext.getContext().getSession().put("etpNum", tempMember.getEnterprise().getEtpNum());
 		return SUCCESS;
 	}
+	
+	public String finalizeRegistration() throws Exception{
+		etpNum = (String) ActionContext.getContext().getSession().get("etpNum");
+		System.err.println(etpNum);
+		Member tempMember = memDAO.retrieveMemberInfo(etpNum);
+		System.err.println(tempMember);
+		System.err.println(tempMember.getEnterprise());
+		tempMember.getEnterprise().setEtpRsvDeadline(member.getEnterprise().getEtpRsvDeadline());
+		tempMember.getEnterprise().setEtpSelfNotification(member.getEnterprise().getEtpSelfNotification());
+		tempMember.getEnterprise().setEtpCstNotification(member.getEnterprise().getEtpCstNotification());
+		int result = memDAO.finalizeRegistration(tempMember);
+		if(result == 0) return ERROR;
+		else return SUCCESS;
+	}
 
 
 	public String loginProcess() throws Exception{
@@ -193,20 +207,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 			return ERROR;
 		}
 	}
-	
-	public String finalizeRegistration() throws Exception{
-		etpNum = (String) ActionContext.getContext().getSession().get("etpNum");
-		System.err.println(etpNum);
-		Member tempMember = memDAO.retrieveMemberInfo(etpNum);
-		System.err.println(tempMember);
-		System.err.println(tempMember.getEnterprise());
-		tempMember.getEnterprise().setEtpRsvDeadline(member.getEnterprise().getEtpRsvDeadline());
-		tempMember.getEnterprise().setEtpSelfNotification(member.getEnterprise().getEtpSelfNotification());
-		tempMember.getEnterprise().setEtpCstNotification(member.getEnterprise().getEtpCstNotification());
-		int result = memDAO.finalizeRegistration(tempMember);
-		if(result == 0) return ERROR;
-		else return SUCCESS;
-	}
+
 	
 	
 	public String retrieveCustomerInfoPerReservation() throws Exception{
