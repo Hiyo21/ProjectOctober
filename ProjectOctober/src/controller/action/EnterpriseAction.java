@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import model.common.DAOFactory;
 import model.dao.EnterpriseDAO;
 import model.vo.Component;
+import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.Reservation;
@@ -33,6 +34,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private List<Service> serviceList;
 	private List<String> categoryList;
 	private Map<String, Object> session;
+	private List<Coupon> couponList;
 	private Member member;
 	
 	//////// Component Member ////////  
@@ -148,6 +150,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 		if(serviceList != null) return SUCCESS;
 		else return ERROR;
+	}
+	
+		
+	public String retrieveCouponList() throws Exception{
+		System.err.println(etpNum);
+		couponList = etpDAO.retrieveCouponList(etpNum);
+		return SUCCESS; 
+		
 	}
 	
 	public String selectEtpList() throws Exception{
