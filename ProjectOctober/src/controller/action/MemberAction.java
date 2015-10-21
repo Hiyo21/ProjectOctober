@@ -112,10 +112,13 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	public String toThirdRegistrationPage() throws Exception{
 		System.err.println(etpNum);
+		System.err.println(member.getEnterprise());
 		Member tempMember = memDAO.retrieveMemberInfo(etpNum);
+		
 		
 		//---------------working days 셋업------------//
 		initializeWorkingDays(tempMember, member.getEnterprise().getWorkingDays().getTemp());
+		System.err.println(tempMember);
 		System.err.println((tempMember.getEnterprise().getWorkingDays()));
 		int result = memDAO.insertWorkingDays(tempMember);
 		//int result = memDAO.updateWorkingDays(tempMember);
@@ -133,6 +136,9 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		//-----------------------------------------------//
 		
 		//-----------시작 시간, 끝 시간 설정 ---------------------//
+		System.err.println(LocalTime.parse(member.getEnterprise().getStart(),DateTimeFormatter.ISO_LOCAL_TIME));
+		System.err.println(LocalTime.parse(member.getEnterprise().getEnd(),DateTimeFormatter.ISO_LOCAL_TIME));
+		
 		tempMember.getEnterprise().setEtpStartHour(LocalTime.parse(member.getEnterprise().getStart(),DateTimeFormatter.ISO_LOCAL_TIME));
 		tempMember.getEnterprise().setEtpEndHour(LocalTime.parse(member.getEnterprise().getEnd(),DateTimeFormatter.ISO_LOCAL_TIME));
 		result = memDAO.updateEtpDetailsFirst(tempMember);
