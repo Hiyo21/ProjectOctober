@@ -72,7 +72,6 @@
 		<div class="col-lg-4" align="left"><button type="button" class="btn btn-primary" id="backBtn">이전</button></div>
 		<div class="col-lg-4" align="center"><h3>2 / 3</h3></div>
 		<div class="col-lg-4" align="right"><button type="button" class="btn btn-primary" id="forwardBtn">다음</button></div>
->>>>>>> refs/remotes/origin/master
 	</div>
 </body>
 </html>
