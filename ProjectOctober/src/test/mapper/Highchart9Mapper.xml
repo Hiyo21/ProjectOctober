@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="test.mapper.Highchart9Mapper.xml" >
+<mapper namespace="test.mapper.Highchart9Mapper" >
 	<select id="highchart9" resultType="Highchart9">
-	
-	select ROW_NUMBER() OVER (ORDER BY sale desc) rank, etp_num, sale
-		from
-		(
-		select etp_num, sum(sale_amount) sale
-		from sale_record
-		group by etp_num
-		order by sale desc
-		)
-		<![CDATA[ 
-		where rownum <= 10
-		]]>
-	<!-- 상위 10위 매출 업체 출력 -->
+		select TO_CHAR(RSV_START_DATE, 'HH24') time, COUNT(*) total from RESERVATION where ETP_NUM=69
+		GROUP BY TO_CHAR(RSV_START_DATE, 'HH24') 
+		ORDER BY TO_CHAR(RSV_START_DATE, 'HH24')
 	</select>
 </mapper>
+
+

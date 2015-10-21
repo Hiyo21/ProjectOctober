@@ -40,7 +40,7 @@
 						    <h3 class="panel-title">같은업종, 같은지역 내 매출 상위 TOP10</h3>
 						 </div>
 						 <div class="panel-body">
-						     <s:include value="Highchart9.jsp"/>   
+						     <s:include value="Highchart9Cost.jsp"/>   
 						     <p align="center">안녕하세요 김지희 입니다1. </p>			 
 						 </div>
 				    </div>
@@ -72,7 +72,7 @@
 						    <h3 class="panel-title">같은업종, 같은지역 예약이 몰리는 시간대</h3>
 						 </div>
 						 <div class="panel-body">
-						     <s:include value="Highchart10.jsp"/>  
+						     <s:include value="Highchart10Cost.jsp"/>  
 						     <p align="center">안녕하세요 김지희 입니다2. </p>			  
 						 </div>
 				    </div>
@@ -104,7 +104,7 @@
 						    <h3 class="panel-title">같은 업종, 같은지격에 속한 업체들의 방문 고객 연령대</h3>
 						 </div>
 						 <div class="panel-body">
-						    <s:include value="Highchart11.jsp"/>
+						    <s:include value="Highchart11Cost.jsp"/>
 						   	<p align="center">안녕하세요 김지희 입니다3. </p>						   
 						 </div>
 				    </div>

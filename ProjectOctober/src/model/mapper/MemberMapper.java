@@ -64,7 +64,11 @@ public interface MemberMapper {
 	Integer insertWorkingDays(Member tempMember);
 
 	Integer finalizeRegistration(Member tempMember);
-	
+
+	Member retrieveCustomerInfo(String cstEmail);
+
+	Member retrieveCustomerInfoPerReservation(Map<String, Object> info);
+
 	//이용자 회원가입
 	int insertMemberInfo2(Member member);
 	

@@ -107,6 +107,10 @@
 		<action name="finalizeRegistration" class="controller.action.MemberAction" method="finalizeRegistration">
 			<result>/jsp/member/WelcomeEnterprise.jsp</result>
 		</action>
+		
+		<action name="retrieveCustomerInfoPerReservation" class="controller.action.MemberAction" method="retrieveCustomerInfoPerReservation">
+			<result type="json" />
+		</action>
 
 	</package>
 </struts>
