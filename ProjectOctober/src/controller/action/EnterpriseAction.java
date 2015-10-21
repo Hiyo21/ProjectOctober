@@ -33,6 +33,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private List<Service> serviceList;
 	private List<String> categoryList;
 	private Map<String, Object> session;
+	private Map<String, Object> serviceMap;
 	private Member member;
 	
 	//////// Component Member ////////  
