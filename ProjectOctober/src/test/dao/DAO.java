@@ -13,6 +13,7 @@ import test.vo.Highchart5;
 import test.vo.Highchart6;
 import test.vo.Highchart7;
 import test.vo.Highchart8;
+import test.vo.Highchart9;
 
 public class DAO {
 
@@ -137,8 +138,22 @@ public class DAO {
 		return list1;
 	}
 	//할인쿠폰 사용여부에 따른 매출액 변화-end
+
 	
 	
+	//시간대별 고객 수 변화- 시작
+	public List<Highchart9> highchart9DAO() {
+		List<Highchart9> list = null;
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("test.mapper.Highchart9Mapper.highchart9");				
+		}finally{
+			sqlsession.close();
+		}			
+		return list;
+	}
+
+
 	
 	
 	

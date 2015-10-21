@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="test.mapper.Highchart9Mapper" >
+	<select id="highchart9" resultType="Highchart9">
+		select TO_CHAR(RSV_START_DATE, 'HH24') time, COUNT(*) total from RESERVATION where ETP_NUM=69
+		GROUP BY TO_CHAR(RSV_START_DATE, 'HH24') 
+		ORDER BY TO_CHAR(RSV_START_DATE, 'HH24')
+	</select>
+</mapper>
+
+
