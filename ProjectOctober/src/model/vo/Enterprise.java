@@ -16,6 +16,8 @@ public class Enterprise implements Serializable {
 	private List<SaleRecord> saleRecords;
 	private List<Service> services;
 	private List<Coupon> coupons;
+	private List<PhotoLocation> photos;
+	private List<Component> components;
 	
     private String etpNum;
     private String etpEmail;
@@ -213,6 +215,22 @@ public class Enterprise implements Serializable {
 
 	public LocalDate getMemJoinedDate() {
 		return memJoinedDate;
+	}
+
+	public List<PhotoLocation> getPhotos() {
+		return photos;
+	}
+
+	public List<Component> getComponents() {
+		return components;
+	}
+
+	public void setComponents(List<Component> components) {
+		this.components = components;
+	}
+
+	public void setPhotos(List<PhotoLocation> photos) {
+		this.photos = photos;
 	}
 
 	public void setMemJoinedDate(LocalDate memJoinedDate) {

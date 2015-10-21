@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    SVC_NUM, ETP_NUM, ETP_EMAIL, SVC_TITLE, SVC_CODE, SVC_COST, SVC_TIME, SVC_DESCRIPTION, 
+    SVC_NUM, ETP_NUM, ETP_EMAIL, SVC_TITLE, SVC_COST, SVC_TIME, SVC_DESCRIPTION, 
     SVC_CATEGORY, SVC_SPECIALIZE, SVC_COUNT
   </sql>
   <select id="selectByExample" resultMap="ServiceResultMap" parameterType="model.vo.ServiceExample" >
@@ -107,12 +107,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="model.vo.Service" >
-    insert into HR.SERVICE (SVC_NUM, ETP_NUM, ETP_EMAIL, 
-      SVC_TITLE, SVC_CODE, SVC_COST, 
+    insert into HR.SERVICE (
+    	SVC_NUM, ETP_NUM, ETP_EMAIL, 
+      SVC_TITLE, SVC_COST, 
       SVC_TIME, SVC_DESCRIPTION, SVC_CATEGORY, 
       SVC_SPECIALIZE, SVC_COUNT)
     values (#{svcNum,jdbcType=DECIMAL}, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
-      #{svcTitle,jdbcType=VARCHAR}, #{svcCode,jdbcType=VARCHAR}, #{svcCost,jdbcType=DECIMAL}, 
+      #{svcTitle,jdbcType=VARCHAR}, #{svcCost,jdbcType=DECIMAL}, 
       #{svcTime,jdbcType=VARCHAR}, #{svcDescription,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}, 
       #{svcSpecialize,jdbcType=VARCHAR}, #{svcCount,jdbcType=DECIMAL})
   </insert>
@@ -130,9 +131,6 @@
       </if>
       <if test="svcTitle != null" >
         SVC_TITLE,
-      </if>
-      <if test="svcCode != null" >
-        SVC_CODE,
       </if>
       <if test="svcCost != null" >
         SVC_COST,
@@ -165,9 +163,6 @@
       </if>
       <if test="svcTitle != null" >
         #{svcTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="svcCode != null" >
-        #{svcCode,jdbcType=VARCHAR},
       </if>
       <if test="svcCost != null" >
         #{svcCost,jdbcType=DECIMAL},
@@ -210,9 +205,6 @@
       <if test="record.svcTitle != null" >
         SVC_TITLE = #{record.svcTitle,jdbcType=VARCHAR},
       </if>
-      <if test="record.svcCode != null" >
-        SVC_CODE = #{record.svcCode,jdbcType=VARCHAR},
-      </if>
       <if test="record.svcCost != null" >
         SVC_COST = #{record.svcCost,jdbcType=DECIMAL},
       </if>
@@ -242,7 +234,6 @@
       ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
       ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
       SVC_TITLE = #{record.svcTitle,jdbcType=VARCHAR},
-      SVC_CODE = #{record.svcCode,jdbcType=VARCHAR},
       SVC_COST = #{record.svcCost,jdbcType=DECIMAL},
       SVC_TIME = #{record.svcTime,jdbcType=VARCHAR},
       SVC_DESCRIPTION = #{record.svcDescription,jdbcType=VARCHAR},
@@ -264,9 +255,6 @@
       </if>
       <if test="svcTitle != null" >
         SVC_TITLE = #{svcTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="svcCode != null" >
-        SVC_CODE = #{svcCode,jdbcType=VARCHAR},
       </if>
       <if test="svcCost != null" >
         SVC_COST = #{svcCost,jdbcType=DECIMAL},
@@ -294,7 +282,6 @@
     set ETP_NUM = #{etpNum,jdbcType=VARCHAR},
       ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR},
       SVC_TITLE = #{svcTitle,jdbcType=VARCHAR},
-      SVC_CODE = #{svcCode,jdbcType=VARCHAR},
       SVC_COST = #{svcCost,jdbcType=DECIMAL},
       SVC_TIME = #{svcTime,jdbcType=VARCHAR},
       SVC_DESCRIPTION = #{svcDescription,jdbcType=VARCHAR},
@@ -317,5 +304,9 @@
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
+  </select>
+  
+  <select id="retrieveServices" parameterType="String" resultMap="ServiceResultMap">
+  	select * from SERVICE where etp_num = #{value}
   </select>
 </mapper>

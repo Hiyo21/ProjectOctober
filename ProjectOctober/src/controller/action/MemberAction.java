@@ -6,17 +6,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.SerializationUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
-import model.common.VOFactory;
+import model.dao.CustomerDAO;
 import model.dao.MemberDAO;
+import model.vo.Customer;
+import model.vo.Enterprise;
 import model.vo.Member;
-
 import model.vo.Zipcode;
 
 public class MemberAction extends ActionSupport implements SessionAware{
@@ -26,6 +26,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private static final int ADMIN_CODE = 3;
 	
 	private Map<String, Object> session;
+	private Customer customer;
 	private Member member;
 	private String email;
 	private String emailInput;
@@ -33,8 +34,11 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private String etpNumInput;
 	private String password;
 	private MemberDAO memDAO;
+	private CustomerDAO cstDAO;
 	private boolean emailExists;
 	private boolean etpNumExists;
+	private String cstEmail;
+	private Integer rsvNum;
 	
 	private String searchText;
 	private List<Zipcode> zipcodeList;
@@ -50,6 +54,21 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	public MemberAction() {
 		memDAO = DAOFactory.createMemberDAO();
+	}
+	
+	public String customerRegistration1() throws Exception{
+		
+		System.err.println("action : "+member);		
+		int result = memDAO.insertMemberInfo2(member);
+		System.err.println(result);
+		
+		
+		customer.setCstEmail(member.getMemEmail());
+		customer.setCstOneclick(1);
+		int result2 = cstDAO.insertCustomerInfo(customer);
+		System.err.println(result2);
+		
+		return SUCCESS;
 	}
 	
 	public String checkEnterpriseDuplicateEmail() throws Exception{
@@ -122,6 +141,20 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	 	ActionContext.getContext().getSession().put("etpNum", tempMember.getEnterprise().getEtpNum());
 		return SUCCESS;
 	}
+	
+	public String finalizeRegistration() throws Exception{
+		etpNum = (String) ActionContext.getContext().getSession().get("etpNum");
+		System.err.println(etpNum);
+		Member tempMember = memDAO.retrieveMemberInfo(etpNum);
+		System.err.println(tempMember);
+		System.err.println(tempMember.getEnterprise());
+		tempMember.getEnterprise().setEtpRsvDeadline(member.getEnterprise().getEtpRsvDeadline());
+		tempMember.getEnterprise().setEtpSelfNotification(member.getEnterprise().getEtpSelfNotification());
+		tempMember.getEnterprise().setEtpCstNotification(member.getEnterprise().getEtpCstNotification());
+		int result = memDAO.finalizeRegistration(tempMember);
+		if(result == 0) return ERROR;
+		else return SUCCESS;
+	}
 
 
 	public String loginProcess() throws Exception{
@@ -134,11 +167,17 @@ public class MemberAction extends ActionSupport implements SessionAware{
 			return LOGIN;
 		} else {
 			if(member.getMemCode() == ENTERPRISE_CODE){
+				Enterprise enterprise = DAOFactory.createEnterpriseDAO().selectByEtpEmail(member.getMemEmail());
+				if(enterprise == null) throw new Exception("엔터프라이즈가 없음!");
+				if(enterprise.getEtpStatus() != 1) return LOGIN;
+				session.put("enterprise", enterprise);
+				session.put("loginEtpNum", enterprise.getEtpNum());
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
 				return "enterprise";
 			}else if(member.getMemCode() == CUSTOMER_CODE){
+				session.put("customer", DAOFactory.createCustomerDAO().retrieveCustomer(member.getMemEmail()));
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
@@ -168,23 +207,21 @@ public class MemberAction extends ActionSupport implements SessionAware{
 			return ERROR;
 		}
 	}
+
 	
-	public String finalizeRegistration() throws Exception{
-		etpNum = (String) ActionContext.getContext().getSession().get("etpNum");
-		System.err.println(etpNum);
-		Member tempMember = memDAO.retrieveMemberInfo(etpNum);
-		System.err.println(tempMember);
-		System.err.println(tempMember.getEnterprise());
-		tempMember.getEnterprise().setEtpRsvDeadline(member.getEnterprise().getEtpRsvDeadline());
-		tempMember.getEnterprise().setEtpSelfNotification(member.getEnterprise().getEtpSelfNotification());
-		tempMember.getEnterprise().setEtpCstNotification(member.getEnterprise().getEtpCstNotification());
-		int result = memDAO.finalizeRegistration(tempMember);
-		if(result == 0) return ERROR;
-		else return SUCCESS;
+	
+	public String retrieveCustomerInfoPerReservation() throws Exception{
+		Map<String, Object> info = new HashMap<>();
+		info.put("cstEmail", cstEmail);
+		info.put("rsvNum", rsvNum);
+		System.err.println(cstEmail + ' ' + rsvNum);
+		member = memDAO.retrieveCustomerInfoPerReservation(info);
+		if(member != null)return SUCCESS;
+		else return ERROR;
 	}
+
 	
-	
-	//======================================================/
+	//=================private methods=======================/
 	private void doPreliminarySteps(Member member) {
 		member.getEnterprise().setEtpOwner(member.getMemName());
 		member.setMemCode(ENTERPRISE_CODE);
@@ -385,5 +422,29 @@ public class MemberAction extends ActionSupport implements SessionAware{
 
 	public void setEtpNum(String etpNum) {
 		this.etpNum = etpNum;
+	}
+
+	public String getCstEmail() {
+		return cstEmail;
+	}
+
+	public void setCstEmail(String cstEmail) {
+		this.cstEmail = cstEmail;
+	}
+
+	public Integer getRsvNum() {
+		return rsvNum;
+	}
+
+	public void setRsvNum(Integer rsvNum) {
+		this.rsvNum = rsvNum;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 }

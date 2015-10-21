@@ -1,6 +1,7 @@
 package model.vo;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class WorkingDays implements Serializable {
 	private String etpNum;
@@ -22,6 +23,9 @@ public class WorkingDays implements Serializable {
     private Integer sun;
     
     private String temp;
+    
+    private Integer[] dow;
+    
 
     private static final long serialVersionUID = 1L;
 
@@ -116,13 +120,13 @@ public class WorkingDays implements Serializable {
 		return this;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("WorkingDays [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail).append(", mon=")
-				.append(mon).append(", tue=").append(tue).append(", wed=").append(wed).append(", thu=").append(thu)
-				.append(", fri=").append(fri).append(", sat=").append(sat).append(", sun=").append(sun)
-				.append(", temp=").append(temp).append("]");
-		return builder.toString();
+	public Integer[] getDow() {
+		return dow;
 	}
+
+	public void setDow(Integer[] dow) {
+		this.dow = dow;
+	}
+
+	
 }

@@ -352,12 +352,22 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByEtpNum" parameterType="model.vo.Enterprise" resultMap="EnterpriseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from HR.ENTERPRISE
-    where ETP_NUM = #{etpNum}
+  <select id="selectByEtpNum" parameterType="String" resultMap="EnterpriseResultMap">
+    select * from ENTERPRISE where ETP_NUM = #{etpNum}
   </select>
+  <select id="selectByEtpEmail" parameterType="String" resultMap="EnterpriseResultMap">
+  	select * from ENTERPRISE where ETP_EMAIL = #{etpEmail}
+  </select>
+  
+  <select id="selectByEtpNumIncludeOthers" parameterType="String" resultMap="EnterpriseResultMap">
+  	select e.*, w.*, h.* from ENTERPRISE e, WORKING_DAYS w, HOLIDAY h
+    where e.ETP_NUM = #{etpNum} and e.etp_num = w.etp_num and e.etp_num = h.etp_num
+  </select>
+   <select id="selectByEtpEmailInclueOthers" parameterType="String" resultMap="EnterpriseResultMap">
+  	select e.*, w.*, h.* from ENTERPRISE e, WORKING_DAYS w, HOLIDAY h
+  	where e.ETP_EMAIL = #{etpEmail} and e.etp_email = w.etp_email and e.etp_email = h.etp_email
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="model.vo.Enterprise">
     delete from HR.ENTERPRISE
     where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
@@ -774,6 +784,18 @@
     </if>
   </select>
   
+  	<select id="selectEtpList" resultMap="EnterpriseBaseResultMap">
+  		select * from enterprise
+  	</select>
+  	  	
+  	<select id="selectReviewList" parameterType="String" resultType="Review">
+  		select * from review where etp_num = #{etpNum}
+  	</select>
+  	
+  	<select id="selectPhotoList" parameterType="String" resultType="PhotoLocation">
+  		select * from review where etp_num = #{etpNum}
+  	</select>
+   
   	<!--  Component Mapper  -->
   	
 	<insert id="insertComponent" parameterType="Component">

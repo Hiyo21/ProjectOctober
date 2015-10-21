@@ -111,6 +111,6 @@ $(function () {
 </head>
 <body>
 
-<div id="container2" style="min-width: 800px; max-width: 700px; height: 700px; margin: 0 auto"></div>
+<div id="container2" style="min-width: 700px; max-width: 500px; height: 500px; margin: 0 auto"></div>
 </body>
 </html>
