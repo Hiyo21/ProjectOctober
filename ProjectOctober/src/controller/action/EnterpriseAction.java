@@ -33,7 +33,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private List<Service> serviceList;
 	private List<String> categoryList;
 	private Map<String, Object> session;
-	private Map<String, Object> serviceMap;
 	private Member member;
 	
 	//////// Component Member ////////  
@@ -44,6 +43,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
+	private String category;
 
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -123,20 +123,29 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
-
-	public String receiveServiceList() throws Exception{
-		serviceList = etpDAO.retrieveServices(etpNum);
-		System.err.println(serviceList);
-		if(serviceList != null) return SUCCESS;
-		else return ERROR;
+	
+	//--------------------------------------------------사업자 페이지---------------------------
+	public String updateSvcCategory() throws Exception{
+		System.out.println("===========check Action :: updateSvcCategory :: " + etpNum);
+		int result = etpDAO.updateSvcCategory(etpNum, svcNum);
+		
+		return SUCCESS;
 	}
 
-	
+	//
 	public String selectServiceList() throws Exception{
-		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
+		System.out.println("===========check Action :: selectServiceList :: " + etpNum);
 		enterprise.setServices(etpDAO.selectServiceList(etpNum)); 
 
 		if(enterprise.getServices() != null) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String selectSvcCategory() throws Exception{
+		System.out.println("category Check :: "+category);
+		serviceList = etpDAO.selectSvcCategory(etpNum, category);
+		
+		if(serviceList != null) return SUCCESS;
 		else return ERROR;
 	}
 	
@@ -440,5 +449,25 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setMember(Member member) {
 		this.member = member;
+	}
+
+
+	public List<String> getCategoryList() {
+		return categoryList;
+	}
+
+
+	public void setCategoryList(List<String> categoryList) {
+		this.categoryList = categoryList;
+	}
+
+
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }

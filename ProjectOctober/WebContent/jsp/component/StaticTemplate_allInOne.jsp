@@ -45,18 +45,6 @@
 		$('#editBT').attr('disabled', true); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
 	}
 	
-	function checkObj(){
-		$.ajax({
-			url: '${pageContext.request.contextPath}/enterprise/takeEtp.action?etpNum=2345678901',
-			type:'GET',
-			dataType: 'json',
-			success : check
-		});
-	}
-	
-	function check(object){
-		console.log(object);
-	}
 </script>
 
 </head>

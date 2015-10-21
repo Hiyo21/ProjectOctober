@@ -26,6 +26,14 @@
 			<result type="json" />
 		</action>
 		
+		<action name="selectSvcCategory" class="controller.action.EnterpriseAction" method="selectSvcCategory">
+			<result type="json"/>	
+		</action>
+		
+		<action name="updateSvcCategory" class="controller.action.EnterpriseAction" method="updateSvcCategory">
+			<result type="json"/>
+		</action>
+		
 		<!-- 달력 정보 관련  -->
 		
 		<action name="retrieveEnterpriseInfoForCalendar" class="controller.action.EnterpriseAction" method="retrieveEnterpriseInfoForCalendar">
