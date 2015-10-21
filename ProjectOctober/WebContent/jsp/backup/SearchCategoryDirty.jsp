@@ -146,7 +146,7 @@ textarea {width:800px; height:300px;overflow:visible;}
 
 </head>
 <body>
-<%@include file="Header.jsp"%>
+<s:include value="Header.jsp"></s:include>
 <!-- 내가 작성 -->
 
 <div class="container">

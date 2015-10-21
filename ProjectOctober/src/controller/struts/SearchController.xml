@@ -12,7 +12,7 @@
 		</action>
 		
 		<action name="toFeatureCategoryPage">
-			<result>/jsp/search/FeatureCategory.jsp</result>
+			<result>/jsp/SearchCategory.jsp</result>
 		</action>
 		
 		<action name="toMoodCategoryPage">

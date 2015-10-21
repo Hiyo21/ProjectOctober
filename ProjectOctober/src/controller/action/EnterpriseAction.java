@@ -28,13 +28,21 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private EnterpriseDAO etpDAO;
 	private Enterprise enterprise;
 	private Reservation reservation;
+	private Map<String, Object> serviceMap;
+
+
 	private List<Reservation> reservationList;
+
 	private List<Enterprise> enterpriseList;
 	private List<Service> serviceList;
 	private List<String> categoryList;
 	private Map<String, Object> session;
-	private Map<String, Object> serviceMap;
+	
 	private Member member;
+
+
+
+
 	
 	//////// Component Member ////////  
 	private Component component;

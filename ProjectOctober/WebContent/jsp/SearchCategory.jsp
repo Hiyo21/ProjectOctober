@@ -26,8 +26,6 @@
 <link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-item/paper-item.html">
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/Polymer/components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
