@@ -242,7 +242,22 @@
 					
 					
 					//------------------------------Insert 기능 시작 ----------------------------//
-				
+						$.ajax({
+	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+	        			dataType: 'json',
+	        			data: {"etpNum":${etpNum}},
+	        			success: function(data){
+	        				var serviceList = [];
+	        				var services = data.serviceList;
+	        				$("#inputServiceList").append("<option value='' disabled selected hidden>선택하세요.</option>");
+	        				$.each(services, function(i, d){
+	        					$("#inputServiceList").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
+	        				});   				
+	        			},
+	        			error: function(){
+	        				console.log("receive service list error");
+	        			}
+	        		});
 					
 					// ----------------------- 약관 동의 안 하면, 못하게 하기 -------------------------//
 					
@@ -261,6 +276,7 @@
 						var inputDescription = $('#inputDescription').val();
 						var inputStartTime = $('#inputStartTimeHidden').val();
 						var inputEndTime = $('#inputEndTimeHidden').val();
+						var inputService = document.getElementById('inputServiceList').value;
 						var inputEmployeeGender = ''; 
 							if($('#genderCheckField').html() == '남성') {
 								$('#genderCheckField').val('m');
@@ -281,7 +297,8 @@
 								start: inputStartTime,
 								end: inputEndTime,
 								employeeGender: inputEmployeeGender,
-								rsvStatus : inputStatus
+								rsvStatus : inputStatus,
+								
 						};
 						
 			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
@@ -527,6 +544,15 @@
 								<td><label for='inputTitle' class='control-label'>일정 제목: </label></td>
 								<td><input type='text' id='inputTitle' name='reservation.rsvTitle' required class='form-control'></td>
 							</tr>
+							
+							<!--  서비스 선택 Select 재활용 -->
+							<tr>
+								<td><label for='inputServiceList' ></label></td>
+								<td><select id="inputServiceList"></select></td>
+							</tr>
+							
+							
+							
 							<tr>
 								<td><label for='inputDescription' class='control-label'>서비스 Description: </label></td>
 								<td><input type='text' id='inputDescription' name='reservation.service.svcDescription' required class='form-control'/><span class='glyphicon form-control-feedback' aria-hidden='true'></span>
