@@ -83,10 +83,10 @@ textarea {width:800px; height:300px;overflow:visible;}
    		  <s:include value="Highchart3.jsp"/>  		   
    	  </div><!-- 통계3 -->
    	 
-   	  <div id="menu3" class="tab-pane fade">
+     <div id="menu3" class="tab-pane fade">
      	 <h3>통계4</h3>
       	  <s:include value="Highchart4.jsp"/>  
-      </div><!-- 통계4 -->
+      </div><!-- 통계4 --> 
       
       <div id="menu4" class="tab-pane fade">
      	  <h3>통계5</h3>
