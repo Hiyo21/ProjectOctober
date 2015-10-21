@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import model.common.DAOFactory;
 import model.dao.EnterpriseDAO;
 import model.vo.Component;
+import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.Reservation;
@@ -37,18 +38,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private List<Service> serviceList;
 	private List<String> categoryList;
 	private Map<String, Object> session;
+	private List<Coupon> couponList;
 	
 	private Member member;
 
-
-
-
-	
 	//////// Component Member ////////  
 	private Component component;
 	private List<Component> componentList;
 
 	private String etpNum;
+	private String etpNum1;
 	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
@@ -133,12 +132,19 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 
 	public String receiveServiceList() throws Exception{
+		System.err.println(etpNum);
 		serviceList = etpDAO.retrieveServices(etpNum);
 		System.err.println(serviceList);
 		if(serviceList != null) return SUCCESS;
 		else return ERROR;
 	}
-
+	
+	public String retrieveCouponList() throws Exception{
+		System.err.println(etpNum);
+		couponList = etpDAO.retrieveCouponList(etpNum);
+		return SUCCESS; 
+		
+	}
 	
 	public String selectServiceList() throws Exception{
 		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
@@ -448,5 +454,35 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setMember(Member member) {
 		this.member = member;
+	}
+
+
+	public List<String> getCategoryList() {
+		return categoryList;
+	}
+
+
+	public void setCategoryList(List<String> categoryList) {
+		this.categoryList = categoryList;
+	}
+
+
+	public String getEtpNum1() {
+		return etpNum1;
+	}
+
+
+	public void setEtpNum1(String etpNum1) {
+		this.etpNum1 = etpNum1;
+	}
+
+
+	public List<Coupon> getCouponList() {
+		return couponList;
+	}
+
+
+	public void setCouponList(List<Coupon> couponList) {
+		this.couponList = couponList;
 	}
 }

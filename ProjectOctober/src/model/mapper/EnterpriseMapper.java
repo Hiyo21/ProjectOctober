@@ -3,6 +3,7 @@ package model.mapper;
 import java.util.List;
 
 import model.vo.Component;
+import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
 import model.vo.PhotoLocation;
@@ -72,5 +73,7 @@ public interface EnterpriseMapper {
     
     //////////////// 카테고리 검색 리스트
     List<Enterprise> categorySearch(String keyword);
+
+	List<Coupon> retrieveCouponList(String etpNum);
 
 }

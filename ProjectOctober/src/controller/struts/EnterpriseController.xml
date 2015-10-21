@@ -41,6 +41,10 @@
 				<param name="defaultEncoding">UTF-8</param>
 			</result>
 		</action>
+		
+		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
+			<result type="json" />
+		</action>
 
 		
 		

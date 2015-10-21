@@ -9,6 +9,7 @@ import model.mapper.EnterpriseMapper;
 import model.mapper.ReservationMapper;
 import model.mapper.ServiceMapper;
 import model.vo.Component;
+import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
@@ -234,5 +235,12 @@ public class EnterpriseDAO extends DAOTemplate{
 
 	public EnterpriseMapper fromMapper(SqlSession s){
 		return s.getMapper(EnterpriseMapper.class);
+	}
+
+	public List<Coupon> retrieveCouponList(String etpNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(EnterpriseMapper.class).retrieveCouponList(etpNum);
+		}finally{session.close();}
 	}
 }
