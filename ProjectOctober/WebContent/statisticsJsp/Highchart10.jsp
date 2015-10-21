@@ -18,12 +18,12 @@ $(function () {
             text: '월별 매출'
         },
         xAxis: {
-            /* type: 'category', */
+            type: 'category', 
             labels: {
-               /*  rotation: -45, */
+               rotation: -45, 
                 style: {
                     fontSize: '20px',
-                   /*  fontFamily: 'Verdana, sans-serif' */
+                  fontFamily: 'Verdana, sans-serif' 
                 }
             }
         },

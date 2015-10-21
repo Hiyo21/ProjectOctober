@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import model.common.MyBatisSqlSessionFactory;
 import test.vo.Highchart1;
 import test.vo.Highchart10;
+import test.vo.Highchart11;
 import test.vo.Highchart2;
 import test.vo.Highchart3;
 import test.vo.Highchart4;
@@ -164,6 +165,18 @@ public class DAO {
 			sqlsession.close();
 		}		
 		
+		return list;
+	}
+
+	//직업별 방문 고객 수
+	public List<Highchart11> highchart11DAO() {
+		List<Highchart11> list = null;
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("highchart11");				
+		}finally{
+			sqlsession.close();
+		}				
 		return list;
 	}
 

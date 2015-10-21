@@ -85,11 +85,16 @@
 		
 		<!-- 월별 매출액 변화 -->
 		<action name="highchart10" class="test.action.Action10" method="highchart10">
-			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
+			<result name="success" type="chain">
+        		<param name="actionName">highchart11</param>
+            	<param name="namespace">/</param>
+			</result>	
 		</action>
 		
-		
-		
+		<!-- 직업별 방문 고객 수 -->
+		<action name="highchart11" class="test.action.Action11" method="highchart11">
+			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
+		</action>
 		
 		
 		
