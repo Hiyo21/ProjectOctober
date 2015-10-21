@@ -25,12 +25,29 @@
 </script>
 <style>
 	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+#header {
+   /*  background-color:#F2F2F2;
+    color:#fff; */
+   background: url("../image/Home.jpg") 
 	
+   
+}
+	
+	
+ 	body{
+		
+	font-family: "Helvetica Neue", Helvetica, Arial,"맑은 고딕","Malgun gothic",sans-serif;
+} 
+
+.btn-default {
+	width: 110px;
+} 
+
 	
 </style>
 </head>
 <body>
-<div class="header-wrap">
+<div class="header-wrap" >
 	<header id="header">
 		<div class="container">
 			<div class="row">
