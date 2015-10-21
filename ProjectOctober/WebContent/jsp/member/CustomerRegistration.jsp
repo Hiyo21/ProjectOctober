@@ -26,7 +26,7 @@
 	
 	for(int i = 1920; i < 2015 ; i++){
 		$('#year').append("<option value='" + i + "'>" + i + "</option>");
-	};
+	}k
 	
 	for(int i = 0; i<12; i++){
 		$("#month").append("<option value='" + i + "'>" + (i+1) + "</option>");
@@ -52,23 +52,21 @@
 		if($('#email').val().trim().length == 0) errorMessage += "이메일을 입력하세요!\r\n";
 		if($('#password').val().trim().length == 0) errorMessage += "패스워드를 입력하세요!\r\n";
 		if($('#passwordck').val().trim().length == 0) errorMessage += "패스워드 확인란을 입력하세요!\r\n";
-		if($('#password').val().trim() != $('#passwordck').val().trim) errorMessage += "패스워드가 확인란과 일치하지 않습니다.\r\n";
-		if($('#phoneResult').val().trim().length == 0) errorMessage += "전화번호를 입력하세요!\r\n");
-	 	if($('#addressResult').val().trim().length == 0) errorMessage += "주소를 입력하세요! \r\n");
-		if($('#bdayResult').val().trim().length == 0) errorMessage += "생년월일을 입력하세요! \r\n");
-
-	$(document).ready(function(){
+		if($('#password').val().trim() != $('#passwordck').val().trim()) errorMessage += "패스워드가 확인란과 일치하지 않습니다.\r\n";
+		if($('#phoneResult').val().trim().length == 0) errorMessage += "전화번호를 입력하세요!\r\n";
+	 	if($('#addressResult').val().trim().length == 0) errorMessage += "주소를 입력하세요!\r\n";
+		if($('#bdayResult').val().trim().length == 0) errorMessage += "생년월일을 입력하세요!\r\n";
 
 		if(errorMessage.length != 0){
 			alert(errorMessage);
 			return false;
 		}else{
-			$('#send').submit();
+			$(this).submit();
 		}
 	});
 	
 	
-		var cstBirthday = document.getElementById('year').val+document.getElementById('month').val+document.getElementById('day').val;
+		var cstBirthday = document.getElementById('year').val() + document.getElementById('month').val() + document.getElementById('day').val();
 		
 		$("#button1").click(function(){    	
 			alert(cstBirthday);			
