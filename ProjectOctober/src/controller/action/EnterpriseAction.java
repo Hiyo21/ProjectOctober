@@ -29,15 +29,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Enterprise enterprise;
 	private Reservation reservation;
 	private List<Reservation> reservationList;
-<<<<<<< HEAD
-	private List<Enterprise> enterpriseList;
-	private Map<String, Object> serviceMap;
-=======
 	private List<Enterprise> enterpriseList;
 	private List<Service> serviceList;
+	private List<String> categoryList;
 	private Map<String, Object> session;
 	private Member member;
->>>>>>> refs/remotes/origin/master
 	
 	//////// Component Member ////////  
 	private Component component;
@@ -155,17 +151,23 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		//서비스 리스트 set
 		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
 		enterprise.setServices(svcList);
-		/*List<Service> svcList2 = new ArrayList<>();
-		List<String> cateList = new ArrayList<>();
-		String cate;
-		//서비스 맵
-		for(Service s : svcList){
-			cate = s.getSvcCategory();
+		
+		categoryList = new ArrayList<>();
+		for(int j=0; j<svcList.size(); j++){	
+			String category = svcList.get(j).getSvcCategory();
 			
-			svcList2.add(s);
-			serviceMap.put(cate, svcList2);
-			
-		}*/
+			if(j==0){
+				categoryList.add(category);
+			}else{
+				if(svcList.get(j).getSvcCategory().equals(svcList.get(j-1).getSvcCategory())){
+					
+				}else{
+					categoryList.add(category);
+				}
+			}
+		}
+		
+		System.err.println("===========check Action :: categoryList :: " +categoryList.size());
 		
 		//고객평가, 갤러리 리스트 set
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
@@ -324,14 +326,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public List<Enterprise> getEnterpriseList() {
 		return enterpriseList;
-	}
-
-	public Map<String, Object> getServiceMap() {
-		return serviceMap;
-	}
-
-	public void setServiceMap(Map<String, Object> serviceMap) {
-		this.serviceMap = serviceMap;
 	}
 
 	public void setEnterprise(Enterprise enterprise) {

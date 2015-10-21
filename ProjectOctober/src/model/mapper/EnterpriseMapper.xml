@@ -785,7 +785,7 @@
   </select>
   
   	<select id="selectEtpList" resultMap="EnterpriseBaseResultMap">
-  		select * from enterprise
+  		select * from enterprise where etp_status != 0
   	</select>
   	  	
   	<select id="selectReviewList" parameterType="String" resultType="Review">
