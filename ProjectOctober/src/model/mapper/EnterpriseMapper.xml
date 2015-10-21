@@ -872,4 +872,8 @@
 	<insert id="insertRegCard" parameterType="PhotoLocation">
 		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
 	</insert>
+	
+	<select id="retrieveCouponList" parameterType="String" resultType="Coupon">
+		select from COUPON where etp_num = #{value}
+	</select>
 </mapper>
