@@ -15,7 +15,7 @@ public class CostDAO {
 		List<Highchart9Cost> list = null;
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list = sqlsession.selectList("highchart9");				
+			list = sqlsession.selectList("highchart9Cost");				
 		}finally{
 			sqlsession.close();
 		}		
@@ -26,7 +26,7 @@ public class CostDAO {
 		List<Highchart10Cost> list1 = null;
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list1 = sqlsession.selectList("highchart10");				
+			list1 = sqlsession.selectList("highchart10Cost");				
 		}finally{
 			sqlsession.close();
 		}		
@@ -38,7 +38,7 @@ public class CostDAO {
 		
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list2 = sqlsession.selectList("highchart11");				
+			list2 = sqlsession.selectList("highchart11Cost");				
 		}finally{
 			sqlsession.close();
 		}		

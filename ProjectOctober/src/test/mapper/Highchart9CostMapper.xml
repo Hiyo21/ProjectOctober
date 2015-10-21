@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="test.mapper.Highchart9CostMapper.xml" >
-	<select id="highchart9" resultType="Highchart9Cost">
+	<select id="highchart9Cost" resultType="Highchart9Cost">
 	
 	select ROW_NUMBER() OVER (ORDER BY sale desc) rank, etp_num, sale
 		from

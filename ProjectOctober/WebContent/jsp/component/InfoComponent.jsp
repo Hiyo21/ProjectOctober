@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,6 @@ $(document).ready(function(){
 function saveInfo() {
 	var editor=CKEDITOR.instances.infoText.getData();
 	
-	console.log(editor);
 	//htmleditor에서 편집된 값을 반영
 	var div = document.getElementById("infoContentIn");
 	div.innerHTML = editor;
@@ -60,9 +59,15 @@ function saveInfo() {
 			<div class="jumbotron">
 	  			<!-- 입력된 내용을 바로 반영 -->
 	  			<div id="infoContentIn">
-			  		<h3>정보를 적어주세요</h3>
+	  				<s:if test='enterprise.etpDescription == null'>
+	  					<h3>사장님 안녕하세요!</h3>
+			  			<h5>이곳에 간단한 소개를 적어주세요</h5>
+			  		</s:if>
+			  		<s:if test='enterprise.etpDescription != null'>
+			  			<s:property value="enterprise.etpDescription"/>
+			  		</s:if>
 	  			</div>
-				<p><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#infoModal">편집</a></p>
+				<p align="left"><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#infoModal">편집</a></p>
 			</div>
 		</div><!-- col-md-8 end -->
 	</div><!-- row end -->
@@ -77,7 +82,7 @@ function saveInfo() {
         <h4 class="modal-title">소개 작성</h4>
       </div>
       <div class="modal-body">
-        <textarea id="infoText" name="infoEdit"></textarea>
+        <textarea id="infoText" name="infoEdit"> <s:property value="enterprise.etpDescription"/> </textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

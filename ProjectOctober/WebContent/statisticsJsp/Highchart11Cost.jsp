@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
 $(function () {
-    $('#container11').highcharts({
+    $('#container111').highcharts({
         chart: {
             type: 'bar'
         },
@@ -55,6 +55,6 @@ $(function () {
 <title>같은 업종, 같은지격에 속한 업체들의 방문 고객 연령대</title>
 </head>
 <body>
-<div id="container11" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+<div id="container111" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
 </body>
 </html>

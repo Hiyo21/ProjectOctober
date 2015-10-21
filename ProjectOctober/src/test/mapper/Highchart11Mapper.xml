@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="test.mapper.Highchart11Mapper.xml">
+	<select id="highchart11" resultType="Highchart11">
+		SELECT CST_JOB job, COUNT(*) total from REVIEW where ETP_NUM='99' group by CST_JOB
+	</select>
+</mapper>
