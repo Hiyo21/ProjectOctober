@@ -62,21 +62,20 @@ $(function(){
 <button onclick="selectSvcList('1234567890')">리스트 불러오기</button>
 <div class="container-fluid">
 
-<s:if test="enterprise.services != null">
-<s:iterator value="enterprise.services">
+<s:if test="categoryList != null">
+<s:iterator value="categoryList">
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-	 	<b class="svcCategory"><s:set var="category"><s:property value="svcCategory"/></s:set></b>
+	 	<b><s:property/></b>
 	 
 	 	<!-- 인서트시 한 사업자의 카데고리에 중복이 없게 해야 함//셀렉트 할때는 사업자와 카테고리를 조인하여 검색 -->
-		<button type="button" class="btn btn-default btn-md edit" onclick="svcUpdate(<s:property value="svcCategory"/>)">수정</button>
-  		<button type="button" class="btn btn-default btn-md edit" onclick="svcDelete(<s:property value="svcCategory"/>)">삭제</button>
-	  		
+		<button type="button" class="btn btn-default btn-md edit" onclick="svcUpdate(<s:property/>)">수정</button>
+  		<button type="button" class="btn btn-default btn-md edit" onclick="svcDelete(<s:property/>)">삭제</button>	  		
 	</div>
 	
-	<s:iterator value="enterprise.services">
-	<s:if test='<s:property value="#category"/>==<s:property value="svcCategory"/>'> 
+	<%-- <s:iterator value="enterprise.services">
+	<s:if test='<s:property/>==<s:property value="svcCategory"/>'> 
 	<!-- 서비스 항목-->
 	<div class="panel-body" id="categoryBody">
 	  	<table class="table">
@@ -101,7 +100,7 @@ $(function(){
 		</table>
 	</div>
 	</s:if>
-	</s:iterator>
+	</s:iterator> --%>
 </div>
 </s:iterator>		
 </s:if>
