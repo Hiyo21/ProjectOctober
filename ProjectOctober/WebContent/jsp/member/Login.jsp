@@ -38,6 +38,7 @@
 </style>
 
 <script>
+
 $(document).ready(function() {
 	$('#enterprise').on('click', enter);
 	$('#customer').on('click', cust);

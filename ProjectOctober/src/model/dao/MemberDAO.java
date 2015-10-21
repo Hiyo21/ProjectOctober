@@ -74,6 +74,16 @@ public class MemberDAO extends DAOTemplate {
 		}
 	}
 	
+	public Member retrieveCustomerInfoPerReservation(Map<String, Object> info) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			return session.getMapper(MemberMapper.class).retrieveCustomerInfoPerReservation(info);
+		}finally{
+			session.close();
+		}
+	}
+
+	
 	public MemberMapper fromMapper(SqlSession s){
 		return s.getMapper(MemberMapper.class);
 	}
