@@ -73,22 +73,28 @@
 					<div class="col-xs-6 col-sm-3 col-md-3">
 						<br>
 						<!-- jQuery로 새로운 팝업창/dialog창 열고 notification 리스트 불러오게 링크는 JS 메소드로..어떻게?-->
-						<a href="#~~method~~(#session.loginId)" data-toggle="notification-popover" placement="auto" title="${session.loginName}님의 알림" data-content="여기서가 문제. 리스트를 받아와야 함"><button class="btn btn-warning btn-btn block"> 알림 <span class="badge">1<!-- 여기에는  notification 넘버...어떻게??--></span></button></a>
+						<a href="#~~method~~(#session.loginId)" data-toggle="notification-popover" placement="auto" title="${session.loginName}님의 알림" data-content="여기서가 문제. 리스트를 받아와야 함"><button class="btn btn-warning btn-sm block"> 알림 <span class="badge">1<!-- 여기에는  notification 넘버...어떻게??--></span></button></a>
 					</div>
 
 					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-md-2">메인페이지</a>
+						<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-sm">메인페이지</a>
 						<s:if test="#session.memCode == 1">
+							<a href="${pageContext.request.contextPath}/member/toEnterpriseMyPage.action" class="btn btn-primary btn-sm">마이페이지</a>
+
 							<a href="${pageContext.request.contextPath}/member/toEnterpriseMyPage.action" class="btn btn-primary btn-md-2">마이페이지</a>
+							<!-- 달력 Test code. Action에서 불러와야만 한다! -->
+							<a href="${pageContext.request.contextPath}/enterprise/toCalendarPage.action?etpNum=${session.loginEtpNum}" class="btn btn-danger btn-md-2">예약 페이지</a>
+							<!--  -->
+
 						</s:if>
 						<s:if test="#session.memCode == 2">
-							<a href="${pageContext.request.contextPath}/member/toCustomerMainPage.action" class="btn btn-primary btn-md-2">마이페이지</a>
+							<a href="${pageContext.request.contextPath}/member/toCustomerMainPage.action" class="btn btn-primary btn-sm">마이페이지</a>
 						</s:if>
 						<s:if test="#session.memCode == 3">
-							<a href="${pageContext.request.contextPath}/enterprise/AllNoRegisterEtpList.action" class="btn btn-primary btn-md-2">마이페이지</a>
+							<a href="${pageContext.request.contextPath}/enterprise/AllNoRegisterEtpList.action" class="btn btn-primary btn-sm">마이페이지</a>
 						</s:if>
 						<!-- 공통 로그아웃 -->
-							<a href="${pageContext.request.contextPath}/member/logoutProcess.action" class="btn btn-primary btn-md-2">로그아웃</a>
+							<a href="${pageContext.request.contextPath}/member/logoutProcess.action" class="btn btn-primary btn-sm">로그아웃</a>
 					</div>
 				</div>
 				</s:if>
@@ -150,16 +156,22 @@
 						</s:if>
 						
 						<s:if test ="#session.loginId != null || #session.memCode == '2'">
-						<form action="searchFreeKeyword" id="searchFreeKeywordForm" class="navbar-form navbar-right" role="form" method="get" accept-charset="utf-8">
+						<form action="/ProjectOctober/search/searchFreeKeyword.action" id="searchFreeKeywordForm" class="navbar-form navbar-right" role="form" method="get" accept-charset="utf-8">
 	
-						<div class="input-group input-group-sm">
-							<input name="search" class="form-control" placeholder="검색" type="search">
+						<div class="input-group input-group-sm" >
+							<input name="searchKeyword" class="form-control" placeholder="검색" type="search" style="display: inline-block;text-align: right;">
 							<span class="input-group-btn">
 								<button class="btn btn-default fa fa-search" type="submit"></button>
 							</span>
 						</div>
 						</form>
 						</s:if>
+				<!-- <form action="/ProjectOctober/search/searchFreeKeyword.action" class="navbar-form navbar-left" role="search">
+			        <div class="form-group">
+			          <input type="text" name="searchKeyword" class="form-control" placeholder="Search">
+			        </div>
+			        <button type="submit" class="btn btn-default">Search</button>
+			     </form> -->
 					</div>
 				</div>
 			</div>

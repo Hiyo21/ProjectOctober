@@ -3,6 +3,8 @@ package controller.action;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +16,10 @@ import model.common.DAOFactory;
 import model.dao.EnterpriseDAO;
 import model.vo.Component;
 import model.vo.Enterprise;
+import model.vo.Member;
 import model.vo.Reservation;
 import model.vo.Service;
+import model.vo.WorkingDays;
 
 
 public class EnterpriseAction extends ActionSupport implements SessionAware{
@@ -25,8 +29,15 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Enterprise enterprise;
 	private Reservation reservation;
 	private List<Reservation> reservationList;
+<<<<<<< HEAD
 	private List<Enterprise> enterpriseList;
 	private Map<String, Object> serviceMap;
+=======
+	private List<Enterprise> enterpriseList;
+	private List<Service> serviceList;
+	private Map<String, Object> session;
+	private Member member;
+>>>>>>> refs/remotes/origin/master
 	
 	//////// Component Member ////////  
 	private Component component;
@@ -35,15 +46,33 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpNum;
 	private String etpEmail;
 	private String address;
-	
-	Map<String, Object> session;
+	private Integer rsvNum;
 
-	
-	
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
 	}
 	
+	
+//---------------------------------------- Calendar 관련 ----------------------------------//
+	public String toCalendarPage() throws Exception{
+		System.out.println(etpNum);
+		return SUCCESS;
+	}
+	
+	public String retrieveEnterpriseInfoForCalendar() throws Exception{
+		System.err.println(etpNum + "얘는?");
+		enterprise = etpDAO.selectByEtpNumIncludeOthers(etpNum);
+		System.err.println(enterprise + "어디?");
+		System.err.println(enterprise.getEtpStartHour() +"이건?");
+		//System.err.println(enterprise.getWorkingDays());
+		enterprise.setStart(enterprise.getEtpStartHour().format(DateTimeFormatter.ISO_LOCAL_TIME));
+		enterprise.setEnd(enterprise.getEtpEndHour().format(DateTimeFormatter.ISO_LOCAL_TIME));
+		WorkingDays wd = enterprise.getWorkingDays();
+		Integer [] ttt = makeDow(wd);
+		enterprise.getWorkingDays().setDow(ttt);
+		return SUCCESS;
+	}
+
 	public String insertReservation() throws Exception{
 		if(reservation != null){
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(), DateTimeFormatter.ISO_DATE_TIME));
@@ -66,12 +95,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveReservations() throws Exception{
-		reservationList = etpDAO.retrieveReservations();
+		System.err.println("현재 테스트 중입니다..etp정보를 받아오는가?");
+		System.err.println(etpNum);
+		reservationList = etpDAO.retrieveReservations(etpNum);
 		if (reservationList != null) {
 			for(int i = 0 ; i < reservationList.size() ; i++ ){
 				reservationList.get(i).setStart(reservationList.get(i).getRsvStartDate().toString());
 				reservationList.get(i).setEnd(reservationList.get(i).getRsvEndDate().toString());
-				//Reservation 상태에 따라 변화
+				//TODO: Reservation 상태에 따라 변화
 				if(reservationList.get(i).getRsvStatus() == 0){
 					reservationList.get(i).setBordercolor("#DDDDDD");
 				}
@@ -81,8 +112,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			return ERROR;
 		}
 	}
-	
-	
 	
 	public String changeReservationTime() throws Exception{
 		reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0, 19)));
@@ -97,6 +126,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
+
+	public String receiveServiceList() throws Exception{
+		serviceList = etpDAO.retrieveServices(etpNum);
+		System.err.println(serviceList);
+		if(serviceList != null) return SUCCESS;
+		else return ERROR;
+	}
+
 	
 	public String selectServiceList() throws Exception{
 		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
@@ -155,6 +192,20 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}
 	}
 	
+	public String updateReservationDetailsByEnterprise() throws Exception{
+		System.err.println("제목:" + reservation.getRsvTitle());
+		System.err.println("서비스 넘버: " + reservation.getSvcNum());
+		if(reservation.getRsvTitle() == null || reservation.getRsvTitle().trim().length() == 0) reservation.setRsvTitle("제목 없음");
+		int result = etpDAO.updateReservationDetailsByEnterprise(reservation);
+		System.err.println(result);
+		return SUCCESS;
+	}
+	
+
+	
+	
+//----------------------------------------------------------------------------------------------------//
+
 	
 	//////////////// Component Method ////////////////
 	
@@ -219,7 +270,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String confirm() throws Exception{
-		System.err.println("cofirm : "+etpNum);
+		System.err.println("confirm : "+etpNum);
 		int result=etpDAO.updateEtpStatus(etpNum);
 				
 		if(result !=1){	
@@ -340,10 +391,59 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.address = address;
 	}
 
+
 	@Override
 	public void setSession(Map<String, Object> session) {
-		this.session = session;		
+		this.session = session;
+	}
+	
+	//---------------------------------//
+	public Integer [] makeDow(WorkingDays wd){
+			int [] temp = {wd.getSun(), wd.getMon(), wd.getTue(), wd.getWed(), wd.getThu(),wd.getFri(), wd.getSat()};
+			List<Integer> it = new ArrayList<Integer>();
+			boolean hasVacDay = false;
+			int x = 0;
+			for(int i = 0 ; i < temp.length ; i++){
+				if(temp[i] == 1){
+					hasVacDay = true;
+				}else{
+					it.add(x);
+				}
+				x++;
+			}
+		Object[] temptt = it.toArray();
+		Integer [] tt = Arrays.copyOf(temptt, temptt.length, Integer[].class);
+			System.err.println(Arrays.toString(tt)+2);
+			return tt;
 	}
 
-	
+
+	public List<Service> getServiceList() {
+		return serviceList;
+	}
+
+
+	public void setServiceList(List<Service> serviceList) {
+		this.serviceList = serviceList;
+	}
+
+
+	public Integer getRsvNum() {
+		return rsvNum;
+	}
+
+
+	public void setRsvNum(Integer rsvNum) {
+		this.rsvNum = rsvNum;
+	}
+
+
+	public Member getMember() {
+		return member;
+	}
+
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
 }

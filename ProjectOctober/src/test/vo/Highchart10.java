@@ -1,34 +1,27 @@
 package test.vo;
 
 public class Highchart10 {
-	private String etpNum;
-	private String timeSet;
-	private int countNum;
+	private int avgAmount;
+	private String MonthA;
 	
-	public String getEtpNum() {
-		return etpNum;
+	public int getAvgAmount() {
+		return avgAmount;
 	}
-	public void setEtpNum(String etpNum) {
-		this.etpNum = etpNum;
+	public void setAvgAmount(int avgAmount) {
+		this.avgAmount = avgAmount;
 	}
-	public String getTimeSet() {
-		return timeSet;
+	public String getMonthA() {
+		return MonthA;
 	}
-	public void setTimeSet(String timeSet) {
-		this.timeSet = timeSet;
-	}
-	public int getCountNum() {
-		return countNum;
-	}
-	public void setCountNum(int countNum) {
-		this.countNum = countNum;
+	public void setMonthA(String monthA) {
+		MonthA = monthA;
 	}
 	@Override
 	public String toString() {
-		return "Highchart10 [etpNum=" + etpNum + ", timeSet=" + timeSet + ", countNum=" + countNum + "]";
+		return "Highchart10 [avgAmount=" + avgAmount + ", MonthA=" + MonthA + "]";
 	}
-	
 	
 	
 	
 }
+

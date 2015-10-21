@@ -1,60 +1,93 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %> 
+<%@ taglib prefix="s" uri="/struts-tags" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
-
 $(function () {
     $('#container11').highcharts({
         chart: {
-            type: 'bar'
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
         },
         title: {
-            text: '같은지역&같은업종에 방문하는 연령대별 고객'
+            text: '직업별 방문 고객 수'
         },
-        xAxis: {
-            categories: ['10대', '20대', '30대', '40대', '50대 이상']
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: '고객의 수'
-            }
-        },
-        legend: {
-            reversed: true
-        },
+        /* tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:f}원</b>'
+        }, */
         plotOptions: {
-            series: {
-                stacking: 'normal'
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.y} 명',
+                   
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
             }
         },
         series: [{
-            name: '고객의 수',
-            data: [
-                   <s:iterator value="#request.resultList1"><s:property value="first"/></s:iterator>
-                   ,
-                   <s:iterator value="#request.resultList2"><s:property value="second"/></s:iterator>
-                   ,
-                   <s:iterator value="#request.resultList3"><s:property value="third"/></s:iterator>
-                   ,
-                   <s:iterator value="#request.resultList4"><s:property value="forth"/></s:iterator>
-                   ,
-                   <s:iterator value="#request.resultList5"><s:property value="fifth"/></s:iterator>
-                   
-                   
-                  ]
+           /*  name: "Brands", */
+            colorByPoint: true,
+            data: [{
+                name: "주부",
+                y: 
+                	<s:iterator value="#request.listJubu">
+                	<s:property value="total"/>
+                	</s:iterator>  
+            	
+            }, {
+                name: "프리랜서",
+                y: 
+                	<s:iterator value="#request.listFree">
+            	<s:property value="total"/>
+            	</s:iterator> 
+                	
+              
+            }, {
+                name: "기타",
+                y: 
+                	<s:iterator value="#request.listOther">
+        	<s:property value="total"/>
+        	</s:iterator> 
+        	    	
+            }, {
+                name: "회사원",
+                y:
+
+                	<s:iterator value="#request.listCompany">
+        	<s:property value="total"/>
+        	</s:iterator> 
+            }, {
+                name: "학생",
+                y: 
+                	<s:iterator value="#request.listStudent">
+        	<s:property value="total"/>
+        	</s:iterator> 
+            }, {
+                name: "전문직",
+                y: 
+                	
+                	<s:iterator value="#request.listExpert">
+        	<s:property value="total"/>
+        	</s:iterator> 
+            }]
         }]
     });
 });
-
 </script>
-<title>같은 업종, 같은지격에 속한 업체들의 방문 고객 연령대</title>
+
+<title>직업별 방문 고객 수</title>
 </head>
 <body>
-<div id="container11" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+<div id="container11" style="min-width: 1000px; height: 500px; max-width: 1000px; margin: 0 auto"></div>
 </body>
 </html>

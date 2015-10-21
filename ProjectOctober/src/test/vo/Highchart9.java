@@ -1,26 +1,26 @@
 package test.vo;
 
 public class Highchart9 {
-	private int rank;
-	private int sale;
+	private String time;
+	private int total;
 	
-	
-	public int getRank() {
-		return rank;
+	public String getTime() {
+		return time;
 	}
-	public void setRank(int rank) {
-		this.rank = rank;
+	public void setTime(String time) {
+		this.time = time;
 	}
-	public int getSale() {
-		return sale;
+	public int getTotal() {
+		return total;
 	}
-	public void setSale(int sale) {
-		this.sale = sale;
+	public void setTotal(int total) {
+		this.total = total;
 	}
 	@Override
 	public String toString() {
-		return "Highchart9 [rank=" + rank + ", sale=" + sale + "]";
+		return "Highchart9 [time=" + time + ", total=" + total + "]";
 	}
-	
-	
+
 }
+
+

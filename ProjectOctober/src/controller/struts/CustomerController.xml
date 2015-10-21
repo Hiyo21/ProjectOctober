@@ -3,8 +3,9 @@
 
 <struts>
 	<package name="customer" namespace="/customer" extends="default">
-		
-		
+		<action name="retrieveCustomerInfoForReservation" class="controller.action.CustomerAction" method="retrieveCustomerInfoForReservation">
+			<result type="json" />
+		</action>
 	</package>
 
 </struts>

@@ -68,12 +68,41 @@
 		
 		<!--항인쿠폰 사용시 매출액 변화  -->
 		<action name="highchart8" class="test.action.Action8" method="highchart8">
-			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>
+			<result name="success" type="chain">
+        		<param name="actionName">highchart9</param>
+            	<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<!-- 시간대별 고객 수 변화 -->
+		<action name="highchart9" class="test.action.Action9" method="highchart9">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart10</param>
+            	<param name="namespace">/</param>
+			</result>	
+		</action>
+	
+		
+		<!-- 월별 매출액 변화 -->
+		<action name="highchart10" class="test.action.Action10" method="highchart10">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart11</param>
+            	<param name="namespace">/</param>
+			</result>	
+		</action>
+		
+		<!-- 직업별 방문 고객 수 -->
+		<action name="highchart11" class="test.action.Action11" method="highchart11">
+			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
 		</action>
 		
 		
+		
+		
+		
+		
 		<!-- 결제 페이지에서 버튼 누르면 ->유료통계서비스 -->
-		<action name="highchartCost" class="test.action.Action9" method="highchartCost">
+		<action name="highchartCost" class="test.action.ActionCost" method="highchartCost">
 			<result name="success" type="chain">
         		<param name="actionName">highchartCost1</param>
             	<param name="namespace">/</param>

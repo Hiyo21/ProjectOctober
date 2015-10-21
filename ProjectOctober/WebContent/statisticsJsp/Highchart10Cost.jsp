@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %> 
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 $(function () {
-    $('#container9').highcharts({
+    $('#container100').highcharts({
         chart: {
             type: 'line'
         },
         title: {
-            text: '시간대에 따른 고객 수'
+            text: '같은지역&업종 고객 방문 시간'
         },
        
         xAxis: {
@@ -32,9 +32,9 @@ $(function () {
             }
         },
         series: [{
-           name: '시간대에 따른 매출액', 
+           name: '시간대에 따른 고객 수', 
             data: [
-                   <s:iterator value="#request.timelist">
+                   <s:iterator value="#request.timelist2">
             			<s:property value="time0"/>
             			,<s:property value="time1"/>
             			,<s:property value="time2"/>
@@ -66,10 +66,11 @@ $(function () {
         }]
     });
 });
+
 </script>
-<title>시간대별 고객 수 변화</title>
+<title>같은지역, 같은업종 예약이 몰리는 시간대</title>
 </head>
 <body>
-<div id="container9" style="min-width: 1000px; height: 500px; margin: 0 auto"></div>
+<div id="container100" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 </body>
 </html>

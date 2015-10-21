@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,68 +9,120 @@
 $(function () {
     $('#container10').highcharts({
         chart: {
-            type: 'line'
+            type: 'column'
         },
         title: {
-            text: '같은지역&업종 고객 방문 시간'
+            text: '월별 매출액 변화'
         },
-       
+        subtitle: {
+            text: '월별 매출'
+        },
         xAxis: {
-            categories: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24']
+            type: 'category', 
+            labels: {
+               rotation: -45, 
+                style: {
+                    fontSize: '20px',
+                  fontFamily: 'Verdana, sans-serif' 
+                }
+            }
         },
         yAxis: {
             title: {
-                text: '매출액'
+                text: '매출액(원)'
             }
         },
-        plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: true
-                },
-                enableMouseTracking: false
-            }
+       /*  legend: {
+            enabled: false
+        }, */
+        tooltip: {
+            pointFormat: '매출액: <b>{point.y:f} 원</b>'
         },
         series: [{
-           name: '시간대에 따른 고객 수', 
+            name: '월',
             data: [
-                   <s:iterator value="#request.timelist2">
-            			<s:property value="time0"/>
-            			,<s:property value="time1"/>
-            			,<s:property value="time2"/>
-            			,<s:property value="time3"/>
-            			,<s:property value="time4"/>
-            			,<s:property value="time5"/>
-            			,<s:property value="time6"/>
-            			,<s:property value="time7"/>
-            			,<s:property value="time8"/>
-            			,<s:property value="time9"/>
-            			,<s:property value="time10"/>
-            			,<s:property value="time11"/>
-            			,<s:property value="time12"/>
-            			,<s:property value="time13"/>
-            			,<s:property value="time14"/>
-            			,<s:property value="time15"/>
-            			,<s:property value="time16"/>
-            			,<s:property value="time17"/>
-            			,<s:property value="time18"/>
-            			,<s:property value="time19"/>
-            			,<s:property value="time20"/>
-            			,<s:property value="time21"/>
-            			,<s:property value="time22"/>
-            			,<s:property value="time23"/>
-            			,<s:property value="time24"/>
-            			
-            		</s:iterator>  
-            	]
+                ['1월', 
+                  <s:iterator value="#request.amountList">
+     				<s:property value="amount0"/>
+        		  </s:iterator>  
+                 ],
+                ['2월', 
+                 <s:iterator value="#request.amountList">
+ 					<s:property value="amount1"/>
+    		 	 </s:iterator>  
+                 ],
+                ['3월', 
+                 <s:iterator value="#request.amountList">
+					<s:property value="amount2"/>
+		 		 </s:iterator> 
+                 ],
+                ['4월', 
+                 <s:iterator value="#request.amountList">
+					<s:property value="amount3"/>
+		 		 </s:iterator> 
+                 ],
+                ['5월', 
+                 <s:iterator value="#request.amountList">
+					<s:property value="amount4"/>
+		 		 </s:iterator> 
+                 ],
+                ['6월', 
+                 <s:iterator value="#request.amountList">
+					<s:property value="amount5"/>
+		 		 </s:iterator> 
+                 ],
+                ['7월',
+                 <s:iterator value="#request.amountList">
+					<s:property value="amount6"/>
+		 		 </s:iterator> 
+                 ],
+                ['8월',
+                 <s:iterator value="#request.amountList">
+					<s:property value="amount7"/>
+		 	 	</s:iterator> 
+                 ],
+                ['9월',
+                 <s:iterator value="#request.amountList">
+					<s:property value="amount8"/>
+		 		 </s:iterator> 
+		 		 ],
+                ['10월',
+                 <s:iterator value="#request.amountList">
+					<s:property value="amount9"/>
+		 	 	</s:iterator> 
+                 ],
+                ['11월',
+                 <s:iterator value="#request.amountList">
+					<s:property value="amount10"/>
+		 		 </s:iterator> 
+                 ],
+                ['12월',
+                 <s:iterator value="#request.amountList">
+					<s:property value="amount11"/>
+		 	 	</s:iterator> 
+                 ],
+              
+            ],
+            dataLabels: {
+                enabled: true,
+                /* rotation: -90, */
+                color: 'black',
+                align: 'right',
+                format: '{point.y:f}', // one decimal
+               /*  y: 10, // 10 pixels down from the top */
+                style: {
+                    fontSize: '10px',
+                    /* fontFamily: 'Verdana, sans-serif' */
+                }
+            }
         }]
     });
 });
 
 </script>
-<title>같은지역, 같은업종 예약이 몰리는 시간대</title>
+<title>월별 매출액 변화</title>
 </head>
 <body>
-<div id="container10" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container10" style="min-width: 1000px; height: 500px; margin: 0 auto"></div>
 </body>
 </html>

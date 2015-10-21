@@ -15,6 +15,10 @@
 <a href="highchart6.action">시간대별 매출액 변화</a>
 <a href="highchart7.action">분기별 고객 평가 변화</a>
 <a href="highchart8.action">할인쿠폰 사용시 매출액 변화</a>
-<a href="highchart9.action"></a>
+<a href="highchart9.action">시간대별 고객 수 변화</a>
+<a href="highchart10.action">월별 매출액 변화</a>
+<a href="highchart11.action">직업별 방문 고객 수</a>
+
+
 </body>
 </html>
