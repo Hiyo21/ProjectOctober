@@ -108,7 +108,7 @@ textarea {width:800px; height:300px;overflow:visible;}
       </div><!-- 통계8 --> 
       <div id="menu8" class="tab-pane fade">
      	  <h3>통계9</h3>
-      	   
+      	   <s:include value="Highchart9.jsp"/>  
       </div><!-- 통계9 --> 
       <div id="menu9" class="tab-pane fade">
      	  <h3>통계10</h3>

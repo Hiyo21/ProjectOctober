@@ -22,7 +22,7 @@
 	
 	$(function(){
 		$('[data-toggle="notification-popover"]').popover();
-	});
+	});	
 	
 	for(int i = 1920; i < 2015 ; i++){
 		$('#year').append("<option value='" + i + "'>" + i + "</option>");
@@ -56,7 +56,9 @@
 		if($('#phoneResult').val().trim().length == 0) errorMessage += "전화번호를 입력하세요!\r\n");
 	 	if($('#addressResult').val().trim().length == 0) errorMessage += "주소를 입력하세요! \r\n");
 		if($('#bdayResult').val().trim().length == 0) errorMessage += "생년월일을 입력하세요! \r\n");
-		
+
+	$(document).ready(function(){
+
 		if(errorMessage.length != 0){
 			alert(errorMessage);
 			return false;
@@ -66,6 +68,13 @@
 	});
 	
 	
+		var cstBirthday = document.getElementById('year').val+document.getElementById('month').val+document.getElementById('day').val;
+		
+		$("#button1").click(function(){    	
+			alert(cstBirthday);			
+    });
+		
+	});
 	
 	function zipcodeOpen() {
 		window.open("${pageContext.request.contextPath}/member/toZipcodePage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
@@ -89,16 +98,18 @@
           <div class="col-md-6">
 			<label for="member.memName">이름</label>
 			<s:textfield class="form-control" id="name" name="member.memName"/>          	
+
           	<br>
-          	<label for="member.memEmail">이메일 주소</label>
+          	<label for="memEmail">이메일 주소</label>
 			<s:textfield class="form-control" id="email" name="member.memEmail" placeholder="ID로 사용됩니다."/>
 			<br>
-			<label for="member.memPassword">비밀번호</label>
+			<label for="memPassword">비밀번호</label>
 			<s:password class="form-control" id="password" name="member.memPassword"/>					
 			<br>
 			<label for="passwordck">비밀번호 확인</label>
 			<s:password class="form-control" id="passwordck"/>
 			<br>
+
 			<label for="member.memGender">성별</label><br>
 			<input type="radio" name="member.memGender" value="M">남&nbsp;&nbsp;&nbsp;<input type="radio" name="member.memGender" value="F" selected>여			
 			<br>							
@@ -106,11 +117,12 @@
           
           <!-- 왼쪽 -->
           <div class="col-md-6" >
-          		<label for="member.cstBirthday">생년월일</label>
+          		<label for="cstBirthday">생년월일</label>
 					<div class="form-inline">
 						<div class="form-group">
 							<select id="year" class="form-control">
 								<option disabled selected hidden>년도선택</option>
+
 							</select>&nbsp;&nbsp;
 							
 							<select id="month" class="form-control">
@@ -156,6 +168,7 @@
 						<s:textfield class="form-control" id="address2" placeholder="상세주소를 입력하세요" size="70"/>		         
 						</div>				
 					</div>
+<<<<<<< HEAD
 						<input type="hidden" id="addressResult" name="customer.cstAddress" value=""></input>
 				</div>
 			</div>
@@ -182,6 +195,27 @@
      	</div>
      </div>
 		<input type="hidden" id="memberCode" name="member.memCode" value="1">
+
+          </div>
+          </div>
+        </div>
+        </div>
+        <br><br><br>
+        <!--  -->
+        <div class="section">
+	      <div class="container">
+	      	 <div class="row" align="center">
+	      	  	<h1 align="center">이용약관</h1>
+				    <div class="col-sm-12" style="background-color:lavender;">
+				      <p>회원 이용약관</p><br>				      
+				    </div>
+				    <br>
+				    <br>
+				    <br>
+				   <center> <input type="submit" id="send" value="회원가입">&nbsp;&nbsp;&nbsp;<input type="button" id="button1" value="취소" onclick=""></center>
+     		 	</div>
+	    	  </div>
+	      </div>
        </form> 
 </body>
 </html>

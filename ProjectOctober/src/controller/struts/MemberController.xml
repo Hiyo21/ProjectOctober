@@ -33,8 +33,8 @@
 		</action>
 		
 		<!-- 이용자 회원가입 진행 -->
-		<action name="customerRegistration" class="controller.action.MemberAction" method="customerRegistration">
-			<result name="success">/jsp/MAIN.jsp</result>
+		<action name="customerRegistration" class="controller.action.MemberAction" method="customerRegistration1">
+			<result name="success">index1.jsp</result>
 		</action>
 		
 		<action name="checkEnterpriseDuplicateEmail" class="controller.action.MemberAction" method="checkEnterpriseDuplicateEmail">

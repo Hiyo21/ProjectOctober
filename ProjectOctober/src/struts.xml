@@ -7,7 +7,7 @@
 
     <package name="default" namespace="/" extends="json-default">
     	<interceptors>
-    		<interceptor name="loginInterceptor" class="controller.interceptor.LoginInterceptor" />
+    		<interceptor name="loginInterceptor" class="controller.interceptor.LoginInterceptor"/>
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="loginInterceptor" />

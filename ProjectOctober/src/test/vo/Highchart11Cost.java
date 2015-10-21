@@ -1,6 +1,6 @@
 package test.vo;
 
-public class Highchart11 {
+public class Highchart11Cost {
 	private int age;
 	private int customerNum;
 	public int getAge() {
