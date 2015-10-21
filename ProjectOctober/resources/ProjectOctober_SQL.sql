@@ -1,5 +1,15 @@
 select tname from tab;
 
+insert into zipcode values ('11111', '서울시', '강남구', '삼성동', '삼성동')
+
+
+select * from zipcode;
+	zipcode VARCHAR2(16) NOT NULL, /* 우편번호 */
+	area1 VARCHAR2(255) NOT NULL, /* 주소범위1 */
+	area2 VARCHAR2(255), /* 주소범위2 */
+	area3 VARCHAR2(255), /* 주소범위3 */
+	area4 VARCHAR2(255) /* 주소범위4 */
+
 /------------MEMBER_CODE test data----------------/
 select * from member_code;
 

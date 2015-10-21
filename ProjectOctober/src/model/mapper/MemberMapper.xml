@@ -514,6 +514,10 @@
 		where etp_num = #{enterprise.etpNum}
 	</update>
 	
+	<insert id="insertWorkingDays" parameterType="Member">
+		insert into WORKING_DAYS values(#{enterprise.etpNum}, #{enterprise.etpEmail}, #{enterprise.workingDays.mon}, #{enterprise.workingDays.tue}, #{enterprise.workingDays.wed}, #{enterprise.workingDays.thu}, #{enterprise.workingDays.fri}, #{enterprise.workingDays.sat}, #{enterprise.workingDays.sun})
+	</insert>
+	
 	<update id="updateEtpDetailsFirst" parameterType="Member">
 		update ENTERPRISE set etp_superclass = #{enterprise.etpSuperclass}, etp_male_staff = #{enterprise.etpMaleStaff}, etp_female_staff = #{enterprise.etpFemaleStaff},
 		etp_capacity = #{enterprise.etpCapacity}, etp_subclass = #{enterprise.etpSubclass}, etp_specialize = #{enterprise.etpSpecialize}, etp_start_hour = #{enterprise.etpStartHour},
