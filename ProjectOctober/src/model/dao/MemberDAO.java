@@ -12,6 +12,22 @@ import model.vo.Member;
 import model.vo.Zipcode;
 
 public class MemberDAO extends DAOTemplate {
+	//이용자 회원가입 
+	public int insertMemberInfo2(Member member) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			System.err.println(member);
+			int result = session.getMapper(MemberMapper.class).insertMemberInfo(member);
+			System.out.println("DAO : "+ result);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
+		} finally {
+			session.close();
+		}
+	}	
+	
+	
 	
 	public Member loginResult(Map<String, String> loginInfo){
 		return dataRetrievalTemplate(s-> {return fromMapper(s).loginResult(loginInfo);});

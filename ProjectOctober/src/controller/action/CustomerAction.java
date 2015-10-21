@@ -1,26 +1,14 @@
 package controller.action;
 
-
-
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Map;
-
 import org.apache.struts2.interceptor.SessionAware;
-=======
->>>>>>> refs/remotes/origin/master
-
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.dao.CustomerDAO;
 import model.vo.Customer;
-
 import model.common.DAOFactory;
-import model.dao.CustomerDAO;
-import model.vo.Customer;
 import model.vo.Member;
-
-<<<<<<< HEAD
 
 public class CustomerAction extends ActionSupport implements SessionAware{
 	private Customer customer;
@@ -33,6 +21,7 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	public CustomerAction() {
 		cstDAO = DAOFactory.createCustomerDAO();
 	}
+	
 	
 	//----------------------------------------//
 	
@@ -63,7 +52,6 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	@Override
 	public void setSession(Map<String, Object> session) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public Member getMember() {
@@ -72,11 +60,5 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 
 	public void setMember(Member member) {
 		this.member = member;
-	}
-=======
-public class CustomerAction extends ActionSupport {
-		
->>>>>>> refs/remotes/origin/master
-	
-	
+	}	
 }

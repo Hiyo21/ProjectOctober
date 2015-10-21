@@ -16,6 +16,36 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+//편집 버튼 숨김
+	$(function(){
+		$('#outEditBT').hide();		// top 부분의 개요 편집 버튼
+		$('#infoEditBT').hide();	// info 컴포넌트의 편집 버튼
+		$('#saveBT').hide();		// 사업자 편집 버튼바 중 페이지 save 버튼
+		
+		var etpNum = '1234567890'/* ${etpNum} */;
+		
+		$.ajax({
+			url: '${pageContext.request.contextPath}/enterprise/takeEtp.action?etpNum='+etpNum,
+			type:'GET',
+			dataType: 'json',
+			success : check
+		});
+	});
+	
+	//편집 버튼 보이기
+	function showBT(){
+		$('#outEditBT').show();		// top 부분의 개요 편집 버튼
+		$('#infoEditBT').show();	// info 컴포넌트의 편집 버튼
+		$('#saveBT').show();		// 사업자 편집 버튼바 중 페이지 save 버튼
+		$('#editBT').hide();		// 사업자 편집 버튼바 중 페이지 편집 버튼
+	}
+	
+	function check(object){
+		console.log(object);
+	}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +109,8 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<s:include value="./LocationComponent.jsp"/>
+				<h1>오시는 길</h1>
+				<%-- <s:include value="./LocationComponent.jsp"/> --%>
 			</div>	
 				
 			<!------- 고객 평가 ------->

@@ -13,6 +13,9 @@ import model.vo.Enterprise;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
 import model.vo.Service;
+import model.vo.Review;
+import model.vo.ServiceExample;
+
 
 
 public class EnterpriseDAO extends DAOTemplate{
@@ -62,6 +65,8 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+	
+	
 	public Integer deleteReservation(Reservation reservation){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
@@ -69,6 +74,55 @@ public class EnterpriseDAO extends DAOTemplate{
 			if(result == 1) session.commit();
 			else session.rollback();
 			return result;
+		}finally{
+			session.close();
+		}
+	}
+	
+	public List<Enterprise> selectEtpList(){
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			List<Enterprise> enterpriseList = session.getMapper(EnterpriseMapper.class).selectEtpList();
+			return enterpriseList;
+		}finally{
+			session.close();
+		}
+	}
+	
+	
+	public List<Service> selectServiceList(String etpNum) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			ServiceExample example = new ServiceExample();
+			example.or().andEtpNumEqualTo(etpNum);
+			List<Service> svcList = session.getMapper(ServiceMapper.class).selectByExample(example);
+			System.out.println("============check DAO :: receiveServiceList :: "+svcList.size());
+			return svcList;	
+		}finally{
+			session.close();
+		}
+	}
+	
+	public List<Review> selectReviewList(String etpNum){
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			List<Review> rvwList = session.getMapper(EnterpriseMapper.class).selectReviewList(etpNum);
+			System.out.println("============check DAO :: selectReviewList :: "+rvwList.size());
+			return rvwList;
+		}finally{
+			session.close();
+		}
+	}
+	
+	public List<PhotoLocation> selectPhotoList(String etpNum){
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			List<PhotoLocation> phtList = session.getMapper(EnterpriseMapper.class).selectPhotoList(etpNum);
+			System.out.println("============check DAO :: selectPhotoList :: "+phtList.size());
+			return phtList;
 		}finally{
 			session.close();
 		}
@@ -177,17 +231,8 @@ public class EnterpriseDAO extends DAOTemplate{
 			session.close();
 		}
 	}
-	
 
-	
-	
 	public EnterpriseMapper fromMapper(SqlSession s){
 		return s.getMapper(EnterpriseMapper.class);
 	}
-
-
-
-
-
-
 }

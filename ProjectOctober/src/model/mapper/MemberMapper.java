@@ -3,6 +3,7 @@ package model.mapper;
 import java.util.List;
 import java.util.Map;
 
+import model.vo.Customer;
 import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.MemberExample;
@@ -67,4 +68,9 @@ public interface MemberMapper {
 	Member retrieveCustomerInfo(String cstEmail);
 
 	Member retrieveCustomerInfoPerReservation(Map<String, Object> info);
+
+	//이용자 회원가입
+	int insertMemberInfo2(Member member);
+	
+	int insertCustomerInfo(Customer customer);
 }

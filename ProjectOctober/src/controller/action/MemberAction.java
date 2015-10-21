@@ -15,10 +15,7 @@ import model.common.DAOFactory;
 import model.dao.CustomerDAO;
 import model.dao.MemberDAO;
 import model.vo.Customer;
-<<<<<<< HEAD
 import model.vo.Enterprise;
-=======
->>>>>>> refs/remotes/origin/master
 import model.vo.Member;
 import model.vo.Zipcode;
 
@@ -426,7 +423,6 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		this.etpNum = etpNum;
 	}
 
-<<<<<<< HEAD
 	public String getCstEmail() {
 		return cstEmail;
 	}
@@ -442,7 +438,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	public void setRsvNum(Integer rsvNum) {
 		this.rsvNum = rsvNum;
 	}
-=======
+
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -450,7 +446,4 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	
->>>>>>> refs/remotes/origin/master
 }

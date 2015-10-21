@@ -8,8 +8,8 @@
 <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
 
 <script type="text/javascript">
+
 $(document).ready(function(){	
-	
 	//textarea를 htmleditor로 대체, toolbar 설정
 	CKEDITOR.replace('outLineEdit', {
 		toolbarGroups : [
@@ -60,7 +60,7 @@ function saveOutline() {
 			  	<div class="panel-body">
 			  		<!-- img src에 업로드 된 파일이 바로 적용되도록 -->
 			    	<img class="img-responsive" src="http://orig10.deviantart.net/2e58/f/2013/288/b/9/leaf_png_by_iheartsnsdforever-d6qjxl2.png" style="max-width: 200">
-			    	<input type="file" name="datafile" size="40">
+			    	<input type="file" name="datafile" size="40" class="edit">
 			  	</div>
 			</div>
 		</div>
@@ -71,19 +71,36 @@ function saveOutline() {
 			  		<div class="jumbotron">
 			  			<!-- 입력된 내용을 바로 반영 -->
 			  			<div id="outLineContentIn">
-			  				<h3>사장님 안녕하세요!</h3>
-					  		<h5>이곳에 간단한 소개를 적어주세요</h5>
+			  				<s:if test='enterprise.etpDescription == null'>
+			  					<h3>사장님 안녕하세요!</h3>
+					  			<h5>이곳에 간단한 소개를 적어주세요</h5>
+					  		</s:if>
+					  		<s:if test='enterprise.etpDescription != null'>
+					  			<s:property value="enterprise.etpDescription"/>
+					  		</s:if>
 			  			</div>
-						<p><a class="btn btn-default btn-md" href="#" role="button" data-toggle="modal" data-target="#outLineModal">편집</a></p>
+						<p><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#outLineModal">편집</a></p>
 					</div>
 			  	</div>
 			</div>
 		</div>
 			
-		<div class="col-md-3">
-			<span class="label label-primary">특징1</span>
-			<span class="label label-primary">특징2</span>
-			<span class="label label-primary">특징3</span>
+		<div class="col-md-3" id="spcialSpan">
+			<script type="text/javascript">
+				$(function(){
+					var item = '<s:property value="enterprise.etpSpecialize"/>'
+					var special = item.split(",");
+					
+					var specialBT = $('#specialBT').html();
+						specialBT = '';
+					$.each(special, function(i, item){
+						specialBT += '<span class="label label-primary">'+item+'</span>&nbsp;&nbsp;';
+					});
+					
+					$('#spcialSpan').html(specialBT);	
+				});
+			</script>
+
 		</div>	
 	</div><!-- row end -->
 	</div>

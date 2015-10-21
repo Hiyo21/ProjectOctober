@@ -39,6 +39,17 @@
 		<typeAlias type="model.vo.UnregisteredReservation" alias="UnregisteredReservation" />
 		<typeAlias type="model.vo.UnregisteredReservationExample" alias="UnregisteredReservationExample" />
 		<typeAlias type="model.vo.Zipcode" alias="Zipcode"/>
+		<typeAlias type="test.vo.Highchart1" alias="Highchart1"/>
+		<typeAlias type="test.vo.Highchart2" alias="Highchart2"/>
+		<typeAlias type="test.vo.Highchart3" alias="Highchart3"/>
+		<typeAlias type="test.vo.Highchart4" alias="Highchart4"/>
+		<typeAlias type="test.vo.Highchart5" alias="Highchart5"/>
+		<typeAlias type="test.vo.Highchart6" alias="Highchart6"/>
+		<typeAlias type="test.vo.Highchart7" alias="Highchart7"/>
+		<typeAlias type="test.vo.Highchart8" alias="Highchart8"/>
+		<typeAlias type="test.vo.Highchart9" alias="Highchart9"/>
+		<typeAlias type="test.vo.Highchart10" alias="Highchart10"/>
+		<typeAlias type="test.vo.Highchart11" alias="Highchart11"/>
 	</typeAliases>
 	
 	<typeHandlers>
@@ -69,6 +80,17 @@
 		<mapper resource="model/mapper/ReservationMapper.xml"/>
 		<mapper resource="model/mapper/ServiceMapper.xml"/>
 		<mapper resource="model/mapper/UnregisteredMapper.xml"/>
+		<mapper resource="test/mapper/Highchart1Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart2Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart3Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart4Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart5Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart6Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart7Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart8Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart9Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart10Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart11Mapper.xml"/>
 	</mappers>
 	
 </configuration>

@@ -454,7 +454,8 @@
     </div>
   </div>	
   	<!-- 쿠폰 전송 -->
-	 &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal4"  width="150" height="150"  href="#" data-placement="bottom"  title="쿠폰 수정 시에는 할인 쿠폰 선택이 중복되어서는 안됩니다">쿠폰 전송</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	 &nbsp;&nbsp;&nbsp;
+	 <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal4"  width="150" height="150"  href="#" data-placement="bottom"  title="쿠폰 수정 시에는 할인 쿠폰 선택이 중복되어서는 안됩니다">쿠폰 전송</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	        <div class="modal fade" id="myModal4" role="dialog">
 		<div class="modal-dialog">
 		

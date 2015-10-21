@@ -22,7 +22,7 @@
 			<result type="json"/>
 		</action>
 
-		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
+		<action name="selectServiceList" class="controller.action.EnterpriseAction" method="selectServiceList">
 			<result type="json" />
 		</action>
 		
@@ -45,7 +45,21 @@
 		
 		
 		<!--     미승인 사업자 승인 게시판 Action     -->
+
+		<action name="takeEtp" class="controller.action.EnterpriseAction" method="takeEtp">
+			<result name="dynamic">/jsp/component/DynamicTemplate.jsp</result>
+			<result name="static1">/jsp/component/StaticTemplate_tabs.jsp</result><!-- static_tab -->
+			<result name="static2">/jsp/component/StaticTemplate_allInOne</result><!-- static_allInOne -->
+		</action>
+
 		
+		<action name="selectEtpList" class="controller.action.EnterpriseAction" method="selectEtpList">
+			<result>/jsp/EnterpriseListShowToCustomer.jsp</result>
+		</action>
+		
+		
+		
+		<!--     미승인 사업자 승인 게시판 Action     -->
 		<!-- 미승인 사업 목록 -->
 		<action name="AllNoRegisterEtpList" class="controller.action.EnterpriseAction" method="allNoRegisterEtpList">
 			<result>/jsp/member/NoRegisterEtpList.jsp</result>
@@ -82,7 +96,7 @@
 		<action name="receiveComponentList" class="controller.action.EnterpriseAction" method="receiveComponentList">
 			<result type="json"/>
 		</action>
-		
+
 		
 		<!-- 지도 -->
 		<action name="showMap" class="controller.action.EnterpriseAction" method="showMap">

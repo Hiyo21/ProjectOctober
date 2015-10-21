@@ -4,6 +4,7 @@
 <struts>
 	<package name="member" namespace="/member" extends="default">
 	
+		<!-- 기업 회원가입 -->
 		<action name="toEnterpriseRegistrationPage">
 			<result>/jsp/member/EnterpriseRegistration1.jsp</result>
 		</action>
@@ -25,8 +26,15 @@
 			<result>/jsp/member/EnterpriseRegistration3.jsp</result>
 		</action>
 		
+		
+		<!-- 이용자 회원가입 -->
 		<action name="toCustomerRegistrationPage">
 			<result>/jsp/member/CustomerRegistration.jsp</result>
+		</action>
+		
+		<!-- 이용자 회원가입 진행 -->
+		<action name="customerRegistration" class="controller.action.MemberAction" method="customerRegistration">
+			<result name="success">/jsp/MAIN.jsp</result>
 		</action>
 		
 		<action name="checkEnterpriseDuplicateEmail" class="controller.action.MemberAction" method="checkEnterpriseDuplicateEmail">

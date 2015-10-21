@@ -19,10 +19,7 @@ import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.Reservation;
 import model.vo.Service;
-<<<<<<< HEAD
 import model.vo.WorkingDays;
-=======
->>>>>>> refs/remotes/origin/master
 
 
 public class EnterpriseAction extends ActionSupport implements SessionAware{
@@ -33,12 +30,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Reservation reservation;
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
-<<<<<<< HEAD
 	private List<Service> serviceList;
 	private Map<String, Object> session;
 	private Member member;
-=======
->>>>>>> refs/remotes/origin/master
 	
 	//////// Component Member ////////  
 	private Component component;
@@ -47,15 +41,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpNum;
 	private String etpEmail;
 	private String address;
-<<<<<<< HEAD
 	private Integer rsvNum;
-=======
-	
-	Map<String, Object> session;
 
-	
->>>>>>> refs/remotes/origin/master
-	
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
 	}
@@ -130,14 +117,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
-<<<<<<< HEAD
-	
+
 	public String receiveServiceList() throws Exception{
 		serviceList = etpDAO.retrieveServices(etpNum);
 		System.err.println(serviceList);
 		if(serviceList != null) return SUCCESS;
-		else return ERROR;	
-=======
+		else return ERROR;
+	}
+
 	
 	public String selectServiceList() throws Exception{
 		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
@@ -179,7 +166,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}else{
 			return ERROR;
 		}
->>>>>>> refs/remotes/origin/master
 	}
 	
 	public String updateReservationDetailsByEnterprise() throws Exception{
@@ -373,7 +359,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.address = address;
 	}
 
-<<<<<<< HEAD
 
 	@Override
 	public void setSession(Map<String, Object> session) {
@@ -429,12 +414,4 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public void setMember(Member member) {
 		this.member = member;
 	}
-=======
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;		
-	}
-
-	
->>>>>>> refs/remotes/origin/master
 }

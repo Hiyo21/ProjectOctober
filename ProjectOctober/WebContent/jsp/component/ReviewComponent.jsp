@@ -61,27 +61,27 @@ $(function () {
 </script>
 </head>
 <body>
-<div class="panel panel-default" id="review">
-	<div class="container"> 
+<div class="container-fluid">
+	<div class="panel panel-default" id="review"> 
 		<div class="row">
 			<div class="col-md-6" id="chart" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto"></div>
 			<div class="col-md-5"><h1>종합평가 점수 / 정보</h1></div>
-		</div>
+		</div> <!-- row1 end -->
 		<div class="row">
+			<div class="container-fluid">
 			<table class="table table-striped" style="max-width: 1000px;">
 				<tr>
-					<td rowspan="2" style="vertical-align: middle;">글쓴이</td>
-					<td>코멘트코멘트코멘트코멘트코멘트</td>
+					<td rowspan="4" style="vertical-align: middle;">글쓴이</td>
+					<td colspan="6">코멘트코멘트코멘트코멘트코멘트</td>
+				</tr>
+				<tr>
+					<td colspan="6">종합 점수 : 넣어라</td>
 				</tr>
 				<tr>
 					<td>
-						<p>종합 점수 : 넣어라</p>
-						<table>
-						<tr>
-						<td>
 						<label class="radio-inline">청결</label>
-						</td>
-						<td>
+					</td>
+					<td>
 						<label class="radio-inline">
 							<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
 						</label>
@@ -97,11 +97,11 @@ $(function () {
 						<label class="radio-inline">
 							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 5
 						</label>
-						</td>
-						<td>
+					</td>
+					<td>
 						<label class="radio-inline">가격</label>
-						</td>
-						<td>
+					</td>
+					<td>
 						<label class="radio-inline">
 							<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
 						</label>
@@ -117,75 +117,75 @@ $(function () {
 						<label class="radio-inline">
 							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 5
 						</label>
-						</td>
-						</tr>
-						
-						<tr>
-						<td>
-						<label class="radio-inline">분위기</label>
-						</td>
-						<td>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 4
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 5
-						</label>
-						</td>
-						<td>
-						<label class="radio-inline">서비스</label>
-						</td>
-						<td>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 4
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 5
-						</label>
-						</td>
-						
-						<td>										
-						<label class="radio-inline">기술</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 4
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 5
-						</label>
-						</td>
-						</tr>	
-						</table>
 					</td>
 				</tr>
-			</table>	
-		</div>
+						
+				<tr>
+					<td>
+						<label class="radio-inline">분위기</label>
+					</td>
+					<td>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 4
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 5
+						</label>
+					</td>
+					<td>
+						<label class="radio-inline">서비스</label>
+					</td>
+					<td>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 4
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 5
+						</label>
+					</td>
+				
+					<td>										
+						<label class="radio-inline">기술</label>
+					</td>
+					<td>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 4
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 5
+						</label>
+					</td>
+				</tr>	
+			</table>
+			</div>	
+		</div> <!-- row2 end -->
 	</div>
 </div>
 
