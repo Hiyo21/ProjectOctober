@@ -43,6 +43,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
+	private Integer svcNum;
 	private String category;
 
 	public EnterpriseAction() {
@@ -401,6 +402,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.session = session;
 	}
 	
+	public Integer getSvcNum() {
+		return svcNum;
+	}
+
+
+	public void setSvcNum(Integer svcNum) {
+		this.svcNum = svcNum;
+	}
+
+
 	//---------------------------------//
 	public Integer [] makeDow(WorkingDays wd){
 			int [] temp = {wd.getSun(), wd.getMon(), wd.getTue(), wd.getWed(), wd.getThu(),wd.getFri(), wd.getSat()};

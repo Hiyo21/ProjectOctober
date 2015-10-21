@@ -251,4 +251,9 @@ public class EnterpriseDAO extends DAOTemplate{
 		return s.getMapper(EnterpriseMapper.class);
 	}
 
+	public int updateSvcCategory(String etpNum, Integer svcNum) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
