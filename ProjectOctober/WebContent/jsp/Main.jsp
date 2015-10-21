@@ -8,9 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Latest compiled and minified CSS -->
 
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/css/freelancer/css/freelancer.css">
@@ -19,7 +17,16 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+
 <style>
+=======
+<style type="text/css">
+ @font-face{
+	font-family:'NanumGothic';
+	src:url("NanumGothic.eot");
+	src:local(""), url("NanumGothic.woff") format("woff");
+}
+
 
 
  body{	
@@ -110,7 +117,7 @@
 								</div>				
 				      	</div>
 		     			<div class="col-md-3 col-md-pull-2" align="center">
-							<img src="../image/Korea2.png" width="400" height="400" />
+							<img src="${pageContext.request.contextPath}/image/Korea2.png" width="400" height="400" />
 		    			</div> 
    					</div>
    				</div>
