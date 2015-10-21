@@ -7,17 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<link rel="stylesheet"	href="${pageContext.request.contextPath}/css/freelancer/css/freelancer.css">
-
-
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
+<!-- LINK 랑 SCRIPT 임포트하지 말 것! -->
 <script>
 	$(function(){
 		$('[data-toggle="notification-popover"]').popover();
@@ -48,7 +38,7 @@
 							<img src="${pageContext.request.contextPath}/image/relaxation_logo_test.jpg" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
 						</div>
 						<div class="col-sm-5 col-md-5 col-lg-7">
-							<h1><a href="toMainPage.action">[Service Name]</a></h1>
+							<h1><a href="toMainPage.action">Service Name</a></h1>
 						</div>
 						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
 							<br>
@@ -127,7 +117,7 @@
 			<div class="container">
 				<div class="row">					
 					<div class="navbar-collapse collapse">
-						<s:if test="#session.loginId != null || #session.memCode == 1">
+						<s:if test="#session.loginId != null || #session.memCode != 2">
 							<ul class="nav navbar-nav" id="test1">
 								<li>
 									<a href="${pageContext.request.contextPath}/search/toAreaCategoryPage.action">

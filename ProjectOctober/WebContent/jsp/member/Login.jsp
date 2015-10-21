@@ -84,8 +84,8 @@ function check() {
 	<div class = "container" id="joinWindow">
 		<div class="well well-lg" align="center">
 			<div class="btn-group">
-				<a class="btn btn-primary btn-lg" href="#" role="button" style="vertical-align:center" id="enterprise"><h1>사업자</h1></a>
-				<a class="btn btn-success btn-lg" href="#" role="button" style="vertical-align:center" id="customer"><h1>이용자</h1></a>
+				<h1><a class="btn btn-primary btn-lg" href="#" role="button" style="vertical-align:center" id="enterprise">사업자</a></h1>
+				<h1><a class="btn btn-success btn-lg" href="#" role="button" style="vertical-align:center" id="customer">이용자</a></h1>
 			</div>
 			<br><br><br>
 			<form class="form-inline" role="form" onsubmit="return check()" action="${pageContext.request.contextPath}/member/loginProcess" method="post">

@@ -30,7 +30,7 @@
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 
 
-<script>d
+<script>
 	var enterpriseInfo = {};
 	$(function(){
 		
@@ -298,7 +298,7 @@
 								end: inputEndTime,
 								employeeGender: inputEmployeeGender,
 								rsvStatus : inputStatus,
-								
+								svcList : inputService
 						};
 						
 			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
