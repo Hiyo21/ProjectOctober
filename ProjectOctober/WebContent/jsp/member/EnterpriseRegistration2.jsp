@@ -113,6 +113,7 @@
 			var t2 = document.getElementById("startMinute").value;
 			tempStartTime = document.getElementById("startHour").value + ":" + t2 + ":00";
 			document.getElementById("startTimeVal").value = tempStartTime;
+			console.log(document.getElementById("startTimeVal").value);
 		});
 		
 		$('#endHourDD').click(function(){
@@ -121,6 +122,7 @@
 			var t1 = document.getElementById("endHour").value;
 			tempStartTime = t1 + ':' + document.getElementById("endMinute").value + ':00';
 			document.getElementById("endTimeVal").value = tempStartTime;
+			console.log(document.getElementById("endTimeVal").value);
 		});
 		
 		$('#endMinuteDD').click(function(){
@@ -129,6 +131,7 @@
 			var t2 = document.getElementById("endMinute").value;
 			tempStartTime = document.getElementById("endHour").value + ":" + t2 + ":00";
 			document.getElementById("endTimeVal").value = tempStartTime;
+			console.log(document.getElementById("endTimeVal").value);
 		});
 	}); 
 	
@@ -380,7 +383,7 @@ function check(){
 								</paper-menu>
 							</paper-dropdown-menu>
 							
-							<input type="hidden" id="startHour"/>
+							<input type="hidden" id="startHour" />
 							 
 							<paper-dropdown-menu label="영업 시작 시간: 분" id="startMinuteDD">
 								<paper-menu class="dropdown-content">
@@ -424,7 +427,7 @@ function check(){
 								</paper-menu>
 							</paper-dropdown-menu>
 							
-							<input type="hidden" id="endHour" value="" />
+							<input type="hidden" id="endHour"  />
 							
 							<paper-dropdown-menu label="영업 종료 시간: 분" id="endMinuteDD">
 								<paper-menu class="dropdown-content">
@@ -433,8 +436,8 @@ function check(){
 								</paper-menu>
 							</paper-dropdown-menu>	
 							
-							<input type="hidden" id="endMinute" value="" >
-							<input type="hidden" id="endTimeVal" value="">
+							<input type="hidden" id="endMinute" />
+							<input type="hidden" id="endTimeVal" name="member.enterprise.end">
 						</div>
 					</div>
 				</div>

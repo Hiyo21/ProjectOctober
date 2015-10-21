@@ -515,7 +515,7 @@
 	</update>
 	
 	<insert id="insertWorkingDays" parameterType="Member">
-		insert into WORKING_DAYS values(#{enterprise.etpNum}, #{enterprise.etpEmail}, #{enterprise.workingDays.mon}, #{enterprise.workingDays.tue}, #{enterprise.workingDays.wed}, #{enterprise.workingDays.thu}, #{enterprise.workingDays.fri}, #{enterprise.workingDays.sat}, #{enterprise.workingDays.sun});
+		insert into WORKING_DAYS values(#{enterprise.etpNum}, #{enterprise.etpEmail}, #{enterprise.workingDays.mon}, #{enterprise.workingDays.tue}, #{enterprise.workingDays.wed}, #{enterprise.workingDays.thu}, #{enterprise.workingDays.fri}, #{enterprise.workingDays.sat}, #{enterprise.workingDays.sun})
 	</insert>
 	
 	<update id="updateEtpDetailsFirst" parameterType="Member">
