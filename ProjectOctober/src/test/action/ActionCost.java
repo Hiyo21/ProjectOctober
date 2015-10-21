@@ -9,15 +9,15 @@ import org.apache.struts2.interceptor.RequestAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import test.dao.CostDAO;
-import test.vo.Highchart10;
-import test.vo.Highchart11;
+import test.vo.Highchart10Cost;
+import test.vo.Highchart11Cost;
 import test.vo.Highchart1Add;
 import test.vo.Highchart6Add;
-import test.vo.Highchart9;
-import test.vo.Highchart9Add;
+import test.vo.Highchart9Cost;
+import test.vo.Highchart9AddCost;
 
 
-public class Action9 extends ActionSupport implements RequestAware{
+public class ActionCost extends ActionSupport implements RequestAware{
 	private Map<String, Object> request;
 
 	@Override
@@ -29,22 +29,22 @@ public class Action9 extends ActionSupport implements RequestAware{
 	public String highchartCost(){
 		CostDAO dao = new CostDAO();
 		//유료 통계서비스 1
-		List<Highchart9> list = dao.highchart9DAO();
+		List<Highchart9Cost> list = dao.highchart9DAO();
 		
-		Highchart9Add vo1 = new Highchart9Add();
-		Highchart9Add vo2 = new Highchart9Add();
-		Highchart9Add vo3 = new Highchart9Add();
-		Highchart9Add vo4 = new Highchart9Add();
-		Highchart9Add vo5 = new Highchart9Add();
-		Highchart9Add vo6 = new Highchart9Add();
-		Highchart9Add vo7 = new Highchart9Add();
-		Highchart9Add vo8 = new Highchart9Add();
-		Highchart9Add vo9 = new Highchart9Add();
-		Highchart9Add vo10 = new Highchart9Add();
+		Highchart9AddCost vo1 = new Highchart9AddCost();
+		Highchart9AddCost vo2 = new Highchart9AddCost();
+		Highchart9AddCost vo3 = new Highchart9AddCost();
+		Highchart9AddCost vo4 = new Highchart9AddCost();
+		Highchart9AddCost vo5 = new Highchart9AddCost();
+		Highchart9AddCost vo6 = new Highchart9AddCost();
+		Highchart9AddCost vo7 = new Highchart9AddCost();
+		Highchart9AddCost vo8 = new Highchart9AddCost();
+		Highchart9AddCost vo9 = new Highchart9AddCost();
+		Highchart9AddCost vo10 = new Highchart9AddCost();
 		
 		
 			
-		for(Highchart9 temp : list){
+		for(Highchart9Cost temp : list){
 			System.out.println(temp.getRank());
 			if(temp.getRank()==1){
 				System.out.println("1��");
@@ -74,16 +74,16 @@ public class Action9 extends ActionSupport implements RequestAware{
 		
 		
 		
-		List<Highchart9Add> rank1 = new ArrayList<Highchart9Add>();
-		List<Highchart9Add> rank2 = new ArrayList<Highchart9Add>();
-		List<Highchart9Add> rank3 = new ArrayList<Highchart9Add>();
-		List<Highchart9Add> rank4 = new ArrayList<Highchart9Add>();
-		List<Highchart9Add> rank5 = new ArrayList<Highchart9Add>();
-		List<Highchart9Add> rank6 = new ArrayList<Highchart9Add>();
-		List<Highchart9Add> rank7 = new ArrayList<Highchart9Add>();
-		List<Highchart9Add> rank8 = new ArrayList<Highchart9Add>();
-		List<Highchart9Add> rank9 = new ArrayList<Highchart9Add>();
-		List<Highchart9Add> rank10 = new ArrayList<Highchart9Add>();
+		List<Highchart9AddCost> rank1 = new ArrayList<Highchart9AddCost>();
+		List<Highchart9AddCost> rank2 = new ArrayList<Highchart9AddCost>();
+		List<Highchart9AddCost> rank3 = new ArrayList<Highchart9AddCost>();
+		List<Highchart9AddCost> rank4 = new ArrayList<Highchart9AddCost>();
+		List<Highchart9AddCost> rank5 = new ArrayList<Highchart9AddCost>();
+		List<Highchart9AddCost> rank6 = new ArrayList<Highchart9AddCost>();
+		List<Highchart9AddCost> rank7 = new ArrayList<Highchart9AddCost>();
+		List<Highchart9AddCost> rank8 = new ArrayList<Highchart9AddCost>();
+		List<Highchart9AddCost> rank9 = new ArrayList<Highchart9AddCost>();
+		List<Highchart9AddCost> rank10 = new ArrayList<Highchart9AddCost>();
 		
 		
 		
@@ -111,13 +111,13 @@ public class Action9 extends ActionSupport implements RequestAware{
 		//유료 통계서비스 1
 		
 		//유료 통계서비스2
-		List<Highchart10> list1 = dao.highchart10DAO();
+		List<Highchart10Cost> list1 = dao.highchart10DAO();
 		
 		System.out.println(list.toString());
 		
 		Highchart6Add time = new Highchart6Add();
 		List<Highchart6Add> timelist2 = new ArrayList<Highchart6Add>();
-		for(Highchart10 temp : list1){
+		for(Highchart10Cost temp : list1){
 			
 			if(temp.getTimeSet().equals("00")){
 				time.setTime0(temp.getCountNum());
@@ -179,7 +179,7 @@ public class Action9 extends ActionSupport implements RequestAware{
 		//유료통계서비스2
 		
 		//유료통계서비스3
-		List<Highchart11> list2 = dao.highchart11DAO();
+		List<Highchart11Cost> list2 = dao.highchart11DAO();
 		System.out.println(list.toString());
 		Highchart1Add v1 = new Highchart1Add();
 		Highchart1Add v2 = new Highchart1Add();
@@ -187,7 +187,7 @@ public class Action9 extends ActionSupport implements RequestAware{
 		Highchart1Add v4 = new Highchart1Add();
 		Highchart1Add v5 = new Highchart1Add();
 		
-		for(Highchart11 temp : list2){
+		for(Highchart11Cost temp : list2){
 			if(temp.getAge()==10){
 				v1.setFirst(temp.getCustomerNum());
 			}else if(temp.getAge()==20){

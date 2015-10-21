@@ -1,6 +1,6 @@
 package test.vo;
 
-public class Highchart9Add {
+public class Highchart9AddCost {
 	private int sale1;
 	private int sale2;
 	private int sale3;

@@ -1,6 +1,6 @@
 package test.vo;
 
-public class Highchart10 {
+public class Highchart10Cost {
 	private String etpNum;
 	private String timeSet;
 	private int countNum;
