@@ -2,6 +2,7 @@ package controller.action;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Reservation reservation;
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
+	private Map<String, Object> serviceMap;
 	
 	//////// Component Member ////////  
 	private Component component;
@@ -113,7 +115,22 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String takeEtp() throws Exception{
 		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
 		enterprise = etpDAO.selectByEtpNum(etpNum);
-		enterprise.setServices(etpDAO.selectServiceList(etpNum));
+		//서비스 리스트 set
+		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
+		enterprise.setServices(svcList);
+		/*List<Service> svcList2 = new ArrayList<>();
+		List<String> cateList = new ArrayList<>();
+		String cate;
+		//서비스 맵
+		for(Service s : svcList){
+			cate = s.getSvcCategory();
+			
+			svcList2.add(s);
+			serviceMap.put(cate, svcList2);
+			
+		}*/
+		
+		//고객평가, 갤러리 리스트 set
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 		
@@ -256,6 +273,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public List<Enterprise> getEnterpriseList() {
 		return enterpriseList;
+	}
+
+	public Map<String, Object> getServiceMap() {
+		return serviceMap;
+	}
+
+	public void setServiceMap(Map<String, Object> serviceMap) {
+		this.serviceMap = serviceMap;
 	}
 
 	public void setEnterprise(Enterprise enterprise) {

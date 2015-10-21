@@ -34,13 +34,15 @@
 	//편집 버튼 숨김
 	$(function(){		
 		$('.edit').hide();	// top 개요 편집 버튼, info 편집 버튼, 사업자 버튼바 중 save 버튼, 서비스 편집 버튼
+		$('#saveBT').attr('disabled', true);
 	});
 	
 	//편집 버튼 보이기
-	function showBT(){
+	function startEdit(){
 		$('.edit').show();	// top 개요 편집 버튼, info 편집 버튼, 사업자 버튼바 중 save 버튼, 서비스 편집 버튼
-
-		$('#editBT').hide();// 사업자 편집 버튼바 중 페이지 편집 버튼
+		$('#saveBT').attr('disabled', false);
+		
+		$('#editBT').attr('disabled', true); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
 	}
 	
 	//페이지 저장 form으로 전달 예정 

@@ -68,23 +68,13 @@ function saveOutline() {
 		<div class="col-md-6">
 			<div id='outLineCP'>
 			  	<div class="panel-body">
-			  		<div class="jumbotron">
-			  			<!-- 입력된 내용을 바로 반영 -->
-			  			<div id="outLineContentIn">
-			  				<s:if test='enterprise.etpDescription == null'>
-			  					<h3>사장님 안녕하세요!</h3>
-					  			<h5>이곳에 간단한 소개를 적어주세요</h5>
-					  		</s:if>
-					  		<s:if test='enterprise.etpDescription != null'>
-					  			<s:property value="enterprise.etpDescription"/>
-					  		</s:if>
-			  			</div>
-						<p><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#outLineModal">편집</a></p>
-					</div>
+		  			<div id="outLineContentIn">
+		  				<h1><s:property value="enterprise.etpTitle"/></h1>
+		  			</div>
 			  	</div>
 			</div>
 		</div>
-			
+		<!-- 특징 -->	
 		<div class="col-md-3" id="spcialSpan">
 			<script type="text/javascript">
 				$(function(){
@@ -100,7 +90,6 @@ function saveOutline() {
 					$('#spcialSpan').html(specialBT);	
 				});
 			</script>
-
 		</div>	
 	</div><!-- row end -->
 	</div>
