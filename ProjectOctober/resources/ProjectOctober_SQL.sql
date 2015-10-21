@@ -2,6 +2,10 @@ select tname from tab;
 
 insert into zipcode values ('11111', '서울시', '강남구', '삼성동', '삼성동')
 
+select * from ENTERPRISE where etp_num = '2345678901'
+
+delete enterprise where etp_owner = 'enter'
+
 
 select * from zipcode;
 	zipcode VARCHAR2(16) NOT NULL, /* 우편번호 */

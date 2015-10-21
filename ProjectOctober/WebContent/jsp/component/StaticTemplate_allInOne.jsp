@@ -18,27 +18,40 @@
 
 <script type="text/javascript">
 //편집 버튼 숨김
-	$(function(){
-		$('#outEditBT').hide();		// top 부분의 개요 편집 버튼
-		$('#infoEditBT').hide();	// info 컴포넌트의 편집 버튼
-		$('#saveBT').hide();		// 사업자 편집 버튼바 중 페이지 save 버튼
+	$(document).ready(function(){
+	    $(".nav-tabs a").click(function(){
+	        $(this).tab('show');
+	    });
+	    $('.nav-tabs a').on('shown.bs.tab', function(event){
+	        var x = $(event.target).text();         // active tab
+	        var y = $(event.relatedTarget).text();  // previous tab
+	        $(".act span").text(x);
+	        $(".prev span").text(y);
+	    }); 
+	    	
+	});
+	
+	//편집 버튼 숨김
+	$(function(){		
+		$('.edit').hide();	// top 개요 편집 버튼, info 편집 버튼, 사업자 버튼바 중 save 버튼, 서비스 편집 버튼
+		$('#saveBT').attr('disabled', true);
+	});
+	
+	//편집 버튼 보이기
+	function startEdit(){
+		$('.edit').show();	// top 개요 편집 버튼, info 편집 버튼, 사업자 버튼바 중 save 버튼, 서비스 편집 버튼
+		$('#saveBT').attr('disabled', false);
 		
-		var etpNum = '1234567890'/* ${etpNum} */;
-		
+		$('#editBT').attr('disabled', true); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
+	}
+	
+	function checkObj(){
 		$.ajax({
-			url: '${pageContext.request.contextPath}/enterprise/takeEtp.action?etpNum='+etpNum,
+			url: '${pageContext.request.contextPath}/enterprise/takeEtp.action?etpNum=2345678901',
 			type:'GET',
 			dataType: 'json',
 			success : check
 		});
-	});
-	
-	//편집 버튼 보이기
-	function showBT(){
-		$('#outEditBT').show();		// top 부분의 개요 편집 버튼
-		$('#infoEditBT').show();	// info 컴포넌트의 편집 버튼
-		$('#saveBT').show();		// 사업자 편집 버튼바 중 페이지 save 버튼
-		$('#editBT').hide();		// 사업자 편집 버튼바 중 페이지 편집 버튼
 	}
 	
 	function check(object){
@@ -50,6 +63,8 @@
 
 <body>
 <s:include value="../Header.jsp"></s:include>
+
+<button>확인</button>
 
 <div class="page">
 
