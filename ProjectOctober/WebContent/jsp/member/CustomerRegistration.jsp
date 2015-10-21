@@ -19,7 +19,7 @@
 		$('[data-toggle="notification-popover"]').popover();
 	});
 	
-	$('body').on('click','#send', function(){
+	/* $('body').on('click','#send', function(){
 		var year = $("#year option:selected").text();
 		var month = $("#month option:selected").text();
 		var day = $("#day option:selected").text();
@@ -37,7 +37,7 @@
 		function end(){
 			alert('다녀왔음');
 		}
-	}) 
+	})  */
 	
 	
 	function zipcodeOpen() {
@@ -54,7 +54,7 @@
 <h2 align="center">이용자 회원가입</h2>
 
 <!-- 본문 시작 -->
-<form name="customerRegistration" action="/member/customerRegistration.action" method="post" >
+<form name="customerRegi" action="/ProjectOctober/member/customerRegistration.action" method="post" >
 <div class="section">
       <div class="container">
         <div class="row">

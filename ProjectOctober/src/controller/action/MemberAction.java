@@ -53,7 +53,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		memDAO = DAOFactory.createMemberDAO();
 	}
 	
-	public String customerRegistration() throws Exception{
+	public String customerRegistration1() throws Exception{
 		
 		System.err.println("action : "+member);		
 		int result = memDAO.insertMemberInfo2(member);
