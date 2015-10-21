@@ -8,4 +8,5 @@
 		WHERE R.CST_EMAIL=V.CST_EMAIL AND R.SVC_NUM=S.SVC_NUM AND R.ETP_NUM='69' AND CST_JOB=CST_JOB
 		GROUP BY svc_code
 	</select>
+	
 </mapper>

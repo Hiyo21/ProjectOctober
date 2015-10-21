@@ -20,6 +20,4 @@ public class Highchart12 {
 	public String toString() {
 		return "Highchart12 [service=" + service + ", total=" + total + "]";
 	}
-	
-	
 }

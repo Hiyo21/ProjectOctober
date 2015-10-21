@@ -113,8 +113,6 @@
 		
 		
 		
-		
-		
 		<!-- 결제 페이지에서 버튼 누르면 ->유료통계서비스 -->
 		<action name="highchartCost" class="test.action.ActionCost" method="highchartCost">
 			<result name="success" type="chain">
