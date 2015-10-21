@@ -29,15 +29,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Enterprise enterprise;
 	private Reservation reservation;
 	private List<Reservation> reservationList;
-<<<<<<< HEAD
-	private List<Enterprise> enterpriseList;
-	private Map<String, Object> serviceMap;
-=======
 	private List<Enterprise> enterpriseList;
 	private List<Service> serviceList;
 	private Map<String, Object> session;
+	private Map<String, Object> serviceMap;
 	private Member member;
->>>>>>> refs/remotes/origin/master
 	
 	//////// Component Member ////////  
 	private Component component;
