@@ -1,6 +1,6 @@
 package test.action;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +14,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import model.dao.EnterpriseDAO;
 import model.vo.Enterprise;
 import test.dao.CostDAO;
+import test.vo.AutoHighchartCost1;
+import test.vo.AutoHighchartCost1Add;
 import test.vo.Highchart10Cost;
 import test.vo.Highchart11Cost;
 import test.vo.Highchart1Add;
@@ -67,7 +69,7 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		
 			
 		for(Highchart9Cost temp : list){
-			System.out.println(temp.getRank());
+			/*System.out.println(temp.getRank());*/
 			if(temp.getRank()==1){
 				
 				vo1.setSale1(temp.getSale());
@@ -137,7 +139,7 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 			application.put("loginId", session.get("loginId"));
 		}
 		
-		System.err.println("application :" + String.valueOf(application.get("loginId")));
+		/*System.err.println("application :" + String.valueOf(application.get("loginId")));
 		
 		System.err.println("etpEmail :" + etpEmail);
 		System.err.println("session :" + session == null);
@@ -145,16 +147,16 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		System.err.println(session.toString());
 		System.err.println("Error?" + (session.get("loginId") == null));
 		System.err.println("Error?? " + session.get("loginId"));
-		System.err.println(application.get("loginId"));
+		System.err.println(application.get("loginId"));*/
 		String x = String.valueOf(application.get("loginId"));
-		System.err.println(x);
+		/*System.err.println(x);*/
 		Enterprise e = enterprise.selectByEtpEmail(x);
-		System.err.println(e+"ActionCost");
+		/*System.err.println(e+"ActionCost");*/
 		String enterAddress= e.getEtpAddress();
-		System.err.println(enterAddress+"ActionCost");
+		/*System.err.println(enterAddress+"ActionCost");*/
 		List<Highchart10Cost> list1 = dao.highchart10DAO(enterAddress);
 		
-		System.out.println(list.toString());
+		/*System.out.println(list.toString());*/
 		
 		Highchart6Add time = new Highchart6Add();
 		List<Highchart6Add> timelist2 = new ArrayList<Highchart6Add>();
@@ -223,7 +225,7 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		e = enterprise.selectByEtpEmail(application.get("loginId").toString());
 		List<Highchart11Cost> list2 = dao.highchart11DAO(e);
 		
-		System.out.println(list.toString());
+		/*System.out.println(list.toString());*/
 		Highchart1Add v1 = new Highchart1Add();
 		Highchart1Add v2 = new Highchart1Add();
 		Highchart1Add v3 = new Highchart1Add();
@@ -265,6 +267,97 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		
 		//유료통계서비스3
 		
+		
+		//유료통계서비스1- 자동문구 생성1시작
+		Enterprise e1 = enterprise.selectByEtpEmail(application.get("loginId").toString());
+		System.out.println(e1+"자동");
+		List<AutoHighchartCost1> list3 = dao.autoHighchartCost1(e1);
+		System.out.println(list3.toString()+"생성");
+	
+		AutoHighchartCost1Add c1 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c2 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c3 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c4 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c5 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c6 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c7 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c8 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c9 = new AutoHighchartCost1Add();
+		
+		
+		
+		
+		for(AutoHighchartCost1 temp : list3){
+			System.out.println(temp.toString()+"temp");
+			System.out.println("야야야야");
+			if(temp.getSvcCode().equals("웨딩관리")){
+				/*c1.setTai(temp.getSvcCode());*/
+				c1.setTaiCost(temp.getDifferCost());
+				System.out.println(c1);
+				
+			}/*else if(temp.getSvcCode().equals("경락마사지")){
+				c2.setGyung(temp.getSvcCode());
+				c2.setGyungCost(temp.getDifferCost());				
+				
+			}else if(temp.getSvcCode().equals("카이로프랙틱")){
+				c3.setKairo(temp.getSvcCode());
+				c3.setKairoCost(temp.getDifferCost());
+				
+			}else if(temp.getSvcCode().equals("발마사지")){
+				c4.setBal(temp.getSvcCode());
+				c4.setBalCost(temp.getDifferCost());
+				
+			}else if(temp.getSvcCode().equals("바디마사지")){
+				c5.setBody(temp.getSvcCode());
+				c5.setBodyCost(temp.getDifferCost());
+				
+			}else if(temp.getSvcCode().equals("페이스마사지")){
+				c6.setFace(temp.getSvcCode());
+				c6.setFaceCost(temp.getDifferCost());
+				
+			}else if(temp.getSvcCode().equals("아로마마사지")){
+				c7.setAroma(temp.getSvcCode());
+				c7.setAromaCost(temp.getDifferCost());
+			}else if(temp.getSvcCode().equals("슬리밍케어")){
+				c8.setSleeming(temp.getSvcCode());
+				c8.setSleemingCost(temp.getDifferCost());
+			}else if(temp.getSvcCode().equals("웨딩관리")){
+				c9.setWedding(temp.getSvcCode());
+				System.out.println(c1.toString());
+				c9.setWeddingCost(temp.getDifferCost());
+			}		*/	
+		}
+		
+		
+		List<AutoHighchartCost1Add> listTai = new ArrayList<AutoHighchartCost1Add>();
+		List<AutoHighchartCost1Add> listGyung = new ArrayList<AutoHighchartCost1Add>();
+		List<AutoHighchartCost1Add> listKairo = new ArrayList<AutoHighchartCost1Add>();
+		List<AutoHighchartCost1Add> listBal = new ArrayList<AutoHighchartCost1Add>();
+		List<AutoHighchartCost1Add> listBody = new ArrayList<AutoHighchartCost1Add>();
+		List<AutoHighchartCost1Add> listFace = new ArrayList<AutoHighchartCost1Add>();
+		List<AutoHighchartCost1Add> listSleeming = new ArrayList<AutoHighchartCost1Add>();
+		List<AutoHighchartCost1Add> listWedding = new ArrayList<AutoHighchartCost1Add>();
+		
+		
+		listTai.add(c1);
+		listGyung.add(c2);
+		listKairo.add(c3);
+		listBal.add(c4);
+		listBody.add(c5);
+		listFace.add(c6);
+		listSleeming.add(c7);
+		listWedding.add(c8);
+		
+		request.put("listTai", listTai);
+		request.put("listGyung", listGyung);
+		request.put("listKairo", listKairo);
+		request.put("listBal", listBal);
+		request.put("listBody", listBody);
+		request.put("listFace", listFace);
+		request.put("listSleeming", listSleeming);
+		request.put("listWedding", listWedding);
+		
+		System.out.println(listWedding.toString()+"조건부셔버려");
 		
 		return SUCCESS;
 	}

@@ -17,4 +17,31 @@
 		]]>
 	<!-- 상위 10위 매출 업체 출력 -->
 	</select>
+	
+	
+	<!-- 자동문구 생성: 일치하는 서비스, 상위 10위의 업체의 서비스 평균 가격대, 자신의 사업체와의 서비스 가격 차이값 -->
+	<select id="AutoCost1" parameterType="Enterprise" resultType="AutoHighchartCost1">
+		select B.svc_code svcCode , B.avg BAvg ,B.avg-T.svc_cost differCost from 
+		(
+		select S.svc_code, ROUND(AVG(S.svc_cost)) as avg from
+		(
+		select ROW_NUMBER() OVER (ORDER BY sale desc) rank, etp_num, sale
+		from
+		(
+		select etp_num, sum(sale_amount) sale
+		from sale_record
+		group by etp_num
+		order by sale desc
+		)
+		<![CDATA[ 
+		where rownum <= 10
+		]]>
+		) A, 
+		SERVICE S
+		WHERE A.etp_num = S.etp_num
+		group by S.svc_code
+		) B, (SELECT svc_code,svc_cost FROM SERVICE WHERE etp_num =#{etpNum}) T
+		WHERE B.svc_code = T.svc_code
+	</select>
+	
 </mapper>

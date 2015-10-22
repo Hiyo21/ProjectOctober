@@ -66,11 +66,6 @@ public class Action4 extends ActionSupport implements RequestAware{
 		listCompany1.add(vo4);
 		listStudent1.add(vo5);
 		listExpert1.add(vo6);
-		
-		
-		
-		
-		
 			
 		request.put("listJubu1",listJubu1);
 		request.put("listFree1",listFree1);

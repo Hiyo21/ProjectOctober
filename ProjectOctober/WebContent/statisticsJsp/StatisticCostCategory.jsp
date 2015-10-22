@@ -66,7 +66,7 @@ $(function(){
 	});
 });
 </script>
-<form action = "pdfdown.jsp" method = "post" id="form">
+<form action = "./statisticsJsp/pdfdown.jsp" method = "post" id="form">
 </form>
 <!-- 내가 작성할 부분 -->
 <!-- pdf -->
@@ -130,7 +130,15 @@ $(function(){
 						 </div>
 						 <div class="panel-body">
 						     <s:include value="Highchart9Cost.jsp"/>   
-						     <p align="center">안녕하세요 김지희 입니다1. </p>			 
+						     <p align="center">
+						     <!-- 자동문구 -->
+						     <s:iterator value="#request.listTai">아이고졸려<s:property value="differCost"/></s:iterator>
+						     
+						      귀사와 동종업계, 동일 지역(구 단위)에 위치한 매출액 상위 10위 업체를 선별하여 <br>
+						      귀사가 가지고 있는 서비스와 상위 TOP10의 평균 서비스 가격대를 비교한 결과 <br>
+							(타이마사지)는 (5000)원 정도 차이가 나며<br>
+							(발마사지)는 (2000)원 정도 차이가 납니다.						     
+						     </p>			 
 						 </div>
 				    </div>
 		   		  <!-- 유료 1통계 -->    
