@@ -25,19 +25,7 @@ public class Action4 extends ActionSupport implements RequestAware{
 		List<Highchart4> list = dao.highchart4DAO();
 		System.out.println(list.toString()+"여기");
 		
-		Highchart4Add vo1 = new Highchart4Add();
-		Highchart4Add vo2 = new Highchart4Add();
-		Highchart4Add vo3 = new Highchart4Add();
-		Highchart4Add vo4 = new Highchart4Add();
-		Highchart4Add vo5 = new Highchart4Add();
-		Highchart4Add vo6 = new Highchart4Add();
 		
-		List<Highchart4Add> listJubu = new ArrayList<Highchart4Add>();
-		List<Highchart4Add> listFree = new ArrayList<Highchart4Add>();
-		List<Highchart4Add> listOther = new ArrayList<Highchart4Add>();
-		List<Highchart4Add> listCompany = new ArrayList<Highchart4Add>();
-		List<Highchart4Add> listStudent = new ArrayList<Highchart4Add>();
-		List<Highchart4Add> listExpert = new ArrayList<Highchart4Add>();
 		Highchart4Add vo1 = new Highchart4Add();
 		Highchart4Add vo2 = new Highchart4Add();
 		Highchart4Add vo3 = new Highchart4Add();
@@ -57,40 +45,40 @@ public class Action4 extends ActionSupport implements RequestAware{
 
 		for(Highchart4 temp : list){
 			if(temp.getCstJob().equals("주부")){
-				vo1.setJubu(temp.getMoneyflow());
+				vo1.setJubu1(temp.getMoneyflow());
 			}else if(temp.getCstJob().equals("프리랜서")){
-				vo2.setFree(temp.getMoneyflow());
+				vo2.setFree1(temp.getMoneyflow());
 			}else if(temp.getCstJob().equals("기타")){
-				vo3.setOther(temp.getMoneyflow());
+				vo3.setOther1(temp.getMoneyflow());
 			}else if(temp.getCstJob().equals("회사원")){
-				vo4.setCompany(temp.getMoneyflow());
+				vo4.setCompany1(temp.getMoneyflow());
 			}else if(temp.getCstJob().equals("학생")){
-				vo5.setStudent(temp.getMoneyflow());
+				vo5.setStudent1(temp.getMoneyflow());
 			}else if(temp.getCstJob().equals("전문직")){
-				vo6.setExpert(temp.getMoneyflow());
+				vo6.setExpert1(temp.getMoneyflow());
 			}
 		}
 		
 		
-		listJubu.add(vo1);
-		listFree.add(vo2);
-		listOther.add(vo3);
-		listCompany.add(vo4);
-		listStudent.add(vo5);
-		listExpert.add(vo6);
+		listJubu1.add(vo1);
+		listFree1.add(vo2);
+		listOther1.add(vo3);
+		listCompany1.add(vo4);
+		listStudent1.add(vo5);
+		listExpert1.add(vo6);
 		
 		
 		
 		
 		
-		System.out.println(listJubu.toString());
+		System.out.println(listJubu1.toString());
 			
-		request.put("listJubu",listJubu);
-		request.put("listFree",listFree);
-		request.put("listOther",listOther);
-		request.put("listCompany",listCompany);
-		request.put("listStudent",listStudent);
-		request.put("listExpert",listExpert);
+		request.put("listJubu",listJubu1);
+		request.put("listFree",listFree1);
+		request.put("listOther",listOther1);
+		request.put("listCompany",listCompany1);
+		request.put("listStudent",listStudent1);
+		request.put("listExpert",listExpert1);
 		
 				
 		return SUCCESS;
