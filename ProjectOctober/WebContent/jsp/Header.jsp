@@ -70,15 +70,18 @@
 							    		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
 							    		<h3 class="modal-title" style="color: gray;">회원가입 선택</h3>
 							    	</div>
-							      <div class="modal-body">
-							      <br><br><br>
-							      <br><br>
-							        <a class="btn btn-primary btn-lg" href="member/toEnterpriseRegistrationPage.action" 
-									role="button" style="vertical-align:center" id="etpBT"><h1>사업자</h1></a>
-				
-									<a class="btn btn-success btn-lg" href="member/toCustomerRegistrationPage.action" 
-									role="button" style="vertical-align:center" id="cstBT"><h1>이용자</h1></a>
-									<br><br><br><br><br>
+							      <div class="modal-body" style="vertical-align:center">
+							      <br><br><br><br><br>							     
+								        <div class="col-md-6">
+								        	 <a class="btn btn-default btn-lg btn_block" href="member/toEnterpriseRegistrationPage.action" 
+												role="button" style="vertical-align:center" id="etpBT"><h3>사업자</h3></a>
+								        </div>
+								        <div class="col-md-6">
+								        	 <a class="btn btn-default btn-lg btn_block"" href="member/toCustomerRegistrationPage.action" 
+												role="button" style="vertical-align:center" id="cstBT"><h3>이용자</h3></a>
+								        </div>   
+										<br><br><br><br><br><br><br><br><br><br>			
+									
 							      </div>
 							    </div>
 							  </div>

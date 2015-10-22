@@ -9,6 +9,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -20,20 +22,43 @@
 
 
 <style type="text/css">
-	#joinWindow {
-		vertical-align : center;
-		width: 500px;
-	}
-	
-	.btn-lg {
-		width: 200px;
-		height: 100px;	
-		text-align: center;
-	}
-	
-	.form-inline {
-		text-align: left;
-	}
+	body {
+    padding-top: 15px;
+    font-size: 12px
+  }
+  .main {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 10px;
+            margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+  .hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  h3 {
+    text-align: center;
+    line-height: 300%;
+  }
 
 </style>
 
@@ -80,42 +105,74 @@ function check() {
 </head>
 <body>
 <s:include value="../Header.jsp"></s:include>
+<div class="container">
+  <div class="row">
 
-	<div class = "container" id="joinWindow">
+    <div class="main">
+
+      <h3><a href="#">로그인</a></h3>
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <a href="#" class="btn btn-lg btn-primary btn-block" role="button" style="vertical-align:center" id="enterprise">사업자</a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <a href="#" class="btn btn-lg btn-info btn-block" role="button" style="vertical-align:center" id="customer">이용자</a>
+        </div>
+      </div>
+      <div class="login-or">
+        <hr class="hr-or">
+        <span class="span-or">AND</span>
+      </div>
+
+      <form role="form" onsubmit="return check()" action="${pageContext.request.contextPath}/member/loginProcess" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">          
+          <label for="pwd">Password</label>
+          <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password">
+        </div>
+        <div class="checkbox pull-right">          
+        </div>
+        <button type="submit" class="btn btn btn-primary">
+          Log In
+        </button>
+      </form>
+    
+    </div>
+    
+  </div>
+</div>
+        
+        
+	<%-- <div class = "container" id="joinWindow">
 		<div class="well well-lg" align="center">
 			<div class="btn-group">
-				<h1><a class="btn btn-primary btn-lg" href="#" role="button" style="vertical-align:center" id="enterprise">사업자</a></h1>
-				<h1><a class="btn btn-success btn-lg" href="#" role="button" style="vertical-align:center" id="customer">이용자</a></h1>
+				<h1><a class="btn btn-default btn-lg btn-block" href="#" role="button" style="vertical-align:center" id="enterprise">사업자</a></h1>
+				<h1><a class="btn btn-default btn-lg btn-block" href="#" role="button" style="vertical-align:center" id="customer">이용자</a></h1>
 			</div>
 			<br><br><br>
 			<form class="form-inline" role="form" onsubmit="return check()" action="${pageContext.request.contextPath}/member/loginProcess" method="post">
     			<div class="form-group">
-    				<table>
-    					<tr>
-    						<td width="100px">
-			    				<label for="email">Email:</label>
-			    			</td>
-			    			<td>
-			    				<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-			    			</td>
-			    		<tr>
-			    		<tr>
-			    			<td width="100px">
-					    		<label for="password">Password:</label>
-			    			</td>
-			    			<td>
-					    		<input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password">
-			    			</td>
-			    			<td rowspan="2" width="100px" align="center">
-			    				<input type="submit" class="btn btn-default" value="Login">
-			    			</td>
-			    		</tr>
-			    	</table>
+    				 <div class="section">
+					      <div class="container">
+					        <div class="row">
+					          <div class="col-md-12">
+					          		<label for="email">Email:</label>
+					    			<input type="email" class="form-control-static" id="email" name="email" placeholder="Enter email"><br>
+							    	<label for="password">Password:</label>
+							    	<input type="password" class="form-control-static" id="pwd" name="password" placeholder="Enter password">
+							    	<input type="submit" class="btn btn-default btn-lg" value="Login">					          
+					          </div>
+					        </div>
+					      </div>
+					    </div>
 			    </div>
 			<input type="hidden" id="type" value="">
 			</form>
 		</div>
-	</div>
+	</div>  --%>
 </body>
-</html>
+
 </html>
