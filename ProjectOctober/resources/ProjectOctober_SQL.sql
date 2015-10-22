@@ -2,7 +2,7 @@ select tname from tab;
 
 insert into zipcode values ('11111', '서울시', '강남구', '삼성동', '삼성동')
 
-select * from ENTERPRISE where etp_num = '2345678901'
+select * from service where etp_num = '1234567890'
 
 delete enterprise where etp_owner = 'enter'
 

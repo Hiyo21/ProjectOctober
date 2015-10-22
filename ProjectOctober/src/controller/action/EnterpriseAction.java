@@ -134,9 +134,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		//--------------------------------------------------사업자 페이지---------------------------
 	public String updateSvcCategory() throws Exception{
 		System.err.println("===========check Action :: updateSvcCategory :: " + serviceList);
-		/*int result = etpDAO.updateSvcCategory();
-		if(result>0)*/ return SUCCESS;
-		/*else return ERROR;*/
+		int result = 0; 
+		for(Service s : serviceList){
+			result = etpDAO.updateSvcCategory(s);
+		}
+		etpNum = serviceList.get(0).getEtpNum();
+		if(result == 1) return SUCCESS;
+		else return ERROR;
 	}
 
 	public String receiveServiceList() throws Exception{
@@ -162,10 +166,25 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String selectServiceList() throws Exception{
-		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
-		enterprise.setServices(etpDAO.selectServiceList(etpNum)); 
+		System.out.println("===========check Action :: etpNum :: " + etpNum);
+		serviceList = etpDAO.selectServiceList(etpNum);
+		
+		categoryList = new ArrayList<>();
+		for(int j=0; j<serviceList.size(); j++){	
+			String category = serviceList.get(j).getSvcCategory();
+			
+			if(j==0){
+				categoryList.add(category);
+			}else{
+				if(serviceList.get(j).getSvcCategory().equals(serviceList.get(j-1).getSvcCategory())){
+					
+				}else{
+					categoryList.add(category);
+				}
+			}
+		}
 
-		if(enterprise.getServices() != null) return SUCCESS;
+		if(serviceList != null) return SUCCESS;
 		else return ERROR;
 	}
 	
@@ -176,7 +195,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String takeEtp() throws Exception{
-		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
+		System.out.println("===========check Action :: etpNum :: " + etpNum);
 		enterprise = etpDAO.selectByEtpNum(etpNum);
 		//서비스 리스트 set
 		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
@@ -197,7 +216,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			}
 		}
 		
-		System.err.println("===========check Action :: categoryList :: " +categoryList.size());
+		System.out.println("===========check Action :: categoryList :: " +categoryList.size());
 		
 		//고객평가, 갤러리 리스트 set
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
