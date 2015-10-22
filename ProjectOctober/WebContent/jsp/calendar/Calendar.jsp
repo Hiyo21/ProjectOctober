@@ -58,6 +58,8 @@
 			success: function retrieveEnt(data){
 				enterpriseInfo = data.enterprise;
 				console.log('received enterpriseinfo!');
+				console.log('etp: ' + enterpriseInfo);
+				$('#templateType').attr('value', enterpriseInfo.etpTemplateType);
 			},error: function(){
 				console.log('retrieveEnterpriseInfoForCalendar failed!');
 			}
@@ -195,6 +197,11 @@
 					emptyAJAX();
 					calendar.fullCalendar('unselect');
 					$('#insertModal').modal('hide');
+					$("#calendar").fullCalendar('removeEvents');
+					$("#calendar").fullCalendar('removeEventSource', event);
+					$('#calendar').fullCalendar('addEventSource', event);
+					$('#calendar').fullCalendar('refetchEvents');
+					$('#calendar').fullCalendar('rerenderEvents');
 				});
 				
 		        //--------------------- 예약 내용 변경 신청 AJAX로 하는 기능 ---------------------------------//
@@ -227,7 +234,8 @@
 						success: function(data){
 							alert('success!');
 							console.log(event);
-							$('#calendar').fullCalendar('removeEvents');
+							$("#calendar").fullCalendar('removeEvents');
+							$("#calendar").fullCalendar('removeEventSource', event);
 							$('#calendar').fullCalendar('addEventSource', event);
 							$('#calendar').fullCalendar('refetchEvents');
 							$('#calendar').fullCalendar('rerenderEvents');
@@ -390,27 +398,16 @@
 					console.log(event);
 					calendar.fullCalendar('unselect');
 					$('#insertModal').modal('hide');
-					//this.unbind();
-					//$("#insertReservationBtn").unbind();
+					$("#calendar").fullCalendar('removeEvents');
+					$("#calendar").fullCalendar('removeEventSource', event);
+					$('#calendar').fullCalendar('addEventSource', event);
+					$('#calendar').fullCalendar('refetchEvents');
+					$('#calendar').fullCalendar('rerenderEvents');
 				});
 						
 			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
 				
-				$("#insertReservationBtn").click(function(){
-					
-						/*	reservation = {
-							//있나 없나 확인하기!!!
-							title: inputTitle,
-							description: inputDescription,
-							start: inputStartTime,
-							end: inputEndTime,
-							employeeGender: inputEmployeeGender,
-							rsvStatus : inputStatus,
-							svcList : inputServiceList,
-							cpnNum : cpnNum,
-							cstEmail : cstEmail,	
-					}; */
-					
+				$("#insertReservationBtn").click(function(){					
 					if($('#insertAgreementCheckbox').prop('checked') == false){
 						alert('약관에 동의해 주셔야 합니다.');
 						$('#insertModal').modal('hide');
@@ -427,6 +424,11 @@
 				            $('#calendar').fullCalendar('refetchEvents');
 							$('#insertModal').modal('hide');
 							$(this).unbind();
+							$("#calendar").fullCalendar('removeEvents');
+							$("#calendar").fullCalendar('removeEventSource', event);
+							$('#calendar').fullCalendar('addEventSource', event);
+							$('#calendar').fullCalendar('refetchEvents');
+							$('#calendar').fullCalendar('rerenderEvents');
 						},
 						error: function(doc){
 							console.log("insert Error");
@@ -454,8 +456,6 @@
 			
 			//------------------------------------- 각 사업자당 예약들 불러오는 기능  -------------------------------------------//
 			events: function(start, end, timezone, callback){
-				$("#calendar").fullCalendar('removeEvents');
-				$("#calendar").fullCalendar('removeEventSource')
 				$.ajax({
 					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
 					type: 'POST',
@@ -496,7 +496,7 @@
 								etpSelfNotification: item.enterprise.etpSelfNotification,
 								etpCstNotification: item.enterprise.etpCstNotification,
 								etpTemplateType: item.enterprise.etpTemplateType,
-								etpSvcOfffered: item.enterprise.etpSvcOffered,
+								etpSvcOffered: item.enterprise.etpSvcOffered,
 								etpSubclass: item.enterprise.etpSubclass,
 								etpSpecialize: item.enterprise.specialize,
 								etpDescription: item.enterprise.etpDescription,
@@ -511,13 +511,13 @@
 							});
 						});
 						callback(events);
-						$(this).unbind();
+				
 					},
 					error: function(doc){
 						console.log("Error");
 					}
 				});
-
+				$
 			},
 			eventDrop: function(event, delta, revertFunc, jsEvent, view) {
 				$(this).unbind();
@@ -633,8 +633,13 @@
 </head>
 <body>
 	<jsp:include page="/jsp/Header.jsp"></jsp:include>
-	<h1>Calendar for testing</h1>
+	<h1>예약 스케쥴러(테스팅 중)</h1>
 	<br>
+	<div>
+		<a href="${pageContext.request.contextPath}/toMainPage.action"><button class="btn btn-info" >메인 메뉴로</button></a>
+		<!-- enterprise 값을 action으로 다 넘겨야 할듯? 아니면 적어도 이메일이랑 템플릿 타입이라도. -->
+		<a href="takeEtp.action?etpNum=<s:property value='#session.loginEtpNum'/>"><button class="btn btn-primary">사업자 메뉴로</button></a>
+	</div>
 	<div id='external-events'>
 		<input type="hidden" id="starttt" />
 		<input type="hidden" id="endtt" />

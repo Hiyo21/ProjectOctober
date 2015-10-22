@@ -14,7 +14,7 @@ public class MakePdf {
 	}
 	public static boolean processPdf(){
 		String strHtml = targethtml;
-        String strCmd = "D:\\program\\wkhtmltopdf\\bin\\wkhtmltopdf.exe --no-stop-slow-scripts --javascript-delay 3000 --orientation Landscape";
+        String strCmd = "C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe --no-stop-slow-scripts --javascript-delay 3000 --orientation Landscape";
         strCmd += " " + strHtml;
         strCmd += " " + savefile;
         
