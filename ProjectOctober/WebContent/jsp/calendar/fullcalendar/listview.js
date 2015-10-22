@@ -136,8 +136,12 @@
                                                 "<span class='fc-event-start-time'> 시작 시간: "+ (e.allDay ? this.opt('allDayText') : e.start.format('HH:mm') +" ~ </span> "+
                                                 "<span class='fc-event-end-time'>"+ e.end.format('HH:mm')) +"</span>"+
                                             "</div>"+
-                                              "<span class='fc-eventlist-title'> 예약 description: " + e.description + "</span><br />"+
-                                              "<span class='fc-eventlist-desc'>"+e.customerEmail +"</span>"+
+                                              "<span class='fc-eventlist-desc'> 예약 description: " + e.svcDescription + "</span><br />"+
+                                              "<span class='fc-eventlist-cstEmail'> 고객 이메일: "+e.cstEmail +"</span><br>"+
+                                              "<span class='fc-eventlist-title'> 예약 제목: " + e.title + "</span><br/>" +
+                                              "<span class='fc-eventlist-empGender'> 서비스원 성별: " + e.employeeGender + "</span><br>" + 
+                                              "<span class='fc-eventlist-svcCost'> 서비스 비용: " + e.svcCost + '원</span><br>' +
+                                              "<span class='fc-eventlist-rsvStatus'> 예약 상태코드: " + e.status + '</span><br>' +
                                           "</" + (e.url ? "a" : "div") + ">"+                                  
                                         "</li>" + "<br>");   
                         tbody.append(segEl);

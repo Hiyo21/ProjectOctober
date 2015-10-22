@@ -45,7 +45,7 @@ public interface EnterpriseMapper {
     int updateByPrimaryKeySelective(Enterprise record);
 
     int updateByPrimaryKey(Enterprise record);
-    
+
     List<Service> selectSvcCategory(String etpNum, String category);
     List<Review> selectReviewList(String etpNum);
     List<PhotoLocation> selectPhotoList(String etpNum);
@@ -83,5 +83,7 @@ public interface EnterpriseMapper {
 	List<Coupon> retrieveCouponList(String etpNum);
 
 	Coupon checkCoupon(Integer cpnNum);
+
+	String retrieveRegCard(String etpNum);
 
 }

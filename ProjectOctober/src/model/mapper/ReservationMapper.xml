@@ -153,5 +153,10 @@
 				SVC_NUM = #{svcNum}
 			</if>
 		</set>
+		<where>
+			<if test="rsvNum != null">
+				RSV_NUM = #{rsvNum}
+			</if>
+		</where>
 	</update>
 </mapper>

@@ -1,6 +1,6 @@
 package test.action;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +14,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import model.dao.EnterpriseDAO;
 import model.vo.Enterprise;
 import test.dao.CostDAO;
+import test.vo.AutoHighchartCost1;
+import test.vo.AutoHighchartCost1Add;
+import test.vo.AutoHighchartCost2;
+import test.vo.AutoHighchartCost3;
 import test.vo.Highchart10Cost;
 import test.vo.Highchart11Cost;
 import test.vo.Highchart1Add;
@@ -67,7 +71,7 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		
 			
 		for(Highchart9Cost temp : list){
-			System.out.println(temp.getRank());
+			/*System.out.println(temp.getRank());*/
 			if(temp.getRank()==1){
 				
 				vo1.setSale1(temp.getSale());
@@ -137,7 +141,7 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 			application.put("loginId", session.get("loginId"));
 		}
 		
-		System.err.println("application :" + String.valueOf(application.get("loginId")));
+		/*System.err.println("application :" + String.valueOf(application.get("loginId")));
 		
 		System.err.println("etpEmail :" + etpEmail);
 		System.err.println("session :" + session == null);
@@ -145,16 +149,16 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		System.err.println(session.toString());
 		System.err.println("Error?" + (session.get("loginId") == null));
 		System.err.println("Error?? " + session.get("loginId"));
-		System.err.println(application.get("loginId"));
+		System.err.println(application.get("loginId"));*/
 		String x = String.valueOf(application.get("loginId"));
-		System.err.println(x);
+		/*System.err.println(x);*/
 		Enterprise e = enterprise.selectByEtpEmail(x);
-		System.err.println(e+"ActionCost");
+		/*System.err.println(e+"ActionCost");*/
 		String enterAddress= e.getEtpAddress();
-		System.err.println(enterAddress+"ActionCost");
+		/*System.err.println(enterAddress+"ActionCost");*/
 		List<Highchart10Cost> list1 = dao.highchart10DAO(enterAddress);
 		
-		System.out.println(list.toString());
+		/*System.out.println(list.toString());*/
 		
 		Highchart6Add time = new Highchart6Add();
 		List<Highchart6Add> timelist2 = new ArrayList<Highchart6Add>();
@@ -223,7 +227,7 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		e = enterprise.selectByEtpEmail(application.get("loginId").toString());
 		List<Highchart11Cost> list2 = dao.highchart11DAO(e);
 		
-		System.out.println(list.toString());
+		/*System.out.println(list.toString());*/
 		Highchart1Add v1 = new Highchart1Add();
 		Highchart1Add v2 = new Highchart1Add();
 		Highchart1Add v3 = new Highchart1Add();
@@ -264,6 +268,134 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		request.put("resultList5", resultList5);
 		
 		//유료통계서비스3
+		
+		
+		//유료통계서비스1- 자동문구 생성1시작
+		Enterprise e1 = enterprise.selectByEtpEmail(application.get("loginId").toString());
+		System.out.println(e1+"자동");
+		List<AutoHighchartCost1> list3 = dao.autoHighchartCost1(e1);
+		System.out.println(list3.toString()+"생성");
+	
+		AutoHighchartCost1Add c1 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c2 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c3 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c4 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c5 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c6 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c7 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c8 = new AutoHighchartCost1Add();
+		AutoHighchartCost1Add c9 = new AutoHighchartCost1Add();
+		
+		
+		
+		List<AutoHighchartCost1Add> autoList = new ArrayList<AutoHighchartCost1Add>();
+		for(AutoHighchartCost1 temp : list3){
+			System.out.println(temp.toString()+"temp");
+			System.out.println("야야야야");
+			if(temp.getSvcCode().equals("웨딩관리")){
+				if(temp != null){
+					c1.setWedding(temp.getSvcCode());
+					c1.setWeddingCost(temp.getDifferCost());
+					autoList.add(c1);
+					System.out.println(c1);
+					System.out.println(autoList+"지희여기");
+				}
+			}else if(temp.getSvcCode().equals("경락마사지")){
+				if(temp != null){
+				c2.setGyung(temp.getSvcCode());
+				c2.setGyungCost(temp.getDifferCost());	
+				autoList.add(c1);
+				}
+			}else if(temp.getSvcCode().equals("카이로프랙틱")){
+				if(temp != null){
+				c3.setKairo(temp.getSvcCode());
+				c3.setKairoCost(temp.getDifferCost());
+				autoList.add(c3);
+				}
+			}else if(temp.getSvcCode().equals("발마사지")){
+				if(temp != null){
+				c4.setBal(temp.getSvcCode());
+				c4.setBalCost(temp.getDifferCost());
+				autoList.add(c4);
+				}
+			}else if(temp.getSvcCode().equals("바디마사지")){
+				if(temp != null){
+				c5.setBody(temp.getSvcCode());
+				c5.setBodyCost(temp.getDifferCost());
+				autoList.add(c5);
+				}
+			}else if(temp.getSvcCode().equals("페이스마사지")){
+				if(temp != null){
+				c6.setFace(temp.getSvcCode());
+				c6.setFaceCost(temp.getDifferCost());
+				autoList.add(c6);
+				}
+			}else if(temp.getSvcCode().equals("아로마마사지")){
+				if(temp != null){
+				c7.setAroma(temp.getSvcCode());
+				c7.setAromaCost(temp.getDifferCost());
+				autoList.add(c7);
+				}
+			}else if(temp.getSvcCode().equals("슬리밍케어")){
+				if(temp != null){
+				c8.setSleeming(temp.getSvcCode());
+				c8.setSleemingCost(temp.getDifferCost());
+				autoList.add(c8);
+				}
+			}else if(temp.getSvcCode().equals("타이마사지")){
+				if(temp != null){
+				c9.setTai(temp.getSvcCode());
+				c9.setTaiCost(temp.getDifferCost());
+				autoList.add(c9);
+				
+				}
+			}
+			request.put("autoList", autoList);
+		}
+		//유료통계서비스1- 자동문구 생성1끝
+	
+		
+		//유료통계서비스2- 자동문구 생성2시작
+		Enterprise e2 = enterprise.selectByEtpEmail(application.get("loginId").toString());
+		System.err.println(e2.getEtpAddress()+"여기주소는");
+		List<AutoHighchartCost2> list4 = dao.autoHighchartCost2(e2);
+		List<AutoHighchartCost2> list5 = dao.autoHighchartCost21(e2);
+		
+		System.out.println(list4+"list4");
+		System.out.println(list5+"list5");
+		
+		request.put("TotalCnt", list4);
+		request.put("PersonalCnt", list5);		
+		//유료통계서비스2- 자동문구 생성2끝
+		
+		
+		
+		//유료통계서비스3- 자동문구 생성3시작
+		Enterprise e3 = enterprise.selectByEtpEmail(application.get("loginId").toString());
+		List<AutoHighchartCost3> list6 = dao.autoHighchartCost3(e3);
+		List<AutoHighchartCost3> list7 = dao.autoHighchartCost31(e3);
+		
+		System.out.println(list6+"list6");
+		System.out.println(list7+"list7");
+		
+		request.put("TotalAge", list6);
+		request.put("PersonalAge", list7);
+		
+		//유료통계서비스3- 자동문구 생성3끝
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		return SUCCESS;

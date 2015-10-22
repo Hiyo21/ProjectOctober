@@ -66,7 +66,7 @@ $(function(){
 	});
 });
 </script>
-<form action = "pdfdown.jsp" method = "post" id="form">
+<form action = "./statisticsJsp/pdfdown.jsp" method = "post" id="form">
 </form>
 <!-- 내가 작성할 부분 -->
 <!-- pdf -->
@@ -130,7 +130,72 @@ $(function(){
 						 </div>
 						 <div class="panel-body">
 						     <s:include value="Highchart9Cost.jsp"/>   
-						     <p align="center">안녕하세요 김지희 입니다1. </p>			 
+						     <p align="center">
+						     <!-- 자동문구 -->
+						    
+						     
+						      귀사와 동종업계, 동일 지역(구 단위)에 위치한 매출액 상위 10위 업체를 선별하여 <br>
+						      귀사가 가지고 있는 서비스와 상위 TOP10의 평균 서비스 가격대를 비교한 결과 <br>
+							(<s:iterator value="#request.autoList">
+							<s:if test="wedding != null">							
+								<s:property value="wedding"/>,
+							</s:if>
+							<s:if test="tai != null">		
+								<s:property value="tai"/>,
+							</s:if>
+							<s:if test="gyung != null">	
+								<s:property value="gyung"/>,
+							</s:if>
+							<s:if test="kairo != null">	
+								<s:property value="kairo"/>,
+							</s:if>
+							<s:if test="bal != null">	
+								<s:property value="bal"/>,
+							</s:if>
+							<s:if test="body != null">	
+								<s:property value="body"/>,
+							</s:if>	
+							<s:if test="face != null">	
+								<s:property value="face"/>,
+							</s:if>	
+							<s:if test="aroma != null">	
+								<s:property value="aroma"/>,
+							</s:if>
+							<s:if test="sleeming != null">	
+								<s:property value="sleeming"/>,
+							</s:if>
+							</s:iterator>)는  각각 
+							(<s:iterator value="#request.autoList">
+							<s:if test="weddingCost != 0">	
+								<s:property value="weddingCost"/>,
+							</s:if>							
+							<s:if test="taiCost != 0">
+								<s:property value="taiCost"/>,
+							</s:if>	
+							<s:if test="gyungCost != 0">
+								<s:property value="gyungCost"/>,
+							</s:if>	
+							<s:if test="kairoCost != 0">
+								<s:property value="kairoCost"/>,
+							</s:if>	
+							<s:if test="balCost != 0">
+								<s:property value="balCost"/>,
+							</s:if>	
+							<s:if test="bodyCost != 0">	
+								<s:property value="bodyCost"/>,
+							</s:if>	
+							<s:if test="faceCost != 0">
+								<s:property value="faceCost"/>,
+							</s:if>	
+							<s:if test="aromaCost != 0">
+								<s:property value="aromaCost"/>,
+							</s:if>	
+							<s:if test="sleemingCost != 0">
+								<s:property value="sleemingCost"/>,
+							</s:if>
+							</s:iterator>)원 차이가 납니다.
+											     
+						     </p>			 
 						 </div>
 				    </div>
 		   		  <!-- 유료 1통계 -->    
@@ -162,7 +227,17 @@ $(function(){
 						 </div>
 						 <div class="panel-body">
 						     <s:include value="Highchart10Cost.jsp"/>  
-						     <p align="center">안녕하세요 김지희 입니다2. </p>			  
+						     <p align="center">
+						     	귀사와 동종 업계, 동일 지역(구 단위)에 있는 업체에 고객이 가장 많이 몰리는 시간은 (
+						     	<s:iterator value="#request.TotalCnt">
+						     		<s:property value="timeSet"/>
+						     	</s:iterator>
+						     	)시 입니다. <br>
+								그리고 귀사에 고객이 가장 많이 몰리는 시간은 (
+								<s:iterator value="#request.PersonalCnt">
+						     		<s:property value="timeSet"/>
+						     	</s:iterator>)시입니다.						     
+						     </p>			  
 						 </div>
 				    </div>
 		   		  <!-- 유료2통계 -->    
@@ -194,7 +269,16 @@ $(function(){
 						 </div>
 						 <div class="panel-body">
 						    <s:include value="Highchart11Cost.jsp"/>
-						   	<p align="center">안녕하세요 김지희 입니다3. </p>						   
+						   	<p align="center">
+						   		귀사와 동종 업계, 동일 지역(구 단위)에 있는 업체에 가장 많이 방문하는 고객의 연령대는 (
+						   		<s:iterator value="#request.TotalAge">
+						     		<s:property value="age"/>
+						     	</s:iterator>)대입니다. <Br>
+								그리고 귀사에 가장 많이 방문하는 고객의 연령대는 (
+								<s:iterator value="#request.PersonalAge">
+						     		<s:property value="age"/>
+						     	</s:iterator>)대입니다.
+						   	</p>						   
 						 </div>
 				    </div>
 		   		  <!-- 유료3통계 -->    

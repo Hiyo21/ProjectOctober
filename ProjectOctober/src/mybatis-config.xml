@@ -55,6 +55,9 @@
 		<typeAlias type="test.vo.Highchart9Cost" alias="Highchart9Cost"/>
 		<typeAlias type="test.vo.Highchart10Cost" alias="Highchart10Cost"/>
 		<typeAlias type="test.vo.Highchart11Cost" alias="Highchart11Cost"/>
+		<typeAlias type="test.vo.AutoHighchartCost1" alias="AutoHighchartCost1"/>
+		<typeAlias type="test.vo.AutoHighchartCost2" alias="AutoHighchartCost2"/>
+		<typeAlias type="test.vo.AutoHighchartCost3" alias="AutoHighchartCost3"/>
 	</typeAliases>
 	
 	<typeHandlers>

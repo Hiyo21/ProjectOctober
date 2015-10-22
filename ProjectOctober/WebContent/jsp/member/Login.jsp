@@ -20,22 +20,46 @@
 
 
 <style type="text/css">
-	#joinWindow {
-		vertical-align : center;
-		width: 500px;
-	}
-	
-	.btn-lg {
-		width: 200px;
-		height: 100px;	
-		text-align: center;
-	}
-	
-	.form-inline {
-		text-align: left;
-	}
+	body {
+    padding-top: 15px;
+    font-size: 12px
+  }
+  .main {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 10px;
+            margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+  .hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  h3 {
+    text-align: center;
+    line-height: 300%;
+  }
 
 </style>
+
 
 <script>
 
@@ -50,29 +74,6 @@ function cust() {
 	$('#type').attr('value', 'customer');
 }
 
-function check() {
-	var email = document.getElementById('email');
-	var pwd = document.getElementById('pwd');
-	var type = document.getElementById('type');
-	
-	if (type.value == '') {		
-		alert('회원 유형을 선택해주세요');
-		return false;
-	}
-	if (email.value == '') {
-		alert('이메일을 입력하세요');
-		email.focus();
-		email.select();
-		return false;
-	}
-	if (pwd.value == '') {
-		alert('비밀번호를 입력하세요');
-		pwd.focus();
-		pwd.select();
-		return false;
-	}
-	return true;
-}
 </script>
 
 <title>로그인</title>
@@ -81,13 +82,41 @@ function check() {
 <body>
 <s:include value="../Header.jsp"></s:include>
 
-	<div class = "container" id="joinWindow">
+<div class="container">
+  <div class="row">
+
+    <div class="main">
+
+      <h3>Please Log In, or <a href="#">Sign Up</a></h3>
+
+      <form role="form" action="${pageContext.request.contextPath}/member/loginProcess" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          
+          <label for="inputPassword">Password</label>
+          <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password">
+        </div>
+        <div class="checkbox pull-right">
+         
+            
+        </div>
+        <button type="submit" class="btn btn btn-primary">
+          Log In
+        </button>
+      </form>
+    
+    </div>
+    
+  </div>
+</div>
+
+<%-- 	<div class = "container" id="joinWindow">
 		<div class="well well-lg" align="center">
-			<div class="btn-group">
-				<h1><a class="btn btn-primary btn-lg" href="#" role="button" style="vertical-align:center" id="enterprise">사업자</a></h1>
-				<h1><a class="btn btn-success btn-lg" href="#" role="button" style="vertical-align:center" id="customer">이용자</a></h1>
-			</div>
 			<br><br><br>
+			<h1>Login</h1>
 			<form class="form-inline" role="form" onsubmit="return check()" action="${pageContext.request.contextPath}/member/loginProcess" method="post">
     			<div class="form-group">
     				<table>
@@ -115,7 +144,7 @@ function check() {
 			<input type="hidden" id="type" value="">
 			</form>
 		</div>
-	</div>
+	</div> --%>
 </body>
 </html>
 </html>

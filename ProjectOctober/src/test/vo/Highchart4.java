@@ -4,7 +4,6 @@ public class Highchart4 {
 	private String cstJob;
 	private int moneyflow;
 
-
 	public String getCstJob() {
 		return cstJob;
 	}

@@ -1,5 +1,13 @@
 select tname from tab;
 
+select * from working_days 
+select * from member
+
+select * from member where mem_email = 'ent6@naver.com'
+
+update ENTERPRISE set etp_template_type = 2 where etp_owner = '6길동'
+update ENTERPRISE set etp_template_type = 3 where etp_owner = '7길동'
+
 insert into zipcode values ('11111', '서울시', '강남구', '삼성동', '삼성동')
 select * from member_code;
 
@@ -9,7 +17,7 @@ insert into member_code values('3','administer');
 
 delete member_code where mem_code = 151017;
 
-select * from ENTERPRISE where etp_num = '2345678901'
+select * from service where etp_num = '1234567890'
 
 delete enterprise where etp_owner = 'enter'
 
@@ -33,6 +41,9 @@ delete member_code where mem_code = 151017;
 
 /---------------MEMBER test data---------------/
 select * from member;
+
+select * from enterprise where etp_num = 72
+
 
 select * from MEMBER m, ENTERPRISE e, PHOTO_LOCATION p where e.etp_num = '3456789017' and m.mem_email = e.etp_email and e.etp_email = p.etp_email;
 
@@ -144,6 +155,8 @@ rollback;
  * 
 select * from component;
 
+desc component 
+
 delete component where etp_num = '1111-11111';
 
 DROP TABLE COMPONENT 
@@ -156,7 +169,7 @@ drop sequence component_seq;
 select component_seq.currval from dual;
   
 /* 而댄룷?占쏙옙?占쏙옙_?占쏙옙?占쏙옙 */
-CREATE TABLE COMPONENT (
+CREATE TABLE COMPONENT2 (
 	component_num NUMBER NOT NULL, /* 占쏙옙占쏙옙占쏙옙트 占싹련뱄옙호 */
 	component_id VARCHAR2(30) NOT NULL, /* 占쏙옙占쏙옙占쏙옙트 id */
 	component_theme NUMBER, /* 占쏙옙占쏙옙占쏙옙트 占쌓몌옙 */

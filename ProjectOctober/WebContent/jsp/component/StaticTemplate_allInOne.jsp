@@ -15,33 +15,38 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script> 
 
 <script type="text/javascript">
-//편집 버튼 숨김
-	$(document).ready(function(){
-	    $(".nav-tabs a").click(function(){
-	        $(this).tab('show');
-	    });
-	    $('.nav-tabs a').on('shown.bs.tab', function(event){
-	        var x = $(event.target).text();         // active tab
-	        var y = $(event.relatedTarget).text();  // previous tab
-	        $(".act span").text(x);
-	        $(".prev span").text(y);
-	    }); 
+/* 	$(document).ready(function(){
+	    
 	    	
-	});
+	}); */
 	
 	//편집 버튼 숨김
 	$(function(){		
-		$('.edit').hide();	// top 개요 편집 버튼, info 편집 버튼, 사업자 버튼바 중 save 버튼, 서비스 편집 버튼
-		$('#saveBT').attr('disabled', true);
+		var loginId = '<%= session.getAttribute("loginId") %>';
+		var pageId = '<%= session.getAttribute("pageId") %>';
+		
+		//로그인 하지 않았거나 페이지 주인이 아닐때 
+		$('.edit').hide();
+		$('#etpBT').hide();
+		
+		//로그인 한 사람이 페이지 주인일 때 
+		if(loginId != null && loginId == pageId){
+			$('#etpBT').show();
+			
+			$('#saveBT').attr('disabled', true);
+			$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
+		}  
 	});
+	
 	
 	//편집 버튼 보이기
 	function startEdit(){
 		$('.edit').show();	// top 개요 편집 버튼, info 편집 버튼, 사업자 버튼바 중 save 버튼, 서비스 편집 버튼
-		$('#saveBT').attr('disabled', false);
 		
+		$('#saveBT').attr('disabled', false);
 		$('#editBT').attr('disabled', true); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
 	}
 	
@@ -51,8 +56,6 @@
 
 <body>
 <s:include value="../Header.jsp"></s:include>
-
-<button>확인</button>
 
 <div class="page">
 

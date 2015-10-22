@@ -21,7 +21,7 @@
 		
 
 		<action name="searchFreeKeyword" class="controller.action.SearchAction" method="takeEnterpriseList">
-			<result name="success">/jsp/search/SearchResult.jsp</result>
+			<result name="success">/jsp/EnterpriseListShowToCustomer.jsp</result>
 			<result name="error" type="redirect">toErrorPage.action</result>
 		</action>
 		
