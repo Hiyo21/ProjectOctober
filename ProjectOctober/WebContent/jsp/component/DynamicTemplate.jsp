@@ -87,7 +87,7 @@ function startEdit(){
 
 	
 	//save, load 버튼에 클릭 이벤트와 함수 연결
-    $('#saveBT').on('click', save_grid);
+    $('#saveBT').on('click', savePage);
     $('#loadBT').on('click', load_grid);
     
     //컴포넌트에 마우스가 들어가면 삭제 버튼 생성
@@ -103,12 +103,13 @@ function startEdit(){
 }
 
 
-function save_grid(){
-	
+function savePage(etpNum){
+	var etpNum2 = etpNum;
  	var componentList = _.map($('.grid-stack .grid-stack-item:visible'), function(el) {
 	    el = $(el);
 	    var node = el.data('_gridstack_node'); //node : Object와 같은 모든 것을 담을 수 있는 부모 객체
 	    var component = {  
+	    	"component.etpNum" : etpNum2,
 	    	"component.componentID" : el.attr('id'),
 	        "component.componentPosX" : node.x,
 	        "component.componentPosY" : node.y,
@@ -118,12 +119,11 @@ function save_grid(){
 	    return component; //return 받는 객체 형식
 	}); 
  
- 	console.log(componentList);
  	
  	for(var i in componentList){
-
+		console.log(componentList);
  		$.ajax({
-			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action', 
+			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum='+etpNum, 
 			type:'POST',
 			data :  componentList[i],
 			contentType: 

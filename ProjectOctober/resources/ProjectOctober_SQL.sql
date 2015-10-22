@@ -155,6 +155,8 @@ rollback;
  * 
 select * from component;
 
+desc component 
+
 delete component where etp_num = '1111-11111';
 
 DROP TABLE COMPONENT 
@@ -167,7 +169,7 @@ drop sequence component_seq;
 select component_seq.currval from dual;
   
 /* 而댄룷?占쏙옙?占쏙옙_?占쏙옙?占쏙옙 */
-CREATE TABLE COMPONENT (
+CREATE TABLE COMPONENT2 (
 	component_num NUMBER NOT NULL, /* 占쏙옙占쏙옙占쏙옙트 占싹련뱄옙호 */
 	component_id VARCHAR2(30) NOT NULL, /* 占쏙옙占쏙옙占쏙옙트 id */
 	component_theme NUMBER, /* 占쏙옙占쏙옙占쏙옙트 占쌓몌옙 */

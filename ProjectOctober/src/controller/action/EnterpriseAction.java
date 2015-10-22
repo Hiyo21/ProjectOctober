@@ -235,7 +235,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
 
-			session.put("pageId", etpEmail);
+			session.put("pageId", enterprise.getEtpEmail());
 
 			
 			switch (type) {
@@ -281,10 +281,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	public String insertComponent(){
 		System.out.println("============check Action :: insertComponet()");		
-		
+		enterprise = etpDAO.selectByEtpNum(etpNum);
+		System.err.println("============check Action :: etpNum :: " +etpNum);
+		System.err.println("============check Action :: enterprise :: " +enterprise);
 		////// 연결 후 페이지 정보 혹은 세션에서 etpnum, etpemail, etpTheme 불러오기
-		component.setEtpNum("1111-11111");
-		component.setEtpEmail("24hourplus@24hourplus.com");
+		component.setEtpEmail(enterprise.getEtpEmail());
 		component.setComponentTheme(1);
 		component.setBackgroundTheme(1);
 		
@@ -309,7 +310,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String receiveComponentList(){
 		System.out.println("============check Action :: getComponentList()");
 		component = new Component();
-		component.setEtpNum("1111-11111");
+		component.setEtpNum(etpNum);
 		///// 사업자 번호와 일치하는 컴포넌트만 갖고 오기
 		componentList = etpDAO.receiveComponentList(component.getEtpNum());
 		
