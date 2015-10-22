@@ -784,6 +784,10 @@
     </if>
   </select>
   
+  	<select id="selectSvcCategory" resultType="Service" parameterType="String">
+  		select * from service where etp_num = #{etpNum} and svc_category = #{svcCategory}
+  	</select>
+  
   	<select id="selectEtpList" resultMap="EnterpriseBaseResultMap">
   		select * from enterprise where etp_status != 0
   	</select>

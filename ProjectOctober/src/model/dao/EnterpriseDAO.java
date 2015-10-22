@@ -105,6 +105,21 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+
+	public List<Service> selectSvcCategory(String etpNum, String category) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			ServiceExample example = new ServiceExample();
+			example.or().andEtpNumEqualTo(etpNum).andSvcCategoryEqualTo(category);
+			List<Service> svcList = session.getMapper(ServiceMapper.class).selectByExample(example);
+			System.out.println("============check DAO :: selectSvcCategory :: "+svcList.size());
+			return svcList;	
+		}finally{
+			session.close();
+		}
+	}
+	
 	public List<Review> selectReviewList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
@@ -236,6 +251,13 @@ public class EnterpriseDAO extends DAOTemplate{
 	public EnterpriseMapper fromMapper(SqlSession s){
 		return s.getMapper(EnterpriseMapper.class);
 	}
+
+
+	public int updateSvcCategory(String etpNum, Integer svcNum) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 	public List<Coupon> retrieveCouponList(String etpNum) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();

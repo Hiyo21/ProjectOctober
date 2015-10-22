@@ -30,16 +30,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Enterprise enterprise;
 	private Reservation reservation;
 	private Map<String, Object> serviceMap;
-
-
 	private List<Reservation> reservationList;
-
 	private List<Enterprise> enterpriseList;
 	private List<Service> serviceList;
 	private List<String> categoryList;
 	private Map<String, Object> session;
 	private List<Coupon> couponList;
-	
 	private Member member;
 
 	//////// Component Member ////////  
@@ -54,6 +50,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Integer rsvNum;
 	private boolean canUseCoupon = false;
 	private Integer cpnNum;
+	private Integer svcNum;
+	private String category;
 
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -133,6 +131,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
+	
+		//--------------------------------------------------사업자 페이지---------------------------
+	public String updateSvcCategory() throws Exception{
+		System.out.println("===========check Action :: updateSvcCategory :: " + etpNum);
+		int result = etpDAO.updateSvcCategory(etpNum, svcNum);
+		
+		return SUCCESS;
+	}
 
 	public String receiveServiceList() throws Exception{
 		System.err.println(etpNum);
@@ -146,6 +152,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		couponList = etpDAO.retrieveCouponList(etpNum);
 		return SUCCESS; 
 		
+	}
+	
+	public String selectSvcCategory() throws Exception{
+		System.out.println("category Check :: "+category);
+		serviceList = etpDAO.selectSvcCategory(etpNum, category);
+		
+		if(serviceList != null) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String selectServiceList() throws Exception{
@@ -417,6 +431,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.session = session;
 	}
 	
+	public Integer getSvcNum() {
+		return svcNum;
+	}
+
+
+	public void setSvcNum(Integer svcNum) {
+		this.svcNum = svcNum;
+	}
+	
+	
 	//---------------------------------//
 	public Integer [] makeDow(WorkingDays wd){
 			int [] temp = {wd.getSun(), wd.getMon(), wd.getTue(), wd.getWed(), wd.getThu(),wd.getFri(), wd.getSat()};
@@ -515,5 +539,15 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setCoupon(Coupon coupon) {
 		this.coupon = coupon;
+	}
+	
+	
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }

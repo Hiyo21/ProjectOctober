@@ -8,6 +8,7 @@ import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
 import model.vo.PhotoLocation;
 import model.vo.Review;
+import model.vo.Service;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
@@ -45,7 +46,7 @@ public interface EnterpriseMapper {
 
     int updateByPrimaryKey(Enterprise record);
     
-    
+    List<Service> selectSvcCategory(String etpNum, String category);
     List<Review> selectReviewList(String etpNum);
     List<PhotoLocation> selectPhotoList(String etpNum);
     
