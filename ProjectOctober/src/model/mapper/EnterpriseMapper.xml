@@ -792,8 +792,8 @@
   		select * from review where etp_num = #{etpNum}
   	</select>
   	
-  	<select id="selectPhotoList" parameterType="String" resultType="PhotoLocation">
-  		select * from review where etp_num = #{etpNum}
+  	<select id="selectPhotoList" parameterType="String" resultMap="PhotoLocationResultMap">
+  		select * from photo_location where etp_num = #{etpNum}
   	</select>
    
   	<!--  Component Mapper  -->
@@ -809,6 +809,11 @@
 	<select id="receiveComponent" resultType="Component">
 		select * from component
 	</select>
+	
+	
+	<insert id="insertImage" parameterType="PhotoLocation">
+		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
+	</insert>
 	
 	
 	<!-- 고객 자유 검색 리스트 Mapper -->	 
