@@ -11,4 +11,35 @@
 		order by to_char(rsv_start_date,'HH24')
 	
 	</select>
+	
+	<!-- 자동문구 생성2 시작 -->
+	<select id="AutoCost2" parameterType="Enterprise" resultType="AutoHighchartCost2">
+		<!--  같은 지역, 같은 업종에 예약이 가장 많이 몰리는 시간대 -->
+		select * from
+		(
+			SELECT to_char(rsv_start_date,'HH24') timeSet, count(*) countNum  FROM 
+			ENTERPRISE E, RESERVATION R
+			WHERE etp_ADDRESS LIKE '%' || #{etpAddress} || '%' and etp_superclass=(select etp_superclass from  enterprise where etp_num =#{etpNum})
+			AND E.etp_num = R.etp_num and E.etp_email = R.etp_email
+			group by to_char(rsv_start_date,'HH24')
+			order by to_char(rsv_start_date,'HH24'), countnum desc
+ 		)
+ 		where rownum =1	
+	</select>
+	
+	<select id="AutoCost21" parameterType="Enterprise" resultType="AutoHighchartCost2">
+		<!--  내 사업체의 예약이 가장 많이 몰리는 시간대 -->
+		select * from
+			(
+			    select to_char(rsv_start_date,'HH24') as timeset,count(*) as cnt  from
+			    RESERVATION
+			    where etp_num =#{etpNum}
+			    group by to_char(rsv_start_date,'HH24')
+			    order by cnt desc
+			)
+		where rownum  = 1	
+	</select>
+	
+	
+	<!-- 자동문구 생성2 끝 -->
 </mapper>

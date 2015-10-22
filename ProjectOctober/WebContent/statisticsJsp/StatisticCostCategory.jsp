@@ -227,7 +227,17 @@ $(function(){
 						 </div>
 						 <div class="panel-body">
 						     <s:include value="Highchart10Cost.jsp"/>  
-						     <p align="center">안녕하세요 김지희 입니다2. </p>			  
+						     <p align="center">
+						     	귀사와 동종 업계, 동일 지역(구 단위)에 있는 업체에 고객이 가장 많이 몰리는 시간은 (
+						     	<s:iterator value="#request.TotalCnt">
+						     		<s:property value="timeSet"/>
+						     	</s:iterator>
+						     	)시 입니다. <br>
+								그리고 귀사에 고객이 가장 많이 몰리는 시간은 (
+								<s:iterator value="#request.PersonalCnt">
+						     		<s:property value="timeSet"/>
+						     	</s:iterator>)시입니다.						     
+						     </p>			  
 						 </div>
 				    </div>
 		   		  <!-- 유료2통계 -->    
@@ -259,7 +269,16 @@ $(function(){
 						 </div>
 						 <div class="panel-body">
 						    <s:include value="Highchart11Cost.jsp"/>
-						   	<p align="center">안녕하세요 김지희 입니다3. </p>						   
+						   	<p align="center">
+						   		귀사와 동종 업계, 동일 지역(구 단위)에 있는 업체에 가장 많이 방문하는 고객의 연령대는 (
+						   		<s:iterator value="#request.TotalAge">
+						     		<s:property value="age"/>
+						     	</s:iterator>)대입니다. <Br>
+								그리고 귀사에 가장 많이 방문하는 고객의 연령대는 (
+								<s:iterator value="#request.PersonalAge">
+						     		<s:property value="age"/>
+						     	</s:iterator>)대입니다.
+						   	</p>						   
 						 </div>
 				    </div>
 		   		  <!-- 유료3통계 -->    

@@ -16,6 +16,8 @@ import model.vo.Enterprise;
 import test.dao.CostDAO;
 import test.vo.AutoHighchartCost1;
 import test.vo.AutoHighchartCost1Add;
+import test.vo.AutoHighchartCost2;
+import test.vo.AutoHighchartCost3;
 import test.vo.Highchart10Cost;
 import test.vo.Highchart11Cost;
 import test.vo.Highchart1Add;
@@ -350,44 +352,51 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 			}
 			request.put("autoList", autoList);
 		}
-		
+		//유료통계서비스1- 자동문구 생성1끝
 	
 		
+		//유료통계서비스2- 자동문구 생성2시작
+		Enterprise e2 = enterprise.selectByEtpEmail(application.get("loginId").toString());
+		System.err.println(e2.getEtpAddress()+"여기주소는");
+		List<AutoHighchartCost2> list4 = dao.autoHighchartCost2(e2);
+		List<AutoHighchartCost2> list5 = dao.autoHighchartCost21(e2);
 		
-		System.out.println(autoList.toString()+"자동??");
-		/*List<AutoHighchartCost1Add> listWedding = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listGyung = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listKairo = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listBal = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listBody = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listFace = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listAroma = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listSleeming = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listTai = new ArrayList<AutoHighchartCost1Add>();
+		System.out.println(list4+"list4");
+		System.out.println(list5+"list5");
 		
-		listWedding.add(c1);
-		listGyung.add(c2);
-		listKairo.add(c3);
-		listBal.add(c4);
-		listBody.add(c5);
-		listFace.add(c6);
-		listAroma.add(c7);
-		listSleeming.add(c8);
-		listTai.add(c9);
-		
-		request.put("listWedding", listWedding);
-		request.put("listGyung", listGyung);
-		request.put("listKairo", listKairo);
-		request.put("listBal", listBal);
-		request.put("listBody", listBody);
-		request.put("listFace", listFace);
-		request.put("listAroma", listAroma);
-		request.put("listSleeming", listSleeming);
-		request.put("listTai", listTai);
-		*/
+		request.put("TotalCnt", list4);
+		request.put("PersonalCnt", list5);		
+		//유료통계서비스2- 자동문구 생성2끝
 		
 		
-	/*	System.out.println(listWedding.toString()+"조건부셔버려");*/
+		
+		//유료통계서비스3- 자동문구 생성3시작
+		Enterprise e3 = enterprise.selectByEtpEmail(application.get("loginId").toString());
+		List<AutoHighchartCost3> list6 = dao.autoHighchartCost3(e3);
+		List<AutoHighchartCost3> list7 = dao.autoHighchartCost31(e3);
+		
+		System.out.println(list6+"list6");
+		System.out.println(list7+"list7");
+		
+		request.put("TotalAge", list6);
+		request.put("PersonalAge", list7);
+		
+		//유료통계서비스3- 자동문구 생성3끝
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		return SUCCESS;
 	}
