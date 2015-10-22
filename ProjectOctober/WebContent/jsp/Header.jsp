@@ -58,6 +58,7 @@
 							<h1><a href="toMainPage.action">Service Name</a></h1>
 						</div>
 						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+						 
 							<br>
 							<a class="btn btn-info btn-block header-newmember-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span> 회원등록</a>
 							
@@ -99,6 +100,7 @@
 				        </div>				        
 				        <div class="col-md-5 col-md-push-2">
 				        	<a href="#~~method~~(#session.loginId)" data-toggle="notification-popover" data-placement="bottom" title="${session.loginName}님의 알림" data-content="여기서가 문제. 리스트를 받아와야 함"><button class="btn btn-warning btn-sm block"> 알림 <span class="badge">1<!-- 여기에는  notification 넘버...어떻게??--></span></button></a>
+				        	<a href="${pageContext.request.contextPath}/통계.action" class="btn btn-danger btn-sm">통계</a>
 				        	<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-sm">메인페이지</a>
 						<s:if test="#session.memCode == 1">
 							<a href="${pageContext.request.contextPath}/member/toEnterpriseMyPage.action" class="btn btn-primary btn-sm">마이페이지</a>
