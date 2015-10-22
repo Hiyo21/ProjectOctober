@@ -542,8 +542,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 
 
-	public Map<String, Object> getServiceMap() {
-		return serviceMap;
+
+
+
+	public Map<String, Object> getSession() {
+		return session;
 	}
 
 
@@ -552,9 +555,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 
 
-	public void setServiceMap(Map<String, Object> serviceMap) {
-		this.serviceMap = serviceMap;
-	}
 
 
 	public void setCpnNum(Integer cpnNum) {
