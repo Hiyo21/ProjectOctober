@@ -58,7 +58,6 @@ public class EnterpriseDAO extends DAOTemplate{
 	}
 	
 	
-	
 	public Integer deleteReservation(Reservation reservation){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
@@ -89,7 +88,7 @@ public class EnterpriseDAO extends DAOTemplate{
 			ServiceExample example = new ServiceExample();
 			example.or().andEtpNumEqualTo(etpNum);
 			List<Service> svcList = session.getMapper(ServiceMapper.class).selectByExample(example);
-			System.out.println("============check DAO :: receiveServiceList :: "+svcList.size());
+			System.err.println("============check DAO :: receiveServiceList :: "+svcList.size());
 			return svcList;	
 		}finally{
 			session.close();
@@ -114,8 +113,10 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int updateSvcCategory(Service service) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			session.getMapper(ServiceMapper.class).updateByPrimaryKey(service);
-			return 0;
+			int result = session.getMapper(ServiceMapper.class).updateByPrimaryKey(service);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
 		}finally{
 			session.close();
 		}

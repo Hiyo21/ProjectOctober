@@ -18,9 +18,8 @@
 #header {
    /*  background-color:#F2F2F2;
     color:#fff; */
-   background: url("../image/Home.jpg") 
-	
-   
+   background: url("../image/img-main2.png") 	
+  
 }
 	
 	
@@ -33,7 +32,7 @@
 	width: 110px;
 } 
 
-	
+
 </style>
 </head>
 <body>
@@ -47,6 +46,8 @@
 			</div>
 		</div>
 
+
+<!-- 헤더 시작 -->
 		<div class="hidden-xs header-upper">
 			<div class="container hidden-xs">
 				<s:if test="#session.loginId == null">
@@ -73,12 +74,10 @@
 							      <div class="modal-body" style="vertical-align:center">
 							      <br><br><br><br><br>							     
 								        <div class="col-md-6">
-								        	 <a class="btn btn-default btn-lg btn_block" href="member/toEnterpriseRegistrationPage.action" 
-												role="button" style="vertical-align:center" id="etpBT"><h3>사업자</h3></a>
+								        	 <a href="member/toEnterpriseRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="etpBT">사업자</button></h1></a>								        	
 								        </div>
 								        <div class="col-md-6">
-								        	 <a class="btn btn-default btn-lg btn_block"" href="member/toCustomerRegistrationPage.action" 
-												role="button" style="vertical-align:center" id="cstBT"><h3>이용자</h3></a>
+								        	 <a href="member/toCustomerRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="cstBT">이용자</button></h1></a>								        	
 								        </div>   
 										<br><br><br><br><br><br><br><br><br><br>			
 									

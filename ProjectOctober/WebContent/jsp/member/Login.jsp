@@ -82,7 +82,38 @@ function cust() {
 <body>
 <s:include value="../Header.jsp"></s:include>
 
-	<div class = "container" id="joinWindow">
+<div class="container">
+  <div class="row">
+
+    <div class="main">
+
+      <h3>Please Log In, or <a href="#">Sign Up</a></h3>
+
+      <form role="form" onsubmit="return check()" action="${pageContext.request.contextPath}/member/loginProcess" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          
+          <label for="inputPassword">Password</label>
+          <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password">
+        </div>
+        <div class="checkbox pull-right">
+         
+            
+        </div>
+        <button type="submit" class="btn btn btn-primary">
+          Log In
+        </button>
+      </form>
+    
+    </div>
+    
+  </div>
+</div>
+
+<%-- 	<div class = "container" id="joinWindow">
 		<div class="well well-lg" align="center">
 			<br><br><br>
 			<h1>Login</h1>
@@ -113,7 +144,7 @@ function cust() {
 			<input type="hidden" id="type" value="">
 			</form>
 		</div>
-	</div>
+	</div> --%>
 </body>
 </html>
 </html>

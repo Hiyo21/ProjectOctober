@@ -16,9 +16,12 @@
 	<jsp:include page="../Header.jsp">
 	<div class = "container" id="selectType">
 		<div class="well well-lg" align="center">
-			<div class="btn-group">
-				<h1><a class="btn btn-primary btn-lg" href="EnterpriseRegistration1.jsp" role="button" style="vertical-align:center">사업자</a></h1>
+			<div class="col-md-6">
+				<a href="EnterpriseRegistration1.jsp"><h1><button type="button" class="btn btn-primary btn-block"  role="button" style="vertical-align:center">사업자</button></h1></a>				
 				<h1><a class="btn btn-success btn-lg" href="CustomerRegistration.jsp" role="button" style="vertical-align:center">이용자</a></h1>
+			</div>
+			<div class="col-md-6">
+			
 			</div>
 		</div>
 	</div>
