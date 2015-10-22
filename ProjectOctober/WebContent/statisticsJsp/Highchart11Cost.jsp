@@ -5,6 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+	#container111 {
+		height: 400px; 
+		position: relative; 
+		width: 800px;
+		font-size: 150%;
+	}
+	
+	.container {
+		width: 70%;
+  		height: 70%;
+  		margin: 40px auto;
+	}
+</style>
 <script type="text/javascript">
 
 $(function () {
@@ -55,6 +69,6 @@ $(function () {
 <title>같은 업종, 같은지격에 속한 업체들의 방문 고객 연령대</title>
 </head>
 <body>
-<div id="container111" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+<div id="container111" class="container"></div>
 </body>
 </html>

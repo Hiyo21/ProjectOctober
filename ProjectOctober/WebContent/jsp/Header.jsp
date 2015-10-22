@@ -239,10 +239,10 @@
 							      <div class="modal-body">
 							      <br><br><br>
 							      <br><br>
-							        <a class="btn btn-primary btn-lg" href="member/toEnterpriseRegistrationPage.action" 
+							        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/member/toEnterpriseRegistrationPage.action" 
 									role="button" style="vertical-align:center" id="etpBT"><h1>사업자</h1></a>
 				
-									<a class="btn btn-success btn-lg" href="member/toCustomerRegistrationPage.action" 
+									<a class="btn btn-success btn-lg" href="${pageContext.request.contextPath}/member/toCustomerRegistrationPage.action" 
 									role="button" style="vertical-align:center" id="cstBT"><h1>이용자</h1></a>
 									<br><br><br><br><br>
 							      </div>
