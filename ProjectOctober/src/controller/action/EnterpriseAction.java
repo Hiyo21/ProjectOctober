@@ -45,12 +45,15 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	//////// Component Member ////////  
 	private Component component;
 	private List<Component> componentList;
+	private Coupon coupon;
 
 	private String etpNum;
 	private String etpNum1;
 	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
+	private boolean canUseCoupon = false;
+	private Integer cpnNum;
 
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -140,7 +143,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveCouponList() throws Exception{
-		System.err.println(etpNum);
 		couponList = etpDAO.retrieveCouponList(etpNum);
 		return SUCCESS; 
 		
@@ -215,6 +217,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(reservation.getRsvTitle() == null || reservation.getRsvTitle().trim().length() == 0) reservation.setRsvTitle("제목 없음");
 		int result = etpDAO.updateReservationDetailsByEnterprise(reservation);
 		System.err.println(result);
+		return SUCCESS;
+	}
+	
+	public String checkCoupon() throws Exception{
+		System.err.println(cpnNum);
+		coupon = etpDAO.checkCoupon(cpnNum);
+		if(coupon != null)coupon.setCanUseCoupon(true);
 		return SUCCESS;
 	}
 	
@@ -307,6 +316,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}
 		return SUCCESS;			
 	}
+	
+	
 	
 	
 	
@@ -484,5 +495,25 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setCouponList(List<Coupon> couponList) {
 		this.couponList = couponList;
+	}
+
+
+	public boolean isCanUseCoupon() {
+		return canUseCoupon;
+	}
+
+
+	public void setCanUseCoupon(boolean canUseCoupon) {
+		this.canUseCoupon = canUseCoupon;
+	}
+
+
+	public Coupon getCoupon() {
+		return coupon;
+	}
+
+
+	public void setCoupon(Coupon coupon) {
+		this.coupon = coupon;
 	}
 }

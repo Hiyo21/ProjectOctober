@@ -45,6 +45,14 @@
 		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
 			<result type="json" />
 		</action>
+		
+		<action name="retrieveCouponList" class="controller.action.EnterpriseAction" method="retrieveCouponList">
+			<result type="json" />
+		</action>
+		
+		<action name="checkCoupon" class="controller.action.EnterpriseAction" method="checkCoupon">
+			<result type="json" />
+		</action>
 
 		
 		
