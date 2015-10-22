@@ -271,4 +271,8 @@ public class EnterpriseDAO extends DAOTemplate{
 			return session.getMapper(EnterpriseMapper.class).retrieveCouponList(etpNum);
 		}finally{session.close();}
 	}
+
+	public Coupon checkCoupon(Integer cpnNum) {
+		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(cpnNum);});
+	}
 }

@@ -77,4 +77,6 @@ public interface EnterpriseMapper {
 
 	List<Coupon> retrieveCouponList(String etpNum);
 
+	Coupon checkCoupon(Integer cpnNum);
+
 }
