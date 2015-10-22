@@ -22,13 +22,6 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 		cstDAO = DAOFactory.createCustomerDAO();
 	}
 	
-	
-	//----------------------------------------//
-	
-	
-	
-	
-	//----------------------------------------//
 
 	public Customer getCustomer() {
 		return customer;

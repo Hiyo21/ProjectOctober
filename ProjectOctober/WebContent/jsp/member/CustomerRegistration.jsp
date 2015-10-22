@@ -19,9 +19,9 @@
 	var year = 1920;
 	var month = 0;
 	var date = 0;
+	var cstBirthday = '';
 	
 	$(function(){
-		
 		$('[data-toggle="notification-popover"]').popover();
 	
 		for(var i = 1920; i < 2015 ; i++){
@@ -35,6 +35,7 @@
 		$("#month").change(function(){
 			console.log($(this).val());
 			month = $(this).val();
+			$("#date option").remove();
 			if(month == 2){
 				for(var i= 1 ; i <=28 ; i++){
 					$("#date").append("<option value='" + i + "' class='yearselect'>" + i + "</option>")
@@ -44,25 +45,58 @@
 					$("#date").append("<option value='" + i + "' class='monthselect'>" + i + "</option>");
 				}
 			}else{
-				document.getElementById("date").empty();
 				for(var i= 1 ; i <=31 ; i++){
 					$("#date").append("<option value='" + i + "' class='dateselect'>" + i + "</option>");  
 				}
 			}
+			$("#bdayResult").attr('value',document.getElementById('year').value + '-' + (parseInt(document.getElementById('month').value)+1) + '-' + document.getElementById('date').value);
 		});
 	
 		$('#date').change(function(){
 			console.log($(this).val());
 			date = $(this).val();
+			$("#bdayResult").attr('value',document.getElementById('year').value + '-' + (parseInt(document.getElementById('month').value)+1) + '-' + document.getElementById('date').value);
 		});
 	
 		$('#year').change(function(){
 			console.log($(this).val());
 			year = $(this).val();
+			$("#bdayResult").attr('value',document.getElementById('year').value + '-' + (parseInt(document.getElementById('month').value)+1) + '-' + document.getElementById('date').value);
 		});
+		
+		$('#phone').change(function(){
+			$("#phoneResult").attr('value', document.getElementById('phone').value + '-' + document.getElementById('phone1').value + '-' + document.getElementById('phone2').value);
+		});
+		$('#phone1').keyup(function(){
+			$("#phoneResult").attr('value', document.getElementById('phone').value + '-' + document.getElementById('phone1').value + '-' + document.getElementById('phone2').value);
+		});
+		$('#phone2').keyup(function(){
+			$("#phoneResult").attr('value', document.getElementById('phone').value + '-' + document.getElementById('phone1').value + '-' + document.getElementById('phone2').value);
+		});
+		$('#phone1').click(function(){
+			$("#phoneResult").attr('value', document.getElementById('phone').value + '-' + document.getElementById('phone1').value + '-' + document.getElementById('phone2').value);
+		});
+		$('#phone2').click(function(){
+			$("#phoneResult").attr('value', document.getElementById('phone').value + '-' + document.getElementById('phone1').value + '-' + document.getElementById('phone2').value);
+		});
+		$('#address1').click(function(){
+			$("#addressResult").attr('value',document.getElementById('address1').value + ' ' + document.getElementById('address2').value);
+		});
+		$('#address2').click(function(){
+			$("#addressResult").attr('value',document.getElementById('address1').value + ' ' + document.getElementById('address2').value);
+		});
+		$('#address1').keyup(function(){
+			$("#addressResult").attr('value',document.getElementById('address1').value + ' ' + document.getElementById('address2').value);
+		});
+		$("#address2").keyup(function(){
+			$("#addressResult").attr('value',document.getElementById('address1').value + ' ' + document.getElementById('address2').value);
+		});
+	});
 	
-	
-		$('#send').click(function(){
+	function sendB(){
+			$("#phoneResult").attr('value', document.getElementById('phone').value + '-' + document.getElementById('phone1').value + '-' + document.getElementById('phone2').value);
+			$("#addressResult").attr('value',document.getElementById('address1').value + ' ' + document.getElementById('address2').value);
+			
 			var errorMessage = '';
 			if($('#name').val().trim().length == 0) errorMessage += "이름을 입력하세요!\r\n";
 			if($('#email').val().trim().length == 0) errorMessage += "이메일을 입력하세요!\r\n";
@@ -71,6 +105,7 @@
 			if($('#password').val().trim() != $('#passwordck').val().trim()) errorMessage += "패스워드가 확인란과 일치하지 않습니다.\r\n";
 			if($('#phoneResult').val().trim().length == 0) errorMessage += "전화번호를 입력하세요!\r\n";
 		 	if($('#addressResult').val().trim().length == 0) errorMessage += "주소를 입력하세요!\r\n";
+		 	if($('#address2').val().trim().length == 0) errorMessage += "상세주소를 입력하세요!\r\n";
 			if($('#bdayResult').val().trim().length == 0) errorMessage += "생년월일을 입력하세요!\r\n";
 	
 			if(errorMessage.length != 0){
@@ -79,14 +114,37 @@
 			}else{
 				$(this).submit();
 			}
-		});
+		//document.getElementById('year').value + '-' + document.getElementById('month').value + '-' + document.getElementById('date').value;
+		//$("#year").val() + "-" + $("#month").val() + $("#date").val();
+	};
 	
-		var cstBirthday = document.getElementById('year').value + '-' + document.getElementById('month').value + '-' + document.getElementById('date').value;
-		
-		$("#button1").click(function(){    	
-			alert(cstBirthday);		
-   		 });
-		});
+	$(function(){
+		$("#email").click(function(){
+			console.log($('#email').val());
+			var tempEmail = $('#email').val();
+			$.ajax({
+				url:"member/checkCustomerDuplicateEmail.action",
+				type: "POST",
+				data: {"emailInput" : tempEmail},
+				cache: false,
+				success: function(data){
+					if(tempEmail.length == 0){
+						$('#duplicateCheckResultEmail').html('');
+					}
+					else{
+						if(data.emailExists){
+							$('#duplicateCheckResultEmail').html('사용 가능합니다.').css('color', 'green');
+							$('#send').attr('disabled', false);
+						}
+						else{
+							$('#duplicateCheckResultEmail').html('사용 불가능합니다.').css('color', 'red');
+							$('#send').attr('disabled', true);
+						}
+					}
+				}			
+			});
+		});	
+	});
 	
 	function zipcodeOpen() {
 		window.open("${pageContext.request.contextPath}/member/toZipcodePage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
@@ -102,7 +160,7 @@
 <h2 align="center">이용자 회원가입</h2>
 
 <!-- 본문 시작 -->
-<form name="customerRegistration" action="${pageContext.request.contextPath}/member/customerRegistration.action" method="post" >
+<form name="customerReg" action="customerRegistration.action" method="post" onsubmit="return sendB();">
 <div class="section">
       <div class="container">
         <div class="row">
@@ -114,6 +172,7 @@
           	<br>
           	<label for="memEmail">이메일 주소</label>
 			<s:textfield class="form-control" id="email" name="member.memEmail" placeholder="ID로 사용됩니다."/>
+			<p id="duplicateCheckResultEmail"></p>
 			<br>
 			<label for="memPassword">비밀번호</label>
 			<s:password class="form-control" id="password" name="member.memPassword"/>					
@@ -123,7 +182,7 @@
 			<br>
 
 			<label for="member.memGender">성별</label><br>
-			<input type="radio" name="member.memGender" value="M">남&nbsp;&nbsp;&nbsp;<input type="radio" name="member.memGender" value="F">여			
+			<input type="radio" id="maleRB" name="customer.cstGender" value="m" checked>남&nbsp;&nbsp;&nbsp;<input type="radio" id="femaleRB" name="member.memGender" value="f">여			
 			<br>							
           </div>
           
@@ -133,7 +192,7 @@
 					<div class="form-inline">
 						<div class="form-group">
 							<select id="year" class="form-control">
-								<option disabled selected hidden>년도선택</option>
+								<option disabled selected>년도선택</option>
 
 							</select>&nbsp;&nbsp;
 							
@@ -145,7 +204,7 @@
 									
 		          			</select>
 		          			<br>
-		          			<input type="hidden" id="bdayResult" name="customer.cstBirthday" value=""></input>
+		          			<input type="hidden" id="bdayResult" name="customer.cstBirthdayTemp" value=""></input>
 		          			<br>
 		          			
 		          			<label for="phone">전화번호</label>
@@ -180,7 +239,6 @@
 						<s:textfield class="form-control" id="address2" placeholder="상세주소를 입력하세요" size="70"/>		         
 						</div>				
 					</div>
-
 						<input type="hidden" id="addressResult" name="customer.cstAddress" value=""></input>
 				</div>
 			</div>
@@ -201,7 +259,7 @@
 				<br>
 				<br>
 				
-				<input type="submit" class="btn btn-info" id="send" onclick="return sendForm()" value="회원가입">&nbsp;&nbsp;&nbsp;<input type="button" id="button1" class="btn btn-warning" value="취소">
+				<input type="submit" class="btn btn-info" id="send" value="회원가입">&nbsp;&nbsp;&nbsp;<input type="button" id="button1" class="btn btn-warning" value="취소">
      		 	<input type="hidden" id="memberCode" name="member.memCode" value="1">   		 	
      			</div>
      		</div>
