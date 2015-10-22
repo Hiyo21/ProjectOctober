@@ -108,6 +108,6 @@ $(function () {
 <title>직업별 인기가 있는 서비스</title>
 </head>
 <body>
-<div id="container12" style="min-width: 1000px; height: 500px; max-width: 1000px; margin: 0 auto"></div>
+<div id="container12" style="min-width: 1000px; height: 500px; max-width: 1000px; margin: 0 auto;"></div>
 </body>
 </html>

@@ -88,6 +88,6 @@ $(function () {
 <title>직업별 방문 고객 수</title>
 </head>
 <body>
-<div id="container11" style="min-width: 1000px; height: 500px; max-width: 1000px; margin: 0 auto"></div>
+<div id="container11" style="min-width: 1000px; height: 500px; max-width: 1000px; margin: 0 auto;"></div>
 </body>
 </html>
