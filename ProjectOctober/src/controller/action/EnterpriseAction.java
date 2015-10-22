@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +44,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
-	private Integer svcNum;
 	private String category;
 
 	public EnterpriseAction() {
@@ -130,9 +128,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	//--------------------------------------------------사업자 페이지---------------------------
 	public String updateSvcCategory() throws Exception{
 		System.out.println("===========check Action :: updateSvcCategory :: " + etpNum);
-		int result = etpDAO.updateSvcCategory(etpNum, svcNum);
-		
-		return SUCCESS;
+		int result = etpDAO.updateSvcCategory();
+		if(result>0) return SUCCESS;
+		else return ERROR;
 	}
 
 	//
@@ -410,15 +408,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
-	}
-	
-	public Integer getSvcNum() {
-		return svcNum;
-	}
-
-
-	public void setSvcNum(Integer svcNum) {
-		this.svcNum = svcNum;
 	}
 
 
