@@ -23,7 +23,7 @@
 <script src="${pageContext.request.contextPath}/Polymer/components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
   
   
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+ <%--  <script src="bower_components/jquery/dist/jquery.min.js"></script> --%>
 
 <title>검색 결과</title>
 </head>

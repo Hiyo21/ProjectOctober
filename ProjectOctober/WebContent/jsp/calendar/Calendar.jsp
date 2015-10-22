@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
@@ -125,9 +126,7 @@
 	        				console.log("receive service list error");
 	        			}
 	        		});
-		        	
 		        	//--------------- 업체 당 변경 가능한 서비스 리스트 가져오기 --------------//
-		        	
 		        	$.ajax({
 	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
 	        			dataType: 'json',
@@ -243,7 +242,22 @@
 					
 					
 					//------------------------------Insert 기능 시작 ----------------------------//
-				
+						$.ajax({
+	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+	        			dataType: 'json',
+	        			data: {"etpNum":${etpNum}},
+	        			success: function(data){
+	        				var serviceList = [];
+	        				var services = data.serviceList;
+	        				$("#inputServiceList").append("<option value='' disabled selected hidden>선택하세요.</option>");
+	        				$.each(services, function(i, d){
+	        					$("#inputServiceList").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
+	        				});   				
+	        			},
+	        			error: function(){
+	        				console.log("receive service list error");
+	        			}
+	        		});
 					
 					// ----------------------- 약관 동의 안 하면, 못하게 하기 -------------------------//
 					
@@ -262,6 +276,7 @@
 						var inputDescription = $('#inputDescription').val();
 						var inputStartTime = $('#inputStartTimeHidden').val();
 						var inputEndTime = $('#inputEndTimeHidden').val();
+						var inputService = document.getElementById('inputServiceList').value;
 						var inputEmployeeGender = ''; 
 							if($('#genderCheckField').html() == '남성') {
 								$('#genderCheckField').val('m');
@@ -273,7 +288,7 @@
 							console.log(inputEmployeeGender);
 							console.log()
 						var inputStatus = $('#inputStatus').val();
-							var reservation = {};
+						var reservation = {};
 							
 			//---------------각각의 그릇을 reservation이라는 객체 안에 담기.-----------------------//
 						reservation = {
@@ -282,8 +297,9 @@
 								start: inputStartTime,
 								end: inputEndTime,
 								employeeGender: inputEmployeeGender,
-								rsvStatus : inputStatus
-						}
+								rsvStatus : inputStatus,
+								svcList : inputService
+						};
 						
 			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
 						$.ajax({
@@ -302,12 +318,10 @@
 						});
 						$(this).unbind();
 					});
-					
+					calendar.fullCalendar('unselect');
+					$(this).unbind();
+				},	
 			//------------------------------ insert 마무리 작업  -----------------------------------//
-					
-				calendar.fullCalendar('unselect');
-				$(this).unbind();
-			},
 			
 			themeButtonIcons: {
 				prev: 'circle-triangle-w',
@@ -496,7 +510,7 @@
 					};
 				};
 				$(this).unbind();
-			},	
+			}	
 		});
 	});	
 </script>
@@ -527,61 +541,51 @@
 		            	<form action='test' id='inputForm' data-toggle='validator' role='form'>
 		            		<table class='table table-striped table-bordered'>
 							<tr>
-							<div class='form-group'>
-								<td><label for='inputTitle' class='control-label'>일정 제목: </label></td><td><input type='text' id='inputTitle' name='reservation.rsvTitle' required class='form-control'></td>
-							</div>
-					</tr>
-					
-				
-					<div class='form-group'>
-					<tr>
-					<td><label for='inputDescription' class='control-label'>서비스 Description: </label></td><td><input type='text' id='inputDescription' name='reservation.service.svcDescription' required class='form-control'/><span class='glyphicon form-control-feedback' aria-hidden='true'></span>
-					</tr>
-					</div>
-				
-					<div class='form-group'>
-					<tr>
-					<td><label for='inputDescription' class='control-label'>서비스 시작 시간: </label></td><td><input type='text' id='inputStartTime' value='" + start.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.start' id='inputStartTimeHidden' value='" + start.toISOString() + "'/></td>
-					</tr>
-					</div>
-					
-					<div class='form-group'>
-					<tr>
-					<td><label for='inputDescription' class='control-label'>서비스 끝 시간: </label></td><td><input type='text' id='inputEndTime' value='" + end.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.end' id='inputEndTimeHidden' value='" + end.toISOString() + "'/></td>
-					</tr>
-					
-					//서비스 버튼 클릭시 받아오는 값이 된다 : 서비스 비용
-					<div class='form-group'>
-					<tr>
-					<td><label for='inputPrice' class='control-label'>결제금: </label></td><td><input type='text' id='inputPrice' name='reservation.service.svcPrice' class='form-control'/></td>
-					</tr>
-					</div>
-					
-					//성별
-					<div class='form-group'>
-					<tr>
-					<td><label for='inputEmployeeGenderCheckBox' class='control-label'>종업원 성별: </label></td><td><input type='checkbox' checked data-toggle='toggle' data-on='여성' data-off='남성' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='form-control'/></td>
-					</tr>
-					</div>
-					
-					
-					//약관 동의
-					<div class='form-group'>
-					<tr>
-					<td colspan='2' align='center'><textarea rows='4' cols='50' id='insertAgreementTextArea' class='form-control'>Lorem Ipsum </textarea></td>
-					</tr>
-					</div>
-					
-					<div class='form-group'>
-					<tr>
-					<td align='center' colspan='2'>서비스 약관에 동의합니다.<input type='checkbox' id='insertAgreementCheckbox'/></td>
-					</tr>
-					</div>
-					
-					<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''></p>
-					<input type='hidden' id='inputStatus' name='reservation.rsvStatus' value='1'/>
-					</table>
-					</form>
+								<td><label for='inputTitle' class='control-label'>일정 제목: </label></td>
+								<td><input type='text' id='inputTitle' name='reservation.rsvTitle' required class='form-control'></td>
+							</tr>
+							
+							<!--  서비스 선택 Select 재활용 -->
+							<tr>
+								<td><label for='inputServiceList' ></label></td>
+								<td><select id="inputServiceList"></select></td>
+							</tr>
+							
+							
+							
+							<tr>
+								<td><label for='inputDescription' class='control-label'>서비스 Description: </label></td>
+								<td><input type='text' id='inputDescription' name='reservation.service.svcDescription' required class='form-control'/><span class='glyphicon form-control-feedback' aria-hidden='true'></span>
+							</tr>
+							<tr>
+								<td><label for='inputDescription' class='control-label'>서비스 시작 시간: </label></td>
+								<td><input type='text' id='inputStartTime' value='" + start.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.start' id='inputStartTimeHidden' value='" + start.toISOString() + "'/></td>
+							</tr>
+							<tr>
+								<td><label for='inputDescription' class='control-label'>서비스 끝 시간: </label></td>
+								<td><input type='text' id='inputEndTime' value='" + end.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.end' id='inputEndTimeHidden' value='" + end.toISOString() + "'/></td>
+							</tr>
+								<!-- 서비스 버튼 클릭시 받아오는 값이 된다 : 서비스 비용 -->
+							<tr>
+								<td><label for='inputPrice' class='control-label'>결제금: </label></td>
+								<td><input type='text' id='inputPrice' name='reservation.service.svcPrice' class='form-control'/></td>
+							</tr>
+							<!-- 성별 -->
+							<tr>
+								<td><label for='inputEmployeeGenderCheckBox' class='control-label'>종업원 성별: </label></td>
+								<td><input type='checkbox' checked data-toggle='toggle' data-on='여성' data-off='남성' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='form-control'/></td>
+							</tr>
+					<!-- 약관 동의 -->
+							<tr>
+								<td colspan='2' align='center'><textarea rows='4' cols='50' id='insertAgreementTextArea' class='form-control'>Lorem Ipsum </textarea></td>
+							</tr>
+							<tr>
+								<td align='center' colspan='2'>서비스 약관에 동의합니다.<input type='checkbox' id='insertAgreementCheckbox'/></td>
+							</tr>
+							</table>
+							<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''>
+							<input type='hidden' id='inputStatus' name='reservation.rsvStatus' value='1'/>
+							</form>
 		            	
 		            	
 		            	*메뉴: <span id="insertModalEventTitle"> </span><br>

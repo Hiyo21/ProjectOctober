@@ -1,5 +1,22 @@
 select tname from tab;
 
+insert into zipcode values ('11111', '서울시', '강남구', '삼성동', '삼성동')
+select * from member_code;
+
+insert into member_code values('1','enterprise');
+insert into member_code values('2','customer');
+insert into member_code values('3','administer');
+
+delete member_code where mem_code = 151017;
+
+
+select * from zipcode;
+	zipcode VARCHAR2(16) NOT NULL, /* 우편번호 */
+	area1 VARCHAR2(255) NOT NULL, /* 주소범위1 */
+	area2 VARCHAR2(255), /* 주소범위2 */
+	area3 VARCHAR2(255), /* 주소범위3 */
+	area4 VARCHAR2(255) /* 주소범위4 */
+
 /------------MEMBER_CODE test data----------------/
 select * from member_code;
 
