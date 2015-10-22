@@ -26,7 +26,9 @@
 	src:url("NanumGothic.eot");
 	src:local(""), url("NanumGothic.woff") format("woff");
 }
-
+tab-content{
+	background-color: purple;
+}
 
 
  body{	
