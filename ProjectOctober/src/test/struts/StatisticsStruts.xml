@@ -99,7 +99,6 @@
 			</result>		
 		</action>
 		
-		
 		<!-- 직업별 선호하는 서비스 -->
 		 <action name="highchart12" class="test.action.Action12" method="highchart12">
 			<result name="success" type="chain">
@@ -116,15 +115,14 @@
 		
 		
 		
-		
-		
-		
+	
 		<!-- 공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백 -->
 
 		<!--  직업별 선호하는 서비스 
 				<action name="highchart12" class="test.action.Action12" method="highchart12">
 			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
 		</action> -->
+
 
 		
 		<!-- 결제 페이지에서 버튼 누르면 ->유료통계서비스 -->
@@ -138,7 +136,7 @@
 		<action name="highchartCost1">
 			<result name="success">/statisticsJsp/StatisticCostCategory.jsp</result>
 		</action>
-		
+
 		<!-- <action name="highchartCost" class="test.action.ActionCost" method="highchartCost">
 			<result name="success">
         		/statisticsJsp/StatisticCostCategory.jsp

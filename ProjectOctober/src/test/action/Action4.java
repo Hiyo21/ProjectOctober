@@ -66,19 +66,13 @@ public class Action4 extends ActionSupport implements RequestAware{
 		listCompany1.add(vo4);
 		listStudent1.add(vo5);
 		listExpert1.add(vo6);
-		
-		
-		
-		
-		
-		System.out.println(listJubu1.toString());
 			
-		request.put("listJubu",listJubu1);
-		request.put("listFree",listFree1);
-		request.put("listOther",listOther1);
-		request.put("listCompany",listCompany1);
-		request.put("listStudent",listStudent1);
-		request.put("listExpert",listExpert1);
+		request.put("listJubu1",listJubu1);
+		request.put("listFree1",listFree1);
+		request.put("listOther1",listOther1);
+		request.put("listCompany1",listCompany1);
+		request.put("listStudent1",listStudent1);
+		request.put("listExpert1",listExpert1);
 		
 				
 		return SUCCESS;

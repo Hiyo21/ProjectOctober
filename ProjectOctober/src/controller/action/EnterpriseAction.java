@@ -79,22 +79,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 
 	public String insertReservation() throws Exception{
+		System.err.println("널값 확인용 :" + reservation);
 		if(reservation != null){
+			System.err.println("reservation 시작 스트링: " + reservation.getStart());
+			System.err.println("reservation 끝 스트링: " + reservation.getEnd());
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(), DateTimeFormatter.ISO_DATE_TIME));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(), DateTimeFormatter.ISO_DATE_TIME));
-			//시험용!
-			//svc_num 필요,
-			reservation.setSvcNum(7);
-			//etp_num 필요
-			reservation.setEtpNum("1234567890");
-			//etp_email 필요
-			reservation.setEtpEmail("test1@test.com");
-			//cst_email 필요
-			reservation.setCstEmail("test2@test.com");
-			
+			reservation.setEtpNum(String.valueOf(session.get("loginEtpNum")));
+			reservation.setEtpEmail(String.valueOf(session.get("loginId")));
 		}
 		int result = etpDAO.insertReservation(reservation);
-		
 		if(result != 0) return SUCCESS;
 		else return ERROR;
 	}
@@ -135,9 +129,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		//--------------------------------------------------사업자 페이지---------------------------
 	public String updateSvcCategory() throws Exception{
 		System.err.println("===========check Action :: updateSvcCategory :: " + serviceList);
-		/*int result = etpDAO.updateSvcCategory();
-		if(result>0)*/ return SUCCESS;
-		/*else return ERROR;*/
+		int result = 0; 
+		for(Service s : serviceList){
+			result = etpDAO.updateSvcCategory(s);
+		}
+		etpNum = serviceList.get(0).getEtpNum();
+		if(result == 1) return SUCCESS;
+		else return ERROR;
 	}
 
 	public String receiveServiceList() throws Exception{
@@ -163,11 +161,25 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String selectServiceList() throws Exception{
-		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
-		enterprise.setServices(etpDAO.selectServiceList(etpNum)); 
+		System.out.println("===========check Action :: etpNum :: " + etpNum);
+		serviceList = etpDAO.selectServiceList(etpNum);
+		
+		categoryList = new ArrayList<>();
+		for(int j=0; j<serviceList.size(); j++){	
+			String category = serviceList.get(j).getSvcCategory();
+			
+			if(j==0){
+				categoryList.add(category);
+			}else{
+				if(serviceList.get(j).getSvcCategory().equals(serviceList.get(j-1).getSvcCategory())){
+					
+				}else{
+					categoryList.add(category);
+				}
+			}
+		}
 
-		if(enterprise.getServices() != null)
-			return SUCCESS;
+		if(serviceList != null) return SUCCESS;
 		else return ERROR;
 	}
 	
@@ -186,7 +198,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String takeEtp() throws Exception{
-		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
+		System.out.println("===========check Action :: etpNum :: " + etpNum);
 		enterprise = etpDAO.selectByEtpNum(etpNum);
 		//서비스 리스트 set
 		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
@@ -207,7 +219,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			}
 		}
 		
-		System.err.println("===========check Action :: categoryList :: " +categoryList.size());
+		System.out.println("===========check Action :: categoryList :: " +categoryList.size());
 		
 		//고객평가, 갤러리 리스트 set
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
@@ -359,6 +371,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+
+	
     ///////////////////////// GET&SET ///////////////////////// 
 
 	public Enterprise getEnterprise() {
@@ -460,6 +474,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			System.err.println(Arrays.toString(tt)+2);
 			return tt;
 	}
+	
+	public String emptyAction(){
+		return SUCCESS;
+	}
 
 
 	public List<Service> getServiceList() {
@@ -551,24 +569,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.category = category;
 	}
 
-
-
-
-
-	public Map<String, Object> getSession() {
-		return session;
-	}
-
-
 	public Integer getCpnNum() {
 		return cpnNum;
 	}
 
-
-
-
 	public void setCpnNum(Integer cpnNum) {
 		this.cpnNum = cpnNum;
 	}
-
 }

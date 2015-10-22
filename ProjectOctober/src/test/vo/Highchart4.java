@@ -22,8 +22,6 @@ public class Highchart4 {
 		return "Highchart4 [cstJob=" + cstJob + ", moneyflow=" + moneyflow
 				+ "]";
 
-	
-
 	}
 	
 	

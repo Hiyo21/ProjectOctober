@@ -9,7 +9,7 @@ insert into member_code values('3','administer');
 
 delete member_code where mem_code = 151017;
 
-select * from ENTERPRISE where etp_num = '2345678901'
+select * from service where etp_num = '1234567890'
 
 delete enterprise where etp_owner = 'enter'
 
