@@ -37,7 +37,6 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataRetrievalTemplate(s -> {return fromMapper(s).selectByEtpEmailInclueOthers(etpNum);});
 	}
 	
-	
 	public List<Reservation> retrieveReservations(String etpNum){
 		return dataRetrievalTemplate(s->{return s.getMapper(ReservationMapper.class).retrieveReservations(etpNum);});
 	}
