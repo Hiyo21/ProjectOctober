@@ -36,6 +36,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	private List<Coupon> couponList;
 	private Member member;
+	private PhotoLocation photoLocation;
 
 	//////// Component Member ////////  
 	private Component component;
@@ -47,6 +48,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
+	private String regCardLocation;
 
 	private boolean canUseCoupon = false;
 	private Integer cpnNum;
@@ -331,7 +333,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println(etpNum);
 		enterprise = etpDAO.noRegisterEtp(etpNum);
 		System.out.println(enterprise);
-		
+		regCardLocation = etpDAO.retrieveRegCard(etpNum);
 		return SUCCESS;
 	}
 	
@@ -580,5 +582,25 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setCpnNum(Integer cpnNum) {
 		this.cpnNum = cpnNum;
+	}
+
+
+	public PhotoLocation getPhotoLocation() {
+		return photoLocation;
+	}
+
+
+	public void setPhotoLocation(PhotoLocation photoLocation) {
+		this.photoLocation = photoLocation;
+	}
+
+
+	public String getRegCardLocation() {
+		return regCardLocation;
+	}
+
+
+	public void setRegCardLocation(String regCardLocation) {
+		this.regCardLocation = regCardLocation;
 	}
 }

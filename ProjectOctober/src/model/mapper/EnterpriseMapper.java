@@ -82,4 +82,6 @@ public interface EnterpriseMapper {
 
 	Coupon checkCoupon(Integer cpnNum);
 
+	String retrieveRegCard(String etpNum);
+
 }

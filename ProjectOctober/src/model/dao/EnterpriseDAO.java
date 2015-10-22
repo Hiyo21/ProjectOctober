@@ -273,5 +273,9 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(cpnNum);});
 	}
 
+	public String retrieveRegCard(String etpNum) {
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveRegCard(etpNum);});
+	}
+
 	
 }
