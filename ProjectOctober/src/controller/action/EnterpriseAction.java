@@ -17,6 +17,7 @@ import model.vo.Component;
 import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.Member;
+import model.vo.PhotoLocation;
 import model.vo.Reservation;
 import model.vo.Service;
 import model.vo.WorkingDays;
@@ -167,6 +168,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		enterpriseList = etpDAO.selectEtpList();			
 		System.out.println("===========check Action :: enterpriseList :: " + enterpriseList);
 		return SUCCESS;
+	}
+	
+	public String selectGalleryList() throws Exception{
+		System.out.println("===========check Action :: receiveGalleryList :: " + etpNum);
+		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
+
+		if(enterprise.getPhotos() != null) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String takeEtp() throws Exception{

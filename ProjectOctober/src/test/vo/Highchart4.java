@@ -3,7 +3,8 @@ package test.vo;
 public class Highchart4 {
 	private String cstJob;
 	private int moneyflow;
-	
+
+
 	public String getCstJob() {
 		return cstJob;
 	}
@@ -18,7 +19,10 @@ public class Highchart4 {
 	}
 	@Override
 	public String toString() {
-		return "Highchart4 [cstJob=" + cstJob + ", moneyflow=" + moneyflow + "]";
+
+		return "Highchart4 [cstJob=" + cstJob + ", moneyflow=" + moneyflow
+				+ "]";
+
 	}
 	
 	

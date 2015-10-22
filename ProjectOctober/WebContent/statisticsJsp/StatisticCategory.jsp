@@ -27,7 +27,8 @@ function myFuncthion(){
 	var con_test = confirm("유료 통계서비스를 결제하시겠습니까?");
 	if(con_test == true){ 
 		document.write("결제완료");
-		parent.location.replace("Payment.jsp");
+		location.href="PaymentAction.action?etpEmail=<s:property value='#session.loginId'/>"; 
+	
 	}
 	else if(con_test == false){
 		document.write("결제취소");
@@ -35,7 +36,7 @@ function myFuncthion(){
 	
 	
 }//유료 통계 페이지로 이동
-</script>
+</script>  
 
 <style type="text/css">
 textarea {width:800px; height:300px;overflow:visible;}
@@ -47,7 +48,8 @@ textarea {width:800px; height:300px;overflow:visible;}
 <body>
 <%@include file="Header.jsp"%>
 <!-- 내가 작성 -->
-
+<s:property value="etpEmail"/>
+<s:property value='#session.loginId'/>
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">통계1</a></li>
@@ -83,10 +85,10 @@ textarea {width:800px; height:300px;overflow:visible;}
    		  <s:include value="Highchart3.jsp"/>  		   
    	  </div><!-- 통계3 -->
    	 
-   	  <div id="menu3" class="tab-pane fade">
+     <div id="menu3" class="tab-pane fade">
      	 <h3>통계4</h3>
       	  <s:include value="Highchart4.jsp"/>  
-      </div><!-- 통계4 -->
+      </div><!-- 통계4 --> 
       
       <div id="menu4" class="tab-pane fade">
      	  <h3>통계5</h3>
@@ -137,10 +139,10 @@ textarea {width:800px; height:300px;overflow:visible;}
       
    </div>
   <div align="right">
-	<button type="button" class="btn btn-primary" onclick="myFuncthion()">유료통계서비스</button>
+	<button type="button" class="btn btn-primary" onclick='location.href="highchartCost"'>유료통계서비스</button><!-- onclick="myFuncthion()" -->
   </div>
 </div>
-
+<!-- onclick='location.href="highchartCost"' -->
 
 </body>
 </html>	

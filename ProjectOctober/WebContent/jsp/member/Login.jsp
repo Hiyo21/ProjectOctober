@@ -20,22 +20,46 @@
 
 
 <style type="text/css">
-	#joinWindow {
-		vertical-align : center;
-		width: 500px;
-	}
-	
-	.btn-lg {
-		width: 200px;
-		height: 100px;	
-		text-align: center;
-	}
-	
-	.form-inline {
-		text-align: left;
-	}
+	body {
+    padding-top: 15px;
+    font-size: 12px
+  }
+  .main {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 10px;
+            margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+  .hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  h3 {
+    text-align: center;
+    line-height: 300%;
+  }
 
 </style>
+
 
 <script>
 

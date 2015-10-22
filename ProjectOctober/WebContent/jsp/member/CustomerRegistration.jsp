@@ -164,7 +164,7 @@
 <div class="section">
       <div class="container">
         <div class="row">
-        <!-- 오른쪽 -->
+        <!-- 왼쪽 -->
           <div class="col-md-6">
 			<label for="member.memName">이름</label>
 			<s:textfield class="form-control" id="name" name="member.memName"/>          	
@@ -186,7 +186,7 @@
 			<br>							
           </div>
           
-          <!-- 왼쪽 -->
+          <!-- 오른쪽 -->
           <div class="col-md-6" >
           		<label for="cstBirthday">생년월일</label>
 					<div class="form-inline">

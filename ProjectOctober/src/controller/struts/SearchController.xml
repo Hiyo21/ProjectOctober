@@ -19,18 +19,23 @@
 			<result>/jsp/search/MoodCategory.jsp</result>
 		</action>
 		
-<!--  고객 자유 검색 
+
 		<action name="searchFreeKeyword" class="controller.action.SearchAction" method="takeEnterpriseList">
 			<result name="success">/jsp/search/SearchResult.jsp</result>
 			<result name="error" type="redirect">toErrorPage.action</result>
 		</action>
 		
-		고객 카테고리 검색
+		<action name="areaMapSearch" class="controller.action.SearchAction" method="takeEnterpriseList">
+			<result name="success">/jsp/Main.jsp</result>
+			<result name="error" type="redirect">toErrorPage.action</result>
+		</action>
+		
+		
 		<action name="categorySearch" class="controller.action.SearchAction" method="categorySearch">
 			<result name="success">/jsp/search/FeatureCategory.jsp</result>
 			<result name="error" type="redirect">/toErrorPage.action</result>
 		</action>
-		 -->
+		
 	</package>
 
 </struts>

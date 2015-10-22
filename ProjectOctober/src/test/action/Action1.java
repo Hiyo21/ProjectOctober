@@ -8,6 +8,8 @@ import org.apache.struts2.interceptor.RequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import model.dao.EnterpriseDAO;
+import model.vo.Enterprise;
 import test.dao.DAO;
 import test.vo.Highchart1;
 import test.vo.Highchart1Add;
@@ -15,6 +17,7 @@ import test.vo.Highchart1Add;
 public class Action1 extends ActionSupport implements RequestAware{
 	private Map<String, Object> request;
 	
+
 	@Override
 	public void setRequest(Map<String, Object> request) {
 		this.request = request;

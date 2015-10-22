@@ -13,6 +13,8 @@
 	
 	MakePdf mk = new MakePdf(strPdf,"\"http://localhost:8888/ProjectOctober/statisticsJsp/highchartCost\"");
 
+	
+
 	boolean check = mk.processPdf();
 	
 	  String filePath = strPdf;
