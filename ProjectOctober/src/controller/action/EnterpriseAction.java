@@ -28,7 +28,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private EnterpriseDAO etpDAO;
 	private Enterprise enterprise;
 	private Reservation reservation;
-	private Map<String, Object> serviceMap;
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
 	private List<Service> serviceList;
@@ -134,10 +133,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 		//--------------------------------------------------사업자 페이지---------------------------
 	public String updateSvcCategory() throws Exception{
-		System.out.println("===========check Action :: updateSvcCategory :: " + etpNum);
-		int result = etpDAO.updateSvcCategory();
-		if(result>0) return SUCCESS;
-		else return ERROR;
+		System.err.println("===========check Action :: updateSvcCategory :: " + serviceList);
+		/*int result = etpDAO.updateSvcCategory();
+		if(result>0)*/ return SUCCESS;
+		/*else return ERROR;*/
 	}
 
 	public String receiveServiceList() throws Exception{
