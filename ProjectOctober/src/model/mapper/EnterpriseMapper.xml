@@ -890,4 +890,8 @@
 	<select id="checkCoupon" parameterType="String">
 		select * from COUPON where cpn_num = #{value}
 	</select>
+	
+	<select id="retrieveRegCard" parameterType="String" resultType="String">
+		select pht_address from photo_location where phtUsage like '%' || #{value} || '%'
+	</select>
 </mapper>
