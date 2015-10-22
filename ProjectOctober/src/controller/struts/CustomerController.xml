@@ -7,5 +7,4 @@
 			<result type="json" />
 		</action>
 	</package>
-
 </struts>

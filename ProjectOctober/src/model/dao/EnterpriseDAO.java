@@ -9,6 +9,7 @@ import model.mapper.EnterpriseMapper;
 import model.mapper.ReservationMapper;
 import model.mapper.ServiceMapper;
 import model.vo.Component;
+import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
@@ -104,6 +105,31 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+
+	public List<Service> selectSvcCategory(String etpNum, String category) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			ServiceExample example = new ServiceExample();
+			example.or().andEtpNumEqualTo(etpNum).andSvcCategoryEqualTo(category);
+			List<Service> svcList = session.getMapper(ServiceMapper.class).selectByExample(example);
+			System.out.println("============check DAO :: selectSvcCategory :: "+svcList.size());
+			return svcList;	
+		}finally{
+			session.close();
+		}
+	}
+	
+	public int updateSvcCategory(Service service) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			session.getMapper(ServiceMapper.class).updateByPrimaryKey(service);
+			return 0;
+		}finally{
+			session.close();
+		}
+	}
+	
 	public List<Review> selectReviewList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
@@ -118,15 +144,16 @@ public class EnterpriseDAO extends DAOTemplate{
 	
 	public List<PhotoLocation> selectPhotoList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		
 		try{
 			List<PhotoLocation> phtList = session.getMapper(EnterpriseMapper.class).selectPhotoList(etpNum);
 			System.out.println("============check DAO :: selectPhotoList :: "+phtList.size());
+			System.out.println(phtList);
 			return phtList;
 		}finally{
 			session.close();
 		}
 	}
+
 	
 	public List<Service> retrieveServices(String etpNum) {
 		return dataRetrievalTemplate(s -> {return s.getMapper(ServiceMapper.class).retrieveServices(etpNum);});
@@ -134,6 +161,11 @@ public class EnterpriseDAO extends DAOTemplate{
 	
 	public int updateReservationDetailsByEnterprise(Reservation reservation) {
 		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).updateReservationDetailsInModal(reservation);});
+	}
+	
+	
+	public Integer uploadImage(PhotoLocation loc) {
+		return dataModificationTemplate(s -> {return fromMapper(s).insertImage(loc);});
 	}
 	
 
@@ -234,5 +266,18 @@ public class EnterpriseDAO extends DAOTemplate{
 
 	public EnterpriseMapper fromMapper(SqlSession s){
 		return s.getMapper(EnterpriseMapper.class);
+	}
+
+
+
+	public List<Coupon> retrieveCouponList(String etpNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(EnterpriseMapper.class).retrieveCouponList(etpNum);
+		}finally{session.close();}
+	}
+
+	public Coupon checkCoupon(Integer cpnNum) {
+		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(cpnNum);});
 	}
 }

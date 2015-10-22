@@ -24,7 +24,6 @@ public class Action4 extends ActionSupport implements RequestAware{
 		DAO dao = new DAO();
 		List<Highchart4> list = dao.highchart4DAO();
 		System.out.println(list.toString()+"여기");
-		System.out.println("야 돼라 돼라 쫌");
 		
 		Highchart4Add vo1 = new Highchart4Add();
 		Highchart4Add vo2 = new Highchart4Add();
@@ -39,6 +38,21 @@ public class Action4 extends ActionSupport implements RequestAware{
 		List<Highchart4Add> listCompany = new ArrayList<Highchart4Add>();
 		List<Highchart4Add> listStudent = new ArrayList<Highchart4Add>();
 		List<Highchart4Add> listExpert = new ArrayList<Highchart4Add>();
+		Highchart4Add vo1 = new Highchart4Add();
+		Highchart4Add vo2 = new Highchart4Add();
+		Highchart4Add vo3 = new Highchart4Add();
+		Highchart4Add vo4 = new Highchart4Add();
+		Highchart4Add vo5 = new Highchart4Add();
+		Highchart4Add vo6 = new Highchart4Add();
+		
+		
+		
+		List<Highchart4Add> listJubu1 = new ArrayList<Highchart4Add>();
+		List<Highchart4Add> listFree1 = new ArrayList<Highchart4Add>();
+		List<Highchart4Add> listOther1 = new ArrayList<Highchart4Add>();
+		List<Highchart4Add> listCompany1 = new ArrayList<Highchart4Add>();
+		List<Highchart4Add> listStudent1 = new ArrayList<Highchart4Add>();
+		List<Highchart4Add> listExpert1 = new ArrayList<Highchart4Add>();
 		
 
 		for(Highchart4 temp : list){

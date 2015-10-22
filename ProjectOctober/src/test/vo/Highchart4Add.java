@@ -1,56 +1,51 @@
 package test.vo;
 
 public class Highchart4Add {
-	private int jubu;
-	private int free;
-	private int other;
-	private int company;
-	private int student;
-	private int expert;
-	
-	
-	public int getJubu() {
-		return jubu;
+	private int jubu1;
+	private int free1;
+	private int other1;
+	private int company1;
+	private int student1;
+	private int expert1;
+	public int getJubu1() {
+		return jubu1;
 	}
-	public void setJubu(int jubu) {
-		this.jubu = jubu;
+	public void setJubu1(int jubu1) {
+		this.jubu1 = jubu1;
 	}
-	public int getFree() {
-		return free;
+	public int getFree1() {
+		return free1;
 	}
-	public void setFree(int free) {
-		this.free = free;
+	public void setFree1(int free1) {
+		this.free1 = free1;
 	}
-	public int getOther() {
-		return other;
+	public int getOther1() {
+		return other1;
 	}
-	public void setOther(int other) {
-		this.other = other;
+	public void setOther1(int other1) {
+		this.other1 = other1;
 	}
-	public int getCompany() {
-		return company;
+	public int getCompany1() {
+		return company1;
 	}
-	public void setCompany(int company) {
-		this.company = company;
+	public void setCompany1(int company1) {
+		this.company1 = company1;
 	}
-	public int getStudent() {
-		return student;
+	public int getStudent1() {
+		return student1;
 	}
-	public void setStudent(int student) {
-		this.student = student;
+	public void setStudent1(int student1) {
+		this.student1 = student1;
 	}
-	public int getExpert() {
-		return expert;
+	public int getExpert1() {
+		return expert1;
 	}
-	public void setExpert(int expert) {
-		this.expert = expert;
+	public void setExpert1(int expert1) {
+		this.expert1 = expert1;
 	}
 	@Override
 	public String toString() {
-		return "Highchart4Add [jubu=" + jubu + ", free=" + free + ", other="
-				+ other + ", company=" + company + ", student=" + student
-				+ ", expert=" + expert + "]";
+		return "Highchart4Add [jubu1=" + jubu1 + ", free1=" + free1 + ", other1=" + other1 + ", company1=" + company1
+				+ ", student1=" + student1 + ", expert1=" + expert1 + "]";
 	}
-	
-	
 }

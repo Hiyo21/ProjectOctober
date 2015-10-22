@@ -24,6 +24,8 @@ public class Customer implements Serializable {
     private String cstGender;
 
     private Integer cstOneclick;
+    
+    private String cstBirthdayTemp;
 
     private static final long serialVersionUID = 1L;
 
@@ -124,5 +126,13 @@ public class Customer implements Serializable {
 
 	public void setPaymentRecords(List<PaymentRecord> paymentRecords) {
 		this.paymentRecords = paymentRecords;
+	}
+
+	public String getCstBirthdayTemp() {
+		return cstBirthdayTemp;
+	}
+
+	public void setCstBirthdayTemp(String cstBirthdayTemp) {
+		this.cstBirthdayTemp = cstBirthdayTemp;
 	}
 }

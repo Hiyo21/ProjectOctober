@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="test.mapper.Highchart12Mapper.xml">
+	<select id="highchart12" resultType="Highchart12">
+		SELECT svc_code SERVICE, COUNT(*) TOTAL 
+		FROM RESERVATION R, REVIEW V, SERVICE S
+		WHERE R.CST_EMAIL=V.CST_EMAIL AND R.SVC_NUM=S.SVC_NUM AND R.ETP_NUM='69' AND CST_JOB=CST_JOB
+		GROUP BY svc_code
+	</select>
+	
+</mapper>

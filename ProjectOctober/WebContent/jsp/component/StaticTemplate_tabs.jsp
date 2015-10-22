@@ -27,7 +27,7 @@
 	        var y = $(event.relatedTarget).text();  // previous tab
 	        $(".act span").text(x);
 	        $(".prev span").text(y);
-	    });  
+	    }); 
 	    	
 	});
 	

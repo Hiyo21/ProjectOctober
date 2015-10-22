@@ -3,10 +3,12 @@ package model.mapper;
 import java.util.List;
 
 import model.vo.Component;
+import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
 import model.vo.PhotoLocation;
 import model.vo.Review;
+import model.vo.Service;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
@@ -44,9 +46,12 @@ public interface EnterpriseMapper {
 
     int updateByPrimaryKey(Enterprise record);
     
-    
+    List<Service> selectSvcCategory(String etpNum, String category);
     List<Review> selectReviewList(String etpNum);
     List<PhotoLocation> selectPhotoList(String etpNum);
+    
+    
+    Integer insertImage(PhotoLocation loc);
     
     ///////////////// 컴포넌트
     
@@ -72,5 +77,9 @@ public interface EnterpriseMapper {
     
     //////////////// 카테고리 검색 리스트
     List<Enterprise> categorySearch(String keyword);
+
+	List<Coupon> retrieveCouponList(String etpNum);
+
+	Coupon checkCoupon(Integer cpnNum);
 
 }
