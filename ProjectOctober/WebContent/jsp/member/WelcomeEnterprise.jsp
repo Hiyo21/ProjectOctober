@@ -10,6 +10,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../Header.jsp" />
 	<div class="container-fluid">
 		<div class="jumbotron">
 			<p>회원 가입을 환영합니다! 관리자의 승인 이후 사용 가능합니다. 조금만 기다려 주세요. =D</p>

@@ -35,12 +35,12 @@
 		
 		
 		<!-- 직업별 평균 소비 지출액 -->
-		<action name="highchart4" class="test.action.Action4" method="highchart4">
+		 <action name="highchart4" class="test.action.Action4" method="highchart4">
 			<result name="success" type="chain">
         		<param name="actionName">highchart5</param>
             	<param name="namespace">/</param>
 			</result>
-		</action>
+		</action> 
 	
 		<!-- 요일별 예약수(주말 vs 평일) -->
 		<action name="highchart5" class="test.action.Action5" method="highchart5">
@@ -76,12 +76,33 @@
 		
 		<!-- 시간대별 고객 수 변화 -->
 		<action name="highchart9" class="test.action.Action9" method="highchart9">
-			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
+			<result name="success" type="chain">
+        		<param name="actionName">highchart10</param>
+            	<param name="namespace">/</param>
+			</result>	
 		</action>
 	
 		
+		<!-- 월별 매출액 변화 -->
+		<action name="highchart10" class="test.action.Action10" method="highchart10">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart11</param>
+            	<param name="namespace">/</param>
+			</result>	
+		</action>
 		
+		<!-- 직업별 방문 고객 수 -->
+		<action name="highchart11" class="test.action.Action11" method="highchart11">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart12</param>
+            	<param name="namespace">/</param>
+			</result>		
+		</action>
 		
+	<!-- 직업별 선호하는 서비스 -->
+		 <action name="highchart12" class="test.action.Action12" method="highchart12">
+			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
+		</action>
 		
 		<!-- 결제 페이지에서 버튼 누르면 ->유료통계서비스 -->
 		<action name="highchartCost" class="test.action.ActionCost" method="highchartCost">
@@ -94,11 +115,6 @@
 		<action name="highchartCost1">
 			<result name="success">/statisticsJsp/StatisticCostCategory.jsp</result>
 		</action>
-		
-		
-		
-		
-		
-				
+
 	</package>
 </struts>

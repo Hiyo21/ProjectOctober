@@ -6,9 +6,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<style>
+	#container99 {
+		height: 400px; 
+		position: relative; 
+		width: 800px;
+		font-size: 150%;
+	}
+	
+	.container {
+		width: 70%;
+  		height: 70%;
+  		margin: 40px auto;
+	}
+</style>
 <script type="text/javascript">
  $(function () {
-    $('#container9').highcharts({
+    $('#container99').highcharts({
         chart: {
             type: 'pie',
             options3d: {
@@ -50,6 +64,6 @@
 <title>같은지역과 같은 업종내 매출액 상위 10위</title>
 </head>
 <body>
-<div id="container9" style="height: 400px"></div>
+<div id="container99" class="container"></div>
 </body>
 </html>

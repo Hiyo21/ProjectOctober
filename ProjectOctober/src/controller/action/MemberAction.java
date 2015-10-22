@@ -1,5 +1,6 @@
 package controller.action;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -54,21 +55,27 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	public MemberAction() {
 		memDAO = DAOFactory.createMemberDAO();
+		cstDAO = DAOFactory.createCustomerDAO();
 	}
 	
 	public String customerRegistration1() throws Exception{
-		
-		System.err.println("action : "+member);		
+		System.err.println("회원등록 - 멤버 : " + member);
+		System.err.println("회원등록 - 이용자 : " + customer);
+		String str = customer.getCstBirthdayTemp();
+		String[] strs = str.split("-");
+		customer.setCstBirthday(LocalDate.of(Integer.parseInt(strs[0]), Integer.parseInt(strs[1]), Integer.parseInt(strs[2])));
 		int result = memDAO.insertMemberInfo2(member);
 		System.err.println(result);
-		
-		
+		if(result == 0) throw new Exception("일반이용자 - 멤버 등록 안 됨");
 		customer.setCstEmail(member.getMemEmail());
-		customer.setCstOneclick(1);
+		customer.setCstOneclick(0);
+		System.err.println(customer);
 		int result2 = cstDAO.insertCustomerInfo(customer);
-		System.err.println(result2);
 		
-		return SUCCESS;
+		
+		System.err.println(result2);
+		if(result2 != 0) return SUCCESS;
+		else throw new Exception("일반이용자 - 멤버 등록은 했는데 회원가입 안 됨");
 	}
 	
 	public String checkEnterpriseDuplicateEmail() throws Exception{
@@ -112,10 +119,13 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	
 	public String toThirdRegistrationPage() throws Exception{
 		System.err.println(etpNum);
+		System.err.println(member.getEnterprise());
 		Member tempMember = memDAO.retrieveMemberInfo(etpNum);
+		
 		
 		//---------------working days 셋업------------//
 		initializeWorkingDays(tempMember, member.getEnterprise().getWorkingDays().getTemp());
+		System.err.println(tempMember);
 		System.err.println((tempMember.getEnterprise().getWorkingDays()));
 		int result = memDAO.insertWorkingDays(tempMember);
 		//int result = memDAO.updateWorkingDays(tempMember);
@@ -133,6 +143,9 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		//-----------------------------------------------//
 		
 		//-----------시작 시간, 끝 시간 설정 ---------------------//
+		System.err.println(LocalTime.parse(member.getEnterprise().getStart(),DateTimeFormatter.ISO_LOCAL_TIME));
+		System.err.println(LocalTime.parse(member.getEnterprise().getEnd(),DateTimeFormatter.ISO_LOCAL_TIME));
+		
 		tempMember.getEnterprise().setEtpStartHour(LocalTime.parse(member.getEnterprise().getStart(),DateTimeFormatter.ISO_LOCAL_TIME));
 		tempMember.getEnterprise().setEtpEndHour(LocalTime.parse(member.getEnterprise().getEnd(),DateTimeFormatter.ISO_LOCAL_TIME));
 		result = memDAO.updateEtpDetailsFirst(tempMember);
@@ -218,6 +231,11 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		member = memDAO.retrieveCustomerInfoPerReservation(info);
 		if(member != null)return SUCCESS;
 		else return ERROR;
+	}
+	
+	public String checkCustomerDuplicateEmail() throws Exception{
+		emailExists = memDAO.retrieveEmail(emailInput);
+		return SUCCESS;
 	}
 
 	

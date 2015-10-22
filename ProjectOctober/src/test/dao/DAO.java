@@ -6,6 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import model.common.MyBatisSqlSessionFactory;
 import test.vo.Highchart1;
+import test.vo.Highchart10;
+import test.vo.Highchart11;
+import test.vo.Highchart12;
 import test.vo.Highchart2;
 import test.vo.Highchart3;
 import test.vo.Highchart4;
@@ -146,10 +149,47 @@ public class DAO {
 		List<Highchart9> list = null;
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list = sqlsession.selectList("test.mapper.Highchart9Mapper.highchart9");				
+			list = sqlsession.selectList("highchart9");				
 		}finally{
 			sqlsession.close();
 		}			
+		return list;
+	}
+
+	//월별 매출액 변화
+	public List<Highchart10> highchart10DAO() {
+		List<Highchart10> list = null;
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("highchart10");				
+		}finally{
+			sqlsession.close();
+		}		
+		
+		return list;
+	}
+
+	//직업별 방문 고객 수
+	public List<Highchart11> highchart11DAO() {
+		List<Highchart11> list = null;
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("highchart11");				
+		}finally{
+			sqlsession.close();
+		}				
+		return list;
+	}
+
+	//직업별 인기 있는 서비스
+	public List<Highchart12> highchart12DAO() {
+		List<Highchart12> list = null;
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("highchart12");				
+		}finally{
+			sqlsession.close();
+		}		
 		return list;
 	}
 

@@ -5,9 +5,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+	#container100 {
+		height: 400px; 
+		position: relative; 
+		width: 1000px;
+		font-size: 150%;
+	}
+	
+	.container {
+		width: 70%;
+  		height: 70%;
+  		margin: 40px auto;
+	}
+</style>
 <script type="text/javascript">
 $(function () {
-    $('#container10').highcharts({
+    $('#container100').highcharts({
         chart: {
             type: 'line'
         },
@@ -71,6 +85,6 @@ $(function () {
 <title>같은지역, 같은업종 예약이 몰리는 시간대</title>
 </head>
 <body>
-<div id="container10" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container100" class="container"></div>
 </body>
 </html>

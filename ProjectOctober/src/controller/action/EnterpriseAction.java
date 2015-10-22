@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import model.common.DAOFactory;
 import model.dao.EnterpriseDAO;
 import model.vo.Component;
+import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.PhotoLocation;
@@ -32,17 +32,26 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
 	private List<Service> serviceList;
+	private List<String> categoryList;
 	private Map<String, Object> session;
+	private List<Coupon> couponList;
 	private Member member;
-	
+
 	//////// Component Member ////////  
 	private Component component;
 	private List<Component> componentList;
+	private Coupon coupon;
 
 	private String etpNum;
+	private String etpNum1;
 	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
+
+	private boolean canUseCoupon = false;
+	private Integer cpnNum;
+
+	private String category;
 
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -122,14 +131,36 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
+	
+		//--------------------------------------------------사업자 페이지---------------------------
+	public String updateSvcCategory() throws Exception{
+		System.err.println("===========check Action :: updateSvcCategory :: " + serviceList);
+		/*int result = etpDAO.updateSvcCategory();
+		if(result>0)*/ return SUCCESS;
+		/*else return ERROR;*/
+	}
 
 	public String receiveServiceList() throws Exception{
+		System.err.println(etpNum);
 		serviceList = etpDAO.retrieveServices(etpNum);
 		System.err.println(serviceList);
 		if(serviceList != null) return SUCCESS;
 		else return ERROR;
 	}
-
+	
+	public String retrieveCouponList() throws Exception{
+		couponList = etpDAO.retrieveCouponList(etpNum);
+		return SUCCESS; 
+		
+	}
+	
+	public String selectSvcCategory() throws Exception{
+		System.out.println("category Check :: "+category);
+		serviceList = etpDAO.selectSvcCategory(etpNum, category);
+		
+		if(serviceList != null) return SUCCESS;
+		else return ERROR;
+	}
 	
 	public String selectServiceList() throws Exception{
 		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
@@ -157,7 +188,28 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String takeEtp() throws Exception{
 		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
 		enterprise = etpDAO.selectByEtpNum(etpNum);
-		enterprise.setServices(etpDAO.selectServiceList(etpNum));
+		//서비스 리스트 set
+		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
+		enterprise.setServices(svcList);
+		
+		categoryList = new ArrayList<>();
+		for(int j=0; j<svcList.size(); j++){	
+			String category = svcList.get(j).getSvcCategory();
+			
+			if(j==0){
+				categoryList.add(category);
+			}else{
+				if(svcList.get(j).getSvcCategory().equals(svcList.get(j-1).getSvcCategory())){
+					
+				}else{
+					categoryList.add(category);
+				}
+			}
+		}
+		
+		System.err.println("===========check Action :: categoryList :: " +categoryList.size());
+		
+		//고객평가, 갤러리 리스트 set
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 		
@@ -188,6 +240,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(reservation.getRsvTitle() == null || reservation.getRsvTitle().trim().length() == 0) reservation.setRsvTitle("제목 없음");
 		int result = etpDAO.updateReservationDetailsByEnterprise(reservation);
 		System.err.println(result);
+		return SUCCESS;
+	}
+	
+	public String checkCoupon() throws Exception{
+		System.err.println(cpnNum);
+		coupon = etpDAO.checkCoupon(cpnNum);
+		if(coupon != null)coupon.setCanUseCoupon(true);
 		return SUCCESS;
 	}
 	
@@ -280,6 +339,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}
 		return SUCCESS;			
 	}
+	
+	
 	
 	
 	
@@ -379,6 +440,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.session = session;
 	}
 	
+	
 	//---------------------------------//
 	public Integer [] makeDow(WorkingDays wd){
 			int [] temp = {wd.getSun(), wd.getMon(), wd.getTue(), wd.getWed(), wd.getThu(),wd.getFri(), wd.getSat()};
@@ -429,5 +491,84 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.member = member;
 	}
 
+
+	public List<String> getCategoryList() {
+		return categoryList;
+	}
+
+
+	public void setCategoryList(List<String> categoryList) {
+		this.categoryList = categoryList;
+	}
+
+
+	public String getEtpNum1() {
+		return etpNum1;
+	}
+
+
+	public void setEtpNum1(String etpNum1) {
+		this.etpNum1 = etpNum1;
+	}
+
+
+	public List<Coupon> getCouponList() {
+		return couponList;
+	}
+
+
+	public void setCouponList(List<Coupon> couponList) {
+		this.couponList = couponList;
+	}
+
+
+	public boolean isCanUseCoupon() {
+		return canUseCoupon;
+	}
+
+
+	public void setCanUseCoupon(boolean canUseCoupon) {
+		this.canUseCoupon = canUseCoupon;
+	}
+
+
+	public Coupon getCoupon() {
+		return coupon;
+	}
+
+
+	public void setCoupon(Coupon coupon) {
+		this.coupon = coupon;
+	}
 	
+	
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+
+
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+
+	public Integer getCpnNum() {
+		return cpnNum;
+	}
+
+
+
+
+	public void setCpnNum(Integer cpnNum) {
+		this.cpnNum = cpnNum;
+	}
+
 }

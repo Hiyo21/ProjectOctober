@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
@@ -131,7 +132,7 @@
 		        	$.ajax({
 	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
 	        			dataType: 'json',
-	        			data: {"etpNum":${etpNum}},
+	        			data: {"etpNum" : ${etpNum}},
 	        			success: function(data){
 	        				var serviceList = [];
 	        				var services = data.serviceList;
@@ -148,6 +149,7 @@
 		        	//--------------------- 받아온 값들로 기존 예약 상세내용 리스트 뿌리기 -----------------------//
 		        	
 		        	console.log(event);
+		        	
 		        	$("#updateModalTitle").html(event.title);
 		        	$("#updateModalEventId").html(event.id);
 		        	$("#updateModalCustomerEmail").html(event.cstEmail);
@@ -196,7 +198,7 @@
 							"reservation.end" : event.end.toISOString(),
 							"reservation.status" : event.status,
 							"reservation.employeeGender" : event.employeeGender,
-						}
+						};
 					
 					console.log(reservation);
 					$.ajax({
@@ -220,99 +222,189 @@
 			//----------------------------------------------------------------------------------------//
 			
 			
-			
-			
 			//select: 빈 칸에 눌렀을 때  
-			select: function(start, end, allDay){				
-				  //여기는 사용자가 입력한 값이 체인으로 등장해야 하는거지만 일단...	누르면 창 보여주기 ---------------------//	
-				  //이용자 이메일 => 내가 입력. 사업자 이메일, 번호 => 가지고 있음. 쿠폰 선택가능하도록 하기.
-				  //서비스 일련번호 => 서비스창 받을 때 같이 가져오기.
-					
-	
-					$('#insertModalBody').html(str);
-					$('#insertModal').modal();
-					
+			select: function(start, end, allDay){
+				  var coupons ={};
+				  var camUseCoupon = false;
+				  var cpnNum = 0;
+				  var cpnCodeInput = '';
+				  var svcList =[];
+				  var svcDetailList =[];
+				  
 					$('#inputEmployeeGenderCheckBox').bootstrapToggle().change(function(){
 						if($(this).prop('checked')){
 							$('#genderCheckField').html($(this).attr('data-on'));
 						}else{
 							$('#genderCheckField').html($(this).attr('data-off'));
 						}
-						
 					});
+				  
+				//------------------------------Insert 기능 시작 ----------------------------//
+					$.ajax({
+	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+	        			dataType: 'json',
+	        			data: {'etpNum':${etpNum}},
+	        			success: function(data){
+	        				svcList = data.serviceList;
+	        				$("#inputServiceList").append("<option value='' disabled selected>선택하세요.</option>");
+	        				$.each(svcList, function(i, d){
+	        					$("#inputServiceList").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
+	        					svcDetailList.push(d);
+	        				});   				
+	        			},
+	        			error: function(){
+	        				console.log("receive service list error");
+	        			}
+	        		});
 					
+					$.ajax({
+						  url: '${pageContext.request.contextPath}/enterprise/retrieveCouponList.action',
+						  dataType: 'json',
+						  data: {'etpNum':${etpNum}},
+						  success: function(data){
+							  cpnList = [];
+							  cpnList = data.couponList;
+							  $("#cpnList").append("<option value='' disabled selected>선택하세요</option>");
+							  $.each(cpnList, function(i, d){
+								  $("#cpnList").append("<option value='" + d.cpnNum + "'>" + d.cpnTitle + "</option>");
+							  });
+						  },
+						  error: function(){
+							  console.log("coupon retrieval error!");
+						  }
+					  });
+					  
+				//----------------------------------------------------------------------------------//
+				
+				$(function(){
+					$("#inputStartTime").attr('value', start.format("MM월 DD일 a hh시 mm분"));
+					document.getElementById("inputStartTimeHidden").value = start.toISOString();
+					$("#inputEndTime").attr('value', end.format("MM월 DD일 a hh시 mm분"));
+					document.getElementById("inputEndTimeHidden").value = end.toISOString();
 					
-					//------------------------------Insert 기능 시작 ----------------------------//
+					console.log($("#inputStartTime").attr('value'));
+					console.log(document.getElementById("inputStartTimeHidden").value);
+					console.log($("#inputEndTime").attr('value'));
+					console.log(document.getElementById("inputEndTimeHidden").value);
+					
+				});
+				
+				cpnNum =  $(document).on('click',"#cpnList",function(){
+					console.log($(this).val());
+					return $(this).val();
+				});
+				
+				$(document).on("change","#inputServiceList",function(index){
+					console.log($(this).val());
+					console.log($(this).index($(this).val()));
+					console.log(svcDetailList);
+					document.getElementById("inputDescription").value = $(this).svcDetailList;
+					document.getElementById("inputPrice").value = $(this).svcDetailList;
+				});
 				
 					
-					// ----------------------- 약관 동의 안 하면, 못하게 하기 -------------------------//
 					
-					$('#insertReservationBtn').click(function(){
-						if($('#insertAgreementCheckbox').prop('checked') == false){
-							alert('동의해라!');
-							$(this).unbind();
-							return false;
-							
-						};
+					  
+					$(document).on('click',"#inputCpnCodeButtonGo",function(){
 						
+						cpnCodeInput = document.getElementById("inputCpnCodeField").value;
+						console.log(cpnCodeInput);
+						console.log(cpnNum);
+						$.ajax({
+							url: '${pageContext.request.contextPath}/enterprise/checkCoupon.action',
+							dataType: 'json',
+							data: {'cpnNum':cpnNum,
+								   'cpnCode':cpnCodeInput},
+							success: function(data){
+								canUseCoupon = data.canUseCoupon;
+								if(canUseCoupon) console.log(data);
+								document.getElementById("inputCoupon").value; 
+								
+							}, 
+							error: function(){
+								console.log("can't apply coupon")
+							}
+						 });
+				    });
+					
+					$('#insertModalBody').html($("#inputDetailTable"));
+					$('#insertModal').modal('toggle');
+					
 					//-------------------------------------------//
 						
 			//-------------------------------- 폼에서 받은 값 대응하는 그릇에 집어 넣기. -------------------------//
-						var inputTitle = $('#inputTitle').val();
-						var inputDescription = $('#inputDescription').val();
-						var inputStartTime = $('#inputStartTimeHidden').val();
-						var inputEndTime = $('#inputEndTimeHidden').val();
-						var inputEmployeeGender = ''; 
-							if($('#genderCheckField').html() == '남성') {
-								$('#genderCheckField').val('m');
-								inputEmployeeGender = 'm';
-							}else{
-								$('#genderCheckField').val('f');
-								inputEmployeeGender = 'f';
-							}
-							console.log(inputEmployeeGender);
-							console.log()
-						var inputStatus = $('#inputStatus').val();
-							var reservation = {};
+					var inputTitle = $('#inputTitle').val();
+					/* var inputDescription = $('#inputDescription').val(); */
+					var inputStartTime = $('#inputStartTimeHidden').val();
+					var inputEndTime = $('#inputEndTimeHidden').val();
+					var inputServiceList = document.getElementById('inputServiceList').value;
+					var inputEmployeeGender = ''; 
+						if($('#genderCheckField').html() == '남성') {
+							$('#genderCheckField').val('m');
+							inputEmployeeGender = 'm';
+						}else{
+							$('#genderCheckField').val('f');
+							inputEmployeeGender = 'f';
+						}
+						console.log(inputEmployeeGender);
+						console.log()
+					var inputStatus = $('#inputStatus').val();
+						
+						
+						
 							
 			//---------------각각의 그릇을 reservation이라는 객체 안에 담기.-----------------------//
-						reservation = {
-								title: inputTitle,
-								description: inputDescription,
-								start: inputStartTime,
-								end: inputEndTime,
-								employeeGender: inputEmployeeGender,
-								rsvStatus : inputStatus
+					var reservation = {};			
+		
+					reservation = {
+							title: inputTitle,
+							description: inputDescription,
+							start: inputStartTime,
+							end: inputEndTime,
+							employeeGender: inputEmployeeGender,
+							rsvStatus : inputStatus,
+							svcList : inputServiceList,
+							cpnNum : cpnNum
+					};
+					
+					$('#insertReservationBtn').click(function(){
+						if($('#insertAgreementCheckbox').prop('checked') == false){
+							alert('약관에 동의해 주셔야 합니다.');
+							$(this).unbind();
+							return false;
 						}
-						
-			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
-						$.ajax({
-							url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
-							dataType: 'json',
-							type: 'POST',
-							data: $('#inputForm').serialize(),
-							contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-							success: function(doc){
-					            $('#calendar').fullCalendar('refetchEvents');
-								$('#insertModal').modal('hide');
-							},
-							error: function(doc){
-								console.log("insert Error");
-							}
-						});
-						$(this).unbind();
 					});
 					
-			//------------------------------ insert 마무리 작업  -----------------------------------//
-					
-				calendar.fullCalendar('unselect');
-				$(this).unbind();
+				$("#insertReservationBtnClose").click(function(){
+					$(this).unbind();
+				});
+						
+			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
+				$("#insertReservationBtn").click(function(){	
+					$.ajax({
+						url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
+						dataType: 'json',
+						type: 'POST',
+						data: $('#inputForm').serialize(),
+						contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+						success: function(doc){
+				            $('#calendar').fullCalendar('refetchEvents');
+							$('#insertModal').modal('hide');
+						},
+						error: function(doc){
+							console.log("insert Error");
+						}
+					});
+					$(this).unbind();
+					calendar.fullCalendar('unselect');
+				});
+				
 			},
+			//------------------------------ insert 마무리 작업  -----------------------------------//
 			
 			themeButtonIcons: {
 				prev: 'circle-triangle-w',
-				next: 'circle-triangle-e',
-				
+				next: 'circle-triangle-e'
 			},
 			weekNumbers: true,
 			fixedWeekCount: true,
@@ -496,7 +588,7 @@
 					};
 				};
 				$(this).unbind();
-			},	
+			}	
 		});
 	});	
 </script>
@@ -525,63 +617,67 @@
 	            </div>
 		            <div id="insertModalBody" class="modal-body">
 		            	<form action='test' id='inputForm' data-toggle='validator' role='form'>
-		            		<table class='table table-striped table-bordered'>
+		            		<table class='table table-striped table-bordered' id="inputDetailTable">
 							<tr>
-							<div class='form-group'>
-								<td><label for='inputTitle' class='control-label'>일정 제목: </label></td><td><input type='text' id='inputTitle' name='reservation.rsvTitle' required class='form-control'></td>
-							</div>
-					</tr>
-					
-				
-					<div class='form-group'>
-					<tr>
-					<td><label for='inputDescription' class='control-label'>서비스 Description: </label></td><td><input type='text' id='inputDescription' name='reservation.service.svcDescription' required class='form-control'/><span class='glyphicon form-control-feedback' aria-hidden='true'></span>
-					</tr>
-					</div>
-				
-					<div class='form-group'>
-					<tr>
-					<td><label for='inputDescription' class='control-label'>서비스 시작 시간: </label></td><td><input type='text' id='inputStartTime' value='" + start.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.start' id='inputStartTimeHidden' value='" + start.toISOString() + "'/></td>
-					</tr>
-					</div>
-					
-					<div class='form-group'>
-					<tr>
-					<td><label for='inputDescription' class='control-label'>서비스 끝 시간: </label></td><td><input type='text' id='inputEndTime' value='" + end.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.end' id='inputEndTimeHidden' value='" + end.toISOString() + "'/></td>
-					</tr>
-					
-					//서비스 버튼 클릭시 받아오는 값이 된다 : 서비스 비용
-					<div class='form-group'>
-					<tr>
-					<td><label for='inputPrice' class='control-label'>결제금: </label></td><td><input type='text' id='inputPrice' name='reservation.service.svcPrice' class='form-control'/></td>
-					</tr>
-					</div>
-					
-					//성별
-					<div class='form-group'>
-					<tr>
-					<td><label for='inputEmployeeGenderCheckBox' class='control-label'>종업원 성별: </label></td><td><input type='checkbox' checked data-toggle='toggle' data-on='여성' data-off='남성' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='form-control'/></td>
-					</tr>
-					</div>
-					
-					
-					//약관 동의
-					<div class='form-group'>
-					<tr>
-					<td colspan='2' align='center'><textarea rows='4' cols='50' id='insertAgreementTextArea' class='form-control'>Lorem Ipsum </textarea></td>
-					</tr>
-					</div>
-					
-					<div class='form-group'>
-					<tr>
-					<td align='center' colspan='2'>서비스 약관에 동의합니다.<input type='checkbox' id='insertAgreementCheckbox'/></td>
-					</tr>
-					</div>
-					
-					<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''></p>
-					<input type='hidden' id='inputStatus' name='reservation.rsvStatus' value='1'/>
-					</table>
-					</form>
+								<td><label for='inputTitle' class='control-label'>일정 제목: </label></td>
+								<td><input type='text' id='inputTitle' name='reservation.rsvTitle' required class='form-control'></td>
+							</tr>
+							<tr>
+								<td><label for='inputServiceList' >서비스 선택: </label></td>
+								<td><select id="inputServiceList"></select></td>
+							</tr>
+							<tr>
+								<td><label for="inputCpnCodeButtonShow">쿠폰 적용: </label></td>
+								<td>
+									<select id="cpnList"></select>
+									<input type="text" id="inputCpnCodeField" name="coupon.cpnCode"/>
+									<button id="inputCpnCodeButtonGo" class="btn btn-warning">쿠폰 적용</button>
+								</td>
+							</tr>
+							<tr>
+								<td><label for='inputDescription' class='control-label'>서비스 Description: </label></td>
+								<td><input type='text' id='inputDescription' name='reservation.service.svcDescription' readonly class='form-control'/><span class='glyphicon form-control-feedback' aria-hidden='true'></span>
+							</tr>
+							<tr>
+								<td><label for='inputStartTime' class='control-label'>서비스 시작 시간: </label></td>
+								<td><input type='text' id='inputStartTime' value='' readonly class='form-control'/><input type='hidden' name='reservation.start' id='inputStartTimeHidden' value=''/></td>
+							</tr>
+							<tr>
+								<td><label for='inputEndTime' class='control-label'>서비스 끝 시간: </label></td>
+								<td><input type='text' id='inputEndTime' value='" + end.format("MM월 DD일 a hh시 mm분") + "' readonly class='form-control'/><input type='hidden' name='reservation.end' id='inputEndTimeHidden' value=''/></td>
+							</tr>
+								<!-- 서비스 버튼 클릭시 받아오는 값이 된다 : 서비스 비용 -->
+							<tr>
+								<td><label for='inputPrice' class='control-label'>결제금: </label></td>
+								<td><input type='text' id='inputPrice' name='reservation.service.svcPrice' readonly class='form-control'/></td>
+							</tr>
+							<!-- 성별 -->
+							<tr>
+								<td><label for='inputEmployeeGenderCheckBox' class='control-label'>종업원 성별: </label></td>
+								<td><input type='checkbox' checked data-toggle='toggle' data-on='여성' data-off='남성' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='form-control'/></td>
+							</tr>
+							<tr>
+								<td><label for="inputStatus">예약 상태</label></td>
+								<td>
+								<select name='reservation.rsvStatus' id="inputStatus" class="form-control">
+									<option value="0">예약 컨펌 미정</option>
+									<option value="1">예약 경과(실행됨)</option>
+									<option value="2">예약 경과(실행 되지 않음)</option>
+									<option value="3">휴일</option>
+								</select>
+								</td>
+							</tr>
+					<!-- 약관 동의 -->
+							<tr>
+								<td colspan='2' align='center'><textarea rows='4' cols='50' id='insertAgreementTextArea' class='form-control'>Lorem Ipsum </textarea></td>
+							</tr>
+							<tr>
+								<td align='center' colspan='2'>서비스 약관에 동의합니다.<input type='checkbox' id='insertAgreementCheckbox'/></td>
+							</tr>
+							</table>
+							<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''>
+							
+							</form>
 		            	
 		            	
 		            	*메뉴: <span id="insertModalEventTitle"> </span><br>
@@ -596,7 +692,7 @@
 		   				<br>
 		            </div>
 	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                <button type="button" class="btn btn-default" data-dismiss="modal" id="insertReservationBtnClose">Close</button>
 	                <button class="btn btn-primary" id="insertReservationBtnOneClick">One-click 예약</button>
 	                <button class="btn btn-info" id="insertReservationBtn">예약 결제</button>
 	            </div>

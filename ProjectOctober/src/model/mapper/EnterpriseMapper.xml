@@ -784,8 +784,12 @@
     </if>
   </select>
   
+  	<select id="selectSvcCategory" resultType="Service" parameterType="String">
+  		select * from service where etp_num = #{etpNum} and svc_category = #{svcCategory}
+  	</select>
+  
   	<select id="selectEtpList" resultMap="EnterpriseBaseResultMap">
-  		select * from enterprise
+  		select * from enterprise where etp_status != 0
   	</select>
   	  	
   	<select id="selectReviewList" parameterType="String" resultType="Review">
@@ -877,4 +881,12 @@
 	<insert id="insertRegCard" parameterType="PhotoLocation">
 		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
 	</insert>
+	
+	<select id="retrieveCouponList" parameterType="String" resultMap="CouponResultMap">
+		select * from COUPON where etp_num = #{value}
+	</select>
+	
+	<select id="checkCoupon" parameterType="String">
+		select * from COUPON where cpn_num = #{value}
+	</select>
 </mapper>

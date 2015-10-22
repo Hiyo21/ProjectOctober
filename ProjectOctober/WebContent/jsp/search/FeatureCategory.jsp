@@ -26,10 +26,9 @@
 <link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="${pageContext.request.contextPath}/Polymer/components/bower_components/paper-item/paper-item.html">
 
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<s:include value="../Header.jsp" />
+	<s:include value="../Header.jsp"></s:include>
 	<h2 align="center">특징 카테고리</h2>
 	
 	<div class="section">
