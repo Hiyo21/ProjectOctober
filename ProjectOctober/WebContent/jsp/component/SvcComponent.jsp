@@ -71,7 +71,7 @@ $(function(){
 		$.each(svcList, function(index, item){
 			var svcCategory = item.svcCategory;
 
-			str += '<tr><td>카테고리 : </td><td colspan="5"><input type="text" class="form-control" value='+item.svcCategory+'></td></tr>';
+			str += '<tr><td>카테고리 : </td><td colspan="5"><input type="text" class="form-control" value='+item.svcCategory+'><input type="hidden" class="form-control" value="'+item.svcNum+'>"</td></tr>';
 			str += '<td>서비스 명 : </td><td colspan="5"><input type="text" class="form-control" size="85" value="'+item.svcTitle +'"></td></tr>';
 			str += '<tr><td>서비스 가격 : </td><td><input type="text" class="form-control" value='+item.svcCost+'></td>';
 			str += '<td>서비스 시간 : </td><td><input type="text" class="form-control" value='+item.svcTime+'></td></tr>';
