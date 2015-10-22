@@ -37,7 +37,6 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataRetrievalTemplate(s -> {return fromMapper(s).selectByEtpEmailInclueOthers(etpNum);});
 	}
 	
-	
 	public List<Reservation> retrieveReservations(String etpNum){
 		return dataRetrievalTemplate(s->{return s.getMapper(ReservationMapper.class).retrieveReservations(etpNum);});
 	}
@@ -57,7 +56,6 @@ public class EnterpriseDAO extends DAOTemplate{
 			session.close();
 		}
 	}
-	
 	
 	
 	public Integer deleteReservation(Reservation reservation){
@@ -90,7 +88,7 @@ public class EnterpriseDAO extends DAOTemplate{
 			ServiceExample example = new ServiceExample();
 			example.or().andEtpNumEqualTo(etpNum);
 			List<Service> svcList = session.getMapper(ServiceMapper.class).selectByExample(example);
-			System.out.println("============check DAO :: receiveServiceList :: "+svcList.size());
+			System.err.println("============check DAO :: receiveServiceList :: "+svcList.size());
 			return svcList;	
 		}finally{
 			session.close();
@@ -115,8 +113,10 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int updateSvcCategory(Service service) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			session.getMapper(ServiceMapper.class).updateByPrimaryKey(service);
-			return 0;
+			int result = session.getMapper(ServiceMapper.class).updateByPrimaryKey(service);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
 		}finally{
 			session.close();
 		}

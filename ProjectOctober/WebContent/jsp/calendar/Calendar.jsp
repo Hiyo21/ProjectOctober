@@ -49,7 +49,6 @@
 		
 		//-----------------------사전에 정보 불러오기 : Enterprise 정보 --------------------------------//
 		
-		
 		enterpriseInfo = $.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/retrieveEnterpriseInfoForCalendar.action',
 			type: 'POST',
@@ -58,6 +57,7 @@
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 			success: function retrieveEnt(data){
 				enterpriseInfo = data.enterprise;
+				console.log('received enterpriseinfo!');
 			},error: function(){
 				console.log('retrieveEnterpriseInfoForCalendar failed!');
 			}
@@ -88,7 +88,6 @@
 		//----------------------------------Full Calendar 시작.------------------------------------//
 		
 		//TODO: session 검사해서, 사업자 일때랑, 일반 이용자일 때, 그리고 아무것도 안 했을 때 구분.
-		
 		var calendar = $('#calendar').fullCalendar({
 			header: {
 				left:'prev,next today',
@@ -117,7 +116,8 @@
 				$("#reservationUpdateBody").hide();
 		        
 				//---------------------각 예약당 회원 정보  가지고 오기 ----------------//
-				$(this).click(function(event){
+				$(this).off("click");
+				$(this).click(function(){
 		        	$.ajax({
 	        			url: '${pageContext.request.contextPath}/member/retrieveCustomerInfoPerReservation.action',
 	        			dataType: 'json',
@@ -177,29 +177,29 @@
 
 				
 				//----------------------변경 가능한 내용들 토글로 보이게 하기 --------------------------//
-				
+				$("#updateReservationShowBtn").off("click");
 		        $("#updateReservationShowBtn").click(function(){
 		        	var options ={};
 		            $("#reservationUpdateBody").toggle("clip",options,500);
 		        });
 				
 				//---------------------- 변경 내용 중 서비스 리스트 클릭 하면 그 값 가져가는 거 확인 하는 곳 ----------------//
-		        
+		        $("#reservationUpdateSelectService").off("change");
 		        $("#reservationUpdateSelectService").change(function(){
 		        	console.log($(this).val());
 		        	console.log($("#reservationUpdateTitle").val());
 		        });
 				
-				$("#closeReservationBtn").click(function(){
+		        $("#closeReservationBtn").off("click");
+				$("#closeReservationBtn").click(function(event){
 					emptyAJAX();
 					calendar.fullCalendar('unselect');
 					$('#insertModal').modal('hide');
-					//this.unbind();
-					//$("#insertReservationBtn").unbind();
 				});
 				
 		        //--------------------- 예약 내용 변경 신청 AJAX로 하는 기능 ---------------------------------//
      
+		        $("#updateReservationBtnGo").off("click");
 		        $("#updateReservationBtnGo").click(function(){
 		        	console.log($("#reservationUpdateDateStartTime").val());
 		        	
@@ -226,20 +226,17 @@
 						contentType: 'application/json; charset=UTF-8',
 						success: function(data){
 							alert('success!');
-							console.log(events);
 							console.log(event);
 							$('#calendar').fullCalendar('removeEvents');
 							$('#calendar').fullCalendar('addEventSource', event);
 							$('#calendar').fullCalendar('refetchEvents');
+							$('#calendar').fullCalendar('rerenderEvents');
 							$('#updateModal').modal('hide');
 						},
 						error: function(){
 							console.log('fail!');
 						}
-					});
-					
-					$(this).unbind();
-					
+					});	
 		        });
 			},
 			//----------------------------------------------------------------------------------------//
@@ -314,13 +311,14 @@
 				console.log($("#inputEndTime").attr('value'));
 				console.log(document.getElementById("inputEndTimeHidden").value);
 
-				
+				//$("#cpnList").off("click");
 				cpnNum =  $(document).on('click',"#cpnList",function(){
 					console.log($(this).val());
 					$("#inputCpnCodeField").prop("disabled", false);
 					return $(this).val();
 				});
 				
+				//$("#inputServiceList").off("change");
 				$(document).on("change","#inputServiceList",function(){
 					var x = $('#inputServiceList > option:selected').index();
 					document.getElementById("inputDescription").value = svcDetailList[x].svcDescription;
@@ -330,6 +328,7 @@
 				
 				
 				//---------------미완성!-------------------//	
+				$("#inputCpnCodeButtonGo").off("click");
 				$(document).on('click',"#inputCpnCodeButtonGo",function(){
 					
 					cpnCodeInput = document.getElementById("inputCpnCodeField").value;
@@ -355,7 +354,7 @@
 				/* $('#insertModalBody').html('');
 				$('#insertModalBody').html($("#inputDetailTable")); */
 
-				
+				//$("#insertModal").off("modal");
 				$('#insertModal').modal('show');
 					
 					//-------------------------------------------//
@@ -384,9 +383,11 @@
 					var reservation = {};			
 		
 					
-					
-				$("#insertReservationBtnClose").click(function(){
-					emptyAJAX();
+				$('#insertReservationBtnClose').off("click");
+				$("#insertReservationBtnClose").click(function(e){
+					e.stopPropagation();
+					e.preventDefault();
+					console.log(event);
 					calendar.fullCalendar('unselect');
 					$('#insertModal').modal('hide');
 					//this.unbind();
@@ -394,6 +395,7 @@
 				});
 						
 			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
+				
 				$("#insertReservationBtn").click(function(){
 					
 						/*	reservation = {
@@ -452,12 +454,15 @@
 			
 			//------------------------------------- 각 사업자당 예약들 불러오는 기능  -------------------------------------------//
 			events: function(start, end, timezone, callback){
+				$("#calendar").fullCalendar('removeEvents');
+				$("#calendar").fullCalendar('removeEventSource')
 				$.ajax({
 					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
 					type: 'POST',
 					data: {"etpNum":${etpNum}},
 					dataType: 'json',
 					success: function(doc, index, value){
+						
 						var resList = doc.reservationList;
 						var events = [];
 						
