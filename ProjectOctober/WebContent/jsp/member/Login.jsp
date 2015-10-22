@@ -50,29 +50,6 @@ function cust() {
 	$('#type').attr('value', 'customer');
 }
 
-function check() {
-	var email = document.getElementById('email');
-	var pwd = document.getElementById('pwd');
-	var type = document.getElementById('type');
-	
-	if (type.value == '') {		
-		alert('회원 유형을 선택해주세요');
-		return false;
-	}
-	if (email.value == '') {
-		alert('이메일을 입력하세요');
-		email.focus();
-		email.select();
-		return false;
-	}
-	if (pwd.value == '') {
-		alert('비밀번호를 입력하세요');
-		pwd.focus();
-		pwd.select();
-		return false;
-	}
-	return true;
-}
 </script>
 
 <title>로그인</title>
@@ -83,11 +60,8 @@ function check() {
 
 	<div class = "container" id="joinWindow">
 		<div class="well well-lg" align="center">
-			<div class="btn-group">
-				<h1><a class="btn btn-primary btn-lg" href="#" role="button" style="vertical-align:center" id="enterprise">사업자</a></h1>
-				<h1><a class="btn btn-success btn-lg" href="#" role="button" style="vertical-align:center" id="customer">이용자</a></h1>
-			</div>
 			<br><br><br>
+			<h1>Login</h1>
 			<form class="form-inline" role="form" onsubmit="return check()" action="${pageContext.request.contextPath}/member/loginProcess" method="post">
     			<div class="form-group">
     				<table>
