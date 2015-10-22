@@ -127,14 +127,7 @@ tab-content{
 				      <div class="container">
 				        <div class="row">
 				          <div class="col-md-6">
-				          	<ul class="nav nav-tabs">          
-					            <li role="presentation" class="active">
-					            						<a href="#location">지역</a></li>
-					            <li role="presentation"><a href="#genre">장르</a></li>
-					            <li role="presentation"><a href="#condition">상태</a></li>
-					            <li role="presentation">
-					           </li>
-         					 </ul>
+				        
 					        </div>				       
 				        </div>
 				      </div>
@@ -148,7 +141,7 @@ tab-content{
     					<div class="col-md-6" align="center">
 		     				<div id="mapPage">
     					<div class="mapImgD">
-							<h2>[지역 검색]</h2>
+							<h2>[ 지역 검색 ]</h2>
 							<a href="#"><img src="../image/img_map_1.png" alt="대한민국지도" usemap="#img_map_1" class="mapImg" /></a>
 							<map name="img_map_1" id="img_map_1">	
 								<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="서울" />
@@ -204,7 +197,7 @@ tab-content{
 				      	<br><br>
 				      		<!-- 실제로 사용할 때는 DB에서 구역명을 가져와서 뿌리기 -->
 				      		<div class="container">								  
-								  <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#seoul"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>서울 특별시</button>
+								  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#seoul"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>서울 특별시</button>
 								  <div id="seoul" class="collapse">								  
 								  	<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=종로구"/>">종로구</a>&nbsp;<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=영등포구"/>">영등포구</a>
 								 	<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=관악구"/>">관악구</a>&nbsp;<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=성북구"/>">성북구</a>
@@ -225,7 +218,7 @@ tab-content{
 								  							  									    
 								  </div>
 								  <br><br>							
-								  <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#gyungido"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>경기도</button>
+								  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#gyungido"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>경기도</button>
 								  <div id="gyungido" class="collapse">
 								  	<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=분당구"/>">분당구</a>&nbsp;<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=덕양구"/>">덕양구</a>
 								  	<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=수정구"/>">수정구</a>&nbsp;<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=영통구"/>">영통구</a>
@@ -240,7 +233,7 @@ tab-content{
 								  									    
 								  </div>
 								  <br><br>							
-								  <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#incheon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>인천 광역시</button>
+								  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#incheon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>인천 광역시</button>
 								  <div id="incheon" class="collapse">
 								  	<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=연수구"/>">연수구</a>&nbsp;<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=남동구"/>">남동구</a>
 								  	<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=부평구"/>">부평구</a>&nbsp;<a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=계양구"/>">계양구</a>
@@ -251,42 +244,31 @@ tab-content{
 								  								    
 								  </div>								
 								  <br><br>							
-								  <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#busan"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>부산 광역시</button>
+								  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#busan"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>부산 광역시</button>
 								  <div id="busan" class="collapse">
 								  	<li><a href="<s:url value="/search/searchFreeKeyword.action?searchKeyword=동작구"/>">동작구</a></li>								    
 								  </div>
 								  <br><br>
-								   <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#chungcheongN"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>충청북도</button>
+								   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#chungcheongN"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>충청북도</button>
 								  <div id="chungcheongN" class="collapse">
 								  	<li><a href="<s:url value="/Reservation/NoRegisterEtpList.action?wtlNum="/>${wtlNum}">종로구</a></li>							    
 								  </div>
 								  <br><br>
-								    <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#chungcheongS"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>충청남도</button>
+								    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#chungcheongS"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>충청남도</button>
 								  <div id="chungcheongS" class="collapse">
 								  	<li><a href="<s:url value="/Reservation/NoRegisterEtpList.action?wtlNum="/>${wtlNum}">종로구</a></li>								    
 								  </div>
 								  <br><br>
-								   <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#jeonradoN"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>전라북도</button>
+								   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#jeonradoN"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>전라북도</button>
 								  <div id="jeonradoN" class="collapse">
 								  	<li><a href="<s:url value="/Reservation/NoRegisterEtpList.action?wtlNum="/>${wtlNum}">종로구</a></li>									    
 								  </div>								  
 								</div>				
-				      	</div> 
-		     		
+				      	</div>     		
 		
 		
    					</div>   					
-   				</div>
-   				<div id="genre" class="tab-pane fade">
-    				<div class="row">	
-				      	<h1 align="center">업종 버튼s</h1>
-   					</div>
-   				</div>
-   				<div id="condition" class="tab-pane fade">
-    				<div class="row">	
-				      	<h1 align="center">컨디션 버튼s</h1>
-   					</div>
-   				</div>
+   				</div>   				
  			</div>
   		</div>
   	</div>
