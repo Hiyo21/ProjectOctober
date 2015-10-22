@@ -20,11 +20,6 @@
 
 <style>
 	
-	.grid-stack-item-content{
-		border-style: dotted;
-		border-width: 1px;
-	}
-	
 	.delBT{
 		position: absolute;
 	}
@@ -50,25 +45,47 @@
 <script src="${pageContext.request.contextPath}/js/lodash.js"></script>
 <script src="${pageContext.request.contextPath}/js/gridstack.js"></script>
 
-
-
-
 <script>
 $(function () {
 	
-    $('.grid-stack').gridstack({	
+	var loginId = '<%= session.getAttribute("loginId") %>';
+	var pageId = '<%= session.getAttribute("pageId") %>';
+	
+	//로그인 하지 않았거나 페이지 주인이 아닐때
+	$('.edit').hide();
+	$('#etpBT').hide();
+	
+	$('.grid-stack').gridstack({
+		static_grid : true
+	});
+	
+	//로그인 한 사람이 페이지 주인과 동일 할 때 
+	if(loginId != null && loginId == pageId){
+				
+		$('#etpBT').show();
+		
+		$('#saveBT').attr('disabled', true);
+		$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
+	}    
+
+});
+
+function startEdit(){
+	$('.grid-stack').gridstack({
+		static_grid : false,
    		always_show_resize_handle : false,
     	placeholder_class : 'grid-stack-placeholder',
     	resizable: {
             handles: 'e, se, s, sw, w'
         }	
 	});
-    
-    eventOn();
+		
+	$('.edit').show();
+	
+	$('#saveBT').attr('disabled', false);
+	$('#editBT').attr('disabled', true); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
 
-});
-
-function eventOn(){
+	
 	//save, load 버튼에 클릭 이벤트와 함수 연결
     $('#saveBT').on('click', save_grid);
     $('#loadBT').on('click', load_grid);
@@ -153,7 +170,7 @@ function print(object){
         	grid.add_widget(
         		$('<div id="topCP">'
         		+'<a onclick="remove_widget(topCP)">'
-        		+'<span class="delBT"></span></a>'
+        		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inTopCP">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
@@ -163,7 +180,7 @@ function print(object){
 			grid.add_widget(
 				$('<div id="etpBtBar">'
         		+'<a onclick="remove_widget(etpBtBar)">'
-        		+'<span class="delBT"></span></a>'
+        		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inEtpBtBar">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
@@ -173,7 +190,7 @@ function print(object){
 			grid.add_widget(
 				$('<div id="rsvBt">'
         		+'<a onclick="remove_widget(rsvBt)">'
-        		+'<span class="delBT"></span></a>'
+        		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content">'
         		+'<a href=""><label role="button" class="btn btn-default btn-lg" id="phoneBT" style="width: 250px;">전화 예약(000-0000-0000)</label></a>'
         		+'<a href=""><label role="button" class="btn btn-success btn-lg" id="rsvBT" style="width: 250px;">예약 하기</label></a></div></div>')
@@ -184,7 +201,7 @@ function print(object){
 			grid.add_widget(
 				$('<div id="infoCP">'
         		+'<a onclick="remove_widget(infoCP)">'
-        		+'<span class="delBT"></span></a>'
+        		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inInfoCP">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
@@ -194,7 +211,7 @@ function print(object){
 			grid.add_widget(
 				$('<div id="svcCP">'
         		+'<a onclick="remove_widget(svcCP)">'
-        		+'<span class="delBT"></span></a>'
+        		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inSvcCP">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
@@ -204,7 +221,7 @@ function print(object){
 			grid.add_widget(
 				$('<div id="galCP">'
         		+'<a onclick="remove_widget(galCP)">'
-        		+'<span class="delBT"></span></a>'
+        		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inGalCP">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
@@ -214,7 +231,7 @@ function print(object){
 			grid.add_widget(
 				$('<div id="locaCP">'
         		+'<a onclick="remove_widget(locaCP)">'
-        		+'<span class="delBT"></span></a>'
+        		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inLocaCP">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
@@ -224,7 +241,7 @@ function print(object){
 			grid.add_widget(
 				$('<div id="reviewCP">'
         		+'<a onclick="remove_widget(reviewCP)">'
-        		+'<span class="delBT"></span></a>'
+        		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inReviewCP">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
@@ -264,7 +281,7 @@ function print(object){
 	    data-gs-x='1' data-gs-y='0' data-gs-width='10' data-gs-height='2'>
 	    	<!-- 삭제버튼  -->
 	    	<a onclick="remove_widget(topCP)">
-	    		<span class="delBT"></span>
+	    		<span class="delBT edit"></span>
 	   		</a>
 	   		
 			<div class="grid-stack-item-content">				
@@ -287,7 +304,7 @@ function print(object){
 	    data-gs-x="5" data-gs-y="3" data-gs-width="6" data-gs-height="1">
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(rsvBt)'>
-				<span class="delBT"></span>
+				<span class="delBT edit"></span>
 			</a>
 	    
 			<div class="grid-stack-item-content">
@@ -307,7 +324,7 @@ function print(object){
 	    data-gs-x="1" data-gs-y="4" data-gs-width="10" data-gs-height="3">
 	    	<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(infoCP)'>
-				<span class="delBT"></span>
+				<span class="delBT edit"></span>
 			</a>
 	    
 			<div class="grid-stack-item-content">
@@ -320,7 +337,7 @@ function print(object){
 	    data-gs-x="1" data-gs-y="7" data-gs-width="7" data-gs-height="5">
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(svcCP)'>
-				<span class="delBT"></span>
+				<span class="delBT edit"></span>
 			</a>
 	    
 			<div class="grid-stack-item-content">
@@ -333,7 +350,7 @@ function print(object){
 	    data-gs-x="8" data-gs-y="7" data-gs-width="3" data-gs-height="5">
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(galCP)'>
-				<span class="delBT"></span>
+				<span class="delBT edit"></span>
 			</a>
 	    
 			<div class="grid-stack-item-content">
@@ -346,7 +363,7 @@ function print(object){
 	    data-gs-x="1" data-gs-y="12" data-gs-width="10" data-gs-height="4">
 	   		<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(locaCP)'>
-				<span class="delBT"></span>
+				<span class="delBT edit"></span>
 			</a>
 	   	
 			<div class="grid-stack-item-content">
@@ -359,7 +376,7 @@ function print(object){
 	    data-gs-x="1" data-gs-y="17" data-gs-width="10" data-gs-height="4">
 	    	<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(reviewCP)'>
-				<span class="delBT"></span>
+				<span class="delBT edit"></span>
 			</a>
 	    
 			<div class="grid-stack-item-content">

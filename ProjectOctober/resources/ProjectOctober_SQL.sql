@@ -1,5 +1,13 @@
 select tname from tab;
 
+select * from working_days 
+select * from member
+
+select * from member where mem_email = 'ent6@naver.com'
+
+update ENTERPRISE set etp_template_type = 2 where etp_owner = '6길동'
+update ENTERPRISE set etp_template_type = 3 where etp_owner = '7길동'
+
 insert into zipcode values ('11111', '서울시', '강남구', '삼성동', '삼성동')
 select * from member_code;
 
@@ -33,6 +41,9 @@ delete member_code where mem_code = 151017;
 
 /---------------MEMBER test data---------------/
 select * from member;
+
+select * from enterprise where etp_num = 72
+
 
 select * from MEMBER m, ENTERPRISE e, PHOTO_LOCATION p where e.etp_num = '3456789017' and m.mem_email = e.etp_email and e.etp_email = p.etp_email;
 
