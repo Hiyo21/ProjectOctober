@@ -540,7 +540,7 @@
 	
 	<!-- 이용자 회원가입 -->
 	<insert id="insertCustomerInfo" parameterType="Customer">
-		insert into Customer(cst_address,cst_zipcode,cst_birthday,cst_gender,cst_oneclick) values(#{cstAddress},#{cstZipcode},#{cstBirthday},#{cstGender},#{cstOneclick})
+		insert into Customer values(#{cstEmail}, #{cstAddress},#{cstZipcode},#{cstBirthday},#{cstGender},#{cstOneclick})
 	</insert>	
 	
 	<insert id="insertMemberInfo" parameterType="Member">

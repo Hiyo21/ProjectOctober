@@ -19,7 +19,7 @@
 		
 		<action name="toEnterpriseRegistraionSecondPage" class="controller.action.MemberAction" method="toSecondRegistrationPage">
 			<result name="success">/jsp/member/EnterpriseRegistration2.jsp</result>
-			<result name="error">/Error.jsp</result>
+			<result name="input">/Error.jsp</result>
 		</action>
 		
 		<action name="toEnterpriseRegistraionThirdPage" class="controller.action.MemberAction" method="toThirdRegistrationPage">
@@ -34,7 +34,8 @@
 		
 		<!-- 이용자 회원가입 진행 -->
 		<action name="customerRegistration" class="controller.action.MemberAction" method="customerRegistration1">
-			<result name="success">index1.jsp</result>
+			<result name="success">/jsp/member/WelcomeCustomer.jsp</result>
+			<result name="input">/Error.jsp</result>
 		</action>
 		
 		<action name="checkEnterpriseDuplicateEmail" class="controller.action.MemberAction" method="checkEnterpriseDuplicateEmail">
@@ -109,6 +110,10 @@
 		</action>
 		
 		<action name="retrieveCustomerInfoPerReservation" class="controller.action.MemberAction" method="retrieveCustomerInfoPerReservation">
+			<result type="json" />
+		</action>
+		
+		<action name="checkCustomerDuplicateEmail" class="controller.action.MemberAction" method="checkCustomerDuplicateEmail">
 			<result type="json" />
 		</action>
 

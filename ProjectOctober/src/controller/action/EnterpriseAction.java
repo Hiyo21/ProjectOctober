@@ -550,4 +550,24 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+
+	public Map<String, Object> getServiceMap() {
+		return serviceMap;
+	}
+
+
+	public Integer getCpnNum() {
+		return cpnNum;
+	}
+
+
+	public void setServiceMap(Map<String, Object> serviceMap) {
+		this.serviceMap = serviceMap;
+	}
+
+
+	public void setCpnNum(Integer cpnNum) {
+		this.cpnNum = cpnNum;
+	}
 }
