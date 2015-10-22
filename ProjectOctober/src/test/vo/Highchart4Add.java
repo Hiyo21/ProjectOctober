@@ -48,9 +48,4 @@ public class Highchart4Add {
 		return "Highchart4Add [jubu1=" + jubu1 + ", free1=" + free1 + ", other1=" + other1 + ", company1=" + company1
 				+ ", student1=" + student1 + ", expert1=" + expert1 + "]";
 	}
-	
-	
-	
-	
-	
 }

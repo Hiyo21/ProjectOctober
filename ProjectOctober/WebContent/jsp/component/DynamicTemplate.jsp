@@ -14,10 +14,9 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="../../css/hover/hover.css" />
-
-<link rel="stylesheet" href="../../css/gridstack/gridstack.css" />
-<link rel="stylesheet" href="../../css/gridstack/gridstack-extra.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack-extra.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/hover/hover.css" />
 
 <style>
 	
@@ -45,11 +44,14 @@
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
 
-<script src="../../js/lodash.js"></script>
-<script src="../../js/gridstack.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/lodash.js"></script>
+<script src="${pageContext.request.contextPath}/js/gridstack.js"></script>
+
+
+
 
 <script>
 $(function () {

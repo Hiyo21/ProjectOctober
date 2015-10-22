@@ -3,7 +3,10 @@ package test.vo;
 public class Highchart4 {
 	private String cstJob;
 	private int moneyflow;
+<<<<<<< HEAD
+=======
 	
+>>>>>>> refs/remotes/origin/master
 	public String getCstJob() {
 		return cstJob;
 	}
@@ -18,7 +21,12 @@ public class Highchart4 {
 	}
 	@Override
 	public String toString() {
+<<<<<<< HEAD
+		return "Highchart4 [cstJob=" + cstJob + ", moneyflow=" + moneyflow
+				+ "]";
+=======
 		return "Highchart4 [cstJob=" + cstJob + ", moneyflow=" + moneyflow + "]";
+>>>>>>> refs/remotes/origin/master
 	}
 	
 	

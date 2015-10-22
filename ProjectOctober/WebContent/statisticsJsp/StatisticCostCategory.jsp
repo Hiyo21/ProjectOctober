@@ -24,6 +24,50 @@
 </head>
 <body>
 <%@include file="Header.jsp"%>
+<script type="text/javascript">
+$(function(){
+	// Ajax 파일 다운로드
+	jQuery.download = function(url, data, method){
+	    // url과 data를 입력받음
+	    if( url && data ){ 
+	        // data 는  string 또는 array/object 를 파라미터로 받는다.
+	        data = typeof data == 'string' ? data : jQuery.param(data);
+	        // 파라미터를 form의  input으로 만든다.
+	        var inputs = '';
+	        jQuery.each(data.split('&'), function(){ 
+	            var pair = this.split('=');
+	            inputs+='<input type="hidden" name="'+ pair[0] +'" value="'+ pair[1] +'" />'; 
+	        });
+	        // request를 보낸다.
+	        jQuery('<form action="'+ url +'" method="'+ (method||'post') +'">'+inputs+'</form>')
+	        .appendTo('body').submit().remove();
+	    };
+	};
+	
+	$("#pdfdown").click(function(){
+		/*
+		$.ajax({
+			url:'./pdfdown.jsp',
+			type:'post',
+			dataType:'html',
+			async: false,
+			success:function(data){
+				//alert(data);
+				//download
+				document.write(data);
+			},
+			error:function(request,status,error){
+		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		    }
+		});
+		*/
+		//$.download('pdfdown.jsp','','post' );
+		$("#form").submit();
+	});
+});
+</script>
+<form action = "pdfdown.jsp" method = "post" id="form">
+</form>
 <!-- 내가 작성할 부분 -->
 <!-- pdf -->
 <script type="text/javascript">

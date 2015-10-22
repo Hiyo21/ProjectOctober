@@ -31,6 +31,10 @@ public class FileUploadAction extends ActionSupport{
 	private PhotoLocation loc;
 	File saveFile;
 	
+	private File imageToUpload;
+	private String imageToUploadContentType;		
+	private String imageToUploadFileName;
+	
 	public FileUploadAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
 	}
@@ -56,6 +60,28 @@ public class FileUploadAction extends ActionSupport{
 		loc = VOFactory.createPhotoLocation().setEtpEmail(etp.getEtpEmail()).setEtpNum(etp.getEtpNum()).setPhtUsage("사업자등록증").setPhtAddress(locAddress).setPhtDescription("사업자: " + etp.getEtpEmail() + "의 사업자 등록증입니다.");
 		
 		int result = etpDAO.uploadRegCard(loc);
+		if(result == 0) return "input";
+		else return "success";
+	}
+	
+	public String uploadImage() throws Exception{
+		String uploadPath = getText("file.uploadRegCardPath");
+		System.err.println(ServletActionContext.getServletContext().getRealPath("/") + uploadPath);
+		File dir = new File(uploadPath);
+		if (!dir.isDirectory()) dir.mkdirs();
+		
+		if(imageToUpload != null && imageToUpload.exists()){
+			locAddress = uploadPath + "/" + etpNum + "_" + imageToUploadFileName;
+			if(etpNum != null) saveFile = new File(ServletActionContext.getServletContext().getRealPath("/") + locAddress);
+			else saveFile = new File(uploadPath + imageToUploadFileName);
+			FileUtils.copyFile(imageToUpload, saveFile);
+		}else{
+			uploaded= false;
+		}
+		uploaded = true;
+		Enterprise etp = etpDAO.selectByEtpNum(etpNum);
+		loc = VOFactory.createPhotoLocation().setEtpEmail(etp.getEtpEmail()).setEtpNum(etp.getEtpNum()).setPhtUsage("업체이미지").setPhtAddress(locAddress).setPhtDescription("사업자: " + etp.getEtpEmail() + "의 업체 이미지입니다.");
+		int result = etpDAO.uploadImage(loc);
 		if(result == 0) return "input";
 		else return "success";
 	}
@@ -123,4 +149,30 @@ public class FileUploadAction extends ActionSupport{
 	public void setEtpEmail(String etpEmail) {
 		this.etpEmail = etpEmail;
 	}
+
+	public File getImageToUpload() {
+		return imageToUpload;
+	}
+
+	public void setImageToUpload(File imageToUpload) {
+		this.imageToUpload = imageToUpload;
+	}
+
+	public String getImageToUploadContentType() {
+		return imageToUploadContentType;
+	}
+
+	public void setImageToUploadContentType(String imageToUploadContentType) {
+		this.imageToUploadContentType = imageToUploadContentType;
+	}
+
+	public String getImageToUploadFileName() {
+		return imageToUploadFileName;
+	}
+
+	public void setImageToUploadFileName(String imageToUploadFileName) {
+		this.imageToUploadFileName = imageToUploadFileName;
+	}
+	
+	
 }

@@ -13,7 +13,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<!-- <img class="img-responsive" src="http://maps.googleapis.com/maps/api/staticmap?center=Seoul,Mali&amp;zoom=12&amp;size=400x400&amp;sensor=false"> -->
-				<input type="hidden" id="address" value="<s:property value="%{address}"/>"/>
+				<input type="hidden" id="address" value="<s:property value="enterprise.etpAddress"/>"/>
 				<input type="hidden" id="map">
 				<!-- <div id="map" style="width:100%;height:350px;width:350px;"></div> -->
 				<div id="staticMap" style="width:100%;height:300px;width:400px;"></div>
