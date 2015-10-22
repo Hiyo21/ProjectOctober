@@ -8,9 +8,9 @@
 		reservation r, payment_record p, sale_record s
 		where r.rsv_num = p.rsv_num and p.pmt_num = s.pmt_num
 		<![CDATA[ 
-		and r.rsv_start_date >= '2015-09-14' and r.rsv_end_date <= '2015-10-14'
+		and r.rsv_start_date >= '2015-09-14' and r.rsv_end_date <=  '2015-10-14'
 		]]>
-		and r.etp_num = 69
+		and r.etp_num =69 <!-- 69 -->
 		group by r.etp_num	
 	
 	</select>
@@ -21,7 +21,7 @@
 		reservation r, payment_record p, sale_record s
 		where r.rsv_num = p.rsv_num and p.pmt_num = s.pmt_num
 		<![CDATA[ 
-		and r.rsv_start_date >= '2015-10-15' and r.rsv_end_date <= '2015-11-15' 
+		and r.rsv_start_date >= '2015-10-15'  and r.rsv_end_date <= '2015-11-15'
 		]]><!-- #{rsv_start_date}, #{rsv_end_date} -->
 		and r.etp_num = 69<!-- #{etp_num}로 고치기 -->
 		group by r.etp_num

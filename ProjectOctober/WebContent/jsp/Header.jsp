@@ -15,12 +15,28 @@
 </script>
 <style>
 	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+#header {
+   /*  background-color:#F2F2F2;
+    color:#fff; */
+   background: url("../image/img-main2.png") 	
+  
+}
 	
 	
+ 	body{
+		
+	font-family: "Helvetica Neue", Helvetica, Arial,"맑은 고딕","Malgun gothic",sans-serif;
+} 
+
+.btn-default {
+	width: 110px;
+} 
+
+
 </style>
 </head>
 <body>
-<div class="header-wrap">
+<div class="header-wrap" >
 	<header id="header">
 		<div class="container">
 			<div class="row">
@@ -30,6 +46,8 @@
 			</div>
 		</div>
 
+
+<!-- 헤더 시작 -->
 		<div class="hidden-xs header-upper">
 			<div class="container hidden-xs">
 				<s:if test="#session.loginId == null">
@@ -41,6 +59,7 @@
 							<h1><a href="toMainPage.action">Service Name</a></h1>
 						</div>
 						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+						 
 							<br>
 							<a class="btn btn-info btn-block header-newmember-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span> 회원등록</a>
 							
@@ -52,15 +71,16 @@
 							    		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
 							    		<h3 class="modal-title" style="color: gray;">회원가입 선택</h3>
 							    	</div>
-							      <div class="modal-body">
-							      <br><br><br>
-							      <br><br>
-							        <a class="btn btn-primary btn-lg" href="member/toEnterpriseRegistrationPage.action" 
-									role="button" style="vertical-align:center" id="etpBT"><h1>사업자</h1></a>
-				
-									<a class="btn btn-success btn-lg" href="member/toCustomerRegistrationPage.action" 
-									role="button" style="vertical-align:center" id="cstBT"><h1>이용자</h1></a>
-									<br><br><br><br><br>
+							      <div class="modal-body" style="vertical-align:center">
+							      <br><br><br><br><br>							     
+								        <div class="col-md-6">
+								        	 <a href="member/toEnterpriseRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="etpBT">사업자</button></h1></a>								        	
+								        </div>
+								        <div class="col-md-6">
+								        	 <a href="member/toCustomerRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="cstBT">이용자</button></h1></a>								        	
+								        </div>   
+										<br><br><br><br><br><br><br><br><br><br>			
+									
 							      </div>
 							    </div>
 							  </div>
@@ -82,6 +102,9 @@
 				        </div>				        
 				        <div class="col-md-5 col-md-push-2">
 				        	<a href="#~~method~~(#session.loginId)" data-toggle="notification-popover" data-placement="bottom" title="${session.loginName}님의 알림" data-content="여기서가 문제. 리스트를 받아와야 함"><button class="btn btn-warning btn-sm block"> 알림 <span class="badge">1<!-- 여기에는  notification 넘버...어떻게??--></span></button></a>
+
+				        	<a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value="#session.loginId"/>" class="btn btn-danger btn-sm">통계</a>
+
 				        	<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-sm">메인페이지</a>
 						<s:if test="#session.memCode == 1">
 							<a href="${pageContext.request.contextPath}/member/toEnterpriseMyPage.action" class="btn btn-primary btn-sm">마이페이지</a>

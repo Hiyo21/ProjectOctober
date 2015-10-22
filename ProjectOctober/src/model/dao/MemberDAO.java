@@ -132,5 +132,4 @@ public class MemberDAO extends DAOTemplate {
 	public int finalizeRegistration(Member tempMember) {
 		return dataModificationTemplate(s -> {return fromMapper(s).finalizeRegistration(tempMember);});
 	}
-
 }

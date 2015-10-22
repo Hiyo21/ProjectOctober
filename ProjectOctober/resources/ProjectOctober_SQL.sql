@@ -1,6 +1,13 @@
 select tname from tab;
 
 insert into zipcode values ('11111', '서울시', '강남구', '삼성동', '삼성동')
+select * from member_code;
+
+insert into member_code values('1','enterprise');
+insert into member_code values('2','customer');
+insert into member_code values('3','administer');
+
+delete member_code where mem_code = 151017;
 
 select * from service where etp_num = '1234567890'
 

@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="test.mapper.Highchart6Mapper.xml" >
-	<select id="highchart6" resultType="Highchart6">
+	<select id="highchart6" parameterType="Enterprise" resultType="Highchart6">
 			
  		select to_char(sale_time,'HH24') timeHour ,sum(sale_amount) amountSum from
 		sale_record
-		where etp_num = 69  <!-- #{etp_num}으로 바꾸기 -->
+		where etp_num = #{etpNum}  <!-- #{etp_num}으로 바꾸기 -->
 		group by to_char(sale_time,'HH24')
 		order by to_char(sale_time,'HH24')
 		

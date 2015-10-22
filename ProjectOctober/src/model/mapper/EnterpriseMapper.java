@@ -50,6 +50,9 @@ public interface EnterpriseMapper {
     List<Review> selectReviewList(String etpNum);
     List<PhotoLocation> selectPhotoList(String etpNum);
     
+    
+    Integer insertImage(PhotoLocation loc);
+    
     ///////////////// 컴포넌트
     
     int insertComponent(Component component);

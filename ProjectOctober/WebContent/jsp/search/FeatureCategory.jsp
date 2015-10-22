@@ -28,7 +28,7 @@
 
 </head>
 <body>
-	<s:include value="../Header.jsp" />
+	<s:include value="../Header.jsp"></s:include>
 	<h2 align="center">특징 카테고리</h2>
 	
 	<div class="section">

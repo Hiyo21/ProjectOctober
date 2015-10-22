@@ -50,6 +50,28 @@
 			</result>
 		</action>
 		
+
+		
+		<!-- 사진업로드 / 갤러리 -->
+		<action name="toImageUploadPage" class="controller.action.MemberAction">
+			<result>/jsp/enterprise/UploadEtpImage.jsp</result>
+		</action>
+		
+		<action name="imageUploadAction" class="controller.action.FileUploadAction" method="uploadImage">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/jsp/enterprise/UploadEtpImage.jsp</result>
+			<result name="input">/jsp/enterprise/UploadEtpImage.jsp</result>
+		</action>
+		
+		<action name="selectGalleryList" class="controller.action.EnterpriseAction" method="selectServiceList">
+			<result type="json" />
+		</action>
+
 		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
 			<result type="json" />
 		</action>
@@ -125,5 +147,8 @@
 			</result>
 		</action>
 		
+		<action name="emptyAction" class="controller.action.EnterpriseAction" method="emptyAction">
+			<result type="json" />
+		</action>
 	</package>
 </struts>

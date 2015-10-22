@@ -43,15 +43,7 @@ public class EnterpriseDAO extends DAOTemplate{
 	}
 	
 	public Integer insertReservation(Reservation reservation){
-		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		try{
-			int result = session.getMapper(ReservationMapper.class).insertReservation(reservation);
-			if(result == 1) session.commit();
-			else session.rollback();
-			return result;
-		}finally{
-			session.close();
-		}
+		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertReservation(reservation);});
 	}
 	
 	public Integer changeReservationTime(Reservation reservation){
@@ -145,10 +137,10 @@ public class EnterpriseDAO extends DAOTemplate{
 	
 	public List<PhotoLocation> selectPhotoList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		
 		try{
 			List<PhotoLocation> phtList = session.getMapper(EnterpriseMapper.class).selectPhotoList(etpNum);
 			System.out.println("============check DAO :: selectPhotoList :: "+phtList.size());
+			System.out.println(phtList);
 			return phtList;
 		}finally{
 			session.close();
@@ -162,6 +154,11 @@ public class EnterpriseDAO extends DAOTemplate{
 	
 	public int updateReservationDetailsByEnterprise(Reservation reservation) {
 		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).updateReservationDetailsInModal(reservation);});
+	}
+	
+	
+	public Integer uploadImage(PhotoLocation loc) {
+		return dataModificationTemplate(s -> {return fromMapper(s).insertImage(loc);});
 	}
 	
 
@@ -276,4 +273,6 @@ public class EnterpriseDAO extends DAOTemplate{
 	public Coupon checkCoupon(Integer cpnNum) {
 		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(cpnNum);});
 	}
+
+	
 }
