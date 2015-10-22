@@ -35,12 +35,12 @@
 		
 		
 		<!-- 직업별 평균 소비 지출액 -->
-		 <action name="highchart4" class="test.action.Action4" method="highchart4">
+		<action name="highchart4" class="test.action.Action4" method="highchart4">
 			<result name="success" type="chain">
         		<param name="actionName">highchart5</param>
             	<param name="namespace">/</param>
 			</result>
-		</action> 
+		</action>
 	
 		<!-- 요일별 예약수(주말 vs 평일) -->
 		<action name="highchart5" class="test.action.Action5" method="highchart5">
@@ -99,10 +99,33 @@
 			</result>		
 		</action>
 		
-	<!-- 직업별 선호하는 서비스 -->
+
+		<!-- 직업별 선호하는 서비스 -->
 		 <action name="highchart12" class="test.action.Action12" method="highchart12">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart13</param>
+            	<param name="namespace">/</param>
+			</result>	
+		 </action>
+		
+		<!-- 연령대별 선호하는 서비스 -->
+		<action name="highchart13" class="test.action.Action13" method="highchart13">
 			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
 		</action>
+		
+		
+		
+		
+		
+		
+		
+		<!-- 공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백 -->
+		<!--  직업별 선호하는 서비스 
+				<action name="highchart12" class="test.action.Action12" method="highchart12">
+			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
+		</action> -->
+		
+
 		
 		<!-- 결제 페이지에서 버튼 누르면 ->유료통계서비스 -->
 		<action name="highchartCost" class="test.action.ActionCost" method="highchartCost">
@@ -115,6 +138,24 @@
 		<action name="highchartCost1">
 			<result name="success">/statisticsJsp/StatisticCostCategory.jsp</result>
 		</action>
+		
 
+		<!-- <action name="highchartCost" class="test.action.ActionCost" method="highchartCost">
+			<result name="success">
+        		/statisticsJsp/StatisticCostCategory.jsp
+			</result>
+		</action> 
+		
+		<action name="PaymentAction" class="test.action.ActionCost" method="emptyAction">
+			<result name="success">
+        		/statisticsJsp/Payment.jsp            	
+			</result>
+		</action>
+		
+				
+		<action name="highchartCost1" class="test.action.ActionCost" method="highchartCost">
+			<result name="success">/statisticsJsp/StatisticCostCategory.jsp</result>
+		</action>-->
+		
 	</package>
 </struts>

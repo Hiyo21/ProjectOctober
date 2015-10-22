@@ -16,6 +16,7 @@ public class PhotoLocation implements Serializable {
 
     private String phtAddress;
 
+
     private LocalDateTime phtUploadDate;
 
     private static final long serialVersionUID = 1L;

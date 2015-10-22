@@ -1,13 +1,18 @@
 package test.action;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.RequestAware;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import model.dao.EnterpriseDAO;
+import model.vo.Enterprise;
 import test.dao.CostDAO;
 import test.vo.Highchart10Cost;
 import test.vo.Highchart11Cost;
@@ -17,8 +22,25 @@ import test.vo.Highchart9Cost;
 import test.vo.Highchart9AddCost;
 
 
-public class ActionCost extends ActionSupport implements RequestAware{
+public class ActionCost extends ActionSupport implements RequestAware, SessionAware, ApplicationAware{
+	private static final long serialVersionUID = 1L;
 	private Map<String, Object> request;
+	private Map<String, Object> session;
+	private String etpEmail;
+	EnterpriseDAO enterprise = new EnterpriseDAO();
+	private Map<String, Object> application;
+	
+	
+	
+	public String getEtpEmail() {
+		return etpEmail;
+	}
+
+
+	public void setEtpEmail(String etpEmail) {
+		this.etpEmail = etpEmail;
+	}
+
 
 	@Override
 	public void setRequest(Map<String, Object> request) {
@@ -47,7 +69,7 @@ public class ActionCost extends ActionSupport implements RequestAware{
 		for(Highchart9Cost temp : list){
 			System.out.println(temp.getRank());
 			if(temp.getRank()==1){
-				System.out.println("1��");
+				
 				vo1.setSale1(temp.getSale());
 			}else if(temp.getRank()== 2){
 				vo2.setSale2(temp.getSale());
@@ -111,7 +133,26 @@ public class ActionCost extends ActionSupport implements RequestAware{
 		//유료 통계서비스 1
 		
 		//유료 통계서비스2
-		List<Highchart10Cost> list1 = dao.highchart10DAO();
+		if(application.get("loginId") == null){
+			application.put("loginId", session.get("loginId"));
+		}
+		
+		System.err.println("application :" + String.valueOf(application.get("loginId")));
+		
+		System.err.println("etpEmail :" + etpEmail);
+		System.err.println("session :" + session == null);
+		System.err.println(session.size());
+		System.err.println(session.toString());
+		System.err.println("Error?" + (session.get("loginId") == null));
+		System.err.println("Error?? " + session.get("loginId"));
+		System.err.println(application.get("loginId"));
+		String x = String.valueOf(application.get("loginId"));
+		System.err.println(x);
+		Enterprise e = enterprise.selectByEtpEmail(x);
+		System.err.println(e+"ActionCost");
+		String enterAddress= e.getEtpAddress();
+		System.err.println(enterAddress+"ActionCost");
+		List<Highchart10Cost> list1 = dao.highchart10DAO(enterAddress);
 		
 		System.out.println(list.toString());
 		
@@ -179,7 +220,9 @@ public class ActionCost extends ActionSupport implements RequestAware{
 		//유료통계서비스2
 		
 		//유료통계서비스3
-		List<Highchart11Cost> list2 = dao.highchart11DAO();
+		e = enterprise.selectByEtpEmail(application.get("loginId").toString());
+		List<Highchart11Cost> list2 = dao.highchart11DAO(e);
+		
 		System.out.println(list.toString());
 		Highchart1Add v1 = new Highchart1Add();
 		Highchart1Add v2 = new Highchart1Add();
@@ -224,6 +267,29 @@ public class ActionCost extends ActionSupport implements RequestAware{
 		
 		
 		return SUCCESS;
+	}
+	
+	public String emptyAction() throws Exception{
+		System.err.println(etpEmail);
+		return SUCCESS;
+	}
+
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+
+	@Override
+	public void setApplication(Map<String, Object> application) {
+		this.application = application;
+		
 	}
 	
 		

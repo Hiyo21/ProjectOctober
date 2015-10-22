@@ -25,6 +25,7 @@ public class Action4 extends ActionSupport implements RequestAware{
 		List<Highchart4> list = dao.highchart4DAO();
 		System.out.println(list.toString()+"여기");
 		
+		
 		Highchart4Add vo1 = new Highchart4Add();
 		Highchart4Add vo2 = new Highchart4Add();
 		Highchart4Add vo3 = new Highchart4Add();
@@ -58,6 +59,7 @@ public class Action4 extends ActionSupport implements RequestAware{
 			}
 		}
 		
+		
 		listJubu1.add(vo1);
 		listFree1.add(vo2);
 		listOther1.add(vo3);
@@ -65,7 +67,10 @@ public class Action4 extends ActionSupport implements RequestAware{
 		listStudent1.add(vo5);
 		listExpert1.add(vo6);
 		
-
+		
+		
+		
+		
 			
 		request.put("listJubu1",listJubu1);
 		request.put("listFree1",listFree1);
@@ -74,10 +79,7 @@ public class Action4 extends ActionSupport implements RequestAware{
 		request.put("listStudent1",listStudent1);
 		request.put("listExpert1",listExpert1);
 		
-		System.err.println(request.get("listJubu1"));	
-		System.err.println(request.get("listFree1"));
-		System.err.println(request.get("listOther1"));
-		System.err.println(request.get("listCompany1"));
+				
 		return SUCCESS;
 	}
 

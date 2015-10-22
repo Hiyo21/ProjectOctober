@@ -19,7 +19,7 @@
 <a href="highchart10.action">월별 매출액 변화</a>
 <a href="highchart11.action">직업별 방문 고객 수</a>
 <a href="highchart12.action">직업별 선호하는 서비스</a>
-
+<a href="highchart13.action">연령대별 선호 서비스</a>
 
 
 </body>

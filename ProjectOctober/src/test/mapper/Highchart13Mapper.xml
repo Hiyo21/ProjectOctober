@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="test.mapper.Highchart13Mapper.xml">
+	<!-- 10대 -->
+	<select id="highchart13" resultType="Highchart13">
+		SELECT SVC_code SERVICE, COUNT(*) TOTAL FROM RESERVATION R, CUSTOMER C, SERVICE S
+		WHERE R.CST_EMAIL=C.CST_EMAIL AND R.SVC_NUM=S.SVC_NUM AND R.ETP_NUM='69'
+		 <![CDATA[ 
+		AND TO_CHAR(SYSDATE, 'YYYY')-TO_CHAR(CST_BIRTHDAY , 'YYYY')+1 >= 10 AND TO_CHAR(SYSDATE, 'YYYY')-TO_CHAR(CST_BIRTHDAY , 'YYYY')+1 <=19
+		]]>
+		GROUP BY SVC_code
+	</select>
+	
+	
+	<!-- 20대 -->
+	<select id="highchart131" resultType="Highchart13">
+		SELECT SVC_code SERVICE, COUNT(*) TOTAL FROM RESERVATION R, CUSTOMER C, SERVICE S
+		WHERE R.CST_EMAIL=C.CST_EMAIL AND R.SVC_NUM=S.SVC_NUM AND R.ETP_NUM='69'
+		 <![CDATA[ 
+		AND TO_CHAR(SYSDATE, 'YYYY')-TO_CHAR(CST_BIRTHDAY , 'YYYY')+1 >= 20 AND TO_CHAR(SYSDATE, 'YYYY')-TO_CHAR(CST_BIRTHDAY , 'YYYY')+1 <=29
+		]]>
+		GROUP BY SVC_code
+	</select>
+	
+	<!-- 30대 -->
+	<select id="highchart132" resultType="Highchart13">
+		SELECT SVC_code SERVICE, COUNT(*) TOTAL FROM RESERVATION R, CUSTOMER C, SERVICE S
+		WHERE R.CST_EMAIL=C.CST_EMAIL AND R.SVC_NUM=S.SVC_NUM AND R.ETP_NUM='69'
+		 <![CDATA[ 
+		AND TO_CHAR(SYSDATE, 'YYYY')-TO_CHAR(CST_BIRTHDAY , 'YYYY')+1 >= 30 AND TO_CHAR(SYSDATE, 'YYYY')-TO_CHAR(CST_BIRTHDAY , 'YYYY')+1 <=39
+		]]>
+		GROUP BY SVC_code
+	</select>
+	
+	<!-- 40대 -->
+	<select id="highchart133" resultType="Highchart13">
+		SELECT SVC_code SERVICE, COUNT(*) TOTAL FROM RESERVATION R, CUSTOMER C, SERVICE S
+		WHERE R.CST_EMAIL=C.CST_EMAIL AND R.SVC_NUM=S.SVC_NUM AND R.ETP_NUM='69'
+		 <![CDATA[ 
+		AND TO_CHAR(SYSDATE, 'YYYY')-TO_CHAR(CST_BIRTHDAY , 'YYYY')+1 >= 40 AND TO_CHAR(SYSDATE, 'YYYY')-TO_CHAR(CST_BIRTHDAY , 'YYYY')+1 <=49
+		]]>
+		GROUP BY SVC_code
+	</select>
+	
+	<!-- 50대이상 -->
+	<select id="highchart134" resultType="Highchart13">
+		SELECT SVC_code SERVICE, COUNT(*) TOTAL FROM RESERVATION R, CUSTOMER C, SERVICE S
+		WHERE R.CST_EMAIL=C.CST_EMAIL AND R.SVC_NUM=S.SVC_NUM AND R.ETP_NUM='69'
+		 <![CDATA[ 
+		AND TO_CHAR(SYSDATE, 'YYYY')-TO_CHAR(CST_BIRTHDAY , 'YYYY')+1 >= 50 
+		]]>
+		GROUP BY SVC_code
+	</select>
+</mapper>

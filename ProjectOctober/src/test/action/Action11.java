@@ -8,12 +8,25 @@ import org.apache.struts2.interceptor.RequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import model.dao.EnterpriseDAO;
+import model.vo.Enterprise;
 import test.dao.DAO;
 import test.vo.Highchart11;
 import test.vo.Highchart4;
 
 public class Action11 extends ActionSupport implements RequestAware {
 	private Map<String, Object> request;
+	private String etpEmail;
+	EnterpriseDAO enterprise = new EnterpriseDAO();
+	
+	
+	public String getEtpEmail() {
+		return etpEmail;
+	}
+
+	public void setEtpEmail(String etpEmail) {
+		this.etpEmail = etpEmail;
+	}
 
 	@Override
 	public void setRequest(Map<String, Object> request) {
@@ -22,7 +35,9 @@ public class Action11 extends ActionSupport implements RequestAware {
 	
 	public String highchart11(){
 		DAO dao = new DAO();
-		List<Highchart11> list = dao.highchart11DAO();
+		Enterprise e = enterprise.selectByEtpEmail(etpEmail);
+		System.err.println(e);	
+		List<Highchart11> list = dao.highchart11DAO(e);
 		List<Highchart11> listJubu = new ArrayList<Highchart11>();
 		List<Highchart11> listFree = new ArrayList<Highchart11>();
 		List<Highchart11> listOther = new ArrayList<Highchart11>();
