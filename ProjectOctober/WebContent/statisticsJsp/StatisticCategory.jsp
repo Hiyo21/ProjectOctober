@@ -27,7 +27,7 @@ function myFuncthion(){
 	var con_test = confirm("유료 통계서비스를 결제하시겠습니까?");
 	if(con_test == true){ 
 		document.write("결제완료");
-		location.href="PaymentAction.action"; 
+		location.href="PaymentAction.action?etpEmail=<s:property value='#session.loginId'/>"; 
 	
 	}
 	else if(con_test == false){
@@ -48,7 +48,8 @@ textarea {width:800px; height:300px;overflow:visible;}
 <body>
 <%@include file="Header.jsp"%>
 <!-- 내가 작성 -->
-
+<s:property value="etpEmail"/>
+<s:property value='#session.loginId'/>
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">통계1</a></li>
@@ -138,7 +139,7 @@ textarea {width:800px; height:300px;overflow:visible;}
       
    </div>
   <div align="right">
-	<button type="button" class="btn btn-primary" onclick="myFuncthion()">유료통계서비스</button><!-- onclick="myFuncthion()" -->
+	<button type="button" class="btn btn-primary" onclick='location.href="highchartCost"'>유료통계서비스</button><!-- onclick="myFuncthion()" -->
   </div>
 </div>
 <!-- onclick='location.href="highchartCost"' -->

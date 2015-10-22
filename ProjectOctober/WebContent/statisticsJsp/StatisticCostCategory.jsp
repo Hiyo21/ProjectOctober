@@ -68,7 +68,7 @@ $(function(){
 	});
 });
 </script>
-<form action = "pdfdown.jsp" method = "post" id="form">
+<form action = "./statisticsJsp/pdfdown.jsp" method = "post" id="form">
 <!-- 통계 -->
 <div class="section">
       <div class="container">
@@ -166,5 +166,8 @@ $(function(){
 <div align="center">
 	<button type="button" class="btn btn-primary" id="pdfdown">PDF파일로 다운받기</button>
   </div>
+  </form>
+ <s:property value="etpEmail"/>
+<s:property value='#session.loginId'/>
 </body>
 </html>

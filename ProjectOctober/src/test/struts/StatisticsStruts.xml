@@ -123,12 +123,23 @@
 		
 		<!-- 결제 페이지에서 버튼 누르면 ->유료통계서비스 -->
 		<action name="highchartCost" class="test.action.ActionCost" method="highchartCost">
-			<result name="success">
-        		/statisticsJsp/StatisticCostCategory.jsp
+			<result name="success" type="chain">
+        		<param name="actionName">highchartCost1</param>
+            	<param name="namespace">/</param>
 			</result>
 		</action>
 		
-		<action name="PaymentAction">
+		<action name="highchartCost1">
+			<result name="success">/statisticsJsp/StatisticCostCategory.jsp</result>
+		</action>
+		
+		<!-- <action name="highchartCost" class="test.action.ActionCost" method="highchartCost">
+			<result name="success">
+        		/statisticsJsp/StatisticCostCategory.jsp
+			</result>
+		</action> 
+		
+		<action name="PaymentAction" class="test.action.ActionCost" method="emptyAction">
 			<result name="success">
         		/statisticsJsp/Payment.jsp            	
 			</result>
@@ -137,7 +148,7 @@
 				
 		<action name="highchartCost1" class="test.action.ActionCost" method="highchartCost">
 			<result name="success">/statisticsJsp/StatisticCostCategory.jsp</result>
-		</action>
+		</action>-->
 		
 	</package>
 </struts>

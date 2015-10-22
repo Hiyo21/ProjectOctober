@@ -1,9 +1,11 @@
 package test.action;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -20,11 +22,13 @@ import test.vo.Highchart9Cost;
 import test.vo.Highchart9AddCost;
 
 
-public class ActionCost extends ActionSupport implements RequestAware, SessionAware{
+public class ActionCost extends ActionSupport implements RequestAware, SessionAware, ApplicationAware{
+	private static final long serialVersionUID = 1L;
 	private Map<String, Object> request;
 	private Map<String, Object> session;
 	private String etpEmail;
 	EnterpriseDAO enterprise = new EnterpriseDAO();
+	private Map<String, Object> application;
 	
 	
 	
@@ -65,7 +69,7 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		for(Highchart9Cost temp : list){
 			System.out.println(temp.getRank());
 			if(temp.getRank()==1){
-				System.out.println("1��");
+				
 				vo1.setSale1(temp.getSale());
 			}else if(temp.getRank()== 2){
 				vo2.setSale2(temp.getSale());
@@ -129,8 +133,22 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		//유료 통계서비스 1
 		
 		//유료 통계서비스2
-		Enterprise e = enterprise.selectByEtpEmail(session.get("loginId").toString());
-		System.out.println("111111");
+		if(application.get("loginId") == null){
+			application.put("loginId", session.get("loginId"));
+		}
+		
+		System.err.println("application :" + String.valueOf(application.get("loginId")));
+		
+		System.err.println("etpEmail :" + etpEmail);
+		System.err.println("session :" + session == null);
+		System.err.println(session.size());
+		System.err.println(session.toString());
+		System.err.println("Error?" + (session.get("loginId") == null));
+		System.err.println("Error?? " + session.get("loginId"));
+		System.err.println(application.get("loginId"));
+		String x = String.valueOf(application.get("loginId"));
+		System.err.println(x);
+		Enterprise e = enterprise.selectByEtpEmail(x);
 		System.err.println(e+"ActionCost");
 		String enterAddress= e.getEtpAddress();
 		System.err.println(enterAddress+"ActionCost");
@@ -202,7 +220,7 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		//유료통계서비스2
 		
 		//유료통계서비스3
-		e = enterprise.selectByEtpEmail(session.get("loginId").toString());
+		e = enterprise.selectByEtpEmail(application.get("loginId").toString());
 		List<Highchart11Cost> list2 = dao.highchart11DAO(e);
 		
 		System.out.println(list.toString());
@@ -250,11 +268,28 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		
 		return SUCCESS;
 	}
+	
+	public String emptyAction() throws Exception{
+		System.err.println(etpEmail);
+		return SUCCESS;
+	}
 
 
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
+	}
+
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+
+	@Override
+	public void setApplication(Map<String, Object> application) {
+		this.application = application;
+		
 	}
 	
 		

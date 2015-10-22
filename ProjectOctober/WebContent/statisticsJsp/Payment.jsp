@@ -5,11 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+	function sendToHighChart(){
+		location.href="highchartCost1.action?etpEmail=<s:property value='etpEmail'/>";
+	}
+</script>
 
 <title>결제페이지- 조장님이 만들 페이지</title>
 </head>
@@ -17,7 +24,10 @@
 
 
  <div align="left">
-	<button type="button" class="btn btn-primary" onclick="location.href='highchartCost1.action'">결제완료</button>
+	<button type="button" class="btn btn-primary" onclick="sendToHighChart()">결제완료</button>
   </div>
+  
+  <s:property value="#session.loginId"/>
+  <s:property value="etpEmail"/>
 </body>
 </html>
