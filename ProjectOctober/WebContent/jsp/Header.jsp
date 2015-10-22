@@ -190,7 +190,7 @@
 							</ul>
 						</s:if>
 						
-						<s:if test ="#session.loginId != null || #session.memCode == '2'">
+						<s:if test ="#session.loginId == null || #session.memCode !=null">
 						<form action="/ProjectOctober/search/searchFreeKeyword.action" id="searchFreeKeywordForm" class="navbar-form navbar-right" role="form" method="get" accept-charset="utf-8">
 	
 						<div class="input-group input-group-sm" >
