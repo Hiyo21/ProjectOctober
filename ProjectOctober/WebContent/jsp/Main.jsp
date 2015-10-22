@@ -60,16 +60,72 @@
 	<s:include value="Header.jsp"></s:include>
 
  <div class="container">
- 	<div class="row marketing">
-		<div class="col-md-2" >		   	.
-	   	</div>
-	   	
-	   	<div class="col-md-12">
+ 	<div class="row marketing">	
+ 		<div class="col-md-4">
+ 			<s:if test="enterpriseList !=null">
+          		 <s:iterator value="enterpriseList">         		 	
+					  <div class="panel-group">
+					    <div class="panel panel-default">
+						      <div class="panel-heading">
+						        <h4 class="panel-title">
+						          <a data-toggle="collapse" href="#<s:property value="etpNum"/>"><s:property value="etpTitle"/> <br> 영업개시시간 : <s:property value="etpStartHour"/>&nbsp;&nbsp; 영업종료시간 : <s:property value="etpEndHour"/></a>
+						        </h4>
+						      </div>
+						      <div id="<s:property value="etpNum"/>" class="panel-collapse collapse">
+						        <!-- 본문 내용 -->
+						        <div class="panel-body">
+						        	 <div class="section">
+									      <div class="container">
+									        <div class="row">
+									          <div class="col-md-6">
+									          		<table>
+														<tr>
+															<th>전화번호 : </th>
+															<td><s:property value="etpPhone"/></td>
+														</tr>
+														<tr>
+															<th>주소 : </th>
+															<td><s:property value="etpAddress"/></td>
+														</tr>
+														<tr>
+															<th>이메일 : </th>
+															<td><s:property value="etpEmail"/></td>
+														</tr>
+														<tr>
+															<th>특이사항 : </th>
+															<td><s:property value="etpSpecialize"/></td>
+														</tr>															
+													</table>
+									          
+									          </div>
+										         <!--  <div class="col-md-6">
+										          	<h2>오시는 길</h2>
+										          	<img class="img-responsive" src="http://maps.googleapis.com/maps/api/staticmap?center=Tombouctou,Mali&amp;zoom=12&amp;size=200x200&amp;sensor=false">
+										          </div> -->
+										          </div>
+										
+										          </div>
+										          </div>
+									        </div>
+									      </div>
+									    </div>										
+								</div>
+								<!-- 아랫 부분 
+						        <s:form action="" method="post"  theme="simple">
+							        <div class="panel-footer">
+										<s:submit value="예약"/> <input type="button" value="취소">
+									</div>
+								</s:form>-->
+   					  </s:iterator>
+					</s:if>
+ 		
+ 		</div>	
+	   	<div class="col-md-8">
 	  		<div class ="well">
 	  		   <div class="section">
 				      <div class="container">
 				        <div class="row">
-				          <div class="col-md-8">
+				          <div class="col-md-6">
 				          	<ul class="nav nav-tabs">          
 					            <li role="presentation" class="active">
 					            						<a href="#location">지역</a></li>
@@ -163,6 +219,7 @@
 		     			<div class="col-md-3 col-md-pull-2" align="center">
 		     				<div id="mapPage">
 		<div class="mapImgD">
+			<h2>[지역 검색]</h2>
 			<a href="#"><img src="../image/img_map_1.png" alt="대한민국지도" usemap="#img_map_1" class="mapImg" /></a>
 			<map name="img_map_1" id="img_map_1">	
 				<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="서울" />
@@ -183,54 +240,7 @@
 				<area shape="rect" coords="10,270,54,289" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=제주" alt="제주" />
 			</map>			
 		</div>		
-	</div>
-		     				
-		     			
-							<%-- <img src="${pageContext.request.contextPath}/image/Korea2.png" width="400" height="400" /> --%>
-		    			</div> 
-   					</div>
-   					<s:if test="enterpriseList !=null">
-          		 <s:iterator value="enterpriseList">         		 	
-					  <div class="panel-group">
-					    <div class="panel panel-default">
-						      <div class="panel-heading">
-						        <h4 class="panel-title">
-						          <a data-toggle="collapse" href="#<s:property value="etpNum"/>"><s:property value="etpTitle"/> &nbsp;&nbsp; 영업개시시간 : <s:property value="etpStartHour"/>&nbsp;&nbsp; 영업종료시간 : <s:property value="etpEndHour"/></a>
-						        </h4>
-						      </div>
-						      <div id="<s:property value="etpNum"/>" class="panel-collapse collapse">
-						        <!-- 본문 내용 -->
-						        <div class="panel-body">
-						        	 <div class="section">
-									      <div class="container">
-									        <div class="row">
-									          <div class="col-md-6">
-									          		<table>
-														<tr>
-															<th>전화번호 : </th>
-															<td><s:property value="etpPhone"/></td>
-														</tr>
-														<tr>
-															<th>주소 : </th>
-															<td><s:property value="etpAddress"/></td>
-														</tr>
-														<tr>
-															<th>이메일 : </th>
-															<td><s:property value="etpEmail"/></td>
-														</tr>
-														<tr>
-															<th>특이사항 : </th>
-															<td><s:property value="etpSpecialize"/></td>
-														</tr>															
-													</table>
-									          
-									          </div>
-										          <div class="col-md-6">
-										          	<h2>오시는 길</h2>
-										          	<img class="img-responsive" src="http://maps.googleapis.com/maps/api/staticmap?center=Tombouctou,Mali&amp;zoom=12&amp;size=200x200&amp;sensor=false">
-										          </div>
-										          </div>
-										<!-- 지도 UI -->
+		<!-- 지도 UI -->
 										<script type="text/javascript">	
 											$('#img_map_1 area').mouseover(function(){
 												mapTxt = $(this).attr("alt");
@@ -256,20 +266,12 @@
 											})			
 										
 										</script>
-										          </div>
-										          </div>
-									        </div>
-									      </div>
-									    </div>										
-								</div>
-								<!-- 아랫 부분 -->
-						        <s:form action="" method="post"  theme="simple">
-							        <div class="panel-footer">
-										<s:submit value="예약"/> <input type="button" value="취소">
-									</div>
-								</s:form>
-   					  </s:iterator>
-					</s:if>
+	</div>
+		     				
+		     			
+							<%-- <img src="${pageContext.request.contextPath}/image/Korea2.png" width="400" height="400" /> --%>
+		    			</div> 
+   					</div>   					
    				</div>
    				<div id="genre" class="tab-pane fade">
     				<div class="row">	
