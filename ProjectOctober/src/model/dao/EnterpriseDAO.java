@@ -275,4 +275,6 @@ public class EnterpriseDAO extends DAOTemplate{
 	public Coupon checkCoupon(Integer cpnNum) {
 		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(cpnNum);});
 	}
+
+	
 }

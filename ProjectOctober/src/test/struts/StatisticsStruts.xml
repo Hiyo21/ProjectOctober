@@ -99,22 +99,45 @@
 			</result>		
 		</action>
 		
-	<!-- 직업별 선호하는 서비스 -->
+		<!-- 직업별 선호하는 서비스 -->
 		 <action name="highchart12" class="test.action.Action12" method="highchart12">
+			<result name="success" type="chain">
+        		<param name="actionName">highchart13</param>
+            	<param name="namespace">/</param>
+			</result>	
+		 </action>
+		
+		<!-- 연령대별 선호하는 서비스 -->
+		<action name="highchart13" class="test.action.Action13" method="highchart13">
 			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
 		</action>
 		
+		
+		
+		
+		
+		
+		
+		<!-- 공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백공백 -->
+		
+		
 		<!-- 결제 페이지에서 버튼 누르면 ->유료통계서비스 -->
 		<action name="highchartCost" class="test.action.ActionCost" method="highchartCost">
-			<result name="success" type="chain">
-        		<param name="actionName">highchartCost1</param>
-            	<param name="namespace">/</param>
+			<result name="success">
+        		/statisticsJsp/StatisticCostCategory.jsp
 			</result>
 		</action>
 		
-		<action name="highchartCost1">
+		<action name="PaymentAction">
+			<result name="success">
+        		/statisticsJsp/Payment.jsp            	
+			</result>
+		</action>
+		
+				
+		<action name="highchartCost1" class="test.action.ActionCost" method="highchartCost">
 			<result name="success">/statisticsJsp/StatisticCostCategory.jsp</result>
 		</action>
-
+		
 	</package>
 </struts>

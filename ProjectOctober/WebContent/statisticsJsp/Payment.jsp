@@ -17,7 +17,7 @@
 
 
  <div align="left">
-	<button type="button" class="btn btn-primary" onclick="location.href='highchartCost'">결제완료</button>
+	<button type="button" class="btn btn-primary" onclick="location.href='highchartCost1.action'">결제완료</button>
   </div>
 </body>
 </html>

@@ -27,7 +27,8 @@ function myFuncthion(){
 	var con_test = confirm("유료 통계서비스를 결제하시겠습니까?");
 	if(con_test == true){ 
 		document.write("결제완료");
-		parent.location.replace("Payment.jsp");
+		location.href="PaymentAction.action"; 
+	
 	}
 	else if(con_test == false){
 		document.write("결제취소");
@@ -35,7 +36,7 @@ function myFuncthion(){
 	
 	
 }//유료 통계 페이지로 이동
-</script>
+</script>  
 
 <style type="text/css">
 textarea {width:800px; height:300px;overflow:visible;}
@@ -137,10 +138,10 @@ textarea {width:800px; height:300px;overflow:visible;}
       
    </div>
   <div align="right">
-	<button type="button" class="btn btn-primary" onclick="myFuncthion()">유료통계서비스</button>
+	<button type="button" class="btn btn-primary" onclick="myFuncthion()">유료통계서비스</button><!-- onclick="myFuncthion()" -->
   </div>
 </div>
-
+<!-- onclick='location.href="highchartCost"' -->
 
 </body>
 </html>	

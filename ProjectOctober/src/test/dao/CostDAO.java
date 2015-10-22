@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import model.common.MyBatisSqlSessionFactory;
+import model.vo.Enterprise;
 import test.vo.Highchart10Cost;
 import test.vo.Highchart11Cost;
 import test.vo.Highchart9Cost;
@@ -22,23 +23,23 @@ public class CostDAO {
 		return list;
 	}
 
-	public List<Highchart10Cost> highchart10DAO() {
+	public List<Highchart10Cost> highchart10DAO(String enterAddress) {
 		List<Highchart10Cost> list1 = null;
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list1 = sqlsession.selectList("highchart10Cost");				
+			list1 = sqlsession.selectList("highchart10Cost", enterAddress);				
 		}finally{
 			sqlsession.close();
 		}		
 		return list1;
 	}
 
-	public List<Highchart11Cost> highchart11DAO() {
+	public List<Highchart11Cost> highchart11DAO(Enterprise e) {
 		List<Highchart11Cost> list2 = null;
 		
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list2 = sqlsession.selectList("highchart11Cost");				
+			list2 = sqlsession.selectList("highchart11Cost", e);				
 		}finally{
 			sqlsession.close();
 		}		

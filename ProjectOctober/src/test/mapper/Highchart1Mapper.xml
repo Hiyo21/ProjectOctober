@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="test.mapper.Highchart1Mapper.xml" >
-	<select id="highchart1" resultType="Highchart1">
+	<select id="highchart1" parameterType="Enterprise" resultType="Highchart1">
  		SELECT 
 		age, cst_GENDER cGender, COUNT(rsv_GENDER) countGender , rsv_GENDER rsvGender FROM
 		(
@@ -17,5 +17,6 @@
 		ORDER BY age
  		
  	</select>
+	
 	
 </mapper>
