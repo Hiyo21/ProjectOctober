@@ -79,22 +79,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 
 	public String insertReservation() throws Exception{
+		System.err.println("널값 확인용 :" + reservation);
 		if(reservation != null){
+			System.err.println("reservation 시작 스트링: " + reservation.getStart());
+			System.err.println("reservation 끝 스트링: " + reservation.getEnd());
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(), DateTimeFormatter.ISO_DATE_TIME));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(), DateTimeFormatter.ISO_DATE_TIME));
-			//시험용!
-			//svc_num 필요,
-			reservation.setSvcNum(7);
-			//etp_num 필요
-			reservation.setEtpNum("1234567890");
-			//etp_email 필요
-			reservation.setEtpEmail("test1@test.com");
-			//cst_email 필요
-			reservation.setCstEmail("test2@test.com");
-			
+			reservation.setEtpNum(String.valueOf(session.get("loginEtpNum")));
+			reservation.setEtpEmail(String.valueOf(session.get("loginId")));
 		}
 		int result = etpDAO.insertReservation(reservation);
-		
 		if(result != 0) return SUCCESS;
 		else return ERROR;
 	}
@@ -166,8 +160,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
 		enterprise.setServices(etpDAO.selectServiceList(etpNum)); 
 
-		if(enterprise.getServices() != null)
-			return SUCCESS;
+		if(enterprise.getServices() != null) return SUCCESS;
 		else return ERROR;
 	}
 	
@@ -359,6 +352,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+
+	
     ///////////////////////// GET&SET ///////////////////////// 
 
 	public Enterprise getEnterprise() {
@@ -460,6 +455,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			System.err.println(Arrays.toString(tt)+2);
 			return tt;
 	}
+	
+	public String emptyAction(){
+		return SUCCESS;
+	}
 
 
 	public List<Service> getServiceList() {
@@ -551,24 +550,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.category = category;
 	}
 
-
-
-
-
-	public Map<String, Object> getSession() {
-		return session;
-	}
-
-
 	public Integer getCpnNum() {
 		return cpnNum;
 	}
 
-
-
-
 	public void setCpnNum(Integer cpnNum) {
 		this.cpnNum = cpnNum;
 	}
-
 }

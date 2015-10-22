@@ -43,15 +43,7 @@ public class EnterpriseDAO extends DAOTemplate{
 	}
 	
 	public Integer insertReservation(Reservation reservation){
-		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		try{
-			int result = session.getMapper(ReservationMapper.class).insertReservation(reservation);
-			if(result == 1) session.commit();
-			else session.rollback();
-			return result;
-		}finally{
-			session.close();
-		}
+		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertReservation(reservation);});
 	}
 	
 	public Integer changeReservationTime(Reservation reservation){

@@ -147,5 +147,8 @@
 			</result>
 		</action>
 		
+		<action name="emptyAction" class="controller.action.EnterpriseAction" method="emptyAction">
+			<result type="json" />
+		</action>
 	</package>
 </struts>
