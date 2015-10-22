@@ -16,6 +16,8 @@ import model.vo.Enterprise;
 import test.dao.CostDAO;
 import test.vo.AutoHighchartCost1;
 import test.vo.AutoHighchartCost1Add;
+import test.vo.AutoHighchartCost2;
+import test.vo.AutoHighchartCost3;
 import test.vo.Highchart10Cost;
 import test.vo.Highchart11Cost;
 import test.vo.Highchart1Add;
@@ -286,78 +288,115 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		
 		
 		
-		
+		List<AutoHighchartCost1Add> autoList = new ArrayList<AutoHighchartCost1Add>();
 		for(AutoHighchartCost1 temp : list3){
 			System.out.println(temp.toString()+"temp");
 			System.out.println("야야야야");
 			if(temp.getSvcCode().equals("웨딩관리")){
-				/*c1.setTai(temp.getSvcCode());*/
-				c1.setTaiCost(temp.getDifferCost());
-				System.out.println(c1);
-				
-			}/*else if(temp.getSvcCode().equals("경락마사지")){
+				if(temp != null){
+					c1.setWedding(temp.getSvcCode());
+					c1.setWeddingCost(temp.getDifferCost());
+					autoList.add(c1);
+					System.out.println(c1);
+					System.out.println(autoList+"지희여기");
+				}
+			}else if(temp.getSvcCode().equals("경락마사지")){
+				if(temp != null){
 				c2.setGyung(temp.getSvcCode());
-				c2.setGyungCost(temp.getDifferCost());				
-				
+				c2.setGyungCost(temp.getDifferCost());	
+				autoList.add(c1);
+				}
 			}else if(temp.getSvcCode().equals("카이로프랙틱")){
+				if(temp != null){
 				c3.setKairo(temp.getSvcCode());
 				c3.setKairoCost(temp.getDifferCost());
-				
+				autoList.add(c3);
+				}
 			}else if(temp.getSvcCode().equals("발마사지")){
+				if(temp != null){
 				c4.setBal(temp.getSvcCode());
 				c4.setBalCost(temp.getDifferCost());
-				
+				autoList.add(c4);
+				}
 			}else if(temp.getSvcCode().equals("바디마사지")){
+				if(temp != null){
 				c5.setBody(temp.getSvcCode());
 				c5.setBodyCost(temp.getDifferCost());
-				
+				autoList.add(c5);
+				}
 			}else if(temp.getSvcCode().equals("페이스마사지")){
+				if(temp != null){
 				c6.setFace(temp.getSvcCode());
 				c6.setFaceCost(temp.getDifferCost());
-				
+				autoList.add(c6);
+				}
 			}else if(temp.getSvcCode().equals("아로마마사지")){
+				if(temp != null){
 				c7.setAroma(temp.getSvcCode());
 				c7.setAromaCost(temp.getDifferCost());
+				autoList.add(c7);
+				}
 			}else if(temp.getSvcCode().equals("슬리밍케어")){
+				if(temp != null){
 				c8.setSleeming(temp.getSvcCode());
 				c8.setSleemingCost(temp.getDifferCost());
-			}else if(temp.getSvcCode().equals("웨딩관리")){
-				c9.setWedding(temp.getSvcCode());
-				System.out.println(c1.toString());
-				c9.setWeddingCost(temp.getDifferCost());
-			}		*/	
+				autoList.add(c8);
+				}
+			}else if(temp.getSvcCode().equals("타이마사지")){
+				if(temp != null){
+				c9.setTai(temp.getSvcCode());
+				c9.setTaiCost(temp.getDifferCost());
+				autoList.add(c9);
+				
+				}
+			}
+			request.put("autoList", autoList);
 		}
+		//유료통계서비스1- 자동문구 생성1끝
+	
+		
+		//유료통계서비스2- 자동문구 생성2시작
+		Enterprise e2 = enterprise.selectByEtpEmail(application.get("loginId").toString());
+		System.err.println(e2.getEtpAddress()+"여기주소는");
+		List<AutoHighchartCost2> list4 = dao.autoHighchartCost2(e2);
+		List<AutoHighchartCost2> list5 = dao.autoHighchartCost21(e2);
+		
+		System.out.println(list4+"list4");
+		System.out.println(list5+"list5");
+		
+		request.put("TotalCnt", list4);
+		request.put("PersonalCnt", list5);		
+		//유료통계서비스2- 자동문구 생성2끝
 		
 		
-		List<AutoHighchartCost1Add> listTai = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listGyung = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listKairo = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listBal = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listBody = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listFace = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listSleeming = new ArrayList<AutoHighchartCost1Add>();
-		List<AutoHighchartCost1Add> listWedding = new ArrayList<AutoHighchartCost1Add>();
+		
+		//유료통계서비스3- 자동문구 생성3시작
+		Enterprise e3 = enterprise.selectByEtpEmail(application.get("loginId").toString());
+		List<AutoHighchartCost3> list6 = dao.autoHighchartCost3(e3);
+		List<AutoHighchartCost3> list7 = dao.autoHighchartCost31(e3);
+		
+		System.out.println(list6+"list6");
+		System.out.println(list7+"list7");
+		
+		request.put("TotalAge", list6);
+		request.put("PersonalAge", list7);
+		
+		//유료통계서비스3- 자동문구 생성3끝
 		
 		
-		listTai.add(c1);
-		listGyung.add(c2);
-		listKairo.add(c3);
-		listBal.add(c4);
-		listBody.add(c5);
-		listFace.add(c6);
-		listSleeming.add(c7);
-		listWedding.add(c8);
 		
-		request.put("listTai", listTai);
-		request.put("listGyung", listGyung);
-		request.put("listKairo", listKairo);
-		request.put("listBal", listBal);
-		request.put("listBody", listBody);
-		request.put("listFace", listFace);
-		request.put("listSleeming", listSleeming);
-		request.put("listWedding", listWedding);
 		
-		System.out.println(listWedding.toString()+"조건부셔버려");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		return SUCCESS;
 	}

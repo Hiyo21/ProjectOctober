@@ -23,8 +23,8 @@ import model.vo.Zipcode;
 public class MemberAction extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 5672648613791884055L;
 	private static final int ENTERPRISE_CODE = 1;
-	private static final int CUSTOMER_CODE = 2;
-	private static final int ADMIN_CODE = 3;
+	private static final int ADMIN_CODE = 2;
+	private static final int CUSTOMER_CODE = 3;
 	
 	private Map<String, Object> session;
 	private Customer customer;
@@ -188,6 +188,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
+				if(enterprise.getEtpTemplateType() != null) session.put("templateType", String.valueOf(enterprise.getEtpTemplateType()));
 				return "enterprise";
 			}else if(member.getMemCode() == CUSTOMER_CODE){
 				session.put("customer", DAOFactory.createCustomerDAO().retrieveCustomer(member.getMemEmail()));

@@ -83,8 +83,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(reservation != null){
 			System.err.println("reservation 시작 스트링: " + reservation.getStart());
 			System.err.println("reservation 끝 스트링: " + reservation.getEnd());
-			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(), DateTimeFormatter.ISO_DATE_TIME));
-			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(), DateTimeFormatter.ISO_DATE_TIME));
+			if(reservation.getStart().length()>11 && reservation.getEnd().length()>11){
+				reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+				reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+			}else{
+				reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(),DateTimeFormatter.ISO_LOCAL_DATE));
+				reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(),DateTimeFormatter.ISO_LOCAL_DATE));
+			}
 			reservation.setEtpNum(String.valueOf(session.get("loginEtpNum")));
 			reservation.setEtpEmail(String.valueOf(session.get("loginId")));
 		}
@@ -200,9 +205,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String takeEtp() throws Exception{
 		System.out.println("===========check Action :: etpNum :: " + etpNum);
 		enterprise = etpDAO.selectByEtpNum(etpNum);
-		//페이지 주인 이메일 세션 기록
-		session.put("pageId", enterprise.getEtpEmail());
-		System.err.println(session.get("pageId").toString());
 		
 		//서비스 리스트 set
 		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
@@ -232,6 +234,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
+
+			session.put("pageId", etpEmail);
+
 			
 			switch (type) {
 			case 1:
