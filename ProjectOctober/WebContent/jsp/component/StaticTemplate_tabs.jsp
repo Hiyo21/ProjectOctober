@@ -29,19 +29,32 @@
 	        $(".prev span").text(y);
 	    }); 
 	    	
-	});
+	}); 
 	
 	//편집 버튼 숨김
-	$(function(){		
-		$('.edit').hide();	// top 개요 편집 버튼, info 편집 버튼, 사업자 버튼바 중 save 버튼, 서비스 편집 버튼
-		$('#saveBT').attr('disabled', true);
+	$(function(){
+		var loginId = '<%= session.getAttribute("loginId") %>';
+		var pageId = '<%= session.getAttribute("pageId") %>';
+		
+		//로그인 하지 않았거나 페이지 주인이 아닐때
+		$('.edit').hide();
+		$('#etpBT').hide();
+		
+		//로그인 한 사람이 페이지 주인일 때 
+		if(loginId != null && loginId == pageId){
+			$('#etpBT').show();
+			
+			$('#saveBT').attr('disabled', true);
+			$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
+		}    
 	});
+	
 	
 	//편집 버튼 보이기
 	function startEdit(){
 		$('.edit').show();	// top 개요 편집 버튼, info 편집 버튼, 사업자 버튼바 중 save 버튼, 서비스 편집 버튼
-		$('#saveBT').attr('disabled', false);
 		
+		$('#saveBT').attr('disabled', false);	
 		$('#editBT').attr('disabled', true); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
 	}
 	
@@ -49,6 +62,8 @@
 	function savePage(){
 		
 	}
+	
+	
 	
 </script>
 

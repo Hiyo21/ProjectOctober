@@ -207,10 +207,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String takeEtp() throws Exception{
 		System.out.println("===========check Action :: etpNum :: " + etpNum);
 		enterprise = etpDAO.selectByEtpNum(etpNum);
+		
 		//서비스 리스트 set
 		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
 		enterprise.setServices(svcList);
 		
+		//카테고리 리스트 뽑기
 		categoryList = new ArrayList<>();
 		for(int j=0; j<svcList.size(); j++){	
 			String category = svcList.get(j).getSvcCategory();
@@ -234,7 +236,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
+
 			session.put("pageId", etpEmail);
+
 			
 			switch (type) {
 			case 1:
