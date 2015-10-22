@@ -834,6 +834,7 @@
  	 		  or ETP_PHONE like '%'||#{searchLanguage}||'%'
  	 		  or ETP_DESCRIPTION like '%'||#{searchLanguage}||'%'
  	 		  or ETP_SPECIALIZE like '%'||#{searchLanguage}||'%' 
+ 	 		  
  	    order by addr1 ASC	 	 		  
 	</select>
 	
