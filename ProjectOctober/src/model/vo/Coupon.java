@@ -19,6 +19,9 @@ public class Coupon implements Serializable {
     private LocalDateTime cpnStartDate;
 
     private LocalDateTime cpnEndDate;
+    
+    private boolean canUseCoupon;
+    
 
     private static final long serialVersionUID = 1L;
 
@@ -103,4 +106,12 @@ public class Coupon implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+	public boolean isCanUseCoupon() {
+		return canUseCoupon;
+	}
+
+	public void setCanUseCoupon(boolean canUseCoupon) {
+		this.canUseCoupon = canUseCoupon;
+	}
 }

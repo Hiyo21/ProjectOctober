@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +28,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private EnterpriseDAO etpDAO;
 	private Enterprise enterprise;
 	private Reservation reservation;
+	private Map<String, Object> serviceMap;
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
 	private List<Service> serviceList;
@@ -36,16 +36,21 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	private List<Coupon> couponList;
 	private Member member;
-	
+
 	//////// Component Member ////////  
 	private Component component;
 	private List<Component> componentList;
+	private Coupon coupon;
 
 	private String etpNum;
+	private String etpNum1;
 	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
-	private Integer svcNum;
+
+	private boolean canUseCoupon = false;
+	private Integer cpnNum;
+
 	private String category;
 
 	public EnterpriseAction() {
@@ -127,21 +132,26 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
-	//--------------------------------------------------사업자 페이지---------------------------
+		//--------------------------------------------------사업자 페이지---------------------------
 	public String updateSvcCategory() throws Exception{
 		System.out.println("===========check Action :: updateSvcCategory :: " + etpNum);
-		int result = etpDAO.updateSvcCategory(etpNum, svcNum);
-		
-		return SUCCESS;
+		int result = etpDAO.updateSvcCategory();
+		if(result>0) return SUCCESS;
+		else return ERROR;
 	}
 
-	//
-	public String selectServiceList() throws Exception{
-		System.out.println("===========check Action :: selectServiceList :: " + etpNum);
-		enterprise.setServices(etpDAO.selectServiceList(etpNum)); 
-
-		if(enterprise.getServices() != null) return SUCCESS;
+	public String receiveServiceList() throws Exception{
+		System.err.println(etpNum);
+		serviceList = etpDAO.retrieveServices(etpNum);
+		System.err.println(serviceList);
+		if(serviceList != null) return SUCCESS;
 		else return ERROR;
+	}
+	
+	public String retrieveCouponList() throws Exception{
+		couponList = etpDAO.retrieveCouponList(etpNum);
+		return SUCCESS; 
+		
 	}
 	
 	public String selectSvcCategory() throws Exception{
@@ -152,12 +162,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
-		
-	public String retrieveCouponList() throws Exception{
-		System.err.println(etpNum);
-		couponList = etpDAO.retrieveCouponList(etpNum);
-		return SUCCESS; 
-		
+	public String selectServiceList() throws Exception{
+		System.out.println("===========check Action :: receiveServiceList :: " + etpNum);
+		enterprise.setServices(etpDAO.selectServiceList(etpNum)); 
+
+		if(enterprise.getServices() != null) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String selectEtpList() throws Exception{
@@ -221,6 +231,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(reservation.getRsvTitle() == null || reservation.getRsvTitle().trim().length() == 0) reservation.setRsvTitle("제목 없음");
 		int result = etpDAO.updateReservationDetailsByEnterprise(reservation);
 		System.err.println(result);
+		return SUCCESS;
+	}
+	
+	public String checkCoupon() throws Exception{
+		System.err.println(cpnNum);
+		coupon = etpDAO.checkCoupon(cpnNum);
+		if(coupon != null)coupon.setCanUseCoupon(true);
 		return SUCCESS;
 	}
 	
@@ -313,6 +330,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}
 		return SUCCESS;			
 	}
+	
+	
 	
 	
 	
@@ -412,16 +431,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.session = session;
 	}
 	
-	public Integer getSvcNum() {
-		return svcNum;
-	}
-
-
-	public void setSvcNum(Integer svcNum) {
-		this.svcNum = svcNum;
-	}
-
-
+	
 	//---------------------------------//
 	public Integer [] makeDow(WorkingDays wd){
 			int [] temp = {wd.getSun(), wd.getMon(), wd.getTue(), wd.getWed(), wd.getThu(),wd.getFri(), wd.getSat()};
@@ -483,6 +493,46 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 
 
+	public String getEtpNum1() {
+		return etpNum1;
+	}
+
+
+	public void setEtpNum1(String etpNum1) {
+		this.etpNum1 = etpNum1;
+	}
+
+
+	public List<Coupon> getCouponList() {
+		return couponList;
+	}
+
+
+	public void setCouponList(List<Coupon> couponList) {
+		this.couponList = couponList;
+	}
+
+
+	public boolean isCanUseCoupon() {
+		return canUseCoupon;
+	}
+
+
+	public void setCanUseCoupon(boolean canUseCoupon) {
+		this.canUseCoupon = canUseCoupon;
+	}
+
+
+	public Coupon getCoupon() {
+		return coupon;
+	}
+
+
+	public void setCoupon(Coupon coupon) {
+		this.coupon = coupon;
+	}
+	
+	
 	public String getCategory() {
 		return category;
 	}

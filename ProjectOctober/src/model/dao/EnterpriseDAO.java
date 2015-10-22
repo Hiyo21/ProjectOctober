@@ -120,6 +120,16 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+	public int updateSvcCategory(Service service) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			session.getMapper(ServiceMapper.class).updateByPrimaryKey(service);
+			return 0;
+		}finally{
+			session.close();
+		}
+	}
+	
 	public List<Review> selectReviewList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
@@ -143,6 +153,7 @@ public class EnterpriseDAO extends DAOTemplate{
 			session.close();
 		}
 	}
+
 	
 	public List<Service> retrieveServices(String etpNum) {
 		return dataRetrievalTemplate(s -> {return s.getMapper(ServiceMapper.class).retrieveServices(etpNum);});
@@ -253,16 +264,15 @@ public class EnterpriseDAO extends DAOTemplate{
 	}
 
 
-	public int updateSvcCategory(String etpNum, Integer svcNum) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 	public List<Coupon> retrieveCouponList(String etpNum) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
 			return session.getMapper(EnterpriseMapper.class).retrieveCouponList(etpNum);
 		}finally{session.close();}
+	}
+
+	public Coupon checkCoupon(Integer cpnNum) {
+		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(cpnNum);});
 	}
 }
