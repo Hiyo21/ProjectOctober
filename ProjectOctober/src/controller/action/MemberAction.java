@@ -182,26 +182,29 @@ public class MemberAction extends ActionSupport implements SessionAware{
 			if(member.getMemCode() == ENTERPRISE_CODE){
 				Enterprise enterprise = DAOFactory.createEnterpriseDAO().selectByEtpEmail(member.getMemEmail());
 				if(enterprise == null) throw new Exception("엔터프라이즈가 없음!");
-				if(enterprise.getEtpStatus() != 1) return LOGIN;
+				if(enterprise.getEtpStatus() != 1) {System.out.println(0);return LOGIN;}
 				session.put("enterprise", enterprise);
 				session.put("loginEtpNum", enterprise.getEtpNum());
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
-				if(enterprise.getEtpTemplateType() != null) session.put("templateType", String.valueOf(enterprise.getEtpTemplateType()));
-				return "enterprise";
+				if(enterprise.getEtpTemplateType() == null){ System.out.println(1);return "enterpriseNo";}
+				else {System.out.println(2);return "enterprise";}
 			}else if(member.getMemCode() == CUSTOMER_CODE){
 				session.put("customer", DAOFactory.createCustomerDAO().retrieveCustomer(member.getMemEmail()));
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
+				System.out.println(3);
 				return "customer";
 			}else if(member.getMemCode() == ADMIN_CODE){
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
+				System.out.println(4);
 				return "admin";
 			}else{
+				System.out.println(5);
 				return LOGIN;
 			}
 		}
@@ -222,6 +225,19 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		}
 	}
 
+	
+	public String retrieveEnterpriseInfo() throws Exception {
+		Enterprise enterprise = DAOFactory.createEnterpriseDAO().selectByEtpEmail((String)session.get("loginId"));
+		if(enterprise.getEtpTemplateType() == 1) {
+			return "template1";
+		}
+		else if(enterprise.getEtpTemplateType() == 2) {
+			return "template2";
+		}
+		else {
+			return "template3";
+		}
+	}
 	
 	
 	public String retrieveCustomerInfoPerReservation() throws Exception{
