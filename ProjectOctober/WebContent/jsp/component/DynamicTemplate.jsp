@@ -8,6 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dynamic Templete</title>
 
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/lodash.js"></script>
+<script src="${pageContext.request.contextPath}/js/gridstack.js"></script>
+
 <!-- Latest compiled and minified CSS -->
 <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
@@ -37,36 +45,32 @@
 	
 </style>
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/lodash.js"></script>
-<script src="${pageContext.request.contextPath}/js/gridstack.js"></script>
-
 <script>
 $(function () {
-	
+		
 	var loginId = '<%= session.getAttribute("loginId") %>';
 	var pageId = '<%= session.getAttribute("pageId") %>';
-	
-	//로그인 하지 않았거나 페이지 주인이 아닐때
-	$('.edit').hide();
-	$('#etpBT').hide();
-	
-	$('.grid-stack').gridstack({
-		static_grid : true
-	});
+
 	
 	//로그인 한 사람이 페이지 주인과 동일 할 때 
 	if(loginId != null && loginId == pageId){
-				
+		alert("내가 주인이다")				
 		$('#etpBT').show();
 		
 		$('#saveBT').attr('disabled', true);
 		$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
+		
+	}else{
+		alert("I am not 주인")
+	//로그인 하지 않았거나 페이지 주인이 아닐때
+		$('.edit').hide();
+		$('#etpBT').hide();
+	
 	}    
+	
+	$('.grid-stack').gridstack({
+		static_grid : false
+	});
 
 });
 
@@ -87,7 +91,7 @@ function startEdit(){
 
 	
 	//save, load 버튼에 클릭 이벤트와 함수 연결
-    $('#saveBT').on('click', save_grid);
+    $('#saveBT').on('click', savePage);
     $('#loadBT').on('click', load_grid);
     
     //컴포넌트에 마우스가 들어가면 삭제 버튼 생성
@@ -103,12 +107,13 @@ function startEdit(){
 }
 
 
-function save_grid(){
-	
+function savePage(etpNum){
+	var etpNum2 = etpNum;
  	var componentList = _.map($('.grid-stack .grid-stack-item:visible'), function(el) {
 	    el = $(el);
 	    var node = el.data('_gridstack_node'); //node : Object와 같은 모든 것을 담을 수 있는 부모 객체
 	    var component = {  
+	    	"component.etpNum" : etpNum2,
 	    	"component.componentID" : el.attr('id'),
 	        "component.componentPosX" : node.x,
 	        "component.componentPosY" : node.y,
@@ -118,11 +123,14 @@ function save_grid(){
 	    return component; //return 받는 객체 형식
 	}); 
  
- 	console.log(componentList);
  	
  	for(var i in componentList){
+<<<<<<< HEAD
+=======
+		console.log(componentList);
+>>>>>>> refs/remotes/origin/master
  		$.ajax({
-			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action', 
+			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum='+etpNum, 
 			type:'POST',
 			data :  componentList[i],
 			contentType: 
@@ -386,6 +394,9 @@ function print(object){
 	</div>
 
 </div>
+
+
+
 
 </body>
 </html>

@@ -16,10 +16,12 @@
 <style>
 	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
 #header {
+
    /*  background-color:#F2F2F2;
     color:#fff; */
  /*   background: url("${pageContext.request.contextPath}/image/img-main2.png")  */	
   
+
 }
 	
 	
@@ -113,10 +115,10 @@
 							<!--  -->
 
 						</s:if>
-						<s:if test="#session.memCode == 3">
+						<s:if test="#session.memCode == 2">
 							<a href="${pageContext.request.contextPath}/member/toCustomerMainPage.action" class="btn btn-primary btn-sm">마이페이지</a>
 						</s:if>
-						<s:if test="#session.memCode == 2">
+						<s:if test="#session.memCode == 3">
 							<a href="${pageContext.request.contextPath}/enterprise/AllNoRegisterEtpList.action" class="btn btn-primary btn-sm">마이페이지</a>
 						</s:if>
 						<!-- 공통 로그아웃 -->

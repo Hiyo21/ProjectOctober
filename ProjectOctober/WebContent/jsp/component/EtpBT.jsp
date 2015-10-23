@@ -22,7 +22,7 @@
 	</div>
 	<!-- 페이지 편집중에만 보이게 -->
 	<div class="btn-group" role="group">
-		 <button type="button" class="btn btn-primary btn-lg" id="saveBT" onclick="savePage()">Save &raquo;</button>
+		 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='savePage(<s:property value="etpNum"/>)'>Save &raquo;</button>
 	</div>
 </div>
 

@@ -6,9 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+	.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 500px;
+    overflow-y: auto;
+}
+</style>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lightbox/colorbox.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/css/lightbox/jquery.colorbox.js"></script>
 <script>
 $(document).ready(function() {
 	$('#b1').on('click', first);	//첫번째 버튼에 클릭 이벤트 생성
@@ -17,6 +28,10 @@ $(document).ready(function() {
 	$("#one").click(function(){$("#myModal1").modal();});		//첫번째 미리보기 이미지를 클릭하면 모달 실행
 	$("#two").click(function(){$("#myModal2").modal();});		//두번째 미리보기 이미지를 클릭하면 모달 실행
 	$("#three").click(function(){$("#myModal3").modal();});		//세번째 미리보기 이미지를 클릭하면 모달 실행
+	$('.group').colorbox({
+		rel:'group',
+		open: true
+	});
 });
 
 function first() {
@@ -38,9 +53,23 @@ function third() {
 	$('#three').attr('src', 'http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_s.jpg');
 }
 </script>
+<script type="text/javascript">
+function template1() {
+	location.href = "${pageContext.request.contextPath}/enterprise/choiceTemplateType.action?etpTemplateType=1";
+}
+function template2() {
+	location.href = "${pageContext.request.contextPath}/enterprise/choiceTemplateType.action?etpTemplateType=2";
+}
+function template3() {
+	location.href = "${pageContext.request.contextPath}/enterprise/choiceTemplateType.action?etpTemplateType=3";
+}
+</script>
 </head>
 <body>
 <s:include value="../Header.jsp"></s:include>
+<a class="group" href="${pageContext.request.contextPath}/image/pleasedelete1.JPG" title="튜토리얼페이지1"></a>
+<a class="group" href="${pageContext.request.contextPath}/image/pleasedelete2.JPG" title="튜토리얼페이지2"></a>
+<a class="group" href="${pageContext.request.contextPath}/image/pleasedelete3.JPG" title="튜토리얼페이지3"></a>
 <div align = "center">
 <br><br>
 <div class="container">
@@ -86,10 +115,11 @@ function third() {
 				</div>
 				<!-- 모달의 바디 부분 / 이곳에 include -->
 				<div class="modal-body">
-					<p>이곳에 페이지를 삽입합니다</p>
+					<p><img src="${pageContext.request.contextPath}/image/DynamicTemplate.gif"></p>
 				</div>
 				<!-- 모달의 하단 / close 버튼이 위치 -->
 				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="template1()">Select</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -98,16 +128,17 @@ function third() {
 
 	<!-- 두번째 미리보기를 클릭하면 실행되는 모달 -->
 	<div class="modal fade" id="myModal2" role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">정적템플릿1</h4>
 				</div>
 				<div class="modal-body">
-					<p>이곳에 페이지를 삽입합니다</p>
+					<p><img src="${pageContext.request.contextPath}/image/StaticTemplate1.gif"></p>
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="template2()">Select</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -116,16 +147,17 @@ function third() {
 	
 	<!-- 세번째 미리보기를 클릭하면 실행되는 모달 -->
 	<div class="modal fade" id="myModal3" role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">정적템플릿2</h4>
 				</div>
 				<div class="modal-body">
-					<p>이곳에 페이지를 삽입합니다</p>
+					<p><img src="${pageContext.request.contextPath}/image/StaticTemplate2.jpg"></p>
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="template3()">Select</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
