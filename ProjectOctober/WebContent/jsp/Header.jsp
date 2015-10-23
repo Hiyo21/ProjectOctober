@@ -16,11 +16,11 @@
 <style>
 	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
 #header {
-   /*  background-color:#F2F2F2;
-    color:#fff; */
+ background-color:#F6CECE; 
+   
 
 
-   background: url("../image/salgu.png") 
+  /*  background: url("../image/salgu.png")  */
   
 } 
 	
@@ -55,10 +55,10 @@
 				<s:if test="#session.loginId == null">
 					<div class="row">
 						<div class="col-sm-1 col-md-1 col-lg-1">
-							<img src="${pageContext.request.contextPath}/image/relaxation_logo_test.jpg" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
+							<img src="${pageContext.request.contextPath}/image/VIEWTY.png" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
 						</div>
 						<div class="col-sm-5 col-md-5 col-lg-7">
-							<h1><a href="toMainPage.action">Service Name</a></h1>
+							<!-- 원래 서비스 이름 -->
 						</div>
 						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
 						 
@@ -76,10 +76,10 @@
 							      <div class="modal-body" style="vertical-align:center">
 							      <br><br><br><br><br>							     
 								        <div class="col-md-6">
-								        	 <a href="member/toEnterpriseRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="etpBT">사업자</button></h1></a>								        	
+								        	 <a href="${pageContext.request.contextPath}/member/toEnterpriseRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="etpBT">사업자</button></h1></a>								        	
 								        </div>
 								        <div class="col-md-6">
-								        	 <a href="member/toCustomerRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="cstBT">이용자</button></h1></a>								        	
+								        	 <a href="${pageContext.request.contextPath}/member/toCustomerRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="cstBT">이용자</button></h1></a>								        	
 								        </div>   
 										<br><br><br><br><br><br><br><br><br><br>			
 									

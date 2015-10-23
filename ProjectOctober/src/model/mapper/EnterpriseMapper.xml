@@ -833,11 +833,7 @@
  	 		  or ETP_TITLE like '%'||#{searchLanguage}||'%'
  	 		  or ETP_PHONE like '%'||#{searchLanguage}||'%'
  	 		  or ETP_DESCRIPTION like '%'||#{searchLanguage}||'%'
- 	 		  or ETP_SPECIALIZE like '%'||#{searchLanguage}||'%' 
-
- 	 		  
-
- 	 		  or ETP_STATUS != 0
+ 	 		  or ETP_SPECIALIZE like '%'||#{searchLanguage}||'%'   
 
  	    order by addr1 ASC	 	 		  
 	</select>
