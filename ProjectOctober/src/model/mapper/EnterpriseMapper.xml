@@ -892,6 +892,6 @@
 	</select>
 	
 	<select id="retrieveRegCard" parameterType="String" resultType="String">
-		select pht_address from photo_location where phtUsage like '%' || #{value} || '%'
+		select pht_address from photo_location where pht_usage like '%' || #{value} || '%'
 	</select>
 </mapper>

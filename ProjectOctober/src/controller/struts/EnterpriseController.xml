@@ -86,7 +86,7 @@
 
 		
 		
-		<!--     미승인 사업자 승인 게시판 Action     -->
+		<!--     사업자 게시판 Action     -->
 
 		<action name="takeEtp" class="controller.action.EnterpriseAction" method="takeEtp">
 			<result name="dynamic">/jsp/component/DynamicTemplate.jsp</result>
