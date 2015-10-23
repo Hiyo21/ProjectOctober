@@ -89,13 +89,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(reservation != null){
 			System.err.println("reservation 시작 스트링: " + reservation.getStart());
 			System.err.println("reservation 끝 스트링: " + reservation.getEnd());
-			if(reservation.getStart().length()>11 && reservation.getEnd().length()>11){
-				reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-				reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-			}else{
-				reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(),DateTimeFormatter.ISO_LOCAL_DATE));
-				reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(),DateTimeFormatter.ISO_LOCAL_DATE));
-			}
+			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(),DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(),DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 			reservation.setEtpNum(String.valueOf(session.get("loginEtpNum")));
 			reservation.setEtpEmail(String.valueOf(session.get("loginId")));
 		}
@@ -302,6 +297,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 				return SUCCESS;
 			}else{
 				System.err.println("============check Action :: result :: " + result);
+				System.out.println("이미 등록된 페이지가 있는 사업자입니다!!!!!!");
 				return ERROR;
 			}
 					

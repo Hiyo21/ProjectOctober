@@ -45,7 +45,7 @@
 						          <h4 class="modal-title">사업자 인증서</h4>
 						        </div>
 						        <div class="modal-body">
-						          <img src="../image/Clean.jpg" width="500" height="500"/>
+						          <img src="${pageContext.request.contextPath}/${regCardLocation}" width="500" height="500"/>
 						        </div>
 						        <div class="modal-footer">
 						          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>

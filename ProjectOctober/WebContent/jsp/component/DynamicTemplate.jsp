@@ -46,6 +46,7 @@
 
 <script>
 $(function () {
+//startEdit() 안에 들어가지 않고 나와있음.
 	$('.grid-stack').gridstack({
 		static_grid : false,
    		always_show_resize_handle : false,
@@ -64,12 +65,14 @@ $(function () {
 	//로그인 한 사람이 페이지 주인과 동일 할 때 
 	if(loginId!=null && loginId==pageId){	
 		activeComponent();
-		
+		alert("내가 주인이다")	
 		$('#etpBT').show();
 		
 		$('#saveBT').attr('disabled', true);
 		$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled		
-	}  
+	} else{
+		alert("I am not 주인");
+	//로그인 하지 않았거나 페이지 주인이 아닐때
 });
 
 
@@ -116,7 +119,13 @@ function savePage(etpNum){
  
  	
  	for(var i in componentList){
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
  		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum='+etpNum, 
 			type:'POST',

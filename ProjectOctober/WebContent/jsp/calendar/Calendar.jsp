@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.css" />
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/FontTest.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.css" />
+
+
 
 <style>
 	* {font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
@@ -25,9 +26,7 @@
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.min.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lang-all.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/listview.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 
 
 <script>
@@ -42,10 +41,6 @@
 			currentMousePos.x = event.pageX;
 		 	currentMousePos.y = event.pageY;
 		});
-		
-		//----------------------datepicker 활성화. 사용할 수도 있고 안 할 수도 있음.-------------------------//
-		
-		$('.datepickers').datepicker();
 		
 		//-----------------------사전에 정보 불러오기 : Enterprise 정보 --------------------------------//
 		
@@ -113,8 +108,6 @@
 			//----------------- 기존 존재하는 이벤트 클릭 시 -----------------------//
 			
 			eventClick: function(event, jsEvent, view){
-				$("#updateReservationShowBtn").unbind();
-				$(this).attr('href', 'javascript:void(0);');
 				$("#reservationUpdateBody").hide();
 		        
 				//---------------------각 예약당 회원 정보  가지고 오기 ----------------//
@@ -162,7 +155,11 @@
 		        	//--------------------- 받아온 값들로 기존 예약 상세내용 리스트 뿌리기 -----------------------//
 		        	
 		        	console.log(event);
-		        	
+		        	$("#calendar").fullCalendar('removeEvents');
+					$("#calendar").fullCalendar('removeEventSource', event);
+					$('#calendar').fullCalendar('addEventSource', event);
+					$('#calendar').fullCalendar('refetchEvents');
+					$('#calendar').fullCalendar('rerenderEvents');
 		        	$("#updateModalTitle").html(event.title);
 		        	$("#updateModalEventId").html(event.id);
 		        	$("#updateModalCustomerEmail").html(event.cstEmail);
@@ -194,8 +191,8 @@
 				
 		        $("#closeReservationBtn").off("click");
 				$("#closeReservationBtn").click(function(event){
-					emptyAJAX();
-					calendar.fullCalendar('unselect');
+					$('#calendar').fullCalendar('renderEvent',copiedEventObject,false);
+					$('#calendar').fullCalendar('unselect');
 					$('#insertModal').modal('hide');
 					$("#calendar").fullCalendar('removeEvents');
 					$("#calendar").fullCalendar('removeEventSource', event);
@@ -259,7 +256,7 @@
 				  var svcList =[];
 				  var svcDetailList =[];
 				  
-					$('#inputEmployeeGenderCheckBox').bootstrapToggle().change(function(){
+					$('#inputEmployeeGenderCheckBox').change(function(){
 						if($(this).prop('checked')){
 							$('#genderCheckField').html($(this).attr('data-on'));
 						}else{
@@ -390,27 +387,28 @@
 			
 					var reservation = {};			
 		
-					
+				$('.fc-event').remove();
 				$('#insertReservationBtnClose').off("click");
 				$("#insertReservationBtnClose").click(function(e){
+					$('#calendar').fullCalendar('renderEvent',e,false);
 					e.stopPropagation();
 					e.preventDefault();
 					console.log(event);
-					calendar.fullCalendar('unselect');
+					$('#calendar').fullCalendar('unselect');
 					$('#insertModal').modal('hide');
 					$("#calendar").fullCalendar('removeEvents');
 					$("#calendar").fullCalendar('removeEventSource', event);
 					$('#calendar').fullCalendar('addEventSource', event);
 					$('#calendar').fullCalendar('refetchEvents');
-					$('#calendar').fullCalendar('rerenderEvents');
 				});
 						
 			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
 				
-				$("#insertReservationBtn").click(function(){					
+				$("#insertReservationBtn").click(function(revertFunc){					
 					if($('#insertAgreementCheckbox').prop('checked') == false){
 						alert('약관에 동의해 주셔야 합니다.');
 						$('#insertModal').modal('hide');
+						revertFunc();
 						event.off();
 						return false;
 					}
@@ -547,7 +545,7 @@
 						}
 					});
 				}
-				calendar.fullCalendar('unselect');
+				$('#calendar').fullCalendar('unselect');
 				//$('#calendar').fullCalendar('addEventSource', event);
 				$('#calendar').fullCalendar('rerenderEvents');
 				 
@@ -582,7 +580,7 @@
 						}
 					});
 				}
-				calendar.fullCalendar('unselect');
+				$('#calendar').fullCalendar('unselect');
 			},
 		 	eventDragStop: function(event, jsEvent, ui, view){
 				console.log(currentMousePos);
@@ -598,6 +596,7 @@
 				    var y2 = ofs.top + trashEl.outerHeight(true);
 				   	
 				    if (currentMousePos.x>=x1 && currentMousePos.x<=x2 && currentMousePos.y>=y1 && currentMousePos.y<=y2) {
+				    	
 				    	return true;
 				    }else{
 						return false;
@@ -625,6 +624,7 @@
 					};
 				};
 				$(this).unbind();
+				$('#calendar').fullCalendar('unselect');
 			}	
 		});
 	});	
@@ -733,6 +733,7 @@
 								
 							</table>
 							<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''>
+							<input type="hidden" id='templateType' name='reservation.etpTemplateType' value=''>
 						</form>
 		            	
 		            	<div class="hidden">
