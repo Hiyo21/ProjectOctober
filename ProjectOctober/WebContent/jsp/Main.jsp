@@ -6,14 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scal\e=1">
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> -->
 <!-- Latest compiled and minified CSS -->
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/css/freelancer/css/freelancer.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lavish-bootstrap.css" />
 
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

@@ -121,7 +121,6 @@ function save_grid(){
  	console.log(componentList);
  	
  	for(var i in componentList){
-
  		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action', 
 			type:'POST',

@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/lightbox/colorbox.css">
+<link rel="stylesheet" href="../css/lavish-bootstrap.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="../css/lightbox/jquery.colorbox.js"></script>
@@ -22,7 +23,7 @@ $(document).ready(function() {
 <body>
 <h1>LIGHTBOX</h1>
 <!-- jquery 없는 헤더 include -->
-<s:include value="Header_no_jQuery.jsp"></s:include>
+<s:include value="Header.jsp"></s:include>
 
 <!-- 라이트박스 세 페이지에 들어갈 이미지 -->
 <!-- 이미지 주소만 변경해서 (href) 사용합니다 -->
