@@ -815,6 +815,11 @@
 	</select>
 	
 	
+	<update id="choiceTemplateType" parameterType="map">
+		update ENTERPRISE set etp_Template_Type = #{enterprise.etpTemplateType} where etp_Num = #{enterprise.etpNum} 
+	</update>
+	
+	
 	<insert id="insertImage" parameterType="PhotoLocation">
 		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
 	</insert>

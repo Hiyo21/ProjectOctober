@@ -54,6 +54,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Integer cpnNum;
 
 	private String category;
+	private int etpTemplateType;
+
+	
+
 
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -325,6 +329,22 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	
+	public String choiceTemplateType() {
+		etpNum = (String) session.get("loginEtpNum");
+		//etpNum="99";
+		etpDAO = new EnterpriseDAO();
+		int result = etpDAO.choiceTemplateType(etpNum, etpTemplateType);
+		if (result == 1) {
+			switch (etpTemplateType) {
+			case 1: return "dynamic";
+			case 2: return "static1";
+			case 3: return "static2";
+			}
+		}
+		
+		return ERROR;
+	}
+	
 	/////////////////////// 미승인 사업자 게시판 ////////////////////
 	
 	public String allNoRegisterEtpList() throws Exception{
@@ -589,6 +609,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.cpnNum = cpnNum;
 	}
 
+	
+	public int getEtpTemplateType() {
+		return etpTemplateType;
+	}
+
+
+	public void setEtpTemplateType(int etpTemplateType) {
+		this.etpTemplateType = etpTemplateType;
+	}
+
 
 	public PhotoLocation getPhotoLocation() {
 		return photoLocation;
@@ -607,5 +637,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setRegCardLocation(String regCardLocation) {
 		this.regCardLocation = regCardLocation;
+
 	}
 }

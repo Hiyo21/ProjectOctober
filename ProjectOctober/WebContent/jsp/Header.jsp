@@ -16,10 +16,12 @@
 <style>
 	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
 #header {
+
    /*  background-color:#F2F2F2;
     color:#fff; */
    background: url("${pageContext.request.contextPath}/image/img-main2.png") 	
   
+
 }
 	
 	
