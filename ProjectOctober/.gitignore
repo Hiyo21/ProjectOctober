@@ -65,7 +65,7 @@ local.properties
 .cproject
 
 # JDT-specific (Eclipse Java Development Tools)
-.classpath
+/.classpath
 
 # Java annotation processor (APT)
 .factorypath
@@ -81,6 +81,7 @@ local.properties
 
 #JRebel config file
 ProjectOctober/src/rebel.xml
+
 
 *.exerd
 /build
