@@ -18,9 +18,11 @@
 #header {
    /*  background-color:#F2F2F2;
     color:#fff; */
-   background: url("../image/salgu.PNG") 	
+
+
+   background: url("../image/salgu.png") 
   
-}
+} 
 	
 	
  	body{

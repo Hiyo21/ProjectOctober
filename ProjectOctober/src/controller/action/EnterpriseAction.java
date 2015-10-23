@@ -36,6 +36,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	private List<Coupon> couponList;
 	private Member member;
+	private PhotoLocation photoLocation;
 
 	//////// Component Member ////////  
 	private Component component;
@@ -47,6 +48,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
+	private String regCardLocation;
 
 	private boolean canUseCoupon = false;
 	private Integer cpnNum;
@@ -205,10 +207,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String takeEtp() throws Exception{
 		System.out.println("===========check Action :: etpNum :: " + etpNum);
 		enterprise = etpDAO.selectByEtpNum(etpNum);
+		
 		//서비스 리스트 set
 		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
 		enterprise.setServices(svcList);
 		
+		//카테고리 리스트 뽑기
 		categoryList = new ArrayList<>();
 		for(int j=0; j<svcList.size(); j++){	
 			String category = svcList.get(j).getSvcCategory();
@@ -232,7 +236,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
-			session.put("pageId", etpEmail);
+
+			session.put("pageId", enterprise.getEtpEmail());
+
 			
 			switch (type) {
 			case 1:
@@ -277,10 +283,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	public String insertComponent(){
 		System.out.println("============check Action :: insertComponet()");		
-		
+		enterprise = etpDAO.selectByEtpNum(etpNum);
+		System.err.println("============check Action :: etpNum :: " +etpNum);
+		System.err.println("============check Action :: enterprise :: " +enterprise);
 		////// 연결 후 페이지 정보 혹은 세션에서 etpnum, etpemail, etpTheme 불러오기
-		component.setEtpNum("1111-11111");
-		component.setEtpEmail("24hourplus@24hourplus.com");
+		component.setEtpEmail(enterprise.getEtpEmail());
 		component.setComponentTheme(1);
 		component.setBackgroundTheme(1);
 		
@@ -305,7 +312,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String receiveComponentList(){
 		System.out.println("============check Action :: getComponentList()");
 		component = new Component();
-		component.setEtpNum("1111-11111");
+		component.setEtpNum(etpNum);
 		///// 사업자 번호와 일치하는 컴포넌트만 갖고 오기
 		componentList = etpDAO.receiveComponentList(component.getEtpNum());
 		
@@ -331,7 +338,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println(etpNum);
 		enterprise = etpDAO.noRegisterEtp(etpNum);
 		System.out.println(enterprise);
-		
+		regCardLocation = etpDAO.retrieveRegCard(etpNum);
 		return SUCCESS;
 	}
 	
@@ -580,5 +587,25 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setCpnNum(Integer cpnNum) {
 		this.cpnNum = cpnNum;
+	}
+
+
+	public PhotoLocation getPhotoLocation() {
+		return photoLocation;
+	}
+
+
+	public void setPhotoLocation(PhotoLocation photoLocation) {
+		this.photoLocation = photoLocation;
+	}
+
+
+	public String getRegCardLocation() {
+		return regCardLocation;
+	}
+
+
+	public void setRegCardLocation(String regCardLocation) {
+		this.regCardLocation = regCardLocation;
 	}
 }
