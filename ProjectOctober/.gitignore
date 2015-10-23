@@ -1,3 +1,4 @@
+/bin/
 /ProjectOctober/
 
 ### Java ###
@@ -78,7 +79,16 @@ local.properties
 
 #JRebel config file
 ProjectOctober/src/rebel.xml
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 *.exerd
 /build
+<<<<<<< HEAD
 
 .project
+=======
+
+.project
+>>>>>>> refs/remotes/origin/master

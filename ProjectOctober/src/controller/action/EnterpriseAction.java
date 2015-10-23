@@ -42,17 +42,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Component component;
 	private List<Component> componentList;
 	private Coupon coupon;
-
 	private String etpNum;
 	private String etpNum1;
 	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
 	private String regCardLocation;
-
 	private boolean canUseCoupon = false;
 	private Integer cpnNum;
-
 	private String category;
 	private int etpTemplateType;
 
@@ -313,6 +310,26 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}
 		
 	}
+	
+	/*
+	 * System.out.println("============check Action :: component :: " +component);
+		
+		///// insert 전에 사업자 번호를 확인 후 입력 for 중복 제거
+		if(etpDAO.receiveComponentList(component.getEtpNum())==null){
+				
+			int result = etpDAO.insertComponent(component);
+				if(result != 1) {
+					return ERROR;
+				}
+			System.out.println("============check Action :: result :: " + result);
+		}else{
+			System.out.println("이미 등록된 페이지가 있는 사업자입니다!!!!!!");
+			return ERROR;
+		}
+		
+		return SUCCESS;
+	}
+	 */
 	
 	public String receiveComponentList(){
 		System.out.println("============check Action :: getComponentList()");

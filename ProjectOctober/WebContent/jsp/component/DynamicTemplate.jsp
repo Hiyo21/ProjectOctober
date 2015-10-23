@@ -73,7 +73,7 @@ $(function () {
 	} else{
 		alert("I am not 주인");
 	//로그인 하지 않았거나 페이지 주인이 아닐때
-});
+	};
 
 
 function startEdit(){
@@ -119,16 +119,7 @@ function savePage(etpNum){
  
  	
  	for(var i in componentList){
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
+		console.log(componentList);
  		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum='+etpNum, 
 			type:'POST',

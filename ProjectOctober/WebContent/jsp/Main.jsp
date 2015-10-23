@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scal\e=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> -->
 <!-- Latest compiled and minified CSS -->
 
@@ -26,10 +26,10 @@
 	src:url("NanumGothic.eot");
 	src:local(""), url("NanumGothic.woff") format("woff");
 }
+
 tab-content{
 	background-color: purple;
 }
-
 
  body{	
 	font-family: "Helvetica Neue", Helvetica, Arial,"맑은 고딕","Malgun gothic",sans-serif;
