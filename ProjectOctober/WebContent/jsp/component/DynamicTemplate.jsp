@@ -27,7 +27,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hover/hover.css" />
 
 <style>
-	
 	.delBT{
 		position: absolute;
 	}
@@ -47,34 +46,6 @@
 
 <script>
 $(function () {
-		
-	var loginId = '<%= session.getAttribute("loginId") %>';
-	var pageId = '<%= session.getAttribute("pageId") %>';
-
-	
-	//로그인 한 사람이 페이지 주인과 동일 할 때 
-	if(loginId != null && loginId == pageId){
-		alert("내가 주인이다")				
-		$('#etpBT').show();
-		
-		$('#saveBT').attr('disabled', true);
-		$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
-		
-	}else{
-		alert("I am not 주인")
-	//로그인 하지 않았거나 페이지 주인이 아닐때
-		$('.edit').hide();
-		$('#etpBT').hide();
-	
-	}    
-	
-	$('.grid-stack').gridstack({
-		static_grid : false
-	});
-
-});
-
-function startEdit(){
 	$('.grid-stack').gridstack({
 		static_grid : false,
    		always_show_resize_handle : false,
@@ -83,6 +54,26 @@ function startEdit(){
             handles: 'e, se, s, sw, w'
         }	
 	});
+		
+	var loginId = '<%= session.getAttribute("loginId") %>';
+	var pageId = '<%= session.getAttribute("pageId") %>';
+
+	$('.edit').hide();
+	$('#etpBT').hide();
+	
+	//로그인 한 사람이 페이지 주인과 동일 할 때 
+	if(loginId!=null && loginId==pageId){	
+		activeComponent();
+		
+		$('#etpBT').show();
+		
+		$('#saveBT').attr('disabled', true);
+		$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled		
+	}  
+});
+
+
+function startEdit(){
 		
 	$('.edit').show();
 	
@@ -125,7 +116,7 @@ function savePage(etpNum){
  
  	
  	for(var i in componentList){
-		console.log(componentList);
+
  		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum='+etpNum, 
 			type:'POST',
@@ -142,7 +133,7 @@ function savePage(etpNum){
 
 function load_grid(){	
 	$.ajax({
-		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action',
+		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action?etpNum='+etpNum,
 		type:'GET',
 		dataType: 'json',
 		success : print				

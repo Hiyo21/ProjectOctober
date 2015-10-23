@@ -7,8 +7,6 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-
-
 </head>
 <body>
 <div class="container-fluid" id="svcListTab">
@@ -56,7 +54,7 @@
 </s:iterator>		
 </s:if>
 
-<div id="modalWrapper">
+<!-- <div id="modalWrapper"> -->
 <!--  svc edit modal -->
 <!-- ajax를 통해 서비스메뉴를 불러오기 -->
 <div class="modal" id="svcModal" aria-hidden="true" >
@@ -85,7 +83,7 @@
 </div><!-- /.modal -->
 </div>
 
-</div>
+<!-- </div> -->
 
 <script type="text/javascript">
 	$(function(){
@@ -122,10 +120,10 @@
 			str += '<tr><td>서비스 가격 : </td><td><input type="text" name="serviceList['+index+'].svcCost" class="form-control" value="'+item.svcCost+'"></td>';
 			str += '<td>서비스 시간 : </td><td><input type="text" name="serviceList['+index+'].svcTime" class="form-control" value="'+item.svcTime+'"></td></tr>';
 			str += '<tr><td>서비스 상세설명 : </td><td colspan="5"><textarea rows="5" cols="85" name="serviceList['+index+'].svcDescription" class="form-control">'+item.svcDescription+'</textarea></td></tr>';			
-		});    		
-		
+		});    			
 		str += '</table>';
 		$('#svcModalDiv').html(str);
+		/* $('#svcModal').modal('show'); */
 	}
 	//수정된 카테고리 to DB에 업데이트
 	function updateSvcCategory() {
@@ -149,7 +147,8 @@
 			dataType: 'json',
 			success : function(data){
 				printSvcList(data);
-				$('#svcModal').remove();					
+				$('#svcModal').hide();	
+				$('.modal').hide()
 			}
 		});
 	}
@@ -180,7 +179,7 @@
 			str += '</div>';
 		});
 		$('#svcListTab').html(str);	
-		$('#svcModal').hide(); 
+
 	}
 	
 	//선택된 메뉴 삭제 하기

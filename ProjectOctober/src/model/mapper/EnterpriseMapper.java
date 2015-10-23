@@ -86,4 +86,6 @@ public interface EnterpriseMapper {
 
 	String retrieveRegCard(String etpNum);
 
+	int updateComponent(Component component);
+
 }

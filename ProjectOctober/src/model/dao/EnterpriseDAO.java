@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.sun.net.httpserver.Authenticator.Success;
+
 import model.common.MyBatisSqlSessionFactory;
 import model.mapper.EnterpriseMapper;
 import model.mapper.ReservationMapper;
@@ -141,7 +143,6 @@ public class EnterpriseDAO extends DAOTemplate{
 		try{
 			List<PhotoLocation> phtList = session.getMapper(EnterpriseMapper.class).selectPhotoList(etpNum);
 			System.out.println("============check DAO :: selectPhotoList :: "+phtList.size());
-			System.out.println(phtList);
 			return phtList;
 		}finally{
 			session.close();
@@ -185,6 +186,7 @@ public class EnterpriseDAO extends DAOTemplate{
 
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
+			System.err.println(etpNum);
 			List<Component> componentList = session.getMapper(EnterpriseMapper.class).receiveComponentList(etpNum);
 		
 			System.out.println("============check DAO :: componentList.size() ::" + componentList.size());
@@ -195,6 +197,23 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+	public int updateComponent(Component component) {
+		System.out.println("============check DAO :: updateComponent()");
+
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			int result = session.getMapper(EnterpriseMapper.class).updateComponent(component);
+		
+			System.out.println("============check DAO :: componentList.size() ::" + result);
+			if(result==1) session.commit();
+			else session.rollback();
+			
+			return result;
+		}finally{
+			session.close();
+		}
+	}
+
 	
 	public int choiceTemplateType(String etpNum, int etpTemplateType) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
@@ -297,5 +316,6 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveRegCard(etpNum);});
 	}
 
+	
 	
 }

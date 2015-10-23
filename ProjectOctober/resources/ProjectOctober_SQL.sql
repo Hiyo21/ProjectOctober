@@ -1,7 +1,7 @@
 select tname from tab;
 
 select * from working_days 
-select * from member
+select * from photo_location
 
 select * from member where mem_email = 'ent6@naver.com'
 
@@ -17,7 +17,8 @@ insert into member_code values('3','administer');
 
 delete member_code where mem_code = 151017;
 
-select * from service where etp_num = '1234567890'
+select * from component2 where etp_num = '71'
+delete component2 where etp_num = '99'
 
 delete enterprise where etp_owner = 'enter'
 
@@ -112,7 +113,7 @@ insert into enterprise values('2345678901', 'company2@company.com', 'company2', 
 select * from service;
 
 drop sequence service_seq;
-create sequence service_seq;
+create sequence service_seq start with  5000;
 delete service where etp_num = '1234567890'
 
 insert into service values(service_seq.nextval, '1234567890', 'test1@test.com', '30분 풋마사지', 10000, '30:00', 'Test Message1', '풋마사지', 'specialty1', 1);
@@ -129,13 +130,15 @@ commit
 
 /-----------------COUPON test data---------------------------/
 select * from coupon;
-create sequence coupon_seq;
+
+create sequence coupon_seq start with 5000;
 
 insert into coupon values(coupon_seq.nextval, '1234567890', 'test1@test.com', '~~기념 30퍼 할인', 'hw', 0.3, (TO_DATE('2015-10-15','yyyy-MM-dd')), (TO_DATE('2015-10-25','yyyy-MM-dd')));
 (TO_DATE '02:00:00')
 /------------RESERVATION test data------------------------/
 select * from reservation;
-create sequence reservation_seq;
+create sequence reservation_seq start with 5000;
+drop sequence reservation_seq;
 
 insert into reservation values(reservation_seq.nextval, 6, null, '1234567890', 'test1@test.com', 'test2@test.com',sysdate, sysdate + 1/24, 1, 'f','Hello!');
 select r.*, c.*, e.*, s.*, m.* from reservation r, enterprise e, service s, customer c, member m where e.etp_num = r.etp_num and r.etp_num = s.etp_num and r.cst_email = c.cst_email and c.CST_EMAIL = m.MEM_EMAIL;
@@ -162,7 +165,7 @@ delete component where etp_num = '1111-11111';
 DROP TABLE COMPONENT 
 	CASCADE CONSTRAINTS;
 	
-create sequence component_seq;
+create sequence component_seq start with 5000;
 
 drop sequence component_seq;
 

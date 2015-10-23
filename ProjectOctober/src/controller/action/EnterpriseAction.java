@@ -237,13 +237,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		//고객평가, 갤러리 리스트 set
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
+		enterprise.setComponents(etpDAO.receiveComponentList(etpNum));
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
 
 			session.put("pageId", enterprise.getEtpEmail());
 
-			
 			switch (type) {
 			case 1:
 				//dynamic
@@ -296,27 +296,33 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		component.setBackgroundTheme(1);
 		
 		System.out.println("============check Action :: component :: " +component);
-		
-		///// insert 전에 사업자 번호를 확인 후 입력 for 중복 제거
-		if(etpDAO.receiveComponentList(component.getEtpNum())==null){
-				
+		if(etpDAO.selectByEtpNum(etpNum)!=null){		
 			int result = etpDAO.insertComponent(component);
-				if(result != 1) {
-					return ERROR;
-				}
-			System.out.println("============check Action :: result :: " + result);
+			if(result == 1) {
+				return SUCCESS;
+			}else{
+				System.err.println("============check Action :: result :: " + result);
+				return ERROR;
+			}
+					
 		}else{
-			System.out.println("이미 등록된 페이지가 있는 사업자입니다!!!!!!");
-			return ERROR;
+			//업데이트
+			int result = etpDAO.updateComponent(component);
+			if(result == 1) {
+				return SUCCESS;
+			}else{
+				System.err.println("============check Action :: result :: " + result);
+				return ERROR;
+			}
 		}
 		
-		return SUCCESS;
 	}
 	
 	public String receiveComponentList(){
 		System.out.println("============check Action :: getComponentList()");
 		component = new Component();
 		component.setEtpNum(etpNum);
+		System.err.println(etpNum);
 		///// 사업자 번호와 일치하는 컴포넌트만 갖고 오기
 		componentList = etpDAO.receiveComponentList(component.getEtpNum());
 		
