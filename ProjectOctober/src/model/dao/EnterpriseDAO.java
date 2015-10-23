@@ -1,6 +1,8 @@
 package model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -193,6 +195,24 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+	
+	public int choiceTemplateType(String etpNum, int etpTemplateType) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			Map<String, Enterprise> map = new HashMap<String, Enterprise>();
+			Enterprise enterprise = new Enterprise();
+			enterprise.setEtpNum(etpNum);
+			enterprise.setEtpTemplateType(etpTemplateType);
+			map.put("enterprise", enterprise);
+			int result = session.update("choiceTemplateType", map);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
+		} finally {
+			session.close();
+		}
+	}
+	
 	//////////////////////// 미승인 사업자 DAO ////////////////////////
 	
 	public Enterprise noRegisterEtp(String etpNum){
@@ -271,6 +291,10 @@ public class EnterpriseDAO extends DAOTemplate{
 
 	public Coupon checkCoupon(Integer cpnNum) {
 		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(cpnNum);});
+	}
+
+	public String retrieveRegCard(String etpNum) {
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveRegCard(etpNum);});
 	}
 
 	

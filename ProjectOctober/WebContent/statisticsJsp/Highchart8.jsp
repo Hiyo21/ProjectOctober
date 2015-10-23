@@ -50,18 +50,16 @@ $(function () {
             colorByPoint: true,
             data: [{
                 name: "NotDiscount",
-                y: 
-                	<s:iterator value="#request.notDiscount">
-           			 <s:property value="amountSum"/>
-                </s:iterator>
-                ,
-                drilldown: "NotDiscount"
+                y: <s:iterator value="#request.notDiscount">
+           		<s:property value="amountSum"/>
+                </s:iterator>,
+                drilldown: "NotDiscount",
             }, {
                 name: "Discount",
                 y: <s:iterator value="#request.discount">
       			 <s:property value="amountSum"/>
                  </s:iterator>,
-                drilldown: "Discount",
+                 drilldown: "Discount",
             }]
         }]
     });

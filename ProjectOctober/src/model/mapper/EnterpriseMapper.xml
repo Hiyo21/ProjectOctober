@@ -815,6 +815,11 @@
 	</select>
 	
 	
+	<update id="choiceTemplateType" parameterType="map">
+		update ENTERPRISE set etp_Template_Type = #{enterprise.etpTemplateType} where etp_Num = #{enterprise.etpNum} 
+	</update>
+	
+	
 	<insert id="insertImage" parameterType="PhotoLocation">
 		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
 	</insert>
@@ -834,6 +839,7 @@
  	 		  or ETP_PHONE like '%'||#{searchLanguage}||'%'
  	 		  or ETP_DESCRIPTION like '%'||#{searchLanguage}||'%'
  	 		  or ETP_SPECIALIZE like '%'||#{searchLanguage}||'%' 
+ 	 		  or ETP_STATUS != 0
  	    order by addr1 ASC	 	 		  
 	</select>
 	
@@ -888,5 +894,9 @@
 	
 	<select id="checkCoupon" parameterType="String">
 		select * from COUPON where cpn_num = #{value}
+	</select>
+	
+	<select id="retrieveRegCard" parameterType="String" resultType="String">
+		select pht_address from photo_location where pht_usage like '%' || #{value} || '%'
 	</select>
 </mapper>

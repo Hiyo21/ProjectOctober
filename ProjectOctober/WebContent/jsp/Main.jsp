@@ -6,14 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scal\e=1">
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> -->
 <!-- Latest compiled and minified CSS -->
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/css/freelancer/css/freelancer.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lavish-bootstrap.css" />
 
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -142,7 +142,7 @@ tab-content{
 		     				<div id="mapPage">
     					<div class="mapImgD">
 							<h2>[ 지역 검색 ]</h2>
-							<a href="#"><img src="../image/img_map_1.png" alt="대한민국지도" usemap="#img_map_1" class="mapImg" /></a>
+							<a href="#"><img src="${pageContext.request.contextPath}/image/img_map_1.png" alt="대한민국지도" usemap="#img_map_1" class="mapImg" /></a>
 							<map name="img_map_1" id="img_map_1">	
 								<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="서울" />
 								<area shape="rect" coords="37,45,57,62" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=인천" alt="인천" />

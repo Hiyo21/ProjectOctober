@@ -62,6 +62,8 @@ public interface EnterpriseMapper {
     int updateEtpStatus(Enterprise record);
     
     String showMap(String etpEmail);
+    
+    int choiceTemplateType(String etpNum, int etpTemplateType);
 
     //////////////// 사업자 승인 게시판
 
@@ -81,5 +83,7 @@ public interface EnterpriseMapper {
 	List<Coupon> retrieveCouponList(String etpNum);
 
 	Coupon checkCoupon(Integer cpnNum);
+
+	String retrieveRegCard(String etpNum);
 
 }

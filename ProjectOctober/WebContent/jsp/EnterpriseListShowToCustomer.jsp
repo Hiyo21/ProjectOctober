@@ -35,7 +35,7 @@
            	<div class="panel panel-default"><!-- 조건이네 shop -->
            		<s:if test="enterpriseList != null">
 				<s:iterator value="enterpriseList">
-				<div class="panel panel-primary" onclick='location.href="takeEtp.action?etpNum=<s:property value="etpNum"/>"'>
+				<div class="panel panel-primary" onclick='location.href="${pageContext.request.contextPath}/enterprise/takeEtp.action?etpNum=<s:property value="etpNum"/>"'>
 					<div class="panel-heading">
 	    				<h1 class="panel-title"  align="left"><s:property value="etpTitle"/></h1>
 	  				</div>
@@ -75,7 +75,7 @@
 			    			</div>
 
 		              		<div class="col-md-6" style="display: inline-block;text-align: right;"><!-- 오른쪽 칸 --> 
-								<div class="panel-inline panel-default" style="border-style: solid; text-align: left; width: 500px; height: 200px;">
+								<div class="panel-inline panel-default" style="border-style: solid; text-align: left; height: 200px;">
 		    						<s:property value="etpDescription"/>
 		    					</div>
 		          			</div>

@@ -9,10 +9,6 @@
 </head>
 <body>
 
-<!-- 페이지 주인만 보이게 -->
-<s:if  test="#session.loginId == #session.pageId">
-	페이지 주인만 보임
-</s:if>
 <div class="btn-group btn-group-justified" role="group" aria-label="..." draggable="true" id="etpBT">
 	<div class="btn-group" role="group">
 		 <button type="button" class="btn btn-danger btn-lg" id="rsvBT">예약 관리</button>
@@ -26,7 +22,7 @@
 	</div>
 	<!-- 페이지 편집중에만 보이게 -->
 	<div class="btn-group" role="group">
-		 <button type="button" class="btn btn-primary btn-lg" id="saveBT" onclick="savePage()">Save &raquo;</button>
+		 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='savePage(<s:property value="etpNum"/>)'>Save &raquo;</button>
 	</div>
 </div>
 

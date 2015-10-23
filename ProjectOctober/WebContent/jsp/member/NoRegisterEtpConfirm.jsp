@@ -33,7 +33,7 @@
 			<div class="col-md-4">
 				<div class="container">
 					<!-- 사업자 등록증 업로드 된 이미지 불러오기 -->
-					<img src="../image/Clean.jpg" width="300" height="300" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"/>
+					<img src="${pageContext.request.contextPath}/${regCardLocation}" width="300" height="300" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"/>
 					
 					<!-- modal -->
 					<div class="modal fade" id="myModal" role="dialog">
@@ -45,7 +45,7 @@
 						          <h4 class="modal-title">사업자 인증서</h4>
 						        </div>
 						        <div class="modal-body">
-						          <img src="../image/Clean.jpg" width="500" height="500"/>
+						          <img src="${pageContext.request.contextPath}/${regCardLocation}" width="500" height="500"/>
 						        </div>
 						        <div class="modal-footer">
 						          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>

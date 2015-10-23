@@ -65,7 +65,7 @@ public class FileUploadAction extends ActionSupport{
 	}
 	
 	public String uploadImage() throws Exception{
-		String uploadPath = getText("file.uploadRegCardPath");
+		String uploadPath = getText("file.uploadGalleryPath");
 		System.err.println(ServletActionContext.getServletContext().getRealPath("/") + uploadPath);
 		File dir = new File(uploadPath);
 		if (!dir.isDirectory()) dir.mkdirs();
