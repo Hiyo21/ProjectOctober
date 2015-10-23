@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
+
 </head>
 <body>
 <div class="container-fluid" id="svcListTab">
@@ -148,9 +149,7 @@
 			dataType: 'json',
 			success : function(data){
 				printSvcList(data);
-				$('#modalWrapper').remove();
-				$('#svcModal').remove();				
-				
+				$('#svcModal').remove();					
 			}
 		});
 	}
@@ -181,9 +180,7 @@
 			str += '</div>';
 		});
 		$('#svcListTab').html(str);	
-	/* 	$('#svcModal').hide(); */
-		$('#modalWrapper').remove();
-		$('#svcModal').remove();
+		$('#svcModal').hide(); 
 	}
 	
 	//선택된 메뉴 삭제 하기
@@ -193,6 +190,7 @@
 	}
 
 </script>
+
 
 </body>
 </html>

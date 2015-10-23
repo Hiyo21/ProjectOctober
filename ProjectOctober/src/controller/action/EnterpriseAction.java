@@ -54,6 +54,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Integer cpnNum;
 
 	private String category;
+	private int etpTemplateType;
+
+	
+
 
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -85,13 +89,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(reservation != null){
 			System.err.println("reservation 시작 스트링: " + reservation.getStart());
 			System.err.println("reservation 끝 스트링: " + reservation.getEnd());
-			if(reservation.getStart().length()>11 && reservation.getEnd().length()>11){
-				reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-				reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-			}else{
-				reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(),DateTimeFormatter.ISO_LOCAL_DATE));
-				reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(),DateTimeFormatter.ISO_LOCAL_DATE));
-			}
+			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(),DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(),DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 			reservation.setEtpNum(String.valueOf(session.get("loginEtpNum")));
 			reservation.setEtpEmail(String.valueOf(session.get("loginId")));
 		}
@@ -324,6 +323,22 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+	
+	public String choiceTemplateType() {
+		etpNum = (String) session.get("loginEtpNum");
+		//etpNum="99";
+		etpDAO = new EnterpriseDAO();
+		int result = etpDAO.choiceTemplateType(etpNum, etpTemplateType);
+		if (result == 1) {
+			switch (etpTemplateType) {
+			case 1: return "dynamic";
+			case 2: return "static1";
+			case 3: return "static2";
+			}
+		}
+		
+		return ERROR;
+	}
 	
 	/////////////////////// 미승인 사업자 게시판 ////////////////////
 	
@@ -589,6 +604,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.cpnNum = cpnNum;
 	}
 
+	
+	public int getEtpTemplateType() {
+		return etpTemplateType;
+	}
+
+
+	public void setEtpTemplateType(int etpTemplateType) {
+		this.etpTemplateType = etpTemplateType;
+	}
+
 
 	public PhotoLocation getPhotoLocation() {
 		return photoLocation;
@@ -607,5 +632,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setRegCardLocation(String regCardLocation) {
 		this.regCardLocation = regCardLocation;
+
 	}
 }

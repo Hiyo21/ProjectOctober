@@ -8,6 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dynamic Templete</title>
 
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/lodash.js"></script>
+<script src="${pageContext.request.contextPath}/js/gridstack.js"></script>
+
 <!-- Latest compiled and minified CSS -->
 <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
@@ -37,36 +45,32 @@
 	
 </style>
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/lodash.js"></script>
-<script src="${pageContext.request.contextPath}/js/gridstack.js"></script>
-
 <script>
 $(function () {
-	
+		
 	var loginId = '<%= session.getAttribute("loginId") %>';
 	var pageId = '<%= session.getAttribute("pageId") %>';
-	
-	//로그인 하지 않았거나 페이지 주인이 아닐때
-	$('.edit').hide();
-	$('#etpBT').hide();
-	
-	$('.grid-stack').gridstack({
-		static_grid : true
-	});
+
 	
 	//로그인 한 사람이 페이지 주인과 동일 할 때 
 	if(loginId != null && loginId == pageId){
-				
+		alert("내가 주인이다")				
 		$('#etpBT').show();
 		
 		$('#saveBT').attr('disabled', true);
 		$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
+		
+	}else{
+		alert("I am not 주인")
+	//로그인 하지 않았거나 페이지 주인이 아닐때
+		$('.edit').hide();
+		$('#etpBT').hide();
+	
 	}    
+	
+	$('.grid-stack').gridstack({
+		static_grid : false
+	});
 
 });
 
@@ -121,7 +125,10 @@ function savePage(etpNum){
  
  	
  	for(var i in componentList){
+<<<<<<< HEAD
+=======
 		console.log(componentList);
+>>>>>>> refs/remotes/origin/master
  		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum='+etpNum, 
 			type:'POST',
@@ -387,6 +394,9 @@ function print(object){
 	</div>
 
 </div>
+
+
+
 
 </body>
 </html>
