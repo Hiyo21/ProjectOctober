@@ -18,7 +18,7 @@
 	</div>
 	<!-- 페이지 편집전에만 보이게 -->
 	<div class="btn-group" role="group">
-		 <button type="button" class="btn btn-primary btn-lg" id="editBT" onclick="startEdit()">페이지 편집</button>
+		 <button type="button" class="btn btn-primary btn-lg" id="editBT">페이지 편집</button>
 	</div>
 	<!-- 페이지 편집중에만 보이게 -->
 	<div class="btn-group" role="group">
