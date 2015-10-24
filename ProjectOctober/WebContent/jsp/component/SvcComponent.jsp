@@ -7,88 +7,11 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-</head>
-<body>
-<div class="container-fluid" id="svcListTab">
-
-<s:if test="categoryList != null">
-<s:iterator value="categoryList">
-
-	<div class="panel panel-default">
-		<div class="panel-heading">
-		 	<b><s:property/></b>
-		 	<s:set var="category"><s:property/></s:set>
-		 	
-		 	<!-- 인서트시 한 사업자의 카데고리에 중복이 없게 해야 함//셀렉트 할때는 사업자와 카테고리를 조인하여 검색 -->
-		 	<a class="btn btn-default btn-md edit" href="#" role="button" onclick="svcUpdate('<s:property/>')" data-dismiss="modal" >수정</a>
-		 	<a class="btn btn-default btn-md edit" href="#" role="button" onclick="svcDelete('<s:property/>')" data-dismiss="modal" >삭제</a>	
-		</div>
-		
-		<s:iterator value="enterprise.services">
-		<s:if test='%{svcCategory.equalsIgnoreCase(#category)}'> 
-		<!-- 서비스 항목-->
-		<div class="panel-body" id="categoryBody">
-		  	<table class="table">
-		  		<tr>
-		  			<td>
-		  				<s:property value="svcTitle"/>
-		  			</td>
-		  			<td>
-		  				<s:if test="svcDescription != null">
-		  					<s:property value="svcDescription"/><br>
-		  				</s:if>
-		  				비용 : <s:property value="svcCost"/> <br>시간 : <s:property value="svcTime"/>
-		  			</td>
-		  			<td>
-		  				<button type="button" class="btn btn-success btn-md" onclick="rsvInsert(<s:property value="svcNum"/>)" style="width: 100px">예약 하기</button>
-		  			</td>
-		  			<td class="edit">
-		  				<button type="button" class="btn btn-danger btn-md edit" onclick="svcDelete(<s:property value="svcNum"/>)">삭제</button>
-		  			</td>
-		  		</tr>
-			</table>
-			</div>
-			</s:if>
-		</s:iterator>
-	</div>
-</s:iterator>		
-</s:if>
-
-<!-- <div id="modalWrapper"> -->
-<!--  svc edit modal -->
-<!-- ajax를 통해 서비스메뉴를 불러오기 -->
-<div class="modal" id="svcModal" aria-hidden="true" >
-  <div class="modal-dialog modal-lg" >  
-    <div class="modal-content">
-    
-  	<form class="form-inline" role="form" method="post" data-toggle="validator" id="svcForm" action="updateSvcCategory"> <!-- form start -->    
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">서비스 메뉴 수정</h4>
-      </div>
-      
-      
-      <div class="modal-body" id="svcModalDiv">
-      	<!-- 수정 테이블 들어감 -->
-      </div>
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary" onclick="updateSvcCategory()" data-dismiss="modal">수정</button>
-      </div>
-      </form>
-      
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-</div>
-
-<!-- </div> -->
-
 <script type="text/javascript">
 	$(function(){
-		
-	
+		 $('#svcModal').on('shown', function(){
+		    	$('#svcModal').focus();
+		    })	
 	});
 	
 	//수정할 메뉴 카테고리 갖고 오기
@@ -190,6 +113,84 @@
 
 </script>
 
+
+</head>
+<body>
+<div class="container-fluid" id="svcListTab">
+
+<s:if test="categoryList != null">
+<s:iterator value="categoryList">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		 	<b><s:property/></b>
+		 	<s:set var="category"><s:property/></s:set>
+		 	
+		 	<!-- 인서트시 한 사업자의 카데고리에 중복이 없게 해야 함//셀렉트 할때는 사업자와 카테고리를 조인하여 검색 -->
+		 	<a class="btn btn-default btn-md edit" href="#" role="button" onclick="svcUpdate('<s:property/>')" data-dismiss="modal" >수정</a>
+		 	<a class="btn btn-default btn-md edit" href="#" role="button" onclick="svcDelete('<s:property/>')" data-dismiss="modal" >삭제</a>	
+		</div>
+		
+		<s:iterator value="enterprise.services">
+		<s:if test='%{svcCategory.equalsIgnoreCase(#category)}'> 
+		<!-- 서비스 항목-->
+		<div class="panel-body" id="categoryBody">
+		  	<table class="table">
+		  		<tr>
+		  			<td>
+		  				<s:property value="svcTitle"/>
+		  			</td>
+		  			<td>
+		  				<s:if test="svcDescription != null">
+		  					<s:property value="svcDescription"/><br>
+		  				</s:if>
+		  				비용 : <s:property value="svcCost"/> <br>시간 : <s:property value="svcTime"/>
+		  			</td>
+		  			<td>
+		  				<button type="button" class="btn btn-success btn-md" onclick="rsvInsert(<s:property value="svcNum"/>)" style="width: 100px">예약 하기</button>
+		  			</td>
+		  			<td class="edit">
+		  				<button type="button" class="btn btn-danger btn-md edit" onclick="svcDelete(<s:property value="svcNum"/>)">삭제</button>
+		  			</td>
+		  		</tr>
+			</table>
+			</div>
+			</s:if>
+		</s:iterator>
+	</div>
+</s:iterator>		
+</s:if>
+
+<!-- <div id="modalWrapper"> -->
+<!--  svc edit modal -->
+<!-- ajax를 통해 서비스메뉴를 불러오기 -->
+<div class="modal" id="svcModal" aria-hidden="true" >
+  <div class="modal-dialog modal-lg" >  
+    <div class="modal-content">
+    
+  	<form class="form-inline" role="form" method="post" data-toggle="validator" id="svcForm" action="updateSvcCategory"> <!-- form start -->    
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">서비스 메뉴 수정</h4>
+      </div>
+      
+      
+      <div class="modal-body" id="svcModalDiv">
+      	<!-- 수정 테이블 들어감 -->
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary" onclick="updateSvcCategory()" data-dismiss="modal">수정</button>
+      </div>
+      </form>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+
+<!-- </div> -->
 
 </body>
 </html>

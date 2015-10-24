@@ -45,44 +45,56 @@
 </style>
 
 <script>
-$(function () {
-//startEdit() 안에 들어가지 않고 나와있음.
+$(document).ready(function(){
+	$(function () {
+		$('.grid-stack').gridstack({
+			static_grid : true   		
+		});	//gridstack end
+		
+		hideBT();
+	});
+});
+
+function hideBT(){
+	var loginId = "<%= session.getAttribute("loginId") %>" ;
+	var pageId = "<%= session.getAttribute("pageId") %>" ;
+
+	$('#saveBT').attr('disabled', true);
+	$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled	
+	$('.edit').hide();
+	
+	//로그인 한 사람이 페이지 주인과 동일 할 때 
+	if(loginId!=null && loginId==pageId){
+		$('#etpBtBar').show();
+		
+	}else{
+		$('#etpBtBar').hide();	
+	}	
+}
+
+function activateGrid(){
 	$('.grid-stack').gridstack({
-		static_grid : false,
    		always_show_resize_handle : false,
     	placeholder_class : 'grid-stack-placeholder',
     	resizable: {
             handles: 'e, se, s, sw, w'
         }	
-	});
-		
-	var loginId = '<%= session.getAttribute("loginId") %>';
-	var pageId = '<%= session.getAttribute("pageId") %>';
+	});	//gridstack end
 
-	$('.edit').hide();
-	$('#etpBT').hide();
-	
-	//로그인 한 사람이 페이지 주인과 동일 할 때 
-	if(loginId!=null && loginId==pageId){	
-		activeComponent();
-		alert("내가 주인이다")	
-		$('#etpBT').show();
-		
-		$('#saveBT').attr('disabled', true);
-		$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled		
-	} else{
-		alert("I am not 주인");
-	//로그인 하지 않았거나 페이지 주인이 아닐때
-	};
-
+	var grid = $('.grid-stack').data('gridstack');
+	grid.set_static(false);
+}
 
 function startEdit(){
-		
+	//편집, 수정 버튼 보임	
 	$('.edit').show();
 	
+	//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
 	$('#saveBT').attr('disabled', false);
 	$('#editBT').attr('disabled', true); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
-
+	
+	//컴포넌튼 drag, resize 활성화
+	activateGrid();
 	
 	//save, load 버튼에 클릭 이벤트와 함수 연결
     $('#saveBT').on('click', savePage);
@@ -149,7 +161,7 @@ function remove_widget(item){
 	grid.remove_widget(item, true);
 }
 
-
+// 불러온 컴포넌트 출력
 function print(object){
 	var items = object.componentList;
     items = GridStackUI.Utils.sort(items); // 각 컴포넌트를 원래 순서대로 정렬. 안하면 랜덤으로 섞여서 배치됨
@@ -166,19 +178,17 @@ function print(object){
    	switch (node.componentID) {
 		case 'topCP':
         	grid.add_widget(
-        		$('<div id="topCP">'
+        		$('<div id="topCP" draggable="true">'
         		+'<a onclick="remove_widget(topCP)">'
         		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inTopCP">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
-			
+		//사업자 편집용 버튼은 삭제할 수 없도록 하기 위해 삭제 버튼 없음	
 		case 'etpBtBar':
 			grid.add_widget(
-				$('<div id="etpBtBar">'
-        		+'<a onclick="remove_widget(etpBtBar)">'
-        		+'<span class="delBT edit"></span></a>'
+				$('<div id="etpBtBar" draggable="true">'
         		+'<div class="grid-stack-item-content" id="inEtpBtBar">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
@@ -186,7 +196,7 @@ function print(object){
 			
 		case 'rsvBt':
 			grid.add_widget(
-				$('<div id="rsvBt">'
+				$('<div id="rsvBt" draggable="true">'
         		+'<a onclick="remove_widget(rsvBt)">'
         		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content">'
@@ -197,7 +207,7 @@ function print(object){
 			
 		case 'infoCP':
 			grid.add_widget(
-				$('<div id="infoCP">'
+				$('<div id="infoCP" draggable="true">'
         		+'<a onclick="remove_widget(infoCP)">'
         		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inInfoCP">'
@@ -207,7 +217,7 @@ function print(object){
 			
 		case 'svcCP':
 			grid.add_widget(
-				$('<div id="svcCP">'
+				$('<div id="svcCP" draggable="true">'
         		+'<a onclick="remove_widget(svcCP)">'
         		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inSvcCP">'
@@ -217,7 +227,7 @@ function print(object){
 			
 		case 'galCP':
 			grid.add_widget(
-				$('<div id="galCP">'
+				$('<div id="galCP" draggable="true">'
         		+'<a onclick="remove_widget(galCP)">'
         		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inGalCP">'
@@ -227,7 +237,7 @@ function print(object){
 			
 		case 'locaCP':
 			grid.add_widget(
-				$('<div id="locaCP">'
+				$('<div id="locaCP" draggable="true">'
         		+'<a onclick="remove_widget(locaCP)">'
         		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inLocaCP">'
@@ -237,7 +247,7 @@ function print(object){
 			
 		case 'reviewCP':
 			grid.add_widget(
-				$('<div id="reviewCP">'
+				$('<div id="reviewCP" draggable="true">'
         		+'<a onclick="remove_widget(reviewCP)">'
         		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inReviewCP">'
@@ -255,9 +265,7 @@ function print(object){
     $('#inInfoCP').load('./InfoComponent.jsp');
     $('#inEtpBtBar').load('./EtpBT.jsp');
     $('#inTopCP').load('./StaticTop.jsp');
-    
-    // 세이브, 로드, 삭제버튼 생성 및 사라짐
-    eventOn(); 
+       
 }
 
 
@@ -275,7 +283,7 @@ function print(object){
 	<div class="grid-stack">
 	
 		<!-- 상단 컴포넌트 -->
-	    <div class='grid-stack-item' id ='topCP'
+	    <div class='grid-stack-item' id ='topCP' draggable="true"
 	    data-gs-x='1' data-gs-y='0' data-gs-width='10' data-gs-height='2'>
 	    	<!-- 삭제버튼  -->
 	    	<a onclick="remove_widget(topCP)">
@@ -289,7 +297,7 @@ function print(object){
 	    </div>
    		
    		<!-- 사업자 전용 버튼 -->
-	    <div class="grid-stack-item" id="etpBtBar"  
+	    <div class="grid-stack-item" id="etpBtBar" draggable="true" 
 	    data-gs-x="1" data-gs-y="3" data-gs-width="4" data-gs-height="1">
 	    	<!-- 필수 항목이므로 지울 수 없음!! -->		    
 			<div class="grid-stack-item-content">
@@ -298,7 +306,7 @@ function print(object){
 	    </div>
 	    
 	    <!-- 예약 버튼 -->
-	    <div class="grid-stack-item" id="rsvBt"
+	    <div class="grid-stack-item" id="rsvBt" draggable="true"
 	    data-gs-x="5" data-gs-y="3" data-gs-width="6" data-gs-height="1">
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(rsvBt)'>
@@ -306,7 +314,7 @@ function print(object){
 			</a>
 	    
 			<div class="grid-stack-item-content">
-				<div class="btn-group btn-group-justified" role="group" aria-label="..." draggable="true">
+				<div class="btn-group btn-group-justified" role="group" aria-label="...">
 					<div class="btn-group" role="group">
 					 <button type="button" class="btn btn-default btn-lg" id="phoneBT" >전화 예약(000-0000-0000)</button>
 					</div>
@@ -318,7 +326,7 @@ function print(object){
 	    </div>
 	    
 	    <!-- 기본 정보 컴포넌트 -->
-	    <div class="grid-stack-item" id="infoCP"
+	    <div class="grid-stack-item" id="infoCP" draggable="true"
 	    data-gs-x="1" data-gs-y="4" data-gs-width="10" data-gs-height="3">
 	    	<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(infoCP)'>
@@ -331,7 +339,7 @@ function print(object){
 	    </div>
 	    
 	    <!-- 서비스 메뉴 컴포넌트 -->
-	    <div class="grid-stack-item"  id="svcCP"
+	    <div class="grid-stack-item"  id="svcCP" draggable="true"
 	    data-gs-x="1" data-gs-y="7" data-gs-width="7" data-gs-height="5">
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(svcCP)'>
@@ -344,7 +352,7 @@ function print(object){
 	    </div>
 	    
 	    <!-- 갤러리 컴포넌트 -->
-	    <div class="grid-stack-item" id="galCP"
+	    <div class="grid-stack-item" id="galCP" draggable="true"
 	    data-gs-x="8" data-gs-y="7" data-gs-width="3" data-gs-height="5">
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(galCP)'>
@@ -357,7 +365,7 @@ function print(object){
 	    </div>
 	    
 	    <!-- 오시는 길 컴포넌트 -->
-	    <div class="grid-stack-item" id="locaCP"
+	    <div class="grid-stack-item" id="locaCP" draggable="true"
 	    data-gs-x="1" data-gs-y="12" data-gs-width="10" data-gs-height="4">
 	   		<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(locaCP)'>
@@ -370,7 +378,7 @@ function print(object){
 	    </div>
 	    
 	    <!-- 고객 평가 컴포넌트 -->
-	    <div class="grid-stack-item" id="reviewCP"
+	    <div class="grid-stack-item" id="reviewCP" draggable="true"
 	    data-gs-x="1" data-gs-y="17" data-gs-width="10" data-gs-height="4">
 	    	<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(reviewCP)'>

@@ -240,13 +240,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			case 1:
 				//dynamic
 				enterprise.setComponents(etpDAO.receiveComponentList(etpNum));
-				return "dynamic";
+				return "template1";
 			case 3:
 				//static_allInOne
-				return "static2";
+				return "template3";
 			default:
 				//static_tabs
-				return "static1";
+				return "template2";
 			}
 		}else{
 			return ERROR;

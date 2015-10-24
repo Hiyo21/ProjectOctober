@@ -53,7 +53,9 @@
 				<s:if test="#session.loginId == null">
 					<div class="row">
 						<div class="col-sm-1 col-md-1 col-lg-1">
-							<img src="${pageContext.request.contextPath}/image/VIEWTY.png" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
+							<a href="${pageContext.request.contextPath}/toMainPage.action">
+								<img src="${pageContext.request.contextPath}/image/VIEWTY.png" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
+							</a>
 						</div>
 						<div class="col-sm-5 col-md-5 col-lg-7">
 							<!-- 원래 서비스 이름 -->
@@ -95,7 +97,9 @@
 				<s:if test="#session.loginId != null">
 					<div class="row">
 						<div class="col-md-1">
-						
+							<a href="${pageContext.request.contextPath}/toMainPage.action">
+								<img src="${pageContext.request.contextPath}/image/VIEWTY.png" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
+							</a>
 						</div>
 				        <div class="col-md-6 com-md-push-1">	
 				      	  <h1><s:property value="#session.loginName"/> 님, 환영합니다!</h1>
@@ -106,19 +110,21 @@
 				        	<a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value="#session.loginId"/>" class="btn btn-danger btn-sm">통계</a>
 
 				        	<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-sm">메인페이지</a>
-						<s:if test="#session.memCode == 1">
-							<a href="${pageContext.request.contextPath}/member/toEnterpriseMyPage.action" class="btn btn-primary btn-sm">마이페이지</a>
+						
+						<!-- MyPage 멤버 코드에 따라 이동 페이지 다름 -->
+						<s:if test="#session.memCode == 1"><!-- 사업자 -->
+							<a href="${pageContext.request.contextPath}/enterprise/takeEtp.action?etpNum=${session.loginEtpNum}" class="btn btn-primary btn-sm">마이페이지</a>
 							<!-- 달력 Test code. Action에서 불러와야만 한다! -->
 							<a href="${pageContext.request.contextPath}/enterprise/toCalendarPage.action?etpNum=${session.loginEtpNum}" class="btn btn-danger btn-sm">예약 페이지</a>
 							<!--  -->
-
 						</s:if>
-						<s:if test="#session.memCode == 2">
+						<s:if test="#session.memCode == 2"><!-- 고객 -->
 							<a href="${pageContext.request.contextPath}/member/toCustomerMainPage.action" class="btn btn-primary btn-sm">마이페이지</a>
 						</s:if>
-						<s:if test="#session.memCode == 3">
+						<s:if test="#session.memCode == 3"><!-- 관리자 -->
 							<a href="${pageContext.request.contextPath}/enterprise/AllNoRegisterEtpList.action" class="btn btn-primary btn-sm">마이페이지</a>
 						</s:if>
+						
 						<!-- 공통 로그아웃 -->
 							<a href="${pageContext.request.contextPath}/member/logoutProcess.action" class="btn btn-primary btn-sm">로그아웃</a>
 				        </div>					
