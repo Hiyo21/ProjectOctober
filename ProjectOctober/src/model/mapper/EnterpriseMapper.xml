@@ -803,16 +803,20 @@
   	<!--  Component Mapper  -->
   	
 	<insert id="insertComponent" parameterType="Component">
-		insert into component values 
-		(component_seq.nextval
-		, #{componentID}, #{componentTheme}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY}
-		, #{backgroundTheme} , #{etpNum}, #{etpEmail})	
+		insert into COMPONENT2 values 
+		 (component_seq.nextval, #{componentID}, #{componentTheme}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY}, #{backgroundTheme} , #{etpNum}, #{etpEmail})	
 	</insert>
 
 
-	<select id="receiveComponent" resultType="Component">
-		select * from component
+	<select id="receiveComponent" resultType="Component" parameterType="String">
+		select * from component2 where etp_num = #{etpNum}
 	</select>
+	
+	<update id="updateComponent" parameterType="Component">
+		update component2 
+		set component_id = #{componentID}, component_theme = #{componentTheme}, component_width = #{componentWidth}, component_height = #{componentHeight}, component_pos_x = #{componentPosX}, component_pos_y = #{componentPosY}, background_theme = #{backgroundTheme}  
+		where etp_num = #{etpNum}
+	</update>
 	
 	
 	<update id="choiceTemplateType" parameterType="map">

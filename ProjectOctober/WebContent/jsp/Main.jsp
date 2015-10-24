@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> -->
 <!-- Latest compiled and minified CSS -->
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -18,8 +16,6 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-
-
 <style>
 
 <style type="text/css">
@@ -28,286 +24,40 @@
 	src:url("NanumGothic.eot");
 	src:local(""), url("NanumGothic.woff") format("woff");
 }
+tab-content{
+	background-color: purple;
+}
 
 
  body{	
 	font-family: "Helvetica Neue", Helvetica, Arial,"맑은 고딕","Malgun gothic",sans-serif;
-	
 } 
 
-.th{
-	text-align: center;
-}
 .btn-default {
 	width: 110px;
 } 
-
-#contents {
-	width: 100%;
-	text-align: center;}
-	
-.mapImgD{
-	width: 100%;
-	text-align: center;
-}
-.mapTable	{clear: both;}
-.mapTable th, .mapTable td	{padding: 8px 0 7px 0;}
-.mapTable th	{font-weight: normal; color: #666; background: #dfdfdf; border-bottom: 1px solid #9d9d9d;}
-.mapTable td	{text-align: center; border-bottom: 1px solid #dfdfdf;}
-.mapTable td strong	{color: #ff5100;}
-.mapTable td.left	{text-align: center; padding-left: 10px;}
-
 </style>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $(".nav-tabs a").click(function(){
+	        $(this).tab('show');
+	    });
+	    $('.nav-tabs a').on('shown.bs.tab', function(event){
+	        var x = $(event.target).text();         // active tab
+	        var y = $(event.relatedTarget).text();  // previous tab
+	        $(".act span").text(x);
+	        $(".prev span").text(y);
+	    });
+	});
 
-
-
-
-
+</script>
 <title>Main</title>
 </head>
-<body class="highlight">
+<body>
 
-<!-- header -->
-<s:include value="Header.jsp"></s:include>
-<!-- /header -->
+	<s:include value="Header.jsp"></s:include>
 
-<div class="section">
-      <div class="container">
-        <div class="row">
-        	<!-- left -->
-	          <div class="col-md-8">
-	          	<div id="left_contents">
-      <p><img src="${pageContext.request.contextPath}/image/jumpoInfo.png" width="700" height="60" alt="店舗オープン情報" /></p>
-      <div id="contents_area">
-        <div class="text">
-           <div class="mapImgD">
-							<h5>지도를 클릭하시면 해당 지역 점포 정보 화면으로 이동합니다</h5>
-							<a href="#"><img src="${pageContext.request.contextPath}/image/img_map_12.png" alt="대한민국지도" usemap="#img_map_1" class="mapImg" /></a>
-							<map name="img_map_1" id="img_map_1">	
-								<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="서울" />
-								<area shape="rect" coords="37,45,57,62" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=인천" alt="인천" />
-								<area shape="rect" coords="31,18,93,87" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=경기" alt="경기" />
-								<area shape="rect" coords="95,4,192,85" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=강원" alt="강원" />
-								<area shape="rect" coords="89,90,124,149" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=충북" alt="충북" />
-								<area shape="rect" coords="21,92,72,147" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=충남" alt="충남" />
-								<area shape="rect" coords="73,123,89,144" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=대전" alt="대전" />
-								<area shape="rect" coords="31,150,102,194" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=전북" alt="전북" />
-								<area shape="rect" coords="34,204,60,218" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=광주" alt="광주" />
-								<area shape="rect" coords="17,195,97,256" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=전남" alt="전남" />
-								<area shape="rect" coords="138,154,165,178" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=대구" alt="대구" />
-								<area shape="rect" coords="126,87,205,164" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=경북" alt="경북" />
-								<area shape="rect" coords="102,164,177,229" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=경남" alt="경남" />
-								<area shape="rect" coords="178,169,205,196" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=울산" alt="울산" />
-								<area shape="rect" coords="178,196,201,220" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=부산" alt="부산" />
-								<area shape="rect" coords="10,270,54,289" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=제주" alt="제주" />
-							</map>			
-						</div><!-- 지도 UI -->
-										<script type="text/javascript">	
-											$('#img_map_1 area').mouseover(function(){
-												mapTxt = $(this).attr("alt");
-												mapSrc = "../image/img_map_" + mapTxt + ".png";		
-												$(".mapImg").attr("src", mapSrc);
-												
-												return false;
-											})
-											$('#img_map_1 area').focus(function(){
-												mapTxt = $(this).attr("alt");
-												mapSrc = "../image/img_map_" + mapTxt + ".png";		
-												$(".mapImg").attr("src", mapSrc);
-												
-												return false;
-											})
-											$('.mapImg').mouseout(function(){
-												
-												mapSrc = "../image/img_map_12.png";
-												
-												
-												$(".mapImg").attr("src", mapSrc);
-												return false;
-											})
-											</script>
-						<div class="text">
-         
-          <table class="mapTable">
-          
-			<colgroup>
-				<col width="5%" />
-				<col width="7%" />
-				<col width="13%" />			
-				<col width="15%" />
-			</colgroup>
-				
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>업체명</th>							
-						<th>주소</th>						
-						<th>전화번호</th>
-					</tr>
-				</thead>
-					<s:if test="enterpriseList !=null">
-          		 <s:iterator value="enterpriseList"> 
-					<tr>
-						<td><s:property value="etpNum"/></td>
-						<td><s:property value="etpTitle"/></td>						
-						<td><s:property value="etpAddress"/></td>
-						<td><s:property value="etpPhone"/></td>
-					</tr>
-				</s:iterator>
-					</s:if>
-				
-				</table>
-				
-	          </div>
-	         </div>
-	         </div>
-	         </div>
-	         </div>
-	         <!-- /left --> 
-	         
-	         <!-- right -->
-	          <div class="col-md-4">
-	          		
-          <div id="right_search-photo"><img src="/common/image/right_image.png" width="110" height="74" /><img src="/common/image/right_image.png" width="110" height="74" />
-		      <p class="bottom20"><img src="/common/image/bt_mobile.png" alt="りらくオフィシャル携帯サイト" width="250" height="100" /></p>
-		      <p class="bottom20"><a href="/ranking.html"><img src="/common/image/bt-ranking.gif" alt="指名ランキング" width="250" height="73" /></a></p>
-		      <p class="bottom20"><a href="/sys/public/pc/s_staff/ls"><img src="/common/image/bt-srank.gif" alt="Sランクセラピスト" width="250" height="73" /></a></p>
-		      <p class="bottom20"><a href="/sys/public/pc/news/ls?news_type=2"><img src="/common/image/bt-media.gif" alt="テレビ・雑誌・新聞に取り上げられた内容をご紹介" width="250" height="60" /></a></p>
-		      <p><a href="http://www.relaxation-net.jp/" target="_blank"><img src="/common/image/japan-relax.jpg" alt="日本リラクゼーション業協会" width="250" /></a></p>
-		  </div>
-    </div>
-    <!-- /right --> 
-	        </div>
-	      </div>
-	    </div>
-	
-
-
-
-
-
-
-
-<%-- <!-- left -->
-<div id="contents">
-  <div id="contents_wrap">
-    <div id="left_contents">
-      <p><img src="${pageContext.request.contextPath}/image/jumpoInfo.png" width="700" height="60" alt="店舗オープン情報" /></p>
-      <div id="contents_area">
-        <div class="text">
-           <div class="mapImgD">
-							<h2>[ 지역 검색 ]</h2>
-							<a href="#"><img src="${pageContext.request.contextPath}/image/img_map_12.png" alt="대한민국지도" usemap="#img_map_1" class="mapImg" /></a>
-							<map name="img_map_1" id="img_map_1">	
-								<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="서울" />
-								<area shape="rect" coords="37,45,57,62" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=인천" alt="인천" />
-								<area shape="rect" coords="31,18,93,87" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=경기" alt="경기" />
-								<area shape="rect" coords="95,4,192,85" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=강원" alt="강원" />
-								<area shape="rect" coords="89,90,124,149" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=충북" alt="충북" />
-								<area shape="rect" coords="21,92,72,147" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=충남" alt="충남" />
-								<area shape="rect" coords="73,123,89,144" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=대전" alt="대전" />
-								<area shape="rect" coords="31,150,102,194" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=전북" alt="전북" />
-								<area shape="rect" coords="34,204,60,218" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=광주" alt="광주" />
-								<area shape="rect" coords="17,195,97,256" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=전남" alt="전남" />
-								<area shape="rect" coords="138,154,165,178" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=대구" alt="대구" />
-								<area shape="rect" coords="126,87,205,164" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=경북" alt="경북" />
-								<area shape="rect" coords="102,164,177,229" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=경남" alt="경남" />
-								<area shape="rect" coords="178,169,205,196" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=울산" alt="울산" />
-								<area shape="rect" coords="178,196,201,220" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=부산" alt="부산" />
-								<area shape="rect" coords="10,270,54,289" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=제주" alt="제주" />
-							</map>			
-						</div><!-- 지도 UI -->
-										<script type="text/javascript">	
-											$('#img_map_1 area').mouseover(function(){
-												mapTxt = $(this).attr("alt");
-												mapSrc = "../image/img_map_" + mapTxt + ".png";		
-												$(".mapImg").attr("src", mapSrc);
-												
-												return false;
-											})
-											$('#img_map_1 area').focus(function(){
-												mapTxt = $(this).attr("alt");
-												mapSrc = "../image/img_map_" + mapTxt + ".png";		
-												$(".mapImg").attr("src", mapSrc);
-												
-												return false;
-											})
-											$('.mapImg').mouseout(function(){
-												
-												mapSrc = "../image/img_map_12.png";
-												
-												
-												$(".mapImg").attr("src", mapSrc);
-												return false;
-											})			
-										
-										</script>
-        <div class="text">
-          <p class="bottom15">各エリアをクリックするとエリア別店舗情報へ移動いたします。</p>
-          <p class="area-button"><a href="/sys/public/pc/shop/ls?area=1">北海道･東北エリア</a></p>
-          <p class="area-button"><a href="/sys/public/pc/shop/ls?area=2">関東<br />
-          エリア</a></p>
-          <p class="area-button"><a href="/sys/public/pc/shop/ls?area=3">中部・北陸<br />
-          エリア</a></p>
-          <p class="area-button"><a href="/sys/public/pc/shop/ls?area=4">関西<br />
-          エリア</a></p>
-          <p class="area-button"><a href="/sys/public/pc/shop/ls?area=5">中国<br />
-          エリア</a></p>
-          <p class="area-button"><a href="/sys/public/pc/shop/ls?area=6">四国<br />
-          エリア</a></p>
-          <p class="area-button"><a href="/sys/public/pc/shop/ls?area=7">九州・沖縄<br />
-          エリア</a></p>
-          <br clear="all" />       
-        </div>
-      </div>  
-   </div>
-  <!-- right -->  
-     <div id="right_contents"> 
-      <p class="bottom20"><a href="http://www.core-stretch.jp/" target="_blank"><img src="/common/image/common/corestretch.jpg" alt="コアストレッチ" width="250" /></a></p>
-      <p class="bottom20"><a href="https://riraku-recruit.net/" target="_blank"><img src="/common/image/bt_recruit.png" width="250" height="155" alt="セラピスト大募集 りらくで一生モノの技術を身につけよう" /></a></p>
-      <p class="bottom10"><a href="/realestate.html"><img src="/common/image/bt_article.png" width="250" height="100" alt="物件募集中 りらくでは出店候補物件を探しています。" /></a></p>
-      <p><img src="/common/image/right_shop.png" width="250" height="95" alt="店舗を探す りらくは全国に300店舗以上 お近くの店舗をお探しください" /></p>
-      <div id="right_search">
-          <div id="right_search-photo"><img src="/common/image/right_image.png" width="110" height="74" /><img src="/common/image/right_image.png" width="110" height="74" /></div>
-          <p><a href="/sys/public/pc/shop/ls?area=1">北海道･東北エリア</a></p>
-          <p><a href="/sys/public/pc/shop/ls?area=2">関東エリア</a></p>
-          <p><a href="/sys/public/pc/shop/ls?area=3">中部・北陸エリア</a></p>
-          <p><a href="/sys/public/pc/shop/ls?area=4">関西エリア</a></p>
-          <p><a href="/sys/public/pc/shop/ls?area=5">中国エリア</a></p>
-          <p><a href="/sys/public/pc/shop/ls?area=6">四国エリア</a></p>
-          <p><a href="/sys/public/pc/shop/ls?area=7">九州・沖縄エリア</a></p>
-      </div>
-      <p class="bottom20"><img src="/common/image/bt_mobile.png" alt="りらくオフィシャル携帯サイト" width="250" height="100" /></p>
-      <p class="bottom20"><a href="/ranking.html"><img src="/common/image/bt-ranking.gif" alt="指名ランキング" width="250" height="73" /></a></p>
-      <p class="bottom20"><a href="/sys/public/pc/s_staff/ls"><img src="/common/image/bt-srank.gif" alt="Sランクセラピスト" width="250" height="73" /></a></p>
-      <p class="bottom20"><a href="/sys/public/pc/news/ls?news_type=2"><img src="/common/image/bt-media.gif" alt="テレビ・雑誌・新聞に取り上げられた内容をご紹介" width="250" height="60" /></a></p>
-      <p><a href="http://www.relaxation-net.jp/" target="_blank"><img src="/common/image/japan-relax.jpg" alt="日本リラクゼーション業協会" width="250" /></a></p>
-    </div>
-  </div>
-  <br clear="all" />
-</div>
-
-<div id="footer">
-  <div id="foot_navi">Copyright &copy; Riraku All Right Reserved.&nbsp;&nbsp;&nbsp;&nbsp;<a href="/">ホーム</a> ｜ <a href="/menu.html">メニュー</a> ｜ <a href="/shop.html">店舗情報</a> ｜ <a href="/recruit.html">セラピスト募集情報</a> ｜<a href="/sys/public/pc/s_staff/ls">Ｓランクセラピスト</a> ｜ <a href="/sys/public/pc/inquiry/">お問い合わせ</a> ｜ <a href="/company.html">会社概要</a> ｜ <a href="/link.html">リンク集</a> ｜ <a href="/privacy.html">プライバシーポリシー</a> ｜ <a href="/sitemap.html">サイトマップ</a></div>
-  <div id="foot_bt"><a href="#header"><img src="/common/image/bt_pagetop.png" width="60" height="60" alt="ページトップ" /></a></div>
-  <br clear="all" />
-    
-   </div> 
-  
-
-</div>
-<!-- /left -->
-</body>
-</html> --%>
-
-
-
-
-
-
-
-<%-- <!-- 지역검색 -->
  <div class="container">
  	<div class="row marketing">	
  		<div class="col-md-4">
@@ -438,7 +188,7 @@
 							</div>
 		     				
 		     			
-							<img src="${pageContext.request.contextPath}/image/Korea2.png" width="400" height="400" />
+							<%-- <img src="${pageContext.request.contextPath}/image/Korea2.png" width="400" height="400" /> --%>
 		    			</div> 		
     				
 				      	<div class="col-md-6">	
@@ -521,4 +271,6 @@
   		</div>
   	</div>
  </div>
- </div> --%>
+ </div>
+</body>
+</html>

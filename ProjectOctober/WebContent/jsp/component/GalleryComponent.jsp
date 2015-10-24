@@ -45,53 +45,14 @@
 	<div class="container-fluid">
 		<div id = "masonry_container" class="grid">
 			<s:iterator value="enterprise.photos">
-				<a class="group" href="${pageContext.request.contextPath}/<s:property value="phtAddress"/>" title="<s:property value="phtUsage"/>">
-					<div class = "item small"><img src="${pageContext.request.contextPath}/<s:property value="phtAddress"/>" class="etpImage"></div>
-				</a>
+				<div class ='item small'>
+					<a class='group' href='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' title='<s:property value="phtUsage"/>'>
+						<img src='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' class='etpImage'>
+					</a>
+				</div>
 			</s:iterator>
-			<s:iterator value="enterprise.photos">
-				<a class="group" href="${pageContext.request.contextPath}/<s:property value="phtAddress"/>" title="<s:property value="phtUsage"/>">
-					<div class = "item small"><img src="${pageContext.request.contextPath}/<s:property value="phtAddress"/>" class="etpImage"></div>
-				</a>
-			</s:iterator>
-			<s:iterator value="enterprise.photos">
-				<a class="group" href="${pageContext.request.contextPath}/<s:property value="phtAddress"/>" title="<s:property value="phtUsage"/>">
-					<div class = "item small"><img src="${pageContext.request.contextPath}/<s:property value="phtAddress"/>" class="etpImage"></div>
-				</a>
-			</s:iterator>
-			<s:iterator value="enterprise.photos">
-				<a class="group" href="${pageContext.request.contextPath}/<s:property value="phtAddress"/>" title="<s:property value="phtUsage"/>">
-					<div class = "item small"><img src="${pageContext.request.contextPath}/<s:property value="phtAddress"/>" class="etpImage"></div>
-				</a>
-			</s:iterator>
-			<s:iterator value="enterprise.photos">
-				<a class="group" href="${pageContext.request.contextPath}/<s:property value="phtAddress"/>" title="<s:property value="phtUsage"/>">
-					<div class = "item small"><img src="${pageContext.request.contextPath}/<s:property value="phtAddress"/>" class="etpImage"></div>
-				</a>
-			</s:iterator>
-
 		</div>
-		
 
-		
-		<!-- <a>
-		<label role="button" >
-		<img class="img-responsive" src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/18.Pictures-Day-128.png"> 
-		<h3>A title</h3> <h5>내용</h5>
-		</label>
-		</a>
-		<a>
-		<label role="button" >
-		<img class="img-responsive" src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/18.Pictures-Day-128.png"> 
-		<h3>A title</h3> <h5>내용</h5>
-		</label>
-		</a>
-		<a>
-		<label role="button" >
-		<img class="img-responsive" src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/18.Pictures-Day-128.png"> 
-		<h3>A title</h3> <h5>내용</h5>
-		</label>
-		</a> -->
 	</div>
 </div>
 

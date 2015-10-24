@@ -190,6 +190,10 @@ public class MemberAction extends ActionSupport implements SessionAware{
 				session.put("memCode", member.getMemCode());
 				if(enterprise.getEtpTemplateType() == null){ System.out.println(1);return "enterpriseNo";}
 				else {System.out.println(2);return "enterprise";}
+
+				/*if(enterprise.getEtpTemplateType() == null){ System.out.println(1);return "enterpriseNo";}
+				else {System.out.println(2);return "enterprise";}*/
+
 			}else if(member.getMemCode() == CUSTOMER_CODE){
 				session.put("customer", DAOFactory.createCustomerDAO().retrieveCustomer(member.getMemEmail()));
 				session.put("loginId", member.getMemEmail());
@@ -238,7 +242,6 @@ public class MemberAction extends ActionSupport implements SessionAware{
 			return "template3";
 		}
 	}
-	
 	
 	public String retrieveCustomerInfoPerReservation() throws Exception{
 		Map<String, Object> info = new HashMap<>();

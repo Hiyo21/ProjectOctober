@@ -69,7 +69,8 @@
 		
 		<action name="loginProcess" class="controller.action.MemberAction" method="loginProcess">
 			<result name="enterprise" type="chain">
-				<param name="actionName">toEnterpriseMainPage</param>
+				<param name="actionName">takeEtp</param>
+				<param name="namespace">/enterprise</param> 
 			</result>
 			<result name="enterpriseNo" type="chain">
 				<param name="actionName">toEnterpriseMakingPage</param>
