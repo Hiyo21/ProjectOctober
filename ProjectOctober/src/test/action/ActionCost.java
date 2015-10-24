@@ -73,7 +73,6 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		for(Highchart9Cost temp : list){
 			/*System.out.println(temp.getRank());*/
 			if(temp.getRank()==1){
-				
 				vo1.setSale1(temp.getSale());
 			}else if(temp.getRank()== 2){
 				vo2.setSale2(temp.getSale());

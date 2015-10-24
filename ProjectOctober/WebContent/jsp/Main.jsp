@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> -->
 <!-- Latest compiled and minified CSS -->
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -26,10 +24,10 @@
 	src:url("NanumGothic.eot");
 	src:local(""), url("NanumGothic.woff") format("woff");
 }
-
 tab-content{
 	background-color: purple;
 }
+
 
  body{	
 	font-family: "Helvetica Neue", Helvetica, Arial,"맑은 고딕","Malgun gothic",sans-serif;

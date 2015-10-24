@@ -22,7 +22,6 @@ import model.vo.Reservation;
 import model.vo.Service;
 import model.vo.WorkingDays;
 
-
 public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	private static final long serialVersionUID = 1L;

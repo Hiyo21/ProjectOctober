@@ -270,7 +270,7 @@ function print(object){
     
     //각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
     $('#inReviewCP').load('./ReviewComponent.jsp');
-    $('#inLocaCP').load('./LocationComponent.jsp');
+    /* $('#inLocaCP').load('./LocationComponent.jsp'); */
     $('#inGalCP').load('./GalleryComponent.jsp');
     $('#inSvcCP').load('./SvcComponent.jsp');
     $('#inInfoCP').load('./InfoComponent.jsp');
@@ -384,7 +384,7 @@ function print(object){
 			</a>
 	   	
 			<div class="grid-stack-item-content">
-				<s:include value="./LocationComponent.jsp"/>
+				<%-- <s:include value="./LocationComponent.jsp"/> --%>
 			</div>
 	    </div>
 	    

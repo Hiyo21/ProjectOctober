@@ -1,6 +1,7 @@
 select tname from tab;
 
 select * from working_days 
+
 select * from photo_location
 
 select * from member where mem_email = 'ent6@naver.com'
@@ -16,9 +17,9 @@ insert into member_code values('2','customer');
 insert into member_code values('3','administer');
 
 delete member_code where mem_code = 151017;
-
 select * from component2 where etp_num = '71'
 delete component2 where etp_num = '99'
+select * from service where etp_num = '1234567890'
 
 delete enterprise where etp_owner = 'enter'
 

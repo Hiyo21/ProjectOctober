@@ -54,7 +54,7 @@
 				enterpriseInfo = data.enterprise;
 				console.log('received enterpriseinfo!');
 				console.log('etp: ' + enterpriseInfo);
-				$('#templateType').attr('value', enterpriseInfo.etpTemplateType);
+				/* $('#templateType').attr('value', data.enterpriseInfo.etpTemplateType); */
 			},error: function(){
 				console.log('retrieveEnterpriseInfoForCalendar failed!');
 			}
@@ -111,7 +111,7 @@
 				$("#reservationUpdateBody").hide();
 		        
 				//---------------------각 예약당 회원 정보  가지고 오기 ----------------//
-				$(this).off("click");
+
 				$(this).click(function(){
 		        	$.ajax({
 	        			url: '${pageContext.request.contextPath}/member/retrieveCustomerInfoPerReservation.action',
@@ -139,6 +139,7 @@
 	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
 	        			dataType: 'json',
 	        			data: {"etpNum" : ${etpNum}},
+	        			async: false,
 	        			success: function(data){
 	        				var services = data.serviceList;
 	        				$("#reservationUpdateSelectService").html('');
@@ -269,13 +270,14 @@
 	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
 	        			dataType: 'json',
 	        			data: {'etpNum':${etpNum}},
+	        			async: false,
 	        			success: function(data){
 	        				svcList = data.serviceList;
-	        				$("#inputServiceList").html('');
 	        				$("#inputServiceList").append("<option value='' disabled selected hidden>선택하세요.</option>");
 	        				
 	        				$.each(svcList, function(i, d){
 	        					$("#inputServiceList").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
+	        					/* $("#inputServiceList").append("<option value='99934'>테스트</option>"); */
 	        					svcDetailList.push(d);
 	        				});   				
 	        			},
@@ -493,7 +495,7 @@
 								etpRsvDeadline: item.enterprise.etpRsvDeadline,
 								etpSelfNotification: item.enterprise.etpSelfNotification,
 								etpCstNotification: item.enterprise.etpCstNotification,
-								etpTemplateType: item.enterprise.etpTemplateType,
+								/* etpTemplateType: item.enterprise.etpTemplateType, */
 								etpSvcOffered: item.enterprise.etpSvcOffered,
 								etpSubclass: item.enterprise.etpSubclass,
 								etpSpecialize: item.enterprise.specialize,
@@ -733,7 +735,7 @@
 								
 							</table>
 							<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''>
-							<input type="hidden" id='templateType' name='reservation.etpTemplateType' value=''>
+							<!-- <input type="hidden" id='templateType' name='reservation.enterprise.etpTemplateType' value=''> -->
 						</form>
 		            	
 		            	<div class="hidden">
