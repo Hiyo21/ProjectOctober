@@ -4,9 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- Latest compiled and minified CSS -->
@@ -89,7 +87,7 @@ function cust() {
 
       <h3>Please Log In, or <a href="#">Sign Up</a></h3>
 
-      <form role="form" action="${pageContext.request.contextPath}/member/loginProcess" method="post">
+      <form role="form" action="member/loginProcess" method="post">
         <div class="form-group">
           <label for="email">Email</label>
           <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">

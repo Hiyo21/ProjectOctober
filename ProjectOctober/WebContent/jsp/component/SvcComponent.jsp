@@ -97,7 +97,7 @@
 	function svcUpdate(category){
 		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/selectSvcCategory.action'+
-				'?etpNum='+<s:property value="etpNum"/>+'&category='+category,
+				'?etpNum='+ <s:property value="#session.loginEtpNum"/> +'&category='+category,
 			type:'GET',
 			dataType: 'json',
 			success : function(data){

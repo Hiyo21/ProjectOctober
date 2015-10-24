@@ -6,7 +6,7 @@
 		 select to_char(rvw_input_date,'YYYY') yeardate, to_char(rvw_input_date,'Q') quater, 
 		 sum(rvw_hygiene) hygiene, sum(rvw_comfort) comfort, SUM(rvw_technique) technique, SUM(rvw_PRICE) price, SUM(rvw_SERVICE) service from
 		 review
-	     where Etp_num = #{etpNum}<!-- #{etp_num}으로 고치기 -->
+	     where Etp_num = #{etpNum}
 	     group by to_char(rvw_input_date,'YYYY'), to_char(rvw_input_date,'Q')
 	     order by to_char(rvw_input_date,'YYYY'), to_char(rvw_input_date,'Q')
 			

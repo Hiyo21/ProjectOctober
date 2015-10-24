@@ -17,7 +17,6 @@ import test.vo.Highchart1Add;
 public class Action1 extends ActionSupport implements RequestAware{
 	private Map<String, Object> request;
 	
-
 	@Override
 	public void setRequest(Map<String, Object> request) {
 		this.request = request;

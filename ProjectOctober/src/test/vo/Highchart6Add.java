@@ -26,6 +26,7 @@ public class Highchart6Add {
 	private int time22;
 	private int time23;
 	private int time24;
+	
 	public int getTime0() {
 		return time0;
 	}
