@@ -90,7 +90,7 @@
 						</div>
 						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
 							<br>
-							<a href="toLoginPage.action" class="btn btn-primary btn-block header-mypage-btn"><span class="glyphicon glyphicon-log-in"></span> 로그인 / 예약체크</a>
+							<a href="${pageContext.request.contextPath}/member/toLoginPage.action" class="btn btn-primary btn-block header-mypage-btn"><span class="glyphicon glyphicon-log-in"></span> 로그인 / 예약체크</a>
 						</div>
 					</div>
 				</s:if>

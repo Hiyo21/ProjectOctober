@@ -8,26 +8,27 @@
 <title>Calendar Page</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/cupertino/jquery-ui.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/FontTest.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.css" />
-
-
-
-<style>
-	* {font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
-</style>
 
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/moment.min.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/jquery-ui.min.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.min.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lang-all.js"></script>
+<script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/gcal.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/listview.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+
+<style>
+	* {font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+	.fc-sat { color:blue; }
+	.fc-sun { color:red;  }
+</style>
 
 <script>
 	var enterpriseInfo = {};
@@ -54,7 +55,7 @@
 				enterpriseInfo = data.enterprise;
 				console.log('received enterpriseinfo!');
 				console.log('etp: ' + enterpriseInfo);
-				/* $('#templateType').attr('value', data.enterpriseInfo.etpTemplateType); */
+				 $('#templateType').attr('value', enterpriseInfo.etpTemplateType); 
 			},error: function(){
 				console.log('retrieveEnterpriseInfoForCalendar failed!');
 			}
@@ -68,19 +69,6 @@
 		var endTT = enterpriseInfo.responseJSON.enterprise.end;
 		//업체 휴무일 설정
 		var dowTT = enterpriseInfo.responseJSON.enterprise.workingDays.dow;
-		
-		function emptyAJAX(){
-			$.ajax({
-				url:'${pageContext.request.contextPath}/enterprise/emptyAction.action',
-				type:'get',
-				contentType:'application/x-www-form-urlencoded; charset=UTF-8',
-				success: function(){
-					
-				},error: function(){
-					console.log("error!");
-				}
-			});
-		};
 		
 		//----------------------------------Full Calendar 시작.------------------------------------//
 		
@@ -104,6 +92,8 @@
 				end: endTT,
 				dow: dowTT,
 			},
+			eventConstraint: "businessHours",
+			
 			
 			//----------------- 기존 존재하는 이벤트 클릭 시 -----------------------//
 			
@@ -143,7 +133,7 @@
 	        			success: function(data){
 	        				var services = data.serviceList;
 	        				$("#reservationUpdateSelectService").html('');
-	        				$("#reservationUpdateSelectService").append("<option value='' disabled selected hidden>선택하세요.</option>");
+	        				$("#reservationUpdateSelectService").append("<option value='' disabled selected>선택하세요.</option>");
 	        				$.each(services, function(i, d){
 	        					$("#reservationUpdateSelectService").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
 	        				});   				
@@ -156,9 +146,9 @@
 		        	//--------------------- 받아온 값들로 기존 예약 상세내용 리스트 뿌리기 -----------------------//
 		        	
 		        	console.log(event);
-		        	$("#calendar").fullCalendar('removeEvents');
-					$("#calendar").fullCalendar('removeEventSource', event);
-					$('#calendar').fullCalendar('addEventSource', event);
+		        	//$("#calendar").fullCalendar('removeEvents');
+					//$("#calendar").fullCalendar('removeEventSource', event);
+					//$('#calendar').fullCalendar('addEventSource', event);
 					$('#calendar').fullCalendar('refetchEvents');
 					$('#calendar').fullCalendar('rerenderEvents');
 		        	$("#updateModalTitle").html(event.title);
@@ -190,14 +180,12 @@
 		        	console.log($("#reservationUpdateTitle").val());
 		        });
 				
-		        $("#closeReservationBtn").off("click");
 				$("#closeReservationBtn").click(function(event){
 					$('#calendar').fullCalendar('renderEvent',copiedEventObject,false);
-					$('#calendar').fullCalendar('unselect');
 					$('#insertModal').modal('hide');
-					$("#calendar").fullCalendar('removeEvents');
-					$("#calendar").fullCalendar('removeEventSource', event);
-					$('#calendar').fullCalendar('addEventSource', event);
+					//$("#calendar").fullCalendar('removeEvents');
+					//$("#calendar").fullCalendar('removeEventSource', event);
+					//$('#calendar').fullCalendar('addEventSource', event);
 					$('#calendar').fullCalendar('refetchEvents');
 					$('#calendar').fullCalendar('rerenderEvents');
 				});
@@ -232,9 +220,9 @@
 						success: function(data){
 							alert('success!');
 							console.log(event);
-							$("#calendar").fullCalendar('removeEvents');
-							$("#calendar").fullCalendar('removeEventSource', event);
-							$('#calendar').fullCalendar('addEventSource', event);
+							//$("#calendar").fullCalendar('removeEvents');
+							//$("#calendar").fullCalendar('removeEventSource', event);
+							//$('#calendar').fullCalendar('addEventSource', event);
 							$('#calendar').fullCalendar('refetchEvents');
 							$('#calendar').fullCalendar('rerenderEvents');
 							$('#updateModal').modal('hide');
@@ -249,7 +237,10 @@
 			
 			
 			//select: 빈 칸에 눌렀을 때  
-			select: function(start, end, allDay){
+			select: function(start, end, jsEvent, view, eventConstraint, allDay){					
+					console.log(jsEvent);
+					console.log(view);
+					console.log(eventConstraint);
 				  var coupons ={};
 				  var camUseCoupon = false;
 				  var cpnNum = 0;
@@ -273,6 +264,7 @@
 	        			async: false,
 	        			success: function(data){
 	        				svcList = data.serviceList;
+	        				$("#inputServiceList").html('');
 	        				$("#inputServiceList").append("<option value='' disabled selected hidden>선택하세요.</option>");
 	        				
 	        				$.each(svcList, function(i, d){
@@ -309,9 +301,9 @@
 				
 				
 				$("#inputStartTime").attr('value', start.format("MM월 DD일 a hh시 mm분"));
-				document.getElementById("inputStartTimeHidden").value = start.toISOString().substring(0,19);
+				document.getElementById("inputStartTimeHidden").value = start.toISOString();
 				$("#inputEndTime").attr('value', end.format("MM월 DD일 a hh시 mm분"));
-				document.getElementById("inputEndTimeHidden").value = end.toISOString().substring(0,19);
+				document.getElementById("inputEndTimeHidden").value = end.toISOString();
 				
 				console.log($("#inputStartTime").attr('value'));
 				console.log(document.getElementById("inputStartTimeHidden").value);
@@ -328,8 +320,8 @@
 				//$("#inputServiceList").off("change");
 				$(document).on("change","#inputServiceList",function(){
 					var x = $('#inputServiceList > option:selected').index();
-					document.getElementById("inputDescription").value = svcDetailList[x].svcDescription;
-					document.getElementById("inputPrice").value = svcDetailList[x].svcCost;
+					document.getElementById("inputDescription").value = svcDetailList[x-1].svcDescription;
+					document.getElementById("inputPrice").value = svcDetailList[x-1].svcCost;
 				});
 					
 				
@@ -383,25 +375,12 @@
 						console.log(inputEmployeeGender);
 						console.log()
 					var inputStatus = $('#inputStatus').val();
-						
-						
-						
-			
+
 					var reservation = {};			
 		
-				$('.fc-event').remove();
 				$('#insertReservationBtnClose').off("click");
 				$("#insertReservationBtnClose").click(function(e){
-					$('#calendar').fullCalendar('renderEvent',e,false);
-					e.stopPropagation();
-					e.preventDefault();
-					console.log(event);
-					$('#calendar').fullCalendar('unselect');
-					$('#insertModal').modal('hide');
-					$("#calendar").fullCalendar('removeEvents');
-					$("#calendar").fullCalendar('removeEventSource', event);
-					$('#calendar').fullCalendar('addEventSource', event);
-					$('#calendar').fullCalendar('refetchEvents');
+					location.reload();
 				});
 						
 			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
@@ -424,9 +403,9 @@
 				            $('#calendar').fullCalendar('refetchEvents');
 							$('#insertModal').modal('hide');
 							$(this).unbind();
-							$("#calendar").fullCalendar('removeEvents');
-							$("#calendar").fullCalendar('removeEventSource', event);
-							$('#calendar').fullCalendar('addEventSource', event);
+							//$("#calendar").fullCalendar('removeEvents');
+							//$("#calendar").fullCalendar('removeEventSource', event);
+							//$('#calendar').fullCalendar('addEventSource', event);
 							$('#calendar').fullCalendar('refetchEvents');
 							$('#calendar').fullCalendar('rerenderEvents');
 						},
@@ -453,72 +432,90 @@
 			timezone: 'UTC',
 			selectble: false,
 			selectHelper: true,
+			googleCalendarApiKey: 'AIzaSyB0_Qo7SZ6u722nhCjpKzjrHJ2gPWr_cTA',
 			
 			//------------------------------------- 각 사업자당 예약들 불러오는 기능  -------------------------------------------//
-			events: function(start, end, timezone, callback){
-				$.ajax({
-					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
-					type: 'POST',
-					data: {"etpNum":${etpNum}},
-					dataType: 'json',
-					success: function(doc, index, value){
-						
-						var resList = doc.reservationList;
-						var events = [];
-						
-						$(resList).each(function(index,item){
-							events.push({
-								id: item.rsvNum,
-								start: item.start,
-								end: item.end,
-								title: item.rsvTitle,
-								
-								svcNum: item.svcNum,
-								cpnNum: item.cpnNum,
-								etpNum: item.etpNum,
-								etpEmail: item.etpEmail,
-								cstEmail: item.cstEmail,
-								startDate: item.rsvStartDate,
-								endDate: item.rsvEndDate,
-								status: item.rsvStatus,
-								employeeGender: item.employeeGender,
-								
-								etpOwner: item.enterprise.etpOwner,
-								etpSuperclass: item.enterprise.etpSuperclass,
-								etpAddress: item.enterprise.etpAddress,
-								etpZipcode: item.enterprise.etpZipcode,
-								etpTitle: item.enterprise.etpTitle,
-								etpPhone: item.enterprise.etpPhone,
-								etpMaleStaff: item.enterprise.etpMaleStaff,
-								etpFemaleStaff: item.enterprise.etpFemalStaff,
-								etpCapacity: item.enterprise.etpCapacity,
-								etpRsvDeadline: item.enterprise.etpRsvDeadline,
-								etpSelfNotification: item.enterprise.etpSelfNotification,
-								etpCstNotification: item.enterprise.etpCstNotification,
-								/* etpTemplateType: item.enterprise.etpTemplateType, */
-								etpSvcOffered: item.enterprise.etpSvcOffered,
-								etpSubclass: item.enterprise.etpSubclass,
-								etpSpecialize: item.enterprise.specialize,
-								etpDescription: item.enterprise.etpDescription,
-								
-								svcTitle: item.service.svcTitle,
-								svcCost: item.service.svcCost,
-								svcDescription: item.service.svcDescription,
-								svcCategory: item.service.svcCategory,
-								svcSpecialize: item.service.svcSpecialize,
-								svcCount: item.service.svcCount,
-								svcCode: item.service.Code,
-							});
-						});
-						callback(events);
-				
-					},
-					error: function(doc){
-						console.log("Error");
-					}
-				});
-				$
-			},
+			eventSources: [
+			              //사업자가 한 예약 가져오기~!
+			             	{
+			            		events: function(start, end, timezone, callback){
+				      				$.ajax({
+				      					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
+				      					type: 'POST',
+				      					data: {"etpNum":${etpNum}},
+				      					dataType: 'json',
+				      					success: function(doc, index, value){
+				      						
+				      						var resList = doc.reservationList;
+				      						var events = [];
+				      						
+				      						$(resList).each(function(index,item){
+				      							events.push({
+				      								id: item.rsvNum,
+				      								start: item.start,
+				      								end: item.end,
+				      								title: item.rsvTitle,
+				      								
+				      								svcNum: item.svcNum,
+				      								cpnNum: item.cpnNum,
+				      								etpNum: item.etpNum,
+				      								etpEmail: item.etpEmail,
+				      								cstEmail: item.cstEmail,
+				      								startDate: item.rsvStartDate,
+				      								endDate: item.rsvEndDate,
+				      								status: item.rsvStatus,
+				      								employeeGender: item.employeeGender,
+				      								
+				      								etpOwner: item.enterprise.etpOwner,
+				      								etpSuperclass: item.enterprise.etpSuperclass,
+				      								etpAddress: item.enterprise.etpAddress,
+				      								etpZipcode: item.enterprise.etpZipcode,
+				      								etpTitle: item.enterprise.etpTitle,
+				      								etpPhone: item.enterprise.etpPhone,
+				      								etpMaleStaff: item.enterprise.etpMaleStaff,
+				      								etpFemaleStaff: item.enterprise.etpFemalStaff,
+				      								etpCapacity: item.enterprise.etpCapacity,
+				      								etpRsvDeadline: item.enterprise.etpRsvDeadline,
+				      								etpSelfNotification: item.enterprise.etpSelfNotification,
+				      								etpCstNotification: item.enterprise.etpCstNotification,
+				      								etpTemplateType: item.enterprise.etpTemplateType,
+				      								etpSvcOffered: item.enterprise.etpSvcOffered,
+				      								etpSubclass: item.enterprise.etpSubclass,
+				      								etpSpecialize: item.enterprise.specialize,
+				      								etpDescription: item.enterprise.etpDescription,
+				      								
+				      								svcTitle: item.service.svcTitle,
+				      								svcCost: item.service.svcCost,
+				      								svcDescription: item.service.svcDescription,
+				      								svcCategory: item.service.svcCategory,
+				      								svcSpecialize: item.service.svcSpecialize,
+				      								svcCount: item.service.svcCount,
+				      								svcCode: item.service.Code,
+				      							});
+				      						});
+				      						callback(events);				      				
+				      					},
+				      					error: function(doc){
+				      						console.log("Error");
+				      					}
+				      				});
+			      				} 
+						}
+			            ,{
+			            	googleCalendarId: "ko.south_korea#holiday@group.v.calendar.google.com",
+			            	//googleCalendarId: '1fl6hu36lp3f7334i5fq10g18g@group.calendar.google.com',
+			                className: 'holidays',
+			                color: 'red',
+			               // backgroundColor:'red',
+			                borderColor:'green',
+			                textColor:'gray',
+			                editable: false,
+			                //rendering: 'background',
+			                //allDay: false,
+			                overlap: false
+						}
+					]
+			,
 			eventDrop: function(event, delta, revertFunc, jsEvent, view) {
 				$(this).unbind();
 				if (!confirm("시간대를 변경하시겠습니까?")) {
@@ -614,18 +611,16 @@
 							contentType: 'application/json',
 							success: function(data){
 								alert('삭제되었습니다.');
-								$('#calendar').fullCalendar('removeEvents');
-								$('#calendar').fullCalendar('addEventSource', event);
+								//$('#calendar').fullCalendar('removeEvents');
+								//$('#calendar').fullCalendar('addEventSource', event);
 								$('#calendar').fullCalendar('refetchEvents');
 							},
 							error: function(){
 								console.log("deletion error");
 							},
 						});
-						$(this).unbind();
 					};
 				};
-				$(this).unbind();
 				$('#calendar').fullCalendar('unselect');
 			}	
 		});
@@ -649,7 +644,7 @@
       		<img src="${pageContext.request.contextPath}/image/trash-can1.jpg" id="trash" alt="쓰레기통" style="width: 100px; height: 100px;">
     	</div>
 	</div>
-	
+	<s:property value='#session.loginId'/>
 	<div id='calendar' class='container'></div>
 	
 	<div id="insertModal" class="modal fade">

@@ -85,8 +85,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(reservation != null){
 			System.err.println("reservation 시작 스트링: " + reservation.getStart());
 			System.err.println("reservation 끝 스트링: " + reservation.getEnd());
-			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(),DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(),DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
+			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
 			reservation.setEtpNum(String.valueOf(session.get("loginEtpNum")));
 			reservation.setEtpEmail(String.valueOf(session.get("loginId")));
 		}
