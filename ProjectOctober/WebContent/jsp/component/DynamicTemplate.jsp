@@ -77,7 +77,7 @@ function hideBT(){
 	//로그인 한 사람이 페이지 주인과 동일 할 때 
 	if(loginId!=null && loginId==pageId){
 		$('#etpBtBar').show();
-		
+		$('#editBT').on('click', startEdit);
 	}else{
 		$('#etpBtBar').hide();	
 	}	
@@ -96,14 +96,14 @@ function startEdit(){
 	
 	//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
 	$('#saveBT').attr('disabled', false);
-	$('#editBT').attr('disabled', true); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
+	$('#editBT').addClass('active');  // 편집 중일 때와 그렇지 않을 때는 구분
 	
 	//컴포넌튼 drag, resize 활성화
 	activateGrid();
 	
 	//save, load 버튼에 클릭 이벤트와 함수 연결
     $('#saveBT').on('click', savePage);
-    $('#loadBT').on('click', load_grid);
+    $('#loadBT').on('click', stopEdit);
     
     //컴포넌트에 마우스가 들어가면 삭제 버튼 생성
     $('.grid-stack-item').on('mouseenter', function(){
@@ -115,6 +115,12 @@ function startEdit(){
     $('.grid-stack-item').on('mouseleave', function(){
     	$(this).find('.delBT').html('');
     });
+}
+
+function stopEdit(){
+	$('#editBT').removeClass('active');
+	$('.edit').hide(); //편집 버튼 숨기기
+	loadPage(); //DB에 저장되어 있는 페이지 로드
 }
 
 
@@ -151,7 +157,7 @@ function savePage(etpNum){
     //replacer, space는 옵션
 };
 
-function load_grid(){	
+function loadPage(){	
 	$.ajax({
 		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action?etpNum='+etpNum,
 		type:'GET',
