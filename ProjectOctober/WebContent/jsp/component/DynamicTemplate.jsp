@@ -27,7 +27,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hover/hover.css" />
 
 <style>
-	
 	.delBT{
 		position: absolute;
 	}
@@ -46,49 +45,61 @@
 </style>
 
 <script>
+
 $(function () {
-		
-	var loginId = '<%= session.getAttribute("loginId") %>';
-	var pageId = '<%= session.getAttribute("pageId") %>';
+	var options = {
+    		always_show_resize_handle : false,
+        	placeholder_class : 'grid-stack-placeholder',
+        	resizable: {
+                handles: 'e, se, s, sw, w'
+            }	
+	    };
+	    
+	$('.grid-stack').gridstack(options);
+    
+	var grid = $('.grid-stack').data('gridstack');
+	//drag, resize false
+	grid.movable('.grid-stack-item', false);
+	grid.resizable('.grid-stack-item', false);
 
-	
-	//로그인 한 사람이 페이지 주인과 동일 할 때 
-	if(loginId != null && loginId == pageId){
-		alert("내가 주인이다")				
-		$('#etpBT').show();
-		
-		$('#saveBT').attr('disabled', true);
-		$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
-		
-	}else{
-		alert("I am not 주인")
-	//로그인 하지 않았거나 페이지 주인이 아닐때
-		$('.edit').hide();
-		$('#etpBT').hide();
-	
-	}    
-	
-	$('.grid-stack').gridstack({
-		static_grid : false
-	});
-
+	hideBT();
 });
 
-function startEdit(){
-	$('.grid-stack').gridstack({
-		static_grid : false,
-   		always_show_resize_handle : false,
-    	placeholder_class : 'grid-stack-placeholder',
-    	resizable: {
-            handles: 'e, se, s, sw, w'
-        }	
-	});
+
+function hideBT(){
+	var loginId = "<%= session.getAttribute("loginId") %>" ;
+	var pageId = "<%= session.getAttribute("pageId") %>" ;
+
+	$('#saveBT').attr('disabled', true);
+	$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled	
+	$('.edit').hide();
+	
+	//로그인 한 사람이 페이지 주인과 동일 할 때 
+	if(loginId!=null && loginId==pageId){
+		$('#etpBtBar').show();
 		
+	}else{
+		$('#etpBtBar').hide();	
+	}	
+}
+
+function activateGrid(){
+	var grid = $('.grid-stack').data('gridstack');
+	//drag, resize false
+	grid.movable('.grid-stack-item', true);
+	grid.resizable('.grid-stack-item', true);
+}
+
+function startEdit(){
+	//편집, 수정 버튼 보임	
 	$('.edit').show();
 	
+	//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
 	$('#saveBT').attr('disabled', false);
 	$('#editBT').attr('disabled', true); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
-
+	
+	//컴포넌튼 drag, resize 활성화
+	activateGrid();
 	
 	//save, load 버튼에 클릭 이벤트와 함수 연결
     $('#saveBT').on('click', savePage);
@@ -142,7 +153,7 @@ function savePage(etpNum){
 
 function load_grid(){	
 	$.ajax({
-		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action',
+		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action?etpNum='+etpNum,
 		type:'GET',
 		dataType: 'json',
 		success : print				
@@ -155,7 +166,7 @@ function remove_widget(item){
 	grid.remove_widget(item, true);
 }
 
-
+// 불러온 컴포넌트 출력
 function print(object){
 	var items = object.componentList;
     items = GridStackUI.Utils.sort(items); // 각 컴포넌트를 원래 순서대로 정렬. 안하면 랜덤으로 섞여서 배치됨
@@ -172,19 +183,17 @@ function print(object){
    	switch (node.componentID) {
 		case 'topCP':
         	grid.add_widget(
-        		$('<div id="topCP">'
+        		$('<div id="topCP" draggable="true">'
         		+'<a onclick="remove_widget(topCP)">'
         		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inTopCP">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
-			
+		//사업자 편집용 버튼은 삭제할 수 없도록 하기 위해 삭제 버튼 없음	
 		case 'etpBtBar':
 			grid.add_widget(
 				$('<div id="etpBtBar">'
-        		+'<a onclick="remove_widget(etpBtBar)">'
-        		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content" id="inEtpBtBar">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
@@ -261,9 +270,7 @@ function print(object){
     $('#inInfoCP').load('./InfoComponent.jsp');
     $('#inEtpBtBar').load('./EtpBT.jsp');
     $('#inTopCP').load('./StaticTop.jsp');
-    
-    // 세이브, 로드, 삭제버튼 생성 및 사라짐
-    eventOn(); 
+       
 }
 
 
@@ -295,7 +302,7 @@ function print(object){
 	    </div>
    		
    		<!-- 사업자 전용 버튼 -->
-	    <div class="grid-stack-item" id="etpBtBar"  
+	    <div class="grid-stack-item" id="etpBtBar"
 	    data-gs-x="1" data-gs-y="3" data-gs-width="4" data-gs-height="1">
 	    	<!-- 필수 항목이므로 지울 수 없음!! -->		    
 			<div class="grid-stack-item-content">
@@ -304,7 +311,7 @@ function print(object){
 	    </div>
 	    
 	    <!-- 예약 버튼 -->
-	    <div class="grid-stack-item" id="rsvBt"
+	    <div class="grid-stack-item" id="rsvBt" 
 	    data-gs-x="5" data-gs-y="3" data-gs-width="6" data-gs-height="1">
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(rsvBt)'>
@@ -312,7 +319,7 @@ function print(object){
 			</a>
 	    
 			<div class="grid-stack-item-content">
-				<div class="btn-group btn-group-justified" role="group" aria-label="..." draggable="true">
+				<div class="btn-group btn-group-justified" role="group" aria-label="...">
 					<div class="btn-group" role="group">
 					 <button type="button" class="btn btn-default btn-lg" id="phoneBT" >전화 예약(000-0000-0000)</button>
 					</div>

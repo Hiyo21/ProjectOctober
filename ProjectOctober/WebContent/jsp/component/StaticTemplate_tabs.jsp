@@ -28,27 +28,26 @@
 	        $(".act span").text(x);
 	        $(".prev span").text(y);
 	    }); 
-	    	
+	   	
+	    hideBT();
 	}); 
 	
 	//편집 버튼 숨김
-	$(function(){
-		var loginId = '<%= session.getAttribute("loginId") %>';
-		var pageId = '<%= session.getAttribute("pageId") %>';
-		
-		//로그인 하지 않았거나 페이지 주인이 아닐때
+	function hideBT(){
+		var loginId = "<%= session.getAttribute("loginId") %>" ;
+		var pageId = "<%= session.getAttribute("pageId") %>" ;
+
+		$('#saveBT').attr('disabled', true);
+		$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled	
 		$('.edit').hide();
-		$('#etpBT').hide();
 		
-		//로그인 한 사람이 페이지 주인일 때 
-		if(loginId != null && loginId == pageId){
-			$('#etpBT').show();
-			
-			$('#saveBT').attr('disabled', true);
-			$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
-		}    
-	});
-	
+		//로그인 한 사람이 페이지 주인과 동일 할 때 
+		if(loginId!=null && loginId==pageId){
+			$('#etpBtBar').show();		
+		}else{
+			$('#etpBtBar').hide();	
+		}	
+	}
 	
 	//편집 버튼 보이기
 	function startEdit(){

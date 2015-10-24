@@ -1,4 +1,6 @@
 # Created by https://www.gitignore.io/api/windows,java,eclipse
+/bin/
+/ProjectOctober/
 
 ### Windows ###
 # Windows image file caches
@@ -78,3 +80,4 @@ local.properties
 .texlipse
 /build/.project
 /build/.classpath
+rebel.xml

@@ -4,7 +4,7 @@
 <struts>
 	<package name="search" namespace="/search" extends="default">
 		<action name="toAreaCategoryPage">
-			<result>/jsp/search/AreaCategory.jsp</result>
+			<result>/jsp/Main.jsp</result>
 		</action>
 		
 		<action name="toBusinessSectorCategoryPage">
