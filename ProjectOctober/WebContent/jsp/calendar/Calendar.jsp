@@ -58,8 +58,8 @@
 			success: function retrieveEnt(data){
 				enterpriseInfo = data.enterprise;
 				console.log('received enterpriseinfo!');
-				console.log('etp: ' + enterpriseInfo);
-				 $('#templateType').attr('value', enterpriseInfo.etpTemplateType); 
+				console.log(data);
+				 $('#templateType').attr('value', data.enterprise.etpTemplateType); 
 			},error: function(){
 				console.log('retrieveEnterpriseInfoForCalendar failed!');
 			}
@@ -483,6 +483,7 @@
 				      								etpSelfNotification: item.enterprise.etpSelfNotification,
 				      								etpCstNotification: item.enterprise.etpCstNotification,
 				      								etpTemplateType: item.enterprise.etpTemplateType,
+				      								etpThemeType: item.enterprise.etpThemeType,
 				      								etpSvcOffered: item.enterprise.etpSvcOffered,
 				      								etpSubclass: item.enterprise.etpSubclass,
 				      								etpSpecialize: item.enterprise.specialize,
@@ -734,7 +735,7 @@
 								
 							</table>
 							<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''>
-							<!-- <input type="hidden" id='templateType' name='reservation.enterprise.etpTemplateType' value=''> -->
+							<input type="hidden" id='templateType' name='enterprise.etpTemplateType' value=''>
 						</form>
 		            	
 		            	<div class="hidden">

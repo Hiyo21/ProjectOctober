@@ -11,8 +11,6 @@ public class Component implements Serializable {
     
 	private String componentID;
 
-    private Integer componentTheme;
-
     private Integer componentWidth;
 
     private Integer componentHeight;
@@ -20,8 +18,6 @@ public class Component implements Serializable {
     private Integer componentPosX;
 
     private Integer componentPosY;
-
-    private Integer backgroundTheme;
 
     private static final long serialVersionUID = 1L;
 
@@ -59,15 +55,7 @@ public class Component implements Serializable {
 	public void setComponentID(String componentID) {
 		this.componentID = componentID;
 	}
-
-	public Integer getComponentTheme() {
-		return componentTheme;
-	}
-
-	public void setComponentTheme(Integer componentTheme) {
-		this.componentTheme = componentTheme;
-	}
-
+	
 	public Integer getComponentWidth() {
 		return componentWidth;
 	}
@@ -99,27 +87,21 @@ public class Component implements Serializable {
 	public void setComponentPosY(Integer componentPosY) {
 		this.componentPosY = componentPosY;
 	}
-
-	public Integer getBackgroundTheme() {
-		return backgroundTheme;
-	}
-
-	public void setBackgroundTheme(Integer backgroundTheme) {
-		this.backgroundTheme = backgroundTheme;
-	}
-
+	
 	
 	///////////////////////// ToString ///////////////////////// 
 	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder
-		.append("Component [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail).append(", componentNum=").append(componentNum)
-		.append(", componentID=").append(componentID).append(", componentTheme=").append(componentTheme)
-		.append(", componentWidth=").append(componentWidth).append(", componentHeight=").append(componentHeight)
-		.append(", componentPosX=").append(componentPosX).append(", componentPosY=").append(componentPosY)
-		.append(", backgroundTheme=").append(backgroundTheme).append("]");
+		builder.append("Component [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail)
+				.append(", componentNum=").append(componentNum).append(", componentID=").append(componentID)
+				.append(", componentWidth=").append(componentWidth).append(", componentHeight=").append(componentHeight)
+				.append(", componentPosX=").append(componentPosX).append(", componentPosY=").append(componentPosY)
+				.append("]");
 		return builder.toString();
 	}
+
+
+
 }

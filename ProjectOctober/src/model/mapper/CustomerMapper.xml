@@ -30,6 +30,7 @@
     <result column="RSV_STATUS" property="rsvStatus" jdbcType="DECIMAL" />
     <result column="RSV_GENDER" property="employeeGender" jdbcType="VARCHAR" />
     <result column="RSV_TITLE" property="rsvTitle" jdbcType="VARCHAR" />
+    <result column="RSV_DESC" property="rsvDesc" jdbcType="VARCHAR"/>
   </resultMap>
   
   <!-- Review ResultMap -->
@@ -39,7 +40,6 @@
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
     <result column="RVW_INPUT_DATE" property="rvwInputDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
-    <result column="CST_IP_ADDRESS" property="cstIpAddress" jdbcType="VARCHAR" />
     <result column="RVW_CONTENT" property="rvwContent" jdbcType="VARCHAR" />
     <result column="CST_JOB" property="cstJob" jdbcType="VARCHAR" />
     <result column="RVW_HYGIENE" property="rvwHygiene" jdbcType="DECIMAL" />

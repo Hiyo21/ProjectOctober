@@ -71,7 +71,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		enterprise = etpDAO.selectByEtpNumIncludeOthers(etpNum);
 		System.err.println(enterprise + "어디?");
 		System.err.println(enterprise.getEtpStartHour() +"이건?");
-		//System.err.println(enterprise.getWorkingDays());
+		System.err.println(enterprise.getWorkingDays());
 		enterprise.setStart(enterprise.getEtpStartHour().format(DateTimeFormatter.ISO_LOCAL_TIME));
 		enterprise.setEnd(enterprise.getEtpEndHour().format(DateTimeFormatter.ISO_LOCAL_TIME));
 		WorkingDays wd = enterprise.getWorkingDays();
@@ -288,8 +288,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println("============check Action :: enterprise :: " +enterprise);
 		////// 연결 후 페이지 정보 혹은 세션에서 etpnum, etpemail, etpTheme 불러오기
 		component.setEtpEmail(enterprise.getEtpEmail());
-		component.setComponentTheme(1);
-		component.setBackgroundTheme(1);
 		
 		System.out.println("============check Action :: component :: " +component);
 		if(etpDAO.selectByEtpNum(etpNum)!=null){		

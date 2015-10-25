@@ -5,7 +5,6 @@
 
 	<typeAliases>
 		<typeAlias type="model.vo.Component" alias="Component" />
-		<typeAlias type="model.vo.ComponentExample" alias="ComponentExample" />
 		<typeAlias type="model.vo.Coupon" alias="Coupon" />
 		<typeAlias type="model.vo.CouponExample" alias="CouponExample" />
 		<typeAlias type="model.vo.Customer" alias="Customer"/>
