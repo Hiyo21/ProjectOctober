@@ -10,8 +10,8 @@ public class Component implements Serializable {
     private Integer componentNum;
     
 	private String componentID;
-
-    private Integer componentTheme;
+	
+	private String componentDesc;
 
     private Integer componentWidth;
 
@@ -20,8 +20,6 @@ public class Component implements Serializable {
     private Integer componentPosX;
 
     private Integer componentPosY;
-
-    private Integer backgroundTheme;
 
     private static final long serialVersionUID = 1L;
 
@@ -60,14 +58,6 @@ public class Component implements Serializable {
 		this.componentID = componentID;
 	}
 
-	public Integer getComponentTheme() {
-		return componentTheme;
-	}
-
-	public void setComponentTheme(Integer componentTheme) {
-		this.componentTheme = componentTheme;
-	}
-
 	public Integer getComponentWidth() {
 		return componentWidth;
 	}
@@ -100,26 +90,26 @@ public class Component implements Serializable {
 		this.componentPosY = componentPosY;
 	}
 
-	public Integer getBackgroundTheme() {
-		return backgroundTheme;
+	public String getComponentDesc() {
+		return componentDesc;
 	}
 
-	public void setBackgroundTheme(Integer backgroundTheme) {
-		this.backgroundTheme = backgroundTheme;
+	public void setComponentDesc(String componentDesc) {
+		this.componentDesc = componentDesc;
 	}
-
 	
 	///////////////////////// ToString ///////////////////////// 
-	
+
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder
 		.append("Component [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail).append(", componentNum=").append(componentNum)
-		.append(", componentID=").append(componentID).append(", componentTheme=").append(componentTheme)
+		.append(", componentID=").append(componentID).append(", componentDesc=").append(componentDesc)
 		.append(", componentWidth=").append(componentWidth).append(", componentHeight=").append(componentHeight)
 		.append(", componentPosX=").append(componentPosX).append(", componentPosY=").append(componentPosY)
-		.append(", backgroundTheme=").append(backgroundTheme).append("]");
+		.append("]");
 		return builder.toString();
 	}
 }

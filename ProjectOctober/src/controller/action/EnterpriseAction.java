@@ -36,14 +36,17 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private List<Coupon> couponList;
 	private Member member;
 	private PhotoLocation photoLocation;
+	
+	private String etpNum;
+	private String etpNum1;
+	private String etpEmail;
 
 	//////// Component Member ////////  
 	private Component component;
 	private List<Component> componentList;
+	private Service service;	
+	
 	private Coupon coupon;
-	private String etpNum;
-	private String etpNum1;
-	private String etpEmail;
 	private String address;
 	private Integer rsvNum;
 	private String regCardLocation;
@@ -128,7 +131,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
-		//--------------------------------------------------사업자 페이지---------------------------
+	//--------------------------------------------------사업자 페이지---------------------------
+	//---------------------------------------Service Component-----------------------------
 	public String updateSvcCategory() throws Exception{
 		System.err.println("===========check Action :: updateSvcCategory :: ");
 		int result = 0; 
@@ -185,6 +189,15 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
+	public String insertService(){
+		System.out.println("===========check Action :: insertService :: ");
+		int result = etpDAO.insertService(service);
+		return SUCCESS;
+	}
+	
+	//---------------------------------------Service Component-----------------------------
+	
+	
 	public String selectEtpList() throws Exception{
 		enterpriseList = etpDAO.selectEtpList();			
 		System.out.println("===========check Action :: enterpriseList :: ");
@@ -212,7 +225,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		//서비스 리스트 set
 		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
 		enterprise.setServices(svcList);
-		
+
 		//카테고리 리스트 뽑기
 		categoryList = new ArrayList<>();
 		for(int j=0; j<svcList.size(); j++){	
@@ -232,6 +245,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		//고객평가, 갤러리 리스트 set
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
+		enterprise.setInfoPht(etpDAO.selectInfoPht(etpNum));
+		enterprise.setInfoPht(etpDAO.selectLogoPht(etpNum));
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
@@ -285,25 +300,21 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.out.println("============check Action :: insertComponet()");		
 		enterprise = etpDAO.selectByEtpNum(etpNum);
 		System.err.println("============check Action :: etpNum :: " +etpNum);
-		System.err.println("============check Action :: enterprise :: " +enterprise);
 		////// 연결 후 페이지 정보 혹은 세션에서 etpnum, etpemail, etpTheme 불러오기
 		component.setEtpEmail(enterprise.getEtpEmail());
-		component.setComponentTheme(1);
-		component.setBackgroundTheme(1);
-		
-		System.out.println("============check Action :: component :: " +component);
-		if(etpDAO.selectByEtpNum(etpNum)!=null){		
+
+		////신규 등록의 경우 insert로 이미 컴포넌트 값이 등록되어 있는 사업자의 경우 update로 적용하여 component의 중복을 제거		
+		if(etpDAO.receiveComponentList(etpNum)!=null){	//컴포넌트 신규등록
 			int result = etpDAO.insertComponent(component);
 			if(result == 1) {
 				return SUCCESS;
 			}else{
 				System.err.println("============check Action :: result :: " + result);
-				System.out.println("이미 등록된 페이지가 있는 사업자입니다!!!!!!");
 				return ERROR;
 			}
-					
-		}else{
+		}else{	//컴포넌트 기존에 등록되어 있던 사람
 			//업데이트
+			System.out.println("============기존 컴포넌트 등록 사업자============");
 			int result = etpDAO.updateComponent(component);
 			if(result == 1) {
 				return SUCCESS;
@@ -315,28 +326,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 	}
 	
-	/*
-	 * System.out.println("============check Action :: component :: " +component);
 		
-		///// insert 전에 사업자 번호를 확인 후 입력 for 중복 제거
-		if(etpDAO.receiveComponentList(component.getEtpNum())==null){
-				
-			int result = etpDAO.insertComponent(component);
-				if(result != 1) {
-					return ERROR;
-				}
-			System.out.println("============check Action :: result :: " + result);
-		}else{
-			System.out.println("이미 등록된 페이지가 있는 사업자입니다!!!!!!");
-			return ERROR;
-		}
-		
-		return SUCCESS;
-	}
-	 */
-	
 	public String receiveComponentList(){
 		System.out.println("============check Action :: getComponentList()");
+		System.err.println(etpNum);
 		component = new Component();
 		component.setEtpNum(etpNum);
 		///// 사업자 번호와 일치하는 컴포넌트만 갖고 오기
@@ -379,8 +372,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String noRegisterEtp() throws Exception{
 		System.err.println(etpNum);
 		enterprise = etpDAO.noRegisterEtp(etpNum);
-		System.out.println(enterprise);
 		regCardLocation = etpDAO.retrieveRegCard(etpNum);
+		System.err.println("regCardLocation : "+regCardLocation);
 		return SUCCESS;
 	}
 	
@@ -660,5 +653,15 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public void setRegCardLocation(String regCardLocation) {
 		this.regCardLocation = regCardLocation;
 
+	}
+
+
+	public Service getService() {
+		return service;
+	}
+
+
+	public void setService(Service service) {
+		this.service = service;
 	}
 }

@@ -47,12 +47,11 @@
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
     <result column="COMPONENT_ID" property="componentID" jdbcType="VARCHAR" />
-    <result column="COMPONENT_THEME" property="componentTheme" jdbcType="DECIMAL" />
+    <result column="COMPONENT_Desc" property="componentDesc" jdbcType="VARCHAR" />
     <result column="COMPONENT_Width" property="componentWidth" jdbcType="DECIMAL" />
     <result column="COMPONENT_Height" property="componentHeight" jdbcType="DECIMAL" />
     <result column="COMPONENT_POS_X" property="componentPosX" jdbcType="DECIMAL" />
     <result column="COMPONENT_POS_Y" property="componentPosY" jdbcType="DECIMAL" />
-    <result column="BACKGROUND_THEME" property="backgroundTheme" jdbcType="DECIMAL" />
   </resultMap>
   
   <!-- Coupon ResultMap -->
@@ -152,7 +151,6 @@
     <result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
     <result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
     <result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
-    <result column="SVC_COUNT" property="svcCount" jdbcType="DECIMAL" />
   </resultMap>
   
     <resultMap id="WorkingDaysResultMap" type="model.vo.WorkingDays" >
@@ -797,24 +795,40 @@
   	</select>
   	
   	<select id="selectPhotoList" parameterType="String" resultMap="PhotoLocationResultMap">
-  		select * from photo_location where etp_num = #{etpNum}
+  		select * from photo_location where etp_num = #{etpNum} and pht_usage = 'gal'
+  	</select>
+  	
+  	<select id="selectInfoPht" parameterType="String" resultType="String">
+  		select * from photo_location where etp_num = #{etpNum} and pht_usage = 'info'
+  	</select>
+  	
+  	<select id="selectLogoPht" parameterType="String" resultType="String">
+  		select * from photo_location where etp_num = #{etpNum} and pht_usage = 'logo'
   	</select>
    
   	<!--  Component Mapper  -->
   	
 	<insert id="insertComponent" parameterType="Component">
-		insert into COMPONENT2 values 
-		 (component_seq.nextval, #{componentID}, #{componentTheme}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY}, #{backgroundTheme} , #{etpNum}, #{etpEmail})	
+		insert into COMPONENT 
+		<if test="componentDesc!=null">
+		values 
+		 (component_seq.nextval,  #{etpNum}, #{etpEmail}, #{componentID}, #{componentDesc}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY})
+		</if>	
+		<if test="componentDesc==null">
+		(component_num, etp_Num, etp_Email, component_ID, component_width, component_height, component_pos_x, component_pos_y) 
+		values 
+		(component_seq.nextval,  #{etpNum}, #{etpEmail}, #{componentID}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY})
+		</if>
 	</insert>
 
 
 	<select id="receiveComponent" resultType="Component" parameterType="String">
-		select * from component2 where etp_num = #{etpNum}
+		select * from component where etp_num = #{etpNum}
 	</select>
 	
 	<update id="updateComponent" parameterType="Component">
-		update component2 
-		set component_id = #{componentID}, component_theme = #{componentTheme}, component_width = #{componentWidth}, component_height = #{componentHeight}, component_pos_x = #{componentPosX}, component_pos_y = #{componentPosY}, background_theme = #{backgroundTheme}  
+		update component 
+		set component_id = #{componentID}, component_Desc = #{componentDesc}, component_width = #{componentWidth}, component_height = #{componentHeight}, component_pos_x = #{componentPosX}, component_pos_y = #{componentPosY}  
 		where etp_num = #{etpNum}
 	</update>
 	
@@ -902,5 +916,13 @@
 	
 	<select id="retrieveRegCard" parameterType="String" resultType="String">
 		select pht_address from photo_location where pht_usage like '%' || #{value} || '%'
+	</select>
+	
+	<select id="retrieveInfoCard" parameterType="String" resultType="String">
+		select pht_address from photo_location where pht_usage == 'info' and etp_num == #{value}
+	</select>
+	
+	<select id="retrieveLogoCard" parameterType="String" resultType="String">
+		select pht_address from photo_location where pht_usage == 'logo' and etp_num == #{value}
 	</select>
 </mapper>

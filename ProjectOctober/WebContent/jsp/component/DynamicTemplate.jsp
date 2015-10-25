@@ -71,7 +71,6 @@ function hideBT(){
 	var pageId = "<%= session.getAttribute("pageId") %>" ;
 
 	$('#saveBT').attr('disabled', true);
-	$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled	
 	$('.edit').hide();
 	
 	//로그인 한 사람이 페이지 주인과 동일 할 때 
@@ -103,7 +102,7 @@ function startEdit(){
 	
 	//save, load 버튼에 클릭 이벤트와 함수 연결
     $('#saveBT').on('click', savePage);
-    $('#loadBT').on('click', stopEdit);
+    $('#editBT').on('click', stopEdit);
     
     //컴포넌트에 마우스가 들어가면 삭제 버튼 생성
     $('.grid-stack-item').on('mouseenter', function(){
@@ -119,6 +118,7 @@ function startEdit(){
 
 function stopEdit(){
 	$('#editBT').removeClass('active');
+	$('#editBT').on('click', startEdit);
 	$('.edit').hide(); //편집 버튼 숨기기
 	loadPage(); //DB에 저장되어 있는 페이지 로드
 }
@@ -140,7 +140,6 @@ function savePage(etpNum){
 	    return component; //return 받는 객체 형식
 	}); 
  
- 	
  	for(var i in componentList){
 		console.log(componentList);
  		$.ajax({
@@ -166,11 +165,21 @@ function loadPage(){
 	});	
 };
 
+function resetPage(){
+	$.ajax({
+		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action?etpNum=1234567890',
+		type:'GET',
+		dataType: 'json',
+		success : print				
+	});
+};
+
 function remove_widget(item){
 	var grid = $('.grid-stack').data('gridstack');
 	
 	grid.remove_widget(item, true);
 }
+
 
 // 불러온 컴포넌트 출력
 function print(object){
@@ -204,15 +213,18 @@ function print(object){
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
-			
+									
 		case 'rsvBt':
 			grid.add_widget(
 				$('<div id="rsvBt">'
         		+'<a onclick="remove_widget(rsvBt)">'
         		+'<span class="delBT edit"></span></a>'
         		+'<div class="grid-stack-item-content">'
-        		+'<a href=""><label role="button" class="btn btn-default btn-lg" id="phoneBT" style="width: 250px;">전화 예약(000-0000-0000)</label></a>'
-        		+'<a href=""><label role="button" class="btn btn-success btn-lg" id="rsvBT" style="width: 250px;">예약 하기</label></a></div></div>')
+        		+'<div class="btn-group btn-group-justified" role="group" aria-label="...">'
+        		+'<div class="btn-group" role="group">'
+        		+'<button type="button" class="btn btn-default btn-lg" id="phoneBT">전화 예약(<s:property value="enterprise.etpPhone"/>)</button></div>'
+        		+'<div class="btn-group" role="group">'
+        		+'<button type="button" class="btn btn-success btn-lg" id="rsvBT">예약 하기</button></div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
 			
@@ -269,14 +281,14 @@ function print(object){
     });
     
     //각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
-    $('#inReviewCP').load('./ReviewComponent.jsp');
-    /* $('#inLocaCP').load('./LocationComponent.jsp'); */
-    $('#inGalCP').load('./GalleryComponent.jsp');
-    $('#inSvcCP').load('./SvcComponent.jsp');
-    $('#inInfoCP').load('./InfoComponent.jsp');
-    $('#inEtpBtBar').load('./EtpBT.jsp');
-    $('#inTopCP').load('./StaticTop.jsp');
-       
+    $('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
+    $('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
+    $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
+    $('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
+    $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
+    $('#inRsvBt').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
+    $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
+    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp');      
 }
 
 
@@ -289,8 +301,6 @@ function print(object){
 
 <div class="container" id="page">
 
-<button id ='loadBT'>load Component</button>
-
 	<div class="grid-stack">
 	
 		<!-- 상단 컴포넌트 -->
@@ -300,16 +310,14 @@ function print(object){
 	    	<a onclick="remove_widget(topCP)">
 	    		<span class="delBT edit"></span>
 	   		</a>
-	   		
 			<div class="grid-stack-item-content">				
 				<s:include value="./StaticTop.jsp"/>
 			</div>
-			
 	    </div>
    		
    		<!-- 사업자 전용 버튼 -->
 	    <div class="grid-stack-item" id="etpBtBar"
-	    data-gs-x="1" data-gs-y="3" data-gs-width="4" data-gs-height="1">
+	    data-gs-x='1' data-gs-y='3' data-gs-width='10' data-gs-height='1'>
 	    	<!-- 필수 항목이므로 지울 수 없음!! -->		    
 			<div class="grid-stack-item-content">
 				<s:include value="./EtpBT.jsp"/>
@@ -318,7 +326,7 @@ function print(object){
 	    
 	    <!-- 예약 버튼 -->
 	    <div class="grid-stack-item" id="rsvBt" 
-	    data-gs-x="5" data-gs-y="3" data-gs-width="6" data-gs-height="1">
+	    data-gs-x="1" data-gs-y="4" data-gs-width="10" data-gs-height="1">
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(rsvBt)'>
 				<span class="delBT edit"></span>
@@ -327,7 +335,7 @@ function print(object){
 			<div class="grid-stack-item-content">
 				<div class="btn-group btn-group-justified" role="group" aria-label="...">
 					<div class="btn-group" role="group">
-					 <button type="button" class="btn btn-default btn-lg" id="phoneBT" >전화 예약(000-0000-0000)</button>
+					 <button type="button" class="btn btn-default btn-lg" id="phoneBT" >전화 예약(<s:property value="enterprise.etpPhone"/>)</button>
 					</div>
 					<div class="btn-group" role="group">
 		 				<button type="button" class="btn btn-success btn-lg" id="rsvBT">예약 하기</button>
@@ -338,7 +346,7 @@ function print(object){
 	    
 	    <!-- 기본 정보 컴포넌트 -->
 	    <div class="grid-stack-item" id="infoCP"
-	    data-gs-x="1" data-gs-y="4" data-gs-width="10" data-gs-height="3">
+	    data-gs-x="1" data-gs-y="5" data-gs-width="10" data-gs-height="3">
 	    	<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(infoCP)'>
 				<span class="delBT edit"></span>
@@ -351,7 +359,7 @@ function print(object){
 	    
 	    <!-- 서비스 메뉴 컴포넌트 -->
 	    <div class="grid-stack-item"  id="svcCP"
-	    data-gs-x="1" data-gs-y="7" data-gs-width="7" data-gs-height="5">
+	    data-gs-x="1" data-gs-y="8" data-gs-width="7" data-gs-height="5">
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(svcCP)'>
 				<span class="delBT edit"></span>
@@ -364,7 +372,7 @@ function print(object){
 	    
 	    <!-- 갤러리 컴포넌트 -->
 	    <div class="grid-stack-item" id="galCP"
-	    data-gs-x="8" data-gs-y="7" data-gs-width="3" data-gs-height="5">
+	    data-gs-x="8" data-gs-y="8" data-gs-width="3" data-gs-height="5">
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(galCP)'>
 				<span class="delBT edit"></span>
@@ -377,20 +385,20 @@ function print(object){
 	    
 	    <!-- 오시는 길 컴포넌트 -->
 	    <div class="grid-stack-item" id="locaCP"
-	    data-gs-x="1" data-gs-y="12" data-gs-width="10" data-gs-height="4">
+	    data-gs-x="1" data-gs-y="13" data-gs-width="10" data-gs-height="4">
 	   		<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(locaCP)'>
 				<span class="delBT edit"></span>
 			</a>
 	   	
 			<div class="grid-stack-item-content">
-				<%-- <s:include value="./LocationComponent.jsp"/> --%>
+				<s:include value="./LocationComponent.jsp"/>
 			</div>
 	    </div>
 	    
 	    <!-- 고객 평가 컴포넌트 -->
 	    <div class="grid-stack-item" id="reviewCP"
-	    data-gs-x="1" data-gs-y="17" data-gs-width="10" data-gs-height="4">
+	    data-gs-x="1" data-gs-y="18" data-gs-width="10" data-gs-height="4">
 	    	<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(reviewCP)'>
 				<span class="delBT edit"></span>

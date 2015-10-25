@@ -9,6 +9,8 @@ public class Enterprise implements Serializable {
 	private Component component;
 	private Holiday holiday;
 	private PhotoLocation photoLocation;
+	private String infoPht;
+	private String logoPht;
 	private WorkingDays workingDays;
 	private List<Review> reviews;
 	private List<Notification> notifications;
@@ -223,6 +225,24 @@ public class Enterprise implements Serializable {
 
 	public List<Component> getComponents() {
 		return components;
+	}
+	
+	public String getInfoPht() {
+		return infoPht;
+	}
+	
+
+	public String getLogoPht() {
+		return logoPht;
+	}
+
+	public void setInfoPht(String infoPht) {
+		this.infoPht = infoPht;
+	}
+
+
+	public void setLogoPht(String logoPht) {
+		this.logoPht = logoPht;
 	}
 
 	public void setComponents(List<Component> components) {

@@ -163,6 +163,21 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return fromMapper(s).insertImage(loc);});
 	}
 	
+	public int insertService(Service service) {
+		System.out.println("============check DAO :: insertService()");
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			int result = session.getMapper(ServiceMapper.class).insert(service);
+			
+			if(result == 1) session.commit();
+			else session.rollback();
+			
+			return result;
+		}finally{
+			session.close();
+		}
+	}
+	
 
 	//////////////////////// Component DAO ////////////////////////  
 	
@@ -316,6 +331,20 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveRegCard(etpNum);});
 	}
 
-	
+	public String selectInfoPht(String etpNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(EnterpriseMapper.class).selectInfoPht(etpNum);
+		}finally{session.close();}
+	}
+
+	public String selectLogoPht(String etpNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(EnterpriseMapper.class).selectLogoPht(etpNum);
+		}finally{session.close();}
+	}
+
+
 	
 }
