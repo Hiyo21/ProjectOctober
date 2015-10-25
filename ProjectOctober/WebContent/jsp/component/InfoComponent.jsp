@@ -53,7 +53,22 @@ function saveInfo() {
 <div class="container-fluid" style="vertical-align: middle;">
 	<div class="row">
 		<div class="col-md-4">
-			<img src="http://mitsuraku.jp/files/photo/shop_top/7783/d950abc0aa7f062979756ae893d8824f.JPG?1429694028" class="img-responsive">
+			<s:if test='enterprise.infoPht != null'>
+				<img src='${pageContext.request.contextPath}/<s:property value="infoPht"/>' class='img-responsive'>
+			</s:if>
+			<s:else>
+				<img src='http://coolmassage.net/data/apms/background/%EB%B6%84%EB%8B%B9%EB%A7%88%EC%82%AC%EC%A7%801.jpg' class='img-responsive'>
+			</s:else>
+			<div class="edit">
+				<s:form action="infoPhtUploadAction" method="POST" enctype="multipart/form-data">
+					<h5>업로드할 파일을 선택해 주세요.</h5>
+					<s:file name="fileToUpload" class="btn btn-default"/>
+					<input type="hidden" name="etpNum" value="${member.enterprise.etpNum}" id="etpNumHidden"/>
+					<input type="hidden" name="etpEmail" value="${member.enterprise.etpEmail}" id="etpEmailHidden" />
+					<input type="hidden" name="infoPht" value="${member.enterprise.infoPht}" id="infoPhtHidden" />
+					<s:submit type="btn btn-default"/>
+				</s:form>
+			</div>
 		</div>
 		<div class="col-md-8">
 			<div class="jumbotron">

@@ -50,8 +50,7 @@ public interface EnterpriseMapper {
     List<Service> selectSvcCategory(String etpNum, String category);
     List<Review> selectReviewList(String etpNum);
     List<PhotoLocation> selectPhotoList(String etpNum);
-    
-    
+
     Integer insertImage(PhotoLocation loc);
     
     ///////////////// 컴포넌트
@@ -90,5 +89,14 @@ public interface EnterpriseMapper {
 	int updateComponent(Component component);
 
 	Reservation retrieveReservationFromOtherInfo(Reservation reservation);
+
+	String retrieveInfoCard(String etpNum);
+	
+	String retrieveLogoCard(String etpNum);
+
+	String selectInfoPht(String etpNum);
+
+	String selectLogoPht(String etpNum);
+
 
 }

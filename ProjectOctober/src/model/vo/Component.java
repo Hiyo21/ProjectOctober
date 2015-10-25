@@ -55,7 +55,7 @@ public class Component implements Serializable {
 	public void setComponentID(String componentID) {
 		this.componentID = componentID;
 	}
-	
+
 	public Integer getComponentWidth() {
 		return componentWidth;
 	}
@@ -88,9 +88,9 @@ public class Component implements Serializable {
 		this.componentPosY = componentPosY;
 	}
 	
-	
 	///////////////////////// ToString ///////////////////////// 
-	
+
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

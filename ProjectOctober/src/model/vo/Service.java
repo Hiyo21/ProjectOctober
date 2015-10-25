@@ -105,7 +105,6 @@ public class Service implements Serializable {
         this.svcSpecialize = svcSpecialize;
     }
 
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

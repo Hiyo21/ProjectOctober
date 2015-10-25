@@ -19,7 +19,6 @@
     <result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
     <result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
     <result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
-    <result column="ETP_THEME_TYPE" jdbcType="DECIMAL" property="etpThemeType"/>
     <result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
     <result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
     <result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
@@ -43,15 +42,16 @@
   
 	<!-- Component Result Map -->
 	<resultMap id="ComponentResultMap" type="model.vo.Component" >
-	    <id column="COMPONENT_NUM" property="componentNum" jdbcType="DECIMAL" />
-	    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
-	    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
-	    <result column="COMPONENT_ID" property="componentID" jdbcType="VARCHAR" />
-	    <result column="COMPONENT_Width" property="componentWidth" jdbcType="DECIMAL" />
-	    <result column="COMPONENT_Height" property="componentHeight" jdbcType="DECIMAL" />
-	    <result column="COMPONENT_POS_X" property="componentPosX" jdbcType="DECIMAL" />
-	    <result column="COMPONENT_POS_Y" property="componentPosY" jdbcType="DECIMAL" />
-	</resultMap>
+	
+    <id column="COMPONENT_NUM" property="componentNum" jdbcType="DECIMAL" />
+    <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+    <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+    <result column="COMPONENT_ID" property="componentID" jdbcType="VARCHAR" />
+    <result column="COMPONENT_Width" property="componentWidth" jdbcType="DECIMAL" />
+    <result column="COMPONENT_Height" property="componentHeight" jdbcType="DECIMAL" />
+    <result column="COMPONENT_POS_X" property="componentPosX" jdbcType="DECIMAL" />
+    <result column="COMPONENT_POS_Y" property="componentPosY" jdbcType="DECIMAL" />
+  </resultMap>
   
   <!-- Coupon ResultMap -->
   <resultMap id="CouponResultMap" type="model.vo.Coupon" >
@@ -97,7 +97,6 @@
     <result column="RSV_STATUS" property="rsvStatus" jdbcType="DECIMAL" />
     <result column="RSV_GENDER" property="employeeGender" jdbcType="VARCHAR" />
     <result column="RSV_TITLE" property="rsvTitle" jdbcType="VARCHAR" />
-    <result column="RSV_DESC" property="rsvDesc"/>
   </resultMap>
   
     <!-- Review ResultMap -->
@@ -107,6 +106,7 @@
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
     <result column="RVW_INPUT_DATE" property="rvwInputDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+    <result column="CST_IP_ADDRESS" property="cstIpAddress" jdbcType="VARCHAR" />
     <result column="RVW_CONTENT" property="rvwContent" jdbcType="VARCHAR" />
     <result column="CST_JOB" property="cstJob" jdbcType="VARCHAR" />
     <result column="RVW_HYGIENE" property="rvwHygiene" jdbcType="DECIMAL" />
@@ -182,7 +182,6 @@
     <result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
     <result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
     <result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
-    <result column="ETP_THEME_TYPE" jdbcType="DECIMAL" property="etpThemeType"/>
     <result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
     <result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
     <result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
@@ -194,13 +193,162 @@
     <result column="MEM_JOINED_DATE" jdbcType="DATE" property="memJoinedDate" typeHandler="model.mapper.typehandler.LocalDateHandler" />
   </resultMap>
 
+
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.etpStartHourCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.etpEndHourCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.etpStartHourCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.etpEndHourCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=model.mapper.typehandler.LocalTimeHandler} and #{criterion.secondValue,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=model.mapper.typehandler.LocalTimeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     ETP_NUM, ETP_EMAIL, ETP_OWNER, ETP_SUPERCLASS, ETP_ADDRESS, ETP_ZIPCODE, ETP_TITLE, 
     ETP_START_HOUR, ETP_END_HOUR, ETP_PHONE, ETP_MALE_STAFF, ETP_FEMALE_STAFF, ETP_CAPACITY, 
-    ETP_RSV_DEADLINE, ETP_SELF_NOTIFICATION, ETP_CST_NOTIFICATION, ETP_TEMPLATE_TYPE, ETP_THEME_TYPE, 
+    ETP_RSV_DEADLINE, ETP_SELF_NOTIFICATION, ETP_CST_NOTIFICATION, ETP_TEMPLATE_TYPE, 
     ETP_MAP_ADDRESS, ETP_DIRECTION, ETP_SVC_OFFERED, ETP_SUBCLASS, ETP_SPECIALIZE, ETP_DESCRIPTION, 
     ETP_STATUS
   </sql>
+  <select id="selectByExample" parameterType="model.vo.EnterpriseExample" resultMap="EnterpriseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.ENTERPRISE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByEtpNum" parameterType="String" resultMap="EnterpriseResultMap">
     select * from ENTERPRISE where ETP_NUM = #{etpNum}
   </select>
@@ -209,12 +357,12 @@
   </select>
   
   <select id="selectByEtpNumIncludeOthers" parameterType="String" resultMap="EnterpriseResultMap">
-  	select e.*, w.* from ENTERPRISE e, WORKING_DAYS w
-    where e.ETP_NUM = #{etpNum} and e.etp_num = w.etp_num
+  	select e.*, w.*, h.* from ENTERPRISE e, WORKING_DAYS w, HOLIDAY h
+    where e.ETP_NUM = #{etpNum} and e.etp_num = w.etp_num and e.etp_num = h.etp_num
   </select>
    <select id="selectByEtpEmailInclueOthers" parameterType="String" resultMap="EnterpriseResultMap">
-  	select e.*, w.* from ENTERPRISE e, WORKING_DAYS w
-  	where e.ETP_EMAIL = #{etpEmail} and e.etp_email = w.etp_email
+  	select e.*, w.*, h.* from ENTERPRISE e, WORKING_DAYS w, HOLIDAY h
+  	where e.ETP_EMAIL = #{etpEmail} and e.etp_email = w.etp_email and e.etp_email = h.etp_email
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="model.vo.Enterprise">
@@ -222,7 +370,12 @@
     where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
       and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
   </delete>
-
+  <delete id="deleteByExample" parameterType="model.vo.EnterpriseExample">
+    delete from HR.ENTERPRISE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
   <insert id="insert" parameterType="model.vo.Enterprise">
     insert into HR.ENTERPRISE (ETP_NUM, ETP_EMAIL, ETP_OWNER, 
       ETP_SUPERCLASS, ETP_ADDRESS, ETP_ZIPCODE, 
@@ -230,7 +383,7 @@
       ETP_END_HOUR, 
       ETP_PHONE, ETP_MALE_STAFF, ETP_FEMALE_STAFF, 
       ETP_CAPACITY, ETP_RSV_DEADLINE, ETP_SELF_NOTIFICATION, 
-      ETP_CST_NOTIFICATION, ETP_TEMPLATE_TYPE, ETP_THEME_TYPE, ETP_MAP_ADDRESS, 
+      ETP_CST_NOTIFICATION, ETP_TEMPLATE_TYPE, ETP_MAP_ADDRESS, 
       ETP_DIRECTION, ETP_SVC_OFFERED, ETP_SUBCLASS, 
       ETP_SPECIALIZE, ETP_DESCRIPTION, ETP_STATUS
       )
@@ -240,7 +393,7 @@
       #{etpEndHour,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler}, 
       #{etpPhone,jdbcType=VARCHAR}, #{etpMaleStaff,jdbcType=DECIMAL}, #{etpFemaleStaff,jdbcType=DECIMAL}, 
       #{etpCapacity,jdbcType=DECIMAL}, #{etpRsvDeadline,jdbcType=DECIMAL}, #{etpSelfNotification,jdbcType=DECIMAL}, 
-      #{etpCstNotification,jdbcType=DECIMAL}, #{etpTemplateType,jdbcType=DECIMAL}, #{etpThemeType}, #{etpMapAddress,jdbcType=VARCHAR}, 
+      #{etpCstNotification,jdbcType=DECIMAL}, #{etpTemplateType,jdbcType=DECIMAL}, #{etpMapAddress,jdbcType=VARCHAR}, 
       #{etpDirection,jdbcType=VARCHAR}, #{etpSvcOffered,jdbcType=VARCHAR}, #{etpSubclass,jdbcType=VARCHAR}, 
       #{etpSpecialize,jdbcType=VARCHAR}, #{etpDescription,jdbcType=VARCHAR}, #{etpStatus,jdbcType=DECIMAL}
       )
@@ -298,9 +451,6 @@
       </if>
       <if test="etpTemplateType != null">
         ETP_TEMPLATE_TYPE,
-      </if>
-      <if test="etpThemeType != null">
-      	ETP_THEME_TYPE,
       </if>
       <if test="etpMapAddress != null">
         ETP_MAP_ADDRESS,
@@ -376,9 +526,6 @@
       <if test="etpTemplateType != null">
         #{etpTemplateType,jdbcType=DECIMAL},
       </if>
-      <if test="etpThemeType != null">
-      	#{etpThemeType},
-      </if>
       <if test="etpMapAddress != null">
         #{etpMapAddress,jdbcType=VARCHAR},
       </if>
@@ -402,7 +549,122 @@
       </if>
     </trim>
   </insert>
-
+  <select id="countByExample" parameterType="model.vo.EnterpriseExample" resultType="java.lang.Integer">
+    select count(*) from HR.ENTERPRISE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update HR.ENTERPRISE
+    <set>
+      <if test="record.etpNum != null">
+        ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpEmail != null">
+        ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpOwner != null">
+        ETP_OWNER = #{record.etpOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpSuperclass != null">
+        ETP_SUPERCLASS = #{record.etpSuperclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpAddress != null">
+        ETP_ADDRESS = #{record.etpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpZipcode != null">
+        ETP_ZIPCODE = #{record.etpZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpTitle != null">
+        ETP_TITLE = #{record.etpTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpStartHour != null">
+        ETP_START_HOUR = #{record.etpStartHour,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+      </if>
+      <if test="record.etpEndHour != null">
+        ETP_END_HOUR = #{record.etpEndHour,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+      </if>
+      <if test="record.etpPhone != null">
+        ETP_PHONE = #{record.etpPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpMaleStaff != null">
+        ETP_MALE_STAFF = #{record.etpMaleStaff,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpFemaleStaff != null">
+        ETP_FEMALE_STAFF = #{record.etpFemaleStaff,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpCapacity != null">
+        ETP_CAPACITY = #{record.etpCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpRsvDeadline != null">
+        ETP_RSV_DEADLINE = #{record.etpRsvDeadline,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpSelfNotification != null">
+        ETP_SELF_NOTIFICATION = #{record.etpSelfNotification,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpCstNotification != null">
+        ETP_CST_NOTIFICATION = #{record.etpCstNotification,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpTemplateType != null">
+        ETP_TEMPLATE_TYPE = #{record.etpTemplateType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etpMapAddress != null">
+        ETP_MAP_ADDRESS = #{record.etpMapAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpDirection != null">
+        ETP_DIRECTION = #{record.etpDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpSvcOffered != null">
+        ETP_SVC_OFFERED = #{record.etpSvcOffered,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpSubclass != null">
+        ETP_SUBCLASS = #{record.etpSubclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpSpecialize != null">
+        ETP_SPECIALIZE = #{record.etpSpecialize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpDescription != null">
+        ETP_DESCRIPTION = #{record.etpDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etpStatus != null">
+        ETP_STATUS = #{record.etpStatus,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update HR.ENTERPRISE
+    set ETP_NUM = #{record.etpNum,jdbcType=VARCHAR},
+      ETP_EMAIL = #{record.etpEmail,jdbcType=VARCHAR},
+      ETP_OWNER = #{record.etpOwner,jdbcType=VARCHAR},
+      ETP_SUPERCLASS = #{record.etpSuperclass,jdbcType=VARCHAR},
+      ETP_ADDRESS = #{record.etpAddress,jdbcType=VARCHAR},
+      ETP_ZIPCODE = #{record.etpZipcode,jdbcType=VARCHAR},
+      ETP_TITLE = #{record.etpTitle,jdbcType=VARCHAR},
+      ETP_START_HOUR = #{record.etpStartHour,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+      ETP_END_HOUR = #{record.etpEndHour,jdbcType=DATE,typeHandler=model.mapper.typehandler.LocalTimeHandler},
+      ETP_PHONE = #{record.etpPhone,jdbcType=VARCHAR},
+      ETP_MALE_STAFF = #{record.etpMaleStaff,jdbcType=DECIMAL},
+      ETP_FEMALE_STAFF = #{record.etpFemaleStaff,jdbcType=DECIMAL},
+      ETP_CAPACITY = #{record.etpCapacity,jdbcType=DECIMAL},
+      ETP_RSV_DEADLINE = #{record.etpRsvDeadline,jdbcType=DECIMAL},
+      ETP_SELF_NOTIFICATION = #{record.etpSelfNotification,jdbcType=DECIMAL},
+      ETP_CST_NOTIFICATION = #{record.etpCstNotification,jdbcType=DECIMAL},
+      ETP_TEMPLATE_TYPE = #{record.etpTemplateType,jdbcType=DECIMAL},
+      ETP_MAP_ADDRESS = #{record.etpMapAddress,jdbcType=VARCHAR},
+      ETP_DIRECTION = #{record.etpDirection,jdbcType=VARCHAR},
+      ETP_SVC_OFFERED = #{record.etpSvcOffered,jdbcType=VARCHAR},
+      ETP_SUBCLASS = #{record.etpSubclass,jdbcType=VARCHAR},
+      ETP_SPECIALIZE = #{record.etpSpecialize,jdbcType=VARCHAR},
+      ETP_DESCRIPTION = #{record.etpDescription,jdbcType=VARCHAR},
+      ETP_STATUS = #{record.etpStatus,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="model.vo.Enterprise">
     update HR.ENTERPRISE
     <set>
@@ -451,9 +713,6 @@
       <if test="etpTemplateType != null">
         ETP_TEMPLATE_TYPE = #{etpTemplateType,jdbcType=DECIMAL},
       </if>
-      <if test="etpThemeType != null">
-      	ETP_THEME_TYPE = #{etpThemeType},
-      </if>
       <if test="etpMapAddress != null">
         ETP_MAP_ADDRESS = #{etpMapAddress,jdbcType=VARCHAR},
       </if>
@@ -496,7 +755,6 @@
       ETP_SELF_NOTIFICATION = #{etpSelfNotification,jdbcType=DECIMAL},
       ETP_CST_NOTIFICATION = #{etpCstNotification,jdbcType=DECIMAL},
       ETP_TEMPLATE_TYPE = #{etpTemplateType,jdbcType=DECIMAL},
-      ETP_THEME_TYPE = #{etpThemeType},
       ETP_MAP_ADDRESS = #{etpMapAddress,jdbcType=VARCHAR},
       ETP_DIRECTION = #{etpDirection,jdbcType=VARCHAR},
       ETP_SVC_OFFERED = #{etpSvcOffered,jdbcType=VARCHAR},
@@ -508,6 +766,20 @@
       and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
   </update>
   <cache />
+  <select id="selectByExampleWithRowbounds" parameterType="model.vo.EnterpriseExample" resultMap="EnterpriseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HR.ENTERPRISE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   
   	<select id="selectSvcCategory" resultType="Service" parameterType="String">
   		select * from service where etp_num = #{etpNum} and svc_category = #{svcCategory}
@@ -522,14 +794,22 @@
   	</select>
   	
   	<select id="selectPhotoList" parameterType="String" resultMap="PhotoLocationResultMap">
-  		select * from photo_location where etp_num = #{etpNum}
+  		select * from photo_location where etp_num = #{etpNum} and pht_usage = 'gal'
+  	</select>
+  	
+  	<select id="selectInfoPht" parameterType="String" resultType="String">
+  		select * from photo_location where etp_num = #{etpNum} and pht_usage = 'info'
+  	</select>
+  	
+  	<select id="selectLogoPht" parameterType="String" resultType="String">
+  		select * from photo_location where etp_num = #{etpNum} and pht_usage = 'logo'
   	</select>
    
   	<!--  Component Mapper  -->
   	
 	<insert id="insertComponent" parameterType="Component">
 		insert into COMPONENT values 
-		 (component_seq.nextval, #{componentID}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY}, #{etpNum}, #{etpEmail})	
+		(component_seq.nextval,  #{etpNum}, #{etpEmail}, #{componentID}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY})
 	</insert>
 
 
@@ -545,12 +825,12 @@
 	
 	
 	<update id="choiceTemplateType" parameterType="map">
-		update ENTERPRISE set etp_template_type = #{enterprise.etpTemplateType} where etp_num = #{enterprise.etpNum} 
+		update ENTERPRISE set etp_Template_Type = #{enterprise.etpTemplateType} where etp_Num = #{enterprise.etpNum} 
 	</update>
 	
 	
 	<insert id="insertImage" parameterType="PhotoLocation">
-		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription}, #{phtAddress}, sysdate)
+		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
 	</insert>
 	
 	
@@ -598,11 +878,11 @@
 	</select>
 	
 	<update id="updateEtpStatus" parameterType="String">
-		update enterprise set etp_status=1 where etp_num=#{etpNum}
+		update HR.Enterprise set etp_status=1 where etp_num=#{etpNum}
 	</update>	
 	
 	<update id="rejectEtpStatus" parameterType="String">
-		update enterprise set etp_status=2 where etp_num=#{etpNum}
+		update HR.Enterprise set etp_status=2 where etp_num=#{etpNum}
 	</update>	
 
 	<select id="receiveComponentList" resultMap="ComponentResultMap" parameterType="String">
@@ -631,5 +911,13 @@
 	
 	<select id="retrieveReservationFromOtherInfo" parameterType="Reservation" resultMap="ReservationResultMap">
 		select * from reservation r, service s where r.svc_num = #{svcNum} and r.cst_email =#{cstEmail} and r.to_char(rsv_start_date, 'yyyy/MM/dd hh24') = r.to_char(#{rsvStartDate}, 'yyyy/MM/dd hh24') and r.rsv_title = #{rsvTitle} and s.svcNum = r.svcNum 
+	</select>
+
+	<select id="retrieveInfoCard" parameterType="String" resultType="String">
+		select pht_address from photo_location where pht_usage == 'info' and etp_num == #{value}
+	</select>
+	
+	<select id="retrieveLogoCard" parameterType="String" resultType="String">
+		select pht_address from photo_location where pht_usage == 'logo' and etp_num == #{value}
 	</select>
 </mapper>

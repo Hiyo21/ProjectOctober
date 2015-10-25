@@ -109,11 +109,11 @@
     insert into HR.SERVICE (
     	SVC_NUM, ETP_NUM, ETP_EMAIL, 
       SVC_TITLE, SVC_COST, 
-      SVC_TIME, SVC_DESCRIPTION, SVC_CATEGORY, 
+      SVC_TIME, SVC_CATEGORY, 
       SVC_SPECIALIZE)
-    values (#{svcNum,jdbcType=DECIMAL}, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
+    values (service_seq.nexval, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
       #{svcTitle,jdbcType=VARCHAR}, #{svcCost,jdbcType=DECIMAL}, 
-      #{svcTime,jdbcType=VARCHAR}, #{svcDescription,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}, 
+      #{svcTime,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}, 
       #{svcSpecialize,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="model.vo.Service" >
@@ -226,9 +226,8 @@
       SVC_TITLE = #{record.svcTitle,jdbcType=VARCHAR},
       SVC_COST = #{record.svcCost,jdbcType=DECIMAL},
       SVC_TIME = #{record.svcTime,jdbcType=VARCHAR},
-      SVC_DESCRIPTION = #{record.svcDescription,jdbcType=VARCHAR},
       SVC_CATEGORY = #{record.svcCategory,jdbcType=VARCHAR},
-      SVC_SPECIALIZE = #{record.svcSpecialize,jdbcType=VARCHAR},
+      SVC_SPECIALIZE = #{record.svcSpecialize,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
