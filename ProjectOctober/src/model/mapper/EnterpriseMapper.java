@@ -7,6 +7,7 @@ import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
 import model.vo.PhotoLocation;
+import model.vo.Reservation;
 import model.vo.Review;
 import model.vo.Service;
 
@@ -87,6 +88,8 @@ public interface EnterpriseMapper {
 
 	int updateComponent(Component component);
 
+	Reservation retrieveReservationFromOtherInfo(Reservation reservation);
+
 	String retrieveInfoCard(String etpNum);
 	
 	String retrieveLogoCard(String etpNum);
@@ -94,7 +97,6 @@ public interface EnterpriseMapper {
 	String selectInfoPht(String etpNum);
 
 	String selectLogoPht(String etpNum);
-
 
 
 }

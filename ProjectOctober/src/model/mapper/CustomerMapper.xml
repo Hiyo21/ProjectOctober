@@ -343,5 +343,21 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  	<insert id="insertPaymentRecord" parameterType="PaymentRecord">
+		insert into payment_record values(payment_record_seq.nextval, #{rsvNum}, #{pmtNum}, #{pmtAmount});
+	</insert>
+	
+	<update id="updatePaymentRecord" parameterType="PaymentRecord">
+		update payment_record set pmt_amount = #{pmtAmount} where pmt_num =#{pmtNum}
+	</update>
+	
+	<select id="retrievePaymentRecord" parameterType="String" resultMap="PaymentRecordResultMap">
+		select * from payment_record where pmt_num = #{value}
+	</select>
+	
+	<select id="retrievePaymentRecords" parameterType="String" resultMap="PaymentRecordResultMap">
+		select * from payment_record where etp_num = #{value}
+	</select>
 
 </mapper>

@@ -350,6 +350,4 @@ public class EnterpriseDAO extends DAOTemplate{
 			return session.getMapper(EnterpriseMapper.class).selectLogoPht(etpNum);
 		}finally{session.close();}
 	}
-
-		
 }
