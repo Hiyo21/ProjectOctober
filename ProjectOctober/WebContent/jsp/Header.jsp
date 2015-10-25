@@ -76,7 +76,7 @@
 							      <div class="modal-body" style="vertical-align:center">
 							      <br><br><br><br><br>							     
 								        <div class="col-md-6">
-								        	 <a href="${pageContext.request.contextPath}/member/toEnterpriseRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="etpBT">사업자</button></h1></a>								        	
+								        	<a href="${pageContext.request.contextPath}/member/toEnterpriseRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="etpBT">사업자</button></h1></a>								        	 	        	
 								        </div>
 								        <div class="col-md-6">
 								        	 <a href="${pageContext.request.contextPath}/member/toCustomerRegistrationPage.action"><h1><button type="button" class="btn-link"  role="button" style="vertical-align:center" id="cstBT">이용자</button></h1></a>								        	
