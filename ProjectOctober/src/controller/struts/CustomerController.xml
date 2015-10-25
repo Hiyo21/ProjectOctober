@@ -6,5 +6,18 @@
 		<action name="retrieveCustomerInfoForReservation" class="controller.action.CustomerAction" method="retrieveCustomerInfoForReservation">
 			<result type="json" />
 		</action>
+		
+		<action name="insertPaymentRecord" class="controller.action.CustomerAction" method="insertPaymentRecord">
+			<result type="json" />
+		</action>
+		
+		<action name="updatePaymentRecord" class="controller.action.CustomerAction" method="updatePaymentRecord">
+			<result type="json"/>
+		</action>
+		
+		<action name="deletePaymentRecord" class="controller.action.CustomerAction" method="deletePaymentRecord">
+			<result type="json"/>
+		</action>
+		
 	</package>
 </struts>

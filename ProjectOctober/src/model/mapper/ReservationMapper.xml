@@ -15,6 +15,7 @@
 		<result column="RSV_STATUS" property="rsvStatus" jdbcType="DECIMAL" />
 		<result column="RSV_GENDER" property="employeeGender" jdbcType="VARCHAR" />
 		<result column="RSV_TITLE" property="rsvTitle" jdbcType="VARCHAR" />
+		<result column="RSV_DESC" property="rsvDesc" jdbcType="VARCHAR"/>
 		
 		<association property="enterprise" javaType="Enterprise" resultMap="EnterpriseBaseResultMap"/>
 		<association property="customer" javaType="Customer" resultMap="CustomerBaseResultMap"/>
@@ -40,6 +41,7 @@
     <result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
     <result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
     <result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
+    <result column="ETP_THEME_TYPE" jdbcType="DECIMAL" property="etpThemeType"/>
     <result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
     <result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
     <result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
@@ -69,7 +71,6 @@
     <result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
     <result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
     <result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
-    <result column="SVC_COUNT" property="svcCount" jdbcType="DECIMAL" />
   </resultMap>
   
     <resultMap id="CouponResultMap" type="model.vo.Coupon" >
@@ -102,6 +103,9 @@
 		<if test="rsvTitle != null">
 		rsv_title,
 		</if>
+		<if test="rsvDesc != null">
+		rsv_desc,
+		</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 		reservation_seq.nextval, #{svcNum},
@@ -114,6 +118,9 @@
 		</if>
 		<if test="rsvTitle != null">
 		#{rsvTitle},
+		</if>
+		<if test="rsvDesc != null">
+		#{rsvDesc},
 		</if>
 		</trim>
 	</insert>

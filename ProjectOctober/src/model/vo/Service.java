@@ -23,8 +23,6 @@ public class Service implements Serializable {
 
     private String svcSpecialize;
 
-    private Integer svcCount;
-
     private static final long serialVersionUID = 1L;
 
     public Integer getSvcNum() {
@@ -107,14 +105,6 @@ public class Service implements Serializable {
         this.svcSpecialize = svcSpecialize;
     }
 
-    public Integer getSvcCount() {
-        return svcCount;
-    }
-
-    public void setSvcCount(Integer svcCount) {
-        this.svcCount = svcCount;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -131,7 +121,6 @@ public class Service implements Serializable {
         sb.append(", svcDescription=").append(svcDescription);
         sb.append(", svcCategory=").append(svcCategory);
         sb.append(", svcSpecialize=").append(svcSpecialize);
-        sb.append(", svcCount=").append(svcCount);
         sb.append("]");
         return sb.toString();
     }

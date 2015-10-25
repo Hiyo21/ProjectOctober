@@ -21,11 +21,8 @@
 	$(document).ready(function(){
 		hideBT();
 	});
-	//편집 버튼 숨김
-	$(function(){		
-				
-	});
 	
+	//사업자용 편집 버튼 숨김
 	function hideBT(){
 		var loginId = "<%= session.getAttribute("loginId") %>" ;
 		var pageId = "<%= session.getAttribute("pageId") %>" ;
@@ -36,7 +33,8 @@
 		
 		//로그인 한 사람이 페이지 주인과 동일 할 때 
 		if(loginId!=null && loginId==pageId){
-			$('#etpBtBar').show();		
+			$('#etpBtBar').show();
+			$('#editBT').on('click', startEdit);
 		}else{
 			$('#etpBtBar').hide();	
 		}	
@@ -45,10 +43,21 @@
 	
 	//편집 버튼 보이기
 	function startEdit(){
-		$('.edit').show();	// top 개요 편집 버튼, info 편집 버튼, 사업자 버튼바 중 save 버튼, 서비스 편집 버튼
+		//편집, 수정 버튼 보임	
+		$('.edit').show();
 		
+		//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
 		$('#saveBT').attr('disabled', false);
-		$('#editBT').attr('disabled', true); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled
+		$('#editBT').addClass('active');  // 편집 중일 때 누름 표시
+		$('#editBT').on('click', stopEdit);	//편집 정지 function on
+		//save, load 버튼에 클릭 이벤트와 함수 연결
+	    $('#saveBT').on('click', savePage);
+	}
+	
+	function stopEdit(){
+		$('#editBT').removeClass('active');
+		$('.edit').hide(); //편집 버튼 숨기기
+		loadPage(); //DB에 저장되어 있는 페이지 로드
 	}
 	
 </script>

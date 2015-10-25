@@ -57,7 +57,7 @@ public class FileUploadAction extends ActionSupport{
 		}
 		uploaded = true;
 		Enterprise etp = etpDAO.selectByEtpNum(etpNum);
-		loc = VOFactory.createPhotoLocation().setEtpEmail(etp.getEtpEmail()).setEtpNum(etp.getEtpNum()).setPhtUsage("사업자등록증").setPhtAddress(locAddress).setPhtDescription("사업자: " + etp.getEtpEmail() + "의 사업자 등록증입니다.");
+		loc = VOFactory.createPhotoLocation().setEtpEmail(etp.getEtpEmail()).setEtpNum(etp.getEtpNum()).setPhtUsage("reg").setPhtAddress(locAddress).setPhtDescription("사업자: " + etp.getEtpEmail() + "의 사업자 등록증입니다.");
 		
 		int result = etpDAO.uploadRegCard(loc);
 		if(result == 0) return "input";

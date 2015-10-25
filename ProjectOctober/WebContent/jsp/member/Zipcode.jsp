@@ -42,13 +42,12 @@ function selectZipcode(zipcode, address) {
 <!-- 우편번호 검색 후에만 실행 -->
 <s:if test="zipcodeList != null">
 	<s:iterator value="zipcodeList">
-		<s:set var="address" value="%{area1 + ' ' + area2 + ' ' + area3 + ' ' + area4}" />
+		<s:set var="address" value="%{area1 + ' ' + area2 + ' ' + area3}" />
 		<s:property value="zipcode" />
 		<a href="javascript:selectZipcode('<s:property value="zipcode" />', '<s:property value="#address" />')">
 		<s:property value="area1" />
 		<s:property value="area2" />
 		<s:property value="area3" />
-		<s:property value="area4" />
 		</a>
 		<br>
 	</s:iterator>

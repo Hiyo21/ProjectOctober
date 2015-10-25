@@ -20,6 +20,7 @@ public class Reservation implements Serializable {
     private Integer rsvStatus;
     private char employeeGender;
     private String rsvTitle;
+    private String rsvDesc;
     private String start;
     private String end;
     private String duration;
@@ -171,6 +172,22 @@ public class Reservation implements Serializable {
 		this.coupon = coupon;
 	}
 
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+
+	public String getRsvDesc() {
+		return rsvDesc;
+	}
+
+	public void setRsvDesc(String rsvDesc) {
+		this.rsvDesc = rsvDesc;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -180,16 +197,9 @@ public class Reservation implements Serializable {
 				.append(", etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail).append(", cstEmail=")
 				.append(cstEmail).append(", rsvStartDate=").append(rsvStartDate).append(", rsvEndDate=")
 				.append(rsvEndDate).append(", rsvStatus=").append(rsvStatus).append(", employeeGender=")
-				.append(employeeGender).append(", rsvTitle=").append(rsvTitle).append(", start=").append(start)
-				.append(", end=").append(end).append(", bordercolor=").append(bordercolor).append("]");
+				.append(employeeGender).append(", rsvTitle=").append(rsvTitle).append(", rsvDesc=").append(rsvDesc)
+				.append(", start=").append(start).append(", end=").append(end).append(", duration=").append(duration)
+				.append(", bordercolor=").append(bordercolor).append("]");
 		return builder.toString();
-	}
-
-	public String getDuration() {
-		return duration;
-	}
-
-	public void setDuration(String duration) {
-		this.duration = duration;
 	}
 }

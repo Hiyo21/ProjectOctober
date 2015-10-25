@@ -12,7 +12,6 @@
     <result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
     <result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
     <result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
-    <result column="SVC_COUNT" property="svcCount" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List" >
     SVC_NUM, ETP_NUM, ETP_EMAIL, SVC_TITLE, SVC_COST, SVC_TIME, SVC_DESCRIPTION, 
-    SVC_CATEGORY, SVC_SPECIALIZE, SVC_COUNT
+    SVC_CATEGORY, SVC_SPECIALIZE
   </sql>
   <select id="selectByExample" resultMap="ServiceResultMap" parameterType="model.vo.ServiceExample" >
     select
@@ -110,12 +109,12 @@
     insert into HR.SERVICE (
     	SVC_NUM, ETP_NUM, ETP_EMAIL, 
       SVC_TITLE, SVC_COST, 
-      SVC_TIME, SVC_DESCRIPTION, SVC_CATEGORY, 
-      SVC_SPECIALIZE, SVC_COUNT)
-    values (#{svcNum,jdbcType=DECIMAL}, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
+      SVC_TIME, SVC_CATEGORY, 
+      SVC_SPECIALIZE)
+    values (service_seq.nexval, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
       #{svcTitle,jdbcType=VARCHAR}, #{svcCost,jdbcType=DECIMAL}, 
-      #{svcTime,jdbcType=VARCHAR}, #{svcDescription,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}, 
-      #{svcSpecialize,jdbcType=VARCHAR}, #{svcCount,jdbcType=DECIMAL})
+      #{svcTime,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}, 
+      #{svcSpecialize,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="model.vo.Service" >
     insert into HR.SERVICE
@@ -147,9 +146,6 @@
       <if test="svcSpecialize != null" >
         SVC_SPECIALIZE,
       </if>
-      <if test="svcCount != null" >
-        SVC_COUNT,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="svcNum != null" >
@@ -178,9 +174,6 @@
       </if>
       <if test="svcSpecialize != null" >
         #{svcSpecialize,jdbcType=VARCHAR},
-      </if>
-      <if test="svcCount != null" >
-        #{svcCount,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -220,9 +213,6 @@
       <if test="record.svcSpecialize != null" >
         SVC_SPECIALIZE = #{record.svcSpecialize,jdbcType=VARCHAR},
       </if>
-      <if test="record.svcCount != null" >
-        SVC_COUNT = #{record.svcCount,jdbcType=DECIMAL},
-      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,10 +226,8 @@
       SVC_TITLE = #{record.svcTitle,jdbcType=VARCHAR},
       SVC_COST = #{record.svcCost,jdbcType=DECIMAL},
       SVC_TIME = #{record.svcTime,jdbcType=VARCHAR},
-      SVC_DESCRIPTION = #{record.svcDescription,jdbcType=VARCHAR},
       SVC_CATEGORY = #{record.svcCategory,jdbcType=VARCHAR},
-      SVC_SPECIALIZE = #{record.svcSpecialize,jdbcType=VARCHAR},
-      SVC_COUNT = #{record.svcCount,jdbcType=DECIMAL}
+      SVC_SPECIALIZE = #{record.svcSpecialize,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -271,9 +259,6 @@
       <if test="svcSpecialize != null" >
         SVC_SPECIALIZE = #{svcSpecialize,jdbcType=VARCHAR},
       </if>
-      <if test="svcCount != null" >
-        SVC_COUNT = #{svcCount,jdbcType=DECIMAL},
-      </if>
     </set>
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </update>
@@ -287,7 +272,6 @@
       SVC_DESCRIPTION = #{svcDescription,jdbcType=VARCHAR},
       SVC_CATEGORY = #{svcCategory,jdbcType=VARCHAR},
       SVC_SPECIALIZE = #{svcSpecialize,jdbcType=VARCHAR},
-      SVC_COUNT = #{svcCount,jdbcType=DECIMAL}
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </update>
   <cache />

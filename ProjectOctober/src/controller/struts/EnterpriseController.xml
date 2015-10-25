@@ -21,6 +21,8 @@
 		<action name="deleteReservation" class="controller.action.EnterpriseAction" method="deleteReservation">
 			<result type="json"/>
 		</action>
+		
+		<!-- 서비스 메뉴 관련  -->
 
 		<action name="selectServiceList" class="controller.action.EnterpriseAction" method="selectServiceList">
 			<result type="json" />
@@ -31,6 +33,14 @@
 		</action>
 		
 		<action name="updateSvcCategory" class="controller.action.EnterpriseAction" method="updateSvcCategory">
+			<result type="json"/>
+		</action>
+		
+		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
+			<result type="json" />
+		</action>
+		
+		<action name="insertService" class="controller.action.EnterpriseAction" method="insertService">
 			<result type="json"/>
 		</action>
 		
@@ -48,6 +58,10 @@
 			<result type="json">
 				<param name="defaultEncoding">UTF-8</param>
 			</result>
+		</action>
+		
+		<action name="retrieveReservationFromOtherInfo" class="controller.action.EnterpriseAction" method="retrieveReservationFromOtherInfo">
+			<result type="json" />
 		</action>
 		
 
@@ -68,11 +82,18 @@
 			<result name="input">/jsp/enterprise/UploadEtpImage.jsp</result>
 		</action>
 		
-		<action name="selectGalleryList" class="controller.action.EnterpriseAction" method="selectServiceList">
-			<result type="json" />
+		<action name="infoPhtUploadAction" class="controller.action.FileUploadAction" method="uploadImage">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/jsp/enterprise/UploadEtpImage.jsp</result>
+			<result name="input">/jsp/enterprise/UploadEtpImage.jsp</result>
 		</action>
 
-		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
+		<action name="selectGalleryList" class="controller.action.EnterpriseAction" method="selectServiceList">
 			<result type="json" />
 		</action>
 		

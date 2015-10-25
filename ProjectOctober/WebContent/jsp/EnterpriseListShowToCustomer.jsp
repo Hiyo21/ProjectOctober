@@ -82,22 +82,34 @@
 			<div class="row" style="padding: 10px">
 				<!-- image 뿌리기 -->
 				<!-- 리스트용 사진이 존재할 경우 -->
-				<%-- <s:if test="enterprise.photos != null"> --%>
 				<div class="col-md-6" align="left"><!-- row2 left start -->
-	         		<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
-	   				<img src="/ProjectOctober/image/relaxation_logo_test.jpg" class="img-responsive">
-	   				<img src="/ProjectOctober/image/relaxation_logo_test.jpg" class="img-responsive">
-	   			</div>
-
-            	<div class="col-md-6 etpDescDiv"><!-- 오른쪽 칸 --> 
-  					<s:property value="etpDescription"/>
+					<s:if test="infoPht != null">
+			         	<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
+			   			<img src='${pageContext.request.contextPath}/<s:property value="infoPht"/>' class='img-responsive'>
+					</s:if>
+					<s:else>
+						<!-- 인포사진 부재시 기본적으로 뿌려지는 사진 -->
+						<s:if test='etpSuperclass.equals("마사지샵")'>
+							<img src='http://coolmassage.net/data/apms/background/%EB%B6%84%EB%8B%B9%EB%A7%88%EC%82%AC%EC%A7%801.jpg' class='img-responsive'>
+						</s:if>
+						<s:if test='etpSuperclass.equals("네일샵")'>
+							<img src='http://img.kormedi.com/news/article/__icsFiles/afieldfile/2012/10/15/cc201210150001145.jpg' class='img-responsive'>
+						</s:if>
+					</s:else>
+				</div>
+            	<div class="col-md-6 etpDescDiv"><!-- 오른쪽 칸 -->
+            	<s:if test="etpDescription==null">
+            		<s:if test='etpSuperclass.equals("마사지샵")'> 
+  						<h1>마사지 샵입니다</h1>
+  					</s:if>
+  					<s:if test='etpSuperclass.equals("네일샵")'>
+						<h1>네일 샵입니다</h1>
+					</s:if>
+				</s:if>
+				<s:else>
+					<s:property value="etpDescription"/>
+				</s:else>
         		</div>
-        		<%-- </s:if>
-        		<s:else>
-        		<div class="etpDescDiv"><!-- 오른쪽 칸 --> 
-  					<s:property value="etpDescription"/>
-        		</div>
-        		</s:else> --%>
 			</div>
  		</div><!-- panel body end -->
   		</div>

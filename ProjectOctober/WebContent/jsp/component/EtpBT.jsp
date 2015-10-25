@@ -9,17 +9,22 @@
 </head>
 <body>
 
-<div class="btn-group btn-group-justified" role="group" aria-label="..." draggable="true" id="etpBT">
+<div class="btn-group btn-group-justified" role="group" aria-label="..." draggable="true" id="etpBtBar">
 	<div class="btn-group" role="group">
 		 <button type="button" class="btn btn-danger btn-lg" id="rsvBT">예약 관리</button>
 	</div>
 	<div class="btn-group" role="group">
-		 <button type="button" class="btn btn-success btn-lg" id="miscSetBT">자동화 설정 관리</button>
+		 <button type="button" class="btn btn-success btn-lg" id="miscSetBT">자동화 설정</button>
 	</div>
 	<!-- 페이지 편집전에만 보이게 -->
 	<div class="btn-group" role="group">
 		 <button type="button" class="btn btn-primary btn-lg" id="editBT">페이지 편집</button>
 	</div>
+	<s:if test="enterprise.etpTemplateType==1">
+		<div class="btn-group" role="group">
+			 <button type="button" class="btn btn-primary btn-lg" id="resetBT" onclick="resetPage()">페이지 초기화</button>
+		</div>
+	</s:if>
 	<!-- 페이지 편집중에만 보이게 -->
 	<div class="btn-group" role="group">
 		 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='savePage(<s:property value="etpNum"/>)'>Save &raquo;</button>

@@ -1,5 +1,7 @@
 package model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import model.common.MyBatisSqlSessionFactory;
@@ -9,11 +11,32 @@ import model.vo.Customer;
 import model.mapper.CustomerMapper;
 
 import model.vo.Member;
+import model.vo.PaymentRecord;
 
 public class CustomerDAO extends DAOTemplate{
 	
 	public Member retrieveCustomer(String cstEmail){
 		return dataRetrievalTemplate(s -> {return s.getMapper(MemberMapper.class).retrieveCustomerInfo(cstEmail);});
+	}
+	
+	public int insertPaymentRecord(PaymentRecord paymentRecord){
+		return dataModificationTemplate(s -> {return s.getMapper(CustomerMapper.class).insertPaymentRecord(paymentRecord);});
+	}
+	
+	public PaymentRecord retrievePaymentRecord(Integer pmtNum){
+		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecord(pmtNum);});
+	}
+	
+	public int updatePaymentRecord(PaymentRecord paymentRecord){
+		return dataModificationTemplate(s -> {return s.getMapper(CustomerMapper.class).updatePaymentRecord(paymentRecord);});
+	}
+	
+	public int deletePaymentRecord(Integer pmtNum){
+		return dataModificationTemplate(s -> {return s.getMapper(CustomerMapper.class).deletePaymentRecord(pmtNum);});
+	}
+	
+	public List<PaymentRecord> retrievePaymentRecords(String etpNum){
+		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecords(etpNum);});
 	}
 		
 	
