@@ -1,8 +1,11 @@
 select tname from tab;
+select service_seq.nextval from dual
 select count(*) from zipcode;
 delete from zipcode;
 select * from zipcode order by zipcode;
 
+
+select * from service     
 
 select * from working_days 
 

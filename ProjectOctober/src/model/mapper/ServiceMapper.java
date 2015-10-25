@@ -11,7 +11,7 @@ public interface ServiceMapper {
 
     int deleteByExample(ServiceExample example);
 
-    int deleteByPrimaryKey(Short svcNum);
+    int deleteByPrimaryKey(int svcNum);
 
     int insert(Service record);
 
@@ -32,4 +32,6 @@ public interface ServiceMapper {
     int updateByPrimaryKey(Service record);
     
     List<Service> retrieveServices(String etpNum);
+
+	int deleteByPrimaryKey(String svcNum);
 }
