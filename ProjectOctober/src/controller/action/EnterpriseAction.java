@@ -74,7 +74,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		enterprise = etpDAO.selectByEtpNumIncludeOthers(etpNum);
 		System.err.println(enterprise + "어디?");
 		System.err.println(enterprise.getEtpStartHour() +"이건?");
-		//System.err.println(enterprise.getWorkingDays());
+		System.err.println(enterprise.getWorkingDays());
 		enterprise.setStart(enterprise.getEtpStartHour().format(DateTimeFormatter.ISO_LOCAL_TIME));
 		enterprise.setEnd(enterprise.getEtpEndHour().format(DateTimeFormatter.ISO_LOCAL_TIME));
 		WorkingDays wd = enterprise.getWorkingDays();

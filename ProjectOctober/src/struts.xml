@@ -17,7 +17,7 @@
     	<default-action-ref name="toMainPage" />
 
         <global-results>
-            <result name="login" type="redirect">member/toLoginPage.action</result>
+            <result name="login" type="redirect">toLoginPage.action</result>
             <result name="error" type="redirect">toErrorPage.action</result>
         </global-results>
 

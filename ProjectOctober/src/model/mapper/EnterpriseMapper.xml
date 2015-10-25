@@ -47,7 +47,6 @@
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
     <result column="COMPONENT_ID" property="componentID" jdbcType="VARCHAR" />
-    <result column="COMPONENT_Desc" property="componentDesc" jdbcType="VARCHAR" />
     <result column="COMPONENT_Width" property="componentWidth" jdbcType="DECIMAL" />
     <result column="COMPONENT_Height" property="componentHeight" jdbcType="DECIMAL" />
     <result column="COMPONENT_POS_X" property="componentPosX" jdbcType="DECIMAL" />
@@ -809,16 +808,8 @@
   	<!--  Component Mapper  -->
   	
 	<insert id="insertComponent" parameterType="Component">
-		insert into COMPONENT 
-		<if test="componentDesc!=null">
-		values 
-		 (component_seq.nextval,  #{etpNum}, #{etpEmail}, #{componentID}, #{componentDesc}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY})
-		</if>	
-		<if test="componentDesc==null">
-		(component_num, etp_Num, etp_Email, component_ID, component_width, component_height, component_pos_x, component_pos_y) 
-		values 
+		insert into COMPONENT values 
 		(component_seq.nextval,  #{etpNum}, #{etpEmail}, #{componentID}, #{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY})
-		</if>
 	</insert>
 
 
@@ -828,7 +819,7 @@
 	
 	<update id="updateComponent" parameterType="Component">
 		update component 
-		set component_id = #{componentID}, component_Desc = #{componentDesc}, component_width = #{componentWidth}, component_height = #{componentHeight}, component_pos_x = #{componentPosX}, component_pos_y = #{componentPosY}  
+		set component_id = #{componentID}, component_width = #{componentWidth}, component_height = #{componentHeight}, component_pos_x = #{componentPosX}, component_pos_y = #{componentPosY}  
 		where etp_num = #{etpNum}
 	</update>
 	

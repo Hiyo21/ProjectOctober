@@ -38,6 +38,7 @@ public class Enterprise implements Serializable {
     private Integer etpSelfNotification;
     private Integer etpCstNotification;
     private Integer etpTemplateType;
+    private Integer etpThemeType;
     private String etpMapAddress;
     private String etpDirection;
     private String etpSvcOffered;
@@ -376,6 +377,14 @@ public class Enterprise implements Serializable {
 	public void setEtpSvcOffered(String etpSvcOffered) {
 		this.etpSvcOffered = etpSvcOffered;
 	}
+	
+	public Integer getEtpThemeType() {
+		return etpThemeType;
+	}
+
+	public void setEtpThemeType(Integer etpThemeType) {
+		this.etpThemeType = etpThemeType;
+	}
 
 	public void setEtpSubclass(String etpSubclass) {
 		this.etpSubclass = etpSubclass;
@@ -395,18 +404,28 @@ public class Enterprise implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Enterprise [component=" + component + ", holiday=" + holiday + ", photoLocation=" + photoLocation
-				+ ", workingDays=" + workingDays + ", reviews=" + reviews + ", notifications=" + notifications
-				+ ", reservations=" + reservations + ", saleRecords=" + saleRecords + ", services=" + services
-				+ ", coupons=" + coupons + ", etpNum=" + etpNum + ", etpEmail=" + etpEmail + ", etpOwner=" + etpOwner
-				+ ", etpSuperclass=" + etpSuperclass + ", etpAddress=" + etpAddress + ", etpZipcode=" + etpZipcode
-				+ ", etpTitle=" + etpTitle + ", etpStartHour=" + etpStartHour + ", etpEndHour=" + etpEndHour
-				+ ", etpPhone=" + etpPhone + ", etpMaleStaff=" + etpMaleStaff + ", etpFemaleStaff=" + etpFemaleStaff
-				+ ", etpCapacity=" + etpCapacity + ", etpRsvDeadline=" + etpRsvDeadline + ", etpSelfNotification="
-				+ etpSelfNotification + ", etpCstNotification=" + etpCstNotification + ", etpTemplateType="
-				+ etpTemplateType + ", etpMapAddress=" + etpMapAddress + ", etpDirection=" + etpDirection
-				+ ", etpSvcOffered=" + etpSvcOffered + ", etpSubclass=" + etpSubclass + ", etpSpecialize="
-				+ etpSpecialize + ", etpDescription=" + etpDescription + ", etpStatus=" + etpStatus + ", searchKeyword="
-				+ searchKeyword + ", start=" + start + ", end=" + end + ", memJoinedDate=" + memJoinedDate + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Enterprise [component=").append(component).append(", holiday=").append(holiday)
+				.append(", photoLocation=").append(photoLocation).append(", workingDays=").append(workingDays)
+				.append(", reviews=").append(reviews).append(", notifications=").append(notifications)
+				.append(", reservations=").append(reservations).append(", saleRecords=").append(saleRecords)
+				.append(", services=").append(services).append(", coupons=").append(coupons).append(", photos=")
+				.append(photos).append(", components=").append(components).append(", etpNum=").append(etpNum)
+				.append(", etpEmail=").append(etpEmail).append(", etpOwner=").append(etpOwner)
+				.append(", etpSuperclass=").append(etpSuperclass).append(", etpAddress=").append(etpAddress)
+				.append(", etpZipcode=").append(etpZipcode).append(", etpTitle=").append(etpTitle)
+				.append(", etpStartHour=").append(etpStartHour).append(", etpEndHour=").append(etpEndHour)
+				.append(", etpPhone=").append(etpPhone).append(", etpMaleStaff=").append(etpMaleStaff)
+				.append(", etpFemaleStaff=").append(etpFemaleStaff).append(", etpCapacity=").append(etpCapacity)
+				.append(", etpRsvDeadline=").append(etpRsvDeadline).append(", etpSelfNotification=")
+				.append(etpSelfNotification).append(", etpCstNotification=").append(etpCstNotification)
+				.append(", etpTemplateType=").append(etpTemplateType).append(", etpThemeType=").append(etpThemeType)
+				.append(", etpMapAddress=").append(etpMapAddress).append(", etpDirection=").append(etpDirection)
+				.append(", etpSvcOffered=").append(etpSvcOffered).append(", etpSubclass=").append(etpSubclass)
+				.append(", etpSpecialize=").append(etpSpecialize).append(", etpDescription=").append(etpDescription)
+				.append(", etpStatus=").append(etpStatus).append(", searchKeyword=").append(searchKeyword)
+				.append(", start=").append(start).append(", end=").append(end).append(", memJoinedDate=")
+				.append(memJoinedDate).append("]");
+		return builder.toString();
 	}
 }

@@ -20,6 +20,7 @@
 	    <result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
 	    <result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
 	    <result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
+	    <result column="ETP_THEME_TYPE" jdbcType="DECIMAL" property="etpThemeType"/>
 	    <result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
 	    <result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
 	    <result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
@@ -96,6 +97,7 @@
     <result column="RSV_STATUS" property="rsvStatus" jdbcType="DECIMAL" />
     <result column="RSV_GENDER" property="employeeGender" jdbcType="VARCHAR" />
     <result column="RSV_TITLE" property="rsvTitle" jdbcType="VARCHAR" />
+    <result column="RSV_DESC" property="rsvDesc"/>
   </resultMap>
   
     <!-- Review ResultMap -->
@@ -105,7 +107,6 @@
     <result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
     <result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
     <result column="RVW_INPUT_DATE" property="rvwInputDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
-    <result column="CST_IP_ADDRESS" property="cstIpAddress" jdbcType="VARCHAR" />
     <result column="RVW_CONTENT" property="rvwContent" jdbcType="VARCHAR" />
     <result column="CST_JOB" property="cstJob" jdbcType="VARCHAR" />
     <result column="RVW_HYGIENE" property="rvwHygiene" jdbcType="DECIMAL" />
@@ -149,7 +150,6 @@
     <result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
     <result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
     <result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
-    <result column="SVC_COUNT" property="svcCount" jdbcType="DECIMAL" />
   </resultMap>
   
     <resultMap id="WorkingDaysResultMap" type="model.vo.WorkingDays" >

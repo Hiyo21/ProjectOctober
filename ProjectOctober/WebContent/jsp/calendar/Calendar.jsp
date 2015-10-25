@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/FontTest.css"/>
 
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/jquery.min.js"></script>
@@ -22,6 +23,7 @@
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/gcal.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/listview.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 
 
 <style>
@@ -43,6 +45,8 @@
 		 	currentMousePos.y = event.pageY;
 		});
 		
+		$("#inputEmployeeGenderCheckBox").bootstrapToggle();
+		
 		//-----------------------사전에 정보 불러오기 : Enterprise 정보 --------------------------------//
 		
 		enterpriseInfo = $.ajax({
@@ -54,8 +58,8 @@
 			success: function retrieveEnt(data){
 				enterpriseInfo = data.enterprise;
 				console.log('received enterpriseinfo!');
-				console.log('etp: ' + enterpriseInfo);
-				 $('#templateType').attr('value', enterpriseInfo.etpTemplateType); 
+				console.log(data);
+				 $('#templateType').attr('value', data.enterprise.etpTemplateType); 
 			},error: function(){
 				console.log('retrieveEnterpriseInfoForCalendar failed!');
 			}
@@ -237,7 +241,7 @@
 			
 			
 			//select: 빈 칸에 눌렀을 때  
-			select: function(start, end, jsEvent, view, eventConstraint, allDay){					
+			select: function(start, end, jsEvent, view, allDay){					
 					console.log(jsEvent);
 					console.log(view);
 					console.log(eventConstraint);
@@ -479,6 +483,7 @@
 				      								etpSelfNotification: item.enterprise.etpSelfNotification,
 				      								etpCstNotification: item.enterprise.etpCstNotification,
 				      								etpTemplateType: item.enterprise.etpTemplateType,
+				      								etpThemeType: item.enterprise.etpThemeType,
 				      								etpSvcOffered: item.enterprise.etpSvcOffered,
 				      								etpSubclass: item.enterprise.etpSubclass,
 				      								etpSpecialize: item.enterprise.specialize,
@@ -705,7 +710,7 @@
 								<!-- 성별 -->
 								<tr>
 									<td><label for='inputEmployeeGenderCheckBox' class='control-label'>희망 종업원 성별: </label></td>
-									<td><input type='checkbox' checked data-toggle='toggle' data-on='여성' data-off='남성' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='form-control'/></td>
+									<td><input type='checkbox' checked data-toggle='toggle' data-on='여성' data-off='남성' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='tiny-toggle form-control'/></td>
 								</tr>
 								
 								<tr>
@@ -721,7 +726,7 @@
 								</tr>
 						
 								<tr>
-									<td colspan='2' align='center'><textarea rows='4' cols='50' id='insertAgreementTextArea' class='form-control'>Lorem Ipsum </textarea></td>
+									<td colspan='2' align='center'><textarea rows='4' cols='50' id='insertAgreementTextArea' class='form-control'>이용약관입니다. </textarea></td>
 								</tr>
 								
 								<tr>
@@ -730,7 +735,7 @@
 								
 							</table>
 							<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''>
-							<!-- <input type="hidden" id='templateType' name='reservation.enterprise.etpTemplateType' value=''> -->
+							<input type="hidden" id='templateType' name='enterprise.etpTemplateType' value=''>
 						</form>
 		            	
 		            	<div class="hidden">

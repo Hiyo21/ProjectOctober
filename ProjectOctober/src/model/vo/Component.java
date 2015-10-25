@@ -10,8 +10,6 @@ public class Component implements Serializable {
     private Integer componentNum;
     
 	private String componentID;
-	
-	private String componentDesc;
 
     private Integer componentWidth;
 
@@ -89,14 +87,6 @@ public class Component implements Serializable {
 	public void setComponentPosY(Integer componentPosY) {
 		this.componentPosY = componentPosY;
 	}
-
-	public String getComponentDesc() {
-		return componentDesc;
-	}
-
-	public void setComponentDesc(String componentDesc) {
-		this.componentDesc = componentDesc;
-	}
 	
 	///////////////////////// ToString ///////////////////////// 
 
@@ -104,12 +94,14 @@ public class Component implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder
-		.append("Component [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail).append(", componentNum=").append(componentNum)
-		.append(", componentID=").append(componentID).append(", componentDesc=").append(componentDesc)
-		.append(", componentWidth=").append(componentWidth).append(", componentHeight=").append(componentHeight)
-		.append(", componentPosX=").append(componentPosX).append(", componentPosY=").append(componentPosY)
-		.append("]");
+		builder.append("Component [etpNum=").append(etpNum).append(", etpEmail=").append(etpEmail)
+				.append(", componentNum=").append(componentNum).append(", componentID=").append(componentID)
+				.append(", componentWidth=").append(componentWidth).append(", componentHeight=").append(componentHeight)
+				.append(", componentPosX=").append(componentPosX).append(", componentPosY=").append(componentPosY)
+				.append("]");
 		return builder.toString();
 	}
+
+
+
 }

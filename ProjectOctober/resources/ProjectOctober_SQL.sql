@@ -1,4 +1,8 @@
 select tname from tab;
+select count(*) from zipcode;
+delete from zipcode;
+select * from zipcode order by zipcode;
+
 
 select * from working_days 
 
