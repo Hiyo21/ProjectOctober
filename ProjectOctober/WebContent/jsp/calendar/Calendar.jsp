@@ -45,6 +45,8 @@
 		 	currentMousePos.y = event.pageY;
 		});
 		
+		$("#inputEmployeeGenderCheckBox").bootstrapToggle();
+		
 		//-----------------------사전에 정보 불러오기 : Enterprise 정보 --------------------------------//
 		
 		enterpriseInfo = $.ajax({
