@@ -178,6 +178,12 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+	public int deleteService(int svcNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(ServiceMapper.class).deleteByPrimaryKey(svcNum);
+		}finally{session.close();}
+	}
 
 	//////////////////////// Component DAO ////////////////////////  
 	
@@ -345,6 +351,5 @@ public class EnterpriseDAO extends DAOTemplate{
 		}finally{session.close();}
 	}
 
-
-	
+		
 }

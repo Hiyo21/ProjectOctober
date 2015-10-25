@@ -53,6 +53,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private boolean canUseCoupon = false;
 	private Integer cpnNum;
 	private String category;
+	private int svcNum;
 	private int etpTemplateType;
 
 	
@@ -159,7 +160,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String selectSvcCategory() throws Exception{
-		System.out.println("category Check :: "+category);
+		System.err.println("category Check :: "+category);
 		serviceList = etpDAO.selectSvcCategory(etpNum, category);
 		
 		if(serviceList != null) return SUCCESS;
@@ -167,7 +168,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String selectServiceList() throws Exception{
-		System.out.println("===========check Action :: etpNum :: " + etpNum);
+		System.err.println("===========check Action :: selectServiceList :: " + etpNum);
 		serviceList = etpDAO.selectServiceList(etpNum);
 		
 		categoryList = new ArrayList<>();
@@ -190,12 +191,23 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String insertService(){
-		System.out.println("===========check Action :: insertService :: ");
+		System.err.println("===========check Action :: insertService :: ");
+		service.setEtpEmail(etpDAO.selectByEtpNum(service.getEtpNum()).getEtpEmail());
+		System.out.println(service);
 		int result = etpDAO.insertService(service);
-		return SUCCESS;
+		
+		if(result==1)return SUCCESS;
+		else return ERROR;
 	}
 	
-	//---------------------------------------Service Component-----------------------------
+	public String deleteService(){
+		System.err.println("===========check Action :: deleteService :: " + svcNum);
+		int result = etpDAO.deleteService(svcNum);
+		if(result==1)return SUCCESS;
+		else return ERROR;
+	}
+	
+	//---------------------------------------Service Component End-----------------------------
 	
 	
 	public String selectEtpList() throws Exception{
@@ -663,5 +675,15 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setService(Service service) {
 		this.service = service;
+	}
+
+
+	public int getSvcNum() {
+		return svcNum;
+	}
+
+
+	public void setSvcNum(int svcNum) {
+		this.svcNum = svcNum;
 	}
 }

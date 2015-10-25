@@ -44,6 +44,10 @@
 			<result type="json"/>
 		</action>
 		
+		<action name="deleteService" class="controller.action.EnterpriseAction" method="deleteService">
+			<result type="json"/>
+		</action>
+		
 		<!-- 달력 정보 관련  -->
 		
 		<action name="retrieveEnterpriseInfoForCalendar" class="controller.action.EnterpriseAction" method="retrieveEnterpriseInfoForCalendar">
@@ -89,7 +93,7 @@
 			<result name="input">/jsp/enterprise/UploadEtpImage.jsp</result>
 		</action>
 
-		<action name="selectGalleryList" class="controller.action.EnterpriseAction" method="selectServiceList">
+		<action name="selectGalleryList" class="controller.action.EnterpriseAction" method="selectGalleryList">
 			<result type="json" />
 		</action>
 		

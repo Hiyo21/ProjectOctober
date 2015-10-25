@@ -95,7 +95,7 @@
     from HR.SERVICE
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from HR.SERVICE
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </delete>
@@ -109,12 +109,12 @@
     insert into HR.SERVICE (
     	SVC_NUM, ETP_NUM, ETP_EMAIL, 
       SVC_TITLE, SVC_COST, 
-      SVC_TIME, SVC_CATEGORY, 
-      SVC_SPECIALIZE)
-    values (service_seq.nexval, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
+      SVC_TIME, SVC_CATEGORY
+      )
+    values (service_seq.nextval, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
       #{svcTitle,jdbcType=VARCHAR}, #{svcCost,jdbcType=DECIMAL}, 
-      #{svcTime,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}, 
-      #{svcSpecialize,jdbcType=VARCHAR})
+      #{svcTime,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="model.vo.Service" >
     insert into HR.SERVICE
