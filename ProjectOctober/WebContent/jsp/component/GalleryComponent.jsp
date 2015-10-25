@@ -38,9 +38,14 @@
 		});
 	});
 </script>
+<script type="text/javascript">
+function uploadOpen() {
+	window.open("${pageContext.request.contextPath}/enterprise/toImageUploadPage?upCategory=1.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
+}
+</script>
 </head>
 <body>
-<h1><s:property value="etpNum"/> test</h1>
+<input type="button" value="사진업로드" onclick="uploadOpen()">
 <div class="panel panel-default" id="gallery">
 	<div class="container-fluid">
 		<div id = "masonry_container" class="grid">
