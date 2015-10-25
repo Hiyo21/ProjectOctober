@@ -65,7 +65,7 @@
 		$('#editBT').on('click', stopEdit);	//편집 정지 function on
 		//save, load 버튼에 클릭 이벤트와 함수 연결
 	    $('#saveBT').on('click', savePage);
-	}
+7	}
 	
 	function stopEdit(){
 		$('#editBT').removeClass('active');
@@ -73,6 +73,7 @@
 		loadPage(); //DB에 저장되어 있는 페이지 로드
 	}
 		
+	$("#locationCP").load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
 </script>
 
 
