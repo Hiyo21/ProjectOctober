@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
-import com.sun.net.httpserver.Authenticator.Success;
-import com.sun.net.httpserver.Authenticator.Success;
 
 import model.common.MyBatisSqlSessionFactory;
 import model.mapper.EnterpriseMapper;
@@ -162,6 +160,10 @@ public class EnterpriseDAO extends DAOTemplate{
 	public Integer uploadImage(PhotoLocation loc) {
 		return dataModificationTemplate(s -> {return fromMapper(s).insertImage(loc);});
 	}
+	
+	
+	////////////////////////Component DAO //////////////////////// 
+	
 	
 	public int insertService(Service service) {
 		System.out.println("============check DAO :: insertService()");
@@ -349,5 +351,9 @@ public class EnterpriseDAO extends DAOTemplate{
 		try {
 			return session.getMapper(EnterpriseMapper.class).selectLogoPht(etpNum);
 		}finally{session.close();}
+	}
+	
+	public Reservation retrieveReservationFromOtherInfo(Reservation reservation) {
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveReservationFromOtherInfo(reservation);});
 	}
 }

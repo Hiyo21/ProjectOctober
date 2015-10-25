@@ -109,7 +109,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
 		
-			reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
+			//reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
 		}
 		
 		if(reservation != null){

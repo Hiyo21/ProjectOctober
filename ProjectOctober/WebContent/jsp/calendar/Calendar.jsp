@@ -62,9 +62,12 @@
 				enterpriseInfo = data.enterprise;
 				console.log('received enterpriseinfo!');
 				console.log(enterpriseInfo);
-				 $('#templateType').attr('value', data.enterprise.etpTemplateType); 
-			},error: function(){
+				$('#templateType').attr('value', data.enterprise.etpTemplateType); 
+			},error: function(request, status, error){
 				console.log('retrieveEnterpriseInfoForCalendar failed!');
+				console.log(request);
+				console.log(status);
+				console.log(error);
 			}
 		});
 		
@@ -452,7 +455,10 @@
 											"paymentRecord.pmtTime" : data.reservation.rsvEndDate.toISOString(),
 											"paymentRecord.pmtAmounmt" : data.reservation.service.svcCost
 									});
-								},error: function(){
+								},error: function(request, status, error){
+									console.log(request.status);
+									console.log(status);
+									console.log(error);
 									console.log('retrieveReservationFromOtherInfo error!');
 								}
 							});
@@ -574,7 +580,7 @@
 				      								etpRsvDeadline: item.enterprise.etpRsvDeadline,
 				      								etpSelfNotification: item.enterprise.etpSelfNotification,
 				      								etpCstNotification: item.enterprise.etpCstNotification,
-				      								etpTemplateType: item.enterprise.etpTemplateType,
+				      								//etpTemplateType: item.enterprise.etpTemplateType,
 				      								etpThemeType: item.enterprise.etpThemeType,
 				      								etpSvcOffered: item.enterprise.etpSvcOffered,
 				      								etpSubclass: item.enterprise.etpSubclass,

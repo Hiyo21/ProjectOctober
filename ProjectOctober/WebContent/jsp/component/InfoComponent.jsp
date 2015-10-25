@@ -62,10 +62,10 @@ function saveInfo() {
 					</s:if>
 					<s:else>
 						<!-- 인포사진 부재시 기본적으로 뿌려지는 사진 -->
-						<s:if test='etpSuperclass.equals("마사지샵")'>
+						<s:if test='enterprise.etpSuperclass.equals("마사지샵")'>
 							<img src='http://coolmassage.net/data/apms/background/%EB%B6%84%EB%8B%B9%EB%A7%88%EC%82%AC%EC%A7%801.jpg' class='img-responsive'>
 						</s:if>
-						<s:if test='etpSuperclass.equals("네일샵")'>
+						<s:if test='enterprise.etpSuperclass.equals("네일샵")'>
 							<img src='http://img.kormedi.com/news/article/__icsFiles/afieldfile/2012/10/15/cc201210150001145.jpg' class='img-responsive'>
 						</s:if>
 					</s:else>
