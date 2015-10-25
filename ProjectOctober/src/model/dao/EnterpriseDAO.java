@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import com.sun.net.httpserver.Authenticator.Success;
+import com.sun.net.httpserver.Authenticator.Success;
 
 import model.common.MyBatisSqlSessionFactory;
 import model.mapper.EnterpriseMapper;
@@ -176,6 +178,12 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+	public int deleteService(int svcNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(ServiceMapper.class).deleteByPrimaryKey(svcNum);
+		}finally{session.close();}
+	}
 
 	//////////////////////// Component DAO ////////////////////////  
 	
@@ -327,10 +335,6 @@ public class EnterpriseDAO extends DAOTemplate{
 
 	public String retrieveRegCard(String etpNum) {
 		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveRegCard(etpNum);});
-	}
-
-	public Reservation retrieveReservationFromOtherInfo(Reservation reservation) {
-		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveReservationFromOtherInfo(reservation);});
 	}
 
 	public String selectInfoPht(String etpNum) {

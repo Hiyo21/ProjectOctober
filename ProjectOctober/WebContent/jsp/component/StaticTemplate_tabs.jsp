@@ -72,6 +72,10 @@
 		$('.edit').hide(); //편집 버튼 숨기기
 		loadPage(); //DB에 저장되어 있는 페이지 로드
 	}
+	
+	function savePage(){
+		
+	}
 		
 	$("#locationCP").load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
 </script>

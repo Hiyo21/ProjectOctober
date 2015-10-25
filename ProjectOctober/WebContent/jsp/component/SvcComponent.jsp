@@ -23,7 +23,7 @@
 	});
 	
 	//수정할 메뉴 카테고리 갖고 오기
-	function svcUpdate(category){
+	function selectSvcCategory(category){
 		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/selectSvcCategory.action'+
 				'?etpNum='+<s:property value="etpNum"/>+'&category='+category,
@@ -44,12 +44,48 @@
 			type: 'POST',
 			data: $('#svcForm').serialize(),
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-			success: printSvcCategory,
+			success: selectServiceList,
 			error: function(doc){
 				console.log("insert Error");
 			}
 		});
 	};
+	
+	function deleteService(svcNum){
+		if(confirm("정말 삭제하시겠습니까?")==true){
+			
+		$.ajax({
+			url: "${pageContext.request.contextPath}/enterprise/deleteService.action"+
+			'?svcNum='+svcNum,
+			dataType: 'json',
+			type: 'POST',
+			success: selectServiceList,
+			error: function(doc){
+				console.log("insert Error");
+			}
+		});
+		
+		}else{
+			return false;
+		}
+	}
+	
+	function selectServiceList(){
+		$.ajax({
+			url: '${pageContext.request.contextPath}/enterprise/selectServiceList.action'+
+			'?etpNum='+<s:property value="etpNum"/>,
+			dataType: 'json',
+			type: 'GET',
+			success: function(){
+				printSvcList();
+				$('#svcModal').hide();	
+				/* $('.modal').hide(); */
+			},
+			error: function(doc){
+				console.log("insert Error");
+			}
+		});
+	}
 	
 	//모달에 메뉴 카테고리 출력
 	function printSvcCategory(object){
@@ -79,25 +115,13 @@
 			type: 'POST',
 			data: $('#svcForm').serialize(),
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-			success: selectSvcList,
+			success: selectServiceList,
 			error: function(doc){
 				console.log("insert Error");
 			}
 		});
 	} 
-	//서비스 메뉴 불러오기
-	function selectSvcList(item) {	
-		$.ajax({
-			url: '${pageContext.request.contextPath}/enterprise/selectServiceList.action?etpNum='+item.etpNum,
-			type:'GET',
-			dataType: 'json',
-			success : function(data){
-				printSvcList(data);
-				$('#svcModal').hide();	
-				$('.modal').hide()
-			}
-		});
-	}
+
 	//서비스 메뉴 항목 출력
 	function printSvcList(object){
 		console.log(object);
@@ -105,7 +129,7 @@
 		var str = '';
 		$.each(object.categoryList, function(index,item){
 			str += '<div class="panel panel-default"><div class="panel-heading"><b>'+item+'</b>';
-			str += '<a class="btn btn-default btn-md edit" href="#" role="button" onclick="svcUpdate('+item+')" data-dismiss="modal">수정</a>';
+			str += '<a class="btn btn-default btn-md edit" href="#" role="button" onclick="selectSvcCategory('+item+')" data-dismiss="modal">수정</a>';
 			str += '<a class="btn btn-default btn-md edit" href="#" role="button" onclick="svcDelete('+item+')" data-dismiss="modal">삭제</a>';
 			str += '</div>';	
 			
@@ -128,11 +152,6 @@
 
 	}
 	
-	//선택된 메뉴 삭제 하기
-	function svcDelete(item) {
-		alert("정말 " +item+"을(를) 삭제하시겠습니까?");
-		//ajax를 통해 테이블이 삭제 된 것을 보여줌
-	}
 
 </script>
 
@@ -153,8 +172,7 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 		 	<s:set var="category"><s:property/></s:set>
 		 	
 		 	<!-- 인서트시 한 사업자의 카데고리에 중복이 없게 해야 함//셀렉트 할때는 사업자와 카테고리를 조인하여 검색 -->
-		 	<a class="btn btn-default btn-md edit" href="#" role="button" onclick="svcUpdate('<s:property/>')" data-dismiss="modal" >수정</a>
-		 	<a class="btn btn-default btn-md edit" href="#" role="button" onclick="svcDelete('<s:property/>')" data-dismiss="modal" >삭제</a>	
+		 	<a class="btn btn-default btn-md edit" href="#" role="button" onclick="selectSvcCategory('<s:property/>')" data-dismiss="modal" >수정</a>
 		</div>
 		
 		<s:iterator value="enterprise.services">
@@ -176,7 +194,7 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 		  				<button type="button" class="btn btn-success btn-md" onclick="rsvInsert(<s:property value="svcNum"/>)" style="width: 100px">예약 하기</button>
 		  			</td>
 		  			<td class="edit">
-		  				<button type="button" class="btn btn-danger btn-md edit" onclick="svcDelete(<s:property value="svcNum"/>)">삭제</button>
+		  				<button type="button" class="btn btn-danger btn-md edit" onclick="deleteService(<s:property value="svcNum"/>)">삭제</button>
 		  			</td>
 		  		</tr>
 			</table>

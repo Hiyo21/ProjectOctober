@@ -7,15 +7,17 @@
 <title>이미지 업로드</title>
 <style>
 img {
-	height : 500px;
+	height : 300px;
 	width : auto;
 }
 </style>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script>
-
+<script type="text/javascript">
+function closing() {
+	this.close();
+}
 </script>
 </head>
 <body>
@@ -39,8 +41,8 @@ img {
 					<s:form action="imageUploadAction" method="POST" enctype="multipart/form-data">
 						<h3>업로드할 파일을 선택해 주세요.</h3>
 						<s:file name="imageToUpload" />
-						<input type="hidden" name="etpNum" value="${member.enterprise.etpNum}" id="etpNumHidden"/>
-						<input type="hidden" name="etpEmail" value="${member.enterprise.etpEmail}" id="etpEmailHidden" />
+						<%-- <input type="hidden" name="etpNum" value="${enterprise.etpNum}" id="etpNumHidden"/> --%>
+						<input type="hidden" name="etpEmail" value="${enterprise.etpEmail}" id="etpEmailHidden" />
 						<s:submit/>
 					</s:form>
 				</div>
@@ -53,8 +55,9 @@ img {
 						
 						<s:if test="uploaded == true">
 							<p style="color: green;"> 업로드에 성공하였습니다!</p>
-							<input type="hidden" name="etpNum" value="${etpNum}" id="etpNumHidden1"/>
-							<input type="hidden" name="etpEmail" value="${etpEmail}" id="etpEmailHidden2" />
+							<input type="hidden" name="etpNum" value="${enterprise.etpNum}" id="etpNumHidden1"/>
+							<input type="hidden" name="etpEmail" value="${enterprise.etpEmail}" id="etpEmailHidden2" />
+							<button type="button" class="btn btn-primary" onclick="closing()">닫기</button>
 						</s:if>
 						
 						<s:if test="uploaded == false">
