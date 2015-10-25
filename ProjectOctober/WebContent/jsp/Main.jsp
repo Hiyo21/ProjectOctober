@@ -140,7 +140,7 @@ tab-content{
 		     				<div id="mapPage">
     					<div class="mapImgD">
 							<h2>[ 지역 검색 ]</h2>
-							<a href="#"><img src="${pageContext.request.contextPath}/image/img_map_1.png" alt="대한민국지도" usemap="#img_map_1" class="mapImg" /></a>
+							<a href="#"><img src="${pageContext.request.contextPath}/image/img_map_12.png" alt="대한민국지도" usemap="#img_map_1" class="mapImg" /></a>
 							<map name="img_map_1" id="img_map_1">	
 								<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="서울" />
 								<area shape="rect" coords="37,45,57,62" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=인천" alt="인천" />
@@ -177,7 +177,7 @@ tab-content{
 											})
 											$('.mapImg').mouseout(function(){
 												
-												mapSrc = "../image/img_map_1.png";
+												mapSrc = "../image/img_map_12.png";
 												
 												
 												$(".mapImg").attr("src", mapSrc);
