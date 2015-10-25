@@ -81,3 +81,4 @@ local.properties
 /build/.project
 /build/.classpath
 rebel.xml
+/build/
