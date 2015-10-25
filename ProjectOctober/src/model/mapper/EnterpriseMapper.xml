@@ -628,4 +628,8 @@
 	<select id="retrieveRegCard" parameterType="String" resultType="String">
 		select pht_address from photo_location where pht_usage like '%' || #{value} || '%'
 	</select>
+	
+	<select id="retrieveReservationFromOtherInfo" parameterType="Reservation" resultMap="ReservationResultMap">
+		select * from reservation r, service s where r.svc_num = #{svcNum} and r.cst_email =#{cstEmail} and r.to_char(rsv_start_date, 'yyyy/MM/dd hh24') = r.to_char(#{rsvStartDate}, 'yyyy/MM/dd hh24') and r.rsv_title = #{rsvTitle} and s.svcNum = r.svcNum 
+	</select>
 </mapper>

@@ -50,6 +50,10 @@
 			</result>
 		</action>
 		
+		<action name="retrieveReservationFromOtherInfo" class="controller.action.EnterpriseAction" method="retrieveReservationFromOtherInfo">
+			<result type="json" />
+		</action>
+		
 
 		
 		<!-- 사진업로드 / 갤러리 -->

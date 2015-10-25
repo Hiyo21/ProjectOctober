@@ -7,6 +7,7 @@ import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
 import model.vo.PhotoLocation;
+import model.vo.Reservation;
 import model.vo.Review;
 import model.vo.Service;
 
@@ -87,5 +88,7 @@ public interface EnterpriseMapper {
 	String retrieveRegCard(String etpNum);
 
 	int updateComponent(Component component);
+
+	Reservation retrieveReservationFromOtherInfo(Reservation reservation);
 
 }

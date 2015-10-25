@@ -19,6 +19,7 @@ import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
+import model.vo.SaleRecord;
 import model.vo.Service;
 import model.vo.WorkingDays;
 
@@ -36,6 +37,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private List<Coupon> couponList;
 	private Member member;
 	private PhotoLocation photoLocation;
+	private SaleRecord saleRecord;
+	private List<SaleRecord> saleRecords;
 
 	//////// Component Member ////////  
 	private Component component;
@@ -58,7 +61,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
 	}
-	
 	
 //---------------------------------------- Calendar 관련 ----------------------------------//
 	public String toCalendarPage() throws Exception{
@@ -85,6 +87,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(reservation != null){
 			System.err.println("reservation 시작 스트링: " + reservation.getStart());
 			System.err.println("reservation 끝 스트링: " + reservation.getEnd());
+			
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
 			reservation.setEtpNum(String.valueOf(session.get("loginEtpNum")));
@@ -94,6 +97,26 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(result != 0) return SUCCESS;
 		else return ERROR;
 	}
+	
+	public String retrieveReservationFromOtherInfo() throws Exception{
+		System.err.println(etpNum);
+		System.err.println("retrieveReservationFromOtherInfo에서:" + reservation);
+		System.err.println(reservation);
+		if(reservation != null){
+			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
+			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
+		
+			reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
+		}
+		
+		if(reservation != null){
+			System.out.println(reservation.getRsvNum());
+			return SUCCESS;
+		}else{
+			return ERROR;
+		}
+	}
+	
 	
 	public String retrieveReservations() throws Exception{
 		System.err.println("현재 테스트 중입니다..etp정보를 받아오는가?");
@@ -658,5 +681,25 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public void setRegCardLocation(String regCardLocation) {
 		this.regCardLocation = regCardLocation;
 
+	}
+
+
+	public SaleRecord getSaleRecord() {
+		return saleRecord;
+	}
+
+
+	public List<SaleRecord> getSaleRecords() {
+		return saleRecords;
+	}
+
+
+	public void setSaleRecord(SaleRecord saleRecord) {
+		this.saleRecord = saleRecord;
+	}
+
+
+	public void setSaleRecords(List<SaleRecord> saleRecords) {
+		this.saleRecords = saleRecords;
 	}
 }

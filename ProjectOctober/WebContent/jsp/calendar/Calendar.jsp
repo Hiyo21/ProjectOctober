@@ -45,7 +45,10 @@
 		 	currentMousePos.y = event.pageY;
 		});
 		
-		$("#inputEmployeeGenderCheckBox").bootstrapToggle();
+		$("#inputEmployeeGenderCheckBox").bootstrapToggle({
+			on: "여성",
+			off: "남성"
+		});
 		
 		//-----------------------사전에 정보 불러오기 : Enterprise 정보 --------------------------------//
 		
@@ -58,7 +61,7 @@
 			success: function retrieveEnt(data){
 				enterpriseInfo = data.enterprise;
 				console.log('received enterpriseinfo!');
-				console.log(data);
+				console.log(enterpriseInfo);
 				 $('#templateType').attr('value', data.enterprise.etpTemplateType); 
 			},error: function(){
 				console.log('retrieveEnterpriseInfoForCalendar failed!');
@@ -185,11 +188,10 @@
 		        });
 				
 				$("#closeReservationBtn").click(function(event){
-					$('#calendar').fullCalendar('renderEvent',copiedEventObject,false);
 					$('#insertModal').modal('hide');
-					//$("#calendar").fullCalendar('removeEvents');
-					//$("#calendar").fullCalendar('removeEventSource', event);
-					//$('#calendar').fullCalendar('addEventSource', event);
+					$("#calendar").fullCalendar('removeEvents');
+					$("#calendar").fullCalendar('removeEventSource', event);
+					$('#calendar').fullCalendar('addEventSource', event);
 					$('#calendar').fullCalendar('refetchEvents');
 					$('#calendar').fullCalendar('rerenderEvents');
 				});
@@ -241,10 +243,10 @@
 			
 			
 			//select: 빈 칸에 눌렀을 때  
-			select: function(start, end, jsEvent, view, allDay){					
+			select: function(start, end, jsEvent, view, allDay, e){					
 					console.log(jsEvent);
 					console.log(view);
-					console.log(eventConstraint);
+					console.log(e);
 				  var coupons ={};
 				  var camUseCoupon = false;
 				  var cpnNum = 0;
@@ -386,6 +388,10 @@
 				$("#insertReservationBtnClose").click(function(e){
 					location.reload();
 				});
+				
+				$("#closingUpdateBtn, #closingInsertButton").click(function(){
+					location.reload();
+				});
 						
 			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
 				
@@ -395,8 +401,12 @@
 						$('#insertModal').modal('hide');
 						revertFunc();
 						event.off();
+						calendar.fullCalendar('unselect');
 						return false;
 					}
+					
+					//-----------------약관 동의하면 DB에 reservation 집어 넣자! -----------------//
+					
 					$.ajax({
 						url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
 						dataType: 'json',
@@ -404,19 +414,101 @@
 						data: $('#inputForm').serialize(),
 						contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 						success: function(doc){
-				            $('#calendar').fullCalendar('refetchEvents');
 							$('#insertModal').modal('hide');
-							$(this).unbind();
-							//$("#calendar").fullCalendar('removeEvents');
-							//$("#calendar").fullCalendar('removeEventSource', event);
-							//$('#calendar').fullCalendar('addEventSource', event);
-							$('#calendar').fullCalendar('refetchEvents');
-							$('#calendar').fullCalendar('rerenderEvents');
+							console.log(doc.reservation);
+							var dors = doc.reservation;
+							var pmtNum = 0;
+							var paymentRecord= {};
+							
+							console.log(dors);
+							var reservation = {
+									"svcNum" : dors.svcNum,
+									//"cpnNum" : "" + dors.cpnNum,
+									"etpNum" : doc.reservation.etpNum,
+									"etpEmail" : dors.etpEmail,
+									"cstEmail" : dors.cstEmail,
+									"rsvStatus" : dors.rsvStatus,
+									"rsvTitle" : dors.rsvTitle,
+									"start" : dors.start,
+									"end": dors.end,
+									//"reservation.rsvDesc" : doc.reservation.rsvDesc,
+									//"reservation.employeeGender" : event.employeeGender,
+							};
+							console.log(reservation);
+							
+							$.ajax({
+								url: "${pageContext.request.contextPath}/enterprise/retrieveReservationFromOtherInfo.action",
+								dataType: 'json',
+								type: 'POST',
+								async: false,
+								data: {"etpNum" : doc.reservation.etpNum},
+								contentType: 'application/json',
+								success: function(data){
+									console.log('retreiveReservationInfo Success!');
+									console.log(data);
+									console.log(data.reservation);
+									paymentRecord.push({
+											"paymentRecord.rsvNum" : data.reservation.rsvNum,
+											"paymentRecord.pmtTime" : data.reservation.rsvEndDate.toISOString(),
+											"paymentRecord.pmtAmounmt" : data.reservation.service.svcCost
+									});
+								},error: function(){
+									console.log('retrieveReservationFromOtherInfo error!');
+								}
+							});
+							
+							//----------------예약 들어가면 일단 소비자 Payment Record에 입력 ---------------//
+							// 이벤트 아이디는 받아올 수 있는게냐?
+							console.log(paymentRecord);
+							console.log(paymentRecord.value);
+							$.ajax({
+								url:"${pageContext.request.contextPath}/customer/insertPaymentRecord.action",
+								dataType: 'json',
+								type: 'POST',
+								async:false,
+								data: paymentRecord,
+								contentType: 'application/json; charset=UTF-8',
+								success: function(data){
+									console.log(data.paymentRecord);
+									pmtNum = data.paymentRecord.pmtNum;
+								},error: function(){
+									console.log("payment record insertion failed!");
+								}
+							});
+							
+							 
+							//------------------Payment Record 입력 후 Sale Record에 입력 --------------//
+							
+							var saleRecord = {
+								"saleRecord.pmtNum" : pmtNum,
+								"saleRecord.etpNum" : event.etpNum,
+								"saleRecord.etpEmail" : event.etpEmail,
+								"saleRecord.svcCost" : event.svcCost
+							};
+							
+							$.ajax({
+								url:"${pageContext.request.contextPath}/enterprise/insertSaleRecord.action",
+								dataType: 'json',
+								type: 'POST',
+								data: saleRecord, 
+								contentType: 'application/json; charset=UTF-8',
+								success: function(data){
+									$("#calendar").fullCalendar('removeEventSource', event);
+									$('#calendar').fullCalendar('addEventSource', event);
+									$('#calendar').fullCalendar('refetchEvents');
+									$('#calendar').fullCalendar('rerenderEvents');
+								},
+								error:function(){
+									console.log("sale record insertion failed!");
+								}
+							});
 						},
 						error: function(doc){
 							console.log("insert Error");
 						}
 					});
+
+					
 					$(this).unbind();
 					calendar.fullCalendar('unselect');
 				});
@@ -656,7 +748,7 @@
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+	                <button type="button" class="close" data-dismiss="modal" id="closingInsertButton"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
 	                <h4 id="insertModalTitle" class="modal-title"></h4>
 	            </div>
 		            <div id="insertModalBody" class="modal-body">
@@ -710,7 +802,7 @@
 								<!-- 성별 -->
 								<tr>
 									<td><label for='inputEmployeeGenderCheckBox' class='control-label'>희망 종업원 성별: </label></td>
-									<td><input type='checkbox' checked data-toggle='toggle' data-on='여성' data-off='남성' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='tiny-toggle form-control'/></td>
+									<td><input type='checkbox' checked data-toggle='toggle' data-on='"여성"' data-off='"남성"' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='form-control'/></td>
 								</tr>
 								
 								<tr>
@@ -765,7 +857,7 @@
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+	                <button type="button" class="close" data-dismiss="modal" id="closingUpdateBtn"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
 	                <h4 id="updateModalTitle" class="modal-title"></h4>
 	            </div>
 	            <div id="updateModalBody" class="modal-body">

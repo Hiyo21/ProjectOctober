@@ -316,6 +316,10 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveRegCard(etpNum);});
 	}
 
+	public Reservation retrieveReservationFromOtherInfo(Reservation reservation) {
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveReservationFromOtherInfo(reservation);});
+	}
+
 	
 	
 }
