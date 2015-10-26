@@ -23,8 +23,8 @@ public class CustomerDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return s.getMapper(CustomerMapper.class).insertPaymentRecord(paymentRecord);});
 	}
 	
-	public PaymentRecord retrievePaymentRecord(Integer pmtNum){
-		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecord(pmtNum);});
+	public PaymentRecord retrievePaymentRecord(Integer rsvNum){
+		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecord(rsvNum);});
 	}
 	
 	public int updatePaymentRecord(PaymentRecord paymentRecord){
@@ -35,8 +35,8 @@ public class CustomerDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return s.getMapper(CustomerMapper.class).deletePaymentRecord(pmtNum);});
 	}
 	
-	public List<PaymentRecord> retrievePaymentRecords(String etpNum){
-		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecords(etpNum);});
+	public List<PaymentRecord> retrievePaymentRecords(){
+		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecords();});
 	}
 		
 	

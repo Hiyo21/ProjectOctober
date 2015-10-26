@@ -39,8 +39,8 @@ public interface CustomerMapper {
 
 	Integer deletePaymentRecord(Integer pmtNum);
 
-	List<PaymentRecord> retrievePaymentRecords(String etpNum);
+	List<PaymentRecord> retrievePaymentRecords();
 	
-	PaymentRecord retrievePaymentRecord(Integer pmtNum);
+	PaymentRecord retrievePaymentRecord(Integer rsvNum);
   
 }
