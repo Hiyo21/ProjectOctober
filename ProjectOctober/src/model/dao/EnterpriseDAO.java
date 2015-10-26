@@ -391,4 +391,14 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return fromMapper(s).insertSaleRecord(saleRecord);});
 
 	}
+
+	public Component selectComponent(Map<String, String> check) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			Component cp = session.getMapper(EnterpriseMapper.class).selectComponent(check);
+			return cp;
+		}finally{
+			session.close();
+		}
+	}
 }

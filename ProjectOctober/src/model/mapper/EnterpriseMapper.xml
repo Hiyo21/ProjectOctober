@@ -567,7 +567,11 @@
 	</select>
 
 	<!-- Component Mapper -->
-
+	<select id="selectComponent" parameterType="Map" resultMap="ComponentResultMap">
+		select * from component where etp_num = #{etpNum} and component_id = #{componentId}
+	</select>
+	
+	
 	<insert id="insertComponent" parameterType="Component">
 		insert into COMPONENT values
 		(component_seq.nextval, #{etpNum}, #{etpEmail}, #{componentID}, 
@@ -581,10 +585,9 @@
 
 	<update id="updateComponent" parameterType="Component">
 		update component
-		set component_id = #{componentID}, component_width = #{componentWidth},
-		component_height = #{componentHeight}, component_pos_x =
+		set component_width = #{componentWidth}, component_height = #{componentHeight}, component_pos_x =
 		#{componentPosX}, component_pos_y = #{componentPosY}
-		where etp_num = #{etpNum}
+		where etp_num = #{etpNum} and component_id = #{componentID}
 	</update>
 
 

@@ -133,6 +133,10 @@
 			<result name="template2">/jsp/component/StaticTemplate_tabs.jsp</result>
 			<result name="template3">/jsp/component/StaticTemplate_allInOne.jsp</result>
 		</action>
+		
+		<action name="takeEtpForJson" class="controller.action.EnterpriseAction" method="takeEtp">
+			<result name="template1" type="json"/>
+		</action>
 
 		
 		<action name="selectEtpList" class="controller.action.EnterpriseAction" method="selectEtpList">

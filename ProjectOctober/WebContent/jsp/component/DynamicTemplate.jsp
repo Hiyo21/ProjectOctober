@@ -163,7 +163,7 @@ function savePage(etpNum){
 			contentType: 
 				'application/x-www-form-urlencoded; charset=utf-8',
 			success : function(){
-				location.reload();
+				
 			}
 		}); 
  	} 
@@ -174,9 +174,23 @@ function savePage(etpNum){
 };
 
 function loadPage(){	
-
-	console.log(object);
-	printComponent(object);
+	$.ajax({
+		url: '${pageContext.request.contextPath}/enterprise/takeEtpForJson.action?etpNum=<s:property value="etpNum"/>',
+		type:'GET',
+		contentType : 'application/json',
+		success : function(data){
+			/* var componentList = data.componentList; */
+			console.log(data);
+			/* printComponent(data.componentList); */				
+		},
+		error : function(request, status, error){
+			console.log(request);
+			console.log(status);
+			console.log(request.status);
+			console.log(error);
+		}
+	}); 
+	
 };
 
 function resetPage(){
@@ -204,7 +218,7 @@ function resetPage(){
      
      
 	$.ajax({
-		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action?etpNum=1234567890',
+		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action?etpNum=9090909090',
 		type:'GET',
 		dataType: 'json',
 		success : function(data){
@@ -339,9 +353,7 @@ function printComponent(items){
 <s:include value="../Header.jsp"/>
 
 <div class="container" id="page">
-	<s:if test="">
-	
-	</s:if>
+	<button onclick="loadPage()">load</button>
 	
 	<div class="grid-stack">
 	

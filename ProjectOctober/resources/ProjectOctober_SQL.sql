@@ -8,7 +8,8 @@ select distinct svc_category from service where etp_num = '9876543210'
 
 select * from enterprise     
 
-select * from component where etp_num = '9876543210'
+select * from component where etp_num = '9090909090' and component_id = 'svcCP'
+ 
 alter table component drop column component_desc;
 delete component where etp_num = '9876543210'
 

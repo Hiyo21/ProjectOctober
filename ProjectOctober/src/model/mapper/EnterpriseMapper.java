@@ -1,6 +1,7 @@
 package model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import model.vo.Component;
 import model.vo.Coupon;
@@ -104,6 +105,8 @@ public interface EnterpriseMapper {
 	String selectLogoPht(String etpNum);
 
 	Integer insertSaleRecord(SaleRecord saleRecord);
+
+	Component selectComponent(Map<String, String> check);
 
 
 }
