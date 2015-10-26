@@ -129,6 +129,10 @@
 		<action name="checkCustomerDuplicateEmail" class="controller.action.MemberAction" method="checkCustomerDuplicateEmail">
 			<result type="json" />
 		</action>
-
+		
+		<!-- 이용자의 업체 예약 내역 -->
+		<action name="toCstReservationHistoryPage" class="controller.action.MemberAction">
+			<result>ReservationCstHistory.jsp</result>
+		</action>
 	</package>
 </struts>

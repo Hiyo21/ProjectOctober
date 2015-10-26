@@ -392,7 +392,7 @@ function print(object){
 			</a>
 	   	
 			<div class="grid-stack-item-content">
-				<s:include value="./LocationComponent.jsp"/>
+				<%-- <s:include value="./LocationComponent.jsp"/> --%>
 			</div>
 	    </div>
 	    

@@ -158,7 +158,7 @@ public class EnterpriseDAO extends DAOTemplate{
 	
 	
 	public Integer uploadImage(PhotoLocation loc) {
-		return dataModificationTemplate(s -> {return fromMapper(s).insertImage(loc);});
+		return dataModificationTemplate(s -> {return s.getMapper(EnterpriseMapper.class).insertImage(loc);});
 	}
 	
 	

@@ -174,6 +174,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		Map<String, String> loginInfo = new HashMap<>();
 		loginInfo.put("loginEmail", email);
 		loginInfo.put("loginPassword", password);
+		System.out.println(email + password);
 		member = memDAO.loginResult(loginInfo);
 		System.out.println(member);
 		if(member == null) {
