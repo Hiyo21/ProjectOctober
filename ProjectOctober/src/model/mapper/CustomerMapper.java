@@ -42,12 +42,8 @@ public interface CustomerMapper {
 
 	List<PaymentRecord> retrievePaymentRecords();
 	
-<<<<<<< HEAD
-	PaymentRecord retrievePaymentRecord(Integer pmtNum);
-	
 	int insertCustomerEvaluation(Review record);
-=======
+
 	PaymentRecord retrievePaymentRecord(Integer rsvNum);
->>>>>>> refs/remotes/origin/master
   
 }

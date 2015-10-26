@@ -368,7 +368,10 @@ public class EnterpriseDAO extends DAOTemplate{
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
 			return session.getMapper(ServiceMapper.class).selectCategory(etpNum);
-		}finally{session.close();}
+		}finally{
+			session.close();
+		}
+	}
 
 	public int insertSaleRecord(SaleRecord saleRecord) {
 		return dataModificationTemplate(s -> {return fromMapper(s).insertSaleRecord(saleRecord);});

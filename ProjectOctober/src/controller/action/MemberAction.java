@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
 import model.dao.CustomerDAO;
+import model.dao.EnterpriseDAO;
 import model.dao.MemberDAO;
 import model.vo.Customer;
 import model.vo.Enterprise;
@@ -182,6 +183,8 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		} else {
 			if(member.getMemCode() == ENTERPRISE_CODE){
 				Enterprise enterprise = DAOFactory.createEnterpriseDAO().selectByEtpEmail(member.getMemEmail());
+				/*EnterpriseDAO etpDao = new EnterpriseDAO();
+				Enterprise enterprise = etpDao.selectByEtpEmail(member.getMemEmail());*/
 				if(enterprise == null) throw new Exception("엔터프라이즈가 없음!");
 				if(enterprise.getEtpStatus() != 1) {System.out.println(0);return LOGIN;}
 				session.put("enterprise", enterprise);
