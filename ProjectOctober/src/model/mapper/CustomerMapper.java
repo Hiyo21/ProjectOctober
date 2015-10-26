@@ -46,4 +46,5 @@ public interface CustomerMapper {
 
 	PaymentRecord retrievePaymentRecord(Integer rsvNum);
   /*PaymentRecord retrievePaymentRecord(Integer pmtNum);*/
+
 }

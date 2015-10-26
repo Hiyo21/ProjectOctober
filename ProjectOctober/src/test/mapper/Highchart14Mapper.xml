@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="test.mapper.highchart14Mapper" >
+	<select id="highchart14" resultType="Highchart14">
+		select average2, hygiene2, comfort2, technique2, price2, service2
+		from (select round(avg(rvw_HYGIENE),1) hygiene2, round(avg(rvw_COMFORT),1) comfort2, round(avg(rvw_TECHNIQUE),1) technique2,
+			  round(avg(rvw_PRICE),1) price2, round(avg(rvw_SERVICE),1) service2, round(avg((rvw_HYGIENE+rvw_COMFORT+rvw_TECHNIQUE+rvw_PRICE+rvw_SERVICE)/5),1) average2
+       		  from review r, enterprise e
+       		  
+        	  where r.etp_num = e.etp_num
+		      )
+		      group by average2, hygiene2, comfort2, technique2, price2, service2
+	</select>
+</mapper>
+

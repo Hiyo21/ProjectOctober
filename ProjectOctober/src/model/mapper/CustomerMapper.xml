@@ -385,7 +385,7 @@
 	
 
 	<select id="insertCustomerEvaluation" parameterType="Review">
-		insert into review values(REVIEW_SEQ.nextval,#{cst_email},#{etp_num},#{etp_email},#{rvw_input_date},#{rvw_content},#{cst_job},#{RVW_HYGIENE},#{RVW_COMFORT},#{RVW_TECHNIQUE},#{RVW_PRICE},#{RVW_SERVICE})
+		insert into review values(REVIEW_SEQ.nextval,#{cstEmail},#{etpNum},#{etpEmail},sysdate,#{rvwContent},#{cstJob},#{rvwHygiene},#{rvwComfort},#{rvwTechnique},#{rvwPrice},#{rvwService})
 	</select>
 	
 

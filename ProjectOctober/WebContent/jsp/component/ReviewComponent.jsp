@@ -50,16 +50,23 @@ $(function () {
         },
 
         series: [{
-        	type: 'area',
-            name: '종합 고객 평가',
-            data: [3, 4, 5, 3, 4],
-            pointPlacement: 'on'
+            name: '이용자 평가',
+            data: [
+                   <s:iterator value="#request.gunList"><s:property value="average2"/>,<s:property value="hygiene2"/>,<s:property value="comfort2"/>
+                   ,<s:property value="technique2"/>,<s:property value="price2"/>,<s:property value="service2"/>
+                   </s:iterator>
+                  ]
         }]
-
     });
 });
+   
 
 </script>
+
+
+
+
+
 
 </head>
 <body>
@@ -75,12 +82,12 @@ $(function () {
 			<div class="container-fluid">
 			
 			<form name="customerEvaluation" action="${pageContext.request.contextPath}/customer/customerEvaluation.action" method="post">
-			
+			<input type="hidden" name="review.etpEmail" value="${enterprise.etpEmail}">
 			<input type="hidden" name="review.etpNum" value="${etpNum}">			
 			<table class="table table-striped" style="max-width: 1000px;">
 				<tr>
 					<th rowspan="14" style="vertical-align: middle">평가 요소</th>					
-					<th colspan="6">코멘트 : <s:textfield size="80" /></th>					
+					<th colspan="6">코멘트 : <s:textfield size="80" name="review.rvwContent"/></th>					
 				</tr>				
 				<tr>
 					<td>

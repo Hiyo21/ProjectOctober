@@ -79,10 +79,11 @@ public class CustomerDAO extends DAOTemplate{
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
 			System.err.println(review);
-			int result = session.getMapper(CustomerMapper.class).insertCustomerEvaluation(review);
+			int result = session.insert("model.mapper.CustomerMapper.insertCustomerEvaluation",review);
 			System.out.println("DAO : "+ review);
 			if(result == 1) session.commit();
 			else session.rollback();
+			System.out.println("DB들어갔다잉");
 			return result;
 		} finally {
 			session.close();
