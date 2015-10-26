@@ -147,13 +147,8 @@
 		<div class="navbar navbar-default">
 			<div class="container">
 				<div class="row">					
-<<<<<<< HEAD
 					<div class="col-md-12 col-sm-pull-2">
 						<s:if test="#session.loginId != null || #session.memCode != 2">
-=======
-					<div class="navbar-collapse collapse">
-						<s:if test="#session.loginId != null || #session.memCode == 2">
->>>>>>> refs/remotes/origin/master
 							<ul class="nav navbar-nav" id="test1">
 								<li>
 									<a href="${pageContext.request.contextPath}/search/toBusinessSectorCategoryPage.action">
