@@ -99,7 +99,7 @@
 					<div class="row">
 						<div class="col-md-1">
 							<a href="${pageContext.request.contextPath}/toMainPage.action">
-								<img src="${pageContext.request.contextPath}/image/VIEWTY.png" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
+								<img src="${pageContext.request.contextPath}/image/biglogo.png" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
 							</a>
 						</div>
 				        <div class="col-md-6 com-md-push-1">	

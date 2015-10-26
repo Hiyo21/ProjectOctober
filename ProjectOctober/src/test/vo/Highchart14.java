@@ -1,6 +1,8 @@
 package test.vo;
 
-public class Highchart14 {
+import java.io.Serializable;
+
+public class Highchart14 implements Serializable {
 	
 	private int average2;
 	private int hygiene2;

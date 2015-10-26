@@ -19,6 +19,7 @@ import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
+import model.vo.Review;
 import model.vo.SaleRecord;
 import model.vo.Service;
 import model.vo.WorkingDays;
@@ -42,6 +43,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpNum;
 	private String etpNum1;
 	private String etpEmail;
+	private List<Review> reviewList;
 
 	//////// Component Member ////////  
 	private Component component;
@@ -265,8 +267,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
-
+			reviewList = etpDAO.selectReviewList(etpNum);
+			
 			session.put("pageId", enterprise.getEtpEmail());
+			
 
 			switch (type) {
 			case 1:
@@ -422,6 +426,17 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			}
 		} 
 		return ERROR;
+	}
+	
+	public String updateTemplate() throws Exception{
+		System.err.println(enterprise);
+		if(enterprise != null){
+			int result = etpDAO.updateTemplate(enterprise);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			throw new Exception("엔터프라이즈 못 읽어 옴!");
+		}
 	}
 	
 	//사업자의 이용자 예약 내역
@@ -790,6 +805,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setLogoPht(String logoPht) {
 		this.logoPht = logoPht;
+	}
+
+	public List<Review> getReviewList() {
+		return reviewList;
+	}
+
+	public void setReviewList(List<Review> reviewList) {
+		this.reviewList = reviewList;
 	}
 	
 	

@@ -51,6 +51,7 @@
 		<typeAlias type="test.vo.Highchart11" alias="Highchart11"/>
 		<typeAlias type="test.vo.Highchart12" alias="Highchart12"/>
 		<typeAlias type="test.vo.Highchart13" alias="Highchart13"/>
+		<typeAlias type="test.vo.Highchart14" alias="Highchart14"/>
 		<typeAlias type="test.vo.Highchart9Cost" alias="Highchart9Cost"/>
 		<typeAlias type="test.vo.Highchart10Cost" alias="Highchart10Cost"/>
 		<typeAlias type="test.vo.Highchart11Cost" alias="Highchart11Cost"/>
@@ -100,6 +101,7 @@
 		<mapper resource="test/mapper/Highchart11Mapper.xml"/>
 		<mapper resource="test/mapper/Highchart12Mapper.xml"/>
 		<mapper resource="test/mapper/Highchart13Mapper.xml"/>
+		<mapper resource="test/mapper/Highchart14Mapper.xml"/>
 		<mapper resource="test/mapper/Highchart9CostMapper.xml"/>
 		<mapper resource="test/mapper/Highchart10CostMapper.xml"/>
 		<mapper resource="test/mapper/Highchart11CostMapper.xml"/>

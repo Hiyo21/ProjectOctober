@@ -263,16 +263,12 @@ public class DAO {
 	
 	
 	//이용자 평가 하이차트
-	public List<Highchart14> highchart14DAO(){
-		List<Highchart14> list = null;
-		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+	public List<Highchart14> highchart14DAO(String etpNum){
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			list = sqlsession.selectList("test.mapper.highchart14Mapper.highchart14");	
-			System.err.println(list);
+			return sqlsession.selectList("test.mapper.Highchart14Mapper.highchart14", etpNum);	
 		}finally{
 			sqlsession.close();
-		}	
-		return list;	
-}
-
+		}		
+	}
 }

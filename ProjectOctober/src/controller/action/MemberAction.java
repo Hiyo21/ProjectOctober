@@ -37,6 +37,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private String password;
 	private MemberDAO memDAO;
 	private CustomerDAO cstDAO;
+	private EnterpriseDAO etpDAO;
 	private boolean emailExists;
 	private boolean etpNumExists;
 	private String cstEmail;
@@ -57,6 +58,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	public MemberAction() {
 		memDAO = DAOFactory.createMemberDAO();
 		cstDAO = DAOFactory.createCustomerDAO();
+		etpDAO = DAOFactory.createEnterpriseDAO();
 	}
 	
 	public String customerRegistration1() throws Exception{
@@ -182,18 +184,25 @@ public class MemberAction extends ActionSupport implements SessionAware{
 			return LOGIN;
 		} else {
 			if(member.getMemCode() == ENTERPRISE_CODE){
-				Enterprise enterprise = DAOFactory.createEnterpriseDAO().selectByEtpEmail(member.getMemEmail());
+				Enterprise enterprise = etpDAO.selectByEtpEmail(member.getMemEmail());
 				/*EnterpriseDAO etpDao = new EnterpriseDAO();
 				Enterprise enterprise = etpDao.selectByEtpEmail(member.getMemEmail());*/
 				if(enterprise == null) throw new Exception("엔터프라이즈가 없음!");
-				if(enterprise.getEtpStatus() != 1) {System.out.println(0);return LOGIN;}
+				if(enterprise.getEtpStatus() != 1) return LOGIN;
+				
 				session.put("enterprise", enterprise);
 				session.put("loginEtpNum", enterprise.getEtpNum());
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
-				if(enterprise.getEtpTemplateType() == null){ System.out.println(1);return "enterpriseNo";}
-				else {System.out.println(2);return "enterprise";}
+				
+				if(enterprise.getEtpTemplateType() == 0){ 
+					System.out.println(1);
+					return "enterpriseNo";
+				}else {
+					System.out.println(2);
+					return "enterprise";
+				}
 
 				/*if(enterprise.getEtpTemplateType() == null){ System.out.println(1);return "enterpriseNo";}
 				else {System.out.println(2);return "enterprise";}*/

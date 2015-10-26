@@ -1,14 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-   	<%@ taglib prefix="s"  uri="/struts-tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s"  uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-
 <script type="text/javascript">
-$(function () {
+
+
+$(function(){
+	var type = <s:property value="#session.memCode"/>;
+		//제일 먼저 reviewlist 받아오긴 해야 함.
+	
+	if(type == 1){
+		//review list 받아와서 .append로 뿌리기? iterator로 뿌리기? 등록은 못하게 하기. 하이챠트는 공통.
+		
+		
+	}else if(type == 2){
+		//올리기 폼. 보내는 걸 AJAX로. 
+		
+	}else{
+		
+		
+	}
+	
+	
     $('#chart').highcharts({
     	chart: {
             polar: true,
@@ -52,7 +68,8 @@ $(function () {
         series: [{
             name: '이용자 평가',
             data: [
-                   <s:iterator value="#request.gunList"><s:property value="average2"/>,<s:property value="hygiene2"/>,<s:property value="comfort2"/>
+                   <s:iterator value="gunList">
+                   		<s:property value="average2"/>,<s:property value="hygiene2"/>,<s:property value="comfort2"/>
                    ,<s:property value="technique2"/>,<s:property value="price2"/>,<s:property value="service2"/>
                    </s:iterator>
                   ]
@@ -69,19 +86,56 @@ $(function () {
 
 
 </head>
+
+
 <body>
-<div class="container-fluid">
-	<div class="panel panel-default" id="review"> 
+<div class="container">
 		<div class="row">
-			<div class="col-md-6" id="chart" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto">
-						
+			<div class="col-md-6" align="center">
+				<h1>종합평가 점수 / 정보</h1>
 			</div>
-			<div class="col-md-5"><h1>종합평가 점수 / 정보</h1></div>
-		</div> <!-- row1 end -->
+		</div>
 		<div class="row">
-			<div class="container-fluid">
+			<div class="col-md-6" id="chart" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto;" align="center">
+				
+			</div>
+		</div>
+	<s:if test="#session.memCode == 1">
+		<div>
+			<table class="table table-row table-hover">
+				<tr>
+					<th>이용자 email</th>
+					<th>이용자 코멘트</th>
+					<th>작성일</th>
+					<th>청결함</th>
+					<th>편안함</th>
+					<th>기술</th>
+					<th>가격대</th>
+					<th>서비스</th>
+				</tr>
+				<s:iterator value="reviewList">
+				<tr>
+					<td><s:property value="cstEmail"/></td>
+					<td><s:property value="rvwInputDate"/></td>
+					<td><s:property value="rvwHygiene"/></td>
+					<td><s:property value="rvwComfort"/></td>
+					<td><s:property value="rvwTechnique"/></td>
+					<td><s:property value="rvwPrice"/></td>
+					<td><s:property value="rvwService"/></td>
+				</tr>
+				</s:iterator>
+			</table>
+		</div>
+	</s:if>
+</div>
+
+
+
+<s:if test="#session.memCode == 2">
+		<div class="row">
+			<div class="container">
 			
-			<form name="customerEvaluation" action="${pageContext.request.contextPath}/customer/customerEvaluation.action" method="post">
+			<form name="customerEvaluation" id="customerEvaluation" action="${pageContext.request.contextPath}/customer/customerEvaluation.action" method="post">
 			<input type="hidden" name="review.etpEmail" value="${enterprise.etpEmail}">
 			<input type="hidden" name="review.etpNum" value="${etpNum}">			
 			<table class="table table-striped" style="max-width: 1000px;">
@@ -248,6 +302,7 @@ $(function () {
 		</div> <!-- row2 end -->
 	</div>
 </div>
+</s:if>
 
 <!-- Highchart -->
 <script src="http://code.highcharts.com/highcharts.js"></script>

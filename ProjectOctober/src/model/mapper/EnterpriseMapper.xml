@@ -588,10 +588,9 @@
 	</update>
 
 
-	<update id="choiceTemplateType" parameterType="map">
+	<update id="choiceTemplateType" parameterType="hashmap">
 		update ENTERPRISE
-		set etp_Template_Type = #{enterprise.etpTemplateType} where etp_Num =
-		#{enterprise.etpNum}
+		set etp_Template_Type = #{etpTemplateType} where etp_num = #{etpNum}
 	</update>
 
 
@@ -669,12 +668,12 @@
 	</select>
 
 	<update id="updateEtpStatus" parameterType="String">
-		update HR.Enterprise
+		update enterprise
 		set etp_status=1 where etp_num=#{etpNum}
 	</update>
 
 	<update id="rejectEtpStatus" parameterType="String">
-		update HR.Enterprise
+		update enterprise
 		set etp_status=2 where etp_num=#{etpNum}
 	</update>
 
@@ -703,8 +702,7 @@
 	</select>
 
 	<select id="retrieveRegCard" parameterType="String" resultType="String">
-		select pht_address from photo_location where pht_usage like '%' ||
-		#{value} || '%'
+		select pht_address from photo_location where pht_usage like 'reg' and etp_num = #{value}
 	</select>
 
 	<select id="retrieveReservationFromOtherInfo" parameterType="Reservation"
@@ -716,13 +714,13 @@
 	</select>
 
 	<select id="retrieveInfoCard" parameterType="String" resultType="String">
-		select pht_address from photo_location where pht_usage == 'info' and
-		etp_num == #{value}
+		select pht_address from photo_location where pht_usage like 'info' and
+		etp_num = #{value}
 	</select>
 
 	<select id="retrieveLogoCard" parameterType="String" resultType="String">
-		select pht_address from photo_location where pht_usage == 'logo' and
-		etp_num == #{value}
+		select pht_address from photo_location where pht_usage like 'logo' and
+		etp_num = #{value}
 	</select>
 
 	<insert id="insertSaleRecord" parameterType="SaleRecord">
@@ -730,4 +728,8 @@
 		sale_record values(sale_record_seq.nextval, #{pmtNum}, #{etpNum},
 		#{etpEmail}, sysdate, #{saleAmount})
 	</insert>
+	
+	<update id="updateTemplate" parameterType="Enterprise">
+		update enterprise set etp_template_type = #{etpTemplateType}, etp_theme_type = #{etpThemeType} where etp_num = #{etpNum}
+	</update>
 </mapper>
