@@ -103,18 +103,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveReservationFromOtherInfo() throws Exception{
-		System.err.println(etpNum);
 		System.err.println("retrieveReservationFromOtherInfo에서:" + reservation);
-		System.err.println(reservation);
 		if(reservation != null){
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
 		
-			//reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
+			reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
 		}
 		
 		if(reservation != null){
-			System.out.println(reservation.getRsvNum());
+			System.out.println("rsvnum찍기 : " + reservation.getRsvNum());
 			return SUCCESS;
 		}else{
 			return ERROR;
@@ -152,6 +150,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String deleteReservation() throws Exception{
 		int result = etpDAO.deleteReservation(reservation);
 		if(result == 1) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String insertSaleRecord() throws Exception{
+		System.err.println(saleRecord);
+		int result = etpDAO.insertSaleRecord(saleRecord);
+		if(result == 1)return SUCCESS;
 		else return ERROR;
 	}
 	
@@ -317,8 +322,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String checkCoupon() throws Exception{
-		System.err.println(cpnNum);
-		coupon = etpDAO.checkCoupon(cpnNum);
+		System.err.println(coupon);
+		coupon = etpDAO.checkCoupon(coupon);
 		if(coupon != null)coupon.setCanUseCoupon(true);
 		return SUCCESS;
 	}

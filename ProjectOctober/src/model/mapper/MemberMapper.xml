@@ -98,6 +98,7 @@
     <result column="RSV_GENDER" property="employeeGender" jdbcType="VARCHAR" />
     <result column="RSV_TITLE" property="rsvTitle" jdbcType="VARCHAR" />
     <result column="RSV_DESC" property="rsvDesc"/>
+    <result column="RSV_COST" property="rsvCost" jdbcType="DECIMAL"/>
   </resultMap>
   
     <!-- Review ResultMap -->
