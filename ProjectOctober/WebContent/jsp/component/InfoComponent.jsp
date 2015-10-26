@@ -45,6 +45,11 @@ function saveInfo() {
 };
 
 </script>
+<script type="text/javascript">
+function uploadInfoOpen() {
+	window.open("${pageContext.request.contextPath}/enterprise/toInfoUploadPage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
+}
+</script>
 
 </head>
 
@@ -78,6 +83,10 @@ function saveInfo() {
 					<input type="hidden" name="infoPht" value="${enterprise.infoPht}" id="infoPhtHidden" />
 					<s:submit class="btn btn-default edit" value="사진 업로드"/>
 				</div>
+
+			<div>
+				<input type="button" value="사진업로드" onclick="uploadInfoOpen()" class="edit">
+
 			</div>
 			<div class="col-md-8">
 				<div class="jumbotron">

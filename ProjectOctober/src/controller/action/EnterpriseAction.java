@@ -60,6 +60,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	private int upCategory;//이미지 업로드시 용도 구별 위한 변수
 	
+	private String infoPht;
+	private String logoPht;
+	
 
 
 	public EnterpriseAction() {
@@ -254,7 +257,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 		enterprise.setInfoPht(etpDAO.selectInfoPht(etpNum));
-		enterprise.setInfoPht(etpDAO.selectLogoPht(etpNum));
+		enterprise.setLogoPht(etpDAO.selectLogoPht(etpNum));
+		System.out.println("INFO:::"+enterprise.getInfoPht());
+		System.out.println("LOGO:::"+enterprise.getLogoPht());
+		infoPht = enterprise.getInfoPht();
+		logoPht = enterprise.getLogoPht();
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
@@ -332,6 +339,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 		////신규 등록의 경우 insert로 이미 컴포넌트 값이 등록되어 있는 사업자의 경우 update로 적용하여 component의 중복을 제거		
 		if(etpDAO.receiveComponentList(etpNum)!=null){	//컴포넌트 신규등록
+			System.err.println("동적템플릿 신규등록자입니다.");
 			int result = etpDAO.insertComponent(component);
 			if(result == 1) {
 				return SUCCESS;
@@ -342,6 +350,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}else{	//컴포넌트 기존에 등록되어 있던 사람
 			//업데이트
 			System.out.println("============기존 컴포넌트 등록 사업자============");
+			System.err.println("동적템플릿 기존등록자입니다.");
 			int result = etpDAO.updateComponent(component);
 			if(result == 1) {
 				return SUCCESS;
@@ -413,6 +422,18 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			}
 		} 
 		return ERROR;
+	}
+	
+	//사업자의 이용자 예약 내역
+	public String reservationHistory() {
+		String loginEmail = (String)session.get("loginId");
+		System.out.println("action"+loginEmail);
+		saleRecords = etpDAO.reservationHistory(loginEmail);
+		if (saleRecords != null) {
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
 	}
 	
 	/////////////////////// 미승인 사업자 게시판 ////////////////////
@@ -753,6 +774,22 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setUpCategory(int upCategory) {
 		this.upCategory = upCategory;
+	}
+
+	public String getInfoPht() {
+		return infoPht;
+	}
+
+	public void setInfoPht(String infoPht) {
+		this.infoPht = infoPht;
+	}
+
+	public String getLogoPht() {
+		return logoPht;
+	}
+
+	public void setLogoPht(String logoPht) {
+		this.logoPht = logoPht;
 	}
 	
 	

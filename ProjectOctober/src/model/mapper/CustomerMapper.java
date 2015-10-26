@@ -42,8 +42,9 @@ public interface CustomerMapper {
 
 	List<PaymentRecord> retrievePaymentRecords();
 	
-	PaymentRecord retrievePaymentRecord(Integer pmtNum);
-	
-	Integer insertCustomerEvaluation(Review record);
+	int insertCustomerEvaluation(Review record);
+
+	PaymentRecord retrievePaymentRecord(Integer rsvNum);
+  /*PaymentRecord retrievePaymentRecord(Integer pmtNum);*/
 
 }
