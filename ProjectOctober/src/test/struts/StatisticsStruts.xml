@@ -112,6 +112,10 @@
 			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
 		</action>
 		
+		<action name="highchart14" class="test.action.Action14" method="highchart14">
+			<result name="success">/jsp/main.jsp</result>	
+		</action>
+		
 		
 		
 		

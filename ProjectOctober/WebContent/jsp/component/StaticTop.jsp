@@ -47,7 +47,11 @@ function saveOutline() {
 };
 
 </script>
-
+<script type="text/javascript">
+function uploadLogoOpen() {
+	window.open("${pageContext.request.contextPath}/enterprise/toLogoUploadPage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
+}
+</script>
 </head>
 <body>
 
@@ -59,8 +63,14 @@ function saveOutline() {
 			<div id='logoCP'>
 			  	<div class="panel-body">
 			  		<!-- img src에 업로드 된 파일이 바로 적용되도록 -->
-			    	<img class="img-responsive" src="http://orig10.deviantart.net/2e58/f/2013/288/b/9/leaf_png_by_iheartsnsdforever-d6qjxl2.png" style="max-width: 200">
-			    	<input type="file" name="datafile" size="40" class="edit">
+			  		<s:if test="logoPht != null">
+			         	<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
+			   			<img src='${pageContext.request.contextPath}/<s:property value="logoPht"/>' class='img-responsive'>
+					</s:if>
+					<s:else>
+						<img class="img-responsive" src="http://orig10.deviantart.net/2e58/f/2013/288/b/9/leaf_png_by_iheartsnsdforever-d6qjxl2.png" style="max-width: 200">
+					</s:else>
+			    	<input type="button" value="사진업로드" onclick="uploadLogoOpen()" class="edit">
 			  	</div>
 			</div>
 		</div>

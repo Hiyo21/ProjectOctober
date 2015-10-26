@@ -17,7 +17,7 @@
     <result column="PMT_AMOUNT" property="pmtAmount" jdbcType="DECIMAL" />
     
     <association property="service" javaType="Service" resultMap="ServiceResultMap"></association>
-    <association property="reservation" javaType="Reservation" resultMap="ReservationResultMap" column="rsv_num"></association>
+    <association property="reservation" javaType="Reservation" resultMap="ReservationResultMap"></association>
   </resultMap>
   
     <resultMap id="ServiceResultMap" type="model.vo.Service" >
@@ -376,5 +376,18 @@
 	<select id="retrievePaymentRecords" resultMap="PaymentRecordResultMap">
 		select * from payment_record p, customer c, reservation r where p.rsv_num = r.rsv_num and c.cst_email = r.cst_email
 	</select>
+	
+
+	<select id="reservationHistory" parameterType="String" resultMap="PaymentRecordResultMap">
+		select p.pmt_num, r.RSV_NUM, s.SVC_TITLE, r.RSV_START_DATE, p.PMT_AMOUNT, r.CST_EMAIL from PAYMENT_RECORD p, RESERVATION r, SERVICE s where p.RSV_NUM=r.RSV_NUM and r.SVC_NUM=s.SVC_NUM and cst_email=#{loginEmail} order by r.RSV_START_DATE desc
+		<!-- select r.RSV_NUM, s.SVC_TITLE from PAYMENT_RECORD p, RESERVATION r, SERVICE s where p.RSV_NUM=r.RSV_NUM and r.SVC_NUM=s.SVC_NUM and cst_email=#{loginEmail} order by r.RSV_START_DATE desc -->
+	</select>
+	
+
+	<select id="insertCustomerEvaluation" parameterType="Review">
+		insert into review values(REVIEW_SEQ.nextval,#{cstEmail},#{etpNum},#{etpEmail},sysdate,#{rvwContent},#{cstJob},#{rvwHygiene},#{rvwComfort},#{rvwTechnique},#{rvwPrice},#{rvwService})
+	</select>
+	
+
 
 </mapper>

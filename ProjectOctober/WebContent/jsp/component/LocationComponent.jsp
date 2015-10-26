@@ -6,7 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=dc4b9eca6f6c59278349f8b7add7e6b1&libraries=services"></script>
+
+</head>
+<body>
+<div class="panel panel-default">
+	<div class="container"> 
+		<div class="row">
+			<div class="col-md-6">
+				<!-- <img class="img-responsive" src="http://maps.googleapis.com/maps/api/staticmap?center=Seoul,Mali&amp;zoom=12&amp;size=400x400&amp;sensor=false"> -->
+				<input type="hidden" id="address" value='서울시 강남구 삼성동'/>   <!--  -->
+				<input type="hidden" id="map">
+				<!-- <div id="map" style="width:100%;height:350px;width:350px;"></div> --> -->
+				<div id="staticMap" style="width:100%;height:300px;width:400px;"></div>
+				
+				<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=dc4b9eca6f6c59278349f8b7add7e6b1&libraries=services"></script>
 <script>
 		var address = document.getElementById('address').value;
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -65,19 +78,6 @@
 		    } 
 		}); 
 	</script>
-</head>
-<body>
-<div class="panel panel-default">
-	<div class="container"> 
-		<div class="row">
-			<div class="col-md-6">
-				<!-- <img class="img-responsive" src="http://maps.googleapis.com/maps/api/staticmap?center=Seoul,Mali&amp;zoom=12&amp;size=400x400&amp;sensor=false"> -->
-				<input type="hidden" id="address" value='<s:property value="enterprise.etpAddress"/>'/>   <!--  -->
-				<input type="hidden" id="map">
-				<!-- <div id="map" style="width:100%;height:350px;width:350px;"></div> --> -->
-				<div id="staticMap" style="width:100%;height:300px;width:400px;"></div>
-				
-				
 				
 
 			</div>

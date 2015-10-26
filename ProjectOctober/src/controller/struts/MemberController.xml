@@ -128,6 +128,6 @@
 		<action name="checkCustomerDuplicateEmail" class="controller.action.MemberAction" method="checkCustomerDuplicateEmail">
 			<result type="json" />
 		</action>
-
+		
 	</package>
 </struts>

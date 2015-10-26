@@ -1,17 +1,17 @@
 package model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import model.common.MyBatisSqlSessionFactory;
+import model.mapper.CustomerMapper;
 import model.mapper.MemberMapper;
 import model.vo.Customer;
-
-import model.mapper.CustomerMapper;
-
 import model.vo.Member;
 import model.vo.PaymentRecord;
+import model.vo.Review;
 
 public class CustomerDAO extends DAOTemplate{
 	
@@ -56,6 +56,38 @@ public class CustomerDAO extends DAOTemplate{
 			return result;
 		} finally {
 			session.close();
+		}
+	}
+	
+
+	//
+	public List<PaymentRecord> reservationHistory(String loginEmail) {
+		//return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).reservationHistory(loginEmail);});
+		SqlSession ss = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			List<PaymentRecord> list = new ArrayList<>();
+			list = ss.selectList("model.mapper.CustomerMapper.reservationHistory", loginEmail);
+			System.out.println(list);
+			return list;
+		} finally {
+			ss.close();
+		}
+	}
+
+	//이용자 평가 INSERT
+	public int insertCustomerEvaluation(Review review) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			System.err.println(review);
+			int result = session.insert("model.mapper.CustomerMapper.insertCustomerEvaluation",review);
+			System.out.println("DAO : "+ review);
+			if(result == 1) session.commit();
+			else session.rollback();
+			System.out.println("DB들어갔다잉");
+			return result;
+		} finally {
+			session.close();
+
 		}
 	}
 }
