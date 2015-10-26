@@ -9,6 +9,7 @@ import model.vo.EnterpriseExample;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
 import model.vo.Review;
+import model.vo.SaleRecord;
 import model.vo.Service;
 
 import org.apache.ibatis.annotations.Param;
@@ -82,7 +83,7 @@ public interface EnterpriseMapper {
 
 	List<Coupon> retrieveCouponList(String etpNum);
 
-	Coupon checkCoupon(Integer cpnNum);
+	Coupon checkCoupon(Coupon coupon);
 
 	String retrieveRegCard(String etpNum);
 
@@ -97,6 +98,8 @@ public interface EnterpriseMapper {
 	String selectInfoPht(String etpNum);
 
 	String selectLogoPht(String etpNum);
+
+	Integer insertSaleRecord(SaleRecord saleRecord);
 
 
 }

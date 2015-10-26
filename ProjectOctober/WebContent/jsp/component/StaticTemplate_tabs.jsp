@@ -127,7 +127,7 @@
 		 			<s:include value="./GalleryComponent.jsp"/>	
 				</div>
 				<div id="locationCP" class="tab-pane fade">
-					<s:include value="./LocationComponent.jsp"/>
+					<%-- <s:include value="./LocationComponent.jsp"/> --%>
 				</div>
 				<div id="reviewCP" class="tab-pane fade">
 					<s:include value="./ReviewComponent.jsp"/>				

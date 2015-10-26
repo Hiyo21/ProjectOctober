@@ -99,11 +99,10 @@
 			<result name="template1">/jsp/component/DynamicTemplate.jsp</result>
 			<result name="template2">/jsp/component/StaticTemplate_tabs.jsp</result>
 			<result name="template3">/jsp/component/StaticTemplate_allInOne.jsp</result>
-			<result>.jsp</result>	
 		</action>
 		
 		<action name="toCustomerMainPage" class="controller.action.MemberAction" method="retrieveCustomerInfo">
-			<result>Main.jsp</result>
+			<result>/jsp/Main.jsp</result>
 		</action>
 		
 		
@@ -129,6 +128,10 @@
 		<action name="checkCustomerDuplicateEmail" class="controller.action.MemberAction" method="checkCustomerDuplicateEmail">
 			<result type="json" />
 		</action>
-
+		
+		<!-- 이용자의 업체 예약 내역 -->
+		<action name="toCstReservationHistoryPage" class="controller.action.MemberAction">
+			<result>ReservationCstHistory.jsp</result>
+		</action>
 	</package>
 </struts>

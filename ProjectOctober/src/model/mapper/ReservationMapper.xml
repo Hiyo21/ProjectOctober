@@ -16,6 +16,7 @@
 		<result column="RSV_GENDER" property="employeeGender" jdbcType="VARCHAR" />
 		<result column="RSV_TITLE" property="rsvTitle" jdbcType="VARCHAR" />
 		<result column="RSV_DESC" property="rsvDesc" jdbcType="VARCHAR"/>
+		<result column="RSV_COST" property="rsvCost" jdbcType="DECIMAL"/>
 		
 		<association property="enterprise" javaType="Enterprise" resultMap="EnterpriseBaseResultMap"/>
 		<association property="customer" javaType="Customer" resultMap="CustomerBaseResultMap"/>
@@ -106,6 +107,9 @@
 		<if test="rsvDesc != null">
 		rsv_desc,
 		</if>
+		<if test="rsvCost != null">
+		rsv_cost,
+		</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 		reservation_seq.nextval, #{svcNum},
@@ -121,6 +125,9 @@
 		</if>
 		<if test="rsvDesc != null">
 		#{rsvDesc},
+		</if>
+		<if test="rsvCost != null">
+		#{rsvCost},
 		</if>
 		</trim>
 	</insert>
@@ -155,6 +162,12 @@
 		<set>
 			<if test="rsvTitle != null">
 				RSV_TITLE = #{rsvTitle},
+			</if>
+			<if test="rsvDesc != null">
+				RSV_DESC = #{rsvDesc},
+			</if>
+			<if test="rsvCost != null">
+				RSV_COST = #{rsvCost},
 			</if>
 			<if test="svcNum != null or svcNum != 0">
 				SVC_NUM = #{svcNum}

@@ -11,6 +11,10 @@ public class PaymentRecord implements Serializable {
     private LocalDateTime pmtTime;
 
     private Integer pmtAmount;
+    
+    private Service service;
+    
+    private Reservation reservation;
 
     private static final long serialVersionUID = 1L;
 
@@ -59,4 +63,20 @@ public class PaymentRecord implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+	public Service getService() {
+		return service;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
 }

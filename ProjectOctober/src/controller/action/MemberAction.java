@@ -174,6 +174,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		Map<String, String> loginInfo = new HashMap<>();
 		loginInfo.put("loginEmail", email);
 		loginInfo.put("loginPassword", password);
+		System.out.println(email + password);
 		member = memDAO.loginResult(loginInfo);
 		System.out.println(member);
 		if(member == null) {
@@ -195,7 +196,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 				else {System.out.println(2);return "enterprise";}*/
 
 			}else if(member.getMemCode() == CUSTOMER_CODE){
-				session.put("customer", DAOFactory.createCustomerDAO().retrieveCustomer(member.getMemEmail()));
+				session.put("customer", memDAO.retrieveCustomerInfo(member.getMemEmail()));
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
@@ -241,6 +242,12 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		else {
 			return "template3";
 		}
+	}
+	
+	public String retrieveCustomerInfo() throws Exception{
+		member = memDAO.retrieveCustomerInfo(String.valueOf(ActionContext.getContext().getSession().get("loginId")));
+		if(member != null) return SUCCESS;
+		return ERROR;
 	}
 	
 	public String retrieveCustomerInfoPerReservation() throws Exception{

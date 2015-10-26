@@ -82,8 +82,11 @@ public class MemberDAO extends DAOTemplate {
 			session.close();
 		}
 	}
-
 	
+	public Member retrieveCustomerInfo(String cstEmail){
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveCustomerInfo(cstEmail);});
+	}
+
 	public MemberMapper fromMapper(SqlSession s){
 		return s.getMapper(MemberMapper.class);
 	}

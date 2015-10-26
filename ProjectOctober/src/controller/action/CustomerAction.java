@@ -1,5 +1,6 @@
 package controller.action;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -41,9 +42,10 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	public String insertPaymentRecord() throws Exception{
 		System.out.println(paymentRecord);
 		System.err.println("나오냐?" + paymentRecord);
+		paymentRecord.setPmtTime(LocalDateTime.now());
 		int result = cstDAO.insertPaymentRecord(paymentRecord);
 		if(result != 0){
-			paymentRecord = cstDAO.retrievePaymentRecord(paymentRecord.getPmtNum());
+			paymentRecord = cstDAO.retrievePaymentRecord(paymentRecord.getRsvNum());
 		}else{
 			return ERROR;
 		}
@@ -70,7 +72,7 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrievePaymentRecords() throws Exception{
-		paymentRecords = cstDAO.retrievePaymentRecords(etpNum);
+		paymentRecords = cstDAO.retrievePaymentRecords();
 		return SUCCESS;
 	}	
 	

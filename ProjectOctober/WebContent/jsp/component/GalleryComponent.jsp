@@ -51,8 +51,8 @@ function uploadOpen() {
 		<div id = "masonry_container" class="grid">
 			<s:iterator value="enterprise.photos">
 				<div class ='item small'>
-					<a class='group' href='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' title='<s:property value="phtUsage"/>'>
-						<img src='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' class='etpImage'>
+					<a class='group' href='${pageContext.request.contextPath}/<s:property value="enterprise.phtAddress"/>' title='<s:property value="enterprise.phtUsage"/>'>
+						<img src='${pageContext.request.contextPath}/<s:property value="enterprise.phtAddress"/>' class='etpImage'>
 					</a>
 				</div>
 			</s:iterator>

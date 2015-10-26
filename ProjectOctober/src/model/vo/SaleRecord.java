@@ -15,6 +15,12 @@ public class SaleRecord implements Serializable {
     private LocalDateTime saleTime;
 
     private Integer saleAmount;
+    
+    private PaymentRecord paymentRecord;
+    
+    private Service service;
+ 
+    private Reservation reservation;
 
     private static final long serialVersionUID = 1L;
 
@@ -81,4 +87,28 @@ public class SaleRecord implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+	public Service getService() {
+		return service;
+	}
+
+	public PaymentRecord getPaymentRecord() {
+		return paymentRecord;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
+	}
+
+	public void setPaymentRecord(PaymentRecord paymentRecord) {
+		this.paymentRecord = paymentRecord;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
 }

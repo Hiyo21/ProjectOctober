@@ -40,10 +40,14 @@ public interface CustomerMapper {
 
 	Integer deletePaymentRecord(Integer pmtNum);
 
-	List<PaymentRecord> retrievePaymentRecords(String etpNum);
+	List<PaymentRecord> retrievePaymentRecords();
 	
+<<<<<<< HEAD
 	PaymentRecord retrievePaymentRecord(Integer pmtNum);
 	
 	int insertCustomerEvaluation(Review record);
+=======
+	PaymentRecord retrievePaymentRecord(Integer rsvNum);
+>>>>>>> refs/remotes/origin/master
   
 }
