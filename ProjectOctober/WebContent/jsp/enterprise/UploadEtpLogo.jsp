@@ -39,8 +39,8 @@ function closing() {
 				
 			<div class="row">
 				<div class="col-xs-12">
-					<s:form action="imageUploadAction" method="POST" enctype="multipart/form-data">
-						<h3>갤러리로 업로드할 파일을 선택해 주세요.</h3>
+					<s:form action="logoUploadAction" method="POST" enctype="multipart/form-data">
+						<h3>로고로 업로드할 파일을 선택해 주세요.</h3>
 						<s:file name="imageToUpload" />
 						<%-- <input type="hidden" name="etpNum" value="${enterprise.etpNum}" id="etpNumHidden"/> --%>
 						<input type="hidden" name="etpEmail" value="${enterprise.etpEmail}" id="etpEmailHidden" />
@@ -52,7 +52,7 @@ function closing() {
 			<div class="row">
 				<div class="col-xs-12">
 					<s:if test="uploaded != null">
-						<p>사업자 번호 : <s:property value="etpNum"/> 님이 업로드 하신 갤러리 사진 </p>
+						<p>사업자 번호 : <s:property value="etpNum"/> 님이 업로드 하신 로고 사진 </p>
 						
 						<s:if test="uploaded == true">
 							<p style="color: green;"> 업로드에 성공하였습니다!</p>

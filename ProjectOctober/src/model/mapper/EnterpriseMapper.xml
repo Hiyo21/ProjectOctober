@@ -9,19 +9,15 @@
 		<result column="ETP_ADDRESS" jdbcType="VARCHAR" property="etpAddress" />
 		<result column="ETP_ZIPCODE" jdbcType="VARCHAR" property="etpZipcode" />
 		<result column="ETP_TITLE" jdbcType="VARCHAR" property="etpTitle" />
-		<result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour"
-			typeHandler="model.mapper.typehandler.LocalTimeHandler" />
-		<result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour"
-			typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+		<result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+		<result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
 		<result column="ETP_PHONE" jdbcType="VARCHAR" property="etpPhone" />
 		<result column="ETP_MALE_STAFF" jdbcType="DECIMAL" property="etpMaleStaff" />
 		<result column="ETP_FEMALE_STAFF" jdbcType="DECIMAL" property="etpFemaleStaff" />
 		<result column="ETP_CAPACITY" jdbcType="DECIMAL" property="etpCapacity" />
 		<result column="ETP_RSV_DEADLINE" jdbcType="DECIMAL" property="etpRsvDeadline" />
-		<result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL"
-			property="etpSelfNotification" />
-		<result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL"
-			property="etpCstNotification" />
+		<result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
+		<result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
 		<result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
 		<result column="ETP_THEME_TYPE" jdbcType="DECIMAL" property="etpThemeType" />
 		<result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
@@ -32,25 +28,17 @@
 		<result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
 		<result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
 
-		<association property="workingDays" javaType="WorkingDays"
-			resultMap="WorkingDaysResultMap" />
-		<association property="component" javaType="Component"
-			resultMap="ComponentResultMap" />
-		<association property="holiday" javaType="Holiday"
-			resultMap="HolidayResultMap" />
-		<association property="photoLocation" javaType="PhotoLocation"
-			resultMap="PhotoLocationResultMap" />
+		<association property="workingDays" javaType="WorkingDays" resultMap="WorkingDaysResultMap" />
+		<association property="component" javaType="Component" resultMap="ComponentResultMap" />
+		<association property="holiday" javaType="Holiday" resultMap="HolidayResultMap" />
+		<association property="photoLocation" javaType="PhotoLocation" resultMap="PhotoLocationResultMap" />
 
 		<collection property="reviews" ofType="Review" resultMap="ReviewResultMap" />
-		<collection property="notifications" ofType="Notification"
-			resultMap="NotificationResultMap" />
-		<collection property="reservations" ofType="Reservation"
-			resultMap="ReservationResultMap" />
-		<collection property="services" ofType="Service"
-			resultMap="ServiceResultMapForEnterprise" />
+		<collection property="notifications" ofType="Notification" resultMap="NotificationResultMap" />
+		<collection property="reservations" ofType="Reservation" resultMap="ReservationResultMap" />
+		<collection property="services" ofType="Service" resultMap="ServiceResultMapForEnterprise" />
 		<collection property="coupons" ofType="Coupon" resultMap="CouponResultMap" />
-		<collection property="saleRecords" ofType="SaleRecord"
-			resultMap="SaleRecordResultMap" />
+		<collection property="saleRecords" ofType="SaleRecord" resultMap="SaleRecordResultMap" />
 	</resultMap>
 
 	<!-- Component Result Map -->
@@ -59,14 +47,10 @@
 		<result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
 		<result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
 		<result column="COMPONENT_ID" property="componentID" jdbcType="VARCHAR" />
-		<result column="COMPONENT_Width" property="componentWidth"
-			jdbcType="DECIMAL" />
-		<result column="COMPONENT_Height" property="componentHeight"
-			jdbcType="DECIMAL" />
-		<result column="COMPONENT_POS_X" property="componentPosX"
-			jdbcType="DECIMAL" />
-		<result column="COMPONENT_POS_Y" property="componentPosY"
-			jdbcType="DECIMAL" />
+		<result column="COMPONENT_Width" property="componentWidth" jdbcType="DECIMAL" />
+		<result column="COMPONENT_Height" property="componentHeight" jdbcType="DECIMAL" />
+		<result column="COMPONENT_POS_X" property="componentPosX" jdbcType="DECIMAL" />
+		<result column="COMPONENT_POS_Y" property="componentPosY" jdbcType="DECIMAL" />
 	</resultMap>
 
 	<!-- Coupon ResultMap -->
@@ -77,10 +61,8 @@
 		<result column="CPN_TITLE" property="cpnTitle" jdbcType="VARCHAR" />
 		<result column="CPN_CODE" property="cpnCode" jdbcType="VARCHAR" />
 		<result column="CPN_RATE" property="cpnRate" jdbcType="DECIMAL" />
-		<result column="CPN_START_DATE" property="cpnStartDate"
-			jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
-		<result column="CPN_END_DATE" property="cpnEndDate" jdbcType="DATE"
-			typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="CPN_START_DATE" property="cpnStartDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="CPN_END_DATE" property="cpnEndDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
 	</resultMap>
 
 	<!-- Holiday ResultMap -->
@@ -88,8 +70,7 @@
 		<id column="HOL_NUM" property="holNum" jdbcType="DECIMAL" />
 		<result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
 		<result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
-		<result column="HOL_DATE" property="holDate" jdbcType="DATE"
-			typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="HOL_DATE" property="holDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
 	</resultMap>
 
 	<!-- Photo Location ResultMap -->
@@ -98,11 +79,9 @@
 		<result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
 		<result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
 		<result column="PHT_USAGE" property="phtUsage" jdbcType="VARCHAR" />
-		<result column="PHT_DESCRIPTION" property="phtDescription"
-			jdbcType="VARCHAR" />
+		<result column="PHT_DESCRIPTION" property="phtDescription" jdbcType="VARCHAR" />
 		<result column="PHT_ADDRESS" property="phtAddress" jdbcType="VARCHAR" />
-		<result column="PHT_UPLOAD_DATE" property="phtUploadDate"
-			jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="PHT_UPLOAD_DATE" property="phtUploadDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
 	</resultMap>
 
 	<!-- Reservation ResultMap -->
@@ -113,10 +92,8 @@
 		<result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
 		<result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
 		<result column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
-		<result column="RSV_START_DATE" property="rsvStartDate"
-			jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
-		<result column="RSV_END_DATE" property="rsvEndDate" jdbcType="DATE"
-			typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="RSV_START_DATE" property="rsvStartDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="RSV_END_DATE" property="rsvEndDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
 		<result column="RSV_STATUS" property="rsvStatus" jdbcType="DECIMAL" />
 		<result column="RSV_GENDER" property="employeeGender" jdbcType="VARCHAR" />
 		<result column="RSV_TITLE" property="rsvTitle" jdbcType="VARCHAR" />
@@ -130,14 +107,12 @@
 		<result column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
 		<result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
 		<result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
-		<result column="RVW_INPUT_DATE" property="rvwInputDate"
-			jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="RVW_INPUT_DATE" property="rvwInputDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
 		<result column="RVW_CONTENT" property="rvwContent" jdbcType="VARCHAR" />
 		<result column="CST_JOB" property="cstJob" jdbcType="VARCHAR" />
 		<result column="RVW_HYGIENE" property="rvwHygiene" jdbcType="DECIMAL" />
 		<result column="RVW_COMFORT" property="rvwComfort" jdbcType="DECIMAL" />
-		<result column="RVW_TECHNIQUE" property="rvwTechnique"
-			jdbcType="DECIMAL" />
+		<result column="RVW_TECHNIQUE" property="rvwTechnique" jdbcType="DECIMAL" />
 		<result column="RVW_PRICE" property="rvwPrice" jdbcType="DECIMAL" />
 		<result column="RVW_SERVICE" property="rvwService" jdbcType="DECIMAL" />
 	</resultMap>
@@ -150,10 +125,17 @@
 		<result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
 		<result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
 		<result column="NTF_MESSAGE" property="ntfMessage" jdbcType="VARCHAR" />
-		<result column="NTF_TIME" property="ntfTime" jdbcType="DATE"
-			typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="NTF_TIME" property="ntfTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
 		<result column="NTF_READ" property="ntfRead" jdbcType="DECIMAL" />
 	</resultMap>
+
+<!-- Payment Record ResultMap For Enterprise -->
+  <resultMap id="PaymentRecordResultMapForEnterprise" type="model.vo.PaymentRecord">
+  	<id column="PMT_NUM" property="pmtNum" jdbcType="DECIMAL"/>
+  	<result column="RSV_NUM" property="rsvNum" jdbcType="DECIMAL"/>
+  	<result column="PMT_TIME" property="pmtTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+  	<result column="PMT_AMOUNT" property="pmtAmount" jdbcType="DECIMAL"/>
+  </resultMap>
 
 	<!-- Sale Record ResultMap -->
 	<resultMap id="SaleRecordResultMap" type="model.vo.SaleRecord">
@@ -161,14 +143,11 @@
 		<result column="PMT_NUM" property="pmtNum" jdbcType="DECIMAL" />
 		<result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
 		<result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
-		<result column="SALE_TIME" property="saleTime" jdbcType="DATE"
-			typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="SALE_TIME" property="saleTime" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
 		<result column="SALE_AMOUNT" property="saleAmount" jdbcType="DECIMAL" />
-
-		<association property="service" javaType="Service"
-			resultMap="ServiceResultMapForEnterprise"></association>
-		<association property="reservation" javaType="Reservation"
-			resultMap="ReservationResultMap" column="rsv_num"></association>
+ <association property="paymentRecord" javaType="PaymentRecord" resultMap="PaymentRecordResultMapForEnterprise"></association>
+		<association property="service" javaType="Service" resultMap="ServiceResultMapForEnterprise"></association>
+		<association property="reservation" javaType="Reservation" resultMap="ReservationResultMap" column="rsv_num"></association>
 	</resultMap>
 
 	<!-- Service Record ResultMap -->
@@ -180,11 +159,9 @@
 		<result column="SVC_CODE" property="svcCode" jdbcType="VARCHAR" />
 		<result column="SVC_COST" property="svcCost" jdbcType="DECIMAL" />
 		<result column="SVC_TIME" property="svcTime" jdbcType="VARCHAR" />
-		<result column="SVC_DESCRIPTION" property="svcDescription"
-			jdbcType="VARCHAR" />
+		<result column="SVC_DESCRIPTION" property="svcDescription" jdbcType="VARCHAR" />
 		<result column="SVC_CATEGORY" property="svcCategory" jdbcType="VARCHAR" />
-		<result column="SVC_SPECIALIZE" property="svcSpecialize"
-			jdbcType="VARCHAR" />
+		<result column="SVC_SPECIALIZE" property="svcSpecialize" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<resultMap id="WorkingDaysResultMap" type="model.vo.WorkingDays">
@@ -207,19 +184,15 @@
 		<result column="ETP_ADDRESS" jdbcType="VARCHAR" property="etpAddress" />
 		<result column="ETP_ZIPCODE" jdbcType="VARCHAR" property="etpZipcode" />
 		<result column="ETP_TITLE" jdbcType="VARCHAR" property="etpTitle" />
-		<result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour"
-			typeHandler="model.mapper.typehandler.LocalTimeHandler" />
-		<result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour"
-			typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+		<result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+		<result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
 		<result column="ETP_PHONE" jdbcType="VARCHAR" property="etpPhone" />
 		<result column="ETP_MALE_STAFF" jdbcType="DECIMAL" property="etpMaleStaff" />
 		<result column="ETP_FEMALE_STAFF" jdbcType="DECIMAL" property="etpFemaleStaff" />
 		<result column="ETP_CAPACITY" jdbcType="DECIMAL" property="etpCapacity" />
 		<result column="ETP_RSV_DEADLINE" jdbcType="DECIMAL" property="etpRsvDeadline" />
-		<result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL"
-			property="etpSelfNotification" />
-		<result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL"
-			property="etpCstNotification" />
+		<result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
+		<result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
 		<result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
 		<result column="ETP_THEME_TYPE" jdbcType="DECIMAL" property="etpThemeType" />
 		<result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
@@ -230,8 +203,7 @@
 		<result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
 		<result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
 
-		<result column="MEM_JOINED_DATE" jdbcType="DATE" property="memJoinedDate"
-			typeHandler="model.mapper.typehandler.LocalDateHandler" />
+		<result column="MEM_JOINED_DATE" jdbcType="DATE" property="memJoinedDate" typeHandler="model.mapper.typehandler.LocalDateHandler" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
@@ -569,8 +541,7 @@
 	</update>
 	<cache />
 
-	<select id="selectSvcCategory" resultType="Service"
-		parameterType="String">
+	<select id="selectSvcCategory" resultType="Service" parameterType="String">
 		select * from service where etp_num = #{etpNum} and svc_category =
 		#{svcCategory}
 	</select>
@@ -583,33 +554,28 @@
 		select * from review where etp_num = #{etpNum}
 	</select>
 
-	<select id="selectPhotoList" parameterType="String"
-		resultMap="PhotoLocationResultMap">
+	<select id="selectPhotoList" parameterType="String" resultMap="PhotoLocationResultMap">
 		select * from photo_location where etp_num = #{etpNum} and pht_usage = 'gal'
 	</select>
 
 	<select id="selectInfoPht" parameterType="String" resultType="String">
-		select * from photo_location where etp_num = #{etpNum} and pht_usage =
-		'info'
+		select pht_address from (select rownum, pht_address from (select photo_num, pht_address from photo_location where etp_num = #{etpNum} and pht_usage = 'info' order by pht_upload_date desc) where rownum=1)photo
 	</select>
 
 	<select id="selectLogoPht" parameterType="String" resultType="String">
-		select * from photo_location where etp_num = #{etpNum} and pht_usage =
-		'logo'
+  		select pht_address from (select rownum, pht_address from (select photo_num, pht_address from photo_location where etp_num = #{etpNum} and pht_usage = 'logo' order by pht_upload_date desc) where rownum=1)photo
 	</select>
 
 	<!-- Component Mapper -->
 
 	<insert id="insertComponent" parameterType="Component">
-		insert into COMPONENT
-		values
+		insert into COMPONENT values
 		(component_seq.nextval, #{etpNum}, #{etpEmail}, #{componentID}, 
 		#{componentWidth}, #{componentHeight}, #{componentPosX}, #{componentPosY})
 	</insert>
 
 
-	<select id="receiveComponent" resultType="Component"
-		parameterType="String">
+	<select id="receiveComponent" resultType="Component" parameterType="String">
 		select * from component where etp_num = #{etpNum}
 	</select>
 
@@ -633,6 +599,14 @@
 		insert into
 		PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum},
 		#{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
+	</insert>
+	
+	<insert id="insertInfoImage" parameterType="PhotoLocation">
+		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
+	</insert>
+	
+	<insert id="insertLogoImage" parameterType="PhotoLocation">
+		insert into PHOTO_LOCATION values(photo_location_seq.nextval, #{etpNum}, #{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
 	</insert>
 
 
@@ -671,6 +645,13 @@
 		order by addr1 ASC
 	</select>
 
+	<select id="reservationHistory" parameterType="String" resultMap="SaleRecordResultMap">
+		select s.SALE_NUM, r.RSV_NUM, r.CST_EMAIL, v.SVC_TITLE, r.RSV_START_DATE, s.SALE_AMOUNT
+			from SALE_RECORD s, RESERVATION r, SERVICE v, PAYMENT_RECORD p
+			where r.RSV_NUM=p.RSV_NUM and p.PMT_NUM=s.PMT_NUM and r.SVC_NUM=v.SVC_NUM and r.ETP_EMAIL=#{loginEmail}
+			order by r.RSV_START_DATE desc
+	</select>
+	
 	<!-- 사업자 승인 게시판 Mapper -->
 
 	<select id="noRegisterEtp" parameterType="String"

@@ -53,6 +53,10 @@ public interface EnterpriseMapper {
     List<PhotoLocation> selectPhotoList(String etpNum);
 
     Integer insertImage(PhotoLocation loc);
+    Integer insertInfoImage(PhotoLocation loc);
+    Integer insertLogoImage(PhotoLocation loc);
+    
+    List<SaleRecord> reservationHistory(String loginEmail);
     
     ///////////////// 컴포넌트
     

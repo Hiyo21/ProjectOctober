@@ -60,6 +60,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	private int upCategory;//이미지 업로드시 용도 구별 위한 변수
 	
+	private String infoPht;
+	private String logoPht;
+	
 
 
 	public EnterpriseAction() {
@@ -254,7 +257,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 		enterprise.setInfoPht(etpDAO.selectInfoPht(etpNum));
-		enterprise.setInfoPht(etpDAO.selectLogoPht(etpNum));
+		enterprise.setLogoPht(etpDAO.selectLogoPht(etpNum));
+		System.out.println("INFO:::"+enterprise.getInfoPht());
+		System.out.println("LOGO:::"+enterprise.getLogoPht());
+		infoPht = enterprise.getInfoPht();
+		logoPht = enterprise.getLogoPht();
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
@@ -415,6 +422,18 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			}
 		} 
 		return ERROR;
+	}
+	
+	//사업자의 이용자 예약 내역
+	public String reservationHistory() {
+		String loginEmail = (String)session.get("loginId");
+		System.out.println("action"+loginEmail);
+		saleRecords = etpDAO.reservationHistory(loginEmail);
+		if (saleRecords != null) {
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
 	}
 	
 	/////////////////////// 미승인 사업자 게시판 ////////////////////
@@ -755,6 +774,22 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setUpCategory(int upCategory) {
 		this.upCategory = upCategory;
+	}
+
+	public String getInfoPht() {
+		return infoPht;
+	}
+
+	public void setInfoPht(String infoPht) {
+		this.infoPht = infoPht;
+	}
+
+	public String getLogoPht() {
+		return logoPht;
+	}
+
+	public void setLogoPht(String logoPht) {
+		this.logoPht = logoPht;
 	}
 	
 	
