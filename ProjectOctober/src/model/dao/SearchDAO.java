@@ -36,4 +36,6 @@ public class SearchDAO {
 			session.close();
 		}
 	}
+	
 }
+	

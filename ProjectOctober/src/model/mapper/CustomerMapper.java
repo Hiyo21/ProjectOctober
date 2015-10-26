@@ -4,6 +4,7 @@ import java.util.List;
 import model.vo.Customer;
 import model.vo.CustomerExample;
 import model.vo.PaymentRecord;
+import model.vo.Review;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
@@ -39,8 +40,11 @@ public interface CustomerMapper {
 
 	Integer deletePaymentRecord(Integer pmtNum);
 
-	List<PaymentRecord> retrievePaymentRecords(String etpNum);
+	List<PaymentRecord> retrievePaymentRecords();
 	
-	PaymentRecord retrievePaymentRecord(Integer pmtNum);
-  
+	int insertCustomerEvaluation(Review record);
+
+	PaymentRecord retrievePaymentRecord(Integer rsvNum);
+  /*PaymentRecord retrievePaymentRecord(Integer pmtNum);*/
+
 }

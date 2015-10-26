@@ -14,6 +14,10 @@ public class OneclickPayment implements Serializable {
     private String cardCvc;
 
     private String cardExpire;
+    
+    private Service service;
+    
+    private Reservation reservation;
 
     private static final long serialVersionUID = 1L;
 
@@ -80,4 +84,20 @@ public class OneclickPayment implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+	public Service getService() {
+		return service;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
 }

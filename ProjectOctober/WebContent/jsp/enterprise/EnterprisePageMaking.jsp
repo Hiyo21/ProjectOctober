@@ -17,10 +17,17 @@
 </style>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/lightbox/colorbox.css">
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/css/lightbox/jquery.colorbox.js"></script>
+<s:if test="enterprise.etpTemplateType == null">
+	<script>
+	$('.group').colorbox({
+		rel:'group',
+		open: true
+	});
+	</script>
+</s:if>
 <script>
 $(document).ready(function() {
 	$('#b1').on('click', first);	//첫번째 버튼에 클릭 이벤트 생성
@@ -29,10 +36,6 @@ $(document).ready(function() {
 	$("#one").click(function(){$("#myModal1").modal();});		//첫번째 미리보기 이미지를 클릭하면 모달 실행
 	$("#two").click(function(){$("#myModal2").modal();});		//두번째 미리보기 이미지를 클릭하면 모달 실행
 	$("#three").click(function(){$("#myModal3").modal();});		//세번째 미리보기 이미지를 클릭하면 모달 실행
-	$('.group').colorbox({
-		rel:'group',
-		open: true
-	});
 });
 
 function first() {

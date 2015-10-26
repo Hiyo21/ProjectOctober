@@ -140,6 +140,7 @@ tab-content{
 		     				<div id="mapPage">
     					<div class="mapImgD">
 							<h2>[ 지역 검색 ]</h2>
+<<<<<<< HEAD
 							<a href="#"><img src="${pageContext.request.contextPath}/image/KoreaMap.jpg" alt="KoreaMap" usemap="#KoreaMap" class="mapImg" /></a>
 							<map name="KoreaMap" id="KoreaMap">	
 								<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="Seoul" />
@@ -158,6 +159,26 @@ tab-content{
 								<area shape="rect" coords="178,169,205,196" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=울산" alt="Ulsan" />
 								<area shape="rect" coords="178,196,201,220" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=부산" alt="Busan" />
 								<area shape="rect" coords="10,270,54,289" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=제주" alt="Jeju" />
+=======
+							<a href="#"><img src="${pageContext.request.contextPath}/image/img_map_12.png" alt="대한민국지도" usemap="#img_map_1" class="mapImg" /></a>
+							<map name="img_map_1" id="img_map_1">	
+								<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="서울" />
+								<area shape="rect" coords="37,45,57,62" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=인천" alt="인천" />
+								<area shape="rect" coords="31,18,93,87" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=경기" alt="경기" />
+								<area shape="rect" coords="95,4,192,85" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=강원" alt="강원" />
+								<area shape="rect" coords="89,90,124,149" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=충북" alt="충북" />
+								<area shape="rect" coords="21,92,72,147" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=충남" alt="충남" />
+								<area shape="rect" coords="73,123,89,144" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=대전" alt="대전" />
+								<area shape="rect" coords="31,150,102,194" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=전북" alt="전북" />
+								<area shape="rect" coords="34,204,60,218" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=광주" alt="광주" />
+								<area shape="rect" coords="17,195,97,256" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=전남" alt="전남" />
+								<area shape="rect" coords="138,154,165,178" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=대구" alt="대구" />
+								<area shape="rect" coords="126,87,205,164" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=경북" alt="경북" />
+								<area shape="rect" coords="102,164,177,229" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=경남" alt="경남" />
+								<area shape="rect" coords="178,169,205,196" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=울산" alt="울산" />
+								<area shape="rect" coords="178,196,201,220" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=부산" alt="부산" />
+								<area shape="rect" coords="10,270,54,289" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=제주" alt="제주" />
+>>>>>>> refs/remotes/origin/master
 							</map>			
 						</div><!-- 지도 UI -->
 										<script type="text/javascript">	
@@ -177,7 +198,11 @@ tab-content{
 											})
 											$('.mapImg').mouseout(function(){
 												
+<<<<<<< HEAD
 												mapSrc = "${pageContext.request.contextPath}/image/KoreaMap.jpg";
+=======
+												mapSrc = "${pageContext.request.contextPath}/image/img_map_12.png";
+>>>>>>> refs/remotes/origin/master
 												
 												
 												$(".mapImg").attr("src", mapSrc);

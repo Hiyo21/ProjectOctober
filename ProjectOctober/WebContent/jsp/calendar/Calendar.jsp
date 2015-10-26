@@ -34,6 +34,9 @@
 
 <script>
 	var enterpriseInfo = {};
+	var serviceInfo = {};
+
+	
 	$(function(){
 		
 		//--------------삭제시, event 객체 드래그 할 때 좌표 읽는 데 사용 -------------//
@@ -48,6 +51,12 @@
 		$("#inputEmployeeGenderCheckBox").bootstrapToggle({
 			on: "여성",
 			off: "남성"
+		}).change(function(){
+			if($(this).prop('checked')){
+				$('#genderCheckField').html($(this).attr('data-on'));
+			}else{
+				$('#genderCheckField').html($(this).attr('data-off'));
+			}
 		});
 		
 		//-----------------------사전에 정보 불러오기 : Enterprise 정보 --------------------------------//
@@ -71,6 +80,27 @@
 			}
 		});
 		
+		serviceInfo = $.ajax({
+			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+			dataType: 'json',
+			data: {'etpNum':${etpNum}},
+			async: false,
+			success: function(data){
+				svcList = data.serviceList;
+				$("#inputServiceList").html('');
+				$("#inputServiceList").append("<option value='' disabled selected hidden>선택하세요.</option>");
+				
+				$.each(svcList, function(i, d){
+					$("#inputServiceList").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
+					$("#externalServiceList").append("<div class='fc-event' id='external" + i + "' value='" + d.svcNum + "' duration='" + d.svcTime + "'>" + d.svcTitle + "</div><br>");
+					console.log($("#externalServiceList"));
+				});
+			},
+			error: function(){
+				console.log("receive service list error");
+			}
+		});
+		
 		console.log(enterpriseInfo.responseJSON.enterprise.workingDays.dow);
 		
 		//업체 영업 시작 시간 설정
@@ -79,655 +109,1386 @@
 		var endTT = enterpriseInfo.responseJSON.enterprise.end;
 		//업체 휴무일 설정
 		var dowTT = enterpriseInfo.responseJSON.enterprise.workingDays.dow;
+		var etpNumCheck = '' + enterpriseInfo.responseJSON.enterprise.etpNum;
+		var etpNumCheckSt = '<s:property value="#session.loginEtpNum"/>';
+
+		var etpNameCheck = '' + enterpriseInfo.responseJSON.enterprise.etpOwner;
+		var etpNameCheck = '<s:property value="#session.enterprise.etpOwner"/>';
+
+		var etpMemCodeCheckSt = '<s:property value="#session.memCode"/>';
 		
 		//----------------------------------Full Calendar 시작.------------------------------------//
+		if(etpNumCheckSt == etpNumCheck){
 		
-		//TODO: session 검사해서, 사업자 일때랑, 일반 이용자일 때, 그리고 아무것도 안 했을 때 구분.
-		var calendar = $('#calendar').fullCalendar({
-			header: {
-				left:'prev,next today',
-				center: 'title',
-				right: 'month, agendaWeek, agendaDay,list'
-			},
-			lang: 'ko',
-			theme: true,
-			defaultView : 'agendaWeek',
-			selectable: true,
-			selectHelper: true,
-			scrollTime: '09:00:00',	
-			minTime: startTT,
-			maxTime: endTT,
-			businessHours : {
-				start: startTT,
-				end: endTT,
-				dow: dowTT,
-			},
-			eventConstraint: "businessHours",
-			
-			
-			//----------------- 기존 존재하는 이벤트 클릭 시 -----------------------//
-			
-			eventClick: function(event, jsEvent, view){
-				$("#reservationUpdateBody").hide();
-		        
-				//---------------------각 예약당 회원 정보  가지고 오기 ----------------//
-
-				$(this).click(function(){
-		        	$.ajax({
-	        			url: '${pageContext.request.contextPath}/member/retrieveCustomerInfoPerReservation.action',
-	        			dataType: 'json',
-	        			async: false,
-	        			data: {"cstEmail": event.cstEmail,
-	        					"rsvNum": event.id
-	        				},
-	        			success: function(data){
-							event.cstPhone = data.member.memPhone;
-							event.cstAddress = data.member.customer.cstAddress;
-							event.cstZipcode = data.member.customer.cstZipcode;
-							event.cstOneclick = data.member.customer.cstOneclick;
-							event.cstGender = data.member.customer.cstGender;
-							event.cstName = data.member.memName;
-	        			},
-	        			error: function(){
-	        				console.log("receive service list error");
-	        			}
-	        		});
-		        	
-		        	//--------------- 업체 당 변경 가능한 서비스 리스트 가져오기 --------------//
-		        	
-		        	$.ajax({
-	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
-	        			dataType: 'json',
-	        			data: {"etpNum" : ${etpNum}},
-	        			async: false,
-	        			success: function(data){
-	        				var services = data.serviceList;
-	        				$("#reservationUpdateSelectService").html('');
-	        				$("#reservationUpdateSelectService").append("<option value='' disabled selected>선택하세요.</option>");
-	        				$.each(services, function(i, d){
-	        					$("#reservationUpdateSelectService").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
-	        				});   				
-	        			},
-	        			error: function(){
-	        				console.log("receive service list error");
-	        			}
-	        		});
-		        	
-		        	//--------------------- 받아온 값들로 기존 예약 상세내용 리스트 뿌리기 -----------------------//
-		        	
-		        	console.log(event);
-		        	//$("#calendar").fullCalendar('removeEvents');
-					//$("#calendar").fullCalendar('removeEventSource', event);
-					//$('#calendar').fullCalendar('addEventSource', event);
-					$('#calendar').fullCalendar('refetchEvents');
-					$('#calendar').fullCalendar('rerenderEvents');
-		        	$("#updateModalTitle").html(event.title);
-		        	$("#updateModalEventId").html(event.id);
-		        	$("#updateModalCustomerEmail").html(event.cstEmail);
-		        	$('#updateModalCustomerPhone').html(event.cstPhone);
-		            $("#updateModalStartTime").html(moment(event.start).format('MMM Do A h:mm '));
-		            $("#updateModalEndTime").html(moment(event.end).format('MMM Do A h:mm '));
-		            $('#updateModalCustomerName').html(event.cstName);
-		            $("#updateModalSvcTitle").html(event.svcTitle);
-		            $('#updateModalSvcCost').html(event.svcCost + "원");
-		            $("#reservationUpdateTitle").attr("value", event.title);
-		            $("#reservationUpdateDescription").html(event.svcDescription);
-		            $('#updateModal').modal();
-		        });
-
-				
-				//----------------------변경 가능한 내용들 토글로 보이게 하기 --------------------------//
-				$("#updateReservationShowBtn").off("click");
-		        $("#updateReservationShowBtn").click(function(){
-		        	var options ={};
-		            $("#reservationUpdateBody").toggle("clip",options,500);
-		        });
-				
-				//---------------------- 변경 내용 중 서비스 리스트 클릭 하면 그 값 가져가는 거 확인 하는 곳 ----------------//
-		        $("#reservationUpdateSelectService").off("change");
-		        $("#reservationUpdateSelectService").change(function(){
-		        	console.log($(this).val());
-		        	console.log($("#reservationUpdateTitle").val());
-		        });
-				
-				$("#closeReservationBtn").click(function(event){
-					$('#insertModal').modal('hide');
-					$("#calendar").fullCalendar('removeEvents');
-					$("#calendar").fullCalendar('removeEventSource', event);
-					$('#calendar').fullCalendar('addEventSource', event);
-					$('#calendar').fullCalendar('refetchEvents');
-					$('#calendar').fullCalendar('rerenderEvents');
-				});
-				
-		        //--------------------- 예약 내용 변경 신청 AJAX로 하는 기능 ---------------------------------//
-     
-		        $("#updateReservationBtnGo").off("click");
-		        $("#updateReservationBtnGo").click(function(){
-		        	console.log($("#reservationUpdateDateStartTime").val());
-		        	
-					 var reservation = {
-							"reservation.rsvNum" : event.id,
-							"reservation.svcNum" : $("#reservationUpdateSelectService").val(),
-							"reservation.cpnNum" : event.cpnNum,
-							"reservation.etpNum" : event.etpNum,
-							"reservation.etpEmail" : event.etpEmail,
-							"reservation.cstEmail" : event.cstEmail,
-							"reservation.rsvStatus" : event.rsvStatus,
-							"reservation.rsvTitle": $("#reservationUpdateTitle").val(),
-							"reservation.start" : event.start.toISOString(),
-							"reservation.end" : event.end.toISOString(),
-							"reservation.status" : event.status,
-							"reservation.employeeGender" : event.employeeGender,
-						};
-					
-					console.log(reservation);
-					$.ajax({
-						url: '${pageContext.request.contextPath}/enterprise/updateReservationDetailsByEnterprise.action',
-						dataType: 'json',
-						data: reservation,
-						contentType: 'application/json; charset=UTF-8',
-						success: function(data){
-							alert('success!');
-							console.log(event);
-							//$("#calendar").fullCalendar('removeEvents');
-							//$("#calendar").fullCalendar('removeEventSource', event);
-							//$('#calendar').fullCalendar('addEventSource', event);
-							$('#calendar').fullCalendar('refetchEvents');
-							$('#calendar').fullCalendar('rerenderEvents');
-							$('#updateModal').modal('hide');
-						},
-						error: function(){
-							console.log('fail!');
-						}
-					});	
-		        });
-			},
-			//----------------------------------------------------------------------------------------//
-			
-			
-			//select: 빈 칸에 눌렀을 때  
-			select: function(start, end, jsEvent, view, allDay, e){					
-					console.log(jsEvent);
-					console.log(view);
-					console.log(e);
-				  var coupons ={};
-				  var camUseCoupon = false;
-				  var cpnNum = 0;
-				  var cpnCodeInput = '';
-				  var svcList =[];
-				  var svcDetailList =[];
-				  
-					$('#inputEmployeeGenderCheckBox').change(function(){
-						if($(this).prop('checked')){
-							$('#genderCheckField').html($(this).attr('data-on'));
-						}else{
-							$('#genderCheckField').html($(this).attr('data-off'));
-						}
-					});
-				  
-				//------------------------------Insert 기능 시작 ----------------------------//
-					$.ajax({
-	        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
-	        			dataType: 'json',
-	        			data: {'etpNum':${etpNum}},
-	        			async: false,
-	        			success: function(data){
-	        				svcList = data.serviceList;
-	        				$("#inputServiceList").html('');
-	        				$("#inputServiceList").append("<option value='' disabled selected hidden>선택하세요.</option>");
-	        				
-	        				$.each(svcList, function(i, d){
-	        					$("#inputServiceList").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
-	        					/* $("#inputServiceList").append("<option value='99934'>테스트</option>"); */
-	        					svcDetailList.push(d);
-	        				});   				
-	        			},
-	        			error: function(){
-	        				console.log("receive service list error");
-	        			}
-	        		});
-					
-					$.ajax({
-						  url: '${pageContext.request.contextPath}/enterprise/retrieveCouponList.action',
-						  dataType: 'json',
-						  data: {'etpNum':${etpNum}},
-						  success: function(data){
-							  cpnList = [];
-							  cpnList = data.couponList;
-							  $("#cpnList").html('');
-							  $("#cpnList").append("<option value='' disabled selected>선택하세요</option>");
-							  $("#inputCpnCodeField").prop("disabled", true);
-							  $.each(cpnList, function(i, d){
-								  $("#cpnList").append("<option value='" + d.cpnNum + "'>" + d.cpnTitle + "</option>");
-							  });
-						  },
-						  error: function(){
-							  console.log("coupon retrieval error!");
-						  }
-					  });
-					  
-				//----------------------------------------------------------------------------------//
+			//TODO: session 검사해서, 사업자 일때랑, 일반 이용자일 때, 그리고 아무것도 안 했을 때 구분.
+			var calendar = $('#calendar').fullCalendar({
+				header: {
+					left:'prev,next today',
+					center: 'title',
+					right: 'month, agendaWeek, agendaDay,list'
+				},
+				lang: 'ko',
+				theme: true,
+				defaultView : 'agendaWeek',
+				selectable: true,
+				selectHelper: true,
+				scrollTime: '09:00:00',
+				dragRevertDuration: 10,
+				draggable : true,
+				minTime: startTT,
+				maxTime: endTT,
+				businessHours : {
+					start: startTT,
+					end: endTT,
+					dow: dowTT,
+				},
+				eventConstraint: "businessHours",
 				
 				
-				$("#inputStartTime").attr('value', start.format("MM월 DD일 a hh시 mm분"));
-				document.getElementById("inputStartTimeHidden").value = start.toISOString();
-				$("#inputEndTime").attr('value', end.format("MM월 DD일 a hh시 mm분"));
-				document.getElementById("inputEndTimeHidden").value = end.toISOString();
+				//----------------- 기존 존재하는 이벤트 클릭 시 -----------------------//
 				
-				console.log($("#inputStartTime").attr('value'));
-				console.log(document.getElementById("inputStartTimeHidden").value);
-				console.log($("#inputEndTime").attr('value'));
-				console.log(document.getElementById("inputEndTimeHidden").value);
-
-				//$("#cpnList").off("click");
-				cpnNum =  $(document).on('click',"#cpnList",function(){
-					console.log($(this).val());
-					$("#inputCpnCodeField").prop("disabled", false);
-					return $(this).val();
-				});
-				
-				//$("#inputServiceList").off("change");
-				$(document).on("change","#inputServiceList",function(){
-					var x = $('#inputServiceList > option:selected').index();
-					document.getElementById("inputDescription").value = svcDetailList[x-1].svcDescription;
-					document.getElementById("inputPrice").value = svcDetailList[x-1].svcCost;
-				});
-					
-				
-				
-				//---------------미완성!-------------------//	
-				$("#inputCpnCodeButtonGo").off("click");
-				$(document).on('click',"#inputCpnCodeButtonGo",function(){
-					
-					cpnCodeInput = document.getElementById("inputCpnCodeField").value;
-					console.log(cpnCodeInput);
-					console.log(cpnNum);
-					$.ajax({
-						url: '${pageContext.request.contextPath}/enterprise/checkCoupon.action',
-						dataType: 'json',
-						data: {'cpnNum':cpnNum,
-							   'cpnCode':cpnCodeInput},
-						success: function(data){
-							canUseCoupon = data.canUseCoupon;
-							if(canUseCoupon) console.log(data);
-							document.getElementById("inputCoupon").value; 
-							
-						}, 
-						error: function(){
-							console.log("can't apply coupon")
-						}
-					 });
-			    });
+				eventClick: function(event, jsEvent, view){
+					$("#reservationUpdateBody").hide();
+			        
+					//---------------------각 예약당 회원 정보  가지고 오기 ----------------//
 	
-				/* $('#insertModalBody').html('');
-				$('#insertModalBody').html($("#inputDetailTable")); */
-
-				//$("#insertModal").off("modal");
-				$('#insertModal').modal('show');
+					$(this).click(function(){
+			        	$.ajax({
+		        			url: '${pageContext.request.contextPath}/member/retrieveCustomerInfoPerReservation.action',
+		        			dataType: 'json',
+		        			async: false,
+		        			data: {"cstEmail": event.cstEmail,
+		        					"rsvNum": event.id
+		        				},
+		        			success: function(data){
+								event.cstPhone = data.member.memPhone;
+								event.cstAddress = data.member.customer.cstAddress;
+								event.cstZipcode = data.member.customer.cstZipcode;
+								event.cstOneclick = data.member.customer.cstOneclick;
+								event.cstGender = data.member.customer.cstGender;
+								event.cstName = data.member.memName;
+		        			},
+		        			error: function(){
+		        				console.log("receive service list error");
+		        			}
+		        		});
+			        	
+			        	//--------------- 업체 당 변경 가능한 서비스 리스트 가져오기 --------------//
+			        	
+			        	$.ajax({
+		        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+		        			dataType: 'json',
+		        			data: {"etpNum" : ${etpNum}},
+		        			async: false,
+		        			success: function(data){
+		        				var services = data.serviceList;
+		        				$("#reservationUpdateSelectService").html('');
+		        				$("#reservationUpdateSelectService").append("<option value='' disabled selected>선택하세요.</option>");
+		        				$.each(services, function(i, d){
+		        					$("#reservationUpdateSelectService").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
+		        					$("#externalServiceList").append("<span class='label label-default externals' id='external" + i + "' value='" + d.svcNum + "' duration='" + d.svcTime + "'>" + d.svcTitle + "</span><br>");
+		        					console.log($("#externalServiceList"));
+		        				});
+		        				
+		        			},
+		        			error: function(){
+		        				console.log("receive service list error");
+		        			}
+		        		});
+			        	
+			        	//--------------external event 받아오기? ----------//
+			        			
+			        	
+			        	//--------------------- 받아온 값들로 기존 예약 상세내용 리스트 뿌리기 -----------------------//
+			        	
+			        	console.log(event);
+			        	//$("#calendar").fullCalendar('removeEvents');
+						//$("#calendar").fullCalendar('removeEventSource', event);
+						//$('#calendar').fullCalendar('addEventSource', event);
+						$('#calendar').fullCalendar('refetchEvents');
+						$('#calendar').fullCalendar('rerenderEvents');
+			        	$("#updateModalTitle").html(event.title);
+			        	$("#updateModalEventId").html(event.id);
+			        	$("#updateModalCustomerEmail").html(event.cstEmail);
+			        	$('#updateModalCustomerPhone').html(event.cstPhone);
+			            $("#updateModalStartTime").html(moment(event.start).format('MMM Do A h:mm '));
+			            $("#updateModalEndTime").html(moment(event.end).format('MMM Do A h:mm '));
+			            $('#updateModalCustomerName').html(event.cstName);
+			            $("#updateModalSvcTitle").html(event.svcTitle);
+			            $('#updateModalSvcCost').html(event.svcCost + "원");
+			            $("#reservationUpdateTitle").attr("value", event.title);
+			            $("#reservationUpdateDescription").html(event.svcDescription);
+			            $("#reservationDescription2").html(event.description);
+			            $("#reservationCost").html(event.rsvCost + "");
+			            $('#updateModal').modal();
+			        });
+	
 					
-					//-------------------------------------------//
-						
-			//-------------------------------- 폼에서 받은 값 대응하는 그릇에 집어 넣기. -------------------------//
-					var inputTitle = $('#inputTitle').val();
-					/* var inputDescription = $('#inputDescription').val(); */
-					var inputStartTime = $('#inputStartTimeHidden').val();
-					var inputEndTime = $('#inputEndTimeHidden').val();
-					var inputServiceList = document.getElementById('inputServiceList').value;
-					var inputEmployeeGender = ''; 
-						if($('#genderCheckField').html() == '남성') {
-							$('#genderCheckField').val('m');
-							inputEmployeeGender = 'm';
-						}else{
-							$('#genderCheckField').val('f');
-							inputEmployeeGender = 'f';
-						}
-						console.log(inputEmployeeGender);
-						console.log()
-					var inputStatus = $('#inputStatus').val();
-
-					var reservation = {};			
-		
-				$('#insertReservationBtnClose').off("click");
-				$("#insertReservationBtnClose").click(function(e){
-					location.reload();
-				});
-				
-				$("#closingUpdateBtn, #closingInsertButton").click(function(){
-					location.reload();
-				});
-						
-			//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
-				
-				$("#insertReservationBtn").click(function(revertFunc){					
-					if($('#insertAgreementCheckbox').prop('checked') == false){
-						alert('약관에 동의해 주셔야 합니다.');
+					//----------------------변경 가능한 내용들 토글로 보이게 하기 --------------------------//
+					$("#updateReservationShowBtn").off("click");
+			        $("#updateReservationShowBtn").click(function(){
+			        	var options ={};
+			            $("#reservationUpdateBody").toggle("clip",options,500);
+			        });
+					
+					//---------------------- 변경 내용 중 서비스 리스트 클릭 하면 그 값 가져가는 거 확인 하는 곳 ----------------//
+			        $("#reservationUpdateSelectService").off("change");
+			        $("#reservationUpdateSelectService").change(function(){
+			        	console.log($(this).val());
+			        	console.log($("#reservationUpdateTitle").val());
+			        });
+					
+					$("#closeReservationBtn").click(function(event){
 						$('#insertModal').modal('hide');
-						revertFunc();
-						event.off();
-						calendar.fullCalendar('unselect');
-						return false;
-					}
-					
-					//-----------------약관 동의하면 DB에 reservation 집어 넣자! -----------------//
-					
-					$.ajax({
-						url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
-						dataType: 'json',
-						type: 'POST',
-						data: $('#inputForm').serialize(),
-						contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-						success: function(doc){
-							$('#insertModal').modal('hide');
-							console.log(doc.reservation);
-							var dors = doc.reservation;
-							var pmtNum = 0;
-							var paymentRecord= {};
-							
-							console.log(dors);
-							var reservation = {
-									"svcNum" : dors.svcNum,
-									//"cpnNum" : "" + dors.cpnNum,
-									"etpNum" : doc.reservation.etpNum,
-									"etpEmail" : dors.etpEmail,
-									"cstEmail" : dors.cstEmail,
-									"rsvStatus" : dors.rsvStatus,
-									"rsvTitle" : dors.rsvTitle,
-									"start" : dors.start,
-									"end": dors.end,
-									//"reservation.rsvDesc" : doc.reservation.rsvDesc,
-									//"reservation.employeeGender" : event.employeeGender,
-							};
-							console.log(reservation);
-							
-							$.ajax({
-								url: "${pageContext.request.contextPath}/enterprise/retrieveReservationFromOtherInfo.action",
-								dataType: 'json',
-								type: 'POST',
-								async: false,
-								data: {"etpNum" : doc.reservation.etpNum},
-								contentType: 'application/json',
-								success: function(data){
-									console.log('retreiveReservationInfo Success!');
-									console.log(data);
-									console.log(data.reservation);
-									paymentRecord.push({
-											"paymentRecord.rsvNum" : data.reservation.rsvNum,
-											"paymentRecord.pmtTime" : data.reservation.rsvEndDate.toISOString(),
-											"paymentRecord.pmtAmounmt" : data.reservation.service.svcCost
-									});
-								},error: function(request, status, error){
-									console.log(request.status);
-									console.log(status);
-									console.log(error);
-									console.log('retrieveReservationFromOtherInfo error!');
-								}
-							});
-							
-							//----------------예약 들어가면 일단 소비자 Payment Record에 입력 ---------------//
-							// 이벤트 아이디는 받아올 수 있는게냐?
-							console.log(paymentRecord);
-							console.log(paymentRecord.value);
-							$.ajax({
-								url:"${pageContext.request.contextPath}/customer/insertPaymentRecord.action",
-								dataType: 'json',
-								type: 'POST',
-								async:false,
-								data: paymentRecord,
-								contentType: 'application/json; charset=UTF-8',
-								success: function(data){
-									console.log(data.paymentRecord);
-									pmtNum = data.paymentRecord.pmtNum;
-								},error: function(){
-									console.log("payment record insertion failed!");
-								}
-							});
-							
-							 
-							//------------------Payment Record 입력 후 Sale Record에 입력 --------------//
-							
-							var saleRecord = {
-								"saleRecord.pmtNum" : pmtNum,
-								"saleRecord.etpNum" : event.etpNum,
-								"saleRecord.etpEmail" : event.etpEmail,
-								"saleRecord.svcCost" : event.svcCost
-							};
-							
-							$.ajax({
-								url:"${pageContext.request.contextPath}/enterprise/insertSaleRecord.action",
-								dataType: 'json',
-								type: 'POST',
-								data: saleRecord, 
-								contentType: 'application/json; charset=UTF-8',
-								success: function(data){
-									$("#calendar").fullCalendar('removeEventSource', event);
-									$('#calendar').fullCalendar('addEventSource', event);
-									$('#calendar').fullCalendar('refetchEvents');
-									$('#calendar').fullCalendar('rerenderEvents');
-								},
-								error:function(){
-									console.log("sale record insertion failed!");
-								}
-							});
-						},
-						error: function(doc){
-							console.log("insert Error");
-						}
+						$("#calendar").fullCalendar('removeEvents');
+						$("#calendar").fullCalendar('removeEventSource', event);
+						$('#calendar').fullCalendar('addEventSource', event);
+						$('#calendar').fullCalendar('refetchEvents');
+						$('#calendar').fullCalendar('rerenderEvents');
 					});
-
 					
-					$(this).unbind();
-					calendar.fullCalendar('unselect');
-				});
-			},
-			//------------------------------ insert 마무리 작업  -----------------------------------//
-			
-			themeButtonIcons: {
-				prev: 'circle-triangle-w',
-				next: 'circle-triangle-e'
-			},
-			weekNumbers: true,
-			fixedWeekCount: true,
-			slotLabelFormat: 'a h(:mm)시',
-			aspectRatio : 1.1,
-			editable: true,
-			eventLimit: true,
-			timezone: 'UTC',
-			selectble: false,
-			selectHelper: true,
-			googleCalendarApiKey: 'AIzaSyB0_Qo7SZ6u722nhCjpKzjrHJ2gPWr_cTA',
-			
-			//------------------------------------- 각 사업자당 예약들 불러오는 기능  -------------------------------------------//
-			eventSources: [
-			              //사업자가 한 예약 가져오기~!
-			             	{
-			            		events: function(start, end, timezone, callback){
-				      				$.ajax({
-				      					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
-				      					type: 'POST',
-				      					data: {"etpNum":${etpNum}},
-				      					dataType: 'json',
-				      					success: function(doc, index, value){
-				      						
-				      						var resList = doc.reservationList;
-				      						var events = [];
-				      						
-				      						$(resList).each(function(index,item){
-				      							events.push({
-				      								id: item.rsvNum,
-				      								start: item.start,
-				      								end: item.end,
-				      								title: item.rsvTitle,
-				      								
-				      								svcNum: item.svcNum,
-				      								cpnNum: item.cpnNum,
-				      								etpNum: item.etpNum,
-				      								etpEmail: item.etpEmail,
-				      								cstEmail: item.cstEmail,
-				      								startDate: item.rsvStartDate,
-				      								endDate: item.rsvEndDate,
-				      								status: item.rsvStatus,
-				      								employeeGender: item.employeeGender,
-				      								
-				      								etpOwner: item.enterprise.etpOwner,
-				      								etpSuperclass: item.enterprise.etpSuperclass,
-				      								etpAddress: item.enterprise.etpAddress,
-				      								etpZipcode: item.enterprise.etpZipcode,
-				      								etpTitle: item.enterprise.etpTitle,
-				      								etpPhone: item.enterprise.etpPhone,
-				      								etpMaleStaff: item.enterprise.etpMaleStaff,
-				      								etpFemaleStaff: item.enterprise.etpFemalStaff,
-				      								etpCapacity: item.enterprise.etpCapacity,
-				      								etpRsvDeadline: item.enterprise.etpRsvDeadline,
-				      								etpSelfNotification: item.enterprise.etpSelfNotification,
-				      								etpCstNotification: item.enterprise.etpCstNotification,
-				      								//etpTemplateType: item.enterprise.etpTemplateType,
-				      								etpThemeType: item.enterprise.etpThemeType,
-				      								etpSvcOffered: item.enterprise.etpSvcOffered,
-				      								etpSubclass: item.enterprise.etpSubclass,
-				      								etpSpecialize: item.enterprise.specialize,
-				      								etpDescription: item.enterprise.etpDescription,
-				      								
-				      								svcTitle: item.service.svcTitle,
-				      								svcCost: item.service.svcCost,
-				      								svcDescription: item.service.svcDescription,
-				      								svcCategory: item.service.svcCategory,
-				      								svcSpecialize: item.service.svcSpecialize,
-				      								svcCount: item.service.svcCount,
-				      								svcCode: item.service.Code,
-				      							});
-				      						});
-				      						callback(events);				      				
-				      					},
-				      					error: function(doc){
-				      						console.log("Error");
-				      					}
-				      				});
-			      				} 
-						}
-			            ,{
-			            	googleCalendarId: "ko.south_korea#holiday@group.v.calendar.google.com",
-			            	//googleCalendarId: '1fl6hu36lp3f7334i5fq10g18g@group.calendar.google.com',
-			                className: 'holidays',
-			                color: 'red',
-			               // backgroundColor:'red',
-			                borderColor:'green',
-			                textColor:'gray',
-			                editable: false,
-			                //rendering: 'background',
-			                //allDay: false,
-			                overlap: false
-						}
-					]
-			,
-			eventDrop: function(event, delta, revertFunc, jsEvent, view) {
-				$(this).unbind();
-				if (!confirm("시간대를 변경하시겠습니까?")) {
-					revertFunc();
-				}else{
-					var reservation = {
-						"reservation.rsvNum" : event.id, 
-						"reservation.rsvTitle": event.description,
-						"reservation.start" : event.start.toISOString(),
-						"reservation.end" : event.end.toISOString(),
+			        //--------------------- 예약 내용 변경 신청 AJAX로 하는 기능 ---------------------------------//
+	     
+			        $("#updateReservationBtnGo").off("click");
+			        $("#updateReservationBtnGo").click(function(){
+			        	console.log($("#reservationUpdateDateStartTime").val());
+			        	
+						 var reservation = {
+								"reservation.rsvNum" : event.id,
+								"reservation.svcNum" : $("#reservationUpdateSelectService").val(),
+								"reservation.cpnNum" : event.cpnNum,
+								"reservation.etpNum" : event.etpNum,
+								"reservation.etpEmail" : event.etpEmail,
+								"reservation.cstEmail" : event.cstEmail,
+								"reservation.rsvStatus" : event.rsvStatus,
+								"reservation.rsvTitle": $("#reservationUpdateTitle").val(),
+								"reservation.start" : event.start.toISOString(),
+								"reservation.end" : event.end.toISOString(),
+								"reservation.status" : event.status,
+								"reservation.employeeGender" : event.employeeGender,
+								"reservation.rsvDesc" : $("#reservationUpdateDescription2").val(),
+								"reservation.rsvCost" : event.rsvCost
+							};
+						
+						console.log(reservation);
+						$.ajax({
+							url: '${pageContext.request.contextPath}/enterprise/updateReservationDetailsByEnterprise.action',
+							dataType: 'json',
+							data: reservation,
+							contentType: 'application/json; charset=UTF-8',
+							success: function(data){
+								alert('success!');
+								console.log(event);
+								//$("#calendar").fullCalendar('removeEvents');
+								//$("#calendar").fullCalendar('removeEventSource', event);
+								//$('#calendar').fullCalendar('addEventSource', event);
+								$('#calendar').fullCalendar('refetchEvents');
+								$('#calendar').fullCalendar('rerenderEvents');
+								$('#updateModal').modal('hide');
+							},
+							error: function(){
+								console.log('fail!');
+							}
+						});	
+			        });
+				},
+				//----------------------------------------------------------------------------------------//
+				
+				eventRender: function(event, element){
+					console.log(event);
+					if(event.rendering == 'background'){
+						alert('hello?');
 					}
+				},
+				//select: 빈 칸에 눌렀을 때  
+				select: function(start, end, jsEvent, view, allDay, e){	
+					console.log(start._d.toJSON().slice(0,16));
+					var check = start._d.toJSON().slice(0,16); 
+					var today = new Date().toJSON().slice(0,16);
+					if(check < today ){
+						alert('이미 지난 시간대에는 예약할 수 없습니다!');
+						$('#calendar').fullCalendar('rerenderEvents');
+						return false;
+					}else{
+						console.log(jsEvent);
+						console.log(view);
+						console.log(e);
+					  var coupons ={};
+					  var camUseCoupon = false;
+					  var cpnNum = '';
+					  var cpnCodeInput = '';
+					  var svcList =[];
+					  var svcDetailList =[];
+					  
+					  
+					//------------------------------Insert 기능 시작 ----------------------------//
+						$.ajax({
+		        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+		        			dataType: 'json',
+		        			data: {'etpNum':${etpNum}},
+		        			async: false,
+		        			success: function(data){
+		        				svcList = data.serviceList;
+		        				$("#inputServiceList").html('');
+		        				$("#inputServiceList").append("<option value='' disabled selected hidden>선택하세요.</option>");
+		        				
+		        				$.each(svcList, function(i, d){
+		        					$("#inputServiceList").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
+		        					svcDetailList.push(d);
+		        					$("#externalServiceList").append("<span class='label label-default externals' id='external" + i + "' value='" + d.svcNum + "' duration='" + d.svcTime + "'>" + d.svcTitle + "</span><br>");
+		        					console.log($("#externalServiceList"));
+		        				});
+		        			},
+		        			error: function(){
+		        				console.log("receive service list error");
+		        			}
+		        		});
+						
+						$.ajax({
+							  url: '${pageContext.request.contextPath}/enterprise/retrieveCouponList.action',
+							  dataType: 'json',
+							  data: {'etpNum':${etpNum}},
+							  success: function(data){
+								  cpnList = [];
+								  cpnList = data.couponList;
+								  console.log(cpnList);
+								  $("#cpnList").html('');
+								  $("#cpnList").append("<option value='' disabled selected>선택하세요</option>");
+								  $("#inputCpnCodeField").prop("disabled", true);
+								  $.each(cpnList, function(i, d){
+									  $("#cpnList").append("<option value='" + d.cpnNum + "' cpnRate=''>" + d.cpnTitle + "</option>");
+								  });
+							  },
+							  error: function(){
+								  console.log("coupon retrieval error!");
+							  }
+						  });
+						  
+					//----------------------------------------------------------------------------------//
 					
-					console.log(reservation);
-
-					$.ajax({
-						url: '${pageContext.request.contextPath}/enterprise/changeReservationTime.action',
-						dataType: 'json',
-						data: reservation,
-						contentType: 'application/json',
-						success: function(data){
-							alert('시간대가 변경되었습니다.');
-							$('#calendar').fullCalendar('refetchEvents');
-						},
-						error: function(){
-							console.log('fail!');						
+					
+					$("#inputStartTime").attr('value', start.format("MM월 DD일 a hh시 mm분"));
+					document.getElementById("inputStartTimeHidden").value = start.toISOString();
+					$("#inputEndTime").attr('value', end.format("MM월 DD일 a hh시 mm분"));
+					document.getElementById("inputEndTimeHidden").value = end.toISOString();
+					
+					console.log($("#inputStartTime").attr('value'));
+					console.log(document.getElementById("inputStartTimeHidden").value);
+					console.log($("#inputEndTime").attr('value'));
+					console.log(document.getElementById("inputEndTimeHidden").value);
+	
+					//$("#cpnList").off("click");
+					$(document).on('change',"#cpnList",function(){
+						console.log($("#cpnList").val());
+						$("#inputCpnCodeField").prop("disabled", false);
+						 cpnNum = $("#cpnList").val();
+					});
+					
+					//$("#inputServiceList").off("change");
+					$(document).on("change","#inputServiceList",function(){
+						var x = $('#inputServiceList > option:selected').index();
+						document.getElementById("inputDescription").value = svcDetailList[x-1].svcDescription;
+						document.getElementById("inputPrice").value = svcDetailList[x-1].svcCost;
+					});
+					
+					
+					//---------------미완성!-------------------//	
+					$(document).on('click',"#inputCpnCodeButtonGo",function(){
+						cpnCodeInput = document.getElementById("inputCpnCodeField").value;
+						console.log(cpnCodeInput);
+						console.log(cpnNum);
+						$.ajax({
+							url: '${pageContext.request.contextPath}/enterprise/checkCoupon.action',
+							data: {'coupon.cpnNum' : cpnNum,
+								   'coupon.cpnCode' : cpnCodeInput},
+							success: function(data){
+									canUseCoupon = data.coupon.canUseCoupon;
+								if(canUseCoupon){
+									console.log(data);
+									var cpnOK = data.coupon;
+									console.log(cpnOK);
+									document.getElementById('inputPrice').value = document.getElementById('inputPrice').value * (1-((cpnOK.cpnRate)/100)); 
+								}else{
+									console.log('say what?');
+								}
+							}, 
+							error: function(request, status, error){
+								console.log(request);
+								console.log(status);
+								console.log(error);
+								console.log("can't apply coupon");
+							}
+						 });
+				    });
+		
+					/* $('#insertModalBody').html('');
+					$('#insertModalBody').html($("#inputDetailTable")); */
+	
+					//$("#insertModal").off("modal");
+					$('#insertModal').modal('show');
+						
+						//-------------------------------------------//
+							
+				//-------------------------------- 폼에서 받은 값 대응하는 그릇에 집어 넣기. -------------------------//
+						var inputTitle = $('#inputTitle').val();
+						var colorTemp = 0;
+						/* var inputDescription = $('#inputDescription').val(); */
+						var inputStartTime = $('#inputStartTimeHidden').val();
+						var inputEndTime = $('#inputEndTimeHidden').val();
+						var inputServiceList = document.getElementById('inputServiceList').value;
+						var inputEmployeeGender = ''; 
+							if($('#genderCheckField').html() == '남성') {
+								$('#genderCheckField').val('m');
+								inputEmployeeGender = 'm';
+							}else{
+								$('#genderCheckField').val('f');
+								inputEmployeeGender = 'f';
+							}
+							console.log(inputEmployeeGender);
+							
+						var inputStatus = $('#inputStatus').val();
+							
+						$("#inputStatus").change(function(){
+							colorTemp = $(this).val();
+						});
+						var reservation = {};			
+			
+					$('#insertReservationBtnClose').off("click");
+					$("#insertReservationBtnClose").click(function(e){
+						location.reload();
+					});
+					
+					$("#closingUpdateBtn, #closingInsertButton").click(function(){
+						location.reload();
+					});
+							
+				//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
+					
+					$("#insertReservationBtn").click(function(revertFunc){					
+						if($('#insertAgreementCheckbox').prop('checked') == false){
+							alert('약관에 동의해 주셔야 합니다.');
+							$('#insertModal').modal('hide');
+							revertFunc();
+							event.off();
+							calendar.fullCalendar('unselect');
+							return false;
 						}
+						
+						//-----------------약관 동의하면 DB에 reservation 집어 넣자! -----------------//
+						
+						$.ajax({
+							url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
+							dataType: 'json',
+							type: 'POST',
+							data: $('#inputForm').serialize(),
+							contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+							success: function(doc){
+								$('#insertModal').modal('hide');
+								var dors = doc.reservation;
+								var pmtNum = 0;
+								var paymentRecord = {};
+								
+								console.log(dors);
+								var reservation = {
+										"reservation.svcNum" : dors.svcNum,
+										"reservation.cpnNum" : dors.cpnNum,
+										"reservation.etpNum" : doc.reservation.etpNum,
+										"reservation.etpEmail" : dors.etpEmail,
+										"reservation.cstEmail" : dors.cstEmail,
+										"reservation.rsvStatus" : dors.rsvStatus,
+										"reservation.rsvTitle" : dors.rsvTitle,
+										"reservation.start" : dors.start,
+										"reservation.end": dors.end,
+										"reservation.rsvDesc" : dors.rsvDesc,
+										"reservation.rsvCost" : dors.rsvCost,
+										"service.svcCost" : dors.service.svcCost
+								};
+								console.log(reservation);
+								
+								$.ajax({
+									url: "${pageContext.request.contextPath}/enterprise/retrieveReservationFromOtherInfo.action",
+									type: 'POST',
+									async: false,
+									data: reservation,
+									success: function(data){
+										console.log('retreiveReservationInfo Success!');
+										console.log(data);
+										console.log(data.reservation);
+										paymentRecord = {
+											"paymentRecord.rsvNum" : data.reservation.rsvNum,
+											"paymentRecord.pmtAmount" : data.reservation.rsvCost
+										};
+									},error: function(request, status, error){
+										console.log(request.status);
+										console.log(status);
+										console.log(error);
+										console.log('retrieveReservationFromOtherInfo error!');
+									}
+								});
+								
+								//----------------예약 들어가면 일단 소비자 Payment Record에 입력 ---------------//
+								// 이벤트 아이디는 받아올 수 있는게냐?
+								console.log(paymentRecord);
+								$.ajax({
+									url:"${pageContext.request.contextPath}/customer/insertPaymentRecord.action",
+									type: 'POST',
+									async:false,
+									data: paymentRecord,
+									success: function(data){
+										console.log('insertPaymentRecord success!');
+										console.log(data);
+										paymentRecordReceived = data.paymentRecord;
+									},error: function(request, status, error){
+										console.log("payment record insertion failed!");
+										console.log(request.status);
+										console.log(request);
+										console.log(status);
+										console.log(error);
+									}
+								});
+								
+								 
+								//------------------Payment Record 입력 후 Sale Record에 입력 --------------//
+								console.log(enterpriseInfo);
+								console.log(paymentRecordReceived);
+								var saleRecord = {
+									"saleRecord.pmtNum" : paymentRecordReceived.pmtNum,
+									"saleRecord.etpNum" : enterpriseInfo.responseJSON.enterprise.etpNum,
+									"saleRecord.etpEmail" : enterpriseInfo.responseJSON.enterprise.etpEmail,
+									"saleRecord.saleAmount" : paymentRecordReceived.pmtAmount
+								};
+								
+								$.ajax({
+									url:"${pageContext.request.contextPath}/enterprise/insertSaleRecord.action",
+									type: 'POST',
+									data: saleRecord, 
+									success: function(data){
+										$("#calendar").fullCalendar('removeEventSource', event);
+										$('#calendar').fullCalendar('addEventSource', event);
+										$('#calendar').fullCalendar('refetchEvents');
+										$('#calendar').fullCalendar('rerenderEvents');
+									},
+									error:function(request, status, error){
+										console.log("sale record insertion failed!");
+										console.log(request.status);
+										console.log(request);
+										console.log(status);
+										console.log(error);
+									}
+								});
+							},
+							error: function(doc){
+								console.log("insert Error");
+							}
+						});
+						$(this).unbind();
+						calendar.fullCalendar('unselect');
 					});
 				}
-				$('#calendar').fullCalendar('unselect');
-				//$('#calendar').fullCalendar('addEventSource', event);
-				$('#calendar').fullCalendar('rerenderEvents');
-				 
 			},
-			eventResize: function(event, delta, revertFunc, jsEvent, ui, view){
-				$(this).unbind();
-				if(! confirm("시간대를 변경하시겠습니까?")){
-					revertFunc();
-				}else{
-					var reservation = {
+				
+				//------------------------------ insert 마무리 작업  -----------------------------------//
+				
+				themeButtonIcons: {
+					prev: 'circle-triangle-w',
+					next: 'circle-triangle-e'
+				},
+				weekNumbers: true,
+				fixedWeekCount: true,
+				slotLabelFormat: 'a h(:mm)시',
+				contentHeight: 600,
+				editable: true,
+				eventLimit: true,
+				timezone: false,
+				selectble: false,
+				selectHelper: true,
+				googleCalendarApiKey: 'AIzaSyB0_Qo7SZ6u722nhCjpKzjrHJ2gPWr_cTA',
+				
+				//------------------------------------- 각 사업자당 예약들 불러오는 기능  -------------------------------------------//
+				eventSources: [
+				              //사업자가 한 예약 가져오기~!
+				             	{
+				             		backgroundColor: '#DCD',
+				      				textColor: 'black',
+				            		events: function(start, end, timezone, callback){
+					      				$.ajax({
+					      					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
+					      					type: 'POST',
+					      					data: {"etpNum":${etpNum}},
+					      					dataType: 'json',
+					      					success: function(doc, index, value){			
+					      						var resList = doc.reservationList;
+					      						var events = [];
+					      						
+					      						$(resList).each(function(index,item){
+					      							events.push({
+					      								id: item.rsvNum,
+					      								start: item.start,
+					      								end: item.end,
+					      								title: item.rsvTitle,
+					      								timezone: false,
+					      								rendering: event.rendering,
+					      								svcNum: item.svcNum,
+					      								cpnNum: item.cpnNum,
+					      								etpNum: item.etpNum,
+					      								etpEmail: item.etpEmail,
+					      								cstEmail: item.cstEmail,
+					      								startDate: item.rsvStartDate,
+					      								endDate: item.rsvEndDate,
+					      								status: item.rsvStatus,
+					      								employeeGender: item.employeeGender,
+					      								description : item.rsvDesc,
+					      								rsvCost: item.rsvCost,
+					      								
+					      								etpOwner: item.enterprise.etpOwner,
+					      								etpSuperclass: item.enterprise.etpSuperclass,
+					      								etpAddress: item.enterprise.etpAddress,
+					      								etpZipcode: item.enterprise.etpZipcode,
+					      								etpTitle: item.enterprise.etpTitle,
+					      								etpPhone: item.enterprise.etpPhone,
+					      								etpMaleStaff: item.enterprise.etpMaleStaff,
+					      								etpFemaleStaff: item.enterprise.etpFemalStaff,
+					      								etpCapacity: item.enterprise.etpCapacity,
+					      								etpRsvDeadline: item.enterprise.etpRsvDeadline,
+					      								etpSelfNotification: item.enterprise.etpSelfNotification,
+					      								etpCstNotification: item.enterprise.etpCstNotification,
+					      								//etpTemplateType: item.enterprise.etpTemplateType,
+					      								etpThemeType: item.enterprise.etpThemeType,
+					      								etpSvcOffered: item.enterprise.etpSvcOffered,
+					      								etpSubclass: item.enterprise.etpSubclass,
+					      								etpSpecialize: item.enterprise.specialize,
+					      								etpDescription: item.enterprise.etpDescription,
+					      								
+					      								svcTitle: item.service.svcTitle,
+					      								svcCost: item.service.svcCost,
+					      								svcDescription: item.service.svcDescription,
+					      								svcCategory: item.service.svcCategory,
+					      								svcSpecialize: item.service.svcSpecialize,
+					      								svcCount: item.service.svcCount,
+					      								svcCode: item.service.Code,
+					      							});
+					      						});
+					      						callback(events);				      				
+					      					},
+					      					error: function(doc){
+					      						console.log("Error");
+					      					}
+					      				});
+				      				} 
+							}
+				            ,{
+				            	googleCalendarId: "ko.south_korea#holiday@group.v.calendar.google.com",
+				            	//googleCalendarId: '1fl6hu36lp3f7334i5fq10g18g@group.calendar.google.com',
+				                className: 'holidays',
+				                color: 'red',
+				               // backgroundColor:'red',
+				                borderColor:'green',
+				                textColor:'gray',
+				                timezone: false,
+				                editable: false,
+				                //rendering: 'background',
+				                //allDay: false,
+				                overlap: false
+							}
+						]
+				,
+				eventDrop: function(event, delta, revertFunc, jsEvent, view) {
+					$(this).unbind();
+					if (!confirm("시간대를 변경하시겠습니까?")) {
+						revertFunc();
+					}else{
+						var reservation = {
 							"reservation.rsvNum" : event.id, 
 							"reservation.rsvTitle": event.description,
 							"reservation.start" : event.start.toISOString(),
 							"reservation.end" : event.end.toISOString(),
 						}
-					
-					console.log(reservation);
-					$.ajax({
-						url: '${pageContext.request.contextPath}/enterprise/changeReservationTime.action',
-						dataType: 'json',
-						data: reservation,
-						contentType: 'application/json',
-						success: function(data){
-							alert('success!');
-							//$('#calendar').fullCalendar('removeEvents');
-							//$('#calendar').fullCalendar('addEventSource', event);
-							$('#calendar').fullCalendar('refetchEvents');
-						},
-						error: function(){
-							console.log('fail!');
-							
-						}
-					});
-				}
-				$('#calendar').fullCalendar('unselect');
-			},
-		 	eventDragStop: function(event, jsEvent, ui, view){
-				console.log(currentMousePos);
-				
-				var isElementOverDiv = function(){
-					var trashEl = $('#trash');
-					var ofs = trashEl.offset();
-					console.log(ofs);
-					console.log(trashEl);
-				    var x1 = ofs.left;
-				    var x2 = ofs.left + trashEl.outerWidth(true);
-				    var y1 = ofs.top;
-				    var y2 = ofs.top + trashEl.outerHeight(true);
-				   	
-				    if (currentMousePos.x>=x1 && currentMousePos.x<=x2 && currentMousePos.y>=y1 && currentMousePos.y<=y2) {
-				    	
-				    	return true;
-				    }else{
-						return false;
-				    }
-				}
-				console.log(event);
-				if(isElementOverDiv()){
-					if(confirm('지우시겠습니까?')){
+						
+						console.log(reservation);
+	
 						$.ajax({
-							url: '${pageContext.request.contextPath}/enterprise/deleteReservation.action',
+							url: '${pageContext.request.contextPath}/enterprise/changeReservationTime.action',
 							dataType: 'json',
-							data: {"reservation.rsvNum" : event.id},
+							data: reservation,
 							contentType: 'application/json',
 							success: function(data){
-								alert('삭제되었습니다.');
+								alert('시간대가 변경되었습니다.');
+								$('#calendar').fullCalendar('refetchEvents');
+							},
+							error: function(){
+								console.log('fail!');						
+							}
+						});
+					}
+					$('#calendar').fullCalendar('unselect');
+					//$('#calendar').fullCalendar('addEventSource', event);
+					$('#calendar').fullCalendar('rerenderEvents');
+					 
+				},
+				eventResize: function(event, delta, revertFunc, jsEvent, ui, view){
+					$(this).unbind();
+					if(! confirm("시간대를 변경하시겠습니까?")){
+						revertFunc();
+					}else{
+						var reservation = {
+								"reservation.rsvNum" : event.id, 
+								"reservation.rsvTitle": event.description,
+								"reservation.start" : event.start.toISOString(),
+								"reservation.end" : event.end.toISOString(),
+							}
+						
+						console.log(reservation);
+						$.ajax({
+							url: '${pageContext.request.contextPath}/enterprise/changeReservationTime.action',
+							dataType: 'json',
+							data: reservation,
+							contentType: 'application/json',
+							success: function(data){
+								alert('success!');
 								//$('#calendar').fullCalendar('removeEvents');
 								//$('#calendar').fullCalendar('addEventSource', event);
 								$('#calendar').fullCalendar('refetchEvents');
 							},
 							error: function(){
-								console.log("deletion error");
-							},
+								console.log('fail!');
+								
+							}
 						});
+					}
+					$('#calendar').fullCalendar('unselect');
+				},
+			 	eventDragStop: function(event, jsEvent, ui, view){
+					console.log(currentMousePos);
+					
+					var isElementOverDiv = function(){
+						var trashEl = $('#trash');
+						var ofs = trashEl.offset();
+						console.log(ofs);
+						console.log(trashEl);
+					    var x1 = ofs.left;
+					    var x2 = ofs.left + trashEl.outerWidth(true);
+					    var y1 = ofs.top;
+					    var y2 = ofs.top + trashEl.outerHeight(true);
+					   	
+					    if (currentMousePos.x>=x1 && currentMousePos.x<=x2 && currentMousePos.y>=y1 && currentMousePos.y<=y2) {
+					    	
+					    	return true;
+					    }else{
+							return false;
+					    }
+					}
+					console.log(event);
+					if(isElementOverDiv()){
+						if(confirm('지우시겠습니까?')){
+							$.ajax({
+								url: '${pageContext.request.contextPath}/enterprise/deleteReservation.action',
+								dataType: 'json',
+								data: {"reservation.rsvNum" : event.id},
+								contentType: 'application/json',
+								success: function(data){
+									alert('삭제되었습니다.');
+									//$('#calendar').fullCalendar('removeEvents');
+									//$('#calendar').fullCalendar('addEventSource', event);
+									$('#calendar').fullCalendar('refetchEvents');
+								},
+								error: function(){
+									console.log("deletion error");
+								},
+							});
+						};
 					};
-				};
-				$('#calendar').fullCalendar('unselect');
-			}	
-		});
-	});	
+					$('#calendar').fullCalendar('unselect');
+				},
+				drop: function(date, jsEvent, ui){
+					alert(date);
+				}
+			});
+			
+			$(function(){
+				$("#external-events .fc-event").draggable({
+					revert: true,
+					revertDuration : 0
+				});
+			});
+			
+			
+			
+			
+			
+		// ===================== 일반 이용자! =============================== //
+		
+		
+		
+		
+		
+		
+		
+		}else if(etpMemCodeCheckSt == '2'){
+			
+			var calendar = $('#calendar').fullCalendar({
+				header: {
+					left:'prev,next today',
+					center: 'title',
+					right: 'month, agendaWeek, agendaDay,list'
+				},
+				lang: 'ko',
+				theme: true,
+				defaultView : 'agendaWeek',
+				selectable: true,
+				selectHelper: true,
+				selectOverlap: false,
+				selectConstraint: "businessHours",
+				
+				scrollTime: '09:00:00',	
+				minTime: startTT,
+				maxTime: endTT,
+				businessHours : {
+					start: startTT,
+					end: endTT,
+					dow: dowTT,
+				},
+				eventConstraint: "businessHours",
+				
+				
+				//----------------- 기존 존재하는 이벤트 클릭 시 -----------------------//
+				
+				eventClick: function(event, jsEvent, view){
+					$("#reservationUpdateBody").hide();
+			        
+					//---------------------각 예약당 회원 정보  가지고 오기 ----------------//
+	
+					$(this).click(function(){
+			        	$.ajax({
+		        			url: '${pageContext.request.contextPath}/member/retrieveCustomerInfoPerReservation.action',
+		        			dataType: 'json',
+		        			async: false,
+		        			data: {"cstEmail": event.cstEmail,
+		        					"rsvNum": event.id
+		        				},
+		        			success: function(data){
+								event.cstPhone = data.member.memPhone;
+								event.cstAddress = data.member.customer.cstAddress;
+								event.cstZipcode = data.member.customer.cstZipcode;
+								event.cstOneclick = data.member.customer.cstOneclick;
+								event.cstGender = data.member.customer.cstGender;
+								event.cstName = data.member.memName;
+		        			},
+		        			error: function(){
+		        				console.log("receive service list error");
+		        			}
+		        		});
+			        	
+			        	//--------------- 업체 당 변경 가능한 서비스 리스트 가져오기 --------------//
+			        	
+			        	$.ajax({
+		        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+		        			dataType: 'json',
+		        			data: {"etpNum" : ${etpNum}},
+		        			async: false,
+		        			success: function(data){
+		        				var services = data.serviceList;
+		        				$("#reservationUpdateSelectService").html('');
+		        				$("#reservationUpdateSelectService").append("<option value='' disabled selected>선택하세요.</option>");
+		        				$.each(services, function(i, d){
+		        					$("#reservationUpdateSelectService").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
+		        				});   				
+		        			},
+		        			error: function(){
+		        				console.log("receive service list error");
+		        			}
+		        		});
+			        	
+			        	//--------------------- 받아온 값들로 기존 예약 상세내용 리스트 뿌리기 -----------------------//
+			        	
+			        	console.log(event);
+			        	//$("#calendar").fullCalendar('removeEvents');
+						//$("#calendar").fullCalendar('removeEventSource', event);
+						//$('#calendar').fullCalendar('addEventSource', event);
+						$('#calendar').fullCalendar('refetchEvents');
+						$('#calendar').fullCalendar('rerenderEvents');
+			        	$("#updateModalTitle").html(event.title);
+			        	$("#updateModalEventId").html(event.id);
+			        	$("#updateModalCustomerEmail").html(event.cstEmail);
+			        	$('#updateModalCustomerPhone').html(event.cstPhone);
+			            $("#updateModalStartTime").html(moment(event.start).format('MMM Do A h:mm '));
+			            $("#updateModalEndTime").html(moment(event.end).format('MMM Do A h:mm '));
+			            $('#updateModalCustomerName').html(event.cstName);
+			            $("#updateModalSvcTitle").html(event.svcTitle);
+			            $('#updateModalSvcCost').html(event.svcCost + "원");
+			            $("#reservationUpdateTitle").attr("value", event.title);
+			            $("#reservationUpdateDescription").html(event.svcDescription);
+			            $('#updateModal').modal();
+			        });
+	
+					
+					//----------------------변경 가능한 내용들 토글로 보이게 하기 --------------------------//
+					$("#updateReservationShowBtn").off("click");
+			        $("#updateReservationShowBtn").click(function(){
+			        	var options ={};
+			            $("#reservationUpdateBody").toggle("clip",options,500);
+			        });
+					
+					//---------------------- 변경 내용 중 서비스 리스트 클릭 하면 그 값 가져가는 거 확인 하는 곳 ----------------//
+			        $("#reservationUpdateSelectService").off("change");
+			        $("#reservationUpdateSelectService").change(function(){
+			        	console.log($(this).val());
+			        	console.log($("#reservationUpdateTitle").val());
+			        });
+					
+					$("#closeReservationBtn").click(function(event){
+						$('#insertModal').modal('hide');
+						$("#calendar").fullCalendar('removeEvents');
+						$("#calendar").fullCalendar('removeEventSource', event);
+						$('#calendar').fullCalendar('addEventSource', event);
+						$('#calendar').fullCalendar('refetchEvents');
+						$('#calendar').fullCalendar('rerenderEvents');
+					});
+					
+			        //--------------------- 예약 내용 변경 신청 AJAX로 하는 기능 ---------------------------------//
+	     
+			        $("#updateReservationBtnGo").off("click");
+			        $("#updateReservationBtnGo").click(function(){
+			        	console.log($("#reservationUpdateDateStartTime").val());
+			        	
+						 var reservation = {
+								"reservation.rsvNum" : event.id,
+								"reservation.svcNum" : $("#reservationUpdateSelectService").val(),
+								"reservation.cpnNum" : event.cpnNum,
+								"reservation.etpNum" : event.etpNum,
+								"reservation.etpEmail" : event.etpEmail,
+								"reservation.cstEmail" : event.cstEmail,
+								"reservation.rsvStatus" : event.rsvStatus,
+								"reservation.rsvTitle": $("#reservationUpdateTitle").val(),
+								"reservation.start" : event.start.toISOString(),
+								"reservation.end" : event.end.toISOString(),
+								"reservation.status" : event.status,
+								"reservation.employeeGender" : event.employeeGender,
+							};
+						
+						console.log(reservation);
+						$.ajax({
+							url: '${pageContext.request.contextPath}/enterprise/updateReservationDetailsByEnterprise.action',
+							dataType: 'json',
+							data: reservation,
+							contentType: 'application/json; charset=UTF-8',
+							success: function(data){
+								alert('success!');
+								console.log(event);
+								//$("#calendar").fullCalendar('removeEvents');
+								//$("#calendar").fullCalendar('removeEventSource', event);
+								//$('#calendar').fullCalendar('addEventSource', event);
+								$('#calendar').fullCalendar('refetchEvents');
+								$('#calendar').fullCalendar('rerenderEvents');
+								$('#updateModal').modal('hide');
+							},
+							error: function(){
+								console.log('fail!');
+							}
+						});	
+			        });
+				},
+				//----------------------------------------------------------------------------------------//
+				
+				eventRender: function(event, element){
+					console.log(event);
+					if(event.rendering == 'background'){
+						alert('hello?');
+					}
+				},
+				//select: 빈 칸에 눌렀을 때  
+				select: function(start, end, jsEvent, view, allDay, e){	
+					console.log(start._d.toJSON().slice(0,16));
+					var check = start._d.toJSON().slice(0,16); 
+					var today = new Date().toJSON().slice(0,16);
+					if(check < today ){
+						alert('이미 지난 시간대에는 예약할 수 없습니다!');
+						$('#calendar').fullCalendar('rerenderEvents');
+						return false;
+					}else{
+						console.log(jsEvent);
+						console.log(view);
+						console.log(e);
+					  var coupons ={};
+					  var camUseCoupon = false;
+					  var cpnNum = 0;
+					  var cpnCodeInput = '';
+					  var svcList =[];
+					  var svcDetailList =[];
+					  
+					  
+					//------------------------------Insert 기능 시작 ----------------------------//
+						$.ajax({
+		        			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+		        			dataType: 'json',
+		        			data: {'etpNum':${etpNum}},
+		        			async: false,
+		        			success: function(data){
+		        				svcList = data.serviceList;
+		        				$("#inputServiceList").html('');
+		        				$("#inputServiceList").append("<option value='' disabled selected hidden>선택하세요.</option>");
+		        				
+		        				$.each(svcList, function(i, d){
+		        					$("#inputServiceList").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
+		        					/* $("#inputServiceList").append("<option value='99934'>테스트</option>"); */
+		        					svcDetailList.push(d);
+		        				});   				
+		        			},
+		        			error: function(){
+		        				console.log("receive service list error");
+		        			}
+		        		});
+						
+						$.ajax({
+							  url: '${pageContext.request.contextPath}/enterprise/retrieveCouponList.action',
+							  dataType: 'json',
+							  data: {'etpNum':${etpNum}},
+							  success: function(data){
+								  cpnList = [];
+								  cpnList = data.couponList;
+								  $("#cpnList").html('');
+								  $("#cpnList").append("<option value='' disabled selected>선택하세요</option>");
+								  $("#inputCpnCodeField").prop("disabled", true);
+								  $.each(cpnList, function(i, d){
+									  $("#cpnList").append("<option value='" + d.cpnNum + "'>" + d.cpnTitle + "</option>");
+								  });
+							  },
+							  error: function(){
+								  console.log("coupon retrieval error!");
+							  }
+						  });
+						  
+					//----------------------------------------------------------------------------------//
+					
+					
+					$("#inputStartTime").attr('value', start.format("MM월 DD일 a hh시 mm분"));
+					document.getElementById("inputStartTimeHidden").value = start.toISOString();
+					$("#inputEndTime").attr('value', end.format("MM월 DD일 a hh시 mm분"));
+					document.getElementById("inputEndTimeHidden").value = end.toISOString();
+					
+					console.log($("#inputStartTime").attr('value'));
+					console.log(document.getElementById("inputStartTimeHidden").value);
+					console.log($("#inputEndTime").attr('value'));
+					console.log(document.getElementById("inputEndTimeHidden").value);
+	
+					//$("#cpnList").off("click");
+					cpnNum =  $(document).on('click',"#cpnList",function(){
+						console.log($(this).val());
+						$("#inputCpnCodeField").prop("disabled", false);
+						return $(this).val();
+					});
+					
+					//$("#inputServiceList").off("change");
+					$(document).on("change","#inputServiceList",function(){
+						var x = $('#inputServiceList > option:selected').index();
+						document.getElementById("inputDescription").value = svcDetailList[x-1].svcDescription;
+						document.getElementById("inputPrice").value = svcDetailList[x-1].svcCost;
+					});
+						
+					
+					
+					//---------------미완성!-------------------//	
+					$("#inputCpnCodeButtonGo").off("click");
+					$(document).on('click',"#inputCpnCodeButtonGo",function(){
+						
+						cpnCodeInput = document.getElementById("inputCpnCodeField").value;
+						console.log(cpnCodeInput);
+						console.log(cpnNum);
+						$.ajax({
+							url: '${pageContext.request.contextPath}/enterprise/checkCoupon.action',
+							dataType: 'json',
+							data: {'cpnNum':cpnNum,
+								   'cpnCode':cpnCodeInput},
+							success: function(data){
+								canUseCoupon = data.canUseCoupon;
+								if(canUseCoupon) console.log(data);
+								document.getElementById("inputCoupon").value; 
+								
+							}, 
+							error: function(){
+								console.log("can't apply coupon")
+							}
+						 });
+				    });
+		
+					/* $('#insertModalBody').html('');
+					$('#insertModalBody').html($("#inputDetailTable")); */
+	
+					//$("#insertModal").off("modal");
+					$('#insertModal').modal('show');
+						
+						//-------------------------------------------//
+							
+				//-------------------------------- 폼에서 받은 값 대응하는 그릇에 집어 넣기. -------------------------//
+						var inputTitle = $('#inputTitle').val();
+						/* var inputDescription = $('#inputDescription').val(); */
+						var inputStartTime = $('#inputStartTimeHidden').val();
+						var inputEndTime = $('#inputEndTimeHidden').val();
+						var inputServiceList = document.getElementById('inputServiceList').value;
+						var inputEmployeeGender = ''; 
+							if($('#genderCheckField').html() == '남성') {
+								$('#genderCheckField').val('m');
+								inputEmployeeGender = 'm';
+							}else{
+								$('#genderCheckField').val('f');
+								inputEmployeeGender = 'f';
+							}
+							console.log(inputEmployeeGender);
+							console.log()
+						var inputStatus = $('#inputStatus').val();
+	
+						var reservation = {};			
+			
+					$('#insertReservationBtnClose').off("click");
+					$("#insertReservationBtnClose").click(function(e){
+						location.reload();
+					});
+					
+					$("#closingUpdateBtn, #closingInsertButton").click(function(){
+						location.reload();
+					});
+							
+				//----------------------------- Form 안의 값들을 Java로 보내는 기능 --------------------------------//
+					
+					$("#insertReservationBtn").click(function(revertFunc){					
+						if($('#insertAgreementCheckbox').prop('checked') == false){
+							alert('약관에 동의해 주셔야 합니다.');
+							$('#insertModal').modal('hide');
+							revertFunc();
+							event.off();
+							calendar.fullCalendar('unselect');
+							return false;
+						}
+						
+						//-----------------약관 동의하면 DB에 reservation 집어 넣자! -----------------//
+						
+						$.ajax({
+							url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
+							dataType: 'json',
+							type: 'POST',
+							data: $('#inputForm').serialize(),
+							contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+							success: function(doc){
+								$('#insertModal').modal('hide');
+								var dors = doc.reservation;
+								var pmtNum = 0;
+								var paymentRecord = {};
+								
+								console.log(dors);
+								var reservation = {
+										"reservation.svcNum" : dors.svcNum,
+										"reservation.cpnNum" : dors.cpnNum,
+										"reservation.etpNum" : doc.reservation.etpNum,
+										"reservation.etpEmail" : dors.etpEmail,
+										"reservation.cstEmail" : dors.cstEmail,
+										"reservation.rsvStatus" : dors.rsvStatus,
+										"reservation.rsvTitle" : dors.rsvTitle,
+										"reservation.start" : dors.start,
+										"reservation.end": dors.end,
+										"reservation.rsvDesc" : dors.rsvDesc,
+										"service.svcCost" : dors.service.svcCost
+								};
+								console.log(reservation);
+								
+								$.ajax({
+									url: "${pageContext.request.contextPath}/enterprise/retrieveReservationFromOtherInfo.action",
+									type: 'POST',
+									async: false,
+									data: reservation,
+									success: function(data){
+										console.log('retreiveReservationInfo Success!');
+										console.log(data);
+										console.log(data.reservation);
+										paymentRecord = {
+											"paymentRecord.rsvNum" : data.reservation.rsvNum,
+											"paymentRecord.pmtAmount" : data.service.svcCost
+										};
+									},error: function(request, status, error){
+										console.log(request.status);
+										console.log(status);
+										console.log(error);
+										console.log('retrieveReservationFromOtherInfo error!');
+									}
+								});
+								
+								//----------------예약 들어가면 일단 소비자 Payment Record에 입력 ---------------//
+								// 이벤트 아이디는 받아올 수 있는게냐?
+								console.log(paymentRecord);
+								$.ajax({
+									url:"${pageContext.request.contextPath}/customer/insertPaymentRecord.action",
+									type: 'POST',
+									async:false,
+									data: paymentRecord,
+									success: function(data){
+										console.log('insertPaymentRecord success!');
+										console.log(data);
+										paymentRecordReceived = data.paymentRecord;
+									},error: function(request, status, error){
+										console.log("payment record insertion failed!");
+										console.log(request.status);
+										console.log(request);
+										console.log(status);
+										console.log(error);
+									}
+								});
+								
+								 
+								//------------------Payment Record 입력 후 Sale Record에 입력 --------------//
+								console.log(enterpriseInfo);
+								console.log(paymentRecordReceived);
+								var saleRecord = {
+									"saleRecord.pmtNum" : paymentRecordReceived.pmtNum,
+									"saleRecord.etpNum" : enterpriseInfo.responseJSON.enterprise.etpNum,
+									"saleRecord.etpEmail" : enterpriseInfo.responseJSON.enterprise.etpEmail,
+									"saleRecord.saleAmount" : paymentRecordReceived.pmtAmount
+								};
+								
+								$.ajax({
+									url:"${pageContext.request.contextPath}/enterprise/insertSaleRecord.action",
+									type: 'POST',
+									data: saleRecord, 
+									success: function(data){
+										$("#calendar").fullCalendar('removeEventSource', event);
+										$('#calendar').fullCalendar('addEventSource', event);
+										$('#calendar').fullCalendar('refetchEvents');
+										$('#calendar').fullCalendar('rerenderEvents');
+									},
+									error:function(request, status, error){
+										console.log("sale record insertion failed!");
+										console.log(request.status);
+										console.log(request);
+										console.log(status);
+										console.log(error);
+									}
+								});
+							},
+							error: function(doc){
+								console.log("insert Error");
+							}
+						});
+						$(this).unbind();
+						calendar.fullCalendar('unselect');
+					});
+				}
+			},
+				
+				//------------------------------ insert 마무리 작업  -----------------------------------//
+				
+				themeButtonIcons: {
+					prev: 'circle-triangle-w',
+					next: 'circle-triangle-e'
+				},
+				weekNumbers: true,
+				fixedWeekCount: true,
+				slotLabelFormat: 'a h(:mm)시',
+				aspectRatio : 1.1,
+				editable: true,
+				eventLimit: true,
+				timezone: false,
+				selectble: false,
+				selectHelper: true,
+				googleCalendarApiKey: 'AIzaSyB0_Qo7SZ6u722nhCjpKzjrHJ2gPWr_cTA',
+				
+				//------------------------------------- 각 사업자당 예약들 불러오는 기능  -------------------------------------------//
+				eventSources: [
+				              //사업자가 한 예약 가져오기~!
+				             	{
+				             		color: '#FFF',
+				      				textcolor: 'black',
+				            		events: function(start, end, timezone, callback){
+					      				$.ajax({
+					      					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
+					      					type: 'POST',
+					      					data: {"etpNum":${etpNum}},
+					      					dataType: 'json',
+					      					success: function(doc, index, value){
+					      						
+					      						var resList = doc.reservationList;
+					      						var events = [];
+					      						
+					      						$(resList).each(function(index,item){
+					      							events.push({
+					      								id: item.rsvNum,
+					      								start: item.start,
+					      								end: item.end,
+					      								title: item.rsvTitle,
+					      								timezone: false,
+					      								rendering: event.rendering,
+					      								svcNum: item.svcNum,
+					      								cpnNum: item.cpnNum,
+					      								etpNum: item.etpNum,
+					      								etpEmail: item.etpEmail,
+					      								cstEmail: item.cstEmail,
+					      								startDate: item.rsvStartDate,
+					      								endDate: item.rsvEndDate,
+					      								status: item.rsvStatus,
+					      								employeeGender: item.employeeGender,
+					      								
+					      								etpOwner: item.enterprise.etpOwner,
+					      								etpSuperclass: item.enterprise.etpSuperclass,
+					      								etpAddress: item.enterprise.etpAddress,
+					      								etpZipcode: item.enterprise.etpZipcode,
+					      								etpTitle: item.enterprise.etpTitle,
+					      								etpPhone: item.enterprise.etpPhone,
+					      								etpMaleStaff: item.enterprise.etpMaleStaff,
+					      								etpFemaleStaff: item.enterprise.etpFemalStaff,
+					      								etpCapacity: item.enterprise.etpCapacity,
+					      								etpRsvDeadline: item.enterprise.etpRsvDeadline,
+					      								etpSelfNotification: item.enterprise.etpSelfNotification,
+					      								etpCstNotification: item.enterprise.etpCstNotification,
+					      								etpTemplateType: item.enterprise.etpTemplateType,
+					      								etpThemeType: item.enterprise.etpThemeType,
+					      								etpSvcOffered: item.enterprise.etpSvcOffered,
+					      								etpSubclass: item.enterprise.etpSubclass,
+					      								etpSpecialize: item.enterprise.specialize,
+					      								etpDescription: item.enterprise.etpDescription,
+					      								
+					      								svcTitle: item.service.svcTitle,
+					      								svcCost: item.service.svcCost,
+					      								svcDescription: item.service.svcDescription,
+					      								svcCategory: item.service.svcCategory,
+					      								svcSpecialize: item.service.svcSpecialize,
+					      								svcCount: item.service.svcCount,
+					      								svcCode: item.service.Code,
+					      							});
+					      						});
+					      						callback(events);				      				
+					      					},
+					      					error: function(doc){
+					      						console.log("Error");
+					      					}
+					      				});
+				      				}				      								              
+								}
+				            ,{
+				            	googleCalendarId: "ko.south_korea#holiday@group.v.calendar.google.com",
+				            	//googleCalendarId: '1fl6hu36lp3f7334i5fq10g18g@group.calendar.google.com',
+				                className: 'holidays',
+				                color: 'red',
+				               // backgroundColor:'red',
+				                borderColor:'green',
+				                textColor:'gray',
+				                timezone: false,
+				                editable: false,
+				                //rendering: 'background',
+				                //allDay: false,
+				                overlap: false
+							}
+						]
+				,
+				eventDrop: function(event, delta, revertFunc, jsEvent, view) {
+					$(this).unbind();
+					if (!confirm("시간대를 변경하시겠습니까?")) {
+						revertFunc();
+					}else{
+						var reservation = {
+							"reservation.rsvNum" : event.id, 
+							"reservation.rsvTitle": event.description,
+							"reservation.start" : event.start.toISOString(),
+							"reservation.end" : event.end.toISOString(),
+						}
+						
+						console.log(reservation);
+	
+						$.ajax({
+							url: '${pageContext.request.contextPath}/enterprise/changeReservationTime.action',
+							dataType: 'json',
+							data: reservation,
+							contentType: 'application/json',
+							success: function(data){
+								alert('시간대가 변경되었습니다.');
+								$('#calendar').fullCalendar('refetchEvents');
+							},
+							error: function(){
+								console.log('fail!');						
+							}
+						});
+					}
+					$('#calendar').fullCalendar('unselect');
+					//$('#calendar').fullCalendar('addEventSource', event);
+					$('#calendar').fullCalendar('rerenderEvents');
+					 
+				},
+				eventResize: function(event, delta, revertFunc, jsEvent, ui, view){
+					$(this).unbind();
+					if(! confirm("시간대를 변경하시겠습니까?")){
+						revertFunc();
+					}else{
+						var reservation = {
+								"reservation.rsvNum" : event.id, 
+								"reservation.rsvTitle": event.description,
+								"reservation.start" : event.start.toISOString(),
+								"reservation.end" : event.end.toISOString(),
+							}
+						
+						console.log(reservation);
+						$.ajax({
+							url: '${pageContext.request.contextPath}/enterprise/changeReservationTime.action',
+							dataType: 'json',
+							data: reservation,
+							contentType: 'application/json',
+							success: function(data){
+								alert('success!');
+								//$('#calendar').fullCalendar('removeEvents');
+								//$('#calendar').fullCalendar('addEventSource', event);
+								$('#calendar').fullCalendar('refetchEvents');
+							},
+							error: function(){
+								console.log('fail!');
+								
+							}
+						});
+					}
+					$('#calendar').fullCalendar('unselect');
+				},
+			 	eventDragStop: function(event, jsEvent, ui, view){
+					console.log(currentMousePos);
+					
+					var isElementOverDiv = function(){
+						var trashEl = $('#trash');
+						var ofs = trashEl.offset();
+						console.log(ofs);
+						console.log(trashEl);
+					    var x1 = ofs.left;
+					    var x2 = ofs.left + trashEl.outerWidth(true);
+					    var y1 = ofs.top;
+					    var y2 = ofs.top + trashEl.outerHeight(true);
+					   	
+					    if (currentMousePos.x>=x1 && currentMousePos.x<=x2 && currentMousePos.y>=y1 && currentMousePos.y<=y2) {
+					    	
+					    	return true;
+					    }else{
+							return false;
+					    }
+					}
+					console.log(event);
+					if(isElementOverDiv()){
+						if(confirm('지우시겠습니까?')){
+							$.ajax({
+								url: '${pageContext.request.contextPath}/enterprise/deleteReservation.action',
+								dataType: 'json',
+								data: {"reservation.rsvNum" : event.id},
+								contentType: 'application/json',
+								success: function(data){
+									alert('삭제되었습니다.');
+									//$('#calendar').fullCalendar('removeEvents');
+									//$('#calendar').fullCalendar('addEventSource', event);
+									$('#calendar').fullCalendar('refetchEvents');
+								},
+								error: function(){
+									console.log("deletion error");
+								},
+							});
+						};
+					};
+					$('#calendar').fullCalendar('unselect');
+				}	
+			});
+		}else{
+			alert("일반 이용자 로그인 후 이용해주세요.");
+			location.href = "${pageContext.request.contextPath}/toMainPage.action";
+		}
+	});
+	
 </script>
 
 </head>
@@ -745,11 +1506,16 @@
 		<input type="hidden" id="starttt" />
 		<input type="hidden" id="endtt" />
     	<div class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="195">
-      		<img src="${pageContext.request.contextPath}/image/trash-can1.jpg" id="trash" alt="쓰레기통" style="width: 100px; height: 100px;">
+    		<div>
+	      		<img src="${pageContext.request.contextPath}/image/trash-can1.jpg" class="img-thumbnail" id="trash" alt="쓰레기통" style="width: 100px; height: 100px;">
+	      		<div id="externalServiceList" class="external-events"></div>
+      		</div>
+      		
     	</div>
 	</div>
-	<s:property value='#session.loginId'/>
 	<div id='calendar' class='container'></div>
+	<br><br><br><br><br><br><br><br><br><br><br>
+	
 	
 	<div id="insertModal" class="modal fade">
 	    <div class="modal-dialog">
@@ -799,7 +1565,7 @@
 									<!-- 서비스 버튼 클릭시 받아오는 값이 된다 : 서비스 비용 -->
 								<tr>
 									<td><label for='inputPrice' class='control-label'>결제금: </label></td>
-									<td><input type='text' id='inputPrice' name='reservation.service.svcPrice' readonly class='form-control'/></td>
+									<td><input type='text' id='inputPrice' name='reservation.rsvCost' readonly class='form-control'/></td>
 								</tr>
 								
 								<tr>
@@ -822,6 +1588,9 @@
 										<option value="3">휴일</option>
 									</select>
 									</td>
+								</tr>
+								<tr>
+								<td colspan='2' align='center'><textarea rows='4' cols='50' id='insertRsvDesc' class='form-control' name="reservation.rsvDesc" placeholder="예약 관련 메모란"></textarea></td>
 								</tr>
 						
 								<tr>
@@ -902,8 +1671,16 @@
 		            		<td><span id="updateModalSvcCost"></span></td>
 		            	</tr>
 		            	<tr>
+		            		<td><label for="reservationCost">결제 가격:</label></td>
+		            		<td><span id="reservationCost"></span></td>
+		            	</tr>
+		            	<tr>
 		   					<td><label for="reservationUpdateDescription">서비스 상세 설명:</label>
 		   					<td><span id="reservationUpdateDescription"></span></td>
+		   				</tr>
+		   				<tr>
+		   					<td><label for="reservationDescription2">예약 메모:</label></td>
+		   					<td><span id="reservationDescription2"></span></td>
 		   				</tr>
 		            	<!-- TODO: 여기에 HTML 에디터 넣기!!!!! -->
 	   				</table>
@@ -919,6 +1696,10 @@
 		   						<tr>
 		   							<td><label for="reservationUpdateSelectService">변경하실 서비스를 선택해 주세요:</label></td>
 		   							<td><select id="reservationUpdateSelectService" class="form-control"></select></td>
+		   						</tr>
+		   						<tr>
+		   							<td><label for="reservationUpdateDescription2">메모 내역을 변경해 주세요:</label></td>
+		   							<td><textarea id="reservationUpdateDescription2" class="form-control"></textarea></td>
 		   						</tr>
 		   					</table>
 	   					</div>

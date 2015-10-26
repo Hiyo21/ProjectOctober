@@ -11,6 +11,7 @@ import test.vo.Highchart10;
 import test.vo.Highchart11;
 import test.vo.Highchart12;
 import test.vo.Highchart13;
+import test.vo.Highchart14;
 import test.vo.Highchart2;
 import test.vo.Highchart3;
 import test.vo.Highchart4;
@@ -259,10 +260,19 @@ public class DAO {
 		return list4;
 	}
 	//연령대별 선호 서비스- 끝
+	
+	
+	//이용자 평가 하이차트
+	public List<Highchart14> highchart14DAO(){
+		List<Highchart14> list = null;
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
+		try{
+			list = sqlsession.selectList("test.mapper.highchart14Mapper.highchart14");	
+			System.err.println(list);
+		}finally{
+			sqlsession.close();
+		}	
+		return list;	
+}
 
-
-	
-	
-	
-	
 }

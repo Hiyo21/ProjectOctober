@@ -1,20 +1,23 @@
 select tname from tab;
-select service_seq.nextval from dual
+select component_seq.nextval from dual
 select count(*) from zipcode;
 delete from zipcode;
 select * from zipcode order by zipcode;
 
+select distinct svc_category from service where etp_num = '9876543210'
 
-select * from service     
+select * from enterprise     
 
-select * from working_days 
+select * from component where etp_num = '9876543210'
+alter table component drop column component_desc;
+delete component where etp_num = '9876543210'
 
 select * from photo_location
 
 select * from member where mem_email = 'ent6@naver.com'
 
 update ENTERPRISE set etp_template_type = 2 where etp_owner = '6길동'
-update ENTERPRISE set etp_template_type = 3 where etp_owner = '7길동'
+update ENTERPRISE set etp_template_type = 1 where etp_num = '9876543210'
 
 insert into zipcode values ('11111', '서울시', '강남구', '삼성동', '삼성동')
 select * from member_code;

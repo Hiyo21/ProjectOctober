@@ -1,5 +1,6 @@
 package model.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.vo.Service;
 import model.vo.ServiceExample;
@@ -34,4 +35,6 @@ public interface ServiceMapper {
     List<Service> retrieveServices(String etpNum);
 
 	int deleteByPrimaryKey(String svcNum);
+
+	ArrayList<String> selectCategory(String etpNum);
 }

@@ -57,7 +57,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String category;
 	private int svcNum;
 	private int etpTemplateType;
-
+	
+	private int upCategory;//이미지 업로드시 용도 구별 위한 변수
+	
+	private String infoPht;
+	private String logoPht;
 	
 
 
@@ -102,18 +106,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveReservationFromOtherInfo() throws Exception{
-		System.err.println(etpNum);
 		System.err.println("retrieveReservationFromOtherInfo에서:" + reservation);
-		System.err.println(reservation);
 		if(reservation != null){
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
 		
-			//reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
+			reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
 		}
 		
 		if(reservation != null){
-			System.out.println(reservation.getRsvNum());
+			System.out.println("rsvnum찍기 : " + reservation.getRsvNum());
 			return SUCCESS;
 		}else{
 			return ERROR;
@@ -154,6 +156,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
+	public String insertSaleRecord() throws Exception{
+		System.err.println(saleRecord);
+		int result = etpDAO.insertSaleRecord(saleRecord);
+		if(result == 1)return SUCCESS;
+		else return ERROR;
+	}
+	
 	//--------------------------------------------------사업자 페이지---------------------------
 	//---------------------------------------Service Component-----------------------------
 	public String updateSvcCategory() throws Exception{
@@ -166,14 +175,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
-
-	public String receiveServiceList() throws Exception{
-		System.out.println("===========check Action :: receiveServiceList :: ");
-		serviceList = etpDAO.retrieveServices(etpNum);
-		
-		if(serviceList != null) return SUCCESS;
-		else return ERROR;
-	}
 	
 	public String retrieveCouponList() throws Exception{
 		couponList = etpDAO.retrieveCouponList(etpNum);
@@ -184,7 +185,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String selectSvcCategory() throws Exception{
 		System.err.println("category Check :: "+category);
 		serviceList = etpDAO.selectSvcCategory(etpNum, category);
-		
+		enterprise = etpDAO.selectByEtpNum(etpNum);
 		if(serviceList != null) return SUCCESS;
 		else return ERROR;
 	}
@@ -193,21 +194,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println("===========check Action :: selectServiceList :: " + etpNum);
 		serviceList = etpDAO.selectServiceList(etpNum);
 		
-		categoryList = new ArrayList<>();
-		for(int j=0; j<serviceList.size(); j++){	
-			String category = serviceList.get(j).getSvcCategory();
-			
-			if(j==0){
-				categoryList.add(category);
-			}else{
-				if(serviceList.get(j).getSvcCategory().equals(serviceList.get(j-1).getSvcCategory())){
-					
-				}else{
-					categoryList.add(category);
-				}
-			}
-		}
-
+		categoryList = etpDAO.makeCategoryList(etpNum);
+		
+		enterprise = etpDAO.selectByEtpNum(etpNum);
+		
 		if(serviceList != null) return SUCCESS;
 		else return ERROR;
 	}
@@ -261,26 +251,17 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		enterprise.setServices(svcList);
 
 		//카테고리 리스트 뽑기
-		categoryList = new ArrayList<>();
-		for(int j=0; j<svcList.size(); j++){	
-			String category = svcList.get(j).getSvcCategory();
-			
-			if(j==0){
-				categoryList.add(category);
-			}else{
-				if(svcList.get(j).getSvcCategory().equals(svcList.get(j-1).getSvcCategory())){
-					
-				}else{
-					categoryList.add(category);
-				}
-			}
-		}
+		categoryList = etpDAO.makeCategoryList(etpNum);		
 		
 		//고객평가, 갤러리 리스트 set
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 		enterprise.setInfoPht(etpDAO.selectInfoPht(etpNum));
-		enterprise.setInfoPht(etpDAO.selectLogoPht(etpNum));
+		enterprise.setLogoPht(etpDAO.selectLogoPht(etpNum));
+		System.out.println("INFO:::"+enterprise.getInfoPht());
+		System.out.println("LOGO:::"+enterprise.getLogoPht());
+		infoPht = enterprise.getInfoPht();
+		logoPht = enterprise.getLogoPht();
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
@@ -316,11 +297,30 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String checkCoupon() throws Exception{
-		System.err.println(cpnNum);
-		coupon = etpDAO.checkCoupon(cpnNum);
+		System.err.println(coupon);
+		coupon = etpDAO.checkCoupon(coupon);
 		if(coupon != null)coupon.setCanUseCoupon(true);
 		return SUCCESS;
 	}
+	
+	
+	//이미지 업로드 페이지로 가기
+		public String checkUploadCategory() {
+			System.out.println(upCategory);
+			if (upCategory == 1) {
+				System.out.println("여기"+1);
+				return "gallery";
+			} else if (upCategory == 2) {
+				System.out.println("여기"+2);
+				return "logo";
+			} else if (upCategory == 3) {
+				System.out.println("여기"+3);
+				return "info";
+			} else {
+				System.out.println("여기"+4);
+				return ERROR;
+			}
+		}
 	
 
 	
@@ -339,6 +339,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 		////신규 등록의 경우 insert로 이미 컴포넌트 값이 등록되어 있는 사업자의 경우 update로 적용하여 component의 중복을 제거		
 		if(etpDAO.receiveComponentList(etpNum)!=null){	//컴포넌트 신규등록
+			System.err.println("동적템플릿 신규등록자입니다.");
 			int result = etpDAO.insertComponent(component);
 			if(result == 1) {
 				return SUCCESS;
@@ -349,6 +350,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}else{	//컴포넌트 기존에 등록되어 있던 사람
 			//업데이트
 			System.out.println("============기존 컴포넌트 등록 사업자============");
+			System.err.println("동적템플릿 기존등록자입니다.");
 			int result = etpDAO.updateComponent(component);
 			if(result == 1) {
 				return SUCCESS;
@@ -380,18 +382,58 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	public String choiceTemplateType() {
 		etpNum = (String) session.get("loginEtpNum");
-		//etpNum="99";
-		etpDAO = new EnterpriseDAO();
+		System.out.println(etpNum+etpTemplateType);
 		int result = etpDAO.choiceTemplateType(etpNum, etpTemplateType);
+		
+		//엔터프라이즈 전체
+		enterprise = etpDAO.selectByEtpNum(etpNum);
+		System.out.println(enterprise);
+		
+		//서비스 리스트 set
+		List<Service> svcList = new ArrayList<Service>();
+		etpDAO.selectServiceList(etpNum); 
+		if (svcList != null) {
+			enterprise.setServices(svcList);
+					
+			//카테고리 리스트 뽑기
+			categoryList = new ArrayList<>();
+			for(int j=0; j<svcList.size(); j++){	
+				String category = svcList.get(j).getSvcCategory();
+				if(j==0){
+					categoryList.add(category);
+				} else{
+					if(svcList.get(j).getSvcCategory().equals(svcList.get(j-1).getSvcCategory())){
+						
+					}else{
+						categoryList.add(category);
+					}
+				}
+			}
+			//고객평가, 갤러리 리스트 set 
+			enterprise.setReviews(etpDAO.selectReviewList(etpNum));
+			enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
+		}
+		
 		if (result == 1) {
 			switch (etpTemplateType) {
 			case 1: return "dynamic";
 			case 2: return "static1";
 			case 3: return "static2";
 			}
-		}
-		
+		} 
 		return ERROR;
+	}
+	
+	//사업자의 이용자 예약 내역
+	public String reservationHistory() {
+		String loginEmail = (String)session.get("loginId");
+		System.out.println("action"+loginEmail);
+		saleRecords = etpDAO.reservationHistory(loginEmail);
+		if (saleRecords != null) {
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
 	}
 	
 	/////////////////////// 미승인 사업자 게시판 ////////////////////
@@ -725,4 +767,30 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public void setSvcNum(int svcNum) {
 		this.svcNum = svcNum;
 	}
+
+	public int getUpCategory() {
+		return upCategory;
+	}
+
+	public void setUpCategory(int upCategory) {
+		this.upCategory = upCategory;
+	}
+
+	public String getInfoPht() {
+		return infoPht;
+	}
+
+	public void setInfoPht(String infoPht) {
+		this.infoPht = infoPht;
+	}
+
+	public String getLogoPht() {
+		return logoPht;
+	}
+
+	public void setLogoPht(String logoPht) {
+		this.logoPht = logoPht;
+	}
+	
+	
 }

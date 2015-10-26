@@ -10,17 +10,19 @@
 <script type="text/javascript">
 	$(function(){
 		$('#svcModal').on('show.bs.modal', function(event){
-			$('#svcModal').focus();
+			var modal = $(this);
 		    var button = $(event.relatedTarget);
 			var title = button.data('title');
 			var submit = button.data('submit');
 			var onclick = button.data('onclick');
-			var modal = $(this);
+			modal.focus();			
 			modal.find('.modal-title').text(title);
 			modal.find('.modal-footer .btn-primary').text(submit);
 			modal.find('.modal-content .btn-primary').attr('onclick', onclick);
 		 });
 	});
+	
+	
 	
 	//수정할 메뉴 카테고리 갖고 오기
 	function selectSvcCategory(category){
@@ -30,8 +32,10 @@
 			type:'GET',
 			dataType: 'json',
 			success : function(data){
-				printSvcCategory(data);
-				$('#svcModal').modal('show');
+				printSvcModal(data);
+				$('#svcModal').modal('show').on('show.bs.modal', function(){
+					$('#svcModal').show();
+				});
 			}
 		});
 	}
@@ -76,21 +80,25 @@
 			'?etpNum='+<s:property value="etpNum"/>,
 			dataType: 'json',
 			type: 'GET',
-			success: function(){
-				printSvcList();
-				$('#svcModal').hide();	
-				/* $('.modal').hide(); */
+			success: function(data){
+				printSvcList(data);
+				$('#svcModal').modal('hide').on('hidden.bs.modal', function(){
+					$('#svcModal').hide();
+				});
+				location.reload();
 			},
 			error: function(doc){
 				console.log("insert Error");
 			}
 		});
 	}
+
 	
 	//모달에 메뉴 카테고리 출력
-	function printSvcCategory(object){
+	function printSvcModal(object){
 		//htmleditor modal on
 		var svcList = object.serviceList;
+		var superClass = object.enterprise.etpSuperclass;
 		console.log(svcList);
 		
 		var str = '<table class="table">';
@@ -99,15 +107,35 @@
 			str += '<input type="hidden" class="form-control" name="serviceList['+index+'].svcNum" value="'+item.svcNum+'">';
 			str += '<input type="hidden" class="form-control" name="serviceList['+index+'].etpNum" value="'+item.etpNum+'">';
 			str += '<input type="hidden" class="form-control" name="serviceList['+index+'].etpEmail" value="'+item.etpEmail+'"></td></tr>';
-			str += '<tr><td>서비스 명 : </td><td colspan="5"><input type="text" name="serviceList['+index+'].svcTitle" class="form-control" size="85" value="'+item.svcTitle +'"></td></tr>';
+			str += '<tr><td>서비스 명 : </td><td colspan="2"><input type="text" name="serviceList['+index+'].svcTitle" class="form-control" size="85" value="'+item.svcTitle +'"></td></tr>';
+			str += '<td>서비스 코드 : </td><td colspan="2"><select name="service.svcCode">';
+			if (superClass == "마사지샵"){
+				str += '<option value="타이마사지">타이마사지</option>';
+				str += '<option value="경락마사지">경락마사지</option>';
+				str += '<option value="카이로프랙틱">카이로프랙틱</option>';
+				str += '<option value="발마사지">발마사지</option>';
+				str += '<option value="바디마사지">바디마사지</option>';
+				str += '<option value="페이스마사지">페이스마사지</option>';
+				str += '<option value="아로마마사지">아로마마사지</option>';
+				str += '<option value="슬리밍케어">슬리밍케어</option>';
+				str += '<option value="웨딩관리">웨딩관리</option>';
+			}
+			if (superClass == "네일샵"){
+				str += '<option value="네일케어">네일케어</option>';
+				str += '<option value="랩핑 / 연장">랩핑 / 연장</option>';
+				str += '<option value="프리미엄젤">프리미엄젤</option>';
+			}
+			str += '</select></td>';					
 			str += '<tr><td>서비스 가격 : </td><td><input type="text" name="serviceList['+index+'].svcCost" class="form-control" value="'+item.svcCost+'"></td>';
 			str += '<td>서비스 시간 : </td><td><input type="text" name="serviceList['+index+'].svcTime" class="form-control" value="'+item.svcTime+'"></td></tr>';
 			str += '<tr><td>서비스 상세설명 : </td><td colspan="5"><textarea rows="5" cols="85" name="serviceList['+index+'].svcDescription" class="form-control">'+item.svcDescription+'</textarea></td></tr>';			
 		});    			
 		str += '</table>';
 		$('#svcModalDiv').html(str);
+		
 	}
-	//수정된 카테고리 to DB에 업데이트
+	
+	//수정된 카테고리 서비스 to DB에 업데이트
 	function updateSvcCategory() {
 		$.ajax({
 			url: "${pageContext.request.contextPath}/enterprise/updateSvcCategory.action",
@@ -125,17 +153,20 @@
 	//서비스 메뉴 항목 출력
 	function printSvcList(object){
 		console.log(object);
-		
-		var str = '';
+
+		var str = '<br><p align="right">'
+			str	+='<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal"'
+			str	+='data-title=\'서비스 추가\' data-submit=\'추가\' data-dismiss=\'modal\' data-onclick=\'insertService()\'>서비스 추가</button></p>';
+			
 		$.each(object.categoryList, function(index,item){
 			str += '<div class="panel panel-default"><div class="panel-heading"><b>'+item+'</b>';
-			str += '<a class="btn btn-default btn-md edit" href="#" role="button" onclick="selectSvcCategory('+item+')" data-dismiss="modal">수정</a>';
-			str += '<a class="btn btn-default btn-md edit" href="#" role="button" onclick="svcDelete('+item+')" data-dismiss="modal">삭제</a>';
+			str += '<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal"';
+			str += 'data-title=\'서비스 수정\' data-submit=\'수정\' data-dismiss=\'modal\' onclick=\'selectSvcCategory("'+item+'")\' data-onclick=\'updateSvcCategory()\'>수정</button>';
 			str += '</div>';	
 			
 			$.each(object.serviceList, function(index, svcItem){
 				if(item == svcItem.svcCategory){
-					str += '<div class="panel-body" id="categoryBody"> <table class="table">';
+					str += '<div class="panel-body" id="categoryBody"> <table class="table table-hover">';
 					str += '<tr><td>'+svcItem.svcTitle+'</td><td>';
 					if(svcItem.svcDescription != null){
 						str += svcItem.svcDescription + '<br>'
@@ -143,25 +174,38 @@
 					str += '비용 : '+svcItem.svcCost+'<br>';
 					str += '시간 : '+svcItem.svcTime+'</td>';
 					str += '<td><button type="button" class="btn btn-success btn-md" onclick="rsvInsert('+svcItem.svcNum+') style="width: 100px">예약 하기</button></td>';
-					str += '<td class="edit"><button type="button" class="btn btn-danger btn-md edit" onclick="svcDelete('+svcItem.svcNum+')">삭제</button></td></tr></table></div>';	
+					str += '<td class="edit"><button type="button" class="btn btn-danger btn-md edit" onclick="deleteService('+svcItem.svcNum+')">삭제</button></td></tr></table></div>';	
 				}
 			});
 			str += '</div>';
 		});
 		$('#svcListTab').html(str);	
-
+		
 	}
 	
 
+</script>
+
+<script type="text/javascript">
+    var url = document.location.toString(); // select current url shown in browser.
+    if (url.match('#')) {
+        $('.nav-tabs a[href=#' + url.split('#')[1] + ']').tab('show'); // activate current tab after reload page.
+    }
+    // Change hash for page-reload
+    $('.nav-tabs a').on('shown', function (e) { // this function call when we change tab.
+        window.location.hash = e.target.hash; // to change hash location in url.
+    });
 </script>
 
 
 </head>
 <body>
 <div class="container-fluid" id="svcListTab">
-
+<br>
+<p align="right">
 <button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal"
-data-title="서비스 추가" data-submit="추가" data-onclick="insertService()">서비스 추가</button>
+data-title="서비스 추가" data-submit="추가" data-dismiss="modal" data-onclick="insertService()">서비스 추가</button>
+</p>
 
 <s:if test="categoryList != null">
 <s:iterator value="categoryList">
@@ -172,31 +216,32 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 		 	<s:set var="category"><s:property/></s:set>
 		 	
 		 	<!-- 인서트시 한 사업자의 카데고리에 중복이 없게 해야 함//셀렉트 할때는 사업자와 카테고리를 조인하여 검색 -->
-		 	<a class="btn btn-default btn-md edit" href="#" role="button" onclick="selectSvcCategory('<s:property/>')" data-dismiss="modal" >수정</a>
+		 	<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal" data-title="서비스 수정" 
+			data-submit="수정" data-dismiss="modal" onclick='selectSvcCategory("<s:property/>")' data-onclick='updateSvcCategory()'>수정</button>
 		</div>
 		
 		<s:iterator value="enterprise.services">
 		<s:if test='%{svcCategory.equalsIgnoreCase(#category)}'> 
 		<!-- 서비스 항목-->
 		<div class="panel-body" id="categoryBody">
-		  	<table class="table">
+		  	<table class="table table-hover">
 		  		<tr>
-		  			<td>
+		  			<td class="col-xs-3">
 		  				<s:property value="svcTitle"/>
 		  			</td>
-		  			<td>
+		  			<td class="col-xs-5">
 		  				<s:if test="svcDescription != null">
 		  					<s:property value="svcDescription"/><br>
 		  				</s:if>
 		  				비용 : <s:property value="svcCost"/> <br>시간 : <s:property value="svcTime"/>
 		  			</td>
-		  			<td>
+		  			<td class="col-xs-2">
 		  				<button type="button" class="btn btn-success btn-md" onclick="rsvInsert(<s:property value="svcNum"/>)" style="width: 100px">예약 하기</button>
 		  			</td>
-		  			<td class="edit">
+		  			<td class="edit col-xs-2">
 		  				<button type="button" class="btn btn-danger btn-md edit" onclick="deleteService(<s:property value="svcNum"/>)">삭제</button>
 		  			</td>
-		  		</tr>
+		  		</tr> 
 			</table>
 			</div>
 			</s:if>
@@ -205,27 +250,24 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 </s:iterator>		
 </s:if>
 
-<!-- <div id="modalWrapper"> -->
-<!--  svc edit modal -->
-<!-- ajax를 통해 서비스메뉴를 불러오기 -->
-<div class="modal fade" id="svcModal" aria-hidden="true" tabindex="-1" aria-labelledby="exampleModalLabel">
+
+<div class="modal" id="svcModal" aria-hidden="true" tabindex="-1" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog modal-lg" >  
     <div class="modal-content">
     
-  	<form class="form-inline" role="form" method="post" data-toggle="validator" id="svcForm"> <!-- form start -->    
+  	<form class="form" role="form" method="post" data-toggle="validator" id="svcForm"> <!-- form start -->    
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" aria-label="Close">
         	<span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title" id="exampleModalLabel">서비스 메뉴 수정</h4>
       </div>
-      
-      <!-- 수정 테이블 들어감 -->    
-      <div class="modal-body" id="svcModalDiv">	
+   
+      <div class="modal-body table-responsive" id="svcModalDiv">	
       	<table class="table">
 			<tr>
 				<td>카테고리 : </td>
-				<td colspan="5">
+				<td colspan="5" >
 					<input type="text" class="form-control" name="service.svcCategory"  >
 					<input type="hidden" class="form-control" name="service.svcNum">
 					<input type="hidden" class="form-control" name="service.etpNum" value='<s:property value="etpNum"/>'>
@@ -234,21 +276,41 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 			</tr>
 			<tr>
 				<td>서비스 명 : </td>
-				<td colspan="5">
-					<input type="text" name="service.svcTitle" class="form-control" size="85">
+				<td colspan="2">
+					<input type="text" name="service.svcTitle" class="form-control">
+				</td>
+				<td>서비스 코드 : </td>
+				<td colspan="2">		
+					<select name="service.svcCode">
+						<s:if test='enterprise.etpSuperclass.equals("마사지샵")'>
+							<option value="타이마사지">타이마사지</option>
+							<option value="경락마사지">경락마사지</option>
+							<option value="카이로프랙틱">카이로프랙틱</option>
+							<option value="발마사지">발마사지</option>
+							<option value="바디마사지">바디마사지</option>
+							<option value="페이스마사지">페이스마사지</option>
+							<option value="아로마마사지">아로마마사지</option>
+							<option value="슬리밍케어">슬리밍케어</option>
+							<option value="웨딩관리">웨딩관리</option>	
+						</s:if>				
+						<s:if test='enterprise.etpSuperclass.equals("네일샵")'>
+							<option value="네일케어">네일케어</option>
+							<option value="랩핑 / 연장">랩핑 / 연장</option>
+							<option value="프리미엄젤">프리미엄젤</option>					
+						</s:if>	
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<td>서비스 가격 : </td>
-				<td><input type="text" name="service.svcCost" class="form-control"></td>
+				<td colspan="2"><input type="text" name="service.svcCost" class="form-control"></td>
 				<td>서비스 시간 : </td>
-				<td><input type="text" name="service.svcTime" class="form-control"></td>
+				<td colspan="2"><input type="text" name="service.svcTime" class="form-control" placeholder="HH24:MM"></td>
 			</tr>
 			<tr>
 				<td>서비스 상세설명 : </td>
 				<td colspan="5">
-					<textarea rows="5" cols="85" name="service.svcDescription" class="form-control">
-					</textarea>
+					<textarea rows="5" name="service.svcDescription" class="form-control"></textarea>
 				</td>
 			</tr>			    			
 		</table>
@@ -256,16 +318,16 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary" onclick="updateSvcCategory()" data-dismiss="modal">수정</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">수정</button>
       </div>
       </form>
       
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
 </div>
 
-<!-- </div> -->
+
 
 </body>
 </html>

@@ -21,6 +21,7 @@ public class Reservation implements Serializable {
     private char employeeGender;
     private String rsvTitle;
     private String rsvDesc;
+    private Integer rsvCost;
     private String start;
     private String end;
     private String duration;
@@ -188,6 +189,14 @@ public class Reservation implements Serializable {
 		this.rsvDesc = rsvDesc;
 	}
 
+	public Integer getRsvCost() {
+		return rsvCost;
+	}
+
+	public void setRsvCost(Integer rsvCost) {
+		this.rsvCost = rsvCost;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -198,8 +207,10 @@ public class Reservation implements Serializable {
 				.append(cstEmail).append(", rsvStartDate=").append(rsvStartDate).append(", rsvEndDate=")
 				.append(rsvEndDate).append(", rsvStatus=").append(rsvStatus).append(", employeeGender=")
 				.append(employeeGender).append(", rsvTitle=").append(rsvTitle).append(", rsvDesc=").append(rsvDesc)
-				.append(", start=").append(start).append(", end=").append(end).append(", duration=").append(duration)
-				.append(", bordercolor=").append(bordercolor).append("]");
+				.append(", rsvCost=").append(rsvCost).append(", start=").append(start).append(", end=").append(end)
+				.append(", duration=").append(duration).append(", bordercolor=").append(bordercolor).append("]");
 		return builder.toString();
 	}
+	
+	
 }

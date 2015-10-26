@@ -2,6 +2,7 @@ package model.vo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class PaymentRecord implements Serializable {
     private Integer pmtNum;
@@ -11,6 +12,11 @@ public class PaymentRecord implements Serializable {
     private LocalDateTime pmtTime;
 
     private Integer pmtAmount;
+    
+    private Service service;
+    private List<Service> serviceList;
+    private Reservation reservation;
+    private List<Reservation> reservationList;
 
     private static final long serialVersionUID = 1L;
 
@@ -59,4 +65,38 @@ public class PaymentRecord implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+	public Service getService() {
+		return service;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
+
+	public List<Service> getServiceList() {
+		return serviceList;
+	}
+
+	public void setServiceList(List<Service> serviceList) {
+		this.serviceList = serviceList;
+	}
+
+	public List<Reservation> getReservationList() {
+		return reservationList;
+	}
+
+	public void setReservationList(List<Reservation> reservationList) {
+		this.reservationList = reservationList;
+	}
+	
+	
 }
