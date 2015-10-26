@@ -23,10 +23,6 @@
 		</action>
 		
 		<!-- 서비스 메뉴 관련  -->
-
-		<action name="selectServiceList" class="controller.action.EnterpriseAction" method="selectServiceList">
-			<result type="json" />
-		</action>
 		
 		<action name="selectSvcCategory" class="controller.action.EnterpriseAction" method="selectSvcCategory">
 			<result type="json"/>	
@@ -36,7 +32,7 @@
 			<result type="json"/>
 		</action>
 		
-		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
+		<action name="selectServiceList" class="controller.action.EnterpriseAction" method="selectServiceList">
 			<result type="json" />
 		</action>
 		

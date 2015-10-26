@@ -28,7 +28,6 @@
 		var pageId = "<%= session.getAttribute("pageId") %>" ;
 
 		$('#saveBT').attr('disabled', true);
-		$('#editBT').attr('disabled', false); // 사업자 편집 버튼바 중 페이지 편집 버튼 disabled	
 		$('.edit').hide();
 		
 		//로그인 한 사람이 페이지 주인과 동일 할 때 
@@ -48,14 +47,22 @@
 		
 		//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
 		$('#saveBT').attr('disabled', false);
-		$('#editBT').addClass('active');  // 편집 중일 때 누름 표시
-		$('#editBT').on('click', stopEdit);	//편집 정지 function on
-		//save, load 버튼에 클릭 이벤트와 함수 연결
-	    $('#saveBT').on('click', savePage);
+		$('#saveBT').on('click', savePage);  
+		
+		//편집 버튼에 누름 효과 추가
+	    $('#editBT').addClass('active');
+		//편집 버튼에 기존 클릭 이벤트 제거 후 새로운 이벤트 추가
+	    $('#editBT').unbind('click');
+	    $('#editBT').on('click', stopEdit);
 	}
 	
 	function stopEdit(){
+		//편집 버튼에 누름 효과 제거
 		$('#editBT').removeClass('active');
+		//편집 버튼에 기존 클릭 이벤트 제거 후 새로운 이벤트 추가
+		$('#editBT').unbind('click');
+		$('#editBT').on('click', startEdit);
+		
 		$('.edit').hide(); //편집 버튼 숨기기
 		loadPage(); //DB에 저장되어 있는 페이지 로드
 	}

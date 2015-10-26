@@ -102,6 +102,8 @@ function startEdit(){
 	
 	//save, load 버튼에 클릭 이벤트와 함수 연결
     $('#saveBT').on('click', savePage);
+	//편집버튼 비운 후 클릭기능 추가
+    $('#editBT').unbind('click');
     $('#editBT').on('click', stopEdit);
     
     //컴포넌트에 마우스가 들어가면 삭제 버튼 생성
@@ -117,7 +119,10 @@ function startEdit(){
 }
 
 function stopEdit(){
+	//편집 버튼에 눌러진 효과 지우기
 	$('#editBT').removeClass('active');
+	//편집 버튼에 클릭 이벤트 지운 후 새로운 이벤트 추가
+	$('#editBT').unbind('click');
 	$('#editBT').on('click', startEdit);
 	$('.edit').hide(); //편집 버튼 숨기기
 	loadPage(); //DB에 저장되어 있는 페이지 로드

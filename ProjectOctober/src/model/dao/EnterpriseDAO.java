@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +91,7 @@ public class EnterpriseDAO extends DAOTemplate{
 			ServiceExample example = new ServiceExample();
 			example.or().andEtpNumEqualTo(etpNum);
 			List<Service> svcList = session.getMapper(ServiceMapper.class).selectByExample(example);
-			System.err.println("============check DAO :: receiveServiceList :: "+svcList.size());
+			System.err.println("============check DAO :: selectServiceList :: "+svcList.size());
 			return svcList;	
 		}finally{
 			session.close();
@@ -115,7 +116,7 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int updateSvcCategory(Service service) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			int result = session.getMapper(ServiceMapper.class).updateByPrimaryKey(service);
+			int result = session.getMapper(ServiceMapper.class).updateByPrimaryKeySelective(service);
 			if(result == 1) session.commit();
 			else session.rollback();
 			return result;
@@ -183,7 +184,11 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int deleteService(int svcNum) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
-			return session.getMapper(ServiceMapper.class).deleteByPrimaryKey(svcNum);
+			int result = session.getMapper(ServiceMapper.class).deleteByPrimaryKey(svcNum);
+			if(result==1) session.commit();
+			else session.rollback();
+			
+			return result;
 		}finally{session.close();}
 	}
 
@@ -355,5 +360,12 @@ public class EnterpriseDAO extends DAOTemplate{
 	
 	public Reservation retrieveReservationFromOtherInfo(Reservation reservation) {
 		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveReservationFromOtherInfo(reservation);});
+	}
+
+	public ArrayList<String> makeCategoryList(String etpNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(ServiceMapper.class).selectCategory(etpNum);
+		}finally{session.close();}
 	}
 }

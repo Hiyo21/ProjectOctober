@@ -4,6 +4,7 @@ select count(*) from zipcode;
 delete from zipcode;
 select * from zipcode order by zipcode;
 
+select distinct svc_category from service where etp_num = '9876543210'
 
 select * from service     
 
