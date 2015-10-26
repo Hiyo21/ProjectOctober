@@ -71,8 +71,16 @@
 
 		
 		<!-- 사진업로드 / 갤러리 -->
-		<action name="toImageUploadPage" class="controller.action.MemberAction">
+		<action name="toImageUploadPage">
 			<result>/jsp/enterprise/UploadEtpImage.jsp</result>
+		</action>
+		
+		<action name="toInfoUploadPage">
+			<result>/jsp/enterprise/UploadEtpInfo.jsp</result>
+		</action>
+		
+		<action name="toLogoUploadPage">
+			<result>/jsp/enterprise/UploadEtpLogo.jsp</result>
 		</action>
 		
 		<action name="imageUploadAction" class="controller.action.FileUploadAction" method="uploadImage">
@@ -86,15 +94,26 @@
 			<result name="input">/jsp/enterprise/UploadEtpImage.jsp</result>
 		</action>
 		
-		<action name="infoPhtUploadAction" class="controller.action.FileUploadAction" method="uploadImage">
+		<action name="infoUploadAction" class="controller.action.FileUploadAction" method="uploadInfoImage">
 			<interceptor-ref name="fileUpload">
 				<param name="allowedTypes">
 					image/png,image/gif,image/jpeg,image/jpg
 				</param>
 			</interceptor-ref>
 			<interceptor-ref name="defaultStack" />
-			<result name="success">/jsp/enterprise/UploadEtpImage.jsp</result>
-			<result name="input">/jsp/enterprise/UploadEtpImage.jsp</result>
+			<result name="success">/jsp/enterprise/UploadEtpInfo.jsp</result>
+			<result name="input">/jsp/enterprise/UploadEtpInfo.jsp</result>
+		</action>
+		
+		<action name="logoUploadAction" class="controller.action.FileUploadAction" method="uploadLogoImage">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/jsp/enterprise/UploadEtpLogo.jsp</result>
+			<result name="input">/jsp/enterprise/UploadEtpLogo.jsp</result>
 		</action>
 
 		<action name="selectGalleryList" class="controller.action.EnterpriseAction" method="selectGalleryList">
@@ -189,6 +208,11 @@
 		
 		<action name="checkCoupon" class="controller.action.EnterpriseAction" method="checkCoupon">
 			<result type="json" />
+		</action>
+		
+		<!-- 사업자의 이용자 예약 내역 -->
+		<action name="toEptReservationHistoryPage" class="controller.action.EnterpriseAction" method="reservationHistory">
+			<result>/jsp/enterprise/ReservationEtpHistory.jsp</result>
 		</action>
 	</package> 
 </struts>

@@ -162,6 +162,14 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return s.getMapper(EnterpriseMapper.class).insertImage(loc);});
 	}
 	
+	public Integer uploadInfoImage(PhotoLocation loc) {
+		return dataModificationTemplate(s -> {return s.getMapper(EnterpriseMapper.class).insertInfoImage(loc);});
+	}
+	
+	public Integer uploadLogoImage(PhotoLocation loc) {
+		return dataModificationTemplate(s -> {return s.getMapper(EnterpriseMapper.class).insertLogoImage(loc);});
+	}
+	
 	
 	////////////////////////Component DAO //////////////////////// 
 	
@@ -254,6 +262,12 @@ public class EnterpriseDAO extends DAOTemplate{
 		} finally {
 			session.close();
 		}
+	}
+	
+	
+	//사업자의 이용자 예약 내역
+	public List<SaleRecord> reservationHistory(String loginEmail) {
+		return dataRetrievalTemplate(s -> {return s.getMapper(EnterpriseMapper.class).reservationHistory(loginEmail);});
 	}
 	
 	//////////////////////// 미승인 사업자 DAO ////////////////////////

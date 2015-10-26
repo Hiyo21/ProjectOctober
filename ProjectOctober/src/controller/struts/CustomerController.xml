@@ -19,5 +19,9 @@
 			<result type="json"/>
 		</action>
 		
+		<!-- 이용자의 업체 예약 내역 -->
+		<action name="toCstReservationHistoryPage" class="controller.action.CustomerAction" method="reservationHistory">
+			<result>/jsp/customer/ReservationCstHistory.jsp</result>
+		</action>
 	</package>
 </struts>

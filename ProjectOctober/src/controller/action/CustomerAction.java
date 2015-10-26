@@ -66,6 +66,19 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 		paymentRecords = cstDAO.retrievePaymentRecords();
 		return SUCCESS;
 	}	
+	
+	//이용자의 업체 예약 내역
+	public String reservationHistory() throws Exception {
+		String loginId = (String)session.get("loginId");
+		paymentRecords = cstDAO.reservationHistory(loginId);
+		System.out.println("size!!"+paymentRecords.size());
+		if (paymentRecords != null) {
+			return SUCCESS;
+		}
+		else {
+			return ERROR;
+		}
+	}
 
 	public Customer getCustomer() {
 		return customer;
@@ -88,7 +101,7 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 
 	@Override
 	public void setSession(Map<String, Object> session) {
-		// TODO Auto-generated method stub
+		this.session = session;
 	}
 
 	public Member getMember() {

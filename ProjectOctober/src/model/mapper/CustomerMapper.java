@@ -42,5 +42,7 @@ public interface CustomerMapper {
 	List<PaymentRecord> retrievePaymentRecords();
 	
 	PaymentRecord retrievePaymentRecord(Integer rsvNum);
+	
+	List<PaymentRecord> reservationHistory(String loginEmail);
   
 }

@@ -45,6 +45,11 @@ function saveInfo() {
 };
 
 </script>
+<script type="text/javascript">
+function uploadInfoOpen() {
+	window.open("${pageContext.request.contextPath}/enterprise/toInfoUploadPage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
+}
+</script>
 
 </head>
 
@@ -70,15 +75,8 @@ function saveInfo() {
 						</s:if>
 					</s:else>
 				</div>
-			<div class="edit">
-				<s:form action="infoPhtUploadAction" method="POST" enctype="multipart/form-data">
-					<h5>업로드할 파일을 선택해 주세요.</h5>
-					<s:file name="fileToUpload" class="btn btn-default"/>
-					<input type="hidden" name="etpNum" value="${member.enterprise.etpNum}" id="etpNumHidden"/>
-					<input type="hidden" name="etpEmail" value="${member.enterprise.etpEmail}" id="etpEmailHidden" />
-					<input type="hidden" name="infoPht" value="${member.enterprise.infoPht}" id="infoPhtHidden" />
-					<s:submit type="btn btn-default"/>
-				</s:form>
+			<div>
+				<input type="button" value="사진업로드" onclick="uploadInfoOpen()" class="edit">
 			</div>
 		</div>
 		<div class="col-md-8">

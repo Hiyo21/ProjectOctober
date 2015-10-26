@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -56,6 +57,20 @@ public class CustomerDAO extends DAOTemplate{
 			return result;
 		} finally {
 			session.close();
+		}
+	}
+	
+	//
+	public List<PaymentRecord> reservationHistory(String loginEmail) {
+		//return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).reservationHistory(loginEmail);});
+		SqlSession ss = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			List<PaymentRecord> list = new ArrayList<>();
+			list = ss.selectList("model.mapper.CustomerMapper.reservationHistory", loginEmail);
+			System.out.println(list);
+			return list;
+		} finally {
+			ss.close();
 		}
 	}
 }
