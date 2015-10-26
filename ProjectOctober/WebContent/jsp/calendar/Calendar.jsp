@@ -476,6 +476,8 @@
 						
 						//-----------------약관 동의하면 DB에 reservation 집어 넣자! -----------------//
 						
+						console.log(colorTemp);
+						
 						$.ajax({
 							url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
 							dataType: 'json',
