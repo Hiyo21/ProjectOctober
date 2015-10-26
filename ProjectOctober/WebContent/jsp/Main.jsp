@@ -163,21 +163,21 @@ tab-content{
 										<script type="text/javascript">	
 											$('#img_map_1 area').mouseover(function(){
 												mapTxt = $(this).attr("alt");
-												mapSrc = "../image/img_map_" + mapTxt + ".png";		
+												mapSrc = "${pageContext.request.contextPath}/image/img_map_" + mapTxt + ".png";		
 												$(".mapImg").attr("src", mapSrc);
 												
 												return false;
 											})
 											$('#img_map_1 area').focus(function(){
 												mapTxt = $(this).attr("alt");
-												mapSrc = "../image/img_map_" + mapTxt + ".png";		
+												mapSrc = "${pageContext.request.contextPath}/image/img_map_" + mapTxt + ".png";		
 												$(".mapImg").attr("src", mapSrc);
 												
 												return false;
 											})
 											$('.mapImg').mouseout(function(){
 												
-												mapSrc = "../image/img_map_12.png";
+												mapSrc = "${pageContext.request.contextPath}/image/img_map_12.png";
 												
 												
 												$(".mapImg").attr("src", mapSrc);

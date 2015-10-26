@@ -359,5 +359,10 @@
 	<select id="retrievePaymentRecords" parameterType="String" resultMap="PaymentRecordResultMap">
 		select * from payment_record where etp_num = #{value}
 	</select>
+	
+	<select id="insertCustomerEvaluation" parameterType="Review">
+		insert into review values(REVIEW_SEQ.nextval,#{cst_email},#{etp_num},#{etp_email},#{rvw_input_date},#{rvw_content},#{cst_job},#{RVW_HYGIENE},#{RVW_COMFORT},#{RVW_TECHNIQUE},#{RVW_PRICE},#{RVW_SERVICE})
+	</select>
+	
 
 </mapper>
