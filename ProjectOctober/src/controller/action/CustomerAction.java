@@ -1,29 +1,39 @@
 package controller.action;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
 import model.dao.CustomerDAO;
+import model.dao.SearchDAO;
 import model.vo.Customer;
+import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.PaymentRecord;
+import model.vo.Review;
 
 public class CustomerAction extends ActionSupport implements SessionAware{
 	private Customer customer;
 	private List<Customer> customerList;
 	private String cstEmail;
 	private CustomerDAO cstDAO;
+	private SearchDAO searchDAO;
 	private Map<String, Object> session;
 	private Member member;
 	private PaymentRecord paymentRecord;
 	private List<PaymentRecord> paymentRecords;
 	private Integer pmtNum;
 	private String etpNum;
+	private Review review;
+	private Enterprise enterprise;
+	
+	private String id;
 	
 	public CustomerAction() {
 		cstDAO = DAOFactory.createCustomerDAO();
@@ -32,9 +42,10 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	public String insertPaymentRecord() throws Exception{
 		System.out.println(paymentRecord);
 		System.err.println("나오냐?" + paymentRecord);
+		paymentRecord.setPmtTime(LocalDateTime.now());
 		int result = cstDAO.insertPaymentRecord(paymentRecord);
 		if(result != 0){
-			paymentRecord = cstDAO.retrievePaymentRecord(paymentRecord.getPmtNum());
+			paymentRecord = cstDAO.retrievePaymentRecord(paymentRecord.getRsvNum());
 		}else{
 			return ERROR;
 		}
@@ -61,7 +72,19 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrievePaymentRecords() throws Exception{
-		paymentRecords = cstDAO.retrievePaymentRecords(etpNum);
+		paymentRecords = cstDAO.retrievePaymentRecords();
+		return SUCCESS;
+	}	
+	
+	//이용자 평가
+	public String customerEvaluation() throws Exception{
+		System.err.println(review);
+		
+		System.err.println(etpNum);
+		id = (String)session.get("loginId");	
+		review.setEtpEmail(id);		
+		cstDAO.insertCustomerEvaluation(review);
+		
 		return SUCCESS;
 	}	
 
@@ -133,5 +156,35 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 
 	public void setPmtNum(Integer pmtNum) {
 		this.pmtNum = pmtNum;
+	}
+
+	public Review getReview() {
+		return review;
+	}
+
+	public void setReview(Review review) {
+		this.review = review;
+	}
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+	public Enterprise getEnterprise() {
+		return enterprise;
+	}
+
+	public void setEnterprise(Enterprise enterprise) {
+		this.enterprise = enterprise;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}	
+	
+	
 }

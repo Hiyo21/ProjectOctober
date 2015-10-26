@@ -178,5 +178,13 @@
 		<action name="emptyAction" class="controller.action.EnterpriseAction" method="emptyAction">
 			<result type="json" />
 		</action>
-	</package>
+		
+		<action name="insertSaleRecord" class="controller.action.EnterpriseAction" method="insertSaleRecord">
+			<result type="json"/>
+		</action>
+		
+		<action name="checkCoupon" class="controller.action.EnterpriseAction" method="checkCoupon">
+			<result type="json" />
+		</action>
+	</package> 
 </struts>

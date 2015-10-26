@@ -5,13 +5,12 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import model.common.MyBatisSqlSessionFactory;
+import model.mapper.CustomerMapper;
 import model.mapper.MemberMapper;
 import model.vo.Customer;
-
-import model.mapper.CustomerMapper;
-
 import model.vo.Member;
 import model.vo.PaymentRecord;
+import model.vo.Review;
 
 public class CustomerDAO extends DAOTemplate{
 	
@@ -23,8 +22,8 @@ public class CustomerDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return s.getMapper(CustomerMapper.class).insertPaymentRecord(paymentRecord);});
 	}
 	
-	public PaymentRecord retrievePaymentRecord(Integer pmtNum){
-		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecord(pmtNum);});
+	public PaymentRecord retrievePaymentRecord(Integer rsvNum){
+		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecord(rsvNum);});
 	}
 	
 	public int updatePaymentRecord(PaymentRecord paymentRecord){
@@ -35,8 +34,8 @@ public class CustomerDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return s.getMapper(CustomerMapper.class).deletePaymentRecord(pmtNum);});
 	}
 	
-	public List<PaymentRecord> retrievePaymentRecords(String etpNum){
-		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecords(etpNum);});
+	public List<PaymentRecord> retrievePaymentRecords(){
+		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecords();});
 	}
 		
 	
@@ -51,6 +50,21 @@ public class CustomerDAO extends DAOTemplate{
 			System.err.println(customer);
 			int result = session.getMapper(MemberMapper.class).insertCustomerInfo(customer);
 			System.out.println("DAO : "+ result);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
+		} finally {
+			session.close();
+		}
+	}
+	
+	//이용자 평가 INSERT
+	public int insertCustomerEvaluation(Review review) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			System.err.println(review);
+			int result = session.getMapper(CustomerMapper.class).insertCustomerEvaluation(review);
+			System.out.println("DAO : "+ review);
 			if(result == 1) session.commit();
 			else session.rollback();
 			return result;

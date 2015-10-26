@@ -146,7 +146,7 @@
 			<div class="container">
 				<div class="row">					
 					<div class="navbar-collapse collapse">
-						<s:if test="#session.loginId != null || #session.memCode != 2">
+						<s:if test="#session.loginId != null || #session.memCode == 2">
 							<ul class="nav navbar-nav" id="test1">
 								<li>
 									<a href="${pageContext.request.contextPath}/search/toAreaCategoryPage.action">
@@ -171,7 +171,7 @@
 							</ul>
 						</s:if>
 						
-						<s:if test="#session.memCode == 2">
+						<s:if test="#session.memCode == 1">
 							<ul class="nav navbar-nav">
 								<li>
 									<a href="toEnterpriseMyPage.action">

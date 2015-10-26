@@ -57,7 +57,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String category;
 	private int svcNum;
 	private int etpTemplateType;
-
+	
+	private int upCategory;//이미지 업로드시 용도 구별 위한 변수
 	
 
 
@@ -102,18 +103,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveReservationFromOtherInfo() throws Exception{
-		System.err.println(etpNum);
 		System.err.println("retrieveReservationFromOtherInfo에서:" + reservation);
-		System.err.println(reservation);
 		if(reservation != null){
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
 		
-			//reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
+			reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
 		}
 		
 		if(reservation != null){
-			System.out.println(reservation.getRsvNum());
+			System.out.println("rsvnum찍기 : " + reservation.getRsvNum());
 			return SUCCESS;
 		}else{
 			return ERROR;
@@ -151,6 +150,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String deleteReservation() throws Exception{
 		int result = etpDAO.deleteReservation(reservation);
 		if(result == 1) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String insertSaleRecord() throws Exception{
+		System.err.println(saleRecord);
+		int result = etpDAO.insertSaleRecord(saleRecord);
+		if(result == 1)return SUCCESS;
 		else return ERROR;
 	}
 	
@@ -284,11 +290,30 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String checkCoupon() throws Exception{
-		System.err.println(cpnNum);
-		coupon = etpDAO.checkCoupon(cpnNum);
+		System.err.println(coupon);
+		coupon = etpDAO.checkCoupon(coupon);
 		if(coupon != null)coupon.setCanUseCoupon(true);
 		return SUCCESS;
 	}
+	
+	
+	//이미지 업로드 페이지로 가기
+		public String checkUploadCategory() {
+			System.out.println(upCategory);
+			if (upCategory == 1) {
+				System.out.println("여기"+1);
+				return "gallery";
+			} else if (upCategory == 2) {
+				System.out.println("여기"+2);
+				return "logo";
+			} else if (upCategory == 3) {
+				System.out.println("여기"+3);
+				return "info";
+			} else {
+				System.out.println("여기"+4);
+				return ERROR;
+			}
+		}
 	
 
 	
@@ -348,17 +373,45 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	public String choiceTemplateType() {
 		etpNum = (String) session.get("loginEtpNum");
-		//etpNum="99";
-		etpDAO = new EnterpriseDAO();
+		System.out.println(etpNum+etpTemplateType);
 		int result = etpDAO.choiceTemplateType(etpNum, etpTemplateType);
+		
+		//엔터프라이즈 전체
+		enterprise = etpDAO.selectByEtpNum(etpNum);
+		System.out.println(enterprise);
+		
+		//서비스 리스트 set
+		List<Service> svcList = new ArrayList<Service>();
+		etpDAO.selectServiceList(etpNum); 
+		if (svcList != null) {
+			enterprise.setServices(svcList);
+					
+			//카테고리 리스트 뽑기
+			categoryList = new ArrayList<>();
+			for(int j=0; j<svcList.size(); j++){	
+				String category = svcList.get(j).getSvcCategory();
+				if(j==0){
+					categoryList.add(category);
+				} else{
+					if(svcList.get(j).getSvcCategory().equals(svcList.get(j-1).getSvcCategory())){
+						
+					}else{
+						categoryList.add(category);
+					}
+				}
+			}
+			//고객평가, 갤러리 리스트 set 
+			enterprise.setReviews(etpDAO.selectReviewList(etpNum));
+			enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
+		}
+		
 		if (result == 1) {
 			switch (etpTemplateType) {
 			case 1: return "dynamic";
 			case 2: return "static1";
 			case 3: return "static2";
 			}
-		}
-		
+		} 
 		return ERROR;
 	}
 	
@@ -693,4 +746,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public void setSvcNum(int svcNum) {
 		this.svcNum = svcNum;
 	}
+
+	public int getUpCategory() {
+		return upCategory;
+	}
+
+	public void setUpCategory(int upCategory) {
+		this.upCategory = upCategory;
+	}
+	
+	
 }

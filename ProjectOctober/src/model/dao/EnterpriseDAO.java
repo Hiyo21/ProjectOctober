@@ -18,6 +18,7 @@ import model.vo.PhotoLocation;
 import model.vo.Reservation;
 import model.vo.Service;
 import model.vo.Review;
+import model.vo.SaleRecord;
 import model.vo.ServiceExample;
 
 
@@ -159,7 +160,7 @@ public class EnterpriseDAO extends DAOTemplate{
 	
 	
 	public Integer uploadImage(PhotoLocation loc) {
-		return dataModificationTemplate(s -> {return fromMapper(s).insertImage(loc);});
+		return dataModificationTemplate(s -> {return s.getMapper(EnterpriseMapper.class).insertImage(loc);});
 	}
 	
 	
@@ -336,8 +337,8 @@ public class EnterpriseDAO extends DAOTemplate{
 		}finally{session.close();}
 	}
 
-	public Coupon checkCoupon(Integer cpnNum) {
-		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(cpnNum);});
+	public Coupon checkCoupon(Coupon coupon) {
+		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(coupon);});
 	}
 
 	public String retrieveRegCard(String etpNum) {
@@ -362,10 +363,15 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveReservationFromOtherInfo(reservation);});
 	}
 
+
 	public ArrayList<String> makeCategoryList(String etpNum) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
 			return session.getMapper(ServiceMapper.class).selectCategory(etpNum);
 		}finally{session.close();}
+
+	public int insertSaleRecord(SaleRecord saleRecord) {
+		return dataModificationTemplate(s -> {return fromMapper(s).insertSaleRecord(saleRecord);});
+
 	}
 }

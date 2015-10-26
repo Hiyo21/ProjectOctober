@@ -19,5 +19,10 @@
 			<result type="json"/>
 		</action>
 		
+		<!-- 고객 평가 -->
+		<action name="customerEvaluation" class="controller.action.CustomerAction" method="customerEvaluation">
+			<result name="success">/jsp/component/ReviewComponent.jsp</result>
+		</action>
+		
 	</package>
 </struts>
