@@ -377,9 +377,17 @@
 		select * from payment_record p, customer c, reservation r where p.rsv_num = r.rsv_num and c.cst_email = r.cst_email
 	</select>
 	
+
 	<select id="reservationHistory" parameterType="String" resultMap="PaymentRecordResultMap">
 		select p.pmt_num, r.RSV_NUM, s.SVC_TITLE, r.RSV_START_DATE, p.PMT_AMOUNT, r.CST_EMAIL from PAYMENT_RECORD p, RESERVATION r, SERVICE s where p.RSV_NUM=r.RSV_NUM and r.SVC_NUM=s.SVC_NUM and cst_email=#{loginEmail} order by r.RSV_START_DATE desc
 		<!-- select r.RSV_NUM, s.SVC_TITLE from PAYMENT_RECORD p, RESERVATION r, SERVICE s where p.RSV_NUM=r.RSV_NUM and r.SVC_NUM=s.SVC_NUM and cst_email=#{loginEmail} order by r.RSV_START_DATE desc -->
 	</select>
 	
+
+	<select id="insertCustomerEvaluation" parameterType="Review">
+		insert into review values(REVIEW_SEQ.nextval,#{cst_email},#{etp_num},#{etp_email},#{rvw_input_date},#{rvw_content},#{cst_job},#{RVW_HYGIENE},#{RVW_COMFORT},#{RVW_TECHNIQUE},#{RVW_PRICE},#{RVW_SERVICE})
+	</select>
+	
+
+
 </mapper>

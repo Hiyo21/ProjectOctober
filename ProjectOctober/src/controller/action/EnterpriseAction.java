@@ -175,14 +175,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
-
-	public String receiveServiceList() throws Exception{
-		System.out.println("===========check Action :: receiveServiceList :: ");
-		serviceList = etpDAO.retrieveServices(etpNum);
-		
-		if(serviceList != null) return SUCCESS;
-		else return ERROR;
-	}
 	
 	public String retrieveCouponList() throws Exception{
 		couponList = etpDAO.retrieveCouponList(etpNum);
@@ -193,7 +185,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String selectSvcCategory() throws Exception{
 		System.err.println("category Check :: "+category);
 		serviceList = etpDAO.selectSvcCategory(etpNum, category);
-		
+		enterprise = etpDAO.selectByEtpNum(etpNum);
 		if(serviceList != null) return SUCCESS;
 		else return ERROR;
 	}
@@ -202,21 +194,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println("===========check Action :: selectServiceList :: " + etpNum);
 		serviceList = etpDAO.selectServiceList(etpNum);
 		
-		categoryList = new ArrayList<>();
-		for(int j=0; j<serviceList.size(); j++){	
-			String category = serviceList.get(j).getSvcCategory();
-			
-			if(j==0){
-				categoryList.add(category);
-			}else{
-				if(serviceList.get(j).getSvcCategory().equals(serviceList.get(j-1).getSvcCategory())){
-					
-				}else{
-					categoryList.add(category);
-				}
-			}
-		}
-
+		categoryList = etpDAO.makeCategoryList(etpNum);
+		
+		enterprise = etpDAO.selectByEtpNum(etpNum);
+		
 		if(serviceList != null) return SUCCESS;
 		else return ERROR;
 	}
@@ -270,20 +251,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		enterprise.setServices(svcList);
 
 		//카테고리 리스트 뽑기
-		categoryList = new ArrayList<>();
-		for(int j=0; j<svcList.size(); j++){	
-			String category = svcList.get(j).getSvcCategory();
-			
-			if(j==0){
-				categoryList.add(category);
-			}else{
-				if(svcList.get(j).getSvcCategory().equals(svcList.get(j-1).getSvcCategory())){
-					
-				}else{
-					categoryList.add(category);
-				}
-			}
-		}
+		categoryList = etpDAO.makeCategoryList(etpNum);		
 		
 		//고객평가, 갤러리 리스트 set
 		enterprise.setReviews(etpDAO.selectReviewList(etpNum));

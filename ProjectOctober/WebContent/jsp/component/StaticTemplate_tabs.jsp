@@ -19,10 +19,6 @@
 
 <script>
 
-	$(function(){
-		hideBT();	
-	});
-
 	$(document).ready(function(){
 	    $(".nav-tabs a").click(function(){
 	        $(this).tab('show');
@@ -34,13 +30,13 @@
 	        $(".prev span").text(y);
 	    }); 
 	   	
-	    
+	    hideBT();
 	}); 
 	
 	//편집 버튼 숨김
 	function hideBT(){
-		var loginId = '<%= session.getAttribute("loginId") %>';
-		var pageId = '<%= session.getAttribute("pageId") %>';
+		var loginId = "<%= session.getAttribute("loginId") %>" ;
+		var pageId = "<%= session.getAttribute("pageId") %>" ;
 
 		$('#saveBT').attr('disabled', true);
 		$('.edit').hide();
@@ -52,32 +48,35 @@
 		}else{
 			$('#etpBtBar').hide();	
 		}	
-	}
+	};
 	
 	//편집 버튼 보이기
 	function startEdit(){
 		//편집, 수정 버튼 보임	
 		$('.edit').show();
-		
 		//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
 		$('#saveBT').attr('disabled', false);
-		$('#editBT').addClass('active');  // 편집 중일 때 누름 표시
-		$('#editBT').on('click', stopEdit);	//편집 정지 function on
-		//save, load 버튼에 클릭 이벤트와 함수 연결
+		//save 버튼에 클릭 이벤트와 함수 연결
 	    $('#saveBT').on('click', savePage);
-7	}
+		//편집버튼에 누름 효과, 클릭시 편집 중지 기능
+		$('#editBT').addClass('active');
+		$('#editBT').unbind('click');
+		$('#editBT').on('click', stopEdit);    
+	};
 	
 	function stopEdit(){
-		$('#editBT').removeClass('active');
 		$('.edit').hide(); //편집 버튼 숨기기
-		loadPage(); //DB에 저장되어 있는 페이지 로드
-	}
+		$('#editBT').unbind('click');
+		$('#editBT').on('click', startEdit);
+		$('#editBT').removeClass('active');
+		
+	};
 	
 	function savePage(){
 		
-	}
+	};
 		
-	$("#locationCP").load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
+	/* $("#locationCP").load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp'); */
 </script>
 
 

@@ -56,6 +56,8 @@ function uploadInfoOpen() {
 <body>
 
 <div class="container-fluid" style="vertical-align: middle;">
+	<!-- 사진, 설명 업로드 기능 필요 -->
+	<s:form action="infoPhtUploadAction" method="POST" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-md-4">
 			<!-- image 뿌리기 -->
@@ -74,27 +76,35 @@ function uploadInfoOpen() {
 							<img src='http://img.kormedi.com/news/article/__icsFiles/afieldfile/2012/10/15/cc201210150001145.jpg' class='img-responsive'>
 						</s:if>
 					</s:else>
+					<p>업로드할 파일을 선택해 주세요.</p>
+					<s:file name="fileToUpload" class="btn btn-default edit"/>
+					<input type="hidden" name="etpNum" value="${enterprise.etpNum}" id="etpNumHidden"/>
+					<input type="hidden" name="etpEmail" value="${enterprise.etpEmail}" id="etpEmailHidden" />
+					<input type="hidden" name="infoPht" value="${enterprise.infoPht}" id="infoPhtHidden" />
+					<s:submit class="btn btn-default edit" value="사진 업로드"/>
 				</div>
+
 			<div>
 				<input type="button" value="사진업로드" onclick="uploadInfoOpen()" class="edit">
+
 			</div>
-		</div>
-		<div class="col-md-8">
-			<div class="jumbotron">
-	  			<!-- 입력된 내용을 바로 반영 -->
-	  			<div id="infoContentIn">
-	  				<s:if test='enterprise.etpDescription == null'>
-	  					<h3>사장님 안녕하세요!</h3>
-			  			<h5>이곳에 간단한 소개를 적어주세요</h5>
-			  		</s:if>
-			  		<s:if test='enterprise.etpDescription != null'>
-			  			<s:property value="enterprise.etpDescription"/>
-			  		</s:if>
-	  			</div>
-				<p align="left"><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#infoModal">편집</a></p>
-			</div>
-		</div><!-- col-md-8 end -->
+			<div class="col-md-8">
+				<div class="jumbotron">
+		  			<!-- 입력된 내용을 바로 반영 -->
+		  			<div id="infoContentIn">
+		  				<s:if test='enterprise.etpDescription == null'>
+		  					<h3>사장님 안녕하세요!</h3>
+				  			<h5>이곳에 간단한 소개를 적어주세요</h5>
+				  		</s:if>
+				  		<s:if test='enterprise.etpDescription != null'>
+				  			<s:property value="enterprise.etpDescription"/>
+				  		</s:if>
+		  			</div>
+					<p align="left"><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#infoModal">편집</a></p>
+				</div>
+			</div><!-- col-md-8 end -->
 	</div><!-- row end -->
+	</s:form>
 </div>	
 
 <!-- htmleditor modal -->

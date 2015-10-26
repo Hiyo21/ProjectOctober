@@ -108,12 +108,12 @@
   <insert id="insert" parameterType="model.vo.Service" >
     insert into HR.SERVICE (
     	SVC_NUM, ETP_NUM, ETP_EMAIL, 
-      SVC_TITLE, SVC_COST, 
-      SVC_TIME, SVC_CATEGORY
+      SVC_TITLE, SVC_COST, SVC_CODE,
+      SVC_TIME, SVC_DESCRIPTION, SVC_CATEGORY
       )
     values (service_seq.nextval, #{etpNum,jdbcType=VARCHAR}, #{etpEmail,jdbcType=VARCHAR}, 
-      #{svcTitle,jdbcType=VARCHAR}, #{svcCost,jdbcType=DECIMAL}, 
-      #{svcTime,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}
+      #{svcTitle,jdbcType=VARCHAR}, #{svcCost,jdbcType=DECIMAL}, #{svcCode,jdbcType=VARCHAR},  
+      #{svcTime,jdbcType=VARCHAR}, #{svcDescription,jdbcType=VARCHAR}, #{svcCategory,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="model.vo.Service" >
@@ -210,9 +210,6 @@
       <if test="record.svcCategory != null" >
         SVC_CATEGORY = #{record.svcCategory,jdbcType=VARCHAR},
       </if>
-      <if test="record.svcSpecialize != null" >
-        SVC_SPECIALIZE = #{record.svcSpecialize,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -226,8 +223,8 @@
       SVC_TITLE = #{record.svcTitle,jdbcType=VARCHAR},
       SVC_COST = #{record.svcCost,jdbcType=DECIMAL},
       SVC_TIME = #{record.svcTime,jdbcType=VARCHAR},
+      SVC_DESCRIPTION = #{svcDescription,jdbcType=VARCHAR},
       SVC_CATEGORY = #{record.svcCategory,jdbcType=VARCHAR},
-      SVC_SPECIALIZE = #{record.svcSpecialize,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -292,5 +289,9 @@
   
   <select id="retrieveServices" parameterType="String" resultMap="ServiceResultMap">
   	select * from SERVICE where etp_num = #{value}
+  </select>
+  
+  <select id="selectCategory" parameterType="String" resultType="String">
+  	select distinct svc_category from service where etp_num = #{value}
   </select>
 </mapper>
