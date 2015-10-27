@@ -6,6 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 
+<!-- Highchart -->
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
 
 <body>
 <div class="container">
@@ -220,14 +225,7 @@
 			</form>
 			</div>	
 		</div> <!-- row2 end -->
-	</div>
-</div>
 </s:if>
-
-<!-- Highchart -->
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/highcharts-more.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 <script type="text/javascript">
 
@@ -280,7 +278,7 @@ $(function(){
         series: [{
             name: '이용자 평가',
             data: [
-                   <s:iterator value="gunList">
+                   <s:iterator value="#session.gunList">
                    		<s:property value="average2"/>,
                    		<s:property value="hygiene2"/>,
                    		<s:property value="comfort2"/>,

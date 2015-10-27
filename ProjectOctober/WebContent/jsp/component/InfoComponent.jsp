@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript">
-$(document).ready(function(){	
+$(document).ready(function(){
 	
 	//textarea를 htmleditor로 대체, toolbar 설정
 	CKEDITOR.replace('infoEdit', {
@@ -60,13 +60,12 @@ function uploadInfoOpen() {
 	<!-- 사진, 설명 업로드 기능 필요 -->
 	<s:form action="infoPhtUploadAction" method="POST" enctype="multipart/form-data">
 	<div class="row">
-		<div class="col-md-4">
 			<!-- image 뿌리기 -->
 				<!-- 리스트용 사진이 존재할 경우 -->
-				<div class="col-md-6" align="left"><!-- row2 left start -->
+				<div class="col-xs-5" align="left"><!-- row2 left start -->
 					<s:if test="infoPht != null">
 			         	<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
-			   			<img src='${pageContext.request.contextPath}/<s:property value="infoPht"/>' class='img-responsive'>
+			   			<img src='${pageContext.request.contextPath}/<s:property value="#session.enterprise.infoPht"/>' class='img-responsive'>
 					</s:if>
 					<s:else>
 						<!-- 인포사진 부재시 기본적으로 뿌려지는 사진 -->
@@ -77,6 +76,7 @@ function uploadInfoOpen() {
 							<img src='http://img.kormedi.com/news/article/__icsFiles/afieldfile/2012/10/15/cc201210150001145.jpg' class='img-responsive'>
 						</s:if>
 					</s:else>
+					
 					<p>업로드할 파일을 선택해 주세요.</p>
 					<s:file name="fileToUpload" class="btn btn-default edit"/>
 					<input type="hidden" name="etpNum" value="${enterprise.etpNum}" id="etpNumHidden"/>
@@ -85,11 +85,7 @@ function uploadInfoOpen() {
 					<s:submit class="btn btn-default edit" value="사진 업로드"/>
 				</div>
 
-			<div>
-				<input type="button" value="사진업로드" onclick="uploadInfoOpen()" class="edit">
-
-			</div>
-			<div class="col-md-8">
+			<div class="col-xs-7">
 				<div class="jumbotron">
 		  			<!-- 입력된 내용을 바로 반영 -->
 		  			<div id="infoContentIn">
@@ -109,7 +105,7 @@ function uploadInfoOpen() {
 </div>	
 
 <!-- htmleditor modal -->
-<div class="modal fade" id="infoModal">
+<div class="modal" id="infoModal" aria-hidden="true" tabindex="0" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -117,7 +113,7 @@ function uploadInfoOpen() {
         <h4 class="modal-title">소개 작성</h4>
       </div>
       <div class="modal-body">
-        <textarea id="infoText" name="infoEdit"> <s:property value="enterprise.etpDescription"/> </textarea>
+        <textarea id="infoEdit" name="infoEdit"> <s:property value="#session.enterprise.etpDescription"/> </textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -126,6 +122,9 @@ function uploadInfoOpen() {
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+
 
 </body>
 </html>
