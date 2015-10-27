@@ -44,6 +44,10 @@
 			<result type="json"/>
 		</action>
 		
+		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
+			<result type="json" />
+		</action>
+		
 		<!-- 달력 정보 관련  -->
 		
 		<action name="retrieveEnterpriseInfoForCalendar" class="controller.action.EnterpriseAction" method="retrieveEnterpriseInfoForCalendar">
@@ -216,6 +220,14 @@
 		</action>
 		
 		<action name="updateTemplate" class="controller.action.EnterpriseAction" method="updateTemplate">
+			<result type="json" />
+		</action>
+		
+		<action name="retrieveOffDays" class="controller.action.EnterpriseAction" method="retrieveOffDays">
+			<result type='json' />
+		</action>
+		
+		<action name="insertDayOff" class="controller.action.EnterpriseAction" method="insertDayOff">
 			<result type="json" />
 		</action>
 	</package> 

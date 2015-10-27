@@ -128,10 +128,11 @@ public class EnterpriseDAO extends DAOTemplate{
 	
 	public List<Review> selectReviewList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		
 		try{
+			System.err.println(etpNum);
 			List<Review> rvwList = session.getMapper(EnterpriseMapper.class).selectReviewList(etpNum);
 			System.out.println("============check DAO :: selectReviewList :: "+rvwList.size());
+			System.err.println(rvwList);
 			return rvwList;
 		}finally{
 			session.close();
@@ -253,6 +254,22 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int choiceTemplateType(String etpNum, int etpTemplateType) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("etpNum", etpNum);
+			map.put("etpTemplateType", etpTemplateType);
+			int result = session.update("choiceTemplateType", map);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
+		} finally {
+			session.close();
+		}
+	}
+	
+	/*
+	public int choiceTemplateType(String etpNum, int etpTemplateType) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
 			Map<String, Enterprise> map = new HashMap<String, Enterprise>();
 			Enterprise enterprise = new Enterprise();
 			enterprise.setEtpNum(etpNum);
@@ -266,7 +283,7 @@ public class EnterpriseDAO extends DAOTemplate{
 			session.close();
 		}
 	}
-	
+	*/
 		//사업자의 이용자 예약 내역
 	public List<SaleRecord> reservationHistory(String loginEmail) {
 		return dataRetrievalTemplate(s -> {return s.getMapper(EnterpriseMapper.class).reservationHistory(loginEmail);});
@@ -380,41 +397,33 @@ public class EnterpriseDAO extends DAOTemplate{
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
 			return session.getMapper(ServiceMapper.class).selectCategory(etpNum);
+
 		}finally{
 			session.close(); 
 		}
 	}
 
+
 	public int insertSaleRecord(SaleRecord saleRecord) {
 		return dataModificationTemplate(s -> {return fromMapper(s).insertSaleRecord(saleRecord);});
 
 	}
-	
+
 	public int updateTemplate(Enterprise enterprise) {
 		return dataModificationTemplate(s -> {return fromMapper(s).updateTemplate(enterprise);});
 	}
 
-	public Component selectComponent(Map<String, String> check) {
-		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		try {
-			Component cp = session.getMapper(EnterpriseMapper.class).selectComponent(check);
-			return cp;
-		}finally{
-			session.close();
-		}
+	public List<Reservation> retrieveOffDays(String etpNum) {
+		return dataRetrievalTemplate(s-> {return s.getMapper(ReservationMapper.class).retrieveOffDays(etpNum);});
 	}
 
-	public int deleteComponent(String etpNum) {
-		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		
-		try{
-			int result =session.getMapper(EnterpriseMapper.class).deleteComponent(etpNum);
-			
-			if(result >1)session.commit();
-			else session.rollback();
-			
-			return result;
-		}finally{session.close();}
-		
+	public List<Service> receiveServiceList(String etpNum) {
+		return dataRetrievalTemplate(s -> {return s.getMapper(ServiceMapper.class).retrieveServices(etpNum);});
 	}
+
+	public int insertDayOff(Reservation reservation) {
+		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertOffDays(reservation);});
+	}
+
+
 }
