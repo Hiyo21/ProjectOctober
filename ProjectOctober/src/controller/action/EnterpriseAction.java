@@ -250,6 +250,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}else{
 			enterprise = etpDAO.selectByEtpNum(etpNum);
 		}
+			
 		
 		//서비스 리스트 set
 		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
@@ -272,9 +273,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			int type = enterprise.getEtpTemplateType();
 			reviewList = etpDAO.selectReviewList(etpNum);
 			gunList = DAOFactory.createDAO().highchart14DAO(etpNum);
-
 			
 			session.put("pageId", enterprise.getEtpEmail());
+			
+			if(session.get("enterprise")==null){
+				session.put("enterprise", enterprise);
+				session.put("categoryList", categoryList);
+			}else{
+				session.replace("enterprise", enterprise);
+				session.put("categoryList", categoryList);
+			}
 			
 
 			switch (type) {

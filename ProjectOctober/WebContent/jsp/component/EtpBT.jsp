@@ -16,18 +16,18 @@
 	<div class="btn-group" role="group">
 		 <button type="button" class="btn btn-success btn-lg" id="miscSetBT">자동화 설정</button>
 	</div>
-	<!-- 페이지 편집전에만 보이게 -->
+	<!-- 편집 on/off -->
 	<div class="btn-group" role="group">
 		 <button type="button" class="btn btn-primary btn-lg" id="editBT">페이지 편집</button>
 	</div>
-	<s:if test="enterprise.etpTemplateType==1">
+	<s:if test="#session.enterprise.etpTemplateType==1">
 		<div class="btn-group" role="group">
 			 <button type="button" class="btn btn-primary btn-lg" id="resetBT" onclick="resetPage()">페이지 초기화</button>
 		</div>
 	</s:if>
 	<!-- 페이지 편집중에만 보이게 -->
 	<div class="btn-group" role="group">
-		 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='savePage(<s:property value="etpNum"/>)'>Save &raquo;</button>
+		 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='savePage()'>Save &raquo;</button>
 	</div>
 </div>
 

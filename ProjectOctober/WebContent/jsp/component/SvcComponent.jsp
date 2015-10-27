@@ -7,6 +7,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+
 <script type="text/javascript">
 	$(function(){
 		$('#svcModal').on('show.bs.modal', function(event){
@@ -14,12 +15,19 @@
 		    var button = $(event.relatedTarget);
 			var title = button.data('title');
 			var submit = button.data('submit');
-			var onclick = button.data('onclick');
-			modal.focus();			
+			var onclick = button.data('onclick');			
 			modal.find('.modal-title').text(title);
 			modal.find('.modal-footer .btn-primary').text(submit);
 			modal.find('.modal-content .btn-primary').attr('onclick', onclick);
+			modal.focus();
+			$('.edit').hide();
+			$('grid-stack-item-content').hide();
+			/* modal.find('.modal-backdrop').css('z-index', -10); */
 		 });
+		$('#svcModal').on('hidden.bs.modal', function(){			
+			$('.edit').show();
+			$('grid-stack-item-content').show();
+		});
 	});
 	
 	
@@ -28,7 +36,7 @@
 	function selectSvcCategory(category){
 		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/selectSvcCategory.action'+
-				'?etpNum='+<s:property value="etpNum"/>+'&category='+category,
+				'?etpNum='+<s:property value="#session.enterprise.etpNum"/>+'&category='+category,
 			type:'GET',
 			dataType: 'json',
 			success : function(data){
@@ -77,7 +85,7 @@
 	function selectServiceList(){
 		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/selectServiceList.action'+
-			'?etpNum='+<s:property value="etpNum"/>,
+			'?etpNum='+<s:property value="#session.enterprise.etpNum"/>,
 			dataType: 'json',
 			type: 'GET',
 			success: function(data){
@@ -85,7 +93,7 @@
 				$('#svcModal').modal('hide').on('hidden.bs.modal', function(){
 					$('#svcModal').hide();
 				});
-				location.reload();
+				//location.reload();
 			},
 			error: function(doc){
 				console.log("insert Error");
@@ -179,10 +187,8 @@
 			});
 			str += '</div>';
 		});
-		$('#svcListTab').html(str);	
-		
+		$('#svcListTab').html(str);			
 	}
-	
 
 </script>
 
@@ -202,13 +208,14 @@
 <body>
 <div class="container-fluid" id="svcListTab">
 <br>
+
 <p align="right">
 <button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal"
-data-title="서비스 추가" data-submit="추가" data-dismiss="modal" data-onclick="insertService()">서비스 추가</button>
+data-title="서비스 추가" data-submit="추가" data-onclick="insertService()">서비스 추가</button>
 </p>
 
-<s:if test="categoryList != null">
-<s:iterator value="categoryList">
+<s:if test="#session.categoryList != null">
+<s:iterator value="#session.categoryList">
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -220,7 +227,7 @@ data-title="서비스 추가" data-submit="추가" data-dismiss="modal" data-onc
 			data-submit="수정" data-dismiss="modal" onclick='selectSvcCategory("<s:property/>")' data-onclick='updateSvcCategory()'>수정</button>
 		</div>
 		
-		<s:iterator value="enterprise.services">
+		<s:iterator value="#session.enterprise.services">
 		<s:if test='%{svcCategory.equalsIgnoreCase(#category)}'> 
 		<!-- 서비스 항목-->
 		<div class="panel-body" id="categoryBody">
@@ -250,9 +257,8 @@ data-title="서비스 추가" data-submit="추가" data-dismiss="modal" data-onc
 </s:iterator>		
 </s:if>
 
-
-<div class="modal" id="svcModal" aria-hidden="true" tabindex="-1" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog modal-lg" >  
+<div class="modal fade" id="svcModal" aria-hidden="true" tabindex="0" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog modal-sm" >  
     <div class="modal-content">
     
   	<form class="form" role="form" method="post" data-toggle="validator" id="svcForm"> <!-- form start -->    
@@ -325,6 +331,7 @@ data-title="서비스 추가" data-submit="추가" data-dismiss="modal" data-onc
     </div>
   </div>
 </div>
+
 </div>
 
 
