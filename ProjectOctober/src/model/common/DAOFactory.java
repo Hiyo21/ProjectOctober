@@ -5,6 +5,7 @@ import model.dao.CustomerDAO;
 import model.dao.EnterpriseDAO;
 import model.dao.MemberDAO;
 import model.dao.SearchDAO;
+import test.dao.DAO;
 
 public class DAOFactory {
 	public static AdminDAO createAdminDAO(){
@@ -25,5 +26,9 @@ public class DAOFactory {
 	
 	public static SearchDAO createSearchDAO(){
 		return new SearchDAO();
+	}
+	
+	public static DAO createDAO(){
+		return new DAO();
 	}
 }

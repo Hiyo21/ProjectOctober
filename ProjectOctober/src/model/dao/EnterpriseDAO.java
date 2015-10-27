@@ -128,10 +128,11 @@ public class EnterpriseDAO extends DAOTemplate{
 	
 	public List<Review> selectReviewList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		
 		try{
+			System.err.println(etpNum);
 			List<Review> rvwList = session.getMapper(EnterpriseMapper.class).selectReviewList(etpNum);
 			System.out.println("============check DAO :: selectReviewList :: "+rvwList.size());
+			System.err.println(rvwList);
 			return rvwList;
 		}finally{
 			session.close();
@@ -170,8 +171,6 @@ public class EnterpriseDAO extends DAOTemplate{
 	public Integer uploadLogoImage(PhotoLocation loc) {
 		return dataModificationTemplate(s -> {return s.getMapper(EnterpriseMapper.class).insertLogoImage(loc);});
 	}
-	
-	
 	////////////////////////Component DAO //////////////////////// 
 	
 	
@@ -255,11 +254,9 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int choiceTemplateType(String etpNum, int etpTemplateType) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
-			Map<String, Enterprise> map = new HashMap<String, Enterprise>();
-			Enterprise enterprise = new Enterprise();
-			enterprise.setEtpNum(etpNum);
-			enterprise.setEtpTemplateType(etpTemplateType);
-			map.put("enterprise", enterprise);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("etpNum", etpNum);
+			map.put("etpTemplateType", etpTemplateType);
 			int result = session.update("choiceTemplateType", map);
 			if(result == 1) session.commit();
 			else session.rollback();
@@ -269,11 +266,11 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
-	
-	//사업자의 이용자 예약 내역
+		//사업자의 이용자 예약 내역
 	public List<SaleRecord> reservationHistory(String loginEmail) {
 		return dataRetrievalTemplate(s -> {return s.getMapper(EnterpriseMapper.class).reservationHistory(loginEmail);});
 	}
+	
 	
 	//////////////////////// 미승인 사업자 DAO ////////////////////////
 	
@@ -382,10 +379,19 @@ public class EnterpriseDAO extends DAOTemplate{
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
 			return session.getMapper(ServiceMapper.class).selectCategory(etpNum);
-		}finally{session.close();}}
+
+		}finally{
+			session.close(); 
+		}
+	}
+
 
 	public int insertSaleRecord(SaleRecord saleRecord) {
 		return dataModificationTemplate(s -> {return fromMapper(s).insertSaleRecord(saleRecord);});
 
+	}
+
+	public int updateTemplate(Enterprise enterprise) {
+		return dataModificationTemplate(s -> {return fromMapper(s).updateTemplate(enterprise);});
 	}
 }

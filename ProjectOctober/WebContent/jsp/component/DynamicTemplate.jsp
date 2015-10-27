@@ -47,6 +47,14 @@
 <script>
 
 $(function () {
+	/* 
+	Todo
+	loadPage(); 
+		저장은 되는데 중복 제거가 안됨 확인 필요함.
+		초기화 로드시 위치와 사이즈는 로드되지만 사업자의 정보를 별도로 불러와야함 
+	
+	*/
+	
 	var options = {
     		always_show_resize_handle : false,
         	placeholder_class : 'grid-stack-placeholder',
@@ -61,6 +69,7 @@ $(function () {
 	//drag, resize false
 	grid.movable('.grid-stack-item', false);
 	grid.resizable('.grid-stack-item', false);
+
 
 	hideBT();
 });
@@ -153,30 +162,55 @@ function savePage(etpNum){
 			data :  componentList[i],
 			contentType: 
 				'application/x-www-form-urlencoded; charset=utf-8',
+			success : function(){
+				location.reload();
+			}
 		}); 
  	} 
  	
-	$('#saved-data').val(JSON.stringify(componentList));
+	
 	//JSON.stringify : 배열을 JSON 문자열로 변환 JSON.stringify(value[, replacer[, space]])
     //replacer, space는 옵션
 };
 
 function loadPage(){	
-	$.ajax({
-		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action?etpNum='+etpNum,
-		type:'GET',
-		dataType: 'json',
-		success : print				
-	});	
+
+	console.log(object);
+	printComponent(object);
 };
 
 function resetPage(){
+	
+	/* var serialization = [
+         {x: 0, y: 0, width: 2, height: 2},
+         {x: 3, y: 1, width: 1, height: 2},
+         {x: 4, y: 1, width: 1, height: 1},
+         {x: 2, y: 3, width: 3, height: 1},
+         {x: 1, y: 4, width: 1, height: 1},
+         {x: 1, y: 3, width: 1, height: 1},
+         {x: 2, y: 4, width: 1, height: 1},
+         {x: 2, y: 5, width: 1, height: 1}
+     ];
+
+     serialization = GridStackUI.Utils.sort(serialization);
+
+     var grid = $('.grid-stack').data('gridstack');
+     grid.remove_all();
+
+     _.each(serialization, function (node) {
+         grid.add_widget($('<div><div class="grid-stack-item-content" /></div>'), 
+             node.x, node.y, node.width, node.height);
+     });*/
+     
+     
 	$.ajax({
 		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action?etpNum=1234567890',
 		type:'GET',
 		dataType: 'json',
-		success : print				
-	});
+		success : function(data){
+			printComponent(data.componentList);				
+		}
+	}); 
 };
 
 function remove_widget(item){
@@ -187,8 +221,8 @@ function remove_widget(item){
 
 
 // 불러온 컴포넌트 출력
-function print(object){
-	var items = object.componentList;
+function printComponent(items){
+ 	/* var items = object.componentList; */
     items = GridStackUI.Utils.sort(items); // 각 컴포넌트를 원래 순서대로 정렬. 안하면 랜덤으로 섞여서 배치됨
     
     console.log(items);	// 컴포넌트 위치값 확인
@@ -305,7 +339,10 @@ function print(object){
 <s:include value="../Header.jsp"/>
 
 <div class="container" id="page">
-
+	<s:if test="">
+	
+	</s:if>
+	
 	<div class="grid-stack">
 	
 		<!-- 상단 컴포넌트 -->

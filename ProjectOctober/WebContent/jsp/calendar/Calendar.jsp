@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Calendar Page</title>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/cupertino/jquery-ui.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/smoothness/jquery-ui.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -72,6 +72,22 @@
 				console.log('received enterpriseinfo!');
 				console.log(enterpriseInfo);
 				$('#templateType').attr('value', data.enterprise.etpTemplateType); 
+				
+				var colorTheme = enterpriseInfo.etpThemeType;
+					if(colorTheme == 1) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/cherry.css'/>");
+					if(colorTheme == 2) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/color.css'/>"); 
+					if(colorTheme == 3) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/creature.css'/>"); 
+					if(colorTheme == 4) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/frame.css'/>"); 
+					if(colorTheme == 5) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/grass.css'/>"); 
+					if(colorTheme == 6) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/maple.css'/>"); 
+					if(colorTheme == 7) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/mineral.css'/>"); 
+					if(colorTheme == 8) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/sliced.css'/>"); 
+					if(colorTheme == 9) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/spring.css'/>"); 
+					if(colorTheme == 10) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/sunset.css'/>"); 
+					if(colorTheme == 11) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/tile.css'/>"); 
+					if(colorTheme == 12) $('head').append("<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>");
+
+				
 			},error: function(request, status, error){
 				console.log('retrieveEnterpriseInfoForCalendar failed!');
 				console.log(request);
@@ -475,6 +491,8 @@
 						}
 						
 						//-----------------약관 동의하면 DB에 reservation 집어 넣자! -----------------//
+						
+						console.log(colorTemp);
 						
 						$.ajax({
 							url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
@@ -1500,6 +1518,7 @@
 		<a href="${pageContext.request.contextPath}/toMainPage.action"><button class="btn btn-info" >메인 메뉴로</button></a>
 		<!-- enterprise 값을 action으로 다 넘겨야 할듯? 아니면 적어도 이메일이랑 템플릿 타입이라도. -->
 		<a href="takeEtp.action?etpNum=<s:property value='#session.loginEtpNum'/>"><button class="btn btn-primary">사업자 메뉴로</button></a>
+		<a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value="#session.loginId"/>"><button class="btn btn-primary">통계</button></a>
 	</div>
 	<div id='external-events'>
 		<input type="hidden" id="starttt" />

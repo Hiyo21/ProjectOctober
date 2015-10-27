@@ -21,6 +21,7 @@ import model.vo.Review;
 public class CustomerAction extends ActionSupport implements SessionAware{
 	private Customer customer;
 	private List<Customer> customerList;
+	private String etpEmail;
 	private String cstEmail;
 	private CustomerDAO cstDAO;
 	private SearchDAO searchDAO;
@@ -80,9 +81,9 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	public String customerEvaluation() throws Exception{
 		System.err.println(review);
 		
-		System.err.println(etpNum);
-		id = (String)session.get("loginId");	
-		review.setEtpEmail(id);		
+		System.err.println(review.getEtpNum());
+		id = String.valueOf(ActionContext.getContext().getSession().get("loginId"));
+		review.setCstEmail(id);		
 		cstDAO.insertCustomerEvaluation(review);
 		
 		return SUCCESS;
@@ -197,6 +198,14 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getEtpEmail() {
+		return etpEmail;
+	}
+
+	public void setEtpEmail(String etpEmail) {
+		this.etpEmail = etpEmail;
 	}	
 	
 	

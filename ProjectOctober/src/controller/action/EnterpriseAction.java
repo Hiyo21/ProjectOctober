@@ -19,9 +19,11 @@ import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
+import model.vo.Review;
 import model.vo.SaleRecord;
 import model.vo.Service;
 import model.vo.WorkingDays;
+import test.vo.Highchart14;
 
 public class EnterpriseAction extends ActionSupport implements SessionAware{
 
@@ -42,6 +44,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpNum;
 	private String etpNum1;
 	private String etpEmail;
+	private List<Review> reviewList;
+	private List<Highchart14> gunList;
 
 	//////// Component Member ////////  
 	private Component component;
@@ -265,8 +269,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
+			reviewList = etpDAO.selectReviewList(etpNum);
+			gunList = DAOFactory.createDAO().highchart14DAO(etpNum);
 
+			
 			session.put("pageId", enterprise.getEtpEmail());
+			
 
 			switch (type) {
 			case 1:
@@ -339,6 +347,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 		////신규 등록의 경우 insert로 이미 컴포넌트 값이 등록되어 있는 사업자의 경우 update로 적용하여 component의 중복을 제거		
 		if(etpDAO.receiveComponentList(etpNum)!=null){	//컴포넌트 신규등록
+			System.err.println("동적템플릿 신규등록자입니다.");
 			int result = etpDAO.insertComponent(component);
 			if(result == 1) {
 				return SUCCESS;
@@ -349,6 +358,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}else{	//컴포넌트 기존에 등록되어 있던 사람
 			//업데이트
 			System.out.println("============기존 컴포넌트 등록 사업자============");
+			System.err.println("동적템플릿 기존등록자입니다.");
 			int result = etpDAO.updateComponent(component);
 			if(result == 1) {
 				return SUCCESS;
@@ -422,6 +432,17 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		return ERROR;
 	}
 	
+	public String updateTemplate() throws Exception{
+		System.err.println(enterprise);
+		if(enterprise != null){
+			int result = etpDAO.updateTemplate(enterprise);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			throw new Exception("엔터프라이즈 못 읽어 옴!");
+		}
+	}
+	
 	//사업자의 이용자 예약 내역
 	public String reservationHistory() {
 		String loginEmail = (String)session.get("loginId");
@@ -432,6 +453,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		} else {
 			return ERROR;
 		}
+	}
+	
+	public String selectReviewListJSON() throws Exception{
+		reviewList = etpDAO.selectReviewList(etpNum);
+		if(reviewList != null){
+			return SUCCESS;
+		}else
+			return ERROR;
 	}
 	
 	/////////////////////// 미승인 사업자 게시판 ////////////////////
@@ -788,6 +817,22 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setLogoPht(String logoPht) {
 		this.logoPht = logoPht;
+	}
+
+	public List<Review> getReviewList() {
+		return reviewList;
+	}
+
+	public void setReviewList(List<Review> reviewList) {
+		this.reviewList = reviewList;
+	}
+
+	public List<Highchart14> getGunList() {
+		return gunList;
+	}
+
+	public void setGunList(List<Highchart14> gunList) {
+		this.gunList = gunList;
 	}
 	
 	

@@ -11,6 +11,7 @@ import test.vo.Highchart10;
 import test.vo.Highchart11;
 import test.vo.Highchart12;
 import test.vo.Highchart13;
+import test.vo.Highchart14;
 import test.vo.Highchart2;
 import test.vo.Highchart3;
 import test.vo.Highchart4;
@@ -259,10 +260,15 @@ public class DAO {
 		return list4;
 	}
 	//연령대별 선호 서비스- 끝
-
-
 	
 	
-	
-	
+	//이용자 평가 하이차트
+	public List<Highchart14> highchart14DAO(String etpNum){
+		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			return sqlsession.selectList("highchart14", etpNum);	
+		}finally{
+			sqlsession.close();
+		}		
+	}
 }

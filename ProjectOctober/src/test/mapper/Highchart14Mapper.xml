@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="test.mapper.Highchart14Mapper.xml" >
+	<select id="highchart14" parameterType= "String" resultType="Highchart14">
+		select average2, hygiene2, comfort2, technique2, price2, service2
+		from (select 
+				round(avg(rvw_HYGIENE),1) hygiene2, 
+				round(avg(rvw_COMFORT),1) comfort2, 
+				round(avg(rvw_TECHNIQUE),1) technique2,
+			  	round(avg(rvw_PRICE),1) price2, 
+			  	round(avg(rvw_SERVICE),1) service2, 
+			  	round(avg((rvw_HYGIENE + rvw_COMFORT + rvw_TECHNIQUE + rvw_PRICE + rvw_SERVICE)/5),1) average2
+       		  from review r, enterprise e where r.etp_num = e.etp_num and r.etp_num = #{value}
+		      ) a
+	</select>
+</mapper>
+

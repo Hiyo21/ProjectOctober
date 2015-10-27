@@ -29,6 +29,8 @@ public class Review implements Serializable {
     private Integer rvwPrice;
 
     private Integer rvwService;
+    
+    private Integer rvwAve;
 
     private static final long serialVersionUID = 1L;
 
@@ -135,27 +137,24 @@ public class Review implements Serializable {
     public void setRvwService(Integer rvwService) {
         this.rvwService = rvwService;
     }
+    
+    
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", rvwNum=").append(rvwNum);
-        sb.append(", cstEmail=").append(cstEmail);
-        sb.append(", etpNum=").append(etpNum);
-        sb.append(", etpEmail=").append(etpEmail);
-        sb.append(", rvwInputDate=").append(rvwInputDate);
-        sb.append(", cstIpAddress=").append(cstIpAddress);
-        sb.append(", rvwContent=").append(rvwContent);
-        sb.append(", cstJob=").append(cstJob);
-        sb.append(", rvwHygiene=").append(rvwHygiene);
-        sb.append(", rvwComfort=").append(rvwComfort);
-        sb.append(", rvwTechnique=").append(rvwTechnique);
-        sb.append(", rvwPrice=").append(rvwPrice);
-        sb.append(", rvwService=").append(rvwService);
-        sb.append("]");
-        return sb.toString();
-    }
+    public Integer getRvwAve() {
+		return rvwAve;
+	}
+
+	public void setRvwAve(Integer rvwAve) {
+		this.rvwAve = rvwAve;
+	}
+
+	@Override
+	public String toString() {
+		return "Review [rvwNum=" + rvwNum + ", cstEmail=" + cstEmail + ", etpNum=" + etpNum + ", etpEmail=" + etpEmail
+				+ ", rvwInputDate=" + rvwInputDate + ", cstIpAddress=" + cstIpAddress + ", rvwContent=" + rvwContent
+				+ ", cstJob=" + cstJob + ", rvwHygiene=" + rvwHygiene + ", rvwComfort=" + rvwComfort + ", rvwTechnique="
+				+ rvwTechnique + ", rvwPrice=" + rvwPrice + ", rvwService=" + rvwService + ", rvwAve=" + rvwAve + "]";
+	}
+
+	
 }

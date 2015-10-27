@@ -42,16 +42,11 @@ public interface CustomerMapper {
 
 	List<PaymentRecord> retrievePaymentRecords();
 	
-
-	/*PaymentRecord retrievePaymentRecord(Integer pmtNum);*/
-	
 	int insertCustomerEvaluation(Review record);
 
 	PaymentRecord retrievePaymentRecord(Integer rsvNum);
-
+  /*PaymentRecord retrievePaymentRecord(Integer pmtNum);*/
 	
-	List<PaymentRecord> reservationHistory(String loginEmail);
+	List<PaymentRecord> reservationHistory(String cstEmail);
 
-
-  
 }
