@@ -25,8 +25,9 @@
 			<result name="error" type="redirect">toErrorPage.action</result>
 		</action>
 		
-		<action name="areaMapSearch" class="controller.action.SearchAction" method="takeEnterpriseList">
-			<result name="success">/jsp/search/MapSearch.jsp</result>
+		<action name="areaMapSearch" class="controller.action.SearchAction" method="categorySearch">
+			<param name="part">area</param>
+			<result name="success">/jsp/EnterpriseListShowToCustomer.jsp</result>
 			<result name="error" type="redirect">toErrorPage.action</result>
 		</action>
 		

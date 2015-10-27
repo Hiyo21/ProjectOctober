@@ -115,7 +115,9 @@
 			    	<button type="button" class="btn btn-default btn-lg">전화 예약(000-0000-0000)</button>
 			  	</div>
 			  	<div class="btn-group" role="group">
-			    	<a href="toCalendarPage.action?etpNum=<s:property value='etpNum'/>"><button type="button" class="btn btn-success btn-lg">예약 하기</button></a>
+
+			    	<a href="${pageContext.request.contextPath}/enterprise/toCalendarPage.action?etpNum=${etpNum}"><button type="button" class="btn btn-success btn-lg">예약 하기</button></a>
+
 			  	</div>
 			</div>
 		</div>
