@@ -12,7 +12,7 @@
 <body>
 	<s:include value="../Header.jsp"></s:include>
 	<div class="container">
-		<h1>사업자 님의 고객 예약 내역</h1>
+		<h1><s:property value="#session.loginName"/>님의 고객 예약 내역</h1>
 		<table class="table table-hover">
 			<thead>
 				<tr>

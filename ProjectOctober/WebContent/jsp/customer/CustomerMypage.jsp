@@ -40,6 +40,7 @@ $(document).ready(function(){
     <li><a href="#Reservation">예약</a></li>
     <li><a href="#CouponEvent">쿠폰 및 이벤트</a></li>
     <li><a href="#OneClick">OneClick 결제</a></li>
+    <li><a href="${pageContext.request.contextPath}/customer/toCstReservationHistoryPage.action">예약 내역</a></li>
   </ul>
 
   <div class="tab-content">
@@ -429,10 +430,7 @@ $(document).ready(function(){
     </div>
     <!-- 원클릭 결제 탭 끝 -->   
       
-  
-    <hr>
-    <p class="act"><b>Active Tab</b>: <span></span></p>
-    <p class="prev"><b>Previous Tab</b>: <span></span></p>
+
 	</div>
 	</div>
 <!-- 탭 끝 -->
