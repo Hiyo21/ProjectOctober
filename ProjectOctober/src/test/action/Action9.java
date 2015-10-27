@@ -12,7 +12,7 @@ import model.dao.EnterpriseDAO;
 import model.vo.Enterprise;
 import test.dao.DAO;
 import test.vo.Highchart6;
-import test.vo.Highchart6Add;
+import test.vo.Highchart9Add;
 import test.vo.Highchart9;
 
 public class Action9 extends ActionSupport implements RequestAware{
@@ -40,8 +40,8 @@ public class Action9 extends ActionSupport implements RequestAware{
 		System.err.println(e);		
 		List<Highchart9> list = dao.highchart9DAO(e);
 		
-		Highchart6Add vo = new Highchart6Add();
-		List<Highchart6Add> timelist = new ArrayList<Highchart6Add>();
+		Highchart9Add vo = new Highchart9Add();
+		List<Highchart9Add> timelist2 = new ArrayList<Highchart9Add>();
 		for(Highchart9 temp : list){
 			
 			if(temp.getTime().equals("00")){
@@ -98,8 +98,9 @@ public class Action9 extends ActionSupport implements RequestAware{
 			
 			
 		}
-		timelist.add(vo);
-		request.put("timelist", timelist);
+		timelist2.add(vo);
+		request.put("timelist2", timelist2);
+		System.out.println(timelist2.toString()+"action9프린트 출력");
 		return SUCCESS;
 	}
 	

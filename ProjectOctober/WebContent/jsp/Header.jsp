@@ -115,13 +115,14 @@
 						<!-- MyPage 멤버 코드에 따라 이동 페이지 다름 -->
 						<s:if test="#session.memCode == 1"><!-- 사업자 -->
 							<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-sm">메인페이지</a>
-							<a href="${pageContext.request.contextPath}/enterprise/takeEtp.action?etpNum=${session.loginEtpNum}" class="btn btn-primary btn-sm">마이페이지</a>
+							<%-- <a href="${pageContext.request.contextPath}/enterprise/takeEtp.action?etpNum=${session.loginEtpNum}" class="btn btn-primary btn-sm">마이페이지</a> --%>
+							<a href="${pageContext.request.contextPath}/enterprise/toEptReservationHistoryPage.action" class="btn btn-primary btn-sm">마이페이지</a>
 							<!-- 달력 Test code. Action에서 불러와야만 한다! -->
 							<a href="${pageContext.request.contextPath}/enterprise/toCalendarPage.action?etpNum=${session.loginEtpNum}" class="btn btn-danger btn-sm">예약 페이지</a>
 							<!--  -->
 						</s:if>
 						<s:if test="#session.memCode == 2"><!-- 고객 -->
-							<a href="${pageContext.request.contextPath}/member/toCustomerMainPage.action" class="btn btn-primary btn-sm">마이페이지</a>
+							<a href="${pageContext.request.contextPath}/member/toCustomerMyPage.action" class="btn btn-primary btn-sm">마이페이지</a>
 						</s:if>
 						<s:if test="#session.memCode == 3"><!-- 관리자 -->
 							<a href="${pageContext.request.contextPath}/enterprise/AllNoRegisterEtpList.action" class="btn btn-primary btn-sm">사업자승인게시판</a>

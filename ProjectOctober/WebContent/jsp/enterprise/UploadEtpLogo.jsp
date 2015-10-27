@@ -22,7 +22,6 @@ function closing() {
 </script>
 </head>
 <body>
-	<s:include value="../Header.jsp"></s:include>
 	<div class="container">
 		<div class="jumbotron">
 			<div class="container-fluid">

@@ -34,37 +34,39 @@ $(function () {
         series: [{
            name: '시간대에 따른 매출액', 
             data: [
-                   <s:iterator value="#request.timelist">
-            			<s:property value="time0"/>
-            			,<s:property value="time1"/>
-            			,<s:property value="time2"/>
-            			,<s:property value="time3"/>
-            			,<s:property value="time4"/>
-            			,<s:property value="time5"/>
-            			,<s:property value="time6"/>
-            			,<s:property value="time7"/>
-            			,<s:property value="time8"/>
-            			,<s:property value="time9"/>
-            			,<s:property value="time10"/>
-            			,<s:property value="time11"/>
-            			,<s:property value="time12"/>
-            			,<s:property value="time13"/>
-            			,<s:property value="time14"/>
-            			,<s:property value="time15"/>
-            			,<s:property value="time16"/>
-            			,<s:property value="time17"/>
-            			,<s:property value="time18"/>
-            			,<s:property value="time19"/>
-            			,<s:property value="time20"/>
-            			,<s:property value="time21"/>
-            			,<s:property value="time22"/>
-            			,<s:property value="time23"/>
-            			,<s:property value="time24"/>
+                   <s:iterator value="#request.timelist1">
+            			<s:property value="time00"/>
+            			,<s:property value="time01"/>
+            			,<s:property value="time02"/>
+            			,<s:property value="time03"/>
+            			,<s:property value="time04"/>
+            			,<s:property value="time05"/>
+            			,<s:property value="time06"/>
+            			,<s:property value="time07"/>
+            			,<s:property value="time08"/>
+            			,<s:property value="time09"/>
+            			,<s:property value="time010"/>
+            			,<s:property value="time011"/>
+            			,<s:property value="time012"/>
+            			,<s:property value="time013"/>
+            			,<s:property value="time014"/>
+            			,<s:property value="time015"/>
+            			,<s:property value="time016"/>
+            			,<s:property value="time017"/>
+            			,<s:property value="time018"/>
+            			,<s:property value="time019"/>
+            			,<s:property value="time020"/>
+            			,<s:property value="time021"/>
+            			,<s:property value="time022"/>
+            			,<s:property value="time023"/>
+            			,<s:property value="time024"/>
             			
             		</s:iterator>  
             	]
-        }]
-    });
+        
+        }] 
+   
+    }); 
 });
 
 </script>
@@ -73,5 +75,6 @@ $(function () {
 </head>
 <body>
 <div id="container6" style="min-width: 1000px; height: 500px; margin: 0 auto"></div>
+
 </body>
 </html>

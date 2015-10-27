@@ -105,6 +105,20 @@
 			<result>/jsp/Main.jsp</result>
 		</action>
 		
+		<!-- 마이페이지 -->
+		<action name="toMyPage" class="controller.action.MemberAction" method="checkMemberType">
+			<result name="customer">/jsp/customer/CustomerMypage.jsp</result>
+			<result name="enterprise" type="chain">
+				<param name="actionName">toEptReservationHistoryPage</param>
+				<param name="namespace">/enterprise</param>
+			</result>
+		</action>
+		
+		<!-- 이용자 마이페이지 -->
+		<action name="toCustomerMyPage" class="controller.action.MemberAction" method="retrieveCustomerInfo">
+			<result>/jsp/customer/CustomerMypage.jsp</result>
+		</action>
+		
 		
 		<action name="regCardUploadAction" class="controller.action.FileUploadAction" method="uploadRegCard">
 			<interceptor-ref name="fileUpload">

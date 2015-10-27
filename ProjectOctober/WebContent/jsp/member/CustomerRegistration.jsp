@@ -115,7 +115,7 @@
 				$(this).submit();
 			}
 		//document.getElementById('year').value + '-' + document.getElementById('month').value + '-' + document.getElementById('date').value;
-		//$("#year").val() + "-" + $("#month").val() + $("#date").val();
+		//$("#year").val() + "-" + $("#month").val() + $("#date"	1.val();
 	};
 	
 	$(function(){

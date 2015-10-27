@@ -21,14 +21,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/css/lightbox/jquery.colorbox.js"></script>
-<s:if test="enterprise.etpTemplateType == null">
+
 	<script>
-	$('.group').colorbox({
-		rel:'group',
-		open: true
+	$(document).ready(function() {
+		$('.group').colorbox({
+			rel:'group',
+			open: true	
+		});
 	});
 	</script>
-</s:if>
+
 <script>
 $(document).ready(function() {
 	$('#b1').on('click', first);	//첫번째 버튼에 클릭 이벤트 생성
@@ -124,32 +126,35 @@ $(function(){
 </head>
 <body>
 <s:include value="../Header.jsp"></s:include>
-<a class="group" href="${pageContext.request.contextPath}/image/pleasedelete1.JPG" title="튜토리얼페이지1"></a>
-<a class="group" href="${pageContext.request.contextPath}/image/pleasedelete2.JPG" title="튜토리얼페이지2"></a>
-<a class="group" href="${pageContext.request.contextPath}/image/pleasedelete3.JPG" title="튜토리얼페이지3"></a>
+<a class="group" href="${pageContext.request.contextPath}/image/tutorial1.gif" title="튜토리얼페이지1"></a>
+<a class="group" href="${pageContext.request.contextPath}/image/tutorial2.gif" title="튜토리얼페이지2"></a>
+<a class="group" href="${pageContext.request.contextPath}/image/tutorial3.gif" title="튜토리얼페이지3"></a>
 <div align = "center">
 <br><br>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-4">
 			<div id="col1">
-			<h2>동적템플릿</h2>
+			<h2 id="one">동적템플릿</h2>
 			<!-- 미리보기 이미지는 주소를 바꿔서 (크기 변경 가능) -->
-			<img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" class="img img-thumbnail" width="100" height="100" id="one">
+			<!-- <img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" class="img img-thumbnail" width="100" height="100" id="one"> -->
+			<h5>템플릿의 구성을 자유롭게 변경할 수 있습니다.</h5>
 			</div>
 		</div>
 		<div class="col-xs-4">
 			<div id="col2">
-			<h2>정적템플릿1</h2>
+			<h2 id="two">정적템플릿1</h2>
 			<!-- 미리보기 이미지는 주소를 바꿔서 (크기 변경 가능) -->
-			<img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" class="img img-thumbnail" width="100" height="100" id="two">
+			<!-- <img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" class="img img-thumbnail" width="100" height="100" id="two"> -->
+			<h5>탭을 이용하여 메뉴를 보여줍니다.</h5>
 			</div>
 		</div>
 		<div class="col-xs-4">
 			<div id="col3">
-			<h2>정적템플릿2</h2>
+			<h2 id="three">정적템플릿2</h2>
 			<!-- 미리보기 이미지는 주소를 바꿔서 (크기 변경 가능) -->
-			<img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" class="img img-thumbnail" width="100" height="100" id="three">
+			<!-- <img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" class="img img-thumbnail" width="100" height="100" id="three"> -->
+			<h5>메뉴들이 수직으로 나열되어 보여집니다.</h5>
 			</div>
 		</div>
 	</div>
@@ -243,6 +248,7 @@ $(function(){
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>

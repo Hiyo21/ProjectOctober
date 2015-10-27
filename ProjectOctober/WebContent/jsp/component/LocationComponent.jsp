@@ -27,6 +27,7 @@
 </div>
 <script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=dc4b9eca6f6c59278349f8b7add7e6b1&libraries=services"></script>	
 <script>
+function mapMake() {
 	var address = document.getElementById('address').value;
 	var mapContainer = document.getElementById('map3'), // 지도를 표시할 div 
 	    mapOption = {
@@ -65,6 +66,8 @@
 	        map.setCenter(coords);
 	    } 
 	}); 
+}
+setTimeout(mapMake(), 1000);
 </script>
 </body>
 </html>

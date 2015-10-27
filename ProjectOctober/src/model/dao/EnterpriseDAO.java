@@ -266,6 +266,24 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+	/*
+	public int choiceTemplateType(String etpNum, int etpTemplateType) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			Map<String, Enterprise> map = new HashMap<String, Enterprise>();
+			Enterprise enterprise = new Enterprise();
+			enterprise.setEtpNum(etpNum);
+			enterprise.setEtpTemplateType(etpTemplateType);
+			map.put("enterprise", enterprise);
+			int result = session.update("choiceTemplateType", map);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
+		} finally {
+			session.close();
+		}
+	}
+	*/
 		//사업자의 이용자 예약 내역
 	public List<SaleRecord> reservationHistory(String loginEmail) {
 		return dataRetrievalTemplate(s -> {return s.getMapper(EnterpriseMapper.class).reservationHistory(loginEmail);});
