@@ -96,4 +96,9 @@ public class CustomerDAO extends DAOTemplate{
 	public Enterprise retrieveEnterprise(String etpNum) {
 		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrieveEnterprise(etpNum);});
 	}
+
+	public int insertReservation(Reservation reservation) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

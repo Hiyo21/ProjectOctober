@@ -1,4 +1,4 @@
-package test.action;
+/*package test.action;
 
 import java.util.List;
 import java.util.Map;
@@ -57,3 +57,4 @@ public class Action8 extends ActionSupport implements RequestAware{
 	
 	
 }
+*/

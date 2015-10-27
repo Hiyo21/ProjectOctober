@@ -76,15 +76,9 @@
 $(function(){
 
 	hideBT();
-<<<<<<< HEAD
 
 	//loadPage();
 
-=======
-
-	loadPage();
-
->>>>>>> refs/remotes/origin/master
 	
 	var options = {
     		always_show_resize_handle : false,
