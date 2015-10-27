@@ -443,6 +443,7 @@ function check(){
 				</div>
 			</div>
 		</div>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
 
 		<div class="row">
 			<div class="col-lg-4" align="left"><a href="backToFirstRegistrationPage.action"><button type="button" class="btn btn-primary">이전</button></a></div>

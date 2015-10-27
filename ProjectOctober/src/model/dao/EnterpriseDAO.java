@@ -389,6 +389,10 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return fromMapper(s).insertSaleRecord(saleRecord);});
 
 	}
+	
+	public int updateTemplate(Enterprise enterprise) {
+		return dataModificationTemplate(s -> {return fromMapper(s).updateTemplate(enterprise);});
+	}
 
 	public Component selectComponent(Map<String, String> check) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();

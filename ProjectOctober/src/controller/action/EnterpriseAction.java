@@ -20,9 +20,11 @@ import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
+import model.vo.Review;
 import model.vo.SaleRecord;
 import model.vo.Service;
 import model.vo.WorkingDays;
+import test.vo.Highchart14;
 
 public class EnterpriseAction extends ActionSupport implements SessionAware{
 
@@ -43,6 +45,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpNum;
 	private String etpNum1;
 	private String etpEmail;
+	private List<Review> reviewList;
+	private List<Highchart14> gunList;
 
 	//////// Component Member ////////  
 	private Component component;
@@ -266,8 +270,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
+			reviewList = etpDAO.selectReviewList(etpNum);
+			gunList = DAOFactory.createDAO().highchart14DAO(etpNum);
 
+			
 			session.put("pageId", enterprise.getEtpEmail());
+			
 
 			switch (type) {
 			case 1:
@@ -439,6 +447,17 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		return ERROR;
 	}
 	
+	public String updateTemplate() throws Exception{
+		System.err.println(enterprise);
+		if(enterprise != null){
+			int result = etpDAO.updateTemplate(enterprise);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			throw new Exception("엔터프라이즈 못 읽어 옴!");
+		}
+	}
+	
 	//사업자의 이용자 예약 내역
 	public String reservationHistory() {
 		String loginEmail = (String)session.get("loginId");
@@ -449,6 +468,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		} else {
 			return ERROR;
 		}
+	}
+	
+	public String selectReviewListJSON() throws Exception{
+		reviewList = etpDAO.selectReviewList(etpNum);
+		if(reviewList != null){
+			return SUCCESS;
+		}else
+			return ERROR;
 	}
 	
 	/////////////////////// 미승인 사업자 게시판 ////////////////////
@@ -805,6 +832,22 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setLogoPht(String logoPht) {
 		this.logoPht = logoPht;
+	}
+
+	public List<Review> getReviewList() {
+		return reviewList;
+	}
+
+	public void setReviewList(List<Review> reviewList) {
+		this.reviewList = reviewList;
+	}
+
+	public List<Highchart14> getGunList() {
+		return gunList;
+	}
+
+	public void setGunList(List<Highchart14> gunList) {
+		this.gunList = gunList;
 	}
 	
 	

@@ -129,5 +129,8 @@
 			<result type="json" />
 		</action>
 		
+		<action name="selectReviewListJSON" class="controller.action.EnterpriseAction" method="selectReviewListJSON">
+			<result type="json" />
+		</action>
 	</package>
 </struts>
