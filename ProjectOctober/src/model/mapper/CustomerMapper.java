@@ -5,6 +5,7 @@ import model.vo.Customer;
 import model.vo.CustomerExample;
 import model.vo.Enterprise;
 import model.vo.PaymentRecord;
+import model.vo.Reservation;
 import model.vo.Review;
 
 import org.apache.ibatis.annotations.Param;
@@ -51,5 +52,7 @@ public interface CustomerMapper {
 	List<PaymentRecord> reservationHistory(String cstEmail);
 
 	Enterprise retrieveEnterprise(String etpNum);
+
+	Integer insertReservation(Reservation reservation);
 
 }

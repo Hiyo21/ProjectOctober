@@ -9,7 +9,6 @@
 <title>Dynamic Templete</title>
 
 <!-- Latest compiled and minified CSS -->
-<<<<<<< HEAD
 <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
@@ -17,9 +16,6 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack-extra.css" />
-
-=======
->>>>>>> refs/remotes/origin/master
 <style>
 	.delBT{
 		position: absolute;

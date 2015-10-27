@@ -41,7 +41,7 @@
 	<header id="header">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-12">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<p> </p>
 				</div>
 			</div>
@@ -97,16 +97,16 @@
 				</s:if>
 				<s:if test="#session.loginId != null">
 					<div class="row">
-						<div class="col-md-1">
+						<div class="col-xs-1">
 							<a href="${pageContext.request.contextPath}/toMainPage.action">
 								<img src="${pageContext.request.contextPath}/image/biglogo.png" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
 							</a>
 						</div>
-				        <div class="col-md-6 com-md-push-1">	
-				      	  <h1><s:property value="#session.loginName"/> 님, 환영합니다!</h1>
+				        <div class="col-xs-6 col-xs-push-2">	
+				      	  <h3><s:property value="#session.loginName"/> 님, 환영합니다!</h3>
 				        </div>				        
-				        <div class="col-md-5 col-md-push-2">
-				        	<a href="#~~method~~(#session.loginId)" data-toggle="notification-popover" data-placement="bottom" title="${session.loginName}님의 알림" data-content="여기서가 문제. 리스트를 받아와야 함"><button class="btn btn-warning btn-sm block"> 알림 <span class="badge">1<!-- 여기에는  notification 넘버...어떻게??--></span></button></a>
+				        <div class="col-xs-5">
+				        	<%-- <a href="#~~method~~(#session.loginId)" data-toggle="notification-popover" data-placement="bottom" title="${session.loginName}님의 알림" data-content="여기서가 문제. 리스트를 받아와야 함"><button class="btn btn-warning btn-sm block"> 알림 <span class="badge">1<!-- 여기에는  notification 넘버...어떻게??--></span></button></a> --%>
 
 				        	<%-- <a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value="#session.loginId"/>" class="btn btn-danger btn-sm">통계</a> --%>
 
@@ -148,7 +148,7 @@
 		<div class="navbar navbar-default">
 			<div class="container">
 				<div class="row">					
-					<div class="col-md-12 col-sm-pull-2">
+					<div class="col-xs-10">
 						<s:if test="#session.loginId != null || #session.memCode != 2">
 							<ul class="nav navbar-nav" id="test1">
 								<li>
