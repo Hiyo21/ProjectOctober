@@ -389,4 +389,32 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return fromMapper(s).insertSaleRecord(saleRecord);});
 
 	}
+	
+	public int updateTemplate(Enterprise enterprise) {
+		return dataModificationTemplate(s -> {return fromMapper(s).updateTemplate(enterprise);});
+	}
+
+	public Component selectComponent(Map<String, String> check) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			Component cp = session.getMapper(EnterpriseMapper.class).selectComponent(check);
+			return cp;
+		}finally{
+			session.close();
+		}
+	}
+
+	public int deleteComponent(String etpNum) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			int result =session.getMapper(EnterpriseMapper.class).deleteComponent(etpNum);
+			
+			if(result >1)session.commit();
+			else session.rollback();
+			
+			return result;
+		}finally{session.close();}
+		
+	}
 }

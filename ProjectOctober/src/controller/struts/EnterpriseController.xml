@@ -133,6 +133,10 @@
 			<result name="template2">/jsp/component/StaticTemplate_tabs.jsp</result>
 			<result name="template3">/jsp/component/StaticTemplate_allInOne.jsp</result>
 		</action>
+		
+		<action name="takeEtpForDynamic" class="controller.action.EnterpriseAction" method="takeEtpForDynamic">
+			<result type="json"/>
+		</action>
 
 		
 		<action name="selectEtpList" class="controller.action.EnterpriseAction" method="selectEtpList">
@@ -209,6 +213,10 @@
 		<!-- 사업자의 이용자 예약 내역 -->
 		<action name="toEptReservationHistoryPage" class="controller.action.EnterpriseAction" method="reservationHistory">
 			<result>/jsp/enterprise/ReservationEtpHistory.jsp</result>
+		</action>
+		
+		<action name="updateTemplate" class="controller.action.EnterpriseAction" method="updateTemplate">
+			<result type="json" />
 		</action>
 	</package> 
 </struts>

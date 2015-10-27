@@ -134,7 +134,8 @@ function stopEdit(){
 	$('#editBT').unbind('click');
 	$('#editBT').on('click', startEdit);
 	$('.edit').hide(); //편집 버튼 숨기기
-	loadPage(); //DB에 저장되어 있는 페이지 로드
+	
+	loadPage(); //DB에 저장되어 있는 페이지 로드 
 }
 
 
@@ -155,7 +156,6 @@ function savePage(etpNum){
 	}); 
  
  	for(var i in componentList){
-		console.log(componentList);
  		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum='+etpNum, 
 			type:'POST',
@@ -163,7 +163,7 @@ function savePage(etpNum){
 			contentType: 
 				'application/x-www-form-urlencoded; charset=utf-8',
 			success : function(){
-				location.reload();
+				
 			}
 		}); 
  	} 
@@ -174,9 +174,22 @@ function savePage(etpNum){
 };
 
 function loadPage(){	
-
-	console.log(object);
-	printComponent(object);
+	$.ajax({
+		url: '${pageContext.request.contextPath}/enterprise/takeEtpForDynamic.action?etpNum=<s:property value="etpNum"/>',
+		type:'GET',
+		dataType: 'json',
+		success : function(data){
+			console.log(data);
+			printComponent(data);				
+		},
+		error : function(request, status, error){
+			console.log(request);
+			console.log(status);
+			console.log(request.status);
+			console.log(error);
+		}
+	}); 
+	
 };
 
 function resetPage(){
@@ -204,7 +217,7 @@ function resetPage(){
      
      
 	$.ajax({
-		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action?etpNum=1234567890',
+		url: '${pageContext.request.contextPath}/enterprise/receiveComponentList.action?etpNum=9090909090',
 		type:'GET',
 		dataType: 'json',
 		success : function(data){
@@ -222,7 +235,7 @@ function remove_widget(item){
 
 // 불러온 컴포넌트 출력
 function printComponent(items){
- 	/* var items = object.componentList; */
+ 	var items = object.componentList;
     items = GridStackUI.Utils.sort(items); // 각 컴포넌트를 원래 순서대로 정렬. 안하면 랜덤으로 섞여서 배치됨
     
     console.log(items);	// 컴포넌트 위치값 확인
@@ -231,8 +244,6 @@ function printComponent(items){
     grid.remove_all();
     
     _.each(items, function (node) {
-	
-    	console.log(node);
 	
    	switch (node.componentID) {
 		case 'topCP':
@@ -339,9 +350,7 @@ function printComponent(items){
 <s:include value="../Header.jsp"/>
 
 <div class="container" id="page">
-	<s:if test="">
-	
-	</s:if>
+	<button onclick="loadPage()">load</button>
 	
 	<div class="grid-stack">
 	
@@ -434,7 +443,7 @@ function printComponent(items){
 			</a>
 	   	
 			<div class="grid-stack-item-content">
-				<%-- <s:include value="./LocationComponent.jsp"/> --%>
+				<s:include value="./LocationComponent.jsp"/>
 			</div>
 	    </div>
 	    

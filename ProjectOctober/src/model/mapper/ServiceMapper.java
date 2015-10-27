@@ -34,7 +34,5 @@ public interface ServiceMapper {
     
     List<Service> retrieveServices(String etpNum);
 
-	int deleteByPrimaryKey(String svcNum);
-
 	ArrayList<String> selectCategory(String etpNum);
 }
