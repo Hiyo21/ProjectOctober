@@ -37,6 +37,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private List<Service> serviceList;
 	private List<String> categoryList;
 	private Map<String, Object> session;
+	private Map<String, Object> cpCollector;
 	private List<Coupon> couponList;
 	private Member member;
 	private PhotoLocation photoLocation;
@@ -246,6 +247,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
+	/*public String updateEnterprise() throws Exception{
+		System.err.println(===========check Action :: updateEnterprise);
+		int result = etpDAO.updateEtpStatus(etpNum)
+	}*/
+	
 	//---------------------------------------Service Component End-----------------------------
 	
 	
@@ -267,32 +273,43 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.out.println("===========check Action :: takeEtp :: etpNum :: " + etpNum);
 		
 		if(etpNum == null){
-			enterprise = etpDAO.selectByEtpEmail(member.getMemEmail());
-			etpNum = enterprise.getEtpNum();
+			etpNum = session.get("loginEtpNum").toString();
+			enterprise = etpDAO.selectByEtpNum(etpNum);			
 		}else{
 			enterprise = etpDAO.selectByEtpNum(etpNum);
 		}
 			
 		
 		//서비스 리스트 set
-		List<Service> svcList =etpDAO.selectServiceList(etpNum); 
-		enterprise.setServices(svcList);
-
-		//카테고리 리스트 뽑기
-		categoryList = etpDAO.makeCategoryList(etpNum);		
+		if(etpDAO.selectServiceList(etpNum).size()>0){
+			enterprise.setServices(etpDAO.selectServiceList(etpNum));
+			//카테고리 리스트 뽑기
+			categoryList = etpDAO.makeCategoryList(etpNum);		
+		}
 		
 		//고객평가, 갤러리 리스트 set
-		enterprise.setReviews(etpDAO.selectReviewList(etpNum));
-		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
-		enterprise.setInfoPht(etpDAO.selectInfoPht(etpNum));
-		enterprise.setLogoPht(etpDAO.selectLogoPht(etpNum));
-		System.out.println("INFO:::"+enterprise.getInfoPht());
-		System.out.println("LOGO:::"+enterprise.getLogoPht());
-		infoPht = enterprise.getInfoPht();
-		logoPht = enterprise.getLogoPht();
+		if(etpDAO.selectReviewList(etpNum).size()>0){
+			enterprise.setReviews(etpDAO.selectReviewList(etpNum));
+		}
+		
+		if(etpDAO.selectPhotoList(etpNum).size()>0){
+			enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
+		}
+		
+		if(etpDAO.selectInfoPht(etpNum)!=null){
+			enterprise.setInfoPht(etpDAO.selectInfoPht(etpNum));
+		}
+		
+		if(etpDAO.selectLogoPht(etpNum)!=null){
+			enterprise.setLogoPht(etpDAO.selectLogoPht(etpNum));
+		}
+
+		/*infoPht = enterprise.getInfoPht();
+		logoPht = enterprise.getLogoPht();*/
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
+			System.err.println("type :: " + type);
 			reviewList = etpDAO.selectReviewList(etpNum);
 			gunList = DAOFactory.createDAO().highchart14DAO(etpNum);
 			
@@ -396,25 +413,40 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	
 	//////////////// Component Method ////////////////
+		
 	
 	public String insertComponent(){
-		System.out.println("============check Action :: insertComponet()");		
-		enterprise = etpDAO.selectByEtpNum(etpNum);
-		System.err.println("============check Action :: etpNum :: " +etpNum);
-		////// 연결 후 페이지 정보 혹은 세션에서 etpnum, etpemail, etpTheme 불러오기
-		component.setEtpEmail(enterprise.getEtpEmail());
 		
-		if(component.getComponentID()!=null){
-			//기존에 등록되었다가 제거된 컴포넌트를 배제하기 위해 우선 전체 삭제 후 모두 새로 추가
-			etpDAO.deleteComponent(etpNum);
+		//사업자번호와 컴포넌트ID를 만족하는 컴포넌트가 존재하는지 확인
+		Map<String, String> check = new HashMap<>();
+		check.put("etpNum", etpNum);
+		check.put("componentId", component.getComponentID());
+		
+		////신규 등록의 경우 insert로 이미 컴포넌트 값이 등록되어 있는 사업자의 경우 update로 적용하여 component의 중복을 제거		
+		if(etpDAO.selectComponent(check)==null){	//컴포넌트 신규등록
+			System.out.println("동적템플릿 신규 컴포넌트입니다.");
+			System.out.println(component);
+			int result = etpDAO.insertComponent(component);
+			if(result == 1) {
+				return SUCCESS;
+			}else{
+				System.err.println("============check Action :: result :: " + result);
+				return ERROR;
+			}
+		}else{	//컴포넌트 기존에 등록되어 있던 사람
+			//업데이트
+			System.out.println("============기존 컴포넌트 등록 사업자============");
+			System.out.println("동적템플릿 기존 컴포넌트입니다.");
+			System.out.println(component);
+			int result = etpDAO.updateComponent(component);
+			if(result == 1) {
+				return SUCCESS;
+			}else{
+				System.err.println("============check Action :: result :: " + result);
+				return ERROR;
+			}
 		}
-		int result = etpDAO.insertComponent(component);
-		if(result == 1) {
-			return SUCCESS;
-		}else{
-			System.err.println("============check Action :: result :: " + result);
-			return ERROR;
-		}
+
 	}
 	
 		
@@ -892,6 +924,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setGunList(List<Highchart14> gunList) {
 		this.gunList = gunList;
+	}
+
+	public Map<String, Object> getCpCollector() {
+		return cpCollector;
+	}
+
+	public void setCpCollector(Map<String, Object> cpCollector) {
+		this.cpCollector = cpCollector;
 	}
 	
 	

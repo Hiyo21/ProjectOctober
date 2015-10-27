@@ -172,17 +172,17 @@
 						<s:if test="#session.memCode == 1">
 							<ul class="nav navbar-nav">
 								<li>
-									<a href="toEnterpriseMyPage.action">
+									<a href="${pageContext.request.contextPath}/enterprise/takeEtp.action">
 										<span class="nav-icon-wrap"><i class="fa fa-male fa-fw"></i></span>내 페이지로
 									</a>
 								</li>
 								<li>
-									<a href="toReservationManagementPage.action">
+									<a href="${pageContext.request.contextPath}/enterprise/toCalendarPage.action">
 										<span class="nav-icon-wrap"><i class="fa fa-calendar-check-o fa-fw"></i></span>예약 관리
 									</a>
 								</li>
 								<li>
-									<a href="toMiscSettingPage.action">
+									<a href="${pageContext.request.contextPath}/enterprise/toMiscSettingPage.action">
 										<span class="nav-icon-wrap"><i class="fa ellipsis-h fa-fw"></i></span>기타 설정
 									</a>
 								</li>

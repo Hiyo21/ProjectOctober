@@ -44,13 +44,12 @@ function saveInfo() {
 	div.innerHTML = editor;
 };
 
-</script>
 
-<script type="text/javascript">
 function uploadInfoOpen() {
 	window.open("${pageContext.request.contextPath}/enterprise/toInfoUploadPage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
 }
 </script>
+
 
 </head>
 
@@ -58,7 +57,7 @@ function uploadInfoOpen() {
 
 <div class="container-fluid" style="vertical-align: middle;">
 	<!-- 사진, 설명 업로드 기능 필요 -->
-	<s:form action="infoPhtUploadAction" method="POST" enctype="multipart/form-data">
+	<%-- <s:form action="infoPhtUploadAction" method="POST" enctype="multipart/form-data"> --%>
 	<div class="row">
 			<!-- image 뿌리기 -->
 				<!-- 리스트용 사진이 존재할 경우 -->
@@ -101,7 +100,7 @@ function uploadInfoOpen() {
 				</div>
 			</div><!-- col-md-8 end -->
 	</div><!-- row end -->
-	</s:form>
+	<%-- </s:form> --%>
 </div>	
 
 <!-- htmleditor modal -->

@@ -12,8 +12,9 @@ alter sequence service_seq increment by 1
 
 select * from service where etp_num = '9876543210' 
 
-select * from component where etp_num = '1234567890' and component_id = 'svcCP'
+select * from component where etp_num = '9876543210' and component_id = 'svcCP'
 update component set etp_num = '1234567890', etp_email = 'seh@test.com' where etp_num = '9090909090'
+
  
 alter table component drop column component_desc;
 delete component where etp_num = '9876543210'
@@ -22,7 +23,7 @@ select * from photo_location
 
 select * from member where mem_email = 'ent6@naver.com'
 
-select * from enterprise where etp_template_type = 2
+select * from enterprise where ETP_ADDRESS like '%'||'제주'||'%'
 
 update ENTERPRISE set etp_template_type = 2 where etp_owner = '6길동'
 update ENTERPRISE set etp_template_type = 1 where etp_num = '9876543210'
