@@ -40,7 +40,7 @@ public class Action1 extends ActionSupport implements RequestAware{
 		int d = 0;
 		for(Highchart1 temp : list){
 			
-			
+			System.out.println(temp.getRsvGender()+"가져오냐");
 			if(temp.getRsvGender().equals("M")){
 				if(temp.getcGender().equals("M")){ 
 					
@@ -111,10 +111,10 @@ public class Action1 extends ActionSupport implements RequestAware{
 		av4.setFifth(d);
 		
 	
-		List<Highchart1Add> resultList1 = new ArrayList();
-		List<Highchart1Add> resultList2 = new ArrayList();
-		List<Highchart1Add> resultList3 = new ArrayList();
-		List<Highchart1Add> resultList4 = new ArrayList();
+		List<Highchart1Add> resultList1 = new ArrayList<Highchart1Add>();
+		List<Highchart1Add> resultList2 = new ArrayList<Highchart1Add>();
+		List<Highchart1Add> resultList3 = new ArrayList<Highchart1Add>();
+		List<Highchart1Add> resultList4 = new ArrayList<Highchart1Add>();
 		
 		resultList1.add(av1);
 		resultList2.add(av2);

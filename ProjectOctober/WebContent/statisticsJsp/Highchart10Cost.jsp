@@ -48,32 +48,32 @@ $(function () {
         series: [{
            name: '시간대에 따른 고객 수', 
             data: [
-                   <s:iterator value="#request.timelist2">
-            			<s:property value="time0"/>
-            			,<s:property value="time1"/>
-            			,<s:property value="time2"/>
-            			,<s:property value="time3"/>
-            			,<s:property value="time4"/>
-            			,<s:property value="time5"/>
-            			,<s:property value="time6"/>
-            			,<s:property value="time7"/>
-            			,<s:property value="time8"/>
-            			,<s:property value="time9"/>
-            			,<s:property value="time10"/>
-            			,<s:property value="time11"/>
-            			,<s:property value="time12"/>
-            			,<s:property value="time13"/>
-            			,<s:property value="time14"/>
-            			,<s:property value="time15"/>
-            			,<s:property value="time16"/>
-            			,<s:property value="time17"/>
-            			,<s:property value="time18"/>
-            			,<s:property value="time19"/>
-            			,<s:property value="time20"/>
-            			,<s:property value="time21"/>
-            			,<s:property value="time22"/>
-            			,<s:property value="time23"/>
-            			,<s:property value="time24"/>
+                   <s:iterator value="#request.timelist3">
+            			<s:property value="time000"/>
+            			,<s:property value="time001"/>
+            			,<s:property value="time002"/>
+            			,<s:property value="time003"/>
+            			,<s:property value="time004"/>
+            			,<s:property value="time005"/>
+            			,<s:property value="time006"/>
+            			,<s:property value="time007"/>
+            			,<s:property value="time008"/>
+            			,<s:property value="time009"/>
+            			,<s:property value="time0010"/>
+            			,<s:property value="time0011"/>
+            			,<s:property value="time0012"/>
+            			,<s:property value="time0013"/>
+            			,<s:property value="time0014"/>
+            			,<s:property value="time0015"/>
+            			,<s:property value="time0016"/>
+            			,<s:property value="time0017"/>
+            			,<s:property value="time0018"/>
+            			,<s:property value="time0019"/>
+            			,<s:property value="time0020"/>
+            			,<s:property value="time0021"/>
+            			,<s:property value="time0022"/>
+            			,<s:property value="time0023"/>
+            			,<s:property value="time0024"/>
             			
             		</s:iterator>  
             	]
