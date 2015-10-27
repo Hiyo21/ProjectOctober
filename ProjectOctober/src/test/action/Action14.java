@@ -1,37 +1,65 @@
 package test.action;
 
 import java.util.List;
-import java.util.Map;
-
-import org.apache.struts2.interceptor.RequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import model.vo.Enterprise;
 import test.dao.DAO;
 import test.vo.Highchart14;
 
-public class Action14 extends ActionSupport implements RequestAware{
-	private Map<String, Object> request;
+public class Action14 extends ActionSupport{
+	private static final long serialVersionUID = 1L;
+	private String etpNum;
+	private String etpEmail;
+	private Enterprise enterprise;
+	private List<Highchart14> gunList;
 	
-	@Override
-	public void setRequest(Map<String, Object> request) {
-		this.request = request;
-	}
 	
-	
-	public String highchart14(){
+	public String highchart14() throws Exception{
 		DAO dao = new DAO();
-		List<Highchart14> gunList = dao.highchart14DAO();	
-		
-		request.put("gunList", gunList);
-		return SUCCESS;
+		System.err.println(etpNum);
+		System.err.println(etpEmail);
+		System.err.println(enterprise);
+		if(etpNum != null){
+			gunList = dao.highchart14DAO(etpNum);
+		}else{
+			gunList = dao.highchart14DAO(enterprise.getEtpNum());
+		}
+		if(gunList != null) return SUCCESS;
+		else return ERROR;
 	}
-	
-	
 
+	public String getEtpNum() {
+		return etpNum;
+	}
 
-	public Map<String, Object> getRequest() {
-		return request;
+	public String getEtpEmail() {
+		return etpEmail;
+	}
+
+	public void setEtpNum(String etpNum) {
+		this.etpNum = etpNum;
+	}
+
+	public void setEtpEmail(String etpEmail) {
+		this.etpEmail = etpEmail;
+	}
+
+	public List<Highchart14> getGunList() {
+		return gunList;
+	}
+
+	public void setGunList(List<Highchart14> gunList) {
+		this.gunList = gunList;
+	}
+
+	public Enterprise getEnterprise() {
+		return enterprise;
+	}
+
+	public void setEnterprise(Enterprise enterprise) {
+		this.enterprise = enterprise;
 	}
 
 

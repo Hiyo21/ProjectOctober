@@ -17,6 +17,7 @@
 </style>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/lightbox/colorbox.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/css/lightbox/jquery.colorbox.js"></script>
@@ -56,17 +57,69 @@ function third() {
 	$('#two').attr('src', 'http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_s.jpg');
 	$('#three').attr('src', 'http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_s.jpg');
 }
-</script>
-<script type="text/javascript">
+
 function template1() {
-	location.href = "${pageContext.request.contextPath}/enterprise/choiceTemplateType.action?etpTemplateType=1";
+	$(".templateConfirmMessage").html("동적 템플릿을 선택하셨습니다.").css("color", "green");
+	template = 1;
 }
 function template2() {
-	location.href = "${pageContext.request.contextPath}/enterprise/choiceTemplateType.action?etpTemplateType=2";
+	$(".templateConfirmMessage").html("탭 형식의 템플릿을 선택하셨습니다.").css("color", "green");
+	template = 2;
 }
 function template3() {
-	location.href = "${pageContext.request.contextPath}/enterprise/choiceTemplateType.action?etpTemplateType=3";
+	$(".templateConfirmMessage").html("원 페이지 형식의 템플릿을 선택하셨습니다.").css("color", "green");
+	template = 3;
 }
+
+var colorTheme = 12;
+var template = 2;
+
+$(function(){
+	$(".btn-group .btn").click(function(){
+		colorTheme = $(this).val();
+		if(colorTheme == 1) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/cherry.css'/>");
+		if(colorTheme == 2) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/color.css'/>"); 
+		if(colorTheme == 3) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/creature.css'/>"); 
+		if(colorTheme == 4) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/frame.css'/>"); 
+		if(colorTheme == 5) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/grass.css'/>"); 
+		if(colorTheme == 6) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/maple.css'/>"); 
+		if(colorTheme == 7) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/mineral.css'/>"); 
+		if(colorTheme == 8) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/sliced.css'/>"); 
+		if(colorTheme == 9) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/spring.css'/>"); 
+		if(colorTheme == 10) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/sunset.css'/>"); 
+		if(colorTheme == 11) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/tile.css'/>"); 
+		if(colorTheme == 12) $('head').append("<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>");
+	});
+});
+
+$(function(){
+	$("#colorThemeConfirm").on('click', function(){
+		$.ajax({
+			url: "${pageContext.request.contextPath}/enterprise/updateTemplate.action",
+			data: {"enterprise.etpNum": <s:property value='#session.loginEtpNum'/>,
+					"enterprise.etpEmail":'<s:property value="#session.loginId"/>',
+					"enterprise.etpThemeType":colorTheme,
+					"enterprise.etpTemplateType":template},
+			type: "POST",
+			success: function(){
+				$("#colorConfirmed").html("칼라 테마가 적용되었습니다.").css("color","green");
+			},
+			error: function(request, status, error){
+				console.log(request);
+				console.log(request.status);
+				console.log(status);
+				console.log(error);
+			}
+		});
+	});
+});
+
+$(function(){
+	$("#toMyPageBtn").click(function(){
+		location.href ="${pageContext.request.contextPath}/enterprise/takeEtp.action?etpNum=<s:property value='#session.loginEtpNum'/>";
+	});
+});
+
 </script>
 </head>
 <body>
@@ -78,34 +131,55 @@ function template3() {
 <br><br>
 <div class="container">
 	<div class="row">
-		<div class="col-lg-4">
-			<div class="jumbotron" id="col1">
+		<div class="col-xs-4">
+			<div id="col1">
 			<h2>동적템플릿</h2>
 			<!-- 미리보기 이미지는 주소를 바꿔서 (크기 변경 가능) -->
-			<img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" width="100" height="100" id="one">
+			<img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" class="img img-thumbnail" width="100" height="100" id="one">
 			</div>
 		</div>
-		<div class="col-lg-4">
-			<div class="jumbotron" id="col2">
+		<div class="col-xs-4">
+			<div id="col2">
 			<h2>정적템플릿1</h2>
 			<!-- 미리보기 이미지는 주소를 바꿔서 (크기 변경 가능) -->
-			<img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" width="100" height="100" id="two">
+			<img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" class="img img-thumbnail" width="100" height="100" id="two">
 			</div>
 		</div>
-		<div class="col-lg-4">
-			<div class="jumbotron" id="col3">
+		<div class="col-xs-4">
+			<div id="col3">
 			<h2>정적템플릿2</h2>
 			<!-- 미리보기 이미지는 주소를 바꿔서 (크기 변경 가능) -->
-			<img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" width="100" height="100" id="three">
+			<img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" class="img img-thumbnail" width="100" height="100" id="three">
 			</div>
 		</div>
 	</div>
 </div>
 	<br><br><br>
-	<button type="button" class="btn btn-primary btn-lg" id="b1">&nbsp;&nbsp;Simple&nbsp;&nbsp;</button><br><br>
-	<button type="button" class="btn btn-primary btn-lg" id="b2">&nbsp;&nbsp;Lovley&nbsp;&nbsp;</button><br><br>
-	<button type="button" class="btn btn-primary btn-lg" id="b3">Elegance</button><br><br>
-
+	<h1>색깔 테마를 선택하세요.</h1>
+	<div class="btn-group">
+		<button type="button" class="btn btn-default btn-lg" id="b1" value="1">Cherry</button>
+		<button type="button" class="btn btn-default btn-lg" id="b2" value="2">Color</button>
+		<button type="button" class="btn btn-default btn-lg" id="b3" value="3">Creature</button>
+		<button type="button" class="btn btn-default btn-lg" id="b4" value="4">Frame</button>
+		<button type="button" class="btn btn-default btn-lg" id="b5" value="5">Grass</button>
+		<button type="button" class="btn btn-default btn-lg" id="b6" value="6">Maple</button>
+		<button type="button" class="btn btn-default btn-lg" id="b7" value="7">Mineral</button>
+		<button type="button" class="btn btn-default btn-lg" id="b8" value="8">Sliced</button>
+		<button type="button" class="btn btn-default btn-lg" id="b9" value="9">Spring</button>
+		<button type="button" class="btn btn-default btn-lg" id="b10" value="10">Sunset</button>
+		<button type="button" class="btn btn-default btn-lg" id="b11" value="11">Tile</button>
+	</div>
+	<br><br>
+	<div>
+		<button type="button" class="btn btn-info btn-lg" id="b12" value="12">기본 테마 적용</button> 
+		<button type="button" class="btn btn-warning btn-lg" id="colorThemeConfirm">이 구성을 사용</button>
+		<br><span class="templateConfirmMessage"></span>
+		<br><span id="colorConfirmed"></span>
+		<br>
+		<br>
+		<button type="button" class="btn btn-primary btn-lg" id="toMyPageBtn">사업자 페이지로 이동</button>
+	</div>
+	
 <div class="container">
 	
 	<!-- 첫번째 미리보기를 클릭하면 실행되는 모달 -->
@@ -144,6 +218,7 @@ function template3() {
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="template2()">Select</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<br>
 				</div>
 			</div>
 		</div>
@@ -163,6 +238,7 @@ function template3() {
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="template3()">Select</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<br>
 				</div>
 			</div>
 		</div>

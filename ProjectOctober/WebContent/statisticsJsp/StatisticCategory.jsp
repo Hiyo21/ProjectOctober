@@ -64,9 +64,6 @@ textarea {width:800px; height:300px;overflow:visible;}
     <li><a data-toggle="tab" href="#menu9">통계10</a></li>
     <li><a data-toggle="tab" href="#menu10">통계11</a></li>
     <li><a data-toggle="tab" href="#menu11">통계12</a></li>
-    <li><a data-toggle="tab" href="#menu12">통계13</a></li>
-    <li><a data-toggle="tab" href="#menu13">통계14</a></li>
-    <li><a data-toggle="tab" href="#menu14">통계15</a></li>
   </ul>
 
   <div class="tab-content">
@@ -124,19 +121,7 @@ textarea {width:800px; height:300px;overflow:visible;}
      	  <h3>통계12</h3>
       	   <s:include value="Highchart12.jsp"/> 
       </div><!-- 통계12 --> 
-      <div id="menu12" class="tab-pane fade">
-     	  <h3>통계13</h3>
-      	   
-      </div><!-- 통계13 -->
-       <div id="menu13" class="tab-pane fade">
-     	  <h3>통계14</h3>
-      	   
-      </div><!-- 통계14 --> 
-      <div id="menu14" class="tab-pane fade">
-     	  <h3>통계15</h3>
-      	   
-      </div><!-- 통계15 -->
-      
+           
    </div>
   <div align="right">
 	<button type="button" class="btn btn-primary" onclick='location.href="highchartCost"'>유료통계서비스</button><!-- onclick="myFuncthion()" -->

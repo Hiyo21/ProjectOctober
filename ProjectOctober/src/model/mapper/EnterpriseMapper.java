@@ -49,7 +49,9 @@ public interface EnterpriseMapper {
     int updateByPrimaryKey(Enterprise record);
 
     List<Service> selectSvcCategory(String etpNum, String category);
+    
     List<Review> selectReviewList(String etpNum);
+    
     List<PhotoLocation> selectPhotoList(String etpNum);
 
     Integer insertImage(PhotoLocation loc);
@@ -62,9 +64,13 @@ public interface EnterpriseMapper {
     
     int insertComponent(Component component);
     
+    Component receiveComponent(String etpNum);
+    
     List<Component> receiveComponentList(String etpNum);
     
     int updateEtpStatus(Enterprise record);
+    
+    int rejectEtpStatus(String etpNum);
     
     String showMap(String etpEmail);
     
@@ -104,6 +110,8 @@ public interface EnterpriseMapper {
 	String selectLogoPht(String etpNum);
 
 	Integer insertSaleRecord(SaleRecord saleRecord);
+
+	Integer updateTemplate(Enterprise enterprise);
 
 
 }

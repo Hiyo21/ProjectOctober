@@ -387,7 +387,4 @@
 	<select id="insertCustomerEvaluation" parameterType="Review">
 		insert into review values(REVIEW_SEQ.nextval,#{cstEmail},#{etpNum},#{etpEmail},sysdate,#{rvwContent},#{cstJob},#{rvwHygiene},#{rvwComfort},#{rvwTechnique},#{rvwPrice},#{rvwService})
 	</select>
-	
-
-
 </mapper>

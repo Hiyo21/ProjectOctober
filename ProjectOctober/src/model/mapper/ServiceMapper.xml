@@ -95,9 +95,8 @@
     from HR.SERVICE
     where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from HR.SERVICE
-    where SVC_NUM = #{svcNum,jdbcType=DECIMAL}
+  <delete id="deleteByPrimaryKey" parameterType="int" >
+    delete from SERVICE where SVC_NUM = #{value}
   </delete>
   <delete id="deleteByExample" parameterType="model.vo.ServiceExample" >
     delete from HR.SERVICE

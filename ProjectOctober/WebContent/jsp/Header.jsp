@@ -17,9 +17,10 @@
 	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
 #header {
 
- background-color:#F6CECE; 
+ background-color:white; 
   /*  background: url("../image/salgu.png")  */
 }
+
 
 	
 	
@@ -52,15 +53,15 @@
 			<div class="container hidden-xs">
 				<s:if test="#session.loginId == null">
 					<div class="row">
-						<div class="col-sm-1 col-md-1 col-lg-1">
+						<div class="col-sm-1 col-md-1 col-lg-pull-2">
 							<a href="${pageContext.request.contextPath}/toMainPage.action">
-								<img src="${pageContext.request.contextPath}/image/VIEWTY.png" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
+								<img src="${pageContext.request.contextPath}/image/biglogo.png"  style="max-width: 200px; max-height: 70px; margin-right: 10px; alt="logo" />
 							</a>
 						</div>
 						<div class="col-sm-5 col-md-5 col-lg-7">
 							<!-- 원래 서비스 이름 -->
 						</div>
-						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+						<div class="col-xs-push-1 col-sm-3 col-md-3 col-lg-2">
 						 
 							<br>
 							<a class="btn btn-info btn-block header-newmember-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span> 회원등록</a>
@@ -88,7 +89,7 @@
 							  </div>
 							</div>
 						</div>
-						<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+						<div class="col-xs-push-1 col-sm-3 col-md-3 col-lg-2">
 							<br>
 							<a href="${pageContext.request.contextPath}/member/toLoginPage.action" class="btn btn-primary btn-block header-mypage-btn"><span class="glyphicon glyphicon-log-in"></span> 로그인 / 예약체크</a>
 						</div>
@@ -98,7 +99,7 @@
 					<div class="row">
 						<div class="col-md-1">
 							<a href="${pageContext.request.contextPath}/toMainPage.action">
-								<img src="${pageContext.request.contextPath}/image/VIEWTY.png" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
+								<img src="${pageContext.request.contextPath}/image/biglogo.png" style="max-width: 120px; max-height: 70px; margin-right: 10px; alt="logo" />
 							</a>
 						</div>
 				        <div class="col-md-6 com-md-push-1">	
@@ -107,12 +108,13 @@
 				        <div class="col-md-5 col-md-push-2">
 				        	<a href="#~~method~~(#session.loginId)" data-toggle="notification-popover" data-placement="bottom" title="${session.loginName}님의 알림" data-content="여기서가 문제. 리스트를 받아와야 함"><button class="btn btn-warning btn-sm block"> 알림 <span class="badge">1<!-- 여기에는  notification 넘버...어떻게??--></span></button></a>
 
-				        	<a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value="#session.loginId"/>" class="btn btn-danger btn-sm">통계</a>
+				        	<%-- <a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value="#session.loginId"/>" class="btn btn-danger btn-sm">통계</a> --%>
 
-				        	<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-sm">메인페이지</a>
+				        	
 						
 						<!-- MyPage 멤버 코드에 따라 이동 페이지 다름 -->
 						<s:if test="#session.memCode == 1"><!-- 사업자 -->
+							<a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-primary btn-sm">메인페이지</a>
 							<a href="${pageContext.request.contextPath}/enterprise/takeEtp.action?etpNum=${session.loginEtpNum}" class="btn btn-primary btn-sm">마이페이지</a>
 							<!-- 달력 Test code. Action에서 불러와야만 한다! -->
 							<a href="${pageContext.request.contextPath}/enterprise/toCalendarPage.action?etpNum=${session.loginEtpNum}" class="btn btn-danger btn-sm">예약 페이지</a>
@@ -122,7 +124,7 @@
 							<a href="${pageContext.request.contextPath}/member/toCustomerMainPage.action" class="btn btn-primary btn-sm">마이페이지</a>
 						</s:if>
 						<s:if test="#session.memCode == 3"><!-- 관리자 -->
-							<a href="${pageContext.request.contextPath}/enterprise/AllNoRegisterEtpList.action" class="btn btn-primary btn-sm">마이페이지</a>
+							<a href="${pageContext.request.contextPath}/enterprise/AllNoRegisterEtpList.action" class="btn btn-primary btn-sm">사업자승인게시판</a>
 						</s:if>
 						
 						<!-- 공통 로그아웃 -->
@@ -145,14 +147,9 @@
 		<div class="navbar navbar-default">
 			<div class="container">
 				<div class="row">					
-					<div class="navbar-collapse collapse">
-						<s:if test="#session.loginId != null || #session.memCode == 2">
+					<div class="col-md-12 col-sm-pull-2">
+						<s:if test="#session.loginId != null || #session.memCode != 2">
 							<ul class="nav navbar-nav" id="test1">
-								<li>
-									<a href="${pageContext.request.contextPath}/search/toAreaCategoryPage.action">
-										<span class="nav-icon-wrap"><i class="fa fa-map-marker fa-fw"></i></span>지역검색
-									</a>
-								</li>
 								<li>
 									<a href="${pageContext.request.contextPath}/search/toBusinessSectorCategoryPage.action">
 										<span class="nav-icon-wrap"><i class="fa fa-building fa-fw"></i></span>업종검색
@@ -198,13 +195,17 @@
 						
 						<s:if test ="#session.loginId == null || #session.memCode !=null">
 						<form action="/ProjectOctober/search/searchFreeKeyword.action" id="searchFreeKeywordForm" class="navbar-form navbar-right" role="form" method="get" accept-charset="utf-8">
-	
-						<div class="input-group input-group-sm" >
-							<input name="searchKeyword" class="form-control" placeholder="검색" type="search" style="display: inline-block;text-align: right;">
-							<span class="input-group-btn">
-								<button class="btn btn-default fa fa-search" type="submit"></button>
+						
+						
+						
+						
+						<div class="input-group input-group-md col-md-push-12" >
+							<input name="searchKeyword" class="form-control" placeholder="검색" type="search" style="display: inline-block; text-align: right; width: 180px; height: 30px;">
+							<span class="input-group-btn" >
+								<button class="btn btn-default fa fa-search" style="width: 50px; height: 30px;" type="submit"></button>
 							</span>
-						</div>
+						
+						</div>	
 						</form>
 						</s:if>				
 					</div>

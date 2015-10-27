@@ -210,5 +210,9 @@
 		<action name="toEptReservationHistoryPage" class="controller.action.EnterpriseAction" method="reservationHistory">
 			<result>/jsp/enterprise/ReservationEtpHistory.jsp</result>
 		</action>
+		
+		<action name="updateTemplate" class="controller.action.EnterpriseAction" method="updateTemplate">
+			<result type="json" />
+		</action>
 	</package> 
 </struts>
