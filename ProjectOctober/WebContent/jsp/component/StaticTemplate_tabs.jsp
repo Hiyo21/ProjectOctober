@@ -93,7 +93,7 @@
 		
 	/* $("#locationCP").load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp'); */
 	
-	//각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
+	/* //각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
     $('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
     $('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
     $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
@@ -101,7 +101,7 @@
     $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
     $('#inRsvBt').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
     $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
-    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
+    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp');  */
 </script>
 
 

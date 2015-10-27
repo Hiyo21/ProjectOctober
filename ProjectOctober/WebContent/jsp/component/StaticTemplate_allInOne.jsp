@@ -5,12 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Static Template 2</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -84,7 +85,7 @@
 		loadPage(); //DB에 저장되어 있는 페이지 로드
 	}
 	
-	//각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
+	/* //각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
     $('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
     $('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
     $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
@@ -93,7 +94,7 @@
     $('#inRsvBt').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
     $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
     $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
-	
+	 */
 </script>
 
 </head>
