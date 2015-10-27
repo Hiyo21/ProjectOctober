@@ -163,7 +163,7 @@
 		console.log(object);
 
 		var str = '<br><p align="right">'
-			str	+='<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal"'
+			str	+='<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal" onclick=""'
 			str	+='data-title=\'서비스 추가\' data-submit=\'추가\' data-dismiss=\'modal\' data-onclick=\'insertService()\'>서비스 추가</button></p>';
 			
 		$.each(object.categoryList, function(index,item){
@@ -211,7 +211,7 @@
 
 <p align="right">
 <button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal"
-data-title="서비스 추가" data-submit="추가" data-onclick="insertService()">서비스 추가</button>
+data-title="서비스 추가" data-submit="추가" data-onclick="insertService()" onclick="">서비스 추가</button>
 </p>
 
 <s:if test="#session.categoryList != null">
@@ -258,7 +258,7 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 </s:if>
 
 <div class="modal fade" id="svcModal" aria-hidden="true" tabindex="0" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog modal-sm" >  
+  <div class="modal-dialog modal-lg" >  
     <div class="modal-content">
     
   	<form class="form" role="form" method="post" data-toggle="validator" id="svcForm"> <!-- form start -->    

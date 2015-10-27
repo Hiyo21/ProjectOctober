@@ -27,7 +27,7 @@ function uploadOpen() {
 <input type="button" value="사진업로드" onclick="uploadOpen()" class="edit">
 <div class="panel panel-default" id="gallery">
 	<div class="container-fluid">
-		<s:iterator value="enterprise.photos">
+		<s:iterator value="#session.enterprise.photos">
 
 			<a class='group' href='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' title='<s:property value="phtUsage"/>'>
 				<img src='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' class='etpImage'>

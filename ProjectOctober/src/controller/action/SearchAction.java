@@ -18,10 +18,10 @@ public class SearchAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Map<String, Object> map = new HashMap<String, Object>();
+	private Map<String, String> map = new HashMap<String, String>();
 	private List<Enterprise> enterpriseList;
 	private Enterprise vo;
-	private String button;
+	private String part;
 	private String searchKeyword;
 	private SearchDAO searchDAO;
 	
@@ -43,9 +43,11 @@ public class SearchAction extends ActionSupport {
 	
 	//카테고리 검색
 	public String categorySearch() throws Exception{	
-		 
-		System.err.println(button);
-		enterpriseList=searchDAO.categorySearch(button);
+		System.err.println(searchKeyword);
+		map.put("part", part);
+		map.put("searchKeyword", searchKeyword);
+		
+		enterpriseList=searchDAO.categorySearch(map);
 		
 		System.err.println("action : "+enterpriseList);
 		
@@ -77,21 +79,22 @@ public class SearchAction extends ActionSupport {
 		this.searchKeyword = searchKeyword;
 	}
 
-	public Map<String, Object> getMap() {
+	public Map<String, String> getMap() {
 		return map;
 	}
 
-	public void setMap(Map<String, Object> map) {
+	public void setMap(Map<String, String> map) {
 		this.map = map;
 	}
 
-	public String getButton() {
-		return button;
+	public String getPart() {
+		return part;
 	}
 
-	public void setButton(String button) {
-		this.button = button;
+	public void setPart(String part) {
+		this.part = part;
 	}
+
 	
 	
 }

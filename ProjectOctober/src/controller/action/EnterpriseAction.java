@@ -299,6 +299,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			session.put("pageId", enterprise.getEtpEmail());
 			
 			if(session.get("enterprise")==null){
+				session.put("gunList", gunList);
 				session.put("enterprise", enterprise);
 				session.put("categoryList", categoryList);
 			}else{
@@ -403,9 +404,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		////// 연결 후 페이지 정보 혹은 세션에서 etpnum, etpemail, etpTheme 불러오기
 		component.setEtpEmail(enterprise.getEtpEmail());
 		
-		//기존에 등록되었다가 제거된 컴포넌트를 배제하기 위해 우선 전체 삭제 후 모두 새로 추가
-		etpDAO.deleteComponent(etpNum);
-		
+		if(component.getComponentID()!=null){
+			//기존에 등록되었다가 제거된 컴포넌트를 배제하기 위해 우선 전체 삭제 후 모두 새로 추가
+			etpDAO.deleteComponent(etpNum);
+		}
 		int result = etpDAO.insertComponent(component);
 		if(result == 1) {
 			return SUCCESS;
