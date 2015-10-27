@@ -13,7 +13,7 @@
 <script type="text/javascript">
 
 
-/* $(function(){	
+$(function(){	
     $('#chart').highcharts({
     	chart: {
             polar: true,
@@ -72,7 +72,7 @@
                   ]
         }]
     });
-}); */
+});
    
 </script>
 </head>
@@ -157,6 +157,7 @@
 					<tr>
 						<td>
 							<label>■가격</label>
+						</td>
 							<td><input type="radio" name="review.rvwComfort" id="inlineRadio1" value="1"> 1
 								<input type="radio" name="review.rvwComfort" id="inlineRadio2" value="2"> 2
 								<input type="radio" name="review.rvwComfort" id="inlineRadio3" value="3"> 3
@@ -215,7 +216,7 @@
 <script type="text/javascript">
 
 
-/* $(function(){	
+ $(function(){	
     $('#chart').highcharts({
     	chart: {
             polar: true,
@@ -274,7 +275,7 @@
                   ]
         }]
     });
-}); */
+});
    
 </script>
 
