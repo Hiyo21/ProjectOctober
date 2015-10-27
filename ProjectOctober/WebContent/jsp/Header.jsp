@@ -53,12 +53,12 @@
 			<div class="container hidden-xs">
 				<s:if test="#session.loginId == null">
 					<div class="row">
-						<div class="col-sm-1 col-md-1 col-lg-pull-2">
+						<div class=" col-xs-1 col-sm-1 col-md-1 col-lg-pull-2">
 							<a href="${pageContext.request.contextPath}/toMainPage.action">
 								<img src="${pageContext.request.contextPath}/image/biglogo.png"  style="max-width: 200px; max-height: 70px; margin-right: 10px; alt="logo" />
 							</a>
 						</div>
-						<div class="col-sm-5 col-md-5 col-lg-7">
+						<div class=" col-xs-5 col-sm-5 col-md-5 col-lg-7">
 							<!-- 원래 서비스 이름 -->
 						</div>
 						<div class="col-xs-push-1 col-sm-3 col-md-3 col-lg-2">

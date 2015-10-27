@@ -8,23 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dynamic Templete</title>
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/lodash.js"></script>
-<script src="${pageContext.request.contextPath}/js/gridstack.js"></script>
-
 <!-- Latest compiled and minified CSS -->
-<link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack-extra.css" />
-
 <style>
 	.delBT{
 		position: absolute;
@@ -53,10 +37,26 @@
 	
 </style>
 
+<link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack-extra.css" />
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/lodash.js"></script>
+<script src="${pageContext.request.contextPath}/js/gridstack.js"></script>
+
 <script>
 
 $(function(){
-	loadPage();	
+	loadPage();
 	
 	var options = {
     		always_show_resize_handle : false,
@@ -78,7 +78,6 @@ $(function(){
 });
 
 
-
 function hideBT(){
 	var loginId = "<%= session.getAttribute("loginId") %>" ;
 	var pageId = "<%= session.getAttribute("pageId") %>" ;
@@ -90,6 +89,7 @@ function hideBT(){
 	if(loginId!=null && loginId==pageId){
 		$('#etpBtBar').show();
 		$('#editBT').on('click', startEdit);
+		$('#editBt').off('click');
 	}else{
 		$('#etpBtBar').hide();	
 	}	
@@ -115,9 +115,10 @@ function startEdit(){
 	
 	//save, load 버튼에 클릭 이벤트와 함수 연결
     $('#saveBT').on('click', savePage);
+	$('#saveBt').off('click');
 	//편집버튼 비운 후 클릭기능 추가
-    $('#editBT').unbind('click');
     $('#editBT').on('click', stopEdit);
+	$('#saveBt').off('click');
     
     //컴포넌트에 마우스가 들어가면 삭제 버튼 생성
     $('.grid-stack-item').on('mouseenter', function(){
@@ -129,14 +130,15 @@ function startEdit(){
     $('.grid-stack-item').on('mouseleave', function(){
     	$(this).find('.delBT').html('');
     });
+	$('.grid-stack-item').off('mouseleave');
 }
 
 function stopEdit(){
 	//편집 버튼에 눌러진 효과 지우기
 	$('#editBT').removeClass('active');
 	//편집 버튼에 클릭 이벤트 지운 후 새로운 이벤트 추가
-	$('#editBT').unbind('click');
 	$('#editBT').on('click', startEdit);
+	$('#editBt').off('click');
 	$('.edit').hide(); //편집 버튼 숨기기
 	
 	loadPage(); //DB에 저장되어 있는 페이지 로드 
@@ -311,16 +313,7 @@ function printComponent(items){
    		} //switch, grid.add_widget end
     });
         
-    //각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
-    $('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
-    $('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
-    $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
-    $('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
-    $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
-    $('#inRsvBt').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
-    $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
-    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp');
-    
+
 }
 
 </script>
@@ -446,6 +439,15 @@ function printComponent(items){
 
 </div>
 
-
+<script>
+//각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
+$('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
+$('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
+$('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
+$('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
+$('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
+$('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
+$('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp');
+</script>
 </body>
 </html>
