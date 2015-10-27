@@ -150,7 +150,7 @@
 			</div>
 			<div class="panel-body">
 				<h1>오시는 길</h1>
-				<%-- <s:include value="./LocationComponent.jsp"/> --%>
+				<s:include value="./LocationComponent.jsp"/>
 			</div>	
 				
 			<!------- 고객 평가 ------->

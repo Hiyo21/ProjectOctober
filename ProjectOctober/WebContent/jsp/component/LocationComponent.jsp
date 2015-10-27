@@ -14,9 +14,9 @@
 		<div class="row">
 			<div class="col-md-6">
 				<!-- <img class="img-responsive" src="http://maps.googleapis.com/maps/api/staticmap?center=Seoul,Mali&amp;zoom=12&amp;size=400x400&amp;sensor=false"> -->
-				<input type="hidden" id="address" value='서울시 강남구 삼성로 539'/>   <!--  -->
+				<input type="hidden" id="address" value='${enterprise.etpAddress }'/>   
 				<input type="hidden" id="map">
-				<!-- <div id="map" style="width:100%;height:350px;width:350px;"></div> --> -->
+				<div id="map" style="width:100%;height:350px;width:350px;"></div>
 				<div id="staticMap" style="width:100%;height:300px;width:400px;"></div>
 				
 			</div>
@@ -66,18 +66,18 @@
 					        //지도 가운데
 					        map.setCenter(coords);
 					        
-					        //다시
+					       //다시
 					        var staticMapContainer  = document.getElementById('staticMap'); // 이미지 지도를 표시할 div  
 					        var staticMapOption = { 
 					            center: coords, // 이미지 지도의 중심좌표
 					            level: 4, // 이미지 지도의 확대 레벨
 					            marker: marker
-					        };
+					        }
 			
 					        //이미지 지도를 표시할 div와 옵션으로 이미지 지도를 생성합니다
 					        var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 					        infowindow = new daum.maps.InfoWindow({
-					            content: '<div style="padding:5px;">우리회사</div>'
+					        		content: '<div style="padding:5px;">우리회사</div>'
 					        });
 					        infowindow.open(staticMap, marker);
 					        
