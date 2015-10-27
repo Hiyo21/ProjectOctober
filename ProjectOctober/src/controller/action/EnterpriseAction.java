@@ -116,6 +116,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
 		
 			reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
+			System.err.println(reservation);
 		}
 		
 		if(reservation != null){
@@ -220,6 +221,20 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println("===========check Action :: deleteService :: " + svcNum);
 		int result = etpDAO.deleteService(svcNum);
 		if(result==1)return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String receiveServiceList() throws Exception{
+		System.err.println(etpNum);
+		serviceList = etpDAO.receiveServiceList(etpNum);
+		if(serviceList != null) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String insertDayOff() throws Exception{
+		System.err.println(reservation);
+		int result = etpDAO.insertDayOff(reservation);
+		if(result != 0) return SUCCESS;
 		else return ERROR;
 	}
 	
@@ -522,6 +537,18 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 
+	/////////////////////////////////////////////////
+	
+	public String retrieveOffDays() throws Exception{
+		System.err.println(etpNum);
+		
+		if(reservationList != null){
+			reservationList = etpDAO.retrieveOffDays(etpNum);
+			return SUCCESS;
+		}else{
+			return ERROR;
+		}	
+	}
 	
     ///////////////////////// GET&SET ///////////////////////// 
 

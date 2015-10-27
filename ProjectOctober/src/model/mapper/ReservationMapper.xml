@@ -87,7 +87,11 @@
   
   
 	<select id="retrieveReservations" resultMap="ReservationResultMap" parameterType="String">
-  		select r.*, c.*, e.*, s.* from reservation r, enterprise e, service s, customer c where e.etp_num = r.etp_num and r.etp_num = s.etp_num and r.cst_email = c.cst_email and s.svc_num = r.svc_num and e.etp_num = s.etp_num and r.etp_num = #{value}
+  		select r.*, c.*, e.*, s.* from reservation r, enterprise e, service s, customer c where e.etp_num = r.etp_num and r.etp_num = s.etp_num and r.cst_email = c.cst_email and s.svc_num = r.svc_num and e.etp_num = s.etp_num and r.etp_num = #{value} and r.rsv_status != 3
+	</select>
+	
+	<select id="retrieveOffDays" resultMap="ReservationResultMap" parameterType="String">
+		select r.*, c.*, e.*, s.* from reservation r, enterprise e, service s, customer c where e.etp_num = r.etp_num and r.etp_num = s.etp_num and r.cst_email = c.cst_email and s.svc_num = r.svc_num and e.etp_num = s.etp_num and r.etp_num = #{value} and r.rsv_status = 3
 	</select>
 	
 	<insert id="insertReservation" parameterType="Reservation">
@@ -130,6 +134,18 @@
 		#{rsvCost},
 		</if>
 		</trim>
+	</insert>
+	
+	<insert id="insertOffDays" parameterType="Reservation">
+		insert into reservation (rsv_num, etp_num, etp_email, rsv_start_date, rsv_end_date, rsv_status, rsv_title
+		<if test="rsvDesc != null">
+			,rsv_desc
+		</if>
+		) values(reservation_seq.nextval, #{etpNum}, #{etpEmail}, #{rsvStartDate}, #{rsvEndDate}, #{rsvStatus}, #{rsvTitle}
+		<if test="rsvDesc != null">
+			,#{rsvDesc}
+		</if>
+		)
 	</insert>
 	
 	<update id="changeReservationTime" parameterType="Reservation">

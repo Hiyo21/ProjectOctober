@@ -14,4 +14,8 @@ public interface ReservationMapper {
 	Integer deleteReservation(Reservation reservation);
 
 	int updateReservationDetailsInModal(Reservation reservation);
+	
+	List<Reservation> retrieveOffDays(String etpNum);
+	
+	Integer insertOffDays(Reservation reservation);
 }

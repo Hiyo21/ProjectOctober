@@ -394,4 +394,18 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int updateTemplate(Enterprise enterprise) {
 		return dataModificationTemplate(s -> {return fromMapper(s).updateTemplate(enterprise);});
 	}
+
+	public List<Reservation> retrieveOffDays(String etpNum) {
+		return dataRetrievalTemplate(s-> {return s.getMapper(ReservationMapper.class).retrieveOffDays(etpNum);});
+	}
+
+	public List<Service> receiveServiceList(String etpNum) {
+		return dataRetrievalTemplate(s -> {return s.getMapper(ServiceMapper.class).retrieveServices(etpNum);});
+	}
+
+	public int insertDayOff(Reservation reservation) {
+		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertOffDays(reservation);});
+	}
+
+
 }
