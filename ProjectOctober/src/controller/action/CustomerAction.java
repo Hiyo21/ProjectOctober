@@ -16,6 +16,7 @@ import model.vo.Customer;
 import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.PaymentRecord;
+import model.vo.Reservation;
 import model.vo.Review;
 
 public class CustomerAction extends ActionSupport implements SessionAware{
@@ -33,6 +34,9 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	private String etpNum;
 	private Review review;
 	private Enterprise enterprise;
+	private Reservation reservation;
+	
+	
 	
 	private String id;
 	
@@ -100,6 +104,28 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 		else {
 			return ERROR;
 		}
+	}
+	
+	public String insertReservation() throws Exception{
+		System.err.println(etpNum);
+		System.err.println("널값 확인용 :" + reservation);
+		if(reservation != null){
+			System.err.println("reservation 시작 스트링: " + reservation.getStart());
+			System.err.println("reservation 끝 스트링: " + reservation.getEnd());
+			
+			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
+			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
+			//reservation.setEtpNum();
+			//reservation.setEtpEmail();
+			Enterprise tempEtp = cstDAO.retrieveEnterprise(etpNum);
+			reservation.setEtpNum(tempEtp.getEtpNum());
+			reservation.setEtpEmail(tempEtp.getEtpEmail());
+			
+			
+		}
+		int result = cstDAO.insertReservation(reservation);
+		if(result != 0) return SUCCESS;
+		else return ERROR;
 	}
 
 	public Customer getCustomer() {
@@ -206,6 +232,14 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 
 	public void setEtpEmail(String etpEmail) {
 		this.etpEmail = etpEmail;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
 	}	
 	
 	

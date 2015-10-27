@@ -8,6 +8,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dynamic Templete</title>
 
+<link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack-extra.css" />
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/lodash.js"></script>
+<script src="${pageContext.request.contextPath}/js/gridstack.js"></script>
 <!-- Latest compiled and minified CSS -->
 <style>
 	.delBT{
@@ -37,31 +52,40 @@
 	
 </style>
 
-<link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack-extra.css" />
-
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/lodash.js"></script>
-<script src="${pageContext.request.contextPath}/js/gridstack.js"></script>
-
 <script>
+function loadPage(){	
+	$.ajax({
+		url: '${pageContext.request.contextPath}/enterprise/takeEtpForDynamic.action?etpNum=<s:property value="etpNum"/>',
+		type:'GET',
+		dataType: 'json',
+		async: false,
+		success : function(data){
+			console.log(data);
+			var items = data.componentList;
+			/* printComponent(items); */
+			hideBT();	
+		},
+
+		error : function(request, status, error){
+			console.log(request);
+			console.log(status);
+			console.log(request.status);
+			console.log(error);
+		}
+	}); 
+};
+
+
 
 $(function(){
 	loadPage();
 	
 	var options = {
     		always_show_resize_handle : false,
+    		animate : true;
         	placeholder_class : 'grid-stack-placeholder',
         	resizable: {
+        		autoHide: true,
                 handles: 'e, se, s, sw, w'
             }	
 	    };
@@ -178,24 +202,7 @@ function savePage(){
     //replacer, space는 옵션
 };
 
-function loadPage(){	
-	$.ajax({
-		url: '${pageContext.request.contextPath}/enterprise/takeEtpForDynamic.action?etpNum=<s:property value="etpNum"/>',
-		type:'GET',
-		dataType: 'json',
-		success : function(data){
-			var items = data.componentList
-			printComponent(items);
-			hideBT();
-		},
-		error : function(request, status, error){
-			console.log(request);
-			console.log(status);
-			console.log(request.status);
-			console.log(error);
-		}
-	}); 
-};
+
 
 function resetPage(){
 
@@ -209,7 +216,6 @@ function resetPage(){
          {componentID: "locaCP", componentPosX: 1, componentPosY: 12, componentWidth: 10, componentHeight: 4},
          {componentID: "reviewCP", componentPosX: 1, componentPosY: 16, componentWidth: 10, componentHeight: 4},
      ]; 
-	
 	printComponent(serialization);
 };
 
@@ -312,9 +318,15 @@ function printComponent(items){
 			break;				
    		} //switch, grid.add_widget end
     });
-        
-
-}
+}     
+  //각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
+  $('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
+  $('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
+  $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
+  $('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
+  $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
+  $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
+  $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp');
 
 </script>
 
@@ -324,7 +336,7 @@ function printComponent(items){
 <s:include value="../Header.jsp"/>
 
 <div class="container" id="page">
-	<!-- <button onclick="loadPage()">load</button> -->
+	<button onclick="loadPage()">load</button>
 	
 	<div class="grid-stack">
 	
@@ -435,19 +447,6 @@ function printComponent(items){
 	    </div>
 	    
 	</div>
-
-
 </div>
-
-<script>
-//각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
-$('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
-$('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
-$('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
-$('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
-$('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
-$('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
-$('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp');
-</script>
 </body>
 </html>
