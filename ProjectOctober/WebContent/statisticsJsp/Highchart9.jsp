@@ -34,7 +34,7 @@ $(function () {
         series: [{
            name: '시간대에 따른 매출액', 
             data: [
-                   <s:iterator value="#request.timelist">
+                   <s:iterator value="#request.timelist2">
             			<s:property value="time0"/>
             			,<s:property value="time1"/>
             			,<s:property value="time2"/>

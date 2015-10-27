@@ -21,7 +21,7 @@ import test.vo.AutoHighchartCost3;
 import test.vo.Highchart10Cost;
 import test.vo.Highchart11Cost;
 import test.vo.Highchart1Add;
-import test.vo.Highchart6Add;
+import test.vo.Highchart10CostAdd;
 import test.vo.Highchart9Cost;
 import test.vo.Highchart9AddCost;
 
@@ -159,67 +159,67 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		
 		/*System.out.println(list.toString());*/
 		
-		Highchart6Add time = new Highchart6Add();
-		List<Highchart6Add> timelist2 = new ArrayList<Highchart6Add>();
+		Highchart10CostAdd time = new Highchart10CostAdd();
+		List<Highchart10CostAdd> timelist3 = new ArrayList<Highchart10CostAdd>();
 		for(Highchart10Cost temp : list1){
 			
 			if(temp.getTimeSet().equals("00")){
-				time.setTime0(temp.getCountNum());
+				time.setTime000(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("01")){
-				time.setTime1(temp.getCountNum());
+				time.setTime001(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("02")){
-				time.setTime2(temp.getCountNum());
+				time.setTime002(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("03")){
-				time.setTime3(temp.getCountNum());
+				time.setTime003(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("04")){
-				time.setTime4(temp.getCountNum());
+				time.setTime004(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("05")){
-				time.setTime5(temp.getCountNum());
+				time.setTime005(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("06")){
-				time.setTime6(temp.getCountNum());
+				time.setTime006(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("07")){
-				time.setTime7(temp.getCountNum());
+				time.setTime007(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("08")){
-				time.setTime8(temp.getCountNum());
+				time.setTime008(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("09")){
-				time.setTime9(temp.getCountNum());
+				time.setTime009(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("10")){
-				time.setTime10(temp.getCountNum());
+				time.setTime0010(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("11")){
-				time.setTime11(temp.getCountNum());
+				time.setTime0011(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("12")){
-				time.setTime12(temp.getCountNum());
+				time.setTime0012(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("13")){
-				time.setTime13(temp.getCountNum());
+				time.setTime0013(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("14")){
-				time.setTime14(temp.getCountNum());
+				time.setTime0014(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("15")){
-				time.setTime15(temp.getCountNum());
+				time.setTime0015(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("16")){
-				time.setTime16(temp.getCountNum());
+				time.setTime0016(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("17")){
-				time.setTime17(temp.getCountNum());
+				time.setTime0017(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("18")){
-				time.setTime18(temp.getCountNum());
+				time.setTime0018(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("19")){
-				time.setTime19(temp.getCountNum());
+				time.setTime0019(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("20")){
-				time.setTime20(temp.getCountNum());
+				time.setTime0020(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("21")){
-				time.setTime21(temp.getCountNum());
+				time.setTime0021(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("22")){
-				time.setTime22(temp.getCountNum());
+				time.setTime0022(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("23")){
-				time.setTime23(temp.getCountNum());
+				time.setTime0023(temp.getCountNum());
 			}else if(temp.getTimeSet().equals("24")){
-				time.setTime24(temp.getCountNum());
+				time.setTime0024(temp.getCountNum());
 			}
 			
 			
 		}
-		timelist2.add(time);
+		timelist3.add(time);
 		
-		request.put("timelist2", timelist2);
+		request.put("timelist3", timelist3);
 		//유료통계서비스2
 		
 		//유료통계서비스3
