@@ -211,7 +211,7 @@ public class EnterpriseDAO extends DAOTemplate{
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
 			int result = session.getMapper(EnterpriseMapper.class).insertComponent(component);
-			
+			System.err.println(result);
 			if(result == 1) session.commit();
 			else session.rollback();
 			
@@ -251,6 +251,16 @@ public class EnterpriseDAO extends DAOTemplate{
 			return result;
 		}finally{
 			session.close();
+		}
+	}
+	
+	public int cleanComponent(String etpNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(EnterpriseMapper.class).cleanComponent(etpNum);
+
+		}finally{
+			session.close(); 
 		}
 	}
 
@@ -426,5 +436,15 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertOffDays(reservation);});
 	}
 
+	public Component selectComponent(Map<String, String> check) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(EnterpriseMapper.class).selectComponent(check);
 
+		}finally{
+			session.close(); 
+		}
+	}
+
+	
 }

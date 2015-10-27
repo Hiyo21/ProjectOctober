@@ -590,6 +590,13 @@
 		delete component where etp_num = #{etpNum}
 	</delete>
 
+	<update id="cleanComponent" parameterType="String">
+		update component 
+		set component_width = 0, component_height = 0, 
+		component_pos_x = 0, component_pos_y = 0
+		where etp_num = #{etpNum}
+	</update>
+	
 
 	<update id="choiceTemplateType" parameterType="hashmap">
 		update ENTERPRISE
@@ -639,18 +646,22 @@
 		select
 		*
 		from hr.enterprise
+		where 
 		<if test="part == 'feature'">
-		where ETP_SPECIALIZE like '%'||#{searchKeyword}||'%'
+		ETP_SPECIALIZE like '%'||#{searchKeyword}||'%'
 		</if>
 		<if test="part == 'business'">
-		where ETP_SUBCLASS like '%'||#{searchKeyword}||'%'
+		ETP_SUBCLASS like '%'||#{searchKeyword}||'%'
 		</if>
 		<if test="part == 'mood'">
-		where ETP_SUPERCLASS like '%'||#{searchKeyword}||'%'
+		ETP_SUPERCLASS like '%'||#{searchKeyword}||'%'
 		or ETP_SUBCLASS like '%'||#{searchKeyword}||'%'
 		or ETP_TITLE like '%'||#{searchKeyword}||'%'
 		or ETP_DESCRIPTION like '%'||#{searchKeyword}||'%'
 		or ETP_SPECIALIZE like '%'||#{searchKeyword}||'%'	
+		</if>
+		<if test="part == 'area'">
+		ETP_ADDRESS like '%'|| #{searchKeyword} ||'%'
 		</if>
 		order by etp_title ASC
 	</select>

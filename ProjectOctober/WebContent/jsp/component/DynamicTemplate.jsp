@@ -9,7 +9,7 @@
 <title>Dynamic Templete</title>
 
 <!-- Latest compiled and minified CSS -->
-<<<<<<< HEAD
+
 <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
@@ -18,8 +18,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack-extra.css" />
 
-=======
->>>>>>> refs/remotes/origin/master
+
 <style>
 	.delBT{
 		position: absolute;
@@ -69,7 +68,7 @@ $(function(){
 
 	hideBT();
 
-	loadPage();
+	//loadPage();
 
 	
 	var options = {
@@ -83,7 +82,6 @@ $(function(){
 	$('.grid-stack').gridstack(options);
 		
 	var grid = $('.grid-stack').data('gridstack');
-	console.log(grid);
 	//drag, resize false
 	grid.movable('.grid-stack-item', false);
 	grid.resizable('.grid-stack-item', false);
@@ -128,7 +126,10 @@ function startEdit(){
     $('#editBT').unbind('click');  
 
 	//컴포넌튼 drag, resize 활성화
-	activateGrid();
+	var grid = $('.grid-stack').data('gridstack');
+	//drag, resize false
+	grid.movable('.grid-stack-item', true);
+	grid.resizable('.grid-stack-item', true);
 	
 	//save, load 버튼에 클릭 이벤트와 함수 연결
     $('#saveBT').on('click', savePage);
@@ -180,9 +181,9 @@ function stopEdit(){
 	
 }
 
-
 function savePage(){
- 	var componentList = _.map($('.grid-stack .grid-stack-item:visible'), function(el) {
+	alert("savePage");
+ 	var componentList = _.map($('.grid-stack .grid-stack-item'), function(el) {
 	    el = $(el);
 	    var node = el.data('_gridstack_node'); //node : Object와 같은 모든 것을 담을 수 있는 부모 객체
 	    var component = {  
@@ -195,6 +196,8 @@ function savePage(){
 	    };
 	    return component; //return 받는 객체 형식
 	}); 
+ 	
+ 	console.log(componentList);
  
  	for(var i in componentList){
  		$.ajax({
@@ -202,16 +205,9 @@ function savePage(){
 			type:'POST',
 			data :  componentList[i],
 			contentType: 
-				'application/x-www-form-urlencoded; charset=utf-8',
-			success : function(){
-				
-			}
-		}); 	
+				'application/x-www-form-urlencoded; charset=utf-8'
+			}); 	
  	} 
- 	
- 	alert("저장 완료했습니다")
-	//JSON.stringify : 배열을 JSON 문자열로 변환 JSON.stringify(value[, replacer[, space]])
-    //replacer, space는 옵션
 };
 
 function loadPage(){	
@@ -257,6 +253,7 @@ function remove_widget(item){
 
 // 불러온 컴포넌트 출력
 function printComponent(items){
+	
 	var options = {
     		always_show_resize_handle : false,
         	placeholder_class : 'grid-stack-placeholder',
@@ -269,11 +266,12 @@ function printComponent(items){
     
     var grid = $('.grid-stack').data('gridstack');
     grid.remove_all();
-    
+        
     _.each(items, function (node) {
 	
    	switch (node.componentID) {
 		case 'topCP':
+				
         	grid.add_widget(
         		$('<div id="topCP" draggable="true">'
         		+'<a onclick="remove_widget(topCP)">'
@@ -357,8 +355,7 @@ function printComponent(items){
    		} //switch, grid.add_widget end
 
     });   
-    eventTest();
-        
+    eventTest();     
 }
 
 function eventTest(){
@@ -370,6 +367,8 @@ function eventTest(){
    $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
    $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
+   
+   hideBT();
 }
 </script>
 
@@ -417,7 +416,7 @@ function eventTest(){
 					 <button type="button" class="btn btn-default btn-lg" id="phoneBT" >전화 예약(<s:property value="enterprise.etpPhone"/>)</button>
 					</div>
 					<div class="btn-group" role="group">
-		 				<button type="button" class="btn btn-success btn-lg" id="rsvBT">예약 하기</button>
+		 				<a href="${pageContext.request.contextPath}/enterprise/toCalendarPage.action?etpNum=${etpNum}"><button type="button" class="btn btn-success btn-lg" id="rsvBT">예약 하기</button></a>
 					</div>
 				</div>
 			</div>
