@@ -241,6 +241,21 @@ public class MemberAction extends ActionSupport implements SessionAware{
 			return ERROR;
 		}
 	}
+	
+	public String checkMemberType() {
+		if (session.get("customer") != null) {
+			return "customer";
+		}
+		else if (session.get("enterprise") != null) {
+			return "enterprise";
+		}
+		else if (session.get("admin") != null) {
+			return "admin";
+		}
+		else {
+			return ERROR;
+		}
+	}
 
 	
 	public String retrieveEnterpriseInfo() throws Exception {

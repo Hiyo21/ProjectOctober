@@ -44,6 +44,10 @@
 			<result type="json"/>
 		</action>
 		
+		<action name="receiveServiceList" class="controller.action.EnterpriseAction" method="receiveServiceList">
+			<result type="json" />
+		</action>
+		
 		<!-- 달력 정보 관련  -->
 		
 		<action name="retrieveEnterpriseInfoForCalendar" class="controller.action.EnterpriseAction" method="retrieveEnterpriseInfoForCalendar">
@@ -133,6 +137,10 @@
 			<result name="template2">/jsp/component/StaticTemplate_tabs.jsp</result>
 			<result name="template3">/jsp/component/StaticTemplate_allInOne.jsp</result>
 		</action>
+		
+		<action name="takeEtpForDynamic" class="controller.action.EnterpriseAction" method="takeEtpForDynamic">
+			<result type="json"/>
+		</action>
 
 		
 		<action name="selectEtpList" class="controller.action.EnterpriseAction" method="selectEtpList">
@@ -212,6 +220,14 @@
 		</action>
 		
 		<action name="updateTemplate" class="controller.action.EnterpriseAction" method="updateTemplate">
+			<result type="json" />
+		</action>
+		
+		<action name="retrieveOffDays" class="controller.action.EnterpriseAction" method="retrieveOffDays">
+			<result type='json' />
+		</action>
+		
+		<action name="insertDayOff" class="controller.action.EnterpriseAction" method="insertDayOff">
 			<result type="json" />
 		</action>
 	</package> 

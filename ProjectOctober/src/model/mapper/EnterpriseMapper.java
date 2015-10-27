@@ -1,6 +1,7 @@
 package model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import model.vo.Component;
 import model.vo.Coupon;
@@ -111,7 +112,14 @@ public interface EnterpriseMapper {
 
 	Integer insertSaleRecord(SaleRecord saleRecord);
 
+	Component selectComponent(Map<String, String> check);
+
+	int deleteComponent(String etpNum);
+
 	Integer updateTemplate(Enterprise enterprise);
+
+	
+
 
 
 }

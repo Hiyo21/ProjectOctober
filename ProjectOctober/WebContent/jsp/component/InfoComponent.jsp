@@ -45,6 +45,7 @@ function saveInfo() {
 };
 
 </script>
+
 <script type="text/javascript">
 function uploadInfoOpen() {
 	window.open("${pageContext.request.contextPath}/enterprise/toInfoUploadPage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
@@ -92,12 +93,12 @@ function uploadInfoOpen() {
 				<div class="jumbotron">
 		  			<!-- 입력된 내용을 바로 반영 -->
 		  			<div id="infoContentIn">
-		  				<s:if test='enterprise.etpDescription == null'>
+		  				<s:if test='#session.enterprise.etpDescription == null'>
 		  					<h3>사장님 안녕하세요!</h3>
 				  			<h5>이곳에 간단한 소개를 적어주세요</h5>
 				  		</s:if>
-				  		<s:if test='enterprise.etpDescription != null'>
-				  			<s:property value="enterprise.etpDescription"/>
+				  		<s:if test='#session.enterprise.etpDescription != null'>
+				  			<s:property value="#session.enterprise.etpDescription"/>
 				  		</s:if>
 		  			</div>
 					<p align="left"><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#infoModal">편집</a></p>

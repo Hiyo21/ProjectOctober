@@ -59,11 +59,11 @@ textarea {width:800px; height:300px;overflow:visible;}
     <li><a data-toggle="tab" href="#menu4">통계5</a></li>
     <li><a data-toggle="tab" href="#menu5">통계6</a></li>
     <li><a data-toggle="tab" href="#menu6">통계7</a></li>
-    <li><a data-toggle="tab" href="#menu7">통계8</a></li>
-    <li><a data-toggle="tab" href="#menu8">통계9</a></li>
-    <li><a data-toggle="tab" href="#menu9">통계10</a></li>
-    <li><a data-toggle="tab" href="#menu10">통계11</a></li>
-    <li><a data-toggle="tab" href="#menu11">통계12</a></li>
+   <!--  <li><a data-toggle="tab" href="#menu7">통계8</a></li> -->
+    <li><a data-toggle="tab" href="#menu8">통계8</a></li>
+    <li><a data-toggle="tab" href="#menu9">통계9</a></li>
+    <li><a data-toggle="tab" href="#menu10">통계10</a></li>
+    <!-- <li><a data-toggle="tab" href="#menu11">통계11</a></li> -->
   </ul>
 
   <div class="tab-content">
@@ -101,26 +101,26 @@ textarea {width:800px; height:300px;overflow:visible;}
      	  <h3>통계7</h3>
       	   <s:include value="Highchart7.jsp"/>  
       </div><!-- 통계7 --> 
-      <div id="menu7" class="tab-pane fade">
+     <%--  <div id="menu7" class="tab-pane fade">
      	  <h3>통계8</h3>
       	  <s:include value="Highchart8.jsp"/>  
-      </div><!-- 통계8 --> 
+      </div><!-- 통계8 -->  --%>
       <div id="menu8" class="tab-pane fade">
-     	  <h3>통계9</h3>
+     	  <h3>통계8</h3>
       	   <s:include value="Highchart9.jsp"/>  
       </div><!-- 통계9 --> 
       <div id="menu9" class="tab-pane fade">
-     	  <h3>통계10</h3>
+     	  <h3>통계9</h3>
       	   <s:include value="Highchart10.jsp"/> 
       </div><!-- 통계10 --> 
       <div id="menu10" class="tab-pane fade">
-     	  <h3>통계11</h3>
+     	  <h3>통계10</h3>
       	   <s:include value="Highchart11.jsp"/> 
       </div><!-- 통계11 --> 
-      <div id="menu11" class="tab-pane fade">
-     	  <h3>통계12</h3>
+     <%--  <div id="menu11" class="tab-pane fade">
+     	  <h3>통계11</h3>
       	   <s:include value="Highchart12.jsp"/> 
-      </div><!-- 통계12 --> 
+      </div><!-- 통계12 -->  --%>
            
    </div>
   <div align="right">

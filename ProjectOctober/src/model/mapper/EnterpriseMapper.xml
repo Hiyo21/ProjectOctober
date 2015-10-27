@@ -567,7 +567,11 @@
 	</select>
 
 	<!-- Component Mapper -->
-
+	<select id="selectComponent" parameterType="Map" resultMap="ComponentResultMap">
+		select * from component where etp_num = #{etpNum} and component_id = #{componentId}
+	</select>
+	
+	
 	<insert id="insertComponent" parameterType="Component">
 		insert into COMPONENT values
 		(component_seq.nextval, #{etpNum}, #{etpEmail}, #{componentID}, 
@@ -581,11 +585,14 @@
 
 	<update id="updateComponent" parameterType="Component">
 		update component
-		set component_id = #{componentID}, component_width = #{componentWidth},
-		component_height = #{componentHeight}, component_pos_x =
+		set component_width = #{componentWidth}, component_height = #{componentHeight}, component_pos_x =
 		#{componentPosX}, component_pos_y = #{componentPosY}
-		where etp_num = #{etpNum}
+		where etp_num = #{etpNum} and component_id = #{componentID}
 	</update>
+	
+	<delete id="deleteComponent" parameterType="String">
+		delete component where etp_num = #{etpNum}
+	</delete>
 
 
 	<update id="choiceTemplateType" parameterType="hashmap">
@@ -691,26 +698,20 @@
 		#{etpEmail}, #{phtUsage}, #{phtDescription},#{phtAddress},sysdate)
 	</insert>
 
-	<select id="retrieveCouponList" parameterType="String"
-		resultMap="CouponResultMap">
+	<select id="retrieveCouponList" parameterType="String" resultMap="CouponResultMap">
 		select * from COUPON where etp_num = #{value}
 	</select>
 
 	<select id="checkCoupon" parameterType="Coupon" resultMap="CouponResultMap">
-		select * from COUPON where cpn_num = #{cpnNum} and cpn_code =
-		#{cpnCode}
+		select * from COUPON where cpn_num = #{cpnNum} and cpn_code = #{cpnCode}
 	</select>
 
 	<select id="retrieveRegCard" parameterType="String" resultType="String">
 		select pht_address from photo_location where pht_usage like 'reg' and etp_num = #{value}
 	</select>
 
-	<select id="retrieveReservationFromOtherInfo" parameterType="Reservation"
-		resultMap="ReservationResultMap">
-		select * from reservation r, service s where r.svc_num = #{svcNum} and
-		r.cst_email =#{cstEmail} and to_char(r.rsv_start_date, 'yyyy/MM/dd
-		hh24') = to_char(#{rsvStartDate}, 'yyyy/MM/dd hh24') and r.rsv_title =
-		#{rsvTitle} and s.svc_num = r.svc_num
+	<select id="retrieveReservationFromOtherInfo" parameterType="Reservation" resultMap="ReservationResultMap">
+		select * from reservation r, service s where r.svc_num = #{svcNum} and r.cst_email =#{cstEmail} and to_char(r.rsv_start_date, 'yyyy/MM/dd hh24') = to_char(#{rsvStartDate}, 'yyyy/MM/dd hh24') and r.rsv_title = #{rsvTitle} and s.svc_num = r.svc_num
 	</select>
 
 	<select id="retrieveInfoCard" parameterType="String" resultType="String">

@@ -26,18 +26,9 @@
 		max-height: 500px;
 	}
 </style>
-
-<script>	
-	$(function(){
-		$('[data-toggle="notification-popover"]').popover();
-	});
-
-</script>
-<!-- Latest compiled and minified CSS -->
-
-
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
 <title>지도 클릭시 이동하는 페이지</title>
 </head>

@@ -79,7 +79,7 @@ function uploadLogoOpen() {
 			<div id='outLineCP'>
 			  	<div class="panel-body">
 		  			<div id="outLineContentIn">
-		  				<h1><s:property value="enterprise.etpTitle"/></h1>
+		  				<h1><s:property value="#session.enterprise.etpTitle"/></h1>
 		  			</div>
 			  	</div>
 			</div>

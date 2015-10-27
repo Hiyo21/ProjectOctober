@@ -149,6 +149,10 @@ public class EnterpriseDAO extends DAOTemplate{
 			session.close();
 		}
 	}
+	
+	public Integer deleteComponent(String etpNum){
+		return dataModificationTemplate(s -> {return s.getMapper(EnterpriseMapper.class).deleteComponent(etpNum);});
+	}
 
 	
 	public List<Service> retrieveServices(String etpNum) {
@@ -266,6 +270,24 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+	/*
+	public int choiceTemplateType(String etpNum, int etpTemplateType) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			Map<String, Enterprise> map = new HashMap<String, Enterprise>();
+			Enterprise enterprise = new Enterprise();
+			enterprise.setEtpNum(etpNum);
+			enterprise.setEtpTemplateType(etpTemplateType);
+			map.put("enterprise", enterprise);
+			int result = session.update("choiceTemplateType", map);
+			if(result == 1) session.commit();
+			else session.rollback();
+			return result;
+		} finally {
+			session.close();
+		}
+	}
+	*/
 		//사업자의 이용자 예약 내역
 	public List<SaleRecord> reservationHistory(String loginEmail) {
 		return dataRetrievalTemplate(s -> {return s.getMapper(EnterpriseMapper.class).reservationHistory(loginEmail);});
@@ -338,9 +360,7 @@ public class EnterpriseDAO extends DAOTemplate{
 	public EnterpriseMapper fromMapper(SqlSession s){
 		return s.getMapper(EnterpriseMapper.class);
 	}
-
-
-
+	
 	public List<Coupon> retrieveCouponList(String etpNum) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
@@ -379,6 +399,7 @@ public class EnterpriseDAO extends DAOTemplate{
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
 			return session.getMapper(ServiceMapper.class).selectCategory(etpNum);
+
 		}finally{
 			session.close(); 
 		}
@@ -392,4 +413,18 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int updateTemplate(Enterprise enterprise) {
 		return dataModificationTemplate(s -> {return fromMapper(s).updateTemplate(enterprise);});
 	}
+
+	public List<Reservation> retrieveOffDays(String etpNum) {
+		return dataRetrievalTemplate(s-> {return s.getMapper(ReservationMapper.class).retrieveOffDays(etpNum);});
+	}
+
+	public List<Service> receiveServiceList(String etpNum) {
+		return dataRetrievalTemplate(s -> {return s.getMapper(ServiceMapper.class).retrieveServices(etpNum);});
+	}
+
+	public int insertDayOff(Reservation reservation) {
+		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertOffDays(reservation);});
+	}
+
+
 }

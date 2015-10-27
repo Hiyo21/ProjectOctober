@@ -40,67 +40,67 @@ public class Action6 extends ActionSupport implements RequestAware {
 		List<Highchart6> list = dao.highchart6DAO(e);
 		
 		Highchart6Add vo = new Highchart6Add();
-		List<Highchart6Add> timelist = new ArrayList<Highchart6Add>();
+		List<Highchart6Add> timelist1 = new ArrayList<Highchart6Add>();
 		for(Highchart6 temp : list){
 			
 			if(temp.getTimeHour().equals("00")){
-				vo.setTime0(temp.getAmountSum());
+				vo.setTime00(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("01")){
-				vo.setTime1(temp.getAmountSum());
+				vo.setTime01(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("02")){
-				vo.setTime2(temp.getAmountSum());
+				vo.setTime02(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("03")){
-				vo.setTime3(temp.getAmountSum());
+				vo.setTime03(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("04")){
-				vo.setTime4(temp.getAmountSum());
+				vo.setTime04(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("05")){
-				vo.setTime5(temp.getAmountSum());
+				vo.setTime05(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("06")){
-				vo.setTime6(temp.getAmountSum());
+				vo.setTime06(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("07")){
-				vo.setTime7(temp.getAmountSum());
+				vo.setTime07(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("08")){
-				vo.setTime8(temp.getAmountSum());
+				vo.setTime08(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("09")){
-				vo.setTime9(temp.getAmountSum());
+				vo.setTime09(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("10")){
-				vo.setTime10(temp.getAmountSum());
+				vo.setTime010(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("11")){
-				vo.setTime11(temp.getAmountSum());
+				vo.setTime011(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("12")){
-				vo.setTime12(temp.getAmountSum());
+				vo.setTime012(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("13")){
-				vo.setTime13(temp.getAmountSum());
+				vo.setTime013(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("14")){
-				vo.setTime14(temp.getAmountSum());
+				vo.setTime014(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("15")){
-				vo.setTime15(temp.getAmountSum());
+				vo.setTime015(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("16")){
-				vo.setTime16(temp.getAmountSum());
+				vo.setTime016(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("17")){
-				vo.setTime17(temp.getAmountSum());
+				vo.setTime017(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("18")){
-				vo.setTime18(temp.getAmountSum());
+				vo.setTime018(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("19")){
-				vo.setTime19(temp.getAmountSum());
+				vo.setTime019(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("20")){
-				vo.setTime20(temp.getAmountSum());
+				vo.setTime020(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("21")){
-				vo.setTime21(temp.getAmountSum());
+				vo.setTime021(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("22")){
-				vo.setTime22(temp.getAmountSum());
+				vo.setTime022(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("23")){
-				vo.setTime23(temp.getAmountSum());
+				vo.setTime023(temp.getAmountSum());
 			}else if(temp.getTimeHour().equals("24")){
-				vo.setTime24(temp.getAmountSum());
+				vo.setTime024(temp.getAmountSum());
 			}
 			
 			
 		}
-		timelist.add(vo);
+		timelist1.add(vo);
 		
-		request.put("timelist", timelist);
-		System.out.println(timelist.toString());
+		request.put("timelist1", timelist1);
+		System.out.println(timelist1.toString()+"highchart6");
 		
 		
 		
