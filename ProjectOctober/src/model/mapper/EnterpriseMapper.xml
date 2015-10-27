@@ -621,6 +621,7 @@
 		addr1,ETP_START_HOUR,ETP_END_HOUR
 		from hr.enterprise
 		where ETP_SUPERCLASS like '%'||#{searchLanguage}||'%'
+		or ETP_SUBCLASS like '%'||#{searchLanguage}||'%'
 		or ETP_OWNER like '%'||#{searchLanguage}||'%'
 		or ETP_EMAIL like '%'||#{searchLanguage}||'%'
 		or ETP_ADDRESS like '%'||#{searchLanguage}||'%'
@@ -633,18 +634,25 @@
 	</select>
 
 	<!-- 카테고리 검색 -->
-	<select id="categorySearch" parameterType="String"
+	<select id="categorySearch" parameterType="Map"
 		resultMap="EnterpriseBaseResultMap">
 		select
-		ETP_NUM,ETP_SUPERCLASS,ETP_OWNER,ETP_EMAIL,ETP_ADDRESS,ETP_ZIPCODE,ETP_TITLE,ETP_PHONE,
-		ETP_DESCRIPTION,ETP_SPECIALIZE,SUBSTR(ETP_ADDRESS,1,2)
-		addr1,ETP_START_HOUR,ETP_END_HOUR,
-		ETP_SUBCLASS
+		*
 		from hr.enterprise
-		where ETP_SPECIALIZE like '%'||#{searchLanguage}||'%'
-		or ETP_DESCRIPTION like '%'||#{searchLanguage}||'%'
-		or ETP_SUBCLASS like '%'||#{searchLanguage}||'%'
-		order by addr1 ASC
+		<if test="part == 'feature'">
+		where ETP_SPECIALIZE like '%'||#{searchKeyword}||'%'
+		</if>
+		<if test="part == 'business'">
+		where ETP_SUBCLASS like '%'||#{searchKeyword}||'%'
+		</if>
+		<if test="part == 'mood'">
+		where ETP_SUPERCLASS like '%'||#{searchKeyword}||'%'
+		or ETP_SUBCLASS like '%'||#{searchKeyword}||'%'
+		or ETP_TITLE like '%'||#{searchKeyword}||'%'
+		or ETP_DESCRIPTION like '%'||#{searchKeyword}||'%'
+		or ETP_SPECIALIZE like '%'||#{searchKeyword}||'%'	
+		</if>
+		order by etp_title ASC
 	</select>
 
 	<select id="reservationHistory" parameterType="String" resultMap="SaleRecordResultMap">

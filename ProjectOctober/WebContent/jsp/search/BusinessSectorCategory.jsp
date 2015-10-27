@@ -16,44 +16,9 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>
-$(document).ready(function(){
-	
-	    
-    /* 장르 버튼 */
-    $("#button3-1").click(function(){    	   
-    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-1").val();
-    });
-    
-    $("#button3-2").click(function(){    	   
-    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-2").val();
-    });
-    
-    $("#button3-3").click(function(){ 	   
-    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-3").val();
-    });
-    
-    $("#button3-4").click(function(){ 	   
-    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-4").val();
-    });
-    
-    $("#button3-5").click(function(){ 	   
-    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-5").val();
-    });
-    
-    $("#button3-6").click(function(){ 	   
-    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-6").val();
-    });
-    
-    $("#button3-7").click(function(){ 	   
-    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-7").val();
-    });
-    
-    $("#button3-8").click(function(){ 	   
-    	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?button='+$("#button3-8").val();
-    });
-    
-    
-});
+function searchSubClass(subClass) {
+	location.href= '${pageContext.request.contextPath}'+'/search/categorySearch.action?searchKeyword='+subClass+'&part=business';
+}
 </script>
 <title>업종 카테고리</title>
 </head>
@@ -69,56 +34,40 @@ $(document).ready(function(){
 
   <div class="tab-content">
    	 <div id="home" class="tab-pane fade in active">
-
       	<h3>업종</h3>	
    		  <div class="section">
-		      <div class="container">
-		        <div class="row">
-		          <div class="col-md-12">
-		            <div class="section">
-		              <div class="container">
-		                <div class="row">
-		                  <div class="col-md-6"><!-- 왼쪽 -->
-			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <button type="button" id="button3-1" style="width:300px; height:50px;" class="btn btn-primary" value="타이마사지">타이식마사지</button>
-			                  <br>
-			                  <br>
-			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" id="button3-2" style="width:300px; height:50px;" class="btn btn-primary" value="경락마사지">경락마사지 교정</button>
-				  			  <br>
-				  			  <br>
-				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  							  <button type="button" id="button3-3" style="width:300px; height:50px;" class="btn btn-primary" value="두피마사지">두피마사지</button>
-  							  <br>
-  							  <br>
-  							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  						  <button type="button" id="button3-4" style="width:300px; height:50px;" class="btn btn-primary" value="교정">교정</button>
-		                  </div>
-		                  <div class="col-md-6"><!-- 오른쪽 -->
-		                  	  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-			                  <button type="button" id="button3-5" style="width:300px; height:50px;" class="btn btn-primary" value="핸드케어">핸드케어</button>
-			                  <br>
-			                  <br>
-			                  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-				  			  <button type="button" id="button3-6" style="width:300px; height:50px;" class="btn btn-primary" value="바디케어">바디케어</button>
-				  			  <br>
-				  			  <br>
-				  			  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-  							  <button type="button" id="button3-7" style="width:300px; height:50px;" class="btn btn-primary" value="네일아트">네일아트</button>
-  							  <br>
-  							  <br>
-  							  <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
-	  						  <button type="button" id="button3-8" style="width:300px; height:50px;" class="btn btn-primary" value="발마사지">발마사지</button>                  
-		                  </div>
-		                </div>
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-		    </div>    		
-   	  </div><!-- 장르 -->
-   	 
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6"><!-- 왼쪽 -->
+		            	<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+		                <button type="button" id="button3-1" style="width:300px; height:50px;" class="btn btn-primary" onclick="searchSubClass('타이')">타이식마사지</button>
+		                <br><br>
+		                <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+			  			<button type="button" id="button3-2" style="width:300px; height:50px;" class="btn btn-primary" onclick="searchSubClass('경락')">경락마사지 교정</button>
+			  			<br><br>
+			  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+ 						<button type="button" id="button3-3" style="width:300px; height:50px;" class="btn btn-primary" onclick="searchSubClass('두피')">두피마사지</button>
+ 						<br><br>
+ 						<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+  						<button type="button" id="button3-4" style="width:300px; height:50px;" class="btn btn-primary" onclick="searchSubClass('교정')">교정</button>
+					</div>
+	                <div class="col-md-6"><!-- 오른쪽 -->
+	                	<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+		                <button type="button" id="button3-5" style="width:300px; height:50px;" class="btn btn-primary" onclick="searchSubClass('핸드케어')">핸드케어</button>
+		                <br><br>
+		                <img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+			  			<button type="button" id="button3-6" style="width:300px; height:50px;" class="btn btn-primary" onclick="searchSubClass('바디케어')">바디케어</button>
+			  			<br><br>
+			  			<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+ 						<button type="button" id="button3-7" style="width:300px; height:50px;" class="btn btn-primary" onclick="searchSubClass('네일아트')">네일아트</button>
+ 						<br><br>
+ 						<img src="/ProjectOctober/image/relaxation_logo_test.jpg" width="100" height="100">  
+  						<button type="button" id="button3-8" style="width:300px; height:50px;" class="btn btn-primary" onclick="searchSubClass('발')">발마사지</button>                  
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- 장르 --> 
    </div>
 </div>
 	

@@ -32,7 +32,7 @@
 		
 		
 		<action name="categorySearch" class="controller.action.SearchAction" method="categorySearch">
-			<result name="success">/jsp/search/FeatureCategory.jsp</result>
+			<result name="success">/jsp/EnterpriseListShowToCustomer.jsp</result>
 			<result name="error" type="redirect">/toErrorPage.action</result>
 		</action>
 		
