@@ -266,7 +266,7 @@ public class DAO {
 	public List<Highchart14> highchart14DAO(String etpNum){
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			return sqlsession.selectList("test.mapper.Highchart14Mapper.highchart14", etpNum);	
+			return sqlsession.selectList("highchart14", etpNum);	
 		}finally{
 			sqlsession.close();
 		}		

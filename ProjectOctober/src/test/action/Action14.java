@@ -16,7 +16,7 @@ public class Action14 extends ActionSupport{
 	private List<Highchart14> gunList;
 	
 	
-	public String highchart14(){
+	public String highchart14() throws Exception{
 		DAO dao = new DAO();
 		System.err.println(etpNum);
 		System.err.println(etpEmail);

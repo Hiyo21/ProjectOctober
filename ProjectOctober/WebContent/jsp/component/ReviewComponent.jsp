@@ -4,87 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<script type="text/javascript">
-
-
-$(function(){
-	var type = <s:property value="#session.memCode"/>;
-		//제일 먼저 reviewlist 받아오긴 해야 함.
-	
-	if(type == 1){
-		//review list 받아와서 .append로 뿌리기? iterator로 뿌리기? 등록은 못하게 하기. 하이챠트는 공통.
-		
-		
-	}else if(type == 2){
-		//올리기 폼. 보내는 걸 AJAX로. 
-		
-	}else{
-		
-		
-	}
-	
-	
-    $('#chart').highcharts({
-    	chart: {
-            polar: true,
-            type: 'line',
-            backgroundColor: 'transparent'
-        },
-
-        title: {
-            text: '종합 고객 평가',
-            x: -80
-        },
-
-        pane: {
-            size: '80%'
-        },
-
-        xAxis: {
-            categories: ['청결', '가격', '분위기', '서비스', '기술'],
-            tickmarkPlacement: 'on',
-            lineWidth: 0
-        },
-
-        yAxis: {
-            gridLineInterpolation: 'polygon',
-            lineWidth: 0,
-            min: 0,
-            max: 5
-        },
-
-        tooltip: {
-            shared: true
-        },
-
-        legend: {
-            align: 'right',
-            verticalAlign: 'top',
-            y: 70,
-            layout: 'vertical'
-        },
-
-        series: [{
-            name: '이용자 평가',
-            data: [
-                   <s:iterator value="gunList">
-                   		<s:property value="average2"/>,<s:property value="hygiene2"/>,<s:property value="comfort2"/>
-                   ,<s:property value="technique2"/>,<s:property value="price2"/>,<s:property value="service2"/>
-                   </s:iterator>
-                  ]
-        }]
-    });
-});
-   
-
-</script>
-
-
-
-
-
-
 </head>
 
 
@@ -116,6 +35,7 @@ $(function(){
 				<s:iterator value="reviewList">
 				<tr>
 					<td><s:property value="cstEmail"/></td>
+					<td><s:property value="rvwContent"/></td>
 					<td><s:property value="rvwInputDate"/></td>
 					<td><s:property value="rvwHygiene"/></td>
 					<td><s:property value="rvwComfort"/></td>
@@ -309,5 +229,70 @@ $(function(){
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
+<script type="text/javascript">
+
+
+$(function(){	
+    $('#chart').highcharts({
+    	chart: {
+            polar: true,
+            type: 'line',
+            backgroundColor: 'transparent'
+        },
+
+        title: {
+            text: '업체 평점',
+            x: -80
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: ['청결', '가격', '분위기', '서비스', '기술'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0,
+            max: 5
+        },
+
+        tooltip: {
+            shared: true
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+        
+        tooltip: {
+            valueDecimals: 2
+        },
+
+        series: [{
+            name: '이용자 평가',
+            data: [
+                   <s:iterator value="gunList">
+                   		<s:property value="average2"/>,
+                   		<s:property value="hygiene2"/>,
+                   		<s:property value="comfort2"/>,
+                   		<s:property value="technique2"/>,
+                   		<s:property value="price2"/>,
+                   		<s:property value="service2"/>
+                   </s:iterator>
+                  ]
+        }]
+    });
+});
+   
+</script>
 </body>
 </html>

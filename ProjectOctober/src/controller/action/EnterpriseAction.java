@@ -23,6 +23,7 @@ import model.vo.Review;
 import model.vo.SaleRecord;
 import model.vo.Service;
 import model.vo.WorkingDays;
+import test.vo.Highchart14;
 
 public class EnterpriseAction extends ActionSupport implements SessionAware{
 
@@ -44,6 +45,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpNum1;
 	private String etpEmail;
 	private List<Review> reviewList;
+	private List<Highchart14> gunList;
 
 	//////// Component Member ////////  
 	private Component component;
@@ -268,6 +270,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
 			reviewList = etpDAO.selectReviewList(etpNum);
+			gunList = DAOFactory.createDAO().highchart14DAO(etpNum);
+
 			
 			session.put("pageId", enterprise.getEtpEmail());
 			
@@ -449,6 +453,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		} else {
 			return ERROR;
 		}
+	}
+	
+	public String selectReviewListJSON() throws Exception{
+		reviewList = etpDAO.selectReviewList(etpNum);
+		if(reviewList != null){
+			return SUCCESS;
+		}else
+			return ERROR;
 	}
 	
 	/////////////////////// 미승인 사업자 게시판 ////////////////////
@@ -813,6 +825,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setReviewList(List<Review> reviewList) {
 		this.reviewList = reviewList;
+	}
+
+	public List<Highchart14> getGunList() {
+		return gunList;
+	}
+
+	public void setGunList(List<Highchart14> gunList) {
+		this.gunList = gunList;
 	}
 	
 	

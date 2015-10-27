@@ -4,47 +4,47 @@ import java.io.Serializable;
 
 public class Highchart14 implements Serializable {
 	
-	private int average2;
-	private int hygiene2;
-	private int comfort2;
-	private int technique2;
-	private int price2;
-	private int service2;
+	private float average2;
+	private float hygiene2;
+	private float comfort2;
+	private float technique2;
+	private float price2;
+	private float service2;
 	
-	public int getAverage2() {
+	public float getAverage2() {
 		return average2;
 	}
-	public void setAverage2(int average2) {
+	public void setAverage2(float average2) {
 		this.average2 = average2;
 	}
-	public int getHygiene2() {
+	public float getHygiene2() {
 		return hygiene2;
 	}
-	public void setHygiene2(int hygiene2) {
+	public void setHygiene2(float hygiene2) {
 		this.hygiene2 = hygiene2;
 	}
-	public int getComfort2() {
+	public float getComfort2() {
 		return comfort2;
 	}
-	public void setComfort2(int comfort2) {
+	public void setComfort2(float comfort2) {
 		this.comfort2 = comfort2;
 	}
-	public int getTechnique2() {
+	public float getTechnique2() {
 		return technique2;
 	}
-	public void setTechnique2(int technique2) {
+	public void setTechnique2(float technique2) {
 		this.technique2 = technique2;
 	}
-	public int getPrice2() {
+	public float getPrice2() {
 		return price2;
 	}
-	public void setPrice2(int price2) {
+	public void setPrice2(float price2) {
 		this.price2 = price2;
 	}
-	public int getService2() {
+	public float getService2() {
 		return service2;
 	}
-	public void setService2(int service2) {
+	public void setService2(float service2) {
 		this.service2 = service2;
 	}
 	@Override

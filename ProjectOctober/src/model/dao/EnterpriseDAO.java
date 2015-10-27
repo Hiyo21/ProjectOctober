@@ -128,10 +128,11 @@ public class EnterpriseDAO extends DAOTemplate{
 	
 	public List<Review> selectReviewList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		
 		try{
+			System.err.println(etpNum);
 			List<Review> rvwList = session.getMapper(EnterpriseMapper.class).selectReviewList(etpNum);
 			System.out.println("============check DAO :: selectReviewList :: "+rvwList.size());
+			System.err.println(rvwList);
 			return rvwList;
 		}finally{
 			session.close();

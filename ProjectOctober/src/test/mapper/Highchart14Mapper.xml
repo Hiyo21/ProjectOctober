@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapper namespace="test.mapper.highchart14Mapper" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="test.mapper.Highchart14Mapper.xml" >
 	<select id="highchart14" parameterType= "String" resultType="Highchart14">
 		select average2, hygiene2, comfort2, technique2, price2, service2
 		from (select 

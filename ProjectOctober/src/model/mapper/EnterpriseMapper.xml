@@ -550,7 +550,7 @@
 		select * from enterprise where etp_status != 0
 	</select>
 
-	<select id="selectReviewList" parameterType="String" resultType="Review">
+	<select id="selectReviewList" parameterType="String" resultMap="ReviewResultMap">
 		select * from review where etp_num = #{etpNum}
 	</select>
 
