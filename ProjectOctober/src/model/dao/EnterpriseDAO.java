@@ -399,4 +399,18 @@ public class EnterpriseDAO extends DAOTemplate{
 			session.close();
 		}
 	}
+
+	public int deleteComponent(String etpNum) {
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		
+		try{
+			int result =session.getMapper(EnterpriseMapper.class).deleteComponent(etpNum);
+			
+			if(result >1)session.commit();
+			else session.rollback();
+			
+			return result;
+		}finally{session.close();}
+		
+	}
 }

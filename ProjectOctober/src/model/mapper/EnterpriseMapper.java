@@ -108,5 +108,7 @@ public interface EnterpriseMapper {
 
 	Component selectComponent(Map<String, String> check);
 
+	int deleteComponent(String etpNum);
+
 
 }

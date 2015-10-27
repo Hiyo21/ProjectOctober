@@ -134,7 +134,8 @@ function stopEdit(){
 	$('#editBT').unbind('click');
 	$('#editBT').on('click', startEdit);
 	$('.edit').hide(); //편집 버튼 숨기기
-	loadPage(); //DB에 저장되어 있는 페이지 로드
+	
+	loadPage(); //DB에 저장되어 있는 페이지 로드 
 }
 
 
@@ -155,7 +156,6 @@ function savePage(etpNum){
 	}); 
  
  	for(var i in componentList){
-		console.log(componentList);
  		$.ajax({
 			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum='+etpNum, 
 			type:'POST',
@@ -175,13 +175,12 @@ function savePage(etpNum){
 
 function loadPage(){	
 	$.ajax({
-		url: '${pageContext.request.contextPath}/enterprise/takeEtpForJson.action?etpNum=<s:property value="etpNum"/>',
+		url: '${pageContext.request.contextPath}/enterprise/takeEtpForDynamic.action?etpNum=<s:property value="etpNum"/>',
 		type:'GET',
-		contentType : 'application/json',
+		dataType: 'json',
 		success : function(data){
-			/* var componentList = data.componentList; */
 			console.log(data);
-			/* printComponent(data.componentList); */				
+			printComponent(data);				
 		},
 		error : function(request, status, error){
 			console.log(request);
@@ -236,7 +235,7 @@ function remove_widget(item){
 
 // 불러온 컴포넌트 출력
 function printComponent(items){
- 	/* var items = object.componentList; */
+ 	var items = object.componentList;
     items = GridStackUI.Utils.sort(items); // 각 컴포넌트를 원래 순서대로 정렬. 안하면 랜덤으로 섞여서 배치됨
     
     console.log(items);	// 컴포넌트 위치값 확인
@@ -245,8 +244,6 @@ function printComponent(items){
     grid.remove_all();
     
     _.each(items, function (node) {
-	
-    	console.log(node);
 	
    	switch (node.componentID) {
 		case 'topCP':

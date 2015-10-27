@@ -589,6 +589,10 @@
 		#{componentPosX}, component_pos_y = #{componentPosY}
 		where etp_num = #{etpNum} and component_id = #{componentID}
 	</update>
+	
+	<delete id="deleteComponent" parameterType="String">
+		delete component where etp_num = #{etpNum}
+	</delete>
 
 
 	<update id="choiceTemplateType" parameterType="map">

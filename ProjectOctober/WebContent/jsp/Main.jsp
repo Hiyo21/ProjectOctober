@@ -140,7 +140,7 @@ tab-content{
 		     				<div id="mapPage">
     					<div class="mapImgD">
 							<h2>[ 지역 검색 ]</h2>
-<<<<<<< HEAD
+
 							<a href="#"><img src="${pageContext.request.contextPath}/image/KoreaMap.jpg" alt="KoreaMap" usemap="#KoreaMap" class="mapImg" /></a>
 							<map name="KoreaMap" id="KoreaMap">	
 								<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="Seoul" />
@@ -159,7 +159,8 @@ tab-content{
 								<area shape="rect" coords="178,169,205,196" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=울산" alt="Ulsan" />
 								<area shape="rect" coords="178,196,201,220" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=부산" alt="Busan" />
 								<area shape="rect" coords="10,270,54,289" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=제주" alt="Jeju" />
-=======
+							</map>
+							
 							<a href="#"><img src="${pageContext.request.contextPath}/image/img_map_12.png" alt="대한민국지도" usemap="#img_map_1" class="mapImg" /></a>
 							<map name="img_map_1" id="img_map_1">	
 								<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="서울" />
@@ -178,7 +179,6 @@ tab-content{
 								<area shape="rect" coords="178,169,205,196" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=울산" alt="울산" />
 								<area shape="rect" coords="178,196,201,220" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=부산" alt="부산" />
 								<area shape="rect" coords="10,270,54,289" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=제주" alt="제주" />
->>>>>>> refs/remotes/origin/master
 							</map>			
 						</div><!-- 지도 UI -->
 										<script type="text/javascript">	
@@ -198,11 +198,11 @@ tab-content{
 											})
 											$('.mapImg').mouseout(function(){
 												
-<<<<<<< HEAD
+
 												mapSrc = "${pageContext.request.contextPath}/image/KoreaMap.jpg";
-=======
-												mapSrc = "${pageContext.request.contextPath}/image/img_map_12.png";
->>>>>>> refs/remotes/origin/master
+
+												/* mapSrc = "${pageContext.request.contextPath}/image/img_map_12.png"; */
+
 												
 												
 												$(".mapImg").attr("src", mapSrc);
