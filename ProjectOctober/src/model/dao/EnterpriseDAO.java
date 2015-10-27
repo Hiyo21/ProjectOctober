@@ -149,6 +149,10 @@ public class EnterpriseDAO extends DAOTemplate{
 			session.close();
 		}
 	}
+	
+	public Integer deleteComponent(String etpNum){
+		return dataModificationTemplate(s -> {return s.getMapper(EnterpriseMapper.class).deleteComponent(etpNum);});
+	}
 
 	
 	public List<Service> retrieveServices(String etpNum) {
@@ -356,9 +360,7 @@ public class EnterpriseDAO extends DAOTemplate{
 	public EnterpriseMapper fromMapper(SqlSession s){
 		return s.getMapper(EnterpriseMapper.class);
 	}
-
-
-
+	
 	public List<Coupon> retrieveCouponList(String etpNum) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
@@ -402,7 +404,6 @@ public class EnterpriseDAO extends DAOTemplate{
 			session.close(); 
 		}
 	}
-
 
 	public int insertSaleRecord(SaleRecord saleRecord) {
 		return dataModificationTemplate(s -> {return fromMapper(s).insertSaleRecord(saleRecord);});

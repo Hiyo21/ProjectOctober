@@ -45,6 +45,7 @@ function saveInfo() {
 };
 
 </script>
+
 <script type="text/javascript">
 function uploadInfoOpen() {
 	window.open("${pageContext.request.contextPath}/enterprise/toInfoUploadPage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
