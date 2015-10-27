@@ -78,7 +78,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 //---------------------------------------- Calendar 관련 ----------------------------------//
 	public String toCalendarPage() throws Exception{
 		System.out.println(etpNum);
-		return SUCCESS;
+		Integer memCode = (Integer)session.get("memCode");
+		if(memCode == 1) return "enterprise";
+		else return "customer";
 	}
 	
 	public String retrieveEnterpriseInfoForCalendar() throws Exception{
@@ -234,6 +236,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String insertDayOff() throws Exception{
+		reservation.setEtpNum(String.valueOf(session.get("loginEtpNum")));
+		reservation.setEtpEmail(String.valueOf(session.get("loginId")));
+		reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+		reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(),DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+		if(reservation.getRsvDesc().length()==0) reservation.setRsvDesc("");
 		System.err.println(reservation);
 		int result = etpDAO.insertDayOff(reservation);
 		if(result != 0) return SUCCESS;
@@ -597,7 +604,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	/////////////////////////////////////////////////
 	
 	public String retrieveOffDays() throws Exception{
-		System.err.println(etpNum);
+		System.err.println("휴일용 받는가?" + etpNum);
 		
 		if(reservationList != null){
 			reservationList = etpDAO.retrieveOffDays(etpNum);

@@ -9,7 +9,11 @@
 <title>Dynamic Templete</title>
 
 <!-- Latest compiled and minified CSS -->
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master
 <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
@@ -18,7 +22,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack-extra.css" />
 
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
 <style>
 	.delBT{
 		position: absolute;
@@ -67,9 +76,15 @@
 $(function(){
 
 	hideBT();
+<<<<<<< HEAD
 
 	//loadPage();
 
+=======
+
+	loadPage();
+
+>>>>>>> refs/remotes/origin/master
 	
 	var options = {
     		always_show_resize_handle : false,
@@ -355,7 +370,9 @@ function printComponent(items){
    		} //switch, grid.add_widget end
 
     });   
+
     eventTest();     
+
 }
 
 function eventTest(){

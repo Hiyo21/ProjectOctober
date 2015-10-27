@@ -145,7 +145,7 @@
 		<if test="rsvDesc != null">
 			,#{rsvDesc}
 		</if>
-		)
+		) 
 	</insert>
 	
 	<update id="changeReservationTime" parameterType="Reservation">

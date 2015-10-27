@@ -9,8 +9,10 @@ import model.common.MyBatisSqlSessionFactory;
 import model.mapper.CustomerMapper;
 import model.mapper.MemberMapper;
 import model.vo.Customer;
+import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.PaymentRecord;
+import model.vo.Reservation;
 import model.vo.Review;
 
 public class CustomerDAO extends DAOTemplate{
@@ -89,5 +91,9 @@ public class CustomerDAO extends DAOTemplate{
 			session.close();
 
 		}
+	}
+
+	public Enterprise retrieveEnterprise(String etpNum) {
+		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrieveEnterprise(etpNum);});
 	}
 }
