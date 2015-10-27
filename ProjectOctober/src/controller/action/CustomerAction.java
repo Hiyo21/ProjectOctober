@@ -85,7 +85,7 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 		id = String.valueOf(ActionContext.getContext().getSession().get("loginId"));
 		review.setCstEmail(id);		
 		cstDAO.insertCustomerEvaluation(review);
-		
+		etpNum = review.getEtpNum();
 		return SUCCESS;
 	}	
 	

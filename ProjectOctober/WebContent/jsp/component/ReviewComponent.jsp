@@ -4,14 +4,80 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
 
 <!-- Highchart -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
+<script type="text/javascript">
 
+
+$(function(){	
+    $('#chart').highcharts({
+    	chart: {
+            polar: true,
+            type: 'line',
+            backgroundColor: 'transparent'
+        },
+
+        title: {
+            text: '업체 평점',
+            x: -80
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: ['청결', '가격', '분위기', '서비스', '기술'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0,
+            max: 5
+        },
+
+        tooltip: {
+            shared: true
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+        
+        tooltip: {
+            valueDecimals: 2
+        },
+
+        series: [{
+            name: '이용자 평가',
+            data: [
+                   <s:iterator value="#session.gunList">
+                   		<s:property value="average2"/>,
+                   		<s:property value="hygiene2"/>,
+                   		<s:property value="comfort2"/>,
+                   		<s:property value="technique2"/>,
+                   		<s:property value="price2"/>,
+                   		<s:property value="service2"/>
+                   </s:iterator>
+                  ]
+        }]
+    });
+});
+   
+</script>
+</head>
+
+</body>
 <body>
 <div class="container">
 		<div class="row">
@@ -227,70 +293,4 @@
 		</div> <!-- row2 end -->
 </s:if>
 
-<script type="text/javascript">
-
-
-$(function(){	
-    $('#chart').highcharts({
-    	chart: {
-            polar: true,
-            type: 'line',
-            backgroundColor: 'transparent'
-        },
-
-        title: {
-            text: '업체 평점',
-            x: -80
-        },
-
-        pane: {
-            size: '80%'
-        },
-
-        xAxis: {
-            categories: ['청결', '가격', '분위기', '서비스', '기술'],
-            tickmarkPlacement: 'on',
-            lineWidth: 0
-        },
-
-        yAxis: {
-            gridLineInterpolation: 'polygon',
-            lineWidth: 0,
-            min: 0,
-            max: 5
-        },
-
-        tooltip: {
-            shared: true
-        },
-
-        legend: {
-            align: 'right',
-            verticalAlign: 'top',
-            y: 70,
-            layout: 'vertical'
-        },
-        
-        tooltip: {
-            valueDecimals: 2
-        },
-
-        series: [{
-            name: '이용자 평가',
-            data: [
-                   <s:iterator value="#session.gunList">
-                   		<s:property value="average2"/>,
-                   		<s:property value="hygiene2"/>,
-                   		<s:property value="comfort2"/>,
-                   		<s:property value="technique2"/>,
-                   		<s:property value="price2"/>,
-                   		<s:property value="service2"/>
-                   </s:iterator>
-                  ]
-        }]
-    });
-});
-   
-</script>
-</body>
 </html>

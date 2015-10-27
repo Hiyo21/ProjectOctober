@@ -99,7 +99,6 @@
     $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
     $('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
     $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
-    $('#inRsvBt').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
     $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
     $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp');  */
 </script>
@@ -126,7 +125,8 @@
 			    	<button type="button" class="btn btn-default btn-lg">전화 예약(<s:property value="enterprise.etpPhone"/>)</button>
 			  	</div>
 			  	<div class="btn-group" role="group">
-			    	<button type="button" class="btn btn-success btn-lg" onclick='location.href="receiveServiceList.action?etpNum="${etpNum}'>예약 하기</button>
+			  	<s:property value="etpNum"/>
+			    	<a href="${pageContext.request.contextPath}/enterprise/toCalendarPage.action?etpNum=${etpNum}"><button type="button" class="btn btn-success btn-lg" onclick='location.href="'>예약 하기</button></a>
 			  	</div>
 			</div>
 		</div>

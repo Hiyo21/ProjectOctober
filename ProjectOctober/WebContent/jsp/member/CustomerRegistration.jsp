@@ -182,7 +182,8 @@
 			<br>
 
 			<label for="member.memGender">성별</label><br>
-			<input type="radio" id="maleRB" name="customer.cstGender" value="m" checked>남&nbsp;&nbsp;&nbsp;<input type="radio" id="femaleRB" name="member.memGender" value="f">여			
+			<input type="radio" name="customer.cstGender" value="m" checked>남&nbsp;&nbsp;&nbsp;
+			<input type="radio"  name="customer.cstGender" value="f">여			
 			<br>							
           </div>
           
@@ -197,10 +198,11 @@
 							</select>&nbsp;&nbsp;
 							
 							<select id="month" class="form-control">
-		          			
+								<option disabled selected>월 선택</option>
 		          			</select>&nbsp;&nbsp;
 		          			
 		          			<select id="date" class="form-control">
+		          				<option disabled selected>일 선택</option>
 									
 		          			</select>
 		          			<br>

@@ -68,10 +68,10 @@
 			async: false,
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 			success: function retrieveEnt(data){
+				console.log(data);
 				enterpriseInfo = data.enterprise;
 				console.log('received enterpriseinfo!');
 				console.log(enterpriseInfo);
-				$('#templateType').attr('value', data.enterprise.etpTemplateType); 
 				
 				var colorTheme = enterpriseInfo.etpThemeType;
 					if(colorTheme == 1) $('head').append("<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/css/colorthemes/cherry.css'/>");
@@ -93,27 +93,6 @@
 				console.log(request);
 				console.log(status);
 				console.log(error);
-			}
-		});
-		
-		serviceInfo = $.ajax({
-			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
-			dataType: 'json',
-			data: {'etpNum':${etpNum}},
-			async: false,
-			success: function(data){
-				svcList = data.serviceList;
-				$("#inputServiceList").html('');
-				$("#inputServiceList").append("<option value='' disabled selected hidden>선택하세요.</option>");
-				
-				$.each(svcList, function(i, d){
-					$("#inputServiceList").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
-					$("#externalServiceList").append("<div class='fc-event' id='external" + i + "' value='" + d.svcNum + "' duration='" + d.svcTime + "'>" + d.svcTitle + "</div><br>");
-					console.log($("#externalServiceList"));
-				});
-			},
-			error: function(){
-				console.log("receive service list error");
 			}
 		});
 		
@@ -260,9 +239,9 @@
 					
 					$("#closeReservationBtn").click(function(event){
 						$('#insertModal').modal('hide');
-						$("#calendar").fullCalendar('removeEvents');
-						$("#calendar").fullCalendar('removeEventSource', event);
-						$('#calendar').fullCalendar('addEventSource', event);
+						//$("#calendar").fullCalendar('removeEvents');
+						//$("#calendar").fullCalendar('removeEventSource', event);
+						//$('#calendar').fullCalendar('addEventSource', event);
 						$('#calendar').fullCalendar('refetchEvents');
 						$('#calendar').fullCalendar('rerenderEvents');
 					});
@@ -272,7 +251,8 @@
 			        $("#updateReservationBtnGo").off("click");
 			        $("#updateReservationBtnGo").click(function(){
 			        	console.log($("#reservationUpdateDateStartTime").val());
-			        	
+			        	console.log(event.start);
+			        	console.log(event.end);
 						 var reservation = {
 								"reservation.rsvNum" : event.id,
 								"reservation.svcNum" : $("#reservationUpdateSelectService").val(),
@@ -297,7 +277,7 @@
 							data: reservation,
 							contentType: 'application/json; charset=UTF-8',
 							success: function(data){
-								alert('success!');
+								alert('상세내용 변경에 성공하였습니다.');
 								console.log(event);
 								//$("#calendar").fullCalendar('removeEvents');
 								//$("#calendar").fullCalendar('removeEventSource', event);
@@ -605,8 +585,8 @@
 										type: 'POST',
 										data: saleRecord, 
 										success: function(data){
-											$("#calendar").fullCalendar('removeEventSource', event);
-											$('#calendar').fullCalendar('addEventSource', event);
+											//$("#calendar").fullCalendar('removeEventSource', event);
+											//$('#calendar').fullCalendar('addEventSource', event);
 											$('#calendar').fullCalendar('refetchEvents');
 											$('#calendar').fullCalendar('rerenderEvents');
 										},
@@ -695,7 +675,6 @@
 					      								etpRsvDeadline: item.enterprise.etpRsvDeadline,
 					      								etpSelfNotification: item.enterprise.etpSelfNotification,
 					      								etpCstNotification: item.enterprise.etpCstNotification,
-					      								//etpTemplateType: item.enterprise.etpTemplateType,
 					      								etpThemeType: item.enterprise.etpThemeType,
 					      								etpSvcOffered: item.enterprise.etpSvcOffered,
 					      								etpSubclass: item.enterprise.etpSubclass,
@@ -732,27 +711,6 @@
 				                //rendering: 'background',
 				                //allDay: false,
 				                overlap: false
-							},{
-								backgroundColor: 'red',
-			      				textColor: 'green',
-			      				events: function(start,end,timezone,callback){
-			      					$.ajax({
-			      					url: '${pageContext.request.contextPath}/enterprise/retrieveOffDays.action',
-			      					type: 'POST',
-			      					data: {"etpNum":${etpNum}},
-			      					success: function(doc, index, value){
-			      						var offDayList = doc.reservationList;
-			      						console.log("getting off days success!");
-			      					},error: function(request, status, error){
-			      						console.log(request);
-			      						console.log(status);
-			      						console.log(error);
-			      					}
-			      					});
-			      				},overlap: false,
-			      				editable: false,
-			      				timezone: false,
-			      				className: 'offdays'
 							}
 						]
 				,
@@ -1474,7 +1432,6 @@
 					      								etpRsvDeadline: item.enterprise.etpRsvDeadline,
 					      								etpSelfNotification: item.enterprise.etpSelfNotification,
 					      								etpCstNotification: item.enterprise.etpCstNotification,
-					      								//etpTemplateType: item.enterprise.etpTemplateType,
 					      								etpThemeType: item.enterprise.etpThemeType,
 					      								etpSvcOffered: item.enterprise.etpSvcOffered,
 					      								etpSubclass: item.enterprise.etpSubclass,
@@ -1749,7 +1706,7 @@
 								
 							</table>
 							<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''>
-							<input type="hidden" id='templateType' name='enterprise.etpTemplateType' value=''>
+
 						</form>
 		            	
 		            	<div class="hidden">
