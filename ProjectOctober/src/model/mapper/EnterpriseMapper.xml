@@ -226,15 +226,11 @@
 		select * from ENTERPRISE where ETP_EMAIL = #{etpEmail}
 	</select>
 
-	<select id="selectByEtpNumIncludeOthers" parameterType="String"
-		resultMap="EnterpriseResultMap">
-		select e.*, w.* from ENTERPRISE e, WORKING_DAYS w
-		where e.ETP_NUM = #{etpNum} and e.etp_num = w.etp_num
+	<select id="selectByEtpNumIncludeOthers" parameterType="String" resultMap="EnterpriseResultMap">
+		select e.*, w.* from ENTERPRISE e, WORKING_DAYS w where e.ETP_NUM = #{etpNum} and e.etp_num = w.etp_num
 	</select>
-	<select id="selectByEtpEmailInclueOthers" parameterType="String"
-		resultMap="EnterpriseResultMap">
-		select e.*, w.* from ENTERPRISE e, WORKING_DAYS w
-		where e.ETP_EMAIL = #{etpEmail} and e.etp_email = w.etp_email
+	<select id="selectByEtpEmailInclueOthers" parameterType="String" resultMap="EnterpriseResultMap">
+		select e.*, w.* from ENTERPRISE e, WORKING_DAYS w where e.ETP_EMAIL = #{etpEmail} and e.etp_email = w.etp_email
 	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="model.vo.Enterprise">

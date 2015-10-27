@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+<!-- Daum Map -->
+<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=dc4b9eca6f6c59278349f8b7add7e6b1&libraries=services"></script>
+
 </head>
 <body>
 <div class="panel panel-default">
@@ -25,7 +28,7 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=dc4b9eca6f6c59278349f8b7add7e6b1&libraries=services"></script>	
+	
 <script>
 function mapMake() {
 	var address = document.getElementById('address').value;

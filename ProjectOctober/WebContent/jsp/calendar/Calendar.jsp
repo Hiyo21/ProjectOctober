@@ -68,6 +68,7 @@
 			async: false,
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 			success: function retrieveEnt(data){
+				console.log(data);
 				enterpriseInfo = data.enterprise;
 				console.log('received enterpriseinfo!');
 				console.log(enterpriseInfo);
@@ -238,9 +239,9 @@
 					
 					$("#closeReservationBtn").click(function(event){
 						$('#insertModal').modal('hide');
-						$("#calendar").fullCalendar('removeEvents');
-						$("#calendar").fullCalendar('removeEventSource', event);
-						$('#calendar').fullCalendar('addEventSource', event);
+						//$("#calendar").fullCalendar('removeEvents');
+						//$("#calendar").fullCalendar('removeEventSource', event);
+						//$('#calendar').fullCalendar('addEventSource', event);
 						$('#calendar').fullCalendar('refetchEvents');
 						$('#calendar').fullCalendar('rerenderEvents');
 					});
@@ -250,7 +251,8 @@
 			        $("#updateReservationBtnGo").off("click");
 			        $("#updateReservationBtnGo").click(function(){
 			        	console.log($("#reservationUpdateDateStartTime").val());
-			        	
+			        	console.log(event.start);
+			        	console.log(event.end);
 						 var reservation = {
 								"reservation.rsvNum" : event.id,
 								"reservation.svcNum" : $("#reservationUpdateSelectService").val(),
@@ -260,8 +262,8 @@
 								"reservation.cstEmail" : event.cstEmail,
 								"reservation.rsvStatus" : event.rsvStatus,
 								"reservation.rsvTitle": $("#reservationUpdateTitle").val(),
-								"reservation.start" : event.start,
-								"reservation.end" : event.end,
+								"reservation.start" : event.start.toISOString(),
+								"reservation.end" : event.end.toISOString(),
 								"reservation.status" : event.status,
 								"reservation.employeeGender" : event.employeeGender,
 								"reservation.rsvDesc" : $("#reservationUpdateDescription2").val(),
@@ -275,7 +277,7 @@
 							data: reservation,
 							contentType: 'application/json; charset=UTF-8',
 							success: function(data){
-								alert('success!');
+								alert('상세내용 변경에 성공하였습니다.');
 								console.log(event);
 								//$("#calendar").fullCalendar('removeEvents');
 								//$("#calendar").fullCalendar('removeEventSource', event);
@@ -583,8 +585,8 @@
 										type: 'POST',
 										data: saleRecord, 
 										success: function(data){
-											$("#calendar").fullCalendar('removeEventSource', event);
-											$('#calendar').fullCalendar('addEventSource', event);
+											//$("#calendar").fullCalendar('removeEventSource', event);
+											//$('#calendar').fullCalendar('addEventSource', event);
 											$('#calendar').fullCalendar('refetchEvents');
 											$('#calendar').fullCalendar('rerenderEvents');
 										},
