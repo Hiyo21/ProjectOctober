@@ -55,7 +55,8 @@
 		</action>
 		
 		<action name="toCalendarPage" class="controller.action.EnterpriseAction" method="toCalendarPage">
-			<result>/jsp/calendar/Calendar.jsp</result>
+			<result name="enterprise">/jsp/calendar/Calendar.jsp</result>
+			<result name="customer">/jsp/calendar/CustomerCalendar.jsp</result>
 		</action>
 		
 		<action name="updateReservationDetailsByEnterprise" class="controller.action.EnterpriseAction" method="updateReservationDetailsByEnterprise">

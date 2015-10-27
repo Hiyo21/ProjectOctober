@@ -3,6 +3,7 @@ package model.mapper;
 import java.util.List;
 import model.vo.Customer;
 import model.vo.CustomerExample;
+import model.vo.Enterprise;
 import model.vo.PaymentRecord;
 import model.vo.Review;
 
@@ -48,5 +49,7 @@ public interface CustomerMapper {
   /*PaymentRecord retrievePaymentRecord(Integer pmtNum);*/
 	
 	List<PaymentRecord> reservationHistory(String cstEmail);
+
+	Enterprise retrieveEnterprise(String etpNum);
 
 }

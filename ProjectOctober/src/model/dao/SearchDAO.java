@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -24,12 +25,12 @@ public class SearchDAO {
 	
 ///////////////////카테고리 검색 결과//////////////////////
 	
-	public List<Enterprise> categorySearch(String button){
+	public List<Enterprise> categorySearch(Map<String, String> map){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
 		try{
-			System.err.println("DAO : "+button);
-			List<Enterprise> etpList = session.getMapper(EnterpriseMapper.class).CustomerFreeSearchingList(button);
+			System.err.println("DAO : "+map);
+			List<Enterprise> etpList = session.getMapper(EnterpriseMapper.class).categorySearch(map);
 			System.err.println("DAO : "+etpList);		
 			return etpList;
 		}finally{

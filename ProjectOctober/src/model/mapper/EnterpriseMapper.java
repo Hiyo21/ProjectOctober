@@ -90,7 +90,7 @@ public interface EnterpriseMapper {
 
     
     //////////////// 카테고리 검색 리스트
-    List<Enterprise> categorySearch(String keyword);
+    List<Enterprise> categorySearch(Map<String, String> map);
 
 	List<Coupon> retrieveCouponList(String etpNum);
 

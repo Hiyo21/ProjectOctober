@@ -39,7 +39,7 @@
 <!-- 항목 1 -->
 <div class="container" align="center"> 
 	<!-- iterator 시작 -->
-	<s:if test="enterpriseList != null">
+	<s:if test="enterpriseList.size() > 0">
 	<s:iterator value="enterpriseList">
 	
 	<!-- shopList start -->				
@@ -114,7 +114,10 @@
  		</div><!-- panel body end -->
   		</div>
   		</s:iterator>
-	</s:if>	
+	</s:if>
+	<s:if test="enterpriseList.size() == 0">
+		<h1>검색 결과가 존재하지 않습니다.</h1>
+	</s:if>
  	</div>		
 
 </body>
