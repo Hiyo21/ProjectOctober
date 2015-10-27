@@ -897,7 +897,7 @@
 		<a href="${pageContext.request.contextPath}/toMainPage.action"><button class="btn btn-info" >메인 메뉴로</button></a>
 		<!-- enterprise 값을 action으로 다 넘겨야 할듯? 아니면 적어도 이메일이랑 템플릿 타입이라도. -->
 		<a href="takeEtp.action?etpNum=<s:property value='#session.loginEtpNum'/>"><button class="btn btn-primary">사업자 메뉴로</button></a>
-		<a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value="#session.loginId"/>"><button class="btn btn-primary">통계</button></a>
+		<a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value='#session.loginId'/>"><button class="btn btn-primary">통계</button></a>
 	</div>
 	<div id='external-events'>
 		<input type="hidden" id="starttt" />

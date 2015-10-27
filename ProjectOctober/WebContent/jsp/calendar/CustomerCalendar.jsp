@@ -445,7 +445,7 @@ var serviceInfo = {};
 								console.log(colorTemp);
 								
 								$.ajax({
-									url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
+									url: "${pageContext.request.contextPath}/customer/insertReservationCustomer.action",
 									dataType: 'json',
 									type: 'POST',
 									data: $('#inputForm').serialize(),
@@ -458,6 +458,7 @@ var serviceInfo = {};
 										
 										console.log(dors);
 										var reservation = {
+												"reservation.rsvNum" : dors.rsvNum,
 												"reservation.svcNum" : dors.svcNum,
 												"reservation.cpnNum" : dors.cpnNum,
 												"reservation.etpNum" : doc.reservation.etpNum,
@@ -469,7 +470,6 @@ var serviceInfo = {};
 												"reservation.end": dors.end,
 												"reservation.rsvDesc" : dors.rsvDesc,
 												"reservation.rsvCost" : dors.rsvCost,
-												"service.svcCost" : dors.service.svcCost
 										};
 										console.log(reservation);
 										
@@ -584,7 +584,7 @@ var serviceInfo = {};
 						eventSources: [
 						              //사업자가 한 예약 가져오기~!
 						             	{
-						             		backgroundColor: '#DCD',
+						             		backgroundColor: '#A5A',
 						      				textColor: 'black',
 						      				editable: false,
 						            		events: function(start, end, timezone, callback){
@@ -665,8 +665,44 @@ var serviceInfo = {};
 						                //rendering: 'background',
 						                //allDay: false,
 						                overlap: false
-									}
-								]
+									},
+									{
+										events: function(start, end, timezone, callback){
+						      				$.ajax({
+						      					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
+						      					type: 'POST',
+						      					data: {"etpNum":${etpNum}},
+						      					
+						      					success: function(doc, index, value){
+						      						var events = [];
+						      						$(doc).find('event').each(function(){
+						      							events.push({
+						      								title: $(this).attr('title'),
+						      								start: $(this).attr('start'),
+						      								end: $(this).attr('end'),
+						      								timezone: false,
+						      								/* svcNum: item.svcNum,
+						      								cpnNum: item.cpnNum,
+						      								etpNum: item.etpNum,
+						      								etpEmail: item.etpEmail,
+						      								cstEmail: item.cstEmail,
+						      								startDate: item.rsvStartDate,
+						      								endDate: item.rsvEndDate,
+						      								status: item.rsvStatus,
+						      								employeeGender: item.employeeGender,
+						      								description : item.rsvDesc,
+						      								rsvCost: item.rsvCost, */
+						      							});
+						      						});
+						      					},error: function(request, status, error){
+						      						console.log(request),
+						      						console.log(status),
+						      						console.log(error)
+						      					}
+						      				});
+						      			}
+						      		}		
+						]
 						,
 						eventDrop: function(event, delta, revertFunc, jsEvent, view) {
 							$(this).unbind();

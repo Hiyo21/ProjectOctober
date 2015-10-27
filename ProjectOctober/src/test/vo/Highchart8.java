@@ -1,4 +1,4 @@
-/*package test.vo;
+package test.vo;
 
 public class Highchart8 {
 	private int amountSum;
@@ -18,4 +18,3 @@ public class Highchart8 {
 
 	
 }
-*/

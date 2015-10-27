@@ -106,7 +106,7 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 		}
 	}
 	
-	public String insertReservation() throws Exception{
+	public String insertReservationCustomer() throws Exception{
 		System.err.println(etpNum);
 		System.err.println("널값 확인용 :" + reservation);
 		if(reservation != null){
@@ -115,13 +115,9 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 			
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
-			//reservation.setEtpNum();
-			//reservation.setEtpEmail();
 			Enterprise tempEtp = cstDAO.retrieveEnterprise(etpNum);
 			reservation.setEtpNum(tempEtp.getEtpNum());
 			reservation.setEtpEmail(tempEtp.getEtpEmail());
-			
-			
 		}
 		int result = cstDAO.insertReservation(reservation);
 		if(result != 0) return SUCCESS;

@@ -391,4 +391,46 @@
 	<select id="retrieveEnterprise" parameterType="String">
 		select * from enterprise where etp_num = #{value}
 	</select>
+	
+	<insert id="insertReservation" parameterType="Reservation">
+		insert into reservation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		rsv_num, svc_num,
+		<if test="cpnNum != null">
+		cpn_num,
+		</if>
+		etp_num, etp_email, cst_email, rsv_start_date, rsv_end_date, rsv_status,
+		<if test="employeeGender != null">
+		rsv_gender,
+		</if>
+		<if test="rsvTitle != null">
+		rsv_title,
+		</if>
+		<if test="rsvDesc != null">
+		rsv_desc,
+		</if>
+		<if test="rsvCost != null">
+		rsv_cost,
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		reservation_seq.nextval, #{svcNum},
+		<if test="cpnNum != null">
+		#{cpnNum},
+		</if>
+		#{etpNum}, #{etpEmail}, #{cstEmail}, #{rsvStartDate}, #{rsvEndDate}, #{rsvStatus},
+		<if test="employeeGender != null">
+		#{employeeGender},
+		</if>
+		<if test="rsvTitle != null">
+		#{rsvTitle},
+		</if>
+		<if test="rsvDesc != null">
+		#{rsvDesc},
+		</if>
+		<if test="rsvCost != null">
+		#{rsvCost},
+		</if>
+		</trim>
+	</insert>
 </mapper>

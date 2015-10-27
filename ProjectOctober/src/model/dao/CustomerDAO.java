@@ -98,7 +98,8 @@ public class CustomerDAO extends DAOTemplate{
 	}
 
 	public int insertReservation(Reservation reservation) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return dataModificationTemplate(s -> {return fromMapper(s).insertReservation(reservation);});
+
 	}
 }

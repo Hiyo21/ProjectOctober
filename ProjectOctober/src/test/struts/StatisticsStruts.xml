@@ -61,18 +61,18 @@
 		<!-- 고객 평가의 분기별 변화 -->
 		<action name="highchart7" class="test.action.Action7" method="highchart7">
 			<result name="success" type="chain">
-        		<param name="actionName">highchart8</param>
+        		<param name="actionName">highchart9</param>
             	<param name="namespace">/</param>
 			</result>
 		</action>
 		
 		<!--항인쿠폰 사용시 매출액 변화  -->
-		<action name="highchart8" class="test.action.Action8" method="highchart8">
+		<!-- <action name="highchart8" class="test.action.Action8" method="highchart8">
 			<result name="success" type="chain">
         		<param name="actionName">highchart9</param>
             	<param name="namespace">/</param>
 			</result>
-		</action>
+		</action> -->
 		
 		<!-- 시간대별 고객 수 변화 -->
 		<action name="highchart9" class="test.action.Action9" method="highchart9">
@@ -88,33 +88,35 @@
 			<result name="success" type="chain">
         		<param name="actionName">highchart11</param>
             	<param name="namespace">/</param>
-			</result>	
+			</result> 
+			
 		</action>
 		
 		<!-- 직업별 방문 고객 수 -->
-		<action name="highchart11" class="test.action.Action11" method="highchart11">
-			<result name="success" type="chain">
+		 <action name="highchart11" class="test.action.Action11" method="highchart11">
+			<!-- <result name="success" type="chain">
         		<param name="actionName">highchart12</param>
             	<param name="namespace">/</param>
-			</result>		
-		</action>
+			</result>	 -->	
+			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>
+		</action> 
 		
 		<!-- 직업별 선호하는 서비스 -->
-		 <action name="highchart12" class="test.action.Action12" method="highchart12">
+		<!--  <action name="highchart12" class="test.action.Action12" method="highchart12">
 			<result name="success" type="chain">
         		<param name="actionName">highchart13</param>
             	<param name="namespace">/</param>
 			</result>	
-		 </action>
+		 </action> -->
 		
 		<!-- 연령대별 선호하는 서비스 -->
-		<action name="highchart13" class="test.action.Action13" method="highchart13">
+		<!-- <action name="highchart13" class="test.action.Action13" method="highchart13">
 			<result name="success">/statisticsJsp/StatisticCategory.jsp</result>	
 		</action>
 		
 		<action name="highchart14" class="test.action.Action14" method="highchart14">
 			<result name="success">/jsp/main.jsp</result>	
-		</action>
+		</action> -->
 		
 		
 		

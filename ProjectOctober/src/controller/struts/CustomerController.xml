@@ -34,6 +34,10 @@
 			</result>
 		</action>
 		
+		<action name="insertReservationCustomer" class="controller.action.CustomerAction" method="insertReservationCustomer">
+			<result type="json" />
+		</action>
+		
 
 	</package>
 </struts>
