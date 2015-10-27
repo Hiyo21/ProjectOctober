@@ -3,27 +3,27 @@
 
 <mapper namespace="test.mapper.Highchart8Mapper.xml" >
 	<!-- 할인아닌 기간 -->
-	<select id="highchart8" resultType="Highchart8">
+	<select id="highchart8" parameterType="String" resultType="Highchart8">
 		select sum(p.pmt_amount) amountSum from
 		reservation r, payment_record p, sale_record s
 		where r.rsv_num = p.rsv_num and p.pmt_num = s.pmt_num
 		<![CDATA[ 
 		and r.rsv_start_date >= '2015-09-14' and r.rsv_end_date <=  '2015-10-14'
 		]]>
-		and r.etp_num =69 <!-- 69 -->
+		and r.etp_num = #{etpNum} <!-- 69 -->
 		group by r.etp_num	
 	
 	</select>
 	
 	<!-- 할인기간 -->
-	<select id="highchart81" resultType="Highchart8">
+	<select id="highchart81" parameterType="String" resultType="Highchart8">
 	 	select sum(p.pmt_amount) amountSum from
 		reservation r, payment_record p, sale_record s
 		where r.rsv_num = p.rsv_num and p.pmt_num = s.pmt_num
 		<![CDATA[ 
 		and r.rsv_start_date >= '2015-10-15'  and r.rsv_end_date <= '2015-11-15'
 		]]><!-- #{rsv_start_date}, #{rsv_end_date} -->
-		and r.etp_num = 69<!-- #{etp_num}로 고치기 -->
+		and r.etp_num = #{etpNum}<!-- #{etp_num}로 고치기 -->
 		group by r.etp_num
 	</select>
 </mapper>

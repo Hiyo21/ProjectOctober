@@ -120,12 +120,12 @@ public class DAO {
 	}
 
 	//할인쿠폰 사용여부에 따른 매출액 변화- start
-	public List<Highchart8> highchart8DAO() {
+	public List<Highchart8> highchart8DAO(String etpNum) {
 		List<Highchart8> list = null;
 		
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list = sqlsession.selectList("highchart8");				
+			list = sqlsession.selectList("highchart8", etpNum);				
 		}finally{
 			sqlsession.close();
 		}	
@@ -134,11 +134,11 @@ public class DAO {
 	}
 
 
-	public List<Highchart8> highchart8DAO1() {
+	public List<Highchart8> highchart8DAO1(String etpNum) {
 		List<Highchart8> list1 = null;
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list1 = sqlsession.selectList("highchart81");				
+			list1 = sqlsession.selectList("highchart81", etpNum);				
 		}finally{
 			sqlsession.close();
 		}	
