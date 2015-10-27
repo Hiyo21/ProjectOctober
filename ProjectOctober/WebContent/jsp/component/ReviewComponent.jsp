@@ -55,7 +55,8 @@ $(function () {
                    <s:iterator value="#request.gunList"><s:property value="average2"/>,<s:property value="hygiene2"/>,<s:property value="comfort2"/>
                    ,<s:property value="technique2"/>,<s:property value="price2"/>,<s:property value="service2"/>
                    </s:iterator>
-                  ]
+                  ],
+        	pointPlacement: 'on'
         }]
     });
 });
