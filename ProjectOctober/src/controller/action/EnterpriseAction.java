@@ -277,6 +277,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			session.put("pageId", enterprise.getEtpEmail());
 			
 			if(session.get("enterprise")==null){
+				session.put("gunList", gunList);
 				session.put("enterprise", enterprise);
 				session.put("categoryList", categoryList);
 			}else{
