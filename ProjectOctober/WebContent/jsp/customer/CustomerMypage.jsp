@@ -37,7 +37,6 @@ $(document).ready(function(){
   <h2>마이 페이지</h2><br>
   <ul class="nav nav-tabs">
     <li class="active"><a href="#InformationUpdate">정보수정</a></li>
-    <li><a href="#Reservation">예약</a></li>
     <li><a href="#CouponEvent">쿠폰 및 이벤트</a></li>
     <li><a href="#OneClick">OneClick 결제</a></li>
     <li><a href="${pageContext.request.contextPath}/customer/toCstReservationHistoryPage.action">예약 내역</a></li>

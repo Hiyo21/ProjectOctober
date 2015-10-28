@@ -445,7 +445,7 @@ var serviceInfo = {};
 								console.log(colorTemp);
 								
 								$.ajax({
-									url: "${pageContext.request.contextPath}/enterprise/insertReservation.action",
+									url: "${pageContext.request.contextPath}/customer/insertReservationCustomer.action",
 									dataType: 'json',
 									type: 'POST',
 									data: $('#inputForm').serialize(),
@@ -458,6 +458,7 @@ var serviceInfo = {};
 										
 										console.log(dors);
 										var reservation = {
+												"reservation.rsvNum" : dors.rsvNum,
 												"reservation.svcNum" : dors.svcNum,
 												"reservation.cpnNum" : dors.cpnNum,
 												"reservation.etpNum" : doc.reservation.etpNum,
@@ -469,7 +470,6 @@ var serviceInfo = {};
 												"reservation.end": dors.end,
 												"reservation.rsvDesc" : dors.rsvDesc,
 												"reservation.rsvCost" : dors.rsvCost,
-												"service.svcCost" : dors.service.svcCost
 										};
 										console.log(reservation);
 										
@@ -584,17 +584,18 @@ var serviceInfo = {};
 						eventSources: [
 						              //사업자가 한 예약 가져오기~!
 						             	{
-						             		backgroundColor: '#DCD',
+						             		backgroundColor: '#A5A',
 						      				textColor: 'black',
 						      				editable: false,
 						            		events: function(start, end, timezone, callback){
 							      				$.ajax({
-							      					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
+							      					url: '${pageContext.request.contextPath}/customer/retrieveReservations.action',
 							      					type: 'POST',
 							      					data: {"etpNum":${etpNum}},
 							      					dataType: 'json',
 							      					success: function(doc, index, value){			
 							      						var resList = doc.reservationList;
+							      						console.log(resList);
 							      						var events = [];
 							      						
 							      						$(resList).each(function(index,item){
@@ -665,8 +666,8 @@ var serviceInfo = {};
 						                //rendering: 'background',
 						                //allDay: false,
 						                overlap: false
-									}
-								]
+									}		
+						]
 						,
 						eventDrop: function(event, delta, revertFunc, jsEvent, view) {
 							$(this).unbind();
@@ -777,6 +778,28 @@ var serviceInfo = {};
 						},
 						drop: function(date, jsEvent, ui){
 							alert(date);
+						},
+						eventAfterRender: function(event, element, view, e){
+							console.log(event);
+							
+							if(event.status == 3){
+								//$("#calendar").fullcalendar({events : this, eventColor: 'this'});
+								//color: 'white'
+								element.css('border-color','black');
+								element.css('background-color','red');
+								event.overlap= false;
+								//("#calendar").fullCalendar('updateEvent', event);
+								
+								return false;
+								//event.stopPropagation();
+								//$("#calendar").fullCalendar('rerenderEvents');
+							}else if(event.status == 4){
+								element.css('border-color', '#1C1C1C');
+								element.css('background-color','#2EFEF7');
+								event.overlap= false;
+								event.constraint = 'businessHours';
+								event.editable= true;
+							}
 						}
 					});
 					
@@ -882,10 +905,9 @@ var serviceInfo = {};
 									<td><label for="inputStatus">예약 상태</label></td>
 									<td>
 									<select name='reservation.rsvStatus' id="inputStatus" class="form-control">
-										<option value="0">예약 컨펌 미정</option>
-										<option value="1">예약 경과(실행됨)</option>
-										<option value="2">예약 경과(실행 되지 않음)</option>
-										<option value="3">휴일</option>
+										<option value="4">예약 신청</option>
+										<option value="5">예약 경과(실행됨)</option>
+										<option value="6">예약 경과(이용자에 의해 실행 되지 않음)</option>
 									</select>
 									</td>
 								</tr>
@@ -903,7 +925,9 @@ var serviceInfo = {};
 								
 							</table>
 							<input type='hidden' id='genderCheckField' name='reservation.employeeGender' value=''>
-							<input type='hidden' id='etpNumField' name='etpNum' value='<s:property value="etpNum"/>'>
+							<input type='hidden' id='etpNumField' name='etpNum' value='${etpNum}'>
+							<input type='hidden' id='etpEmailField' name='etpEmail' value='${etpEmail}'>
+							
 						</form>
 		            	
 		            	<div class="hidden">

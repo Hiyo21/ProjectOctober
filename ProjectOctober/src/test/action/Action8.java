@@ -1,10 +1,11 @@
-package test.action;
+/*package test.action;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.RequestAware;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.dao.EnterpriseDAO;
@@ -36,8 +37,8 @@ public class Action8 extends ActionSupport implements RequestAware{
 	public String highchart8(){
 		DAO dao = new DAO();
 				
-		List<Highchart8> list = dao.highchart8DAO();
-		List<Highchart8> list1 = dao.highchart8DAO1();
+		List<Highchart8> list = dao.highchart8DAO(String.valueOf(ActionContext.getContext().getSession().get("loginEtpNum")));
+		List<Highchart8> list1 = dao.highchart8DAO1(String.valueOf(ActionContext.getContext().getSession().get("loginEtpNum")));
 		
 		System.out.println(list.toString());
 		System.out.println(list1.toString());
@@ -57,3 +58,4 @@ public class Action8 extends ActionSupport implements RequestAware{
 	
 	
 }
+*/

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import model.common.MyBatisSqlSessionFactory;
 import model.mapper.CustomerMapper;
 import model.mapper.MemberMapper;
+import model.mapper.ReservationMapper;
 import model.vo.Customer;
 import model.vo.Enterprise;
 import model.vo.Member;
@@ -95,5 +96,14 @@ public class CustomerDAO extends DAOTemplate{
 
 	public Enterprise retrieveEnterprise(String etpNum) {
 		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrieveEnterprise(etpNum);});
+	}
+
+	
+	public int insertReservation(Reservation reservation) {
+		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertReservation(reservation);});
+	}
+
+	public List<Reservation> retrieveReservations(String etpNum) {
+		return dataRetrievalTemplate(s -> {return s.getMapper(ReservationMapper.class).retrieveReservations(etpNum);});
 	}
 }

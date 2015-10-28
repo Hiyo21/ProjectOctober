@@ -322,6 +322,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			}else{
 				session.replace("enterprise", enterprise);
 				session.put("categoryList", categoryList);
+				session.put("gunList", gunList);
 			}
 			
 
@@ -425,6 +426,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		////신규 등록의 경우 insert로 이미 컴포넌트 값이 등록되어 있는 사업자의 경우 update로 적용하여 component의 중복을 제거		
 		if(etpDAO.selectComponent(check)==null){	//컴포넌트 신규등록
 			System.out.println("동적템플릿 신규 컴포넌트입니다.");
+			component.setEtpEmail(etpDAO.selectByEtpNum(etpNum).getEtpEmail());
 			System.out.println(component);
 			int result = etpDAO.insertComponent(component);
 			if(result == 1) {
