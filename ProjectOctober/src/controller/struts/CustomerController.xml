@@ -38,6 +38,8 @@
 			<result type="json" />
 		</action>
 		
-
+		<action name="retrieveReservations" class="controller.action.CustomerAction" method="retrieveReservations">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>

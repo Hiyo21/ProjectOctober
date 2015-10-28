@@ -22,6 +22,7 @@ import model.vo.Review;
 public class CustomerAction extends ActionSupport implements SessionAware{
 	private Customer customer;
 	private List<Customer> customerList;
+	private List<Reservation> reservationList;
 	private String etpEmail;
 	private String cstEmail;
 	private CustomerDAO cstDAO;
@@ -35,8 +36,6 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	private Review review;
 	private Enterprise enterprise;
 	private Reservation reservation;
-	
-	
 	
 	private String id;
 	
@@ -86,8 +85,9 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 		System.err.println(review);
 		
 		System.err.println(review.getEtpNum());
-		id = String.valueOf(ActionContext.getContext().getSession().get("loginId"));
-		review.setCstEmail(id);		
+		String x = String.valueOf(ActionContext.getContext().getSession().get("loginId"));
+		System.err.println(x);
+		review.setCstEmail(x);		
 		cstDAO.insertCustomerEvaluation(review);
 		etpNum = review.getEtpNum();
 		return SUCCESS;
@@ -122,6 +122,22 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 		int result = cstDAO.insertReservation(reservation);
 		if(result != 0) return SUCCESS;
 		else return ERROR;
+	}
+	
+	public String retrieveReservations() throws Exception{
+		System.err.println(etpNum);
+		reservationList = cstDAO.retrieveReservations(etpNum);
+		if (reservationList != null) {
+			for(int i = 0 ; i < reservationList.size() ; i++){
+				reservationList.get(i).setStart(reservationList.get(i).getRsvStartDate().toString());
+				reservationList.get(i).setEnd(reservationList.get(i).getRsvEndDate().toString());
+				
+			}
+			return SUCCESS;
+		}
+		else{
+			return ERROR;
+		}
 	}
 
 	public Customer getCustomer() {
@@ -236,6 +252,14 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 
 	public void setReservation(Reservation reservation) {
 		this.reservation = reservation;
+	}
+
+	public List<Reservation> getReservationList() {
+		return reservationList;
+	}
+
+	public void setReservationList(List<Reservation> reservationList) {
+		this.reservationList = reservationList;
 	}	
 	
 	

@@ -589,7 +589,8 @@ var serviceInfo = {};
 						      				editable: false,
 						            		events: function(start, end, timezone, callback){
 							      				$.ajax({
-							      					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
+							      					/* url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action', */
+							      					url: '${pageContext.request.contextPath}/customer/retrieveReservations.action',
 							      					type: 'POST',
 							      					data: {"etpNum":${etpNum}},
 							      					dataType: 'json',
@@ -669,7 +670,7 @@ var serviceInfo = {};
 									{
 										events: function(start, end, timezone, callback){
 						      				$.ajax({
-						      					url: '${pageContext.request.contextPath}/enterprise/retrieveReservations.action',
+						      					url: '${pageContext.request.contextPath}/customer/retrieveReservations.action',
 						      					type: 'POST',
 						      					data: {"etpNum":${etpNum}},
 						      					
@@ -681,7 +682,7 @@ var serviceInfo = {};
 						      								start: $(this).attr('start'),
 						      								end: $(this).attr('end'),
 						      								timezone: false,
-						      								/* svcNum: item.svcNum,
+						      								svcNum: item.svcNum,
 						      								cpnNum: item.cpnNum,
 						      								etpNum: item.etpNum,
 						      								etpEmail: item.etpEmail,
@@ -691,7 +692,7 @@ var serviceInfo = {};
 						      								status: item.rsvStatus,
 						      								employeeGender: item.employeeGender,
 						      								description : item.rsvDesc,
-						      								rsvCost: item.rsvCost, */
+						      								rsvCost: item.rsvCost
 						      							});
 						      						});
 						      					},error: function(request, status, error){

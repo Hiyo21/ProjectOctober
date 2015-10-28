@@ -23,7 +23,6 @@
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/gcal.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/listview.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 
 
 <style>
@@ -46,17 +45,6 @@
 		$(document).mousemove(function (event) {
 			currentMousePos.x = event.pageX;
 		 	currentMousePos.y = event.pageY;
-		});
-		
-		$("#inputEmployeeGenderCheckBox").bootstrapToggle({
-			on: "여성",
-			off: "남성"
-		}).change(function(){
-			if($(this).prop('checked')){
-				$('#genderCheckField').html($(this).attr('data-on'));
-			}else{
-				$('#genderCheckField').html($(this).attr('data-off'));
-			}
 		});
 		
 		//-----------------------사전에 정보 불러오기 : Enterprise 정보 --------------------------------//
@@ -972,7 +960,9 @@
 								<!-- 성별 -->
 								<tr>
 									<td><label for='inputEmployeeGenderCheckBox' class='control-label'>희망 종업원 성별: </label></td>
-									<td><input type='checkbox' checked data-toggle='toggle' data-on='"여성"' data-off='"남성"' data-onstyle='primary' data-offstyle='warning' id='inputEmployeeGenderCheckBox' class='form-control'/></td>
+									<td><input type='radio' checked  id='inputEmployeeGenderCheckBox' name='reservation.employeeGender' class='form-control' value="남성"/>남성
+										<input type='radio' id='inputEmployeeGenderCheckBox' name='reservation.employeeGender' class='form-control' value="여성"/>여성
+									</td>
 								</tr>
 								
 								<tr>

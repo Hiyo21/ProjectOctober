@@ -27,8 +27,6 @@ public class MemberDAO extends DAOTemplate {
 		}
 	}	
 	
-	
-	
 	public Member loginResult(Map<String, String> loginInfo){
 		return dataRetrievalTemplate(s-> {return fromMapper(s).loginResult(loginInfo);});
 	}
