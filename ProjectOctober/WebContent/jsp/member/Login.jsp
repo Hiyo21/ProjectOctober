@@ -85,7 +85,7 @@ function cust() {
 
     <div class="main">
 
-      <h3>Please Log In, or <a href="#">Sign Up</a></h3>
+      <h3>A#. 로그인을 진행해 주세요.</h3>
 
       <form role="form" action="loginProcess" method="post">
         <div class="form-group">

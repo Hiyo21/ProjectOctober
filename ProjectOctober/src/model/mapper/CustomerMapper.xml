@@ -388,10 +388,6 @@
 		insert into review values(REVIEW_SEQ.nextval,#{cstEmail},#{etpNum},#{etpEmail},sysdate,#{rvwContent},#{cstJob},#{rvwHygiene},#{rvwComfort},#{rvwTechnique},#{rvwPrice},#{rvwService})
 	</select>
 	
-	<select id="retrieveEnterprise" parameterType="String">
-		select * from enterprise where etp_num = #{value}
-	</select>
-	
 	<insert id="insertReservation" parameterType="Reservation">
 		insert into reservation
 		<trim prefix="(" suffix=")" suffixOverrides=",">

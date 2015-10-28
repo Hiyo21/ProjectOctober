@@ -322,6 +322,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			}else{
 				session.replace("enterprise", enterprise);
 				session.put("categoryList", categoryList);
+				session.put("gunList", gunList);
 			}
 			
 
