@@ -100,7 +100,7 @@ public class CustomerDAO extends DAOTemplate{
 
 	
 	public int insertReservation(Reservation reservation) {
-		return dataModificationTemplate(s -> {return fromMapper(s).insertReservation(reservation);});
+		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertReservation(reservation);});
 	}
 
 	public List<Reservation> retrieveReservations(String etpNum) {

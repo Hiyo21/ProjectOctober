@@ -257,7 +257,7 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 </s:iterator>		
 </s:if>
 
-<div class="modal fade" id="svcModal" aria-hidden="true" tabindex="0" aria-labelledby="exampleModalLabel">
+<div class="modal" id="svcModal" aria-hidden="true" tabindex="0" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog modal-lg" >  
     <div class="modal-content">
     

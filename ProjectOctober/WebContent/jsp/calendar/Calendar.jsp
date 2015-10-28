@@ -633,7 +633,7 @@
 					      					success: function(doc, index, value){			
 					      						
 					      						var resList = doc.reservationList;
-					      					
+					      						console.log(resList);
 					      						$(resList).each(function(index,item){
 					      							events.push({
 					      								id: item.rsvNum,
@@ -682,14 +682,11 @@
 					      							});
 					      						});
 					      						callback(events);
-					      						
-					      									      				
 					      					},
 					      					error: function(doc){
 					      						console.log("Error");
 					      					}
 					      				});
-				            
 				      				}
 				             	
 							}
@@ -707,7 +704,7 @@
 				                //allDay: false,
 				                overlap: false
 							},
-							{
+							/* {
 								color: 'red',
 								events: function(start, end, timezone, callback){
 									var events = [];
@@ -750,7 +747,7 @@
 									
 								}
 							
-							}
+							} */
 						]
 				,
 				eventDrop: function(event, delta, revertFunc, jsEvent, view) {
@@ -862,8 +859,31 @@
 				},
 				drop: function(date, jsEvent, ui){
 					alert(date);
+				},
+				eventAfterRender: function(event, element, view, e){
+					console.log(event);
+					
+					if(event.status == 3){
+						//$("#calendar").fullcalendar({events : this, eventColor: 'this'});
+						//color: 'white'
+						element.css('border-color','black');
+						element.css('background-color','red');
+						event.overlap= false;
+						//("#calendar").fullCalendar('updateEvent', event);
+						
+						return false;
+						//event.stopPropagation();
+						//$("#calendar").fullCalendar('rerenderEvents');
+					}else if(event.status == 4){
+						element.css('border-color', '#1C1C1C');
+						element.css('background-color','#2EFEF7');
+						event.overlap= false;
+						event.constraint = 'businessHours';
+						event.editable= true;
+					}
 				}
 			});
+			
 			
 			$(function(){
 				$("#external-events .fc-event").draggable({

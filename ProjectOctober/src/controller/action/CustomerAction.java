@@ -115,10 +115,12 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 			
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
-			Enterprise tempEtp = cstDAO.retrieveEnterprise(etpNum);
-			reservation.setEtpNum(tempEtp.getEtpNum());
+			Enterprise tempEtp = DAOFactory.createEnterpriseDAO().selectByEtpNum(etpNum);
+			System.err.println(tempEtp);
+			reservation.setEtpNum(etpNum);
 			reservation.setEtpEmail(tempEtp.getEtpEmail());
 		}
+		System.err.println(reservation);
 		int result = cstDAO.insertReservation(reservation);
 		if(result != 0) return SUCCESS;
 		else return ERROR;

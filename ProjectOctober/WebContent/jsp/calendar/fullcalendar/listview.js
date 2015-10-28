@@ -129,19 +129,21 @@
                             </td>\
                          */
 
-						var segEl = $("<li class='fc-agendaList-item fc-today fc-thu'>"+
+						var segEl = $("<li class='fc-agendaList-item fc-today fc-thu panel panel-info'>"+
                                         "<"+ (e.url ? "a href='"+ e.url +"'" : "div") + " class='fc-agendaList-event fc-eventlist '>"+
-                                            "<div class='fc-event-time'>"+
+                                            "<div class='fc-event-time panel-body'>"+
                                             	"<span class='fc-event-id'> 예약 아이디: " + e.id + "</span><br>" +
                                                 "<span class='fc-event-start-time'> 시작 시간: "+ (e.allDay ? this.opt('allDayText') : e.start.format('HH:mm') +" ~ </span> "+
                                                 "<span class='fc-event-end-time'>"+ e.end.format('HH:mm')) +"</span>"+
                                             "</div>"+
+                                            "<div class='panel-body'>" +
                                               "<span class='fc-eventlist-desc'> 예약 description: " + e.svcDescription + "</span><br />"+
                                               "<span class='fc-eventlist-cstEmail'> 고객 이메일: "+e.cstEmail +"</span><br>"+
                                               "<span class='fc-eventlist-title'> 예약 제목: " + e.title + "</span><br/>" +
                                               "<span class='fc-eventlist-empGender'> 서비스원 성별: " + e.employeeGender + "</span><br>" + 
                                               "<span class='fc-eventlist-svcCost'> 서비스 비용: " + e.svcCost + '원</span><br>' +
                                               "<span class='fc-eventlist-rsvStatus'> 예약 상태코드: " + e.status + '</span><br>' +
+                                              "</div>" +
                                           "</" + (e.url ? "a" : "div") + ">"+                                  
                                         "</li>" + "<br>");   
                         tbody.append(segEl);

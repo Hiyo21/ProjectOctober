@@ -18,7 +18,7 @@ public class MemberDAO extends DAOTemplate {
 		try {
 			System.err.println(member);
 			int result = session.getMapper(MemberMapper.class).insertMemberInfo(member);
-			System.out.println("DAO : "+ result);
+			System.out.println("DAO : " + result);
 			if(result == 1) session.commit();
 			else session.rollback();
 			return result;
