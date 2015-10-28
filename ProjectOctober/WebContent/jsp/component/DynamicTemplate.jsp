@@ -33,11 +33,11 @@
 	}
 	
 	.modal-backdrop{
-		z-index: -1;
+		z-index: -99;
 	}
 	
 	.modal{
-		z-index: 100;
+		z-index: 9999;
 		text-align: center;
 	}
 	
@@ -62,8 +62,8 @@
 <script>
 
 $(function(){
-	//loadPage();
 	
+	loadPage();
 	hideBT();
 
 	var options = {
@@ -212,8 +212,8 @@ function loadPage(){
 		success : function(data){
 			var items = data.componentList
 			printComponent(items);
-			//location.reload();
 		},
+		complite : eventTest, 
 		error : function(request, status, error){
 			console.log(request);
 			console.log(status);
@@ -349,9 +349,7 @@ function printComponent(items){
 			break;				
    		} //switch, grid.add_widget end
 
-    });   
-
-    eventTest();     
+    });      
 }
 
 function eventTest(){
@@ -364,7 +362,7 @@ function eventTest(){
    $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
    
-   hideBT();
+   
 }
 </script>
 
