@@ -22,7 +22,7 @@
 			modal.focus();
 			$('.edit').hide();
 			$('grid-stack-item-content').hide();
-			/* modal.find('.modal-backdrop').css('z-index', -10); */
+			//modal.find('.modal-backdrop').css('z-index', -10);
 		 });
 		$('#svcModal').on('hidden.bs.modal', function(){			
 			$('.edit').show();

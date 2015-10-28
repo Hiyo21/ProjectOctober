@@ -62,10 +62,9 @@
 <script>
 
 $(function(){
-
-	hideBT();
-
 	//loadPage();
+	
+	hideBT();
 
 	var options = {
     		always_show_resize_handle : false,
@@ -100,7 +99,7 @@ function hideBT(){
 		/* setTimeout(function(){$(this).off('click')}, 1000);
 		$('#editBT').off('click'); */
 
-		$('#editBt').off('click');
+		//$('#editBt').off('click');
 
 	}else{
 		$('#etpBtBar').hide();	
@@ -115,7 +114,6 @@ function startEdit(){
 	//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
 	$('#saveBT').attr('disabled', false);
 	
-
 	// 편집 중일 때와 그렇지 않을 때는 구분
 	$('#editBT').addClass('active');
   	//편집버튼 비운 후 클릭기능 추가
@@ -178,8 +176,7 @@ function stopEdit(){
 }
 
 function savePage(){
-	alert("savePage");
- 	var componentList = _.map($('.grid-stack .grid-stack-item'), function(el) {
+ 	var componentList = _.map($('.grid-stack .grid-stack-item:visible'), function(el) {
 	    el = $(el);
 	    var node = el.data('_gridstack_node'); //node : Object와 같은 모든 것을 담을 수 있는 부모 객체
 	    var component = {  
@@ -193,7 +190,7 @@ function savePage(){
 	    return component; //return 받는 객체 형식
 	}); 
  	
- 	console.log(componentList);
+ 	//console.log(componentList);
  
  	for(var i in componentList){
  		$.ajax({
@@ -204,6 +201,7 @@ function savePage(){
 				'application/x-www-form-urlencoded; charset=utf-8'
 			}); 	
  	} 
+ 	alert("save complete");
 };
 
 function loadPage(){	
@@ -214,6 +212,7 @@ function loadPage(){
 		success : function(data){
 			var items = data.componentList
 			printComponent(items);
+			//location.reload();
 		},
 		error : function(request, status, error){
 			console.log(request);
@@ -353,7 +352,6 @@ function printComponent(items){
     });   
 
     eventTest();     
-
 }
 
 function eventTest(){
@@ -380,7 +378,7 @@ function eventTest(){
 	
 	<div class="grid-stack">
 		<!-- 상단 컴포넌트 -->
-	    <div class='grid-stack-item' id ='topCP'
+	    <div class='grid-stack-item' id ='topCP' 
 	    data-gs-x='1' data-gs-y='0' data-gs-width='10' data-gs-height='2'>
 	    	<!-- 삭제버튼  -->
 	    	<a onclick="remove_widget(topCP)">
