@@ -10,7 +10,8 @@
 
 <script type="text/javascript">
 	$(function(){
-		$('#svcModal').on('show.bs.modal', function(event){
+		
+		$('#svcCategoryModal').on('show.bs.modal', function(event){
 			var modal = $(this);
 		    var button = $(event.relatedTarget);
 			var title = button.data('title');
@@ -24,9 +25,10 @@
 			$('grid-stack-item-content').hide();
 			//modal.find('.modal-backdrop').css('z-index', -10);
 		 });
-		$('#svcModal').on('hidden.bs.modal', function(){			
+		$('#svcCategoryModal').on('hidden.bs.modal', function(){			
 			$('.edit').show();
 			$('grid-stack-item-content').show();
+			
 		});
 	});
 	
@@ -41,8 +43,9 @@
 			dataType: 'json',
 			success : function(data){
 				printSvcModal(data);
-				$('#svcModal').modal('show').on('show.bs.modal', function(){
-					$('#svcModal').show();
+				$('#svcCategoryModal').modal('show').on('show.bs.modal', function(){
+					$('#svcCategoryModal').show();
+					$('.modal-backdrop').hide();
 				});
 			}
 		});
@@ -90,10 +93,10 @@
 			type: 'GET',
 			success: function(data){
 				printSvcList(data);
-				$('#svcModal').modal('hide').on('hidden.bs.modal', function(){
-					$('#svcModal').hide();
+				$('#svcCategoryModal').modal('hide').on('hidden.bs.modal', function(){
+					$('#svcCategoryModal').hide();
 				});
-				//location.reload();
+				location.reload();
 			},
 			error: function(doc){
 				console.log("insert Error");
@@ -139,8 +142,7 @@
 			str += '<tr><td>서비스 상세설명 : </td><td colspan="5"><textarea rows="5" cols="85" name="serviceList['+index+'].svcDescription" class="form-control">'+item.svcDescription+'</textarea></td></tr>';			
 		});    			
 		str += '</table>';
-		$('#svcModalDiv').html(str);
-		
+		$('#svcModalDiv').html(str);	
 	}
 	
 	//수정된 카테고리 서비스 to DB에 업데이트
@@ -149,9 +151,11 @@
 			url: "${pageContext.request.contextPath}/enterprise/updateSvcCategory.action",
 			dataType: 'json',
 			type: 'POST',
-			data: $('#svcForm').serialize(),
+			data: $('#svcCategoryForm').serialize(),
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-			success: selectServiceList,
+			success: function(){
+				selectServiceList();
+			},
 			error: function(doc){
 				console.log("insert Error");
 			}
@@ -161,33 +165,33 @@
 	//서비스 메뉴 항목 출력
 	function printSvcList(object){
 		console.log(object);
-
 		var str = '<br><p align="right">'
-			str	+='<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal" onclick=""'
+			str	+='<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModalForm" onclick=""'
 			str	+='data-title=\'서비스 추가\' data-submit=\'추가\' data-dismiss=\'modal\' data-onclick=\'insertService()\'>서비스 추가</button></p>';
 			
 		$.each(object.categoryList, function(index,item){
 			str += '<div class="panel panel-default"><div class="panel-heading"><b>'+item+'</b>';
-			str += '<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal"';
+			str += '<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcCategoryModal"';
 			str += 'data-title=\'서비스 수정\' data-submit=\'수정\' data-dismiss=\'modal\' onclick=\'selectSvcCategory("'+item+'")\' data-onclick=\'updateSvcCategory()\'>수정</button>';
 			str += '</div>';	
 			
 			$.each(object.serviceList, function(index, svcItem){
 				if(item == svcItem.svcCategory){
 					str += '<div class="panel-body" id="categoryBody"> <table class="table table-hover">';
-					str += '<tr><td>'+svcItem.svcTitle+'</td><td>';
+					str += '<tr><td class="col-xs-3">'+svcItem.svcTitle+'</td><td  class="col-xs-5">';
 					if(svcItem.svcDescription != null){
 						str += svcItem.svcDescription + '<br>'
 					}
 					str += '비용 : '+svcItem.svcCost+'<br>';
 					str += '시간 : '+svcItem.svcTime+'</td>';
-					str += '<td><button type="button" class="btn btn-success btn-md" onclick="rsvInsert('+svcItem.svcNum+') style="width: 100px">예약 하기</button></td>';
-					str += '<td class="edit"><button type="button" class="btn btn-danger btn-md edit" onclick="deleteService('+svcItem.svcNum+')">삭제</button></td></tr></table></div>';	
+					str += '<td class="col-xs-3"><button type="button" class="btn btn-success btn-md" onclick="rsvInsert('+svcItem.svcNum+') style="width: 100px">예약 하기</button></td>';
+					str += '<td class="col-xs-3 edit"><button type="button" class="btn btn-danger btn-md edit" onclick="deleteService('+svcItem.svcNum+')">삭제</button></td></tr></table></div>';	
 				}
 			});
 			str += '</div>';
 		});
-		$('#svcListTab').html(str);			
+		$('#svcListTab').html(str);		
+		
 	}
 
 </script>
@@ -210,7 +214,7 @@
 <br>
 
 <p align="right">
-<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal"
+<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModalForm"
 data-title="서비스 추가" data-submit="추가" data-onclick="insertService()" onclick="">서비스 추가</button>
 </p>
 
@@ -257,11 +261,12 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 </s:iterator>		
 </s:if>
 
-<div class="modal fade" id="svcModal" aria-hidden="true" tabindex="0" aria-labelledby="exampleModalLabel">
+
+<div class="modal" id="svcCategoryModal" aria-hidden="true" tabindex="0" aria-labelledby="myModalLabel" role="dialog">
   <div class="modal-dialog modal-lg" >  
     <div class="modal-content">
     
-  	<form class="form" role="form" method="post" data-toggle="validator" id="svcForm"> <!-- form start -->    
+  	<form class="form" role="form" method="post" data-toggle="validator" id="svcCategoryForm"> <!-- form start -->    
       <div class="modal-header">
         <button type="button" class="close" aria-label="Close">
         	<span aria-hidden="true">&times;</span>
@@ -270,6 +275,33 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
       </div>
    
       <div class="modal-body table-responsive" id="svcModalDiv">	
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="updateSvcCategory()">수정</button>
+      </div>
+      </form>
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="svcModalForm" aria-hidden="true" tabindex="0" aria-labelledby="myModalLabel" role="dialog">
+  <div class="modal-dialog modal-lg" >  
+    <div class="modal-content">
+    
+  	<form class="form" role="form" method="post" data-toggle="validator" id="svcForm"> <!-- form start -->    
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close">
+        	<span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="exampleModalLabel">서비스 메뉴 추가</h4>
+      </div>
+   
+      <div class="modal-body table-responsive">	
       	<table class="table">
 			<tr>
 				<td>카테고리 : </td>
@@ -324,7 +356,7 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">수정</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="insertService()">추가</button>
       </div>
       </form>
       
