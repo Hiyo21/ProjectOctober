@@ -26,7 +26,7 @@ select * from member where mem_email = 'ent6@naver.com'
 select * from enterprise where ETP_ADDRESS like '%'||'제주'||'%'
 
 update ENTERPRISE set etp_template_type = 2 where etp_owner = '6길동'
-update ENTERPRISE set etp_template_type = 1 where etp_num = '9876543210'
+update ENTERPRISE set etp_template_type = 2 where etp_num = '1234567890'
 
 insert into zipcode values ('11111', '서울시', '강남구', '삼성동', '삼성동')
 select * from member_code;
