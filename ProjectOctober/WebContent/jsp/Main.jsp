@@ -32,6 +32,18 @@
  src:url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff2') format('woff2'),
      url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff') format('woff');
 }
+
+#KoreaMap{
+	margin : 10px;
+	padding: 10px;
+}
+	
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+	}
+}
 </style>
 
 <script type="text/javascript">
@@ -132,11 +144,11 @@
 	        <div class="tab-content">
 	        	<div id="location" class="tab-pane fade in active">
     				<div class="row">
-    					<div class="col-xs-6" align="center">
+    					<div class="col-xs-5" style="vertical-align: " align="center">
 		     				<div id="mapPage">
     					<div class="mapImgD">
 							
-							<a href="#"><img src="${pageContext.request.contextPath}/image/KoreaMap.jpg" alt="KoreaMap" usemap="#KoreaMap" class="mapImg img-round" /></a>
+							<a href="#"><img src="${pageContext.request.contextPath}/image/KoreaMap.jpg" alt="KoreaMap" usemap="#KoreaMap" class="mapImg img-round vcenter" /></a>
 							<map name="KoreaMap" id="KoreaMap">	
 								<area shape="rect" coords="58,43,72,59" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=서울" alt="Seoul" />
 								<area shape="rect" coords="37,45,57,62" href="${pageContext.request.contextPath}/search/areaMapSearch.action?searchKeyword=인천" alt="Incheon" />
