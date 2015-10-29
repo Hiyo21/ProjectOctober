@@ -128,8 +128,6 @@
 		<action name="checkCoupon" class="controller.action.EnterpriseAction" method="checkCoupon">
 			<result type="json" />
 		</action>
-
-		
 		
 		<!--     사업자 게시판 Action     -->
 	
