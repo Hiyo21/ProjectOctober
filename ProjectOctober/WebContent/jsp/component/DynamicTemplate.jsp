@@ -33,6 +33,13 @@
 		text-align: center;
 	}
 	
+/* 	2015년 10월 30일 오전 12시 08분에 원격 저장소에서 가져온 거. 필요없는 듯?
+	#example_paginate {
+	text-align: center;
+	cursor: pointer; 
+} */
+
+	
 </style>
 
 <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
