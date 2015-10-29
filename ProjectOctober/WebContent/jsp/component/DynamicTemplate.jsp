@@ -63,7 +63,7 @@
 
 $(function(){
 	
-	loadPage();
+
 	hideBT();
 
 	var options = {
