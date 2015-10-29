@@ -8,14 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dynamic Templete</title>
 
-<!-- Latest compiled and minified CSS -->
-<link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'/>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack-extra.css" />
 <style>
 	.delBT{
 		position: absolute;
@@ -248,8 +240,7 @@ function remove_widget(item){
 
 // 불러온 컴포넌트 출력
 function printComponent(items){
-	
-    
+	   
     var grid = $('.grid-stack').data('gridstack');
     grid.remove_all();  
         
