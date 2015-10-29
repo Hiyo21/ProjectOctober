@@ -6,6 +6,19 @@
 <html>
 <head>
 
+<style type="text/css">
+
+	.modal-backdrop{
+		z-index: -1;
+	}
+	
+	.modal{
+		z-index: 100;
+		text-align: center;
+	}
+
+</style>
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />

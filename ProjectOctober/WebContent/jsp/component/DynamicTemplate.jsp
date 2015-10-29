@@ -33,11 +33,11 @@
 	}
 	
 	.modal-backdrop{
-		z-index: -1;
+		z-index: -99;
 	}
 	
 	.modal{
-		z-index: 100;
+		z-index: 9999;
 		text-align: center;
 	}
 	
@@ -62,10 +62,9 @@
 <script>
 
 $(function(){
-
+	
+	loadPage();
 	hideBT();
-
-	//loadPage();
 
 	var options = {
     		always_show_resize_handle : false,
@@ -100,7 +99,7 @@ function hideBT(){
 		/* setTimeout(function(){$(this).off('click')}, 1000);
 		$('#editBT').off('click'); */
 
-		$('#editBt').off('click');
+		//$('#editBt').off('click');
 
 	}else{
 		$('#etpBtBar').hide();	
@@ -115,7 +114,6 @@ function startEdit(){
 	//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
 	$('#saveBT').attr('disabled', false);
 	
-
 	// 편집 중일 때와 그렇지 않을 때는 구분
 	$('#editBT').addClass('active');
   	//편집버튼 비운 후 클릭기능 추가
@@ -178,8 +176,7 @@ function stopEdit(){
 }
 
 function savePage(){
-	alert("savePage");
- 	var componentList = _.map($('.grid-stack .grid-stack-item'), function(el) {
+ 	var componentList = _.map($('.grid-stack .grid-stack-item:visible'), function(el) {
 	    el = $(el);
 	    var node = el.data('_gridstack_node'); //node : Object와 같은 모든 것을 담을 수 있는 부모 객체
 	    var component = {  
@@ -193,7 +190,7 @@ function savePage(){
 	    return component; //return 받는 객체 형식
 	}); 
  	
- 	console.log(componentList);
+ 	//console.log(componentList);
  
  	for(var i in componentList){
  		$.ajax({
@@ -204,6 +201,7 @@ function savePage(){
 				'application/x-www-form-urlencoded; charset=utf-8'
 			}); 	
  	} 
+ 	alert("save complete");
 };
 
 function loadPage(){	
@@ -215,6 +213,7 @@ function loadPage(){
 			var items = data.componentList
 			printComponent(items);
 		},
+		complite : eventTest, 
 		error : function(request, status, error){
 			console.log(request);
 			console.log(status);
@@ -350,10 +349,7 @@ function printComponent(items){
 			break;				
    		} //switch, grid.add_widget end
 
-    });   
-
-      
-
+    });      
 }
 
 function eventTest(){
@@ -365,7 +361,8 @@ function eventTest(){
    $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
    $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
-
+   
+   
 }
 </script>
 
@@ -375,11 +372,11 @@ function eventTest(){
 <s:include value="../Header.jsp"/>
 
 <div class="container" id="page">
-
+	<button onclick="loadPage()">load</button>
 	
 	<div class="grid-stack">
 		<!-- 상단 컴포넌트 -->
-	    <div class='grid-stack-item' id ='topCP'
+	    <div class='grid-stack-item' id ='topCP' 
 	    data-gs-x='1' data-gs-y='0' data-gs-width='10' data-gs-height='2'>
 	    	<!-- 삭제버튼  -->
 	    	<a onclick="remove_widget(topCP)">
@@ -488,6 +485,15 @@ function eventTest(){
 
 </div>
 
-
+<script>
+//각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
+$('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
+$('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
+$('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
+$('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
+$('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
+$('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
+$('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp');
+</script>
 </body>
 </html>

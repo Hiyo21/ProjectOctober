@@ -64,6 +64,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	public String customerRegistration1() throws Exception{
 		System.err.println("회원등록 - 멤버 : " + member);
 		System.err.println("회원등록 - 이용자 : " + customer);
+		member.setMemCode(2);
 		String str = customer.getCstBirthdayTemp();
 		String[] strs = str.split("-");
 		customer.setCstBirthday(LocalDate.of(Integer.parseInt(strs[0]), Integer.parseInt(strs[1]), Integer.parseInt(strs[2])));
