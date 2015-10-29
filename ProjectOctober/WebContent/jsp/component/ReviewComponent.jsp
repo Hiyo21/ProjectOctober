@@ -9,8 +9,18 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
+<!-- paging처리위한 코드 시작-->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<!-- paging처리위한 코드 끝-->
 
 <script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
+} );
+//위에 코드는 페이징 처리를 위한 것
 
 
 $(function(){	

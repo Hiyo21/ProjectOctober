@@ -352,7 +352,7 @@ function printComponent(items){
 
     });   
 
-    eventTest();     
+      
 
 }
 
@@ -365,8 +365,7 @@ function eventTest(){
    $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
    $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
-   
-   hideBT();
+
 }
 </script>
 
@@ -376,7 +375,7 @@ function eventTest(){
 <s:include value="../Header.jsp"/>
 
 <div class="container" id="page">
-	<button onclick="loadPage()">load</button>
+
 	
 	<div class="grid-stack">
 		<!-- 상단 컴포넌트 -->
@@ -489,15 +488,6 @@ function eventTest(){
 
 </div>
 
-<script>
-//각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
-$('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
-$('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
-$('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
-$('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
-$('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
-$('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
-$('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp');
-</script>
+
 </body>
 </html>
