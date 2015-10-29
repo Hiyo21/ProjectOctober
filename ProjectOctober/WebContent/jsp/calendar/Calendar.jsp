@@ -27,8 +27,18 @@
 
 <style>
 	* {font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
-	.fc-sat { color:blue; }
+	.fc-sat {
+		color:blue; 
+	}
 	.fc-sun { color:red;  }
+	
+	#external-events {
+		float: left;
+		width: 150px;
+		border : 1px solid #cc;
+		background : #eee;
+		text-align: left;
+	}
 </style>
 
 <script>
@@ -83,6 +93,32 @@
 				console.log(error);
 			}
 		});
+		
+		
+		//---------------------------External Service 불러오기 ------------------------------------------//
+		serviceInfo = $.ajax({
+     			url: '${pageContext.request.contextPath}/enterprise/receiveServiceList.action',
+     			//dataType: 'json',
+     			data: {"etpNum" : ${etpNum}},
+     			async: false,
+     			contentType: 'application/json; charset=UTF-8',
+     			success: function(data){
+     				var services = data.serviceList;
+     				$.each(services, function(i, d){
+     					$("#external-events").append("<div class='fc-event drop-it-like-mad' id='external" + i + "' value='" + d.svcNum + "' duration='" + d.svcTime + "'>" + d.svcTitle + "</div><br>");
+     					console.log($("#external-events"));
+     				});
+     				return services.responseJSON;
+     			},
+     			error: function(request, status, error){
+     				console.log("receive service list error");
+     				console.log(request);
+     				console.log(status);
+     				console.log(error);
+     			}
+     		});
+		//------------------------------------//
+		
 		
 		console.log(enterpriseInfo.responseJSON.enterprise.workingDays.dow);
 		
@@ -167,14 +203,10 @@
 		        			success: function(data){
 		        				var services = data.serviceList;
 		        				$("#reservationUpdateSelectService").html('');
-		        				$("#externalServiceList").html('');
 		        				$("#reservationUpdateSelectService").append("<option value='' disabled selected>선택하세요.</option>");
 		        				$.each(services, function(i, d){
 		        					$("#reservationUpdateSelectService").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
-		        					$("#externalServiceList").append("<span class='label label-default externals' id='external" + i + "' value='" + d.svcNum + "' duration='" + d.svcTime + "'>" + d.svcTitle + "</span><br>");
-		        					console.log($("#externalServiceList"));
 		        				});
-		        				
 		        			},
 		        			error: function(request, status, error){
 		        				console.log("receive service list error");
@@ -324,8 +356,6 @@
 		        				$.each(svcList, function(i, d){
 		        					$("#inputServiceList").append("<option value='" + d.svcNum + "'>" + d.svcTitle + "</option>");
 		        					svcDetailList.push(d);
-		        					$("#externalServiceList").append("<span class='label label-default externals' id='external" + i + "' value='" + d.svcNum + "' duration='" + d.svcTime + "'>" + d.svcTitle + "</span><br>");
-		        					console.log($("#externalServiceList"));
 		        				});
 		        			},
 		        			error: function(request, status, error){
@@ -857,43 +887,56 @@
 					};
 					$('#calendar').fullCalendar('unselect');
 				},
+				droppable: true,
+				dropAccept: '.drop-it-like-mad',
 				drop: function(date, jsEvent, ui){
-					alert(date);
+					var originalEventObject = $(this).data('eventObject');
+					var copiedEventObject = $.extend({}, originalEventObject);
+					copiedEventObject.start = date;
+					
+					$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 				},
 				eventAfterRender: function(event, element, view, e){
 					console.log(event);
 					
 					if(event.status == 3){
-						//$("#calendar").fullcalendar({events : this, eventColor: 'this'});
-						//color: 'white'
 						element.css('border-color','black');
 						element.css('background-color','red');
 						event.overlap= false;
-						//("#calendar").fullCalendar('updateEvent', event);
-						
 						return false;
-						//event.stopPropagation();
-						//$("#calendar").fullCalendar('rerenderEvents');
+
 					}else if(event.status == 4){
 						element.css('border-color', '#1C1C1C');
 						element.css('background-color','#2EFEF7');
 						event.overlap= false;
 						event.constraint = 'businessHours';
 						event.editable= true;
+						return false;
 					}
 				}
 			});
 			
 			
+		// --------------------------- external event 등록하기 ---------------------// 
 			$(function(){
-				$("#external-events .fc-event").draggable({
-					revert: true,
-					revertDuration : 0
+				var externalServ = serviceInfo.responseJSON.serviceList;
+				console.log(externalServ);
+				$("#external-events .fc-event").each(function(externalServ){
+					var eventObject = {
+							title: $.trim($(this).text()),
+							//duration : 
+					};
+					$(this).data('eventObject', eventObject);
+					
+					$(this).draggable({
+						zIndex: 999,
+						revert: true,
+						revertDuration : 0
+					})
 				});
 			});
 		}
-	});
-	
+	});	
 </script>
 
 </head>
@@ -907,17 +950,19 @@
 		<a href="takeEtp.action?etpNum=<s:property value='#session.loginEtpNum'/>"><button class="btn btn-primary">사업자 메뉴로</button></a>
 		<a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value='#session.loginId'/>"><button class="btn btn-primary">통계</button></a>
 	</div>
-	<div id='external-events'>
-		<input type="hidden" id="starttt" />
-		<input type="hidden" id="endtt" />
-    	<div class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="195">
-    		<div>
-	      		<img src="${pageContext.request.contextPath}/image/trash-can1.jpg" class="img-thumbnail" id="trash" alt="쓰레기통" style="width: 100px; height: 100px;">
-	      		<div id="externalServiceList" class="external-events"></div>
-      		</div>
-      		
-    	</div>
-	</div>
+	<input type="hidden" id="starttt" />
+	<input type="hidden" id="endtt" />
+    <div class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="195">
+    	<div>
+	      	<img src="${pageContext.request.contextPath}/image/trash-can1.jpg" class="img-thumbnail" id="trash" alt="쓰레기통" style="width: 100px; height: 100px;">
+	      	<h4>서비스 목록</h4>
+	      	<div id="external-events">
+	      		
+	      	</div>
+      	</div>
+    </div>
+
+	
 	<div id='calendar' class='container'></div>
 	<br><br><br><br><br><br><br><br><br><br><br>
 	
