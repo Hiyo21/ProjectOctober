@@ -103,7 +103,7 @@ $(function(){
 					<th>가격대</th>
 					<th>서비스</th>
 				</tr>
-				<s:iterator value="reviewList">
+				<s:iterator value="#session.enterprise.reviews">
 				<tr>
 					<td><s:property value="cstEmail"/></td>
 					<td><s:property value="rvwContent"/></td>

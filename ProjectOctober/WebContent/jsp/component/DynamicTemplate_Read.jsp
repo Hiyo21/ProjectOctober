@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Dynamic Templete</title>
+<title><s:property value="etpTitle"/></title>
 
 <!-- Latest compiled and minified CSS -->
 <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'/>
@@ -62,6 +62,7 @@
 <script>
 
 $(function(){
+
 	defaultGridSet();
 
 	hideBT();
@@ -204,40 +205,6 @@ function savePage(){
  	alert("save complete");
 };
 
-function loadPage(){	
-	$.ajax({
-		url: '${pageContext.request.contextPath}/enterprise/takeEtpForDynamic.action?etpNum=<s:property value="etpNum"/>',
-		type:'GET',
-		dataType: 'json',
-		success : function(data){
-			var items = data.componentList
-			printComponent(items);
-		},
-		complite : eventTest, 
-		error : function(request, status, error){
-			console.log(request);
-			console.log(status);
-			console.log(request.status);
-			console.log(error);
-		}
-	}); 
-};
-
-function resetPage(){
-
-	var serialization = [
-         {componentID: "topCP" , componentPosX: 1, componentPosY: 0, componentWidth: 10, componentHeight: 2},
-         {componentID: "etpBtBar" , componentPosX: 1, componentPosY: 2, componentWidth: 10, componentHeight: 1},
-         {componentID: "rsvBt", componentPosX: 1, componentPosY: 3, componentWidth: 10, componentHeight: 1},
-         {componentID: "infoCP", componentPosX: 1, componentPosY: 4, componentWidth: 10, componentHeight: 3},
-         {componentID: "svcCP", componentPosX: 1, componentPosY: 7, componentWidth: 7, componentHeight: 5},
-         {componentID: "galCP", componentPosX: 8, componentPosY: 7, componentWidth: 3, componentHeight: 5},
-         {componentID: "locaCP", componentPosX: 1, componentPosY: 12, componentWidth: 10, componentHeight: 4},
-         {componentID: "reviewCP", componentPosX: 1, componentPosY: 16, componentWidth: 10, componentHeight: 4},
-     ]; 
-	
-	printComponent(serialization);
-};
 
 function remove_widget(item){
 	var grid = $('.grid-stack').data('gridstack');
@@ -246,117 +213,6 @@ function remove_widget(item){
 }
 
 
-// 불러온 컴포넌트 출력
-function printComponent(items){
-	
-    
-    var grid = $('.grid-stack').data('gridstack');
-    grid.remove_all();  
-        
-    _.each(items, function (node) {
-	
-   	switch (node.componentID) {
-		case 'topCP':
-				
-        	grid.add_widget(
-        		$('<div id="topCP" draggable="true">'
-        		+'<a onclick="remove_widget(topCP)">'
-        		+'<span class="delBT edit"></span></a>'
-        		+'<div class="grid-stack-item-content" id="inTopCP">'
-        		+'</div></div>')
-        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
-			break;
-		//사업자 편집용 버튼은 삭제할 수 없도록 하기 위해 삭제 버튼 없음	
-		case 'etpBtBar':
-			grid.add_widget(
-				$('<div id="etpBtBar">'
-        		+'<div class="grid-stack-item-content" id="inEtpBtBar">'
-        		+'</div></div>')
-        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
-			break;
-									
-		case 'rsvBt':
-			grid.add_widget(
-				$('<div id="rsvBt">'
-        		+'<a onclick="remove_widget(rsvBt)">'
-        		+'<span class="delBT edit"></span></a>'
-        		+'<div class="grid-stack-item-content">'
-        		+'<div class="btn-group btn-group-justified" role="group" aria-label="...">'
-        		+'<div class="btn-group" role="group">'
-        		+'<button type="button" class="btn btn-default btn-lg" id="phoneBT">전화 예약(<s:property value="enterprise.etpPhone"/>)</button></div>'
-        		+'<div class="btn-group" role="group">'
-        		+'<button type="button" class="btn btn-success btn-lg" id="rsvBT">예약 하기</button></div></div>')
-        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
-			break;
-			
-		case 'infoCP':
-			grid.add_widget(
-				$('<div id="infoCP">'
-        		+'<a onclick="remove_widget(infoCP)">'
-        		+'<span class="delBT edit"></span></a>'
-        		+'<div class="grid-stack-item-content" id="inInfoCP">'
-        		+'</div></div>')
-        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
-			break;
-			
-		case 'svcCP':
-			grid.add_widget(
-				$('<div id="svcCP">'
-        		+'<a onclick="remove_widget(svcCP)">'
-        		+'<span class="delBT edit"></span></a>'
-        		+'<div class="grid-stack-item-content" id="inSvcCP">'
-        		+'</div></div>')
-        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
-			break;
-			
-		case 'galCP':
-			grid.add_widget(
-				$('<div id="galCP">'
-        		+'<a onclick="remove_widget(galCP)">'
-        		+'<span class="delBT edit"></span></a>'
-        		+'<div class="grid-stack-item-content" id="inGalCP">'
-        		+'</div></div>')
-        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
-			break;
-			
-		case 'locaCP':
-			grid.add_widget(
-				$('<div id="locaCP">'
-        		+'<a onclick="remove_widget(locaCP)">'
-        		+'<span class="delBT edit"></span></a>'
-        		+'<div class="grid-stack-item-content" id="inLocaCP">'
-        		+'</div></div>')
-        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
-			break;
-			
-		case 'reviewCP':
-			grid.add_widget(
-				$('<div id="reviewCP">'
-        		+'<a onclick="remove_widget(reviewCP)">'
-        		+'<span class="delBT edit"></span></a>'
-        		+'<div class="grid-stack-item-content" id="inReviewCP">'
-        		+'</div></div>')
-        		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
-			break;				
-   		} //switch, grid.add_widget end
-    });      
-    defaultGridSet();
-    eventTest();
-    hideBT();   
-}
-
-function eventTest(){
-	//각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
-	 
-   $('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
-   $('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
-   $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
-   $('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
-   $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
-   $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
-   $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
-   
-}
 </script>
 
 </head>
@@ -364,12 +220,16 @@ function eventTest(){
 
 <s:include value="../Header.jsp"/>
 
+<s:if test="enterprise.components != null">
 <div class="container" id="page">
-	
+		
 	<div class="grid-stack">
+		
 		<!-- 상단 컴포넌트 -->
+		<s:if test="componentID == topCP">
 	    <div class='grid-stack-item' id ='topCP' 
-	    data-gs-x='1' data-gs-y='0' data-gs-width='10' data-gs-height='2'>
+	    data-gs-x='<s:property value="componentPosX"/>' data-gs-y='<s:property value="componentPosY"/>' 
+	    data-gs-width='<s:property value="componentWidth"/>' data-gs-height='<s:property value="componentHeight"/>'>
 	    	<!-- 삭제버튼  -->
 	    	<a onclick="remove_widget(topCP)">
 	    		<span class="delBT edit"></span>
@@ -378,10 +238,14 @@ function eventTest(){
 				<s:include value="./StaticTop.jsp"/>
 			</div>
 	    </div>
+	    </s:if>
    		
    		<!-- 사업자 전용 버튼 -->
+   		<s:if test="componentID == etpBtBar"></s:if>
 	    <div class="grid-stack-item" id="etpBtBar"
-	    data-gs-x='1' data-gs-y='3' data-gs-width='10' data-gs-height='1'>
+	    data-gs-x='<s:property value="componentPosX"/>' data-gs-y='<s:property value="componentPosY"/>' 
+	    data-gs-width='<s:property value="componentWidth"/>' data-gs-height='<s:property value="componentHeight"/>'>
+	    	
 	    	<!-- 필수 항목이므로 지울 수 없음!! -->		    
 			<div class="grid-stack-item-content">
 				<s:include value="./EtpBT.jsp"/>
@@ -389,8 +253,10 @@ function eventTest(){
 	    </div>
 	    
 	    <!-- 예약 버튼 -->
+	    <s:if test="componentID == rsvBt">
 	    <div class="grid-stack-item" id="rsvBt" 
-	    data-gs-x="1" data-gs-y="4" data-gs-width="10" data-gs-height="1">
+	    data-gs-x='<s:property value="componentPosX"/>' data-gs-y='<s:property value="componentPosY"/>' 
+	    data-gs-width='<s:property value="componentWidth"/>' data-gs-height='<s:property value="componentHeight"/>'>
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(rsvBt)'>
 				<span class="delBT edit"></span>
@@ -407,10 +273,13 @@ function eventTest(){
 				</div>
 			</div>
 	    </div>
+	    </s:if>
 	    
 	    <!-- 기본 정보 컴포넌트 -->
+	    <s:if test="componentID == infoCP">
 	    <div class="grid-stack-item" id="infoCP"
-	    data-gs-x="1" data-gs-y="5" data-gs-width="10" data-gs-height="3">
+	    data-gs-x='<s:property value="componentPosX"/>' data-gs-y='<s:property value="componentPosY"/>' 
+	    data-gs-width='<s:property value="componentWidth"/>' data-gs-height='<s:property value="componentHeight"/>'>
 	    	<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(infoCP)'>
 				<span class="delBT edit"></span>
@@ -420,10 +289,13 @@ function eventTest(){
 				<s:include value="./InfoComponent.jsp"/>
 			</div>
 	    </div>
+	    </s:if>
 	    
 	    <!-- 서비스 메뉴 컴포넌트 -->
+	    <s:if test="componentID == svcCP">
 	    <div class="grid-stack-item"  id="svcCP"
-	    data-gs-x="1" data-gs-y="8" data-gs-width="10" data-gs-height="5">
+	    data-gs-x='<s:property value="componentPosX"/>' data-gs-y='<s:property value="componentPosY"/>' 
+	    data-gs-width='<s:property value="componentWidth"/>' data-gs-height='<s:property value="componentHeight"/>'>
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(svcCP)'>
 				<span class="delBT edit"></span>
@@ -433,10 +305,13 @@ function eventTest(){
 				<s:include value="./SvcComponent.jsp"/>
 			</div>
 	    </div>
+	    </s:if>
 	    
 	    <!-- 갤러리 컴포넌트 -->
+	    <s:if test="componentID == galCP">
 	    <div class="grid-stack-item" id="galCP"
-	    data-gs-x="1" data-gs-y="13" data-gs-width="10" data-gs-height="2">
+	    data-gs-x='<s:property value="componentPosX"/>' data-gs-y='<s:property value="componentPosY"/>' 
+	    data-gs-width='<s:property value="componentWidth"/>' data-gs-height='<s:property value="componentHeight"/>'>
 	    	<!-- 삭제버튼  -->
     		<a href='javascript:remove_widget(galCP)'>
 				<span class="delBT edit"></span>
@@ -446,10 +321,13 @@ function eventTest(){
 				<s:include value="./GalleryComponent.jsp"/>
 			</div>
 	    </div>
+	    </s:if>
 	    
 	    <!-- 오시는 길 컴포넌트 -->
+	    <s:if test="componentID == locaCP">
 	    <div class="grid-stack-item" id="locaCP"
-	    data-gs-x="1" data-gs-y="15" data-gs-width="10" data-gs-height="4">
+	    data-gs-x='<s:property value="componentPosX"/>' data-gs-y='<s:property value="componentPosY"/>' 
+	    data-gs-width='<s:property value="componentWidth"/>' data-gs-height='<s:property value="componentHeight"/>'>
 	   		<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(locaCP)'>
 				<span class="delBT edit"></span>
@@ -459,10 +337,13 @@ function eventTest(){
 				<s:include value="./LocationComponent.jsp"/>
 			</div>
 	    </div>
+	    </s:if>
 	    
 	    <!-- 고객 평가 컴포넌트 -->
+	    <s:if test="componentID == reviewCP">
 	    <div class="grid-stack-item" id="reviewCP"
-	    data-gs-x="1" data-gs-y="19" data-gs-width="10" data-gs-height="4">
+	    data-gs-x='<s:property value="componentPosX"/>' data-gs-y='<s:property value="componentPosY"/>' 
+	    data-gs-width='<s:property value="componentWidth"/>' data-gs-height='<s:property value="componentHeight"/>'>
 	    	<!-- 삭제버튼  -->
 	    	<a href='javascript:remove_widget(reviewCP)'>
 				<span class="delBT edit"></span>
@@ -472,10 +353,11 @@ function eventTest(){
 				<s:include value="./ReviewComponent.jsp"/>
 			</div>
 	    </div><!-- 고객 평가 컴포넌트 end -->
+	    </s:if>
 	    
 	</div>
-
 </div>
 
+</s:if>
 </body>
 </html>

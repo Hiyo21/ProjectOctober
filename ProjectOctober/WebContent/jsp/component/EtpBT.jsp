@@ -4,11 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-
 <div class="btn-group btn-group-justified" role="group" aria-label="..." draggable="true" id="etpBtBar">
 	<div class="btn-group" role="group">
 		 <button type="button" class="btn btn-danger btn-lg" id="rsvBT">예약 관리</button>
@@ -30,6 +29,6 @@
 		 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='savePage()'>Save &raquo;</button>
 	</div>
 </div>
-
 </body>
 </html>
+
