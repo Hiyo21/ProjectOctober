@@ -188,12 +188,19 @@
 		
 				
 		<!--     Component Action     -->
+		<action name="cleanComponent" class="controller.action.EnterpriseAction" method="cleanComponent">
+			<result type="json"/>
+		</action>
 		
-		<action name="insertComponent" class="controller.action.EnterpriseAction" method="insertComponent">
+		<action name="updateComponent" class="controller.action.EnterpriseAction" method="updateComponent">
 			<result type="json"/>
 		</action>
 		
 		<action name="receiveComponentList" class="controller.action.EnterpriseAction" method="receiveComponentList">
+			<result type="json"/>
+		</action>
+		
+		<action name="resetComponent" class="controller.action.EnterpriseAction" method="resetComponent">
 			<result type="json"/>
 		</action>
 		

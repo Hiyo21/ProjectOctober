@@ -27,7 +27,7 @@
 		</s:if>
 		<!-- 페이지 편집중에만 보이게 -->
 		<div class="btn-group" role="group">
-			 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='savePage()'>Save &raquo;</button>
+			 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='cleanComponent()'>Save &raquo;</button>
 		</div>
 	</div>
 </body>

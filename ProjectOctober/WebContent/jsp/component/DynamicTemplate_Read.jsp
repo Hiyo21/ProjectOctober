@@ -41,6 +41,10 @@
 		padding: 20px;
 	}
 	
+	.modal {
+		z-index: 200;
+	}
+	
 </style>
 
 
@@ -134,37 +138,48 @@ function stopEdit(){
 	grid.resizable('.grid-stack-item', false);
 	
 }
+function cleanComponent(){
+	$.ajax({
+		url: '${pageContext.request.contextPath}/enterprise/cleanComponent.action?etpNum=<s:property value="etpNum"/>', 
+		type:'POST',
+		success: savePage
+	});
+}
 
 function savePage(){
- 	var componentList = _.map($('.grid-stack .grid-stack-item:visible'), function(el) {
-	    el = $(el);
-	    var node = el.data('_gridstack_node'); //node : Object와 같은 모든 것을 담을 수 있는 부모 객체
-	    var component = {  
-	    	"component.etpNum" : <s:property value="etpNum"/>,
-	    	"component.componentID" : el.attr('id'),
-	        "component.componentPosX" : node.x,
-	        "component.componentPosY" : node.y,
-	        "component.componentWidth" : node.width,
-	        "component.componentHeight" : node.height
-	    };
-	    return component; //return 받는 객체 형식
-	}); 
+ 	var componentList = _.map(
+ 		$('.grid-stack .grid-stack-item:visible'), 
+ 			function(el) {
+			    el = $(el);
+			    var node = el.data('_gridstack_node'); //node : Object와 같은 모든 것을 담을 수 있는 부모 객체
+			    var component = {  
+			    	"component.etpNum" : <s:property value="etpNum"/>,
+			    	"component.etpEmail" : "<s:property value="#session.loginId"/>",
+			    	"component.componentID" : el.attr('id'),
+			        "component.componentPosX" : node.x,
+			        "component.componentPosY" : node.y,
+			        "component.componentWidth" : node.width,
+			        "component.componentHeight" : node.height
+			    };
+	   			 return component; //return 받는 객체 형식
+		}); 
  	
  	console.log(componentList);
- 
+ 	
  	for(var i in componentList){
- 		$.ajax({
-			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum=<s:property value="etpNum"/>', 
+		$.ajax({
+			url: '${pageContext.request.contextPath}/enterprise/updateComponent.action?etpNum=<s:property value="etpNum"/>', 
 			type:'POST',
 			data :  componentList[i],
 			contentType: 
 				'application/x-www-form-urlencoded; charset=utf-8',
-			success: function(){
-				location.reload();
+			success : function(){
+				alert("success");
 			}
-			}); 	
- 	} 
- 	alert("save complete");
+		});
+	}
+ 	
+ 	location.reload();
 };
 
 
@@ -176,30 +191,15 @@ function remove_widget(item){
 
 function resetPage(){
 
-	var serialization = [
-         {componentID: "topCP", 	componentPosX: 1, componentPosY: 0, componentWidth: 10, componentHeight: 2},
-         {componentID: "etpBtBar", 	componentPosX: 1, componentPosY: 2, componentWidth: 10, componentHeight: 1},
-         {componentID: "rsvBt", 	componentPosX: 1, componentPosY: 3, componentWidth: 10, componentHeight: 1},
-         {componentID: "infoCP", 	componentPosX: 1, componentPosY: 4, componentWidth: 10, componentHeight: 3},
-         {componentID: "svcCP", 	componentPosX: 1, componentPosY: 7, componentWidth: 7, componentHeight: 5},
-         {componentID: "galCP", 	componentPosX: 8, componentPosY: 7, componentWidth: 3, componentHeight: 5},
-         {componentID: "locaCP", 	componentPosX: 1, componentPosY: 12, componentWidth: 10, componentHeight: 4},
-         {componentID: "reviewCP", 	componentPosX: 1, componentPosY: 16, componentWidth: 10, componentHeight: 4},
-     ]; 
+	$.ajax({
+		url: '${pageContext.request.contextPath}/enterprise/resetComponent.action?etpNum=<s:property value="etpNum"/>', 
+		type:'POST',
+		success: function(){
+			alert("success");
+		}
+	});
 	
-	for(var i in componentList){
- 		$.ajax({
-			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum=<s:property value="etpNum"/>', 
-			type:'POST',
-			data :  componentList[i],
-			contentType: 
-				'application/x-www-form-urlencoded; charset=utf-8',
-			success: function(){
-				location.reload();
-			}
-		});
-	}
-	
+	location.reload();
 };
 
 </script>
@@ -210,10 +210,11 @@ function resetPage(){
 <s:include value="../Header.jsp"/>
 
 <s:if test="#session.enterprise.components != null">
-<div class="container">		
+<div class="container" style="padding-bottom: 300px;">		
 	<div class="grid-stack">
 	
 		<s:iterator value="#session.enterprise.components">
+		<s:if test="componentWidth!=0">
 		<div class='grid-stack-item' id ='<s:property value="componentID"/>' draggable="true"
 		   	data-gs-x='<s:property value="componentPosX"/>' data-gs-y='<s:property value="componentPosY"/>' 
 		    data-gs-width='<s:property value="componentWidth"/>' data-gs-height='<s:property value="componentHeight"/>'>
@@ -285,7 +286,7 @@ function resetPage(){
 					
 				</div>
 		    </div>
-
+		</s:if>
 	    </s:iterator>
 	    
 	</div>

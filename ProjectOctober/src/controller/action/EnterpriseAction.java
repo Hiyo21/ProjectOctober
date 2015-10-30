@@ -51,9 +51,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	//////// Component Member ////////  
 	private Component component;
 	private List<Component> componentList;
-	private Service service;	
-	
+	private Service service;		
 	private Coupon coupon;
+	
 	private String address;
 	private Integer rsvNum;
 	private String regCardLocation;
@@ -411,50 +411,59 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	
 //--------------------------------------- Component ----------------------------------------//
-
-	
-	//////////////// Component Method ////////////////
+	public String firstInsertComponent(){
+		componentList = etpDAO.receiveComponentList("1234567890");
 		
-	
-	public String insertComponent(){
-		
-		//사업자번호와 컴포넌트ID를 만족하는 컴포넌트가 존재하는지 확인
-		Map<String, String> check = new HashMap<>();
-		check.put("etpNum", etpNum);
-		check.put("componentId", component.getComponentID());
-		
-		////신규 등록의 경우 insert로 이미 컴포넌트 값이 등록되어 있는 사업자의 경우 update로 적용하여 component의 중복을 제거		
-		if(etpDAO.selectComponent(check)==null){	//컴포넌트 신규등록
-			System.out.println("동적템플릿 신규 컴포넌트입니다.");
-			component.setEtpEmail(etpDAO.selectByEtpNum(etpNum).getEtpEmail());
-			System.out.println(component);
-			int result = etpDAO.insertComponent(component);
-			if(result == 1) {
-				return SUCCESS;
-			}else{
-				System.err.println("============check Action :: result :: " + result);
-				return ERROR;
-			}
-		}else{	//컴포넌트 기존에 등록되어 있던 사람
-			//업데이트
-			System.out.println("============기존 컴포넌트 등록 사업자============");
-			System.out.println("동적템플릿 기존 컴포넌트입니다.");
-			System.out.println(component);
-			int result = etpDAO.updateComponent(component);
-			if(result == 1) {
-				return SUCCESS;
-			}else{
-				System.err.println("============check Action :: result :: " + result);
-				return ERROR;
-			}
+		for(Component c : componentList){
+			etpDAO.insertComponent(c);
 		}
+		
+		return SUCCESS;
+	}
+	
+	public String resetComponent(){
+		componentList = etpDAO.receiveComponentList("1234567890");
+		int result= 0;
+		
+		for(Component c : componentList){
+			result = etpDAO.updateComponent(c);
+		}
+		
+		if(result == 1) {
+			return SUCCESS;
+		}else{
+			System.err.println("============check Action :: result :: " + result);
+			return ERROR;
+		}
+		
+	}
 
+	public String cleanComponent(){
+		System.err.println("============= CleanComponent ==============");
+		//사업자의 모든 컴포넌트(총 8개) 정보에 0 값 입력
+		int result = etpDAO.cleanComponent(etpNum);
+		
+		if(result == 8) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String updateComponent(){	
+		System.err.println("============= UpdateComponent ==============");
+		//ajax로 받은 컴포넌트 정보를 update하여 DB로 저장
+		int result = etpDAO.updateComponent(component);
+		
+		if(result == 1) {
+			return SUCCESS;
+		}else{
+			System.err.println("============check Action :: result :: " + result);
+			return ERROR;
+		}
 	}
 	
 		
 	public String receiveComponentList(){
 		System.out.println("============check Action :: getComponentList()");
-		System.err.println(etpNum);
+		System.out.println(etpNum);
 		component = new Component();
 		component.setEtpNum(etpNum);
 		///// 사업자 번호와 일치하는 컴포넌트만 갖고 오기
@@ -514,7 +523,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String updateTemplate() throws Exception{
-		System.err.println(enterprise);
+		System.out.println(enterprise);
 		if(enterprise != null){
 			int result = etpDAO.updateTemplate(enterprise);
 			if(result != 0) return SUCCESS;
@@ -554,15 +563,15 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String noRegisterEtp() throws Exception{
-		System.err.println(etpNum);
+		System.out.println(etpNum);
 		enterprise = etpDAO.noRegisterEtp(etpNum);
 		regCardLocation = etpDAO.retrieveRegCard(etpNum);
-		System.err.println("regCardLocation : "+regCardLocation);
+		System.out.println("regCardLocation : "+regCardLocation);
 		return SUCCESS;
 	}
 	
 	public String confirm() throws Exception{
-		System.err.println("confirm : "+etpNum);
+		System.out.println("confirm : "+etpNum);
 		int result=etpDAO.updateEtpStatus(etpNum);
 				
 		if(result !=1){	
@@ -572,7 +581,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String reject() throws Exception{
-		System.err.println("reject : "+etpNum);
+		System.out.println("reject : "+etpNum);
 		int result=etpDAO.rejectEtpStatus(etpNum);
 		
 		enterpriseList = etpDAO.allNoRegisterEtpList();

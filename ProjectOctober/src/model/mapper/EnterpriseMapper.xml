@@ -581,9 +581,11 @@
 
 	<update id="updateComponent" parameterType="Component">
 		update component
-		set component_width = #{componentWidth}, component_height = #{componentHeight}, component_pos_x =
-		#{componentPosX}, component_pos_y = #{componentPosY}
-		where etp_num = #{etpNum} and component_id = #{componentID}
+		set 
+		component_width = #{componentWidth}, component_height = #{componentHeight}, 
+		component_pos_x = #{componentPosX}, component_pos_y = #{componentPosY}
+		where 
+		etp_num = #{etpNum} and component_id = #{componentID}
 	</update>
 	
 	<delete id="deleteComponent" parameterType="String">

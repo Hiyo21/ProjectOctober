@@ -207,7 +207,7 @@ public class EnterpriseDAO extends DAOTemplate{
 	//////////////////////// Component DAO ////////////////////////  
 	
 	public int insertComponent(Component component) {
-		System.out.println("============check DAO :: insertComponet()");
+		System.err.println("============check DAO :: insertComponet()");
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
 			int result = session.getMapper(EnterpriseMapper.class).insertComponent(component);
@@ -254,16 +254,31 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
-	public int cleanComponent(String etpNum) {
+	public Component selectComponent(Map<String, String> check) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
-			return session.getMapper(EnterpriseMapper.class).cleanComponent(etpNum);
+			return session.getMapper(EnterpriseMapper.class).selectComponent(check);
 
 		}finally{
 			session.close(); 
 		}
 	}
 
+	public int cleanComponent(String etpNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			int result = session.getMapper(EnterpriseMapper.class).cleanComponent(etpNum);
+			
+			if(result == 8) session.commit();
+			else session.rollback();
+			
+			return result;
+
+		}finally{
+			session.close(); 
+		}
+		
+	}
 	
 	public int choiceTemplateType(String etpNum, int etpTemplateType) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
@@ -436,15 +451,7 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertOffDays(reservation);});
 	}
 
-	public Component selectComponent(Map<String, String> check) {
-		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		try {
-			return session.getMapper(EnterpriseMapper.class).selectComponent(check);
-
-		}finally{
-			session.close(); 
-		}
-	}
+	
 
 	
 }
