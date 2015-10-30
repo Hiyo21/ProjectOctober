@@ -9,8 +9,18 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
+<!-- paging처리위한 코드 시작-->
+<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"></script>
+<!-- paging처리위한 코드 끝-->
 
 <script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
+} );
+//위에 코드는 페이징 처리를 위한 것
 
 
 $(function(){	
@@ -92,8 +102,9 @@ $(function(){
 		</div>
 	<s:if test="#session.memCode == 1">
 		<div>
-			<table class="table table-row table-hover">
-				<tr>
+			<table id="example" class="display" cellspacing="0" width="100%"  border="1">
+			 <thead>
+			 	<tr>
 					<th>이용자 email</th>
 					<th>이용자 코멘트</th>
 					<th>작성일</th>
@@ -102,8 +113,10 @@ $(function(){
 					<th>기술</th>
 					<th>가격대</th>
 					<th>서비스</th>
-				</tr>
-				<s:iterator value="reviewList">
+				</tr>	
+			</thead>
+			<tbody>
+				<s:iterator value="#session.enterprise.reviews">
 				<tr>
 					<td><s:property value="cstEmail"/></td>
 					<td><s:property value="rvwContent"/></td>
@@ -115,6 +128,7 @@ $(function(){
 					<td><s:property value="rvwService"/></td>
 				</tr>
 				</s:iterator>
+			</tbody>
 			</table>
 		</div>
 	</s:if>

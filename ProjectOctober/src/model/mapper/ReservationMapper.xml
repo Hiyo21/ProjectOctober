@@ -195,4 +195,10 @@
 			</if>
 		</where>
 	</update>
+	
+	
+	<!-- 쿠폰 발송할 이용 고객 리스트 -->
+	<select id="couponSendList" resultMap="ReservationResultMap" parameterType="String">
+  		select rownum, cst_email from (select cst_email from reservation where etp_email = #{etpEmail} group by cst_email) list
+	</select>
 </mapper>

@@ -196,16 +196,6 @@
 
 </script>
 
-<script type="text/javascript">
-    var url = document.location.toString(); // select current url shown in browser.
-    if (url.match('#')) {
-        $('.nav-tabs a[href=#' + url.split('#')[1] + ']').tab('show'); // activate current tab after reload page.
-    }
-    // Change hash for page-reload
-    $('.nav-tabs a').on('shown', function (e) { // this function call when we change tab.
-        window.location.hash = e.target.hash; // to change hash location in url.
-    });
-</script>
 
 
 </head>

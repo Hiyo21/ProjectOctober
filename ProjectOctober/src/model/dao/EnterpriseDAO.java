@@ -377,6 +377,22 @@ public class EnterpriseDAO extends DAOTemplate{
 			return session.getMapper(EnterpriseMapper.class).retrieveCouponList(etpNum);
 		}finally{session.close();}
 	}
+	
+	public int insertCoupon(Coupon coupon) {
+		return dataModificationTemplate(s->{return s.getMapper(EnterpriseMapper.class).insertCoupon(coupon);});
+	}
+	
+	public int updateCoupon(Coupon coupon) {
+		return dataModificationTemplate(s->{return s.getMapper(EnterpriseMapper.class).updateCoupon(coupon);});
+	}
+	
+	public int deleteCoupon(int cpnNum) {
+		return dataModificationTemplate(s->{return s.getMapper(EnterpriseMapper.class).deleteCoupon(cpnNum);});
+	}
+	
+	public List<Reservation> couponSendList(String etpEmail){
+		return dataRetrievalTemplate(s->{return s.getMapper(ReservationMapper.class).couponSendList(etpEmail);});
+	}
 
 	public Coupon checkCoupon(Coupon coupon) {
 		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(coupon);});
