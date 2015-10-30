@@ -40,7 +40,6 @@
 		border-color: green;
 		padding: 20px;
 	}
-
 	
 </style>
 
@@ -188,6 +187,19 @@ function resetPage(){
          {componentID: "reviewCP", 	componentPosX: 1, componentPosY: 16, componentWidth: 10, componentHeight: 4},
      ]; 
 	
+	for(var i in componentList){
+ 		$.ajax({
+			url: '${pageContext.request.contextPath}/enterprise/insertComponent.action?etpNum=<s:property value="etpNum"/>', 
+			type:'POST',
+			data :  componentList[i],
+			contentType: 
+				'application/x-www-form-urlencoded; charset=utf-8',
+			success: function(){
+				location.reload();
+			}
+		});
+	}
+	
 };
 
 </script>
@@ -206,36 +218,54 @@ function resetPage(){
 		   	data-gs-x='<s:property value="componentPosX"/>' data-gs-y='<s:property value="componentPosY"/>' 
 		    data-gs-width='<s:property value="componentWidth"/>' data-gs-height='<s:property value="componentHeight"/>'>
 		    	<!-- 삭제버튼  -->
-		    	<a onclick="remove_widget(topCP)">
-		    		<span class="delBT edit"></span>
-		   		</a>
 				<div class="grid-stack-item-content">
 					<!-- 상단 컴포넌트 -->
-					<s:if test="%{componentID.equals('topCP')}">				
+					<s:if test="%{componentID.equals('topCP')}">
+						<a onclick="remove_widget(topCP)">
+		    				<span class="delBT edit"></span>
+		   				</a>		
 						<s:include value="./StaticTop.jsp"/>
 					</s:if>
 					<!-- 사업자 전용 버튼 -->
-					<s:if test="%{componentID.equals('etpBtBar')}">				
+					<s:if test="%{componentID.equals('etpBtBar')}">		
+						<a onclick="remove_widget(etpBtBar)">
+		    				<span class="delBT edit"></span>
+		   				</a>		
 						<s:include value="./EtpBT.jsp"/>
 					</s:if>
 					<!-- 서비스 메뉴 컴포넌트 -->
-					<s:if test="%{componentID.equals('svcCP')}">				
+					<s:if test="%{componentID.equals('svcCP')}">	
+						<a onclick="remove_widget(svcCP)">
+		    				<span class="delBT edit"></span>
+		   				</a>			
 						<s:include value="./SvcComponent.jsp"/>
 					</s:if>
 					<!-- 기본 정보 컴포넌트 -->
-					<s:if test="%{componentID.equals('infoCP')}">				
+					<s:if test="%{componentID.equals('infoCP')}">
+						<a onclick="remove_widget(infoCP)">
+		    				<span class="delBT edit"></span>
+		   				</a>				
 						<s:include value="./InfoComponent.jsp"/>
 					</s:if>
 					<!-- 지도 컴포넌트 -->
-					<s:if test="%{componentID.equals('locaCP')}">				
+					<s:if test="%{componentID.equals('locaCP')}">
+						<a onclick="remove_widget(locaCP)">
+		    				<span class="delBT edit"></span>
+		   				</a>				
 						<s:include value="./LocationComponent.jsp"/>
 					</s:if>
 					<!-- 갤러리 컴포넌트 -->
-					<s:if test="%{componentID.equals('galCP')}">				
+					<s:if test="%{componentID.equals('galCP')}">
+						<a onclick="remove_widget(galCP)">
+		    				<span class="delBT edit"></span>
+		   				</a>				
 						<s:include value="./GalleryComponent.jsp"/>
 					</s:if>
 					<!-- 예약버튼 컴포넌트 -->
-					<s:if test="%{componentID.equals('rsvBt')}">				
+					<s:if test="%{componentID.equals('rsvBt')}">
+						<a onclick="remove_widget(rsvBt)">
+		    				<span class="delBT edit"></span>
+		   				</a>		
 						<div class="btn-group btn-group-justified" role="group" aria-label="..." draggable="true">
 							<div class="btn-group" role="group">
 							 <button type="button" class="btn btn-default btn-lg" id="phoneBT" >전화 예약(<s:property value="enterprise.etpPhone"/>)</button>
@@ -246,7 +276,10 @@ function resetPage(){
 						</div>
 					</s:if>
 					<!-- 평가 컴포넌트 -->
-					<s:if test="%{componentID.equals('reviewCP')}">				
+					<s:if test="%{componentID.equals('reviewCP')}">
+						<a onclick="remove_widget(reviewCP)">
+		    				<span class="delBT edit"></span>
+		   				</a>				
 						<s:include value="./ReviewComponent.jsp"/>
 					</s:if>
 					

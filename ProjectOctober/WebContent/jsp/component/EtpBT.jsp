@@ -8,8 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-
-	<div class="btn-group btn-group-justified" role="group" id="etpBtBar" draggable="true">
+	<div class="btn-group btn-group-justified" role="group" draggable="true">
 	
 		<div class="btn-group" role="group">
 			 <button type="button" class="btn btn-danger btn-lg" id="rsvBT">예약 관리</button>
@@ -31,7 +30,6 @@
 			 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='savePage()'>Save &raquo;</button>
 		</div>
 	</div>
-	
 </body>
 </html>
 
