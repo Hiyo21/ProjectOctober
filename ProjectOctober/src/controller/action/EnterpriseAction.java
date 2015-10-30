@@ -481,9 +481,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 //--------------------------------------- Component ----------------------------------------//
 	public String firstInsertComponent(){
-		componentList = etpDAO.receiveComponentList("1234567890");
+		componentList = etpDAO.receiveComponentList("1265479385");
 		
 		for(Component c : componentList){
+			//신규가입자의 사업자 번호와 이메일 주소를 받아서 기존의 사업자 정보를 대체한다.
+			c.setEtpNum(session.get("loginEtpNum").toString());
+			c.setEtpEmail(session.get("loginId").toString());
+			//수정된 컴포넌트 객체를 인서트 한다
 			etpDAO.insertComponent(c);
 		}
 		
@@ -491,7 +495,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String resetComponent(){
-		componentList = etpDAO.receiveComponentList("1234567890");
+		componentList = etpDAO.receiveComponentList("1265479385");
 		int result= 0;
 		
 		for(Component c : componentList){
@@ -509,6 +513,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public String cleanComponent(){
 		System.err.println("============= CleanComponent ==============");
+		if(etpDAO.receiveComponentList(etpNum).size()==0){
+			firstInsertComponent();
+		}
+		
 		//사업자의 모든 컴포넌트(총 8개) 정보에 0 값 입력
 		int result = etpDAO.cleanComponent(etpNum);
 		

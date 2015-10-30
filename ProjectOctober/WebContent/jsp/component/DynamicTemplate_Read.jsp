@@ -41,10 +41,10 @@
 		padding: 20px;
 	}
 	
-	.modal {
-		z-index: 200;
+	.modal-content {
+		z-index: 999;
 	}
-	
+
 </style>
 
 

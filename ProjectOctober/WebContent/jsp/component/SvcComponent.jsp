@@ -10,26 +10,14 @@
 
 <script type="text/javascript">
 	$(function(){
-		
-		$('#svcCategoryModal').on('show.bs.modal', function(event){
-			var modal = $(this);
-		    var button = $(event.relatedTarget);
-			var title = button.data('title');
-			var submit = button.data('submit');
-			var onclick = button.data('onclick');			
-			modal.find('.modal-title').text(title);
-			modal.find('.modal-footer .btn-primary').text(submit);
-			modal.find('.modal-content .btn-primary').attr('onclick', onclick);
-			modal.focus();
-			$('.edit').hide();
-			$('grid-stack-item-content').hide();
-			//modal.find('.modal-backdrop').css('z-index', -10);
-		 });
-		$('#svcCategoryModal').on('hidden.bs.modal', function(){			
-			$('.edit').show();
-			$('grid-stack-item-content').show();
+				
+		$('.modal').on('shown.bs.modal', function(){
+			$('.modal-backdrop').css('z-index', -1);
+			$('.modal-dialog').css('z-index', +1);
+			$('.input-group-btn').css('z-index', 0);
 			
 		});
+
 	});
 	
 	
@@ -96,7 +84,7 @@
 				$('#svcCategoryModal').modal('hide').on('hidden.bs.modal', function(){
 					$('#svcCategoryModal').hide();
 				});
-				location.reload();
+
 			},
 			error: function(doc){
 				console.log("insert Error");
@@ -166,13 +154,13 @@
 	function printSvcList(object){
 		console.log(object);
 		var str = '<br><p align="right">'
-			str	+='<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModalForm" onclick=""'
-			str	+='data-title=\'서비스 추가\' data-submit=\'추가\' data-dismiss=\'modal\' data-onclick=\'insertService()\'>서비스 추가</button></p>';
+			str	+='<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModalForm"'
+			str	+='data-dismiss=\'modal\'>서비스 추가</button></p>';
 			
 		$.each(object.categoryList, function(index,item){
 			str += '<div class="panel panel-default"><div class="panel-heading"><b>'+item+'</b>';
 			str += '<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcCategoryModal"';
-			str += 'data-title=\'서비스 수정\' data-submit=\'수정\' data-dismiss=\'modal\' onclick=\'selectSvcCategory("'+item+'")\' data-onclick=\'updateSvcCategory()\'>수정</button>';
+			str += 'data-dismiss=\'modal\' onclick=\'selectSvcCategory("'+item+'")\'>수정</button>';
 			str += '</div>';	
 			
 			$.each(object.serviceList, function(index, svcItem){
@@ -217,8 +205,8 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 		 	<s:set var="category"><s:property/></s:set>
 		 	
 		 	<!-- 인서트시 한 사업자의 카데고리에 중복이 없게 해야 함//셀렉트 할때는 사업자와 카테고리를 조인하여 검색 -->
-		 	<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal" data-title="서비스 수정" 
-			data-submit="수정" data-dismiss="modal" onclick='selectSvcCategory("<s:property/>")' data-onclick='updateSvcCategory()'>수정</button>
+		 	<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcCategoryModal" 
+			data-dismiss="modal" onclick='selectSvcCategory("<s:property/>")'>수정</button>
 		</div>
 		
 		<s:iterator value="#session.enterprise.services">
