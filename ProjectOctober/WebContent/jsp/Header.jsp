@@ -148,8 +148,8 @@
 		<div class="navbar navbar-default">
 			<div class="container">
 				<div class="row">					
-					<div class="col-xs-10">
-						<s:if test="#session.loginId != null || #session.memCode != 2">
+					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+						<s:if test="#session.loginId != null || #session.memCode == 2">
 							<ul class="nav navbar-nav" id="test1">
 								<li>
 									<a href="${pageContext.request.contextPath}/search/toBusinessSectorCategoryPage.action">
@@ -169,7 +169,7 @@
 							</ul>
 						</s:if>
 						
-						<s:if test="#session.memCode == 1">
+						<s:if test="#session.loginId != null ||#session.memCode == 1">
 							<ul class="nav navbar-nav">
 								<li>
 									<a href="${pageContext.request.contextPath}/enterprise/takeEtp.action">
@@ -186,11 +186,6 @@
 										<span class="nav-icon-wrap"><i class="fa ellipsis-h fa-fw"></i></span>기타 설정
 									</a>
 								</li>
-								<li>
-									<a href="toEnterpriseSupportPage.action">
-										<span class="nav-icon-wrap"><i class="fa fa-map-signs fa-fw"></i></span>사업자 지원 센터
-									</a>
-								</li>
 							</ul>
 						</s:if>
 						
@@ -199,14 +194,14 @@
 						
 						
 						
-						
-						<div class="input-group input-group-md col-md-push-12" >
-							<input name="searchKeyword" class="form-control" placeholder="검색" type="search" style="display: inline-block; text-align: right; width: 180px; height: 30px;">
+					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+						<div class="input-group">
+							<input name="searchKeyword" class="form-control" type="search" style="display: inline-block; text-align: right; width: 180px; height: 30px;">
 							<span class="input-group-btn" >
-								<button class="btn btn-default fa fa-search" style="width: 50px; height: 30px;" type="submit"></button>
+								<button class="btn btn-success" style="width: 50px; height: 30px;" type="submit" value="검색">검색</button>
 							</span>
-						
-						</div>	
+						</div>
+					</div>	
 						</form>
 						</s:if>				
 					</div>

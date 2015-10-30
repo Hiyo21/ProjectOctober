@@ -37,7 +37,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private List<Service> serviceList;
 	private List<String> categoryList;
 	private Map<String, Object> session;
-	private Map<String, Object> cpCollector;
 	private List<Coupon> couponList;
 	private Member member;
 	private PhotoLocation photoLocation;
@@ -80,6 +79,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String endMonth;
 	private String endDay;
 	private List<Reservation> couponSendList;
+	
+	private Map<String, Object> cpCollector;
 	
 
 	public EnterpriseAction() {
@@ -399,6 +400,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 				System.err.println("dynamic :: "+enterprise);
 				//동적 페이지 일때만 컴포넌트 리스트 set
 				enterprise.setComponents(etpDAO.receiveComponentList(etpNum));
+				System.err.println(enterprise.getComponents());
 				return "template1";
 			case 3:
 				//static_allInOne
@@ -995,6 +997,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.gunList = gunList;
 	}
 
+
 	public Map<String, Object> getCpCollector() {
 		return cpCollector;
 	}
@@ -1083,6 +1086,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.couponSendList = couponSendList;
 	}
 	
+
 	
 
 }

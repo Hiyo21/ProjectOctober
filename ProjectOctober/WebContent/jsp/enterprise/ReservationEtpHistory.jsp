@@ -13,12 +13,37 @@ function goBack() {
 	history.back();
 }
 </script>
+
+  
+<!-- 페이징 처리 -->
+<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"></script>
+<!-- 페이징처리 -->
+  
+ <script>
+//페이징처리
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
+} );
+
+//페이징처리
+</script>
+<style type="text/css">
+#example_paginate {
+	text-align: center;
+	 cursor: pointer; 
+}
+
+</style>
+>>>>>>> refs/remotes/origin/master
 </head>
 <body>
 	<s:include value="../Header.jsp"></s:include>
 	<div class="container">
 		<h1><s:property value="#session.loginName"/>님의 고객 예약 내역</h1>
-		<table class="table table-hover">
+		<table id="example" class="display" cellspacing="0" width="100%" border="1">
 			<thead>
 				<tr>
 					<th>매출번호</th>
