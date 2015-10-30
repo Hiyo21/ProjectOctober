@@ -18,8 +18,7 @@
 
 
 <style type="text/css">
-	body {
-    padding-top: 15px;
+	body {   
     font-size: 12px
   }
   .main {
@@ -78,7 +77,7 @@ function cust() {
 
 </head>
 <body>
-<s:include value="../Header.jsp"></s:include>
+<s:include value="../Header.jsp" ></s:include>
 
 <div class="container">
   <div class="row">
@@ -144,5 +143,4 @@ function cust() {
 		</div>
 	</div> --%>
 </body>
-</html>
 </html>
