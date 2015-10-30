@@ -13,12 +13,12 @@
 </head>
 <body>
 <div class="panel panel-default">
-	<div class="container"> 
+	<div class="container-fluid"> 
 		<div class="row">
 			<div class="col-xs-6">
 				<input type="hidden" id="address" value='${enterprise.etpAddress}'/>   
 				<input type="hidden" id="map">
-				<div id="map3" class="img-thumbnail" style="width:100%; height:550px;width:550px;"></div>	
+				<div id="map3" class="img-thumbnail image-responsive" style="width:100%; height:300px;width:300px;"></div>	
 			</div>
 			<div class="col-xs-6">
 				<!-- <h1>오시는 길</h1> -->

@@ -44,6 +44,10 @@
 	.modal-content {
 		z-index: 999;
 	}
+	
+	.grid-stack > .grid-stack-item > .grid-stack-item-content{
+		overflow: hidden;
+	}
 
 </style>
 
