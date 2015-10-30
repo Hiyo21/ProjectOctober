@@ -68,9 +68,7 @@
 		<action name="retrieveReservationFromOtherInfo" class="controller.action.EnterpriseAction" method="retrieveReservationFromOtherInfo">
 			<result type="json" />
 		</action>
-		
-
-		
+				
 		<!-- 사진업로드 / 갤러리 -->
 		<action name="toImageUploadPage">
 			<result>/jsp/enterprise/UploadEtpImage.jsp</result>
@@ -222,6 +220,11 @@
 			<result type="json" />
 		</action>
 		
+		<!-- 사업자의 마이페이지 -->
+		<action name="toEnterpriseMyPage">
+			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
+		</action>
+		
 		<!-- 사업자의 이용자 예약 내역 -->
 		<action name="toEptReservationHistoryPage" class="controller.action.EnterpriseAction" method="reservationHistory">
 			<result>/jsp/enterprise/ReservationEtpHistory.jsp</result>
@@ -237,6 +240,23 @@
 		
 		<action name="insertDayOff" class="controller.action.EnterpriseAction" method="insertDayOff">
 			<result type="json" />
+		</action>
+		
+		<!-- 쿠폰 관련 -->
+		<action name="toEnterpriseCouponManagement" class="controller.action.EnterpriseAction" method="retrieveCouponList">
+			<result>/jsp/enterprise/EnterpriseCouponManagement.jsp</result>
+		</action>
+		
+		<action name="insertCoupon" class="controller.action.EnterpriseAction" method="insertCoupon">
+			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
+		</action>
+		
+		<action name="updateCoupon" class="controller.action.EnterpriseAction" method="updateCoupon">
+			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
+		</action>
+		
+		<action name="deleteCoupon" class="controller.action.EnterpriseAction" method="deleteCoupon">
+			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
 		</action>
 	</package> 
 </struts>

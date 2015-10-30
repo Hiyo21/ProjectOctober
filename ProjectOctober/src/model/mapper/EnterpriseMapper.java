@@ -93,7 +93,13 @@ public interface EnterpriseMapper {
     List<Enterprise> categorySearch(Map<String, String> map);
 
 	List<Coupon> retrieveCouponList(String etpNum);
-
+	
+	int insertCoupon(Coupon coupon);
+	
+	int updateCoupon(Coupon coupon);
+	
+	int deleteCoupon(int cpnNum);
+	
 	Coupon checkCoupon(Coupon coupon);
 
 	String retrieveRegCard(String etpNum);

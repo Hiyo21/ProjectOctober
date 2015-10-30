@@ -10,13 +10,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<%--   <script src="bower_components/jquery/dist/jquery.min.js"></script> --%>
   
   <script>
 $(document).ready(function(){
+	//$('#reservation').on('click', goReservation);
+	
     $(".nav-tabs a").click(function(){
         $(this).tab('show');
     });
+    
     $('.nav-tabs a').on('shown.bs.tab', function(event){
         var x = $(event.target).text();         // active tab
         var y = $(event.relatedTarget).text();  // previous tab
@@ -24,6 +27,40 @@ $(document).ready(function(){
         $(".prev span").text(y);
     });
 });
+
+function reservation() {
+	location.href="${pageContext.request.contextPath}/enterprise/toEptReservationHistoryPage.action";
+}
+
+function goReservation(){
+	alert('goHistory');
+	//location.href="${pageContext.request.contextPath}/enterprise/toEptReservationHistoryPage.action";
+	$.ajax({
+		url:'toEptReservationHistoryPage.action'
+		, dataType:'json'
+		, Type:'post'
+		, success: output
+	});
+}
+
+function output(msg){
+	alert('성공');
+	var str = '<table>';
+	$.each(msg.saleRecords, function(key, item) {
+		str += '<tr>';
+		str += '<td class=tbNum>'+ item.saleNum +'</td>';
+		str += '<td class=tbName>'+ item.reservation.rsvNum +'</td>';
+		str += '<td class=tbText>'+ item.reservation.cstEmail +'</td>';
+		str += '<td class=tbNum>'+ service.svcTitle +'</td>';
+		str += '<td class=tbNum>'+ reservation.rsvStartDate +'</td>';
+		str += '<td class=tbNum>'+ saleAmount +'</td>';
+		//str += '<td><input type="button" value="DELETE" class="btDel" num="'+item.num+'"></td>';
+		str += '</tr>';
+	});
+	str += '</table>';
+	$('#listDiv').html(str);
+	$('.btDel').on('click', deleteComment);
+}
 </script>
 <title>CustomerMypage.jsp</title>
 </head>
@@ -34,84 +71,65 @@ $(document).ready(function(){
 
 <!-- 탭 시작 -->
 <div class="container">
-  <h2>마이 페이지</h2><br>
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#InformationUpdate">정보수정</a></li>
-    <li><a href="#Reservation">예약</a></li>
-    <li><a href="#CouponEvent">쿠폰 및 이벤트</a></li>
-    <li><a href="#OneClick">OneClick 결제</a></li>
-    <li><a href="${pageContext.request.contextPath}/enterprise/toEtpReservationHistoryPage.action">예약 내역</a></li>
-  </ul>
+<h2>마이 페이지</h2><br>
+<ul class="nav nav-tabs">
+<li class="active"><a href="#InformationUpdate">정보수정</a></li>
+<li><a href="${pageContext.request.contextPath}/enterprise/toEnterpriseCouponManagement.action">쿠폰 및 이벤트</a></li>
+<li><a href="#OneClick">OneClick 결제</a></li>
+<li><a href="${pageContext.request.contextPath}/enterprise/toEptReservationHistoryPage.action" id="reservation">예약 내역</a></li>
+</ul>
 
-  <div class="tab-content">
-  <!-- 정보수정 탭 시작 -->
-    <div id="InformationUpdate" class="tab-pane fade in active">
-    	 <div class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-          	<table class="table table-hover">
-          		<tr>
-          			<td>이름</td>
-          			<td><input type="text" name="name" id="vo.name"><br></td>
-          		</tr>  
-          		<tr>          			        			         		
-          			<td>이메일</td>
-          			<td><input type="email" name="email" id="vo.email"><br></td>
-          		</tr>
-          		<tr>
-          			<td>P/W</td>
-          			<td><input type="password" name="pwd1" id="vo.password"></td>
-          		</tr>
-          		<tr>
-          			<td>P/W 재확인</td>
-          			<td><input type="password" name="pwd2"></td>
-          		</tr>
-          		<tr>
-          			<td>전화번호</td>
-          			<td><input type="text" name="phone" id="vo.phone"></td>
-          		</tr>
-          		<tr>
-          			<td>성별</td>
-          			<td><input type="radio" name="sex">남 &nbsp;&nbsp;&nbsp;<input type="radio" name="sex">여</td>
-          		</tr>          		
-          	</table>          	
-          </div>
+<div class="tab-content">
+<!-- 정보수정 탭 시작 -->
+<div id="InformationUpdate" class="tab-pane fade in active">
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<table class="table table-hover">
+						<tr><td>이름</td><td><input type="text" name="name" id="vo.name"><br></td><tr>          			        			         		
+						<tr><td>이메일</td><td><input type="email" name="email" id="vo.email"><br></td></tr>
+						<tr><td>P/W</td><td><input type="password" name="pwd1" id="vo.password"></td></tr>
+						<tr><td>P/W 재확인</td><td><input type="password" name="pwd2"></td></tr>
+						<tr><td>전화번호</td><td><input type="text" name="phone" id="vo.phone"></td></tr>
+						<tr><td>성별</td><td><input type="radio" name="sex">남 &nbsp;&nbsp;&nbsp;<input type="radio" name="sex">여</td></tr>          		
+					</table>          	
+				</div>
          
-          <div class="col-md-6">
-          	<table class="table table-hover">  	
-            	<tr>
-          			<td>생년월일&nbsp;</td>
-          			<td><select name="year">
-          				<option value="1960">1960년</option>
-          				<option value="1961">1961년</option>
-          				<option value="1962">1962년</option>
-          				<option value="1963">1963년</option>
-          				<option value="1964">1964년</option>
-          				<option value="1965">1965년</option>
-          				<option value="1966">1966년</option>
-          				<option value="1967">1967년</option>
-          				<option value="1968">1968년</option>
-          				<option value="1969">1969년</option>
-          				<option value="1970">1970년</option>
-          				<option value="1971">1971년</option>
-          				<option value="1972">1972년</option>
-          				<option value="1973">1973년</option>
-          				<option value="1974">1974년</option>
-          				<option value="1975">1975년</option>
-          				<option value="1976">1976년</option>
-          				<option value="1977">1977년</option>
-          				<option value="1978">1978년</option>
-          				<option value="1979">1979년</option>
-          				<option value="1980">1980년</option>
-          				<option value="1981">1981년</option>
-          				<option value="1982">1982년</option>
-          				<option value="1983">1983년</option>
-          				<option value="1984">1984년</option>
-          				<option value="1985">1985년</option>
-          				<option value="1986">1986년</option>
-          				<option value="1987">1987년</option>          				
-          			</select>&nbsp;&nbsp;
+				<div class="col-md-6">
+					<table class="table table-hover">  	
+						<tr>
+							<td>생년월일&nbsp;</td>
+							<td><select name="year">
+								<option value="1960">1960년</option>
+								<option value="1961">1961년</option>
+								<option value="1962">1962년</option>
+								<option value="1963">1963년</option>
+								<option value="1964">1964년</option>
+								<option value="1965">1965년</option>
+								<option value="1966">1966년</option>
+								<option value="1967">1967년</option>
+								<option value="1968">1968년</option>
+								<option value="1969">1969년</option>
+								<option value="1970">1970년</option>
+								<option value="1971">1971년</option>
+								<option value="1972">1972년</option>
+								<option value="1973">1973년</option>
+								<option value="1974">1974년</option>
+								<option value="1975">1975년</option>
+								<option value="1976">1976년</option>
+								<option value="1977">1977년</option>
+								<option value="1978">1978년</option>
+								<option value="1979">1979년</option>
+								<option value="1980">1980년</option>
+								<option value="1981">1981년</option>
+								<option value="1982">1982년</option>
+								<option value="1983">1983년</option>
+								<option value="1984">1984년</option>
+								<option value="1985">1985년</option>
+								<option value="1986">1986년</option>
+								<option value="1987">1987년</option>          				
+							</select>&nbsp;&nbsp;
           			
           			<select name="month">
           				<option value="1">1월</option>

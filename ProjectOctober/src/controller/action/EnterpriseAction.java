@@ -69,7 +69,18 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String infoPht;
 	private String logoPht;
 	
-
+	//쿠폰관련
+	private String title;
+	private String code;
+	private int rate;
+	private String startYear;
+	private String startMonth;
+	private String startDay;
+	private String endYear;
+	private String endMonth;
+	private String endDay;
+	private List<Reservation> couponSendList;
+	
 
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -185,10 +196,66 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
+	//쿠폰불러오기
 	public String retrieveCouponList() throws Exception{
+		etpNum = (String)session.get("loginEtpNum");
+		etpEmail = (String)session.get("loginId");
 		couponList = etpDAO.retrieveCouponList(etpNum);
-		return SUCCESS; 
-		
+		couponSendList = etpDAO.couponSendList(etpEmail);
+		return SUCCESS; 	
+	}
+	
+	//쿠폰생성하기
+	public String insertCoupon() throws Exception {
+		Coupon coupon = new Coupon();
+		etpNum = (String)session.get("loginEtpNum");
+		etpEmail = (String)session.get("loginId");
+		String startDate = startYear + "-" + startMonth + "-" + startDay + "T00:00:00";
+		String endDate = endYear + "-" + endMonth + "-" + endDay + "T00:00:00";
+		LocalDateTime cpnStartDate = LocalDateTime.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+		LocalDateTime cpnEndDate = LocalDateTime.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+		coupon.setEtpNum(etpNum);
+		coupon.setEtpEmail(etpEmail);
+		coupon.setCpnStartDate(cpnStartDate);
+		coupon.setCpnEndDate(cpnEndDate);
+		coupon.setCpnTitle(title);
+		coupon.setCpnRate(rate);
+		int result = etpDAO.insertCoupon(coupon);
+		if (result == 1) {
+			return SUCCESS;
+		}
+		else {
+			return ERROR;
+		}
+	}
+	
+	public String updateCoupon() throws Exception {
+		Coupon coupon = new Coupon();
+		etpNum = (String)session.get("loginEtpNum");
+		etpEmail = (String)session.get("loginId");
+		String startDate = startYear + "-" + startMonth + "-" + startDay + "T00:00:00";
+		String endDate = endYear + "-" + endMonth + "-" + endDay + "T00:00:00";
+		LocalDateTime cpnStartDate = LocalDateTime.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+		LocalDateTime cpnEndDate = LocalDateTime.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+		coupon.setEtpNum(etpNum);
+		coupon.setEtpEmail(etpEmail);
+		coupon.setCpnStartDate(cpnStartDate);
+		coupon.setCpnEndDate(cpnEndDate);
+		coupon.setCpnTitle(title);
+		coupon.setCpnRate(rate);
+		coupon.setCpnNum(cpnNum);
+		int result = etpDAO.updateCoupon(coupon);
+		if (result == 1) {
+			return SUCCESS;
+		}
+		else {
+			return ERROR;
+		}
+	}
+	
+	public String deleteCoupon() throws Exception {
+		etpDAO.deleteCoupon(cpnNum);
+		return SUCCESS;
 	}
 	
 	public String selectSvcCategory() throws Exception{
@@ -935,6 +1002,87 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public void setCpCollector(Map<String, Object> cpCollector) {
 		this.cpCollector = cpCollector;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
+
+	public String getStartYear() {
+		return startYear;
+	}
+
+	public void setStartYear(String startYear) {
+		this.startYear = startYear;
+	}
+
+	public String getStartMonth() {
+		return startMonth;
+	}
+
+	public void setStartMonth(String startMonth) {
+		this.startMonth = startMonth;
+	}
+
+	public String getStartDay() {
+		return startDay;
+	}
+
+	public void setStartDay(String startDay) {
+		this.startDay = startDay;
+	}
+
+	public String getEndYear() {
+		return endYear;
+	}
+
+	public void setEndYear(String endYear) {
+		this.endYear = endYear;
+	}
+
+	public String getEndMonth() {
+		return endMonth;
+	}
+
+	public void setEndMonth(String endMonth) {
+		this.endMonth = endMonth;
+	}
+
+	public String getEndDay() {
+		return endDay;
+	}
+
+	public void setEndDay(String endDay) {
+		this.endDay = endDay;
+	}
+
+	public List<Reservation> getCouponSendList() {
+		return couponSendList;
+	}
+
+	public void setCouponSendList(List<Reservation> couponSendList) {
+		this.couponSendList = couponSendList;
+	}
 	
 	
+
 }

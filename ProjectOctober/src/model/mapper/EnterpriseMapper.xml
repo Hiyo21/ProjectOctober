@@ -714,8 +714,20 @@
 	</insert>
 
 	<select id="retrieveCouponList" parameterType="String" resultMap="CouponResultMap">
-		select * from COUPON where etp_num = #{value}
+		select * from COUPON where etp_num = #{etpNum}
 	</select>
+	
+	<insert id="insertCoupon" parameterType="Coupon">
+		insert into Coupon values (coupon_seq.nextVal, #{etpNum}, #{etpEmail}, #{cpnTitle}, 'test', #{cpnRate}, #{cpnStartDate}, #{cpnEndDate})
+	</insert>
+	
+	<update id="updateCoupon" parameterType="Coupon">
+		update COUPON set cpn_title=#{cpnTitle}, cpn_rate=#{cpnRate}, cpn_start_date=#{cpnStartDate}, cpn_end_date=#{cpnEndDate}  where cpn_num=#{cpnNum}
+	</update>
+	
+	<delete id="deleteCoupon" parameterType="Integer">
+		delete COUPON where cpn_num = #{cpnNum}
+	</delete>
 
 	<select id="checkCoupon" parameterType="Coupon" resultMap="CouponResultMap">
 		select * from COUPON where cpn_num = #{cpnNum} and cpn_code = #{cpnCode}
