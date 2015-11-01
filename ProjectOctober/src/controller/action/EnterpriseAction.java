@@ -321,11 +321,24 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}*/
 	
 	//---------------------------------------Service Component End-----------------------------
-	
+	public String saveInfoDesc() throws Exception{
+		System.out.println("===========check Action :: enterpriseList :: ");
+		
+		enterprise.setEtpNum(session.get("loginEtpNum").toString());
+		int result = etpDAO.updateInfoDesc(enterprise);
+		
+		if(result == 1){
+			return SUCCESS;
+		}else{
+			return ERROR;
+		}
+	}
+		
+
 	
 	public String selectEtpList() throws Exception{
-		enterpriseList = etpDAO.selectEtpList();			
 		System.out.println("===========check Action :: enterpriseList :: ");
+		enterpriseList = etpDAO.selectEtpList();			
 		return SUCCESS;
 	}
 	

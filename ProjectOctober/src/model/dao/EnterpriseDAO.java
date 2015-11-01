@@ -84,7 +84,22 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
-	
+
+	public int updateInfoDesc(Enterprise enterprise) {
+		System.out.println("============check DAO :: updateInfoDesc()");
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			int result = session.getMapper(EnterpriseMapper.class).updateInfoDesc(enterprise);
+			
+			if(result == 1) session.commit();
+			else session.rollback();
+			
+			return result;
+		}finally{
+			session.close();
+		}
+	}
+		
 	public List<Service> selectServiceList(String etpNum) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
@@ -448,7 +463,6 @@ public class EnterpriseDAO extends DAOTemplate{
 
 	public int insertSaleRecord(SaleRecord saleRecord) {
 		return dataModificationTemplate(s -> {return fromMapper(s).insertSaleRecord(saleRecord);});
-
 	}
 
 	public int updateTemplate(Enterprise enterprise) {
@@ -466,8 +480,6 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int insertDayOff(Reservation reservation) {
 		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertOffDays(reservation);});
 	}
-
-	
 
 	
 }

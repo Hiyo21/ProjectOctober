@@ -59,30 +59,24 @@ function uploadLogoOpen() {
 <div class='container-fluid'>
 	<div class="panel panel-default">
 	<div class="row" align="center">
-		<div class="col-md-3">
-			<div id='logoCP'>
-			  	<div class="panel-body">
-			  		<!-- img src에 업로드 된 파일이 바로 적용되도록 -->
-			  		<s:if test="logoPht != null">
-			         	<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
-			   			<img src='${pageContext.request.contextPath}/<s:property value="logoPht"/>' class='img-responsive'>
-					</s:if>
-					<s:else>
-						<img class="img-responsive" src="http://orig10.deviantart.net/2e58/f/2013/288/b/9/leaf_png_by_iheartsnsdforever-d6qjxl2.png" style="max-width: 200">
-					</s:else>
-			    	<input type="button" value="사진업로드" onclick="uploadLogoOpen()" class="edit">
-			  	</div>
-			</div>
+		<div class="col-md-3" id='logoCP'>
+		  	<div class="panel-body">
+		  		<!-- img src에 업로드 된 파일이 바로 적용되도록 -->
+		  		<s:if test="#session.enterprise.logoPht != null">
+		         	<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
+		   			<img src='${pageContext.request.contextPath}/<s:property value="#session.enterprise.logoPht"/>' class='img-responsive'>
+				</s:if>
+				<s:else>
+					<img class="img-responsive visible-xs" src="http://orig10.deviantart.net/2e58/f/2013/288/b/9/leaf_png_by_iheartsnsdforever-d6qjxl2.png" style="max-width: 200">
+				</s:else>
+		    	<input type="button" value="사진업로드" onclick="uploadLogoOpen()" class="edit">
+		  	</div>
 		</div>
 		
-		<div class="col-md-6">
-			<div id='outLineCP'>
-			  	<div class="panel-body">
-		  			<div id="outLineContentIn">
-		  				<h1><s:property value="#session.enterprise.etpTitle"/></h1>
-		  			</div>
-			  	</div>
-			</div>
+		<div class="col-md-6" id='outLineCP'>
+		  	<div class="panel-body" id="outLineContentIn">
+	  			<h1><s:property value="#session.enterprise.etpTitle"/></h1>
+		  	</div>
 		</div>
 		<!-- 특징 -->	
 		<div class="col-md-3" id="spcialSpan">

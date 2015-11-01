@@ -179,8 +179,8 @@
 			str += '</div>';
 		});
 		$('#svcListTab').html(str);		
-		
 	}
+	
 
 </script>
 
@@ -192,15 +192,15 @@
 <br>
 
 <p align="right">
-<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModalForm"
+<button class="btn btn-default btn-md edit hidden-xs" data-toggle="modal" data-target="#svcModalForm"
 data-title="서비스 추가" data-submit="추가" data-onclick="insertService()" onclick="">서비스 추가</button>
 </p>
 
 <s:if test="#session.categoryList != null">
 <s:iterator value="#session.categoryList">
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
+	<div class="panel panel-default hidden-xs">
+		<div class="panel-heading hidden-xs">
 		 	<b><s:property/></b>
 		 	<s:set var="category"><s:property/></s:set>
 		 	
@@ -212,22 +212,19 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 		<s:iterator value="#session.enterprise.services">
 		<s:if test='%{svcCategory.equalsIgnoreCase(#category)}'> 
 		<!-- 서비스 항목-->
-		<div class="panel-body" id="categoryBody">
+		<div class="panel-body hidden-xs" id="categoryBody">
 		  	<table class="table table-hover">
 		  		<tr>
-		  			<td class="col-xs-3">
+		  			<td class="col-xs-4 hidden-xs">
 		  				<s:property value="svcTitle"/>
 		  			</td>
-		  			<td class="col-xs-5">
+		  			<td class="col-xs-6 hidden-xs">
 		  				<s:if test="svcDescription != null">
 		  					<s:property value="svcDescription"/><br>
 		  				</s:if>
 		  				비용 : <s:property value="svcCost"/> <br>시간 : <s:property value="svcTime"/>
 		  			</td>
-		  			<td class="col-xs-2">
-		  				<button type="button" class="btn btn-success btn-md" onclick="rsvInsert(<s:property value="svcNum"/>)" style="width: 100px">예약 하기</button>
-		  			</td>
-		  			<td class="edit col-xs-2">
+		  			<td class="edit col-xs-2 hidden-xs">
 		  				<button type="button" class="btn btn-danger btn-md edit" onclick="deleteService(<s:property value="svcNum"/>)">삭제</button>
 		  			</td>
 		  		</tr> 

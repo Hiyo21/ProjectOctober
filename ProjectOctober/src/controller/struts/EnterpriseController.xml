@@ -127,12 +127,12 @@
 			<result type="json" />
 		</action>
 		
-		<!--     사업자 게시판 Action     -->
-		<action name="testDynamic" class="controller.action.EnterpriseAction" method="takeEtp">
-			<result name="template1">/jsp/component/DynamicTemplate_Read.jsp</result>
+		<action name="saveInfoDesc" class="controller.action.EnterpriseAction" method="saveInfoDesc">
+			<result type="json"/>
 		</action>
 		
-	
+		<!--     사업자 게시판 Action     -->
+		
 		<action name="takeEtp" class="controller.action.EnterpriseAction" method="takeEtp">
 			<result name="template1">/jsp/component/DynamicTemplate_Read.jsp</result>
 			<result name="template2">/jsp/component/StaticTemplate_tabs.jsp</result>

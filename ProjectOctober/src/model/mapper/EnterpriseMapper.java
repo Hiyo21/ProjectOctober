@@ -126,6 +126,8 @@ public interface EnterpriseMapper {
 
 	int cleanComponent(String etpNum);
 
+	int updateInfoDesc(Enterprise enterprise);
+
 	
 
 

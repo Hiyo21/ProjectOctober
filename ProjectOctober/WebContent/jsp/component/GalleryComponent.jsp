@@ -24,12 +24,13 @@ function uploadOpen() {
 </script>
 </head>
 <body>
+
 <input type="button" value="사진업로드" onclick="uploadOpen()" class="edit">
-<div class="panel panel-default" id="gallery">
-	<div class="container-fluid">
+<div class="panel panel-default hidden-xs" id="gallery">
+	<div class="container-fluid hidden-xs">
 		<s:iterator value="#session.enterprise.photos">
 
-			<a class='group' href='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' title='<s:property value="phtUsage"/>'>
+			<a class='group hidden-xs' href='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' title='<s:property value="phtUsage"/>'>
 				<img src='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' class='etpImage'>
 			</a>
 
