@@ -565,6 +565,10 @@
 	<update id="updateInfoDesc" parameterType="Enterprise">
 		update enterprise set etp_description = #{etpDescription} where etp_num = #{etpNum}
 	</update>
+	
+	<delete id="deletePht" parameterType="int">
+		delete photo_location where photo_num = #{photoNum}
+	</delete>
 
 	<!-- Component Mapper -->
 	<select id="selectComponent" parameterType="Map" resultMap="ComponentResultMap">

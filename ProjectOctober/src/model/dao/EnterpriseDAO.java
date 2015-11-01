@@ -446,6 +446,13 @@ public class EnterpriseDAO extends DAOTemplate{
 		}finally{session.close();}
 	}
 	
+	public int deletePht(Integer photoNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(EnterpriseMapper.class).deletePht(photoNum);
+		}finally{session.close();}
+	}
+	
 	public Reservation retrieveReservationFromOtherInfo(Reservation reservation) {
 		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveReservationFromOtherInfo(reservation);});
 	}
@@ -480,6 +487,8 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int insertDayOff(Reservation reservation) {
 		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertOffDays(reservation);});
 	}
+
+	
 
 	
 }

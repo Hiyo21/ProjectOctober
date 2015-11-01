@@ -128,6 +128,8 @@ public interface EnterpriseMapper {
 
 	int updateInfoDesc(Enterprise enterprise);
 
+	int deletePht(Integer photoNum);
+
 	
 
 

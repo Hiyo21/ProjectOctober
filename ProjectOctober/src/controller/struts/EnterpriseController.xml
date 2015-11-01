@@ -93,6 +93,10 @@
 			<result name="input">/jsp/enterprise/UploadEtpImage.jsp</result>
 		</action>
 		
+		<action name="deleteImage" class="controller.action.EnterpriseAction" method="deleteImage">
+			<result type="json"/>
+		</action>
+		
 		<action name="infoUploadAction" class="controller.action.FileUploadAction" method="uploadInfoImage">
 			<interceptor-ref name="fileUpload">
 				<param name="allowedTypes">

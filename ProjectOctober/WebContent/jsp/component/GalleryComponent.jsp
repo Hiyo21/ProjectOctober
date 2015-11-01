@@ -21,17 +21,31 @@ $(document).ready(function() {
 function uploadOpen() {
 	window.open("${pageContext.request.contextPath}/enterprise/toImageUploadPage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
 }
+
+function deleteImage(num){
+	$.ajax({
+		url : '${pageContext.request.contextPath}/enterprise/deleteImage.action',
+		type : 'POST',
+		data : {'photoLocation.photoNum' : num},
+		success : function(){
+			location.reload();
+		}
+	})
+}
 </script>
 </head>
 <body>
 
 <input type="button" value="사진업로드" onclick="uploadOpen()" class="edit">
-<div class="panel panel-default hidden-xs" id="gallery">
-	<div class="container-fluid hidden-xs">
+<div class="panel panel-default" id="gallery">
+	<div class="container-fluid">
 		<s:iterator value="#session.enterprise.photos">
 
-			<a class='group hidden-xs' href='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' title='<s:property value="phtUsage"/>'>
+			<a class='group' href='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' title='<s:property value="phtUsage"/>'>
 				<img src='${pageContext.request.contextPath}/<s:property value="phtAddress"/>' class='etpImage'>
+			</a>
+			<a class="btn btn-danger edit" role="button" onclick='deleteImage(<s:property value="photoNum"/>)'>
+			삭제
 			</a>
 
 		</s:iterator>

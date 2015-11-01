@@ -61,27 +61,6 @@
 <script>
 
 $(function(){
-	//textarea를 htmleditor로 대체, toolbar 설정
-	CKEDITOR.replace('infoEdit', {
-		toolbarGroups : [
-   			{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-   			{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-   			{ name: 'forms', groups: [ 'forms' ] },
-   			{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-   			{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-   			{ name: 'links', groups: [ 'links' ] },
-   			{ name: 'insert', groups: [ 'insert' ] },
-   			{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-   			{ name: 'styles', groups: [ 'styles' ] },
-   			{ name: 'colors', groups: [ 'colors' ] },
-   			{ name: 'tools', groups: [ 'tools' ] },
-   			{ name: 'others', groups: [ 'others' ] },
-   			{ name: 'about', groups: [ 'about' ] }
-   		],
-
-   		removeButtons : 'Source,Save,Templates,NewPage,Preview,Print,SelectAll,Find,Replace,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,BidiLtr,BidiRtl,Language,CreateDiv,Link,Unlink,Anchor,PageBreak,ShowBlocks,Maximize',
-   		language : 'ko'
-	});
 	
 	var options = {
 	   		always_show_resize_handle : false,
@@ -291,7 +270,7 @@ function savePage(){
 			contentType: 
 				'application/x-www-form-urlencoded; charset=utf-8',
 			success : function(){
-				alert("success");
+				//alert("success");
 			}
 		});
 	}

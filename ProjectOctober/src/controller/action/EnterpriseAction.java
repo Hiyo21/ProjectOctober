@@ -350,6 +350,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
+	public String deleteImage() throws Exception{
+		System.out.println("===========check Action :: deleteImage :: ");
+		int result = etpDAO.deletePht(photoLocation.getPhotoNum());
+
+		if(result == 1) return SUCCESS;
+		else return ERROR;
+	}
+	
 	public String takeEtp() throws Exception{
 		System.out.println("===========check Action :: takeEtp :: etpNum :: " + etpNum);
 		
