@@ -503,8 +503,8 @@
 			</if>
 		</set>
 		where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
-		and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
 	</update>
+	
 	<update id="updateByPrimaryKey" parameterType="model.vo.Enterprise">
 		update HR.ENTERPRISE
 		set ETP_OWNER = #{etpOwner,jdbcType=VARCHAR},
@@ -565,7 +565,8 @@
 	<update id="updateInfoDesc" parameterType="Enterprise">
 		update enterprise set etp_description = #{etpDescription} where etp_num = #{etpNum}
 	</update>
-	
+
+
 	<delete id="deletePht" parameterType="int">
 		delete photo_location where photo_num = #{photoNum}
 	</delete>

@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	<div class="btn-group btn-group-justified" role="group" draggable="true">
+	<div class="btn-group btn-group-justified" role="group" draggable="true" id="etpBt">
 	
 		<div class="btn-group" role="group">
 			 <button type="button" class="btn btn-danger btn-lg" id="rsvBT">예약 관리</button>
@@ -27,7 +27,7 @@
 		</s:if>
 		<!-- 페이지 편집중에만 보이게 -->
 		<div class="btn-group" role="group">
-			 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='cleanComponent()'>Save &raquo;</button>
+			 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='cleanComponent()'>레이아웃 저장 &raquo;</button>
 		</div>
 	</div>
 </body>

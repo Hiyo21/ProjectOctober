@@ -71,7 +71,7 @@ $(function(){
             name: '이용자 평가',
             data: [
                    <s:iterator value="#session.gunList">
-                   		<s:property value="average2"/>,
+                   		//<s:property value="average2"/>,
                    		<s:property value="hygiene2"/>,
                    		<s:property value="comfort2"/>,
                    		<s:property value="technique2"/>,
@@ -88,17 +88,10 @@ $(function(){
 
 </body>
 <body>
-<div class="container">
-		<div class="row">
-			<div class="col-md-6" align="center">
-				<h1>종합평가 점수 / 정보</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6" id="chart" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto;" align="center">
-				
-			</div>
-		</div>
+<div class="container-fluid">
+	<div class="col-xs-12" id="chart" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto;" align="center">
+		
+	</div>
 	<s:if test="#session.memCode == 1">
 		<div>
 			<table id="example" class="display" cellspacing="0" width="100%"  border="1">

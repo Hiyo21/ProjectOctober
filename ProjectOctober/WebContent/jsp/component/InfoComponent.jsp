@@ -91,7 +91,6 @@ function toInfoUploadPage() {
 					</s:if>
 				</s:else>
 				
-				<p class="edit">업로드할 파일을 선택해 주세요.</p>
 				<input type="hidden" name="etpNum" value="${enterprise.etpNum}" id="etpNumHidden"/>
 				<input type="hidden" name="etpEmail" value="${enterprise.etpEmail}" id="etpEmailHidden" />
 				<input type="hidden" name="infoPht" value="${enterprise.infoPht}" id="infoPhtHidden" />

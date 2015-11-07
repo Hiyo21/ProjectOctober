@@ -47,12 +47,8 @@
 		max-height:100%;	
 	}
 	
-	.grid-stack > .grid-stack-item > .grid-stack-item-content{
+	.grid-stack > .grid-stack-item > .grid-stack-item-content, .table-responsive{
 		overflow: hidden;
-	}
-	
-	#infoCP{
-		z-index: -1;
 	}
 
 </style>
@@ -77,6 +73,12 @@ $(function(){
 	grid.movable('.grid-stack-item', false);
 	grid.resizable('.grid-stack-item', false);
 	
+	//마우스가 들어갈 때만 스크롤 보임
+	$('.grid-stack > .grid-stack-item > .grid-stack-item-content').on({
+		mouseenter : function () { $(this).css('overflow', 'auto')},
+		mouseleave : function () { $(this).css('overflow', 'hidden')}
+	});
+	
 	//아이콘 클릭시 각 컴포넌트를 모달창에 띄우기
 	$('#componentModal').on('show.bs.modal', function (event) {
 		var icon = $(event.relatedTarget); 
@@ -87,11 +89,12 @@ $(function(){
 	  	var modal = $(this);
 	  	modal.find('.modal-title').text(title);
 	  	modal.find('.modal-body').html(content);
+	  	$('#infoCP').css('z-index', -1);
 	});
-
 	
-	$('#componentModal').on('hidden.bs.modal', function () {
-		location.reload();
+	$('#svcCategoryModal').on('shown.bs.modal', function(){
+		$('#locaCP').css('z-index', -1);
+		$('#reviewCP').css('z-index', -1);
 	});
 	
 	//편집 버튼 숨기기
@@ -99,10 +102,20 @@ $(function(){
 	
 	//icon 숨기기
 	$('.icon').hide();
+	var components = $('.grid-stack'); 
+	console.log(components);
+	//makeIcon(components);
 	
-	var serialize_widget_map = function (items) {
-	    
-	    $.each(items, function(i, item){
+	$('.grid-stack').on('change', function (e, items) {
+		console.log(items);
+		makeIcon(items);   
+	});
+	
+	
+});
+
+function makeIcon(items){
+	 $.each(items, function(i, item){
 	    	if(item.width < 4){
 	    		switch (item.el.context.id) {
 				case 'infoCP':
@@ -153,13 +166,6 @@ $(function(){
 	    });
 	};
 
-	$('.grid-stack').on('change', function (e, items) {
-	    serialize_widget_map(items);   
-	});
-	
-	
-	
-});
 
 function hideBT(){
 	var loginId = "<%= session.getAttribute("loginId") %>" ;
@@ -170,11 +176,11 @@ function hideBT(){
 	
 	//로그인 한 사람이 페이지 주인과 동일 할 때 
 	if(loginId!=null && loginId==pageId){
-		$('#etpBtBar').show();
+		$('#etpBt').show();
 		$('#editBT').on('click', startEdit);
 
 	}else{
-		$('#etpBtBar').hide();	
+		$('#etpBt').hide();	
 	}	
 }
 

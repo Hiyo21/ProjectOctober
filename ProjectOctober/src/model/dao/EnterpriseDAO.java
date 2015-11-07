@@ -84,13 +84,13 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
-
-	public int updateInfoDesc(Enterprise enterprise) {
+	
+	public int updateEtp(Enterprise enterprise) {
 		System.out.println("============check DAO :: updateInfoDesc()");
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			int result = session.getMapper(EnterpriseMapper.class).updateInfoDesc(enterprise);
-			
+			int result = session.getMapper(EnterpriseMapper.class).updateByPrimaryKeySelective(enterprise);
+			System.err.println("###### Check Error :: " + result);
 			if(result == 1) session.commit();
 			else session.rollback();
 			
@@ -449,7 +449,10 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int deletePht(Integer photoNum) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
-			return session.getMapper(EnterpriseMapper.class).deletePht(photoNum);
+			int result = session.getMapper(EnterpriseMapper.class).deletePht(photoNum);
+				if(result == 1) session.commit();
+				else session.rollback();
+			return result;
 		}finally{session.close();}
 	}
 	
@@ -487,8 +490,6 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int insertDayOff(Reservation reservation) {
 		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertOffDays(reservation);});
 	}
-
-	
 
 	
 }

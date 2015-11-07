@@ -322,10 +322,23 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	//---------------------------------------Service Component End-----------------------------
 	public String saveInfoDesc() throws Exception{
-		System.out.println("===========check Action :: enterpriseList :: ");
+		System.out.println("===========check Action :: saveInfoDesc :: ");
 		
 		enterprise.setEtpNum(session.get("loginEtpNum").toString());
-		int result = etpDAO.updateInfoDesc(enterprise);
+		int result = etpDAO.updateEtp(enterprise);
+		
+		if(result == 1){
+			return SUCCESS;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String saveLocaDesc() throws Exception{
+		System.out.println("===========check Action :: saveLocaDesc :: ");
+		
+		enterprise.setEtpNum(session.get("loginEtpNum").toString());
+		int result = etpDAO.updateEtp(enterprise);
 		
 		if(result == 1){
 			return SUCCESS;
@@ -344,6 +357,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	public String selectGalleryList() throws Exception{
 		System.out.println("===========check Action :: receiveGalleryList :: ");
+		if(enterprise == null){
+			enterprise = new Enterprise();
+		}
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 
 		if(enterprise.getPhotos() != null) return SUCCESS;
@@ -351,9 +367,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String deleteImage() throws Exception{
-		System.out.println("===========check Action :: deleteImage :: ");
+		System.out.println("===========check Action :: deleteImage :: " + photoLocation.getPhotoNum());
 		int result = etpDAO.deletePht(photoLocation.getPhotoNum());
-
+		
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
@@ -366,8 +382,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			enterprise = etpDAO.selectByEtpNum(etpNum);			
 		}else{
 			enterprise = etpDAO.selectByEtpNum(etpNum);
-		}
-			
+		}			
 		
 		//서비스 리스트 set
 		if(etpDAO.selectServiceList(etpNum).size()>0){

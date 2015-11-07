@@ -135,6 +135,10 @@
 			<result type="json"/>
 		</action>
 		
+		<action name="saveLocaDesc" class="controller.action.EnterpriseAction" method="saveLocaDesc">
+			<result type="json"/>
+		</action>
+		
 		<!--     사업자 게시판 Action     -->
 		
 		<action name="takeEtp" class="controller.action.EnterpriseAction" method="takeEtp">

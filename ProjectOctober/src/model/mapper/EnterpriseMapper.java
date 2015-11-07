@@ -126,12 +126,9 @@ public interface EnterpriseMapper {
 
 	int cleanComponent(String etpNum);
 
-	int updateInfoDesc(Enterprise enterprise);
+	int updateEtp(Enterprise enterprise);
 
 	int deletePht(Integer photoNum);
-
-	
-
 
 
 }
