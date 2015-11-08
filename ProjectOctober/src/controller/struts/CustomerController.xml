@@ -62,6 +62,10 @@
 			<result type="json" />
 		</action>
 		
+		<action name="retrieveCustomerNotificationListAll" class="controller.action.CustomerAction" method="retrieveCustomerNotificationListAll">
+			<result>/jsp/customer/CustomerNotificationListAll.jsp</result>
+		</action>
+		
 		<action name="readCustomerNotification" class="controller.action.CustomerAction" method="readCustomerNotification">
 			<result type="json" />
 		</action>

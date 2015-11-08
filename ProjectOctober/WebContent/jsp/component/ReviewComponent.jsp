@@ -5,14 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!-- Highchart -->
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/highcharts-more.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
-<!-- paging처리위한 코드 시작-->
-<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"></script>
-<!-- paging처리위한 코드 끝-->
+
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -211,6 +204,11 @@ $(function(){
 </s:if>
 
 <!-- Highchart -->
+<!-- paging처리위한 코드 시작-->
+<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"></script>
+<!-- paging처리위한 코드 끝-->
+
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>

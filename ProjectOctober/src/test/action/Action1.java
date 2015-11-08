@@ -128,8 +128,6 @@ public class Action1 extends ActionSupport implements RequestAware{
 		
 		
 		System.out.println(resultList1.toString());
-		
-		
 		return SUCCESS;
 	}
 }

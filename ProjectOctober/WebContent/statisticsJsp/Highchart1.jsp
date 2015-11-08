@@ -17,7 +17,7 @@ $(function () {
             text: '고객 성별 선호 staff'
         },
         subtitle: {
-            text: 'Source: WorldClimate.com'
+            text: 'Source: a.#'
         },
         xAxis: {
             categories: [

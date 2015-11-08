@@ -67,6 +67,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private int svcNum;
 	private int etpTemplateType;
 	private int ntfNum;
+	private int ntfCount;
 	
 	private int upCategory;//이미지 업로드시 용도 구별 위한 변수
 	
@@ -846,6 +847,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String retrieveEnterpriseNotificationList() throws Exception{
 		System.err.println((String)session.get("loginEtpNum"));
 		notificationList = etpDAO.retrieveEnterpriseNotificationList((String)session.get("loginEtpNum"));
+		ntfCount = notificationList.size();
 		if(notificationList != null) return SUCCESS;
 		else return ERROR;
 	}
@@ -1303,6 +1305,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setCouponSendList(List<Reservation> couponSendList) {
 		this.couponSendList = couponSendList;
+	}
+
+	public int getNtfCount() {
+		return ntfCount;
+	}
+
+	public void setNtfCount(int ntfCount) {
+		this.ntfCount = ntfCount;
 	}
 	
 }

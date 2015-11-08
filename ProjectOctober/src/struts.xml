@@ -14,13 +14,17 @@
 			</interceptor-stack>    		
     	</interceptors>
     	
-    	<default-action-ref name="toMainPage" />
+    	<default-action-ref name="toFirstPage" />
 
         <global-results>
             <result name="login" type="redirect">toLoginPage.action</result>
             <result name="error" type="redirect">toErrorPage.action</result>
         </global-results>
 
+		<action name="toFirstPage">
+			<result>/jsp/FirstPage.jsp</result>
+		</action>
+	
 		<action name="toMainPage">
 			<result>/jsp/Main.jsp</result>
 		</action>

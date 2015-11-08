@@ -51,7 +51,8 @@
         },
 
         computeTitle: function() {
-            return moment().format(this.opt('titleFormat'));
+        	 return moment().format("YYYY년 MM월 DD일");
+        	//return moment().format(this.opt('titleFormat'));
         },
 
         setHeight: function(height, isAuto) {
@@ -116,8 +117,8 @@
 
                         if (!didAddDayHeader) {						
 							tbody.append("<li class='fc-agendaList-dayHeader ui-widget-header'>" +
+                            " <span class='fc-agendaList-date'>"+ currentDayStart.format("YYYY MMMM Do") +" </span>" +
                             "<span class='fc-agendaList-day'>"+ currentDayStart.format('dddd') +"</span>" +
-                            " <span class='fc-agendaList-date'>"+ currentDayStart.format("Do MMMM YYYY") +"</span>" +
                         "</li>");
 
                             didAddDayHeader = true;
@@ -137,7 +138,7 @@
                                                 "<span class='fc-event-end-time'>"+ e.end.format('HH:mm')) +"</span>"+
                                             "</div>"+
                                             "<div class='panel-body'>" +
-                                              "<span class='fc-eventlist-desc'> 예약 description: " + e.svcDescription + "</span><br />"+
+                                              "<span class='fc-eventlist-desc'> 예약 코멘트: " + e.svcDescription + "</span><br />"+
                                               "<span class='fc-eventlist-cstEmail'> 고객 이메일: "+e.cstEmail +"</span><br>"+
                                               "<span class='fc-eventlist-title'> 예약 제목: " + e.title + "</span><br/>" +
                                               "<span class='fc-eventlist-empGender'> 서비스원 성별: " + e.employeeGender + "</span><br>" + 

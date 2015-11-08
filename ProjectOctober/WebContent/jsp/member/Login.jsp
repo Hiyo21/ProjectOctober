@@ -1,28 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>로그인</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejugothic.css"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-<!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
 
 <style type="text/css">
 	body {   
-    font-size: 12px
+    font-size: 12px;
+     font-family: "Helvetica Neue", "Jeju Gothic", Helvetica,Arial,sans-serif;
   }
   .main {
-    max-width: 320px;
+    max-width: 360px;
     margin: 0 auto;
   }
   .login-or {
@@ -50,10 +44,22 @@
     margin-top: 0px !important;
     margin-bottom: 0px !important;
   }
+  
   h3 {
     text-align: center;
     line-height: 300%;
   }
+  
+  .colorgraph {
+  height: 5px;
+  border-top: 0;
+  background: #c4e17f;
+  border-radius: 5px;
+  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
 
 </style>
 
@@ -71,6 +77,19 @@ function cust() {
 	$('#type').attr('value', 'customer');
 }
 
+
+$(function(){
+	$('#loginBtn').click(function(){
+		var errorMessage = '';
+		if($("#email").val().length == 0) errorMessage += '이메일을 입력하세요!\r\n';
+		if($("#pwd").val().length == 0) errorMessage += '패스워드를 입력하세요!\r\n';
+		if(errorMessage.length != 0){
+			alert(errorMessage);
+			return false;
+		}
+	});
+});
+
 </script>
 
 <title>로그인</title>
@@ -81,66 +100,39 @@ function cust() {
 
 <div class="container">
   <div class="row">
-
     <div class="main">
-
-      <h3>A#. 로그인을 진행해 주세요.</h3>
-
+      <h2>a.#에 오신 것을 환영합니다!</h2>
+	<hr class="colorgraph">
       <form role="form" action="loginProcess" method="post">
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+          <input type="text" class="form-control" id="email" name="email" placeholder="이메일 주소를 입력하세요.">
         </div>
-        <div class="form-group">
-          
+        <div class="form-group"> 
           <label for="inputPassword">Password</label>
-          <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password">
+          <input type="password" class="form-control" id="pwd" name="password" placeholder="패스워드를 입력하세요.">
         </div>
+        <s:if test="#session.invalid != null">
+        		<p style="color: red;"> 아이디 혹은 비밀번호가 틀렸습니다. 다시 입력해 주시기 바랍니다.</p>
+		</s:if>
         <div class="checkbox pull-right">
-         
-            
+         	
         </div>
-        <button type="submit" class="btn btn btn-primary">
-          Log In
-        </button>
-      </form>
-    
-    </div>
-    
-  </div>
+        
+ 
+        <hr class="colorgraph"> 
+        	<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6">
+                       <input type="submit" class="btn btn-lg btn-success btn-block" id="loginBtn" value="Sign In">
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-6">
+					<a data-toggle="modal" href="#myModal" class="btn btn-lg btn-primary btn-block">Register</a>
+				</div>
+			</div>
+		</form>
+		</div>
+	</div>
 </div>
 
-<%-- 	<div class = "container" id="joinWindow">
-		<div class="well well-lg" align="center">
-			<br><br><br>
-			<h1>Login</h1>
-			<form class="form-inline" role="form" onsubmit="return check()" action="${pageContext.request.contextPath}/member/loginProcess" method="post">
-    			<div class="form-group">
-    				<table>
-    					<tr>
-    						<td width="100px">
-			    				<label for="email">Email:</label>
-			    			</td>
-			    			<td>
-			    				<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-			    			</td>
-			    		<tr>
-			    		<tr>
-			    			<td width="100px">
-					    		<label for="password">Password:</label>
-			    			</td>
-			    			<td>
-					    		<input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password">
-			    			</td>
-			    			<td rowspan="2" width="100px" align="center">
-			    				<input type="submit" class="btn btn-default" value="Login">
-			    			</td>
-			    		</tr>
-			    	</table>
-			    </div>
-			<input type="hidden" id="type" value="">
-			</form>
-		</div>
-	</div> --%>
 </body>
 </html>
