@@ -892,15 +892,7 @@
 
 </head>
 <body>
-	<jsp:include page="/jsp/Header.jsp"></jsp:include>
-	<aside>
-		<ul>
-			<li><a href="#"><span>hello?</span></a></li>
-			<li><a href="#"><span>hel</span></a></li>
-		</ul>
-		<button><img src="${pageContext.request.contextPath}/image/btn_open.png"/></button>
-	</aside>
-	
+	<jsp:include page="/jsp/Header.jsp"></jsp:include>	
 	<h1>예약 스케쥴러</h1>
 	<br>
 	

@@ -8,6 +8,7 @@ public class Highchart7 {
 	private int technique;
 	private int price;
 	private int service;
+	
 	public String getYeardate() {
 		return yeardate;
 	}

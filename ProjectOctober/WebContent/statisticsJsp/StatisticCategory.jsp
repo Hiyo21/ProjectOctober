@@ -47,9 +47,6 @@ textarea {width:800px; height:300px;overflow:visible;}
 </head>
 <body>
 <s:include value="Header.jsp"></s:include>
-<!-- 내가 작성 -->
-<s:property value="etpEmail"/>
-<s:property value='#session.loginId'/>
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">통계1</a></li>
