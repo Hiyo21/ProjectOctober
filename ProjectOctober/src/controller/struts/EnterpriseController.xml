@@ -69,8 +69,6 @@
 			<result type="json" />
 		</action>
 		
-
-		
 		<!-- 사진업로드 / 갤러리 -->
 		<action name="toImageUploadPage">
 			<result>/jsp/enterprise/UploadEtpImage.jsp</result>
@@ -93,6 +91,10 @@
 			<interceptor-ref name="defaultStack" />
 			<result name="success">/jsp/enterprise/UploadEtpImage.jsp</result>
 			<result name="input">/jsp/enterprise/UploadEtpImage.jsp</result>
+		</action>
+		
+		<action name="deleteImage" class="controller.action.EnterpriseAction" method="deleteImage">
+			<result type="json"/>
 		</action>
 		
 		<action name="infoUploadAction" class="controller.action.FileUploadAction" method="uploadInfoImage">
@@ -128,6 +130,15 @@
 		<action name="checkCoupon" class="controller.action.EnterpriseAction" method="checkCoupon">
 			<result type="json" />
 		</action>
+		
+		<action name="saveInfoDesc" class="controller.action.EnterpriseAction" method="saveInfoDesc">
+			<result type="json"/>
+		</action>
+		
+		<action name="saveLocaDesc" class="controller.action.EnterpriseAction" method="saveLocaDesc">
+			<result type="json"/>
+		</action>
+		
 		
 		<!--     사업자 게시판 Action     -->
 	
@@ -184,6 +195,17 @@
 		
 				
 		<!--     Component Action     -->
+		<action name="cleanComponent" class="controller.action.EnterpriseAction" method="cleanComponent">
+			<result type="json"/>
+		</action>
+		
+		<action name="updateComponent" class="controller.action.EnterpriseAction" method="updateComponent">
+			<result type="json"/>
+		</action>
+		
+		<action name="resetComponent" class="controller.action.EnterpriseAction" method="resetComponent">
+			<result type="json"/>
+		</action>
 		
 		<action name="insertComponent" class="controller.action.EnterpriseAction" method="insertComponent">
 			<result type="json"/>
@@ -219,6 +241,12 @@
 		<action name="checkCoupon" class="controller.action.EnterpriseAction" method="checkCoupon">
 			<result type="json" />
 		</action>
+		
+		<!-- 사업자의 마이페이지 -->
+		<action name="toEnterpriseMyPage">
+			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
+		</action>
+		
 		
 		<!-- 사업자의 이용자 예약 내역 -->
 		<action name="toEptReservationHistoryPage" class="controller.action.EnterpriseAction" method="reservationHistory">
@@ -259,6 +287,23 @@
 		
 		<action name="readEnterpriseNotification" class="controller.action.EnterpriseAction" method="readEnterpriseNotification">
 			<result type="json" />
+		</action>
+		
+		<!-- 쿠폰 관련 -->
+		<action name="toEnterpriseCouponManagement" class="controller.action.EnterpriseAction" method="retrieveCouponList">
+			<result>/jsp/enterprise/EnterpriseCouponManagement.jsp</result>
+		</action>
+		
+		<action name="insertCoupon" class="controller.action.EnterpriseAction" method="insertCoupon">
+			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
+		</action>
+		
+		<action name="updateCoupon" class="controller.action.EnterpriseAction" method="updateCoupon">
+			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
+		</action>
+		
+		<action name="deleteCoupon" class="controller.action.EnterpriseAction" method="deleteCoupon">
+			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
 		</action>
 	</package>
 </struts>

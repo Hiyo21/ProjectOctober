@@ -49,7 +49,7 @@
 		$('.edit').hide();
 		
 		//로그인 한 사람이 페이지 주인과 동일 할 때 
-		if(loginId!=null && loginId==pageId){
+		if(loginId==pageId){
 			$('#etpBtBar').show();
 			$('#editBT').on('click', startEdit);
 		}else{

@@ -20,4 +20,6 @@ public interface ReservationMapper {
 	Integer insertOffDays(Reservation reservation);
 
 	Reservation retrieveReservation(Integer rsvNum);
+	
+	List<Reservation> couponSendList(String etpEmail);
 }

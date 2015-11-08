@@ -57,7 +57,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Component component;
 	private List<Component> componentList;
 	private Service service;	
-	
 	private Coupon coupon;
 	private String address;
 	private Integer rsvNum;
@@ -73,6 +72,18 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	private String infoPht;
 	private String logoPht;
+	
+	//쿠폰관련
+	private String title;
+	private String code;
+	private int rate;
+	private String startYear;
+	private String startMonth;
+	private String startDay;
+	private String endYear;
+	private String endMonth;
+	private String endDay;
+	private List<Reservation> couponSendList;
 	
 
 
@@ -190,10 +201,66 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
+	//쿠폰불러오기
 	public String retrieveCouponList() throws Exception{
+		etpNum = (String)session.get("loginEtpNum");
+		etpEmail = (String)session.get("loginId");
 		couponList = etpDAO.retrieveCouponList(etpNum);
-		return SUCCESS; 
-		
+		couponSendList = etpDAO.couponSendList(etpEmail);
+		return SUCCESS; 	
+	}
+	
+	//쿠폰생성하기
+	public String insertCoupon() throws Exception {
+		Coupon coupon = new Coupon();
+		etpNum = (String)session.get("loginEtpNum");
+		etpEmail = (String)session.get("loginId");
+		String startDate = startYear + "-" + startMonth + "-" + startDay + "T00:00:00";
+		String endDate = endYear + "-" + endMonth + "-" + endDay + "T00:00:00";
+		LocalDateTime cpnStartDate = LocalDateTime.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+		LocalDateTime cpnEndDate = LocalDateTime.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+		coupon.setEtpNum(etpNum);
+		coupon.setEtpEmail(etpEmail);
+		coupon.setCpnStartDate(cpnStartDate);
+		coupon.setCpnEndDate(cpnEndDate);
+		coupon.setCpnTitle(title);
+		coupon.setCpnRate(rate);
+		int result = etpDAO.insertCoupon(coupon);
+		if (result == 1) {
+			return SUCCESS;
+		}
+		else {
+			return ERROR;
+		}
+	}
+	
+	public String updateCoupon() throws Exception {
+		Coupon coupon = new Coupon();
+		etpNum = (String)session.get("loginEtpNum");
+		etpEmail = (String)session.get("loginId");
+		String startDate = startYear + "-" + startMonth + "-" + startDay + "T00:00:00";
+		String endDate = endYear + "-" + endMonth + "-" + endDay + "T00:00:00";
+		LocalDateTime cpnStartDate = LocalDateTime.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+		LocalDateTime cpnEndDate = LocalDateTime.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+		coupon.setEtpNum(etpNum);
+		coupon.setEtpEmail(etpEmail);
+		coupon.setCpnStartDate(cpnStartDate);
+		coupon.setCpnEndDate(cpnEndDate);
+		coupon.setCpnTitle(title);
+		coupon.setCpnRate(rate);
+		coupon.setCpnNum(cpnNum);
+		int result = etpDAO.updateCoupon(coupon);
+		if (result == 1) {
+			return SUCCESS;
+		}
+		else {
+			return ERROR;
+		}
+	}
+	
+	public String deleteCoupon() throws Exception {
+		etpDAO.deleteCoupon(cpnNum);
+		return SUCCESS;
 	}
 	
 	public String selectSvcCategory() throws Exception{
@@ -258,7 +325,31 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}*/
 	
 	//---------------------------------------Service Component End-----------------------------
+	public String saveInfoDesc() throws Exception{
+		System.out.println("===========check Action :: saveInfoDesc :: ");
+		
+		enterprise.setEtpNum(session.get("loginEtpNum").toString());
+		int result = etpDAO.updateEtp(enterprise);
+		
+		if(result == 1){
+			return SUCCESS;
+		}else{
+			return ERROR;
+		}
+	}
 	
+	public String saveLocaDesc() throws Exception{
+		System.out.println("===========check Action :: saveLocaDesc :: ");
+		
+		enterprise.setEtpNum(session.get("loginEtpNum").toString());
+		int result = etpDAO.updateEtp(enterprise);
+		
+		if(result == 1){
+			return SUCCESS;
+		}else{
+			return ERROR;
+		}
+	}
 	
 	public String selectEtpList() throws Exception{
 		enterpriseList = etpDAO.selectEtpList();			
@@ -271,6 +362,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 
 		if(enterprise.getPhotos() != null) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String deleteImage() throws Exception{
+		System.out.println("===========check Action :: deleteImage :: " + photoLocation.getPhotoNum());
+		int result = etpDAO.deletePht(photoLocation.getPhotoNum());
+		
+		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
 	
@@ -337,6 +436,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 				System.err.println("dynamic :: "+enterprise);
 				//동적 페이지 일때만 컴포넌트 리스트 set
 				enterprise.setComponents(etpDAO.receiveComponentList(etpNum));
+				System.err.println(enterprise.getComponents());
 				return "template1";
 			case 3:
 				//static_allInOne
@@ -415,10 +515,50 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	
 	
-//--------------------------------------- Component ----------------------------------------//
-
+//--------------------------------------- Component ----------------------------------------///	
+	public String firstInsertComponent(){
+		componentList = etpDAO.receiveComponentList("1265479385");
+		
+		for(Component c : componentList){
+			//신규가입자의 사업자 번호와 이메일 주소를 받아서 기존의 사업자 정보를 대체한다.
+			c.setEtpNum(session.get("loginEtpNum").toString());
+			c.setEtpEmail(session.get("loginId").toString());
+			//수정된 컴포넌트 객체를 인서트 한다
+			etpDAO.insertComponent(c);
+		}
+		
+		return SUCCESS;
+	}
 	
-	//////////////// Component Method ////////////////
+	public String resetComponent(){
+		componentList = etpDAO.receiveComponentList("1265479385");
+		int result= 0;
+		
+		for(Component c : componentList){
+			result = etpDAO.updateComponent(c);
+		}
+		
+		if(result == 1) {
+			return SUCCESS;
+		}else{
+			System.err.println("============check Action :: result :: " + result);
+			return ERROR;
+		}
+		
+	}
+	
+	public String cleanComponent(){
+		System.err.println("============= CleanComponent ==============");
+		if(etpDAO.receiveComponentList(etpNum).size()==0){
+			firstInsertComponent();
+		}
+		
+		//사업자의 모든 컴포넌트(총 8개) 정보에 0 값 입력
+		int result = etpDAO.cleanComponent(etpNum);
+		
+		if(result == 8) return SUCCESS;
+		else return ERROR;
+	}
 		
 	
 	public String insertComponent(){
@@ -454,6 +594,19 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			}
 		}
 
+	}
+	
+	public String updateComponent(){	
+		System.err.println("============= UpdateComponent ==============");
+		//ajax로 받은 컴포넌트 정보를 update하여 DB로 저장
+		int result = etpDAO.updateComponent(component);
+		
+		if(result == 1) {
+			return SUCCESS;
+		}else{
+			System.err.println("============check Action :: result :: " + result);
+			return ERROR;
+		}
 	}
 	
 		
@@ -587,10 +740,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}
 		return SUCCESS;			
 	}
-	
-	
-	
-	
 	
 	////////////////////MAP////////////////////
 	public String showMap() {
@@ -1047,5 +1196,84 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.ntfNum = ntfNum;
 	}
 	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
+
+	public String getStartYear() {
+		return startYear;
+	}
+
+	public void setStartYear(String startYear) {
+		this.startYear = startYear;
+	}
+
+	public String getStartMonth() {
+		return startMonth;
+	}
+
+	public void setStartMonth(String startMonth) {
+		this.startMonth = startMonth;
+	}
+
+	public String getStartDay() {
+		return startDay;
+	}
+
+	public void setStartDay(String startDay) {
+		this.startDay = startDay;
+	}
+
+	public String getEndYear() {
+		return endYear;
+	}
+
+	public void setEndYear(String endYear) {
+		this.endYear = endYear;
+	}
+
+	public String getEndMonth() {
+		return endMonth;
+	}
+
+	public void setEndMonth(String endMonth) {
+		this.endMonth = endMonth;
+	}
+
+	public String getEndDay() {
+		return endDay;
+	}
+
+	public void setEndDay(String endDay) {
+		this.endDay = endDay;
+	}
+
+	public List<Reservation> getCouponSendList() {
+		return couponSendList;
+	}
+
+	public void setCouponSendList(List<Reservation> couponSendList) {
+		this.couponSendList = couponSendList;
+	}
 	
 }

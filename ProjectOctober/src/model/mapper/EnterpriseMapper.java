@@ -95,6 +95,12 @@ public interface EnterpriseMapper {
 
 	List<Coupon> retrieveCouponList(String etpNum);
 
+	int insertCoupon(Coupon coupon);
+	
+	int updateCoupon(Coupon coupon);
+	
+	int deleteCoupon(int cpnNum);
+
 	Coupon checkCoupon(Coupon coupon);
 
 	String retrieveRegCard(String etpNum);
@@ -134,5 +140,10 @@ public interface EnterpriseMapper {
 	List<Notification> retrieveEnterpriseNotificationListAll(String etpNum);
 	
 	Integer readEnterpriseNotification(Integer ntfNum);
+	
+	int updateEtp(Enterprise enterprise);
+
+	int deletePht(Integer photoNum);
+	
 	
 }

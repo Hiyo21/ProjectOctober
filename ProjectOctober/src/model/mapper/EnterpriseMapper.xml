@@ -503,8 +503,8 @@
 			</if>
 		</set>
 		where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
-		and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
 	</update>
+	
 	<update id="updateByPrimaryKey" parameterType="model.vo.Enterprise">
 		update HR.ENTERPRISE
 		set ETP_OWNER = #{etpOwner,jdbcType=VARCHAR},
@@ -561,6 +561,15 @@
 	<select id="selectLogoPht" parameterType="String" resultType="String">
   		select pht_address from (select rownum, pht_address from (select photo_num, pht_address from photo_location where etp_num = #{etpNum} and pht_usage = 'logo' order by pht_upload_date desc) where rownum=1)photo
 	</select>
+		
+	<update id="updateInfoDesc" parameterType="Enterprise">
+		update enterprise set etp_description = #{etpDescription} where etp_num = #{etpNum}
+	</update>
+
+
+	<delete id="deletePht" parameterType="int">
+		delete photo_location where photo_num = #{photoNum}
+	</delete>
 
 	<!-- Component Mapper -->
 	<select id="selectComponent" parameterType="Map" resultMap="ComponentResultMap">
@@ -581,9 +590,11 @@
 
 	<update id="updateComponent" parameterType="Component">
 		update component
-		set component_width = #{componentWidth}, component_height = #{componentHeight}, component_pos_x =
-		#{componentPosX}, component_pos_y = #{componentPosY}
-		where etp_num = #{etpNum} and component_id = #{componentID}
+		set 
+		component_width = #{componentWidth}, component_height = #{componentHeight}, 
+		component_pos_x = #{componentPosX}, component_pos_y = #{componentPosY}
+		where 
+		etp_num = #{etpNum} and component_id = #{componentID}
 	</update>
 	
 	<delete id="deleteComponent" parameterType="String">
@@ -714,8 +725,20 @@
 	</insert>
 
 	<select id="retrieveCouponList" parameterType="String" resultMap="CouponResultMap">
-		select * from COUPON where etp_num = #{value}
+		select * from COUPON where etp_num = #{etpNum}
 	</select>
+	
+	<insert id="insertCoupon" parameterType="Coupon">
+		insert into Coupon values (coupon_seq.nextVal, #{etpNum}, #{etpEmail}, #{cpnTitle}, 'test', #{cpnRate}, #{cpnStartDate}, #{cpnEndDate})
+	</insert>
+	
+	<update id="updateCoupon" parameterType="Coupon">
+		update COUPON set cpn_title=#{cpnTitle}, cpn_rate=#{cpnRate}, cpn_start_date=#{cpnStartDate}, cpn_end_date=#{cpnEndDate}  where cpn_num=#{cpnNum}
+	</update>
+	
+	<delete id="deleteCoupon" parameterType="Integer">
+		delete COUPON where cpn_num = #{cpnNum}
+	</delete>
 
 	<select id="checkCoupon" parameterType="Coupon" resultMap="CouponResultMap">
 		select * from COUPON where cpn_num = #{cpnNum} and cpn_code = #{cpnCode}

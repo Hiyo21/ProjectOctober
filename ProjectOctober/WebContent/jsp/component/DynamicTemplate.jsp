@@ -8,14 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dynamic Templete</title>
 
-<!-- Latest compiled and minified CSS -->
-<link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'/>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/gridstack/gridstack-extra.css" />
 <style>
 	.delBT{
 		position: absolute;
@@ -41,12 +33,13 @@
 		text-align: center;
 	}
 	
-#example_paginate {
+/* 	2015년 10월 30일 오전 12시 08분에 원격 저장소에서 가져온 거. 필요없는 듯?
+	#example_paginate {
 	text-align: center;
 	cursor: pointer; 
-}
+} */
 
-
+	
 </style>
 
 <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
@@ -67,21 +60,13 @@
 
 <script>
 
-
-	
-
 $(function(){
 	defaultGridSet();
 
-
 	hideBT();
-
-
-
 });
 
 function defaultGridSet(){
-
 	var options = {
     		always_show_resize_handle : false,
         	placeholder_class : 'grid-stack-placeholder',
@@ -96,6 +81,7 @@ function defaultGridSet(){
 	//drag, resize false
 	grid.movable('.grid-stack-item', false);
 	grid.resizable('.grid-stack-item', false);
+	
 }
 
 function hideBT(){
@@ -106,14 +92,9 @@ function hideBT(){
 	$('.edit').hide();
 	
 	//로그인 한 사람이 페이지 주인과 동일 할 때 
-	if(loginId!=null && loginId==pageId){
+	if(loginId==pageId){
 		$('#etpBtBar').show();
 		$('#editBT').on('click', startEdit);
-
-		/* setTimeout(function(){$(this).off('click')}, 1000);
-		$('#editBT').off('click'); */
-
-		//$('#editBt').off('click');
 
 	}else{
 		$('#etpBtBar').hide();	
@@ -241,7 +222,7 @@ function resetPage(){
 
 	var serialization = [
          {componentID: "topCP" , componentPosX: 1, componentPosY: 0, componentWidth: 10, componentHeight: 2},
-         {componentID: "etpBtBar" , componentPosX: 1, componentPosY: 2, componentWidth: 10, componentHeight: 1},
+         {componentID: "etpBtCP" , componentPosX: 1, componentPosY: 2, componentWidth: 10, componentHeight: 1},
          {componentID: "rsvBt", componentPosX: 1, componentPosY: 3, componentWidth: 10, componentHeight: 1},
          {componentID: "infoCP", componentPosX: 1, componentPosY: 4, componentWidth: 10, componentHeight: 3},
          {componentID: "svcCP", componentPosX: 1, componentPosY: 7, componentWidth: 7, componentHeight: 5},
@@ -262,8 +243,7 @@ function remove_widget(item){
 
 // 불러온 컴포넌트 출력
 function printComponent(items){
-	
-    
+	   
     var grid = $('.grid-stack').data('gridstack');
     grid.remove_all();  
         
@@ -281,10 +261,10 @@ function printComponent(items){
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
 		//사업자 편집용 버튼은 삭제할 수 없도록 하기 위해 삭제 버튼 없음	
-		case 'etpBtBar':
+		case 'etpBtCP':
 			grid.add_widget(
-				$('<div id="etpBtBar">'
-        		+'<div class="grid-stack-item-content" id="inEtpBtBar">'
+				$('<div id="etpBtCP">'
+        		+'<div class="grid-stack-item-content" id="inEtpBtCP">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
@@ -367,7 +347,7 @@ function eventTest(){
    $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
    $('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
    $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
-   $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
+   $('#inEtpBtCP').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
    
 }
@@ -394,7 +374,7 @@ function eventTest(){
 	    </div>
    		
    		<!-- 사업자 전용 버튼 -->
-	    <div class="grid-stack-item" id="etpBtBar"
+	    <div class="grid-stack-item" id="etpBtCP"
 	    data-gs-x='1' data-gs-y='3' data-gs-width='10' data-gs-height='1'>
 	    	<!-- 필수 항목이므로 지울 수 없음!! -->		    
 			<div class="grid-stack-item-content">

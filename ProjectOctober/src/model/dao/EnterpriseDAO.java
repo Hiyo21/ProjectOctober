@@ -85,6 +85,20 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
+	public int updateEtp(Enterprise enterprise) {
+		System.out.println("============check DAO :: updateInfoDesc()");
+		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try{
+			int result = session.getMapper(EnterpriseMapper.class).updateByPrimaryKeySelective(enterprise);
+			System.err.println("###### Check Error :: " + result);
+			if(result == 1) session.commit();
+			else session.rollback();
+			
+			return result;
+		}finally{
+			session.close();
+		}
+	}
 	
 	public List<Service> selectServiceList(String etpNum) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
@@ -258,11 +272,17 @@ public class EnterpriseDAO extends DAOTemplate{
 	public int cleanComponent(String etpNum) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
-			return session.getMapper(EnterpriseMapper.class).cleanComponent(etpNum);
+			int result = session.getMapper(EnterpriseMapper.class).cleanComponent(etpNum);
+			
+			if(result == 8) session.commit();
+			else session.rollback();
+			
+			return result;
 
 		}finally{
 			session.close(); 
 		}
+		
 	}
 
 	
@@ -378,6 +398,23 @@ public class EnterpriseDAO extends DAOTemplate{
 			return session.getMapper(EnterpriseMapper.class).retrieveCouponList(etpNum);
 		}finally{session.close();}
 	}
+	
+	public int insertCoupon(Coupon coupon) {
+		return dataModificationTemplate(s->{return s.getMapper(EnterpriseMapper.class).insertCoupon(coupon);});
+	}
+	
+	public int updateCoupon(Coupon coupon) {
+		return dataModificationTemplate(s->{return s.getMapper(EnterpriseMapper.class).updateCoupon(coupon);});
+	}
+	
+	public int deleteCoupon(int cpnNum) {
+		return dataModificationTemplate(s->{return s.getMapper(EnterpriseMapper.class).deleteCoupon(cpnNum);});
+	}
+	
+	public List<Reservation> couponSendList(String etpEmail){
+		return dataRetrievalTemplate(s->{return s.getMapper(ReservationMapper.class).couponSendList(etpEmail);});
+	}
+	
 
 	public Coupon checkCoupon(Coupon coupon) {
 		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(coupon);});
@@ -398,6 +435,16 @@ public class EnterpriseDAO extends DAOTemplate{
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
 			return session.getMapper(EnterpriseMapper.class).selectLogoPht(etpNum);
+		}finally{session.close();}
+	}
+	
+	public int deletePht(Integer photoNum) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			int result = session.getMapper(EnterpriseMapper.class).deletePht(photoNum);
+				if(result == 1) session.commit();
+				else session.rollback();
+			return result;
 		}finally{session.close();}
 	}
 	
