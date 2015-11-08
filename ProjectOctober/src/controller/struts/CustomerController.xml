@@ -41,5 +41,29 @@
 		<action name="retrieveReservations" class="controller.action.CustomerAction" method="retrieveReservations">
 			<result type="json"/>
 		</action>
+		
+		<action name="insertCustomerNotification" class="controller.action.CustomerAction" method="insertCustomerNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="updateDurationCustomerNotification" class="controller.action.CustomerAction" method="updateDurationCustomerNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="updatePeriodCustomerNotification" class="controller.action.CustomerAction" method="updatePeriodCustomerNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="deleteCustomerNotification" class="controller.action.CustomerAction" method="deleteCustomerNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="retrieveCustomerNotificationList" class="controller.action.CustomerAction" method="retrieveCustomerNotificationList">
+			<result type="json" />
+		</action>
+		
+		<action name="readCustomerNotification" class="controller.action.CustomerAction" method="readCustomerNotification">
+			<result type="json" />
+		</action>
 	</package>
 </struts>

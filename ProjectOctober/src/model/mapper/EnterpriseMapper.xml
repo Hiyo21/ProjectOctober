@@ -503,8 +503,8 @@
 			</if>
 		</set>
 		where ETP_NUM = #{etpNum,jdbcType=VARCHAR}
-		and ETP_EMAIL = #{etpEmail,jdbcType=VARCHAR}
 	</update>
+	
 	<update id="updateByPrimaryKey" parameterType="model.vo.Enterprise">
 		update HR.ENTERPRISE
 		set ETP_OWNER = #{etpOwner,jdbcType=VARCHAR},
@@ -561,6 +561,15 @@
 	<select id="selectLogoPht" parameterType="String" resultType="String">
   		select pht_address from (select rownum, pht_address from (select photo_num, pht_address from photo_location where etp_num = #{etpNum} and pht_usage = 'logo' order by pht_upload_date desc) where rownum=1)photo
 	</select>
+		
+	<update id="updateInfoDesc" parameterType="Enterprise">
+		update enterprise set etp_description = #{etpDescription} where etp_num = #{etpNum}
+	</update>
+
+
+	<delete id="deletePht" parameterType="int">
+		delete photo_location where photo_num = #{photoNum}
+	</delete>
 
 	<!-- Component Mapper -->
 	<select id="selectComponent" parameterType="Map" resultMap="ComponentResultMap">
@@ -581,9 +590,11 @@
 
 	<update id="updateComponent" parameterType="Component">
 		update component
-		set component_width = #{componentWidth}, component_height = #{componentHeight}, component_pos_x =
-		#{componentPosX}, component_pos_y = #{componentPosY}
-		where etp_num = #{etpNum} and component_id = #{componentID}
+		set 
+		component_width = #{componentWidth}, component_height = #{componentHeight}, 
+		component_pos_x = #{componentPosX}, component_pos_y = #{componentPosY}
+		where 
+		etp_num = #{etpNum} and component_id = #{componentID}
 	</update>
 	
 	<delete id="deleteComponent" parameterType="String">
@@ -760,4 +771,33 @@
 	<update id="updateTemplate" parameterType="Enterprise">
 		update enterprise set etp_template_type = #{etpTemplateType}, etp_theme_type = #{etpThemeType} where etp_num = #{etpNum}
 	</update>
+	
+	<insert id="insertEnterpriseNotification" parameterType="Notification">
+		insert into notification values(notification_seq.nextval, #{rsvNum}, #{cstEmail}, #{etpNum}, #{etpEmail}, #{ntfMessage}, #{ntfTime}, #{ntfRead})
+	</insert>
+	
+	<insert id="updateDurationEnterpriseNotification" parameterType="Notification">
+		insert into notification values(notification_seq.nextval, #{rsvNum}, #{cstEmail}, #{etpNum}, #{etpEmail}, #{ntfMessage}, #{ntfTime}, #{ntfRead})
+	</insert>
+	
+	<insert id="updatePeriodEnterpriseNotification" parameterType="Notification">
+		insert into notification values(notification_seq.nextval, #{rsvNum}, #{cstEmail}, #{etpNum}, #{etpEmail}, #{ntfMessage}, #{ntfTime}, #{ntfRead})
+	</insert>
+	
+	<delete id="deleteEnterpriseNotification" parameterType="Notification">
+		insert into notification(ntf_num, cst_email, etp_num, etp_email, ntf_message, ntf_time, ntf_read) values(notification_seq.nextval, #{cstEmail}, #{etpNum}, #{etpEmail}, #{ntfMessage}, #{ntfTime}, #{ntfRead})
+	</delete>
+	
+	<select id="retrieveEnterpriseNotificationList" parameterType="string" resultMap="NotificationResultMap">
+		select * from notification where etp_num = #{value} and ntf_read = 0
+	</select>
+	
+	<select id="retrieveEnterpriseNotificationListAll" parameterType="string" resultMap="NotificationResultMap">
+		select * from notification where etp_num = #{value}
+	</select>
+	
+	<update id="readEnterpriseNotification" parameterType="int">
+		update notification set ntf_read = 1 where ntf_num= #{value}
+	</update>
+
 </mapper>

@@ -81,6 +81,7 @@ function defaultGridSet(){
 	//drag, resize false
 	grid.movable('.grid-stack-item', false);
 	grid.resizable('.grid-stack-item', false);
+	
 }
 
 function hideBT(){
@@ -91,14 +92,9 @@ function hideBT(){
 	$('.edit').hide();
 	
 	//로그인 한 사람이 페이지 주인과 동일 할 때 
-	if(loginId!=null && loginId==pageId){
+	if(loginId==pageId){
 		$('#etpBtBar').show();
 		$('#editBT').on('click', startEdit);
-
-		/* setTimeout(function(){$(this).off('click')}, 1000);
-		$('#editBT').off('click'); */
-
-		//$('#editBt').off('click');
 
 	}else{
 		$('#etpBtBar').hide();	
@@ -226,7 +222,7 @@ function resetPage(){
 
 	var serialization = [
          {componentID: "topCP" , componentPosX: 1, componentPosY: 0, componentWidth: 10, componentHeight: 2},
-         {componentID: "etpBtBar" , componentPosX: 1, componentPosY: 2, componentWidth: 10, componentHeight: 1},
+         {componentID: "etpBtCP" , componentPosX: 1, componentPosY: 2, componentWidth: 10, componentHeight: 1},
          {componentID: "rsvBt", componentPosX: 1, componentPosY: 3, componentWidth: 10, componentHeight: 1},
          {componentID: "infoCP", componentPosX: 1, componentPosY: 4, componentWidth: 10, componentHeight: 3},
          {componentID: "svcCP", componentPosX: 1, componentPosY: 7, componentWidth: 7, componentHeight: 5},
@@ -265,10 +261,10 @@ function printComponent(items){
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
 		//사업자 편집용 버튼은 삭제할 수 없도록 하기 위해 삭제 버튼 없음	
-		case 'etpBtBar':
+		case 'etpBtCP':
 			grid.add_widget(
-				$('<div id="etpBtBar">'
-        		+'<div class="grid-stack-item-content" id="inEtpBtBar">'
+				$('<div id="etpBtCP">'
+        		+'<div class="grid-stack-item-content" id="inEtpBtCP">'
         		+'</div></div>')
         		,node.componentPosX, node.componentPosY, node.componentWidth, node.componentHeight);
 			break;
@@ -351,7 +347,7 @@ function eventTest(){
    $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
    $('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
    $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
-   $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
+   $('#inEtpBtCP').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
    
 }
@@ -378,7 +374,7 @@ function eventTest(){
 	    </div>
    		
    		<!-- 사업자 전용 버튼 -->
-	    <div class="grid-stack-item" id="etpBtBar"
+	    <div class="grid-stack-item" id="etpBtCP"
 	    data-gs-x='1' data-gs-y='3' data-gs-width='10' data-gs-height='1'>
 	    	<!-- 필수 항목이므로 지울 수 없음!! -->		    
 			<div class="grid-stack-item-content">

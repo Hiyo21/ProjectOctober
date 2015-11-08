@@ -5,19 +5,12 @@ import java.time.LocalDateTime;
 
 public class Notification implements Serializable {
     private Integer ntfNum;
-
     private Integer rsvNum;
-
     private String cstEmail;
-
     private String etpNum;
-
     private String etpEmail;
-
     private String ntfMessage;
-
     private LocalDateTime ntfTime;
-
     private Integer ntfRead;
 
     private static final long serialVersionUID = 1L;
@@ -26,64 +19,72 @@ public class Notification implements Serializable {
         return ntfNum;
     }
 
-    public void setNtfNum(Integer ntfNum) {
+    public Notification setNtfNum(Integer ntfNum) {
         this.ntfNum = ntfNum;
+        return this;
     }
 
     public Integer getRsvNum() {
         return rsvNum;
     }
 
-    public void setRsvNum(Integer rsvNum) {
+    public Notification setRsvNum(Integer rsvNum) {
         this.rsvNum = rsvNum;
+        return this;
     }
 
     public String getCstEmail() {
         return cstEmail;
     }
 
-    public void setCstEmail(String cstEmail) {
+    public Notification setCstEmail(String cstEmail) {
         this.cstEmail = cstEmail;
+        return this;
     }
 
     public String getEtpNum() {
         return etpNum;
     }
 
-    public void setEtpNum(String etpNum) {
+    public Notification setEtpNum(String etpNum) {
         this.etpNum = etpNum;
+        return this;
     }
 
     public String getEtpEmail() {
         return etpEmail;
     }
 
-    public void setEtpEmail(String etpEmail) {
+    public Notification setEtpEmail(String etpEmail) {
         this.etpEmail = etpEmail;
+        return this;
     }
 
     public String getNtfMessage() {
         return ntfMessage;
     }
 
-    public void setNtfMessage(String ntfMessage) {
+    public Notification setNtfMessage(String ntfMessage) {
         this.ntfMessage = ntfMessage;
+        return this;
     }
 
     public LocalDateTime getNtfTime() {
         return ntfTime;
     }
 
-    public void setNtfTime(LocalDateTime ntfTime) {
+    public Notification setNtfTime(LocalDateTime ntfTime) {
         this.ntfTime = ntfTime;
+        return this;
     }
 
     public Integer getNtfRead() {
         return ntfRead;
     }
 
-    public void setNtfRead(Integer ntfRead) {
+    public Notification setNtfRead(Integer ntfRead) {
         this.ntfRead = ntfRead;
+        return this;
     }
 
     @Override

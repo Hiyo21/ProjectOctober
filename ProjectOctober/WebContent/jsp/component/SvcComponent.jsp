@@ -10,30 +10,17 @@
 
 <script type="text/javascript">
 	$(function(){
-		
-		$('#svcCategoryModal').on('show.bs.modal', function(event){
-			var modal = $(this);
-		    var button = $(event.relatedTarget);
-			var title = button.data('title');
-			var submit = button.data('submit');
-			var onclick = button.data('onclick');			
-			modal.find('.modal-title').text(title);
-			modal.find('.modal-footer .btn-primary').text(submit);
-			modal.find('.modal-content .btn-primary').attr('onclick', onclick);
-			modal.focus();
-			$('.edit').hide();
-			$('grid-stack-item-content').hide();
-			//modal.find('.modal-backdrop').css('z-index', -10);
-		 });
-		$('#svcCategoryModal').on('hidden.bs.modal', function(){			
-			$('.edit').show();
-			$('grid-stack-item-content').show();
+				
+		$('.modal').on('shown.bs.modal', function(){
+			$('.modal-backdrop').css('z-index', -1);
+			$('.modal-dialog').css('z-index', +1);
+			$('.input-group-btn').css('z-index', 0);
 			
 		});
+
 	});
 	
-	
-	
+
 	//수정할 메뉴 카테고리 갖고 오기
 	function selectSvcCategory(category){
 		$.ajax({
@@ -96,7 +83,7 @@
 				$('#svcCategoryModal').modal('hide').on('hidden.bs.modal', function(){
 					$('#svcCategoryModal').hide();
 				});
-				location.reload();
+
 			},
 			error: function(doc){
 				console.log("insert Error");
@@ -166,13 +153,13 @@
 	function printSvcList(object){
 		console.log(object);
 		var str = '<br><p align="right">'
-			str	+='<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModalForm" onclick=""'
-			str	+='data-title=\'서비스 추가\' data-submit=\'추가\' data-dismiss=\'modal\' data-onclick=\'insertService()\'>서비스 추가</button></p>';
+			str	+='<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModalForm"'
+			str	+='data-dismiss=\'modal\'>서비스 추가</button></p>';
 			
 		$.each(object.categoryList, function(index,item){
 			str += '<div class="panel panel-default"><div class="panel-heading"><b>'+item+'</b>';
 			str += '<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcCategoryModal"';
-			str += 'data-title=\'서비스 수정\' data-submit=\'수정\' data-dismiss=\'modal\' onclick=\'selectSvcCategory("'+item+'")\' data-onclick=\'updateSvcCategory()\'>수정</button>';
+			str += 'data-dismiss=\'modal\' onclick=\'selectSvcCategory("'+item+'")\'>수정</button>';
 			str += '</div>';	
 			
 			$.each(object.serviceList, function(index, svcItem){
@@ -191,8 +178,8 @@
 			str += '</div>';
 		});
 		$('#svcListTab').html(str);		
-		
 	}
+	
 
 </script>
 
@@ -204,42 +191,39 @@
 <br>
 
 <p align="right">
-<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModalForm"
+<button class="btn btn-default btn-md edit hidden-xs" data-toggle="modal" data-target="#svcModalForm"
 data-title="서비스 추가" data-submit="추가" data-onclick="insertService()" onclick="">서비스 추가</button>
 </p>
 
 <s:if test="#session.categoryList != null">
 <s:iterator value="#session.categoryList">
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
+	<div class="panel panel-default hidden-xs">
+		<div class="panel-heading hidden-xs">
 		 	<b><s:property/></b>
 		 	<s:set var="category"><s:property/></s:set>
 		 	
 		 	<!-- 인서트시 한 사업자의 카데고리에 중복이 없게 해야 함//셀렉트 할때는 사업자와 카테고리를 조인하여 검색 -->
-		 	<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModal" data-title="서비스 수정" 
-			data-submit="수정" data-dismiss="modal" onclick='selectSvcCategory("<s:property/>")' data-onclick='updateSvcCategory()'>수정</button>
+		 	<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcCategoryModal" 
+			data-dismiss="modal" onclick='selectSvcCategory("<s:property/>")'>수정</button>
 		</div>
 		
 		<s:iterator value="#session.enterprise.services">
 		<s:if test='%{svcCategory.equalsIgnoreCase(#category)}'> 
 		<!-- 서비스 항목-->
-		<div class="panel-body" id="categoryBody">
+		<div class="panel-body hidden-xs" id="categoryBody">
 		  	<table class="table table-hover">
 		  		<tr>
-		  			<td class="col-xs-3">
+		  			<td class="col-xs-4 hidden-xs">
 		  				<s:property value="svcTitle"/>
 		  			</td>
-		  			<td class="col-xs-5">
+		  			<td class="col-xs-6 hidden-xs">
 		  				<s:if test="svcDescription != null">
 		  					<s:property value="svcDescription"/><br>
 		  				</s:if>
 		  				비용 : <s:property value="svcCost"/> <br>시간 : <s:property value="svcTime"/>
 		  			</td>
-		  			<td class="col-xs-2">
-		  				<button type="button" class="btn btn-success btn-md" onclick="rsvInsert(<s:property value="svcNum"/>)" style="width: 100px">예약 하기</button>
-		  			</td>
-		  			<td class="edit col-xs-2">
+		  			<td class="edit col-xs-2 hidden-xs">
 		  				<button type="button" class="btn btn-danger btn-md edit" onclick="deleteService(<s:property value="svcNum"/>)">삭제</button>
 		  			</td>
 		  		</tr> 

@@ -22,7 +22,6 @@ $(document).ready(function() {
 } );
 //위에 코드는 페이징 처리를 위한 것
 
-
 $(function(){	
     $('#chart').highcharts({
     	chart: {
@@ -72,14 +71,13 @@ $(function(){
             name: '이용자 평가',
             data: [
                    <s:iterator value="#session.gunList">
-                   		<s:property value="average2"/>,
                    		<s:property value="hygiene2"/>,
                    		<s:property value="comfort2"/>,
                    		<s:property value="technique2"/>,
                    		<s:property value="price2"/>,
                    		<s:property value="service2"/>
                    </s:iterator>
-                  ]
+			]
         }]
     });
 });
@@ -89,17 +87,10 @@ $(function(){
 
 </body>
 <body>
-<div class="container">
-		<div class="row">
-			<div class="col-md-6" align="center">
-				<h1>종합평가 점수 / 정보</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6" id="chart" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto;" align="center">
-				
-			</div>
-		</div>
+<div class="container-fluid">
+	<div class="col-xs-12" id="chart" style="min-width: 200px; max-width: 400px; height: 400px; margin: 0 auto;" align="center">
+		
+	</div>
 	<s:if test="#session.memCode == 1">
 		<div>
 			<table id="example" class="display" cellspacing="0" width="100%"  border="1">
@@ -214,12 +205,9 @@ $(function(){
 						
 					</tr>			
 				</table>
-				<center><input type="submit" value="평가"></center><br> 
-				</form>
-				<!-- row2 end -->
-	
-	
-
+				<p align="center"><input type="submit" value="평가"></p><br> 
+			</form>
+			<!-- row2 end -->
 </s:if>
 
 <!-- Highchart -->
@@ -227,71 +215,7 @@ $(function(){
 <script src="http://code.highcharts.com/highcharts-more.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-<script type="text/javascript">
 
-
- $(function(){	
-    $('#chart').highcharts({
-    	chart: {
-            polar: true,
-            type: 'line',
-            backgroundColor: 'transparent'
-        },
-
-        title: {
-            text: '업체 평점',
-            x: -80
-        },
-
-        pane: {
-            size: '80%'
-        },
-
-        xAxis: {
-            categories: ['청결', '가격', '분위기', '서비스', '기술'],
-            tickmarkPlacement: 'on',
-            lineWidth: 0
-        },
-
-        yAxis: {
-            gridLineInterpolation: 'polygon',
-            lineWidth: 0,
-            min: 0,
-            max: 5
-        },
-
-        tooltip: {
-            shared: true
-        },
-
-        legend: {
-            align: 'right',
-            verticalAlign: 'top',
-            y: 70,
-            layout: 'vertical'
-        },
-        
-        tooltip: {
-            valueDecimals: 2
-        },
-
-        series: [{
-            name: '이용자 평가',
-            data: [
-                   <s:iterator value="gunList">
-                   		<s:property value="average2"/>,
-                   		<s:property value="hygiene2"/>,
-                   		<s:property value="comfort2"/>,
-                   		<s:property value="technique2"/>,
-                   		<s:property value="price2"/>,
-                   		<s:property value="service2"/>
-                   </s:iterator>
-                  ]
-        }]
-    });
-});
-   
-</script>
 
 </body>
 </html>

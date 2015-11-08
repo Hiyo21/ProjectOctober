@@ -63,56 +63,54 @@
 						var specialBT = $('#specialBT<s:property value="etpNum"/>').html();
 							specialBT = '';
 						$.each(special, function(i, item){
-							specialBT += '<button type="button" class="btn btn-info">'+item+"</button>&nbsp;&nbsp;";
+							specialBT += '<span class="label label-info">'+item+"</span>&nbsp;&nbsp;";
 						});
 						$('#specialBT<s:property value="etpNum"/>').html(specialBT);		
 					});
 				</script>
-				<!-- "특징" 버튼이 뿌려질 구역 -->
-              	<div class="col-md-6" align="left" id='specialBT<s:property value="etpNum"/>'><!-- row1 left start -->
-              	
+				<!-- "특징, 주소, 영업시간" 구역 -->
+              	<div class="col-xs-6" align="left" id='specialBT<s:property value="etpNum"/>'><!-- row1 left start -->
+					
 				</div> <!-- row1 Left end -->
-				<div class="col-md-6" align="right"><!-- row1 right start -->		
+				<div class="col-xs-6" align="right"><!-- row1 right start -->		
        				<a href='#'>
-       				<button type="button" class="btn btn-primary active" style="width: 100px">예약</button></a>
+       				<button type="button" class="btn btn-primary" style="width: 100px">예약</button></a>
 				</div><!-- row1 right end -->
 			</div><!--  row1 end -->
 			
-			<!-- row2 start -->
+			<div class="row" align="left"><!-- row2 start -->
+				<div class="col-xs-12">
+					<!-- 주소, 영업시간 -->
+					<span class="label label-success">주소</span> <s:property value="etpAddress"/>&nbsp;&nbsp;
+					<span class="label label-success">영업시간</span> <s:property value="etpStartHour"/> ~ <s:property value="etpEndHour"/>
+				</div>
+			</div>
+			
+			<!-- row3 start -->
 			<div class="row" style="padding: 10px">
 				<!-- image 뿌리기 -->
 				<!-- 리스트용 사진이 존재할 경우 -->
-				<div class="col-md-6" align="left"><!-- row2 left start -->
-					<s:if test="infoPht != null">
-			         	<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
-			   			<img src='${pageContext.request.contextPath}/<s:property value="infoPht"/>' class='img-responsive'>
+				<div class="col-xs-6"><!-- row2 left start -->
+					<s:if test="infoPht == null">
+			         	<!-- 인포사진 부재시 기본적으로 뿌려지는 사진 -->
+						<img src='${pageContext.request.contextPath}/image/wait.gif' class='img-responsive'>
 					</s:if>
 					<s:else>
-						<!-- 인포사진 부재시 기본적으로 뿌려지는 사진 -->
-						<s:if test='etpSuperclass.equals("마사지샵")'>
-							<img src='http://coolmassage.net/data/apms/background/%EB%B6%84%EB%8B%B9%EB%A7%88%EC%82%AC%EC%A7%801.jpg' class='img-responsive'>
-						</s:if>
-						<s:if test='etpSuperclass.equals("네일샵")'>
-							<img src='http://img.kormedi.com/news/article/__icsFiles/afieldfile/2012/10/15/cc201210150001145.jpg' class='img-responsive'>
-						</s:if>
+						<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
+			   			<img src='${pageContext.request.contextPath}/<s:property value="infoPht"/>' class='img-responsive'>
 					</s:else>
 				</div>
-            	<div class="col-md-6 etpDescDiv"><!-- 오른쪽 칸 -->
-            	<s:if test="etpDescription==null">
-            		<s:if test='etpSuperclass.equals("마사지샵")'> 
-  						<h1>마사지 샵입니다</h1>
-  					</s:if>
-  					<s:if test='etpSuperclass.equals("네일샵")'>
-						<h1>네일 샵입니다</h1>
+            	<div class="col-xs-6 etpDescDiv"><!-- 오른쪽 칸 -->
+	            	<s:if test="etpDescription==null">
+	            		<h3><s:property value="etpTitle"/>에 어서오세요</h3>
 					</s:if>
-				</s:if>
-				<s:else>
-					<s:property value="etpDescription"/>
-				</s:else>
+					<s:else>
+						<s:property value="etpDescription" escapeHtml="false"/>
+					</s:else>
         		</div>
+			</div> <!-- row2 end  -->
 			</div>
  		</div><!-- panel body end -->
-  		</div>
   		</s:iterator>
 	</s:if>
 	<s:if test="enterpriseList.size() == 0">

@@ -94,15 +94,15 @@ public class FileUploadAction extends ActionSupport implements SessionAware {
 	}
 	
 	public String uploadLogoImage() throws Exception{
+		System.err.println("=========FileUploadAction :: uploadLogoImage()");
 		etpEmail = (String)session.get("loginId");
-		etpNum = (String)session.get("loginEtpNum");
-		System.err.println(etpNum);
-		System.err.println(etpEmail);
+		etpNum = (String)session.get("loginEtpNum");	
 		String uploadPath = getText("file.uploadLogoPath");
 		System.err.println(ServletActionContext.getServletContext().getRealPath("/") + uploadPath);
 		File dir = new File(uploadPath);
 		if (!dir.isDirectory()) dir.mkdirs();
 		
+		//이미지 업로드가 성공하면 경로를 설정
 		if(imageToUpload != null && imageToUpload.exists()){
 			locAddress = uploadPath + "/" + etpNum + "_" + imageToUploadFileName;
 			if(etpNum != null) saveFile = new File(ServletActionContext.getServletContext().getRealPath("/") + locAddress);
@@ -112,6 +112,8 @@ public class FileUploadAction extends ActionSupport implements SessionAware {
 			uploaded= false;
 		}
 		uploaded = true;
+		
+		//해당 사업자의 logo이미지로 DB에 등록
 		Enterprise etp = etpDAO.selectByEtpNum(etpNum);
 		loc = VOFactory.createPhotoLocation().setEtpEmail(etp.getEtpEmail()).setEtpNum(etp.getEtpNum()).setPhtUsage("logo").setPhtAddress(locAddress).setPhtDescription("사업자: " + etp.getEtpEmail() + "의 업체 로고 이미지입니다.");
 		int result = etpDAO.uploadLogoImage(loc);

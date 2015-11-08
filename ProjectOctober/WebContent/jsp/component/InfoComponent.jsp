@@ -4,10 +4,11 @@
 <html>
 <head>
 
+<script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <script type="text/javascript">
 $(document).ready(function(){
-	
 	//textarea를 htmleditor로 대체, toolbar 설정
 	CKEDITOR.replace('infoEdit', {
 		toolbarGroups : [
@@ -31,26 +32,39 @@ $(document).ready(function(){
 	});
 	
 	//htmleditor modal on
-	$('#infoModal').on('shown.bs.modal', function () {
-		$('#infoModal').focus();
+	$('#infoModal').on('shown.bs.modal', function(){
+		$('.modal-backdrop').css('z-index', -1);
+		$('.modal-dialog').css('z-index', +1);
+		$('.input-group-btn').css('z-index', 0);
+		$('#etpBtBar').css('z-index', -1);
 	});
 });
 
 function saveInfo() {
-	var editor=CKEDITOR.instances.infoText.getData();
-	
-	//htmleditor에서 편집된 값을 반영
-	var div = document.getElementById("infoContentIn");
-	div.innerHTML = editor;
+	var editor = CKEDITOR.instances.infoEdit.getData();
+
+	$.ajax({
+		url: "${pageContext.request.contextPath}/enterprise/saveInfoDesc.action",
+		dataType: 'json',
+		type: 'POST',
+		data: {"enterprise.etpDescription" : editor},
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success: function(data){
+			console.log(data);
+			var infoDesc = data.enterprise.etpDescription;
+			$('#infoContentIn').html(infoDesc);
+		},
+		error: function(doc){
+			console.log("insert Error");
+		}
+	});
 };
 
 
-function uploadInfoOpen() {
+function toInfoUploadPage() {
 	window.open("${pageContext.request.contextPath}/enterprise/toInfoUploadPage.action","newwin","top=200,left=400,width=500,height=500,resizable=no,scrollbars=yes");
 }
 </script>
-
-
 </head>
 
 <body>
@@ -58,31 +72,30 @@ function uploadInfoOpen() {
 <div class="container-fluid" style="vertical-align: middle;">
 	<!-- 사진, 설명 업로드 기능 필요 -->
 	<%-- <s:form action="infoPhtUploadAction" method="POST" enctype="multipart/form-data"> --%>
-	<div class="row">
+	<div class="table-responsive">
+	<div class="row-xs-5">
 			<!-- image 뿌리기 -->
-				<!-- 리스트용 사진이 존재할 경우 -->
-				<div class="col-xs-5" align="left"><!-- row2 left start -->
-					<s:if test="infoPht != null">
-			         	<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
-			   			<img src='${pageContext.request.contextPath}/<s:property value="#session.enterprise.infoPht"/>' class='img-responsive'>
+			<!-- 리스트용 사진이 존재할 경우 -->
+			<div class="col-xs-5"><!-- row2 left start -->
+				<s:if test="#session.enterprise.infoPht != null">
+		         	<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
+		   			<img src='${pageContext.request.contextPath}/<s:property value="#session.enterprise.infoPht"/>' class='img-responsive'>
+				</s:if>
+				<s:else>
+					<!-- 인포사진 부재시 기본적으로 뿌려지는 사진 -->
+					<s:if test='enterprise.etpSuperclass.equals("마사지샵")'>
+						<img src='http://coolmassage.net/data/apms/background/%EB%B6%84%EB%8B%B9%EB%A7%88%EC%82%AC%EC%A7%801.jpg' class='img-responsive'>
 					</s:if>
-					<s:else>
-						<!-- 인포사진 부재시 기본적으로 뿌려지는 사진 -->
-						<s:if test='enterprise.etpSuperclass.equals("마사지샵")'>
-							<img src='http://coolmassage.net/data/apms/background/%EB%B6%84%EB%8B%B9%EB%A7%88%EC%82%AC%EC%A7%801.jpg' class='img-responsive'>
-						</s:if>
-						<s:if test='enterprise.etpSuperclass.equals("네일샵")'>
-							<img src='http://img.kormedi.com/news/article/__icsFiles/afieldfile/2012/10/15/cc201210150001145.jpg' class='img-responsive'>
-						</s:if>
-					</s:else>
-					
-					<p>업로드할 파일을 선택해 주세요.</p>
-					<s:file name="fileToUpload" class="btn btn-default edit"/>
-					<input type="hidden" name="etpNum" value="${enterprise.etpNum}" id="etpNumHidden"/>
-					<input type="hidden" name="etpEmail" value="${enterprise.etpEmail}" id="etpEmailHidden" />
-					<input type="hidden" name="infoPht" value="${enterprise.infoPht}" id="infoPhtHidden" />
-					<s:submit class="btn btn-default edit" value="사진 업로드"/>
-				</div>
+					<s:if test='enterprise.etpSuperclass.equals("네일샵")'>
+						<img src='http://img.kormedi.com/news/article/__icsFiles/afieldfile/2012/10/15/cc201210150001145.jpg' class='img-responsive'>
+					</s:if>
+				</s:else>
+				
+				<input type="hidden" name="etpNum" value="${enterprise.etpNum}" id="etpNumHidden"/>
+				<input type="hidden" name="etpEmail" value="${enterprise.etpEmail}" id="etpEmailHidden" />
+				<input type="hidden" name="infoPht" value="${enterprise.infoPht}" id="infoPhtHidden" />
+				<input type="button" value="사진업로드" onclick="toInfoUploadPage()" class="edit">
+			</div>
 
 			<div class="col-xs-7">
 				<div class="jumbotron">
@@ -93,13 +106,17 @@ function uploadInfoOpen() {
 				  			<h5>이곳에 간단한 소개를 적어주세요</h5>
 				  		</s:if>
 				  		<s:if test='#session.enterprise.etpDescription != null'>
-				  			<s:property value="#session.enterprise.etpDescription"/>
+				  			<s:property value="#session.enterprise.etpDescription" escapeHtml="false"/>
 				  		</s:if>
 		  			</div>
-					<p align="left"><a class="btn btn-default btn-md edit" href="#" role="button" data-toggle="modal" data-target="#infoModal">편집</a></p>
+					<p align="left">
+						<a class="btn btn-default btn-md edit" href="#" 
+						role="button" data-toggle="modal" data-target="#infoModal">편집</a>
+					</p>
 				</div>
 			</div><!-- col-md-8 end -->
 	</div><!-- row end -->
+	</div>
 	<%-- </s:form> --%>
 </div>	
 
@@ -112,11 +129,19 @@ function uploadInfoOpen() {
         <h4 class="modal-title">소개 작성</h4>
       </div>
       <div class="modal-body">
-        <textarea id="infoEdit" name="infoEdit"> <s:property value="#session.enterprise.etpDescription"/> </textarea>
+        <textarea id="infoEdit" name="infoEdit"> 
+        	<s:if test='#session.enterprise.etpDescription == null'>
+ 				<h3>사장님 안녕하세요!</h3>
+	  			<h5>이곳에 간단한 소개를 적어주세요</h5>
+	  		</s:if>
+	  		<s:if test='#session.enterprise.etpDescription != null'>
+	  			<s:property value="#session.enterprise.etpDescription"/>
+	  		</s:if>
+        </textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveInfo()">Save changes</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveInfo()">Save</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
