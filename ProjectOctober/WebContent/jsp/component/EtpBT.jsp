@@ -20,15 +20,16 @@
 		<div class="btn-group" role="group">
 			 <button type="button" class="btn btn-primary btn-lg" id="editBT">페이지 편집</button>
 		</div>
+		<!-- 동적 페이지 사용자만 보이게 -->
 		<s:if test="#session.enterprise.etpTemplateType==1">
 			<div class="btn-group" role="group">
 				 <button type="button" class="btn btn-primary btn-lg" id="resetBT" onclick="resetPage()">페이지 초기화</button>
+			</div>	
+		
+			<div class="btn-group" role="group">
+				 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='cleanComponent()'>레이아웃 저장 &raquo;</button>
 			</div>
 		</s:if>
-		<!-- 페이지 편집중에만 보이게 -->
-		<div class="btn-group" role="group">
-			 <button type="button" class="btn btn-primary btn-lg" id='saveBT' onclick='cleanComponent()'>레이아웃 저장 &raquo;</button>
-		</div>
 	</div>
 </body>
 </html>

@@ -50,10 +50,10 @@
 		
 		//로그인 한 사람이 페이지 주인과 동일 할 때 
 		if(loginId==pageId){
-			$('#etpBtBar').show();
+			$('#etpBt').show();
 			$('#editBT').on('click', startEdit);
 		}else{
-			$('#etpBtBar').hide();	
+			$('#etpBt').hide();	
 		}	
 	}
 	
@@ -85,15 +85,7 @@
 		loadPage(); //DB에 저장되어 있는 페이지 로드
 	}
 	
-	/* //각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
-    $('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
-    $('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
-    $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
-    $('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
-    $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
-    $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
-    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
-	 */
+
 </script>
 
 </head>

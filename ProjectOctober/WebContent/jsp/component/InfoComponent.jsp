@@ -38,6 +38,10 @@ $(document).ready(function(){
 		$('.input-group-btn').css('z-index', 0);
 		$('#etpBtBar').css('z-index', -1);
 	});
+	
+	$('#infoModal').on('hidden.bs.modal', function(){
+		$('#etpBtBar').css('z-index', 0);
+	});
 });
 
 function saveInfo() {
@@ -52,6 +56,7 @@ function saveInfo() {
 		success: function(data){
 			console.log(data);
 			var infoDesc = data.enterprise.etpDescription;
+			$('#infoContentIn').html();
 			$('#infoContentIn').html(infoDesc);
 		},
 		error: function(doc){

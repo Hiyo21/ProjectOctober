@@ -71,10 +71,10 @@
 		
 		//로그인 한 사람이 페이지 주인과 동일 할 때 
 		if(loginId == pageId){
-			$('#etpBtBar').show();
+			$('#etpBt').show();
 			$('#editBT').on('click', startEdit);
 		}else{
-			$('#etpBtBar').hide();	
+			$('#etpBt').hide();	
 		}	
 	};
 	
@@ -97,10 +97,6 @@
 		$('#editBT').unbind('click');
 		$('#editBT').on('click', startEdit);
 		$('#editBT').removeClass('active');
-		
-	};
-	
-	function savePage(){
 		
 	};
 		
