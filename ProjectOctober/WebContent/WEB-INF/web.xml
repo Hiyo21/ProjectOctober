@@ -14,7 +14,7 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <welcome-file-list>
-  	<welcome-file>/jsp/Main.jsp</welcome-file>
+  	<welcome-file>/jsp/FirstPage.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

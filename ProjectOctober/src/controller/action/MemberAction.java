@@ -175,6 +175,8 @@ public class MemberAction extends ActionSupport implements SessionAware{
 
 
 	public String loginProcess() throws Exception{
+		if(session.get("invalid") != null) session.remove("invalid");
+		
 		Map<String, String> loginInfo = new HashMap<>();
 		loginInfo.put("loginEmail", email);
 		loginInfo.put("loginPassword", password);
@@ -182,6 +184,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		member = memDAO.loginResult(loginInfo);
 		System.out.println(member);
 		if(member == null) {
+			session.put("invalid", "invalid");
 			return LOGIN;
 		} else {
 			if(member.getMemCode() == ENTERPRISE_CODE){
@@ -223,6 +226,7 @@ public class MemberAction extends ActionSupport implements SessionAware{
 				return "admin";
 			}else{
 				System.out.println(5);
+				session.put("invalid", "invalid");
 				return LOGIN;
 			}
 		}

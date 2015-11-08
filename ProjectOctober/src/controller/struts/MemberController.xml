@@ -86,7 +86,7 @@
 		
 		<action name="logoutProcess" class="controller.action.MemberAction" method="logoutProcess">
 			<result type="chain">
-				<param name="actionName">toMainPage</param>
+				<param name="actionName">toFirstPage</param>
 				<param name="namespace">/</param>
 			</result>
 		</action>

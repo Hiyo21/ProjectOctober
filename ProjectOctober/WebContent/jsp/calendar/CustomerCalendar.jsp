@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Customer Calendar Page</title>
 
+<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejugothic.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/smoothness/jquery-ui.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -25,9 +26,10 @@
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/jquery.once.js"></script>
 
 <style>
-	* {font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
-	.fc-sat { color:blue; }
-	.fc-sun { color:red;  }
+	*{
+		font-family: "Helvetica Neue", "Jeju Gothic", Helvetica,Arial,sans-serif;
+	}
+
 	
 	#external-events {
 		z-index: auto;

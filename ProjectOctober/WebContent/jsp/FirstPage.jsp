@@ -7,26 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>A_Shop Project</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejugothic.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/landing-page.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome/css/font-awesome.min.css"/>
 <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-@font-face{
- font-family:'LotteMartHappy';
- font-style:normal;
- font-weight:400;
- src:url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff2') format('woff2'),
-     url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff') format('woff');
-}
-@font-face{
- font-family:'LotteMartHappy';
- font-style:normal;
- font-weight:700;
- src:url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyBold.woff2') format('woff2'),
-     url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyBold.woff') format('woff');
-}
+<script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/jquery-2.1.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -38,19 +26,22 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>Your Aesthetic Companion</h1>
-                        <h2>Hello Again, <strong style="color: #E60073;">A#</strong></h2>
+                        <h1>
+                        <strong style="color: #E5FF96;">Y</strong>our 
+                        <strong style="color: ;">A</strong>esthetic 
+                        <strong style="color: ;">C</strong>ompanion</h1>
+                        <h2>Hello Again, <strong style="color: #E60073;">a.#</strong></h2>
                         <hr class="intro-divider">
                         <!-- Social buttons. 딴걸로 어떻게 바꾸지? -->
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                                <a href="" class="btn btn-default btn-lg"><i class="fa fa-sign-in fa-fw"></i> <span class="network-name">Login</span></a>
+                                <a href="${pageContext.request.contextPath}/member/toLoginPage.action" class="btn btn-default btn-lg"><i class="fa fa-sign-in fa-fw"></i> <span class="network-name">Login</span></a>
                             </li>
                             <li>
-                                <a href="" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Search</span></a>
+                                <a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Search</span></a>
                             </li>
                             <li>
-                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-male fa-fw"></i> <span class="network-name">Signup</span></a>
+                                <a data-toggle="modal" href="#myModal" class="btn btn-default btn-lg"><i class="fa fa-male fa-fw"></i> <span class="network-name">Signup</span></a>
                             </li>
                         </ul> 
                     </div>
@@ -72,11 +63,11 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h3 class="section-heading">누구나 자신만의 사업 공간을 쉽게 만들 수 있습니다:</h3>
-                    <p class="lead">동적으로 자신의 </p>
+                    <h2 class="section-heading"> 이제 온라인에서도  마사지샵, <br/> 네일샵 예약을 하실 수 있습니다:</h2>
+                    <p class="lead">전화로만 예약하기 불편하셨죠? a.#은 기존 방식보다 훨씬 <br/> 빠르고 간단한 예약 솔루션을 제공합니다.</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="" alt="">
+                    <img class="img-responsive img-thumbnail" src="${pageContext.request.contextPath}/image/themes/esthetics_ad.jpg" alt="grid_system">
                 </div>
             </div>
 
@@ -94,11 +85,11 @@
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">3D Device Mockups<br>by PSDCovers</h2>
-                    <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+                    <h2 class="section-heading"> 누구나 자신만의 사업 홍보 공간을 <br/> 쉽게 만들 수 있습니다:</h2>
+                    <p class="lead">동적 배치가 가능한 템플릿, 다양한 칼라 테마를 통해 특색있는 스타일의 페이지를 만들어 보세요.</p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/dog.png" alt="">
+                    <img class="img-responsive img-thumbnail" src="${pageContext.request.contextPath}/image/themes/esUtah.jpg" alt="">
                 </div>
             </div>
 
@@ -116,11 +107,11 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
-                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
+                    <h2 class="section-heading">매우 직관적인 예약 시스템을<br> 제공합니다: </h2>
+                    <p class="lead">다양한 상황에 모두 대처 가능하도록 특수 제작된 예약 <br>스케쥴러를 통해 매우 간단한 조작만으로 모든 예약 관련 기능을 수행합니다.</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/phones.png" alt="">
+                    <img class="img-responsive img-thumbnail" src="${pageContext.request.contextPath}/image/themes/intuition.jpg" alt="">
                 </div>
             </div>
 
@@ -137,18 +128,18 @@
 
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>Connect to Start Bootstrap:</h2>
+                    <h2>a.# 과 함께 하세요: </h2>
                 </div>
                 <div class="col-lg-6">
                     <ul class="list-inline banner-social-buttons">
                         <li>
-                            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            <a href="${pageContext.request.contextPath}/member/toLoginPage.action" class="btn btn-default btn-lg"><i class="fa fa-sign-in fa-fw"></i> <span class="network-name">Login</span></a>
                         </li>
                         <li>
-                            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                            <a href="${pageContext.request.contextPath}/toMainPage.action" class="btn btn-default btn-lg"><i class="fa fa-search fa-fw"></i> <span class="network-name">Search</span></a>
                         </li>
                         <li>
-                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                            <a data-toggle="modal" data-target="#myModal" class="btn btn-default btn-lg"><i class="fa fa-male fa-fw"></i> <span class="network-name">Signup</span></a>
                         </li>
                     </ul>
                 </div>
@@ -165,30 +156,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#about">About</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#services">Services</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#contact">Contact</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
+                    <p class="copyright text-muted small">Copyright &copy; 24시간이 모자라 2015. All Rights Reserved</p>
                 </div>
             </div>
         </div>
     </footer>
-	
-	<script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/jquery-2.1.4.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

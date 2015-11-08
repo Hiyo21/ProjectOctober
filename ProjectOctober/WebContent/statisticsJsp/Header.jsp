@@ -13,21 +13,9 @@
 		$('[data-toggle="notification-popover"]').popover();
 	});
 </script>
+
 <style>
-	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
-#header {
 
- background-color:#F6CECE; 
-  /*  background: url("../image/salgu.png")  */
-
-}
-
-	
-	
- 	body{
-		
-	font-family: "Helvetica Neue", Helvetica, Arial,"맑은 고딕","Malgun gothic",sans-serif;
-} 
 
 .btn-default {
 	width: 110px;
