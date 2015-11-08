@@ -455,6 +455,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			case 1:
 				//dynamic
 				System.err.println("dynamic :: "+enterprise);
+				if(etpDAO.receiveComponentList(etpNum).size()==0){
+					firstInsertComponent();
+				}
 				//동적 페이지 일때만 컴포넌트 리스트 set
 				enterprise.setComponents(etpDAO.receiveComponentList(etpNum));
 				System.err.println(enterprise.getComponents());
@@ -698,6 +701,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println(enterprise);
 		if(enterprise != null){
 			int result = etpDAO.updateTemplate(enterprise);
+				if(enterprise.getEtpTemplateType()==1){
+					firstInsertComponent();
+				}
 			if(result != 0) return SUCCESS;
 			else return ERROR;
 		}else{
