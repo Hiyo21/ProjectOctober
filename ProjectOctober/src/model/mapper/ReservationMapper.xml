@@ -195,4 +195,8 @@
 			</if>
 		</where>
 	</update>
+	
+	<select id="retrieveReservation" parameterType="int" resultMap="ReservationResultMap">
+		select * from reservation where rsv_num = #{value}
+	</select>
 </mapper>

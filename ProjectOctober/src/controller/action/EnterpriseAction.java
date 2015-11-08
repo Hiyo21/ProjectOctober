@@ -13,11 +13,13 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
+import model.common.VOFactory;
 import model.dao.EnterpriseDAO;
 import model.vo.Component;
 import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.Member;
+import model.vo.Notification;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
 import model.vo.Review;
@@ -48,6 +50,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpEmail;
 	private List<Review> reviewList;
 	private List<Highchart14> gunList;
+	private Notification notification;
+	private List<Notification> notificationList;
 
 	//////// Component Member ////////  
 	private Component component;
@@ -63,6 +67,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String category;
 	private int svcNum;
 	private int etpTemplateType;
+	private int ntfNum;
 	
 	private int upCategory;//이미지 업로드시 용도 구별 위한 변수
 	
@@ -602,6 +607,88 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+	public String insertEnterpriseNotification() throws Exception{
+		if(reservation != null){
+			notification = VOFactory.createNotification();
+			enterprise = etpDAO.selectByEtpNum(reservation.getEtpNum());
+			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
+			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
+			reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
+			String ntfMessageForInsert = enterprise.getEtpTitle() +" 님이  " + reservation.getCstEmail() + " 님의 예약 : " + reservation.getRsvTitle() + " (일시) " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "을 등록하였습니다."; 
+			notification.setRsvNum(reservation.getRsvNum()).setEtpNum(reservation.getEtpNum()).setEtpEmail(reservation.getEtpEmail()).setCstEmail(reservation.getCstEmail()).setNtfRead(0).setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());			
+			int result = etpDAO.insertEnterpriseNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String updateDurationEnterpriseNotification() throws Exception{
+		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
+		reservation = etpDAO.retrieveReservation(notification.getRsvNum());
+		if(notification != null){
+			String ntfMessageForInsert = enterprise.getEtpTitle() + " 님이 " + notification.getCstEmail() + "님의 예약 : " + reservation.getRsvTitle() + " 의 일시를 " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "로 변경하셨습니다.";
+			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
+			int result = etpDAO.updateDurationEnterpriseNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String updatePeriodEnterpriseNotification() throws Exception{
+		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
+		reservation = etpDAO.retrieveReservation(notification.getRsvNum());
+		if(notification != null){
+			String ntfMessageForInsert = enterprise.getEtpTitle() + " 님이 " + notification.getCstEmail() + " 님의 예약 : " + reservation.getRsvTitle() + " 의 서비스 기간을 " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + " ~ " + reservation.getRsvEndDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "로 변경하셨습니다.";
+			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
+			int result = etpDAO.updatePeriodEnterpriseNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String deleteEnterpriseNotification() throws Exception{
+		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
+		if(notification != null){
+			String ntfMessageForInsert = notification.getCstEmail() + " 님이 " + enterprise.getEtpTitle() + " 업체의 예약을 삭제하셨습니다.";
+			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
+			int result = etpDAO.deleteEnterpriseNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String retrieveEnterpriseNotificationList() throws Exception{
+		System.err.println((String)session.get("loginEtpNum"));
+		notificationList = etpDAO.retrieveEnterpriseNotificationList((String)session.get("loginEtpNum"));
+		if(notificationList != null) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String retrieveEnterpriseNotificationListAll() throws Exception{
+		System.err.println((String)session.get("loginEtpNum"));
+		notificationList = etpDAO.retrieveEnterpriseNotificationListAll((String)session.get("loginEtpNum"));
+		if(notificationList != null) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String readEnterpriseNotification() throws Exception{
+		System.err.println(ntfNum);
+		if(ntfNum != 0){
+			int result = etpDAO.readEnterpriseNotification(ntfNum);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
 
 	/////////////////////////////////////////////////
 	
@@ -934,6 +1021,30 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setCpCollector(Map<String, Object> cpCollector) {
 		this.cpCollector = cpCollector;
+	}
+
+	public Notification getNotification() {
+		return notification;
+	}
+
+	public List<Notification> getNotificationList() {
+		return notificationList;
+	}
+
+	public void setNotification(Notification notification) {
+		this.notification = notification;
+	}
+
+	public void setNotificationList(List<Notification> notificationList) {
+		this.notificationList = notificationList;
+	}
+
+	public int getNtfNum() {
+		return ntfNum;
+	}
+
+	public void setNtfNum(int ntfNum) {
+		this.ntfNum = ntfNum;
 	}
 	
 	

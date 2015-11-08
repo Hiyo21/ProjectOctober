@@ -7,6 +7,7 @@ import model.vo.Component;
 import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
+import model.vo.Notification;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
 import model.vo.Review;
@@ -120,8 +121,18 @@ public interface EnterpriseMapper {
 
 	int cleanComponent(String etpNum);
 
+	Integer insertEnterpriseNotification(Notification notification);
+
+	Integer updateDurationEnterpriseNotification(Notification notification);
+
+	Integer updatePeriodEnterpriseNotification(Notification notification);
+
+	Integer deleteEnterpriseNotification(Notification notification);
+
+	List<Notification> retrieveEnterpriseNotificationList(String etpNum);
 	
-
-
-
+	List<Notification> retrieveEnterpriseNotificationListAll(String etpNum);
+	
+	Integer readEnterpriseNotification(Integer ntfNum);
+	
 }

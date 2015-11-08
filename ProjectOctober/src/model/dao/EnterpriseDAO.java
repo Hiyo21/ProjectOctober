@@ -14,6 +14,7 @@ import model.mapper.ServiceMapper;
 import model.vo.Component;
 import model.vo.Coupon;
 import model.vo.Enterprise;
+import model.vo.Notification;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
 import model.vo.Service;
@@ -440,11 +441,40 @@ public class EnterpriseDAO extends DAOTemplate{
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
 			return session.getMapper(EnterpriseMapper.class).selectComponent(check);
-
 		}finally{
 			session.close(); 
 		}
 	}
 
+	public int insertEnterpriseNotification(Notification notification) {
+		return dataModificationTemplate(s -> {return fromMapper(s).insertEnterpriseNotification(notification);});
+	}
 	
+	public int updateDurationEnterpriseNotification(Notification notification){
+		return dataModificationTemplate(s -> {return fromMapper(s).updateDurationEnterpriseNotification(notification);});
+	}
+	
+	public int updatePeriodEnterpriseNotification(Notification notification){
+		return dataModificationTemplate(s -> {return fromMapper(s).updatePeriodEnterpriseNotification(notification);});
+	}
+	
+	public int deleteEnterpriseNotification(Notification notification){
+		return dataModificationTemplate(s -> {return fromMapper(s).deleteEnterpriseNotification(notification);});
+	}
+	
+	public List<Notification> retrieveEnterpriseNotificationList(String etpNum){
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveEnterpriseNotificationList(etpNum);});
+	}
+	
+	public List<Notification> retrieveEnterpriseNotificationListAll(String etpNum){
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveEnterpriseNotificationListAll(etpNum);});
+	}
+	
+	public int readEnterpriseNotification(Integer ntfNum){
+		return dataModificationTemplate(s -> {return fromMapper(s).readEnterpriseNotification(ntfNum);});
+	}
+	
+	public Reservation retrieveReservation(Integer rsvNum){
+		return dataRetrievalTemplate(s -> {return s.getMapper(ReservationMapper.class).retrieveReservation(rsvNum);});
+	}
 }

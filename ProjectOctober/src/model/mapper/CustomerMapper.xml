@@ -429,4 +429,28 @@
 		</if>
 		</trim>
 	</insert>
+	
+	<insert id="insertCustomerNotification" parameterType="Notification">
+		insert into notification values(notification_seq.nextval, #{rsvNum}, #{cstEmail}, #{etpNum}, #{etpEmail}, #{ntfMessage}, #{ntfTime}, #{ntfRead})
+	</insert>
+	
+	<insert id="updatePeriodCustomerNotification" parameterType="Notification">
+		insert into notification values(notification_seq.nextval, #{rsvNum}, #{cstEmail}, #{etpNum}, #{etpEmail}, #{ntfMessage}, #{ntfTime}, #{ntfRead})
+	</insert>
+	
+	<delete id="deleteCustomerNotification" parameterType="Notification">
+		insert into notification(ntf_num, cst_email, etp_num, etp_email, ntf_message, ntf_time, ntf_read) values(notification_seq.nextval, #{cstEmail}, #{etpNum}, #{etpEmail}, #{ntfMessage}, #{ntfTime}, #{ntfRead})
+	</delete>
+	
+	<select id="retrieveCustomerNotificationList" parameterType="string" resultMap="NotificationResultMap">
+		select * from notification where cst_email = #{value} and ntf_read = 0
+	</select>
+	
+	<select id="retrieveCustomerNotificationListAll" parameterType="string" resultMap="NotificationResultMap">
+		select * from notification where cst_email = #{value}
+	</select>
+	
+	<update id="readCustomerNotification" parameterType="int">
+		update notification set ntf_read = 1 where ntf_num= #{value}
+	</update>
 </mapper>

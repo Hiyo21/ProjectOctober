@@ -236,5 +236,29 @@
 		<action name="insertDayOff" class="controller.action.EnterpriseAction" method="insertDayOff">
 			<result type="json" />
 		</action>
-	</package> 
+		
+		<action name="insertEnterpriseNotification" class="controller.action.EnterpriseAction" method="insertEnterpriseNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="updateDurationEnterpriseNotification" class="controller.action.EnterpriseAction" method="updateDurationEnterpriseNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="updatePeriodEnterpriseNotification" class="controller.action.EnterpriseAction" method="updatePeriodEnterpriseNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="deleteEnterpriseNotification" class="controller.action.EnterpriseAction" method="deleteEnterpriseNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="retrieveEnterpriseNotificationList" class="controller.action.EnterpriseAction" method="retrieveEnterpriseNotificationList">
+			<result type="json" />
+		</action>
+		
+		<action name="readEnterpriseNotification" class="controller.action.EnterpriseAction" method="readEnterpriseNotification">
+			<result type="json" />
+		</action>
+	</package>
 </struts>
