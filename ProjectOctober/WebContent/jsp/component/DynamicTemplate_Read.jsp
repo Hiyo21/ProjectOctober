@@ -102,15 +102,44 @@ $(function(){
 	
 	//icon 숨기기
 	$('.icon').hide();
-	var components = $('.grid-stack'); 
-	console.log(components);
-	//makeIcon(components);
+	
+	//각 grid-stack-item에서 폭을 측정해서 icon show를 분기하면 될 것 같은데...
+	var components = $('.grid-stack-item');
+	$.each(components, function(i, item){
+		var width = $(item).attr('data-gs-width');
+		if(width < 4){
+			switch (item.id) {
+			case 'infoCP':
+				$('#infoCP').find('.icon').show();
+				$('#infoCP').find('.content').hide();
+				break;
+			case 'svcCP':
+				$('#svcCP').find('.icon').show();
+				$('#svcCP').find('.content').hide();
+				break;
+			case 'locaCP':
+				$('#locaCP').find('.icon').show();
+				$('#locaCP').find('.content').hide();
+				break;
+			case 'galCP':
+				$('#galCP').find('.icon').show();
+				$('#galCP').find('.content').hide();
+				break;
+			case 'reviewCP':
+				$('#reviewCP').find('.icon').show();
+				$('#reviewCP').find('.content').hide();
+				break;
+			}
+		}
+	});
+	
+	
+	
 	
 	$('.grid-stack').on('change', function (e, items) {
 		console.log(items);
 		makeIcon(items);   
 	});
-	
 	
 });
 
@@ -423,7 +452,7 @@ function resetPage(){
 	    </s:iterator> 
 	</div>
 	<div class="modal fade" id="componentModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

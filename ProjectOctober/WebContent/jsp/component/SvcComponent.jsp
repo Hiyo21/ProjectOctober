@@ -20,8 +20,7 @@
 
 	});
 	
-	
-	
+
 	//수정할 메뉴 카테고리 갖고 오기
 	function selectSvcCategory(category){
 		$.ajax({

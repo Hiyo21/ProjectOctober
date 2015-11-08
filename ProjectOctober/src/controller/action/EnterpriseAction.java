@@ -351,7 +351,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	public String selectEtpList() throws Exception{
 		System.out.println("===========check Action :: enterpriseList :: ");
-		enterpriseList = etpDAO.selectEtpList();			
+		enterpriseList = etpDAO.selectEtpList();	
+
 		return SUCCESS;
 	}
 	

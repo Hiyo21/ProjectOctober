@@ -32,11 +32,13 @@ public class SearchAction extends ActionSupport {
 	//고객 자유 검색
 	public String takeEnterpriseList() throws Exception{
 		//searchDAO에 searchKeyword를 패러미터로 줘서 받아오게 함.		
-		
-		 
+	 
 		enterpriseList=searchDAO.CustomerFreeSearchingList(searchKeyword);
+		EnterpriseDAO etpDAO = new EnterpriseDAO();
 		
-		System.err.println("action : "+enterpriseList);
+		for(Enterprise etp : enterpriseList){
+			etp.setInfoPht(etpDAO.selectInfoPht(etp.getEtpNum()));
+		}
 		
 		return SUCCESS;
 	}	
