@@ -7,6 +7,7 @@ import model.vo.Component;
 import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.EnterpriseExample;
+import model.vo.Notification;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
 import model.vo.Review;
@@ -93,13 +94,13 @@ public interface EnterpriseMapper {
     List<Enterprise> categorySearch(Map<String, String> map);
 
 	List<Coupon> retrieveCouponList(String etpNum);
-	
+
 	int insertCoupon(Coupon coupon);
 	
 	int updateCoupon(Coupon coupon);
 	
 	int deleteCoupon(int cpnNum);
-	
+
 	Coupon checkCoupon(Coupon coupon);
 
 	String retrieveRegCard(String etpNum);
@@ -126,9 +127,23 @@ public interface EnterpriseMapper {
 
 	int cleanComponent(String etpNum);
 
+	Integer insertEnterpriseNotification(Notification notification);
+
+	Integer updateDurationEnterpriseNotification(Notification notification);
+
+	Integer updatePeriodEnterpriseNotification(Notification notification);
+
+	Integer deleteEnterpriseNotification(Notification notification);
+
+	List<Notification> retrieveEnterpriseNotificationList(String etpNum);
+	
+	List<Notification> retrieveEnterpriseNotificationListAll(String etpNum);
+	
+	Integer readEnterpriseNotification(Integer ntfNum);
+	
 	int updateEtp(Enterprise enterprise);
 
 	int deletePht(Integer photoNum);
-
-
+	
+	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import model.vo.Customer;
 import model.vo.CustomerExample;
 import model.vo.Enterprise;
+import model.vo.Notification;
 import model.vo.PaymentRecord;
 import model.vo.Reservation;
 import model.vo.Review;
@@ -54,5 +55,17 @@ public interface CustomerMapper {
 	Enterprise retrieveEnterprise(String etpNum);
 
 	Integer insertReservation(Reservation reservation);
+
+	Integer insertCustomerNotification(Notification notification);
+
+	Integer updatePeriodCustomerNotification(Notification notification);
+
+	Integer deleteCustomerNotification(Notification notification);
+
+	List<Notification> retrieveCustomerNotificationList(String cstEmail);
+	
+	List<Notification> retrieveCustomerNotificationListAll(String cstEmail);
+
+	Integer readCustomerNotification(Integer ntfNum);
 
 }

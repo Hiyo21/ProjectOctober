@@ -14,6 +14,7 @@ import model.mapper.ServiceMapper;
 import model.vo.Component;
 import model.vo.Coupon;
 import model.vo.Enterprise;
+import model.vo.Notification;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
 import model.vo.Service;
@@ -84,7 +85,6 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
-	
 	public int updateEtp(Enterprise enterprise) {
 		System.out.println("============check DAO :: updateInfoDesc()");
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
@@ -99,7 +99,7 @@ public class EnterpriseDAO extends DAOTemplate{
 			session.close();
 		}
 	}
-		
+	
 	public List<Service> selectServiceList(String etpNum) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		
@@ -222,7 +222,7 @@ public class EnterpriseDAO extends DAOTemplate{
 	//////////////////////// Component DAO ////////////////////////  
 	
 	public int insertComponent(Component component) {
-		System.err.println("============check DAO :: insertComponet()");
+		System.out.println("============check DAO :: insertComponet()");
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
 			int result = session.getMapper(EnterpriseMapper.class).insertComponent(component);
@@ -269,16 +269,6 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 	}
 	
-	public Component selectComponent(Map<String, String> check) {
-		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		try {
-			return session.getMapper(EnterpriseMapper.class).selectComponent(check);
-
-		}finally{
-			session.close(); 
-		}
-	}
-
 	public int cleanComponent(String etpNum) {
 		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
@@ -294,6 +284,7 @@ public class EnterpriseDAO extends DAOTemplate{
 		}
 		
 	}
+
 	
 	public int choiceTemplateType(String etpNum, int etpTemplateType) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
@@ -423,6 +414,7 @@ public class EnterpriseDAO extends DAOTemplate{
 	public List<Reservation> couponSendList(String etpEmail){
 		return dataRetrievalTemplate(s->{return s.getMapper(ReservationMapper.class).couponSendList(etpEmail);});
 	}
+	
 
 	public Coupon checkCoupon(Coupon coupon) {
 		return dataRetrievalTemplate(s->{return fromMapper(s).checkCoupon(coupon);});
@@ -473,6 +465,7 @@ public class EnterpriseDAO extends DAOTemplate{
 
 	public int insertSaleRecord(SaleRecord saleRecord) {
 		return dataModificationTemplate(s -> {return fromMapper(s).insertSaleRecord(saleRecord);});
+
 	}
 
 	public int updateTemplate(Enterprise enterprise) {
@@ -491,5 +484,44 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertOffDays(reservation);});
 	}
 
+	public Component selectComponent(Map<String, String> check) {
+		SqlSession session  = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return session.getMapper(EnterpriseMapper.class).selectComponent(check);
+		}finally{
+			session.close(); 
+		}
+	}
+
+	public int insertEnterpriseNotification(Notification notification) {
+		return dataModificationTemplate(s -> {return fromMapper(s).insertEnterpriseNotification(notification);});
+	}
 	
+	public int updateDurationEnterpriseNotification(Notification notification){
+		return dataModificationTemplate(s -> {return fromMapper(s).updateDurationEnterpriseNotification(notification);});
+	}
+	
+	public int updatePeriodEnterpriseNotification(Notification notification){
+		return dataModificationTemplate(s -> {return fromMapper(s).updatePeriodEnterpriseNotification(notification);});
+	}
+	
+	public int deleteEnterpriseNotification(Notification notification){
+		return dataModificationTemplate(s -> {return fromMapper(s).deleteEnterpriseNotification(notification);});
+	}
+	
+	public List<Notification> retrieveEnterpriseNotificationList(String etpNum){
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveEnterpriseNotificationList(etpNum);});
+	}
+	
+	public List<Notification> retrieveEnterpriseNotificationListAll(String etpNum){
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveEnterpriseNotificationListAll(etpNum);});
+	}
+	
+	public int readEnterpriseNotification(Integer ntfNum){
+		return dataModificationTemplate(s -> {return fromMapper(s).readEnterpriseNotification(ntfNum);});
+	}
+	
+	public Reservation retrieveReservation(Integer rsvNum){
+		return dataRetrievalTemplate(s -> {return s.getMapper(ReservationMapper.class).retrieveReservation(rsvNum);});
+	}
 }

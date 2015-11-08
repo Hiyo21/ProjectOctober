@@ -71,7 +71,6 @@ $(function(){
             name: '이용자 평가',
             data: [
                    <s:iterator value="#session.gunList">
-                   		//<s:property value="average2"/>,
                    		<s:property value="hygiene2"/>,
                    		<s:property value="comfort2"/>,
                    		<s:property value="technique2"/>,

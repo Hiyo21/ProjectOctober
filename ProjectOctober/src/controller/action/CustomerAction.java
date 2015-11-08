@@ -1,6 +1,7 @@
 package controller.action;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +11,14 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
+import model.common.VOFactory;
 import model.dao.CustomerDAO;
+import model.dao.EnterpriseDAO;
 import model.dao.SearchDAO;
 import model.vo.Customer;
 import model.vo.Enterprise;
 import model.vo.Member;
+import model.vo.Notification;
 import model.vo.PaymentRecord;
 import model.vo.Reservation;
 import model.vo.Review;
@@ -36,6 +40,9 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	private Review review;
 	private Enterprise enterprise;
 	private Reservation reservation;
+	private Notification notification;
+	private List<Notification> notificationList;
+	private Integer ntfNum;
 	
 	private String id;
 	
@@ -116,9 +123,12 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
 			Enterprise tempEtp = DAOFactory.createEnterpriseDAO().selectByEtpNum(etpNum);
-			System.err.println(tempEtp);
+			System.err.println("이거 왜 씹힘?" + tempEtp);
+			System.err.println("tempEtp에서:" + tempEtp.getEtpNum());
+			System.err.println("그냥 가지고 온 거:" + etpNum);
 			reservation.setEtpNum(etpNum);
 			reservation.setEtpEmail(tempEtp.getEtpEmail());
+			
 		}
 		System.err.println(reservation);
 		int result = cstDAO.insertReservation(reservation);
@@ -141,7 +151,81 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 			return ERROR;
 		}
 	}
-
+	
+	public String insertCustomerNotification() throws Exception{
+		if(reservation != null){
+			EnterpriseDAO etpDAO = DAOFactory.createEnterpriseDAO();
+			notification = VOFactory.createNotification();
+			enterprise = etpDAO.selectByEtpNum(reservation.getEtpNum());
+			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
+			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
+			reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
+			String ntfMessageForInsert = reservation.getCstEmail() + " 님이 " + enterprise.getEtpTitle() + "의 예약 : " + reservation.getRsvTitle() + " (일시) " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "을 등록하였습니다."; 
+			notification.setRsvNum(reservation.getRsvNum()).setEtpNum(reservation.getEtpNum()).setEtpEmail(reservation.getEtpEmail()).setCstEmail(reservation.getCstEmail()).setNtfRead(0).setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());			
+			int result = cstDAO.insertCustomerNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String updatePeriodCustomerNotification() throws Exception{
+		System.err.println(notification);
+		EnterpriseDAO etpDAO = DAOFactory.createEnterpriseDAO();
+		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
+		reservation = etpDAO.retrieveReservation(notification.getRsvNum());
+		member = cstDAO.retrieveCustomer(notification.getCstEmail());
+		if(notification != null){
+			String ntfMessageForInsert = member.getMemEmail() + " 님이 " + enterprise.getEtpTitle() + "의 예약 : " + reservation.getRsvTitle() + "의 시간을 " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "로/으로 변경하였습니다.";
+			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
+			int result = cstDAO.updatePeriodCustomerNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String deleteCustomerNotification() throws Exception{
+		System.err.println(notification);
+		enterprise = DAOFactory.createEnterpriseDAO().selectByEtpNum(notification.getEtpNum());
+		if(notification != null){
+			String ntfMessageForInsert = notification.getCstEmail() + " 님이 " + enterprise.getEtpTitle() + " 업체의 예약을 삭제하셨습니다.";
+			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
+			int result = cstDAO.deleteCustomerNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String retrieveCustomerNotificationList() throws Exception{
+		System.err.println((String)session.get("loginId"));
+		notificationList = cstDAO.retrieveCustomerNotificationList((String)session.get("loginId"));
+		if(notificationList != null) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String retrieveCustomerNotificationListAll() throws Exception{
+		System.err.println((String)session.get("loginId"));
+		notificationList = cstDAO.retrieveCustomerNotificationListAll((String)session.get("loginId"));
+		if(notificationList != null) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String readCustomerNotification() throws Exception{
+		System.err.println(ntfNum);
+		if(ntfNum != 0){
+			int result = cstDAO.readCustomerNotification(ntfNum);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -262,6 +346,30 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 
 	public void setReservationList(List<Reservation> reservationList) {
 		this.reservationList = reservationList;
+	}
+
+	public Notification getNotification() {
+		return notification;
+	}
+
+	public List<Notification> getNotificationList() {
+		return notificationList;
+	}
+
+	public Integer getNtfNum() {
+		return ntfNum;
+	}
+
+	public void setNotification(Notification notification) {
+		this.notification = notification;
+	}
+
+	public void setNotificationList(List<Notification> notificationList) {
+		this.notificationList = notificationList;
+	}
+
+	public void setNtfNum(Integer ntfNum) {
+		this.ntfNum = ntfNum;
 	}	
 	
 	

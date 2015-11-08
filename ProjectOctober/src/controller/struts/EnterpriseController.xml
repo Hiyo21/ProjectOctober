@@ -68,7 +68,7 @@
 		<action name="retrieveReservationFromOtherInfo" class="controller.action.EnterpriseAction" method="retrieveReservationFromOtherInfo">
 			<result type="json" />
 		</action>
-				
+		
 		<!-- 사진업로드 / 갤러리 -->
 		<action name="toImageUploadPage">
 			<result>/jsp/enterprise/UploadEtpImage.jsp</result>
@@ -139,10 +139,11 @@
 			<result type="json"/>
 		</action>
 		
-		<!--     사업자 게시판 Action     -->
 		
+		<!--     사업자 게시판 Action     -->
+	
 		<action name="takeEtp" class="controller.action.EnterpriseAction" method="takeEtp">
-			<result name="template1">/jsp/component/DynamicTemplate_Read.jsp</result>
+			<result name="template1">/jsp/component/DynamicTemplate.jsp</result>
 			<result name="template2">/jsp/component/StaticTemplate_tabs.jsp</result>
 			<result name="template3">/jsp/component/StaticTemplate_allInOne.jsp</result>
 		</action>
@@ -202,17 +203,21 @@
 			<result type="json"/>
 		</action>
 		
-		<action name="receiveComponentList" class="controller.action.EnterpriseAction" method="receiveComponentList">
+		<action name="resetComponent" class="controller.action.EnterpriseAction" method="resetComponent">
 			<result type="json"/>
 		</action>
 		
-		<action name="resetComponent" class="controller.action.EnterpriseAction" method="resetComponent">
+		<action name="insertComponent" class="controller.action.EnterpriseAction" method="insertComponent">
+			<result type="json"/>
+		</action>
+		
+		<action name="receiveComponentList" class="controller.action.EnterpriseAction" method="receiveComponentList">
 			<result type="json"/>
 		</action>
 		
 		
 		<action name="choiceTemplateType" class="controller.action.EnterpriseAction" method="choiceTemplateType">
-			<result name="dynamic">/jsp/component/DynamicTemplate_Read.jsp</result>
+			<result name="dynamic">/jsp/component/DynamicTemplate.jsp</result>
 			<result name="static1">/jsp/component/StaticTemplate_tabs.jsp</result><!-- static_tab -->
 			<result name="static2">/jsp/component/StaticTemplate_allInOne.jsp</result><!-- static_allInOne -->
 		</action>
@@ -242,6 +247,7 @@
 			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
 		</action>
 		
+		
 		<!-- 사업자의 이용자 예약 내역 -->
 		<action name="toEptReservationHistoryPage" class="controller.action.EnterpriseAction" method="reservationHistory">
 			<result>/jsp/enterprise/ReservationEtpHistory.jsp</result>
@@ -256,6 +262,30 @@
 		</action>
 		
 		<action name="insertDayOff" class="controller.action.EnterpriseAction" method="insertDayOff">
+			<result type="json" />
+		</action>
+		
+		<action name="insertEnterpriseNotification" class="controller.action.EnterpriseAction" method="insertEnterpriseNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="updateDurationEnterpriseNotification" class="controller.action.EnterpriseAction" method="updateDurationEnterpriseNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="updatePeriodEnterpriseNotification" class="controller.action.EnterpriseAction" method="updatePeriodEnterpriseNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="deleteEnterpriseNotification" class="controller.action.EnterpriseAction" method="deleteEnterpriseNotification">
+			<result type="json" />
+		</action>
+		
+		<action name="retrieveEnterpriseNotificationList" class="controller.action.EnterpriseAction" method="retrieveEnterpriseNotificationList">
+			<result type="json" />
+		</action>
+		
+		<action name="readEnterpriseNotification" class="controller.action.EnterpriseAction" method="readEnterpriseNotification">
 			<result type="json" />
 		</action>
 		
@@ -275,5 +305,5 @@
 		<action name="deleteCoupon" class="controller.action.EnterpriseAction" method="deleteCoupon">
 			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
 		</action>
-	</package> 
+	</package>
 </struts>

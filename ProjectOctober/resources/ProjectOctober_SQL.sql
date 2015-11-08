@@ -2,8 +2,7 @@ select tname from tab;
 select service_seq.nextval from dual
 select count(*) from zipcode;
 delete from zipcode;
-select * from photo_location order by photo_num
-delete PHOTO_LOCATION where photo_num = 23
+select * from zipcode order by zipcode;
 
 select distinct svc_category from service where etp_num = '9876543210'
 
@@ -11,7 +10,7 @@ alter sequence service_seq increment by 100
 select service_seq.nextval from dual
 alter sequence service_seq increment by 1
 
-select * from enterprise where etp_num = '9876543210' 
+select * from service where etp_num = '9876543210' 
 
 select * from component where etp_num = '9876543210' and component_id = 'svcCP'
 update component set etp_num = '1234567890', etp_email = 'seh@test.com' where etp_num = '9090909090'
@@ -24,7 +23,7 @@ select * from photo_location
 
 select * from member where mem_email = 'ent6@naver.com'
 
-select * from enterprise where etp_email = 'seh@test2.com'
+select * from enterprise where ETP_ADDRESS like '%'||'제주'||'%'
 
 update ENTERPRISE set etp_template_type = 2 where etp_owner = '6길동'
 update ENTERPRISE set etp_template_type = 2 where etp_num = '1234567890'

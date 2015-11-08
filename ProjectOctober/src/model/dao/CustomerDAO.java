@@ -12,6 +12,7 @@ import model.mapper.ReservationMapper;
 import model.vo.Customer;
 import model.vo.Enterprise;
 import model.vo.Member;
+import model.vo.Notification;
 import model.vo.PaymentRecord;
 import model.vo.Reservation;
 import model.vo.Review;
@@ -105,5 +106,29 @@ public class CustomerDAO extends DAOTemplate{
 
 	public List<Reservation> retrieveReservations(String etpNum) {
 		return dataRetrievalTemplate(s -> {return s.getMapper(ReservationMapper.class).retrieveReservations(etpNum);});
+	}
+
+	public int insertCustomerNotification(Notification notification) {
+		return dataModificationTemplate(s -> {return fromMapper(s).insertCustomerNotification(notification);});
+	}
+
+	public int updatePeriodCustomerNotification(Notification notification) {
+		return dataModificationTemplate(s -> {return fromMapper(s).updatePeriodCustomerNotification(notification);});
+	}
+
+	public int deleteCustomerNotification(Notification notification) {
+		return dataModificationTemplate(s -> {return fromMapper(s).deleteCustomerNotification(notification);});
+	}
+
+	public List<Notification> retrieveCustomerNotificationList(String cstEmail) {
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveCustomerNotificationList(cstEmail);});
+	}
+	
+	public List<Notification> retrieveCustomerNotificationListAll(String cstEmail) {
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveCustomerNotificationListAll(cstEmail);});
+	}
+
+	public int readCustomerNotification(Integer ntfNum) {
+		return dataModificationTemplate(s -> {return fromMapper(s).readCustomerNotification(ntfNum);});
 	}
 }

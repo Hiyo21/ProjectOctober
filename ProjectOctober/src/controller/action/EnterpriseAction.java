@@ -13,11 +13,13 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
+import model.common.VOFactory;
 import model.dao.EnterpriseDAO;
 import model.vo.Component;
 import model.vo.Coupon;
 import model.vo.Enterprise;
 import model.vo.Member;
+import model.vo.Notification;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
 import model.vo.Review;
@@ -37,6 +39,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private List<Service> serviceList;
 	private List<String> categoryList;
 	private Map<String, Object> session;
+	private Map<String, Object> cpCollector;
 	private List<Coupon> couponList;
 	private Member member;
 	private PhotoLocation photoLocation;
@@ -47,13 +50,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String etpEmail;
 	private List<Review> reviewList;
 	private List<Highchart14> gunList;
+	private Notification notification;
+	private List<Notification> notificationList;
 
 	//////// Component Member ////////  
 	private Component component;
 	private List<Component> componentList;
-	private Service service;		
+	private Service service;	
 	private Coupon coupon;
-	
 	private String address;
 	private Integer rsvNum;
 	private String regCardLocation;
@@ -62,6 +66,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String category;
 	private int svcNum;
 	private int etpTemplateType;
+	private int ntfNum;
 	
 	private int upCategory;//이미지 업로드시 용도 구별 위한 변수
 	
@@ -80,8 +85,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String endDay;
 	private List<Reservation> couponSendList;
 	
-	private Map<String, Object> cpCollector;
-	
+
 
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
@@ -346,21 +350,16 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			return ERROR;
 		}
 	}
-		
-
 	
 	public String selectEtpList() throws Exception{
 		System.out.println("===========check Action :: enterpriseList :: ");
-		enterpriseList = etpDAO.selectEtpList();	
+		enterpriseList = etpDAO.selectEtpList();			
 
 		return SUCCESS;
 	}
 	
 	public String selectGalleryList() throws Exception{
 		System.out.println("===========check Action :: receiveGalleryList :: ");
-		if(enterprise == null){
-			enterprise = new Enterprise();
-		}
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 
 		if(enterprise.getPhotos() != null) return SUCCESS;
@@ -383,7 +382,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			enterprise = etpDAO.selectByEtpNum(etpNum);			
 		}else{
 			enterprise = etpDAO.selectByEtpNum(etpNum);
-		}			
+		}
+			
 		
 		//서비스 리스트 set
 		if(etpDAO.selectServiceList(etpNum).size()>0){
@@ -516,7 +516,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	
 	
-//--------------------------------------- Component ----------------------------------------//
+//--------------------------------------- Component ----------------------------------------///	
 	public String firstInsertComponent(){
 		componentList = etpDAO.receiveComponentList("1265479385");
 		
@@ -547,7 +547,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}
 		
 	}
-
+	
 	public String cleanComponent(){
 		System.err.println("============= CleanComponent ==============");
 		if(etpDAO.receiveComponentList(etpNum).size()==0){
@@ -559,6 +559,42 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 		if(result == 8) return SUCCESS;
 		else return ERROR;
+	}
+		
+	
+	public String insertComponent(){
+		
+		//사업자번호와 컴포넌트ID를 만족하는 컴포넌트가 존재하는지 확인
+		Map<String, String> check = new HashMap<>();
+		check.put("etpNum", etpNum);
+		check.put("componentId", component.getComponentID());
+		
+		////신규 등록의 경우 insert로 이미 컴포넌트 값이 등록되어 있는 사업자의 경우 update로 적용하여 component의 중복을 제거		
+		if(etpDAO.selectComponent(check)==null){	//컴포넌트 신규등록
+			System.out.println("동적템플릿 신규 컴포넌트입니다.");
+			component.setEtpEmail(etpDAO.selectByEtpNum(etpNum).getEtpEmail());
+			System.out.println(component);
+			int result = etpDAO.insertComponent(component);
+			if(result == 1) {
+				return SUCCESS;
+			}else{
+				System.err.println("============check Action :: result :: " + result);
+				return ERROR;
+			}
+		}else{	//컴포넌트 기존에 등록되어 있던 사람
+			//업데이트
+			System.out.println("============기존 컴포넌트 등록 사업자============");
+			System.out.println("동적템플릿 기존 컴포넌트입니다.");
+			System.out.println(component);
+			int result = etpDAO.updateComponent(component);
+			if(result == 1) {
+				return SUCCESS;
+			}else{
+				System.err.println("============check Action :: result :: " + result);
+				return ERROR;
+			}
+		}
+
 	}
 	
 	public String updateComponent(){	
@@ -577,7 +613,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 	public String receiveComponentList(){
 		System.out.println("============check Action :: getComponentList()");
-		System.out.println(etpNum);
+		System.err.println(etpNum);
 		component = new Component();
 		component.setEtpNum(etpNum);
 		///// 사업자 번호와 일치하는 컴포넌트만 갖고 오기
@@ -637,7 +673,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String updateTemplate() throws Exception{
-		System.out.println(enterprise);
+		System.err.println(enterprise);
 		if(enterprise != null){
 			int result = etpDAO.updateTemplate(enterprise);
 			if(result != 0) return SUCCESS;
@@ -677,15 +713,15 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String noRegisterEtp() throws Exception{
-		System.out.println(etpNum);
+		System.err.println(etpNum);
 		enterprise = etpDAO.noRegisterEtp(etpNum);
 		regCardLocation = etpDAO.retrieveRegCard(etpNum);
-		System.out.println("regCardLocation : "+regCardLocation);
+		System.err.println("regCardLocation : "+regCardLocation);
 		return SUCCESS;
 	}
 	
 	public String confirm() throws Exception{
-		System.out.println("confirm : "+etpNum);
+		System.err.println("confirm : "+etpNum);
 		int result=etpDAO.updateEtpStatus(etpNum);
 				
 		if(result !=1){	
@@ -695,7 +731,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String reject() throws Exception{
-		System.out.println("reject : "+etpNum);
+		System.err.println("reject : "+etpNum);
 		int result=etpDAO.rejectEtpStatus(etpNum);
 		
 		enterpriseList = etpDAO.allNoRegisterEtpList();
@@ -705,10 +741,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}
 		return SUCCESS;			
 	}
-	
-	
-	
-	
 	
 	////////////////////MAP////////////////////
 	public String showMap() {
@@ -725,6 +757,88 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+	public String insertEnterpriseNotification() throws Exception{
+		if(reservation != null){
+			notification = VOFactory.createNotification();
+			enterprise = etpDAO.selectByEtpNum(reservation.getEtpNum());
+			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
+			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
+			reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
+			String ntfMessageForInsert = enterprise.getEtpTitle() +" 님이  " + reservation.getCstEmail() + " 님의 예약 : " + reservation.getRsvTitle() + " (일시) " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "을 등록하였습니다."; 
+			notification.setRsvNum(reservation.getRsvNum()).setEtpNum(reservation.getEtpNum()).setEtpEmail(reservation.getEtpEmail()).setCstEmail(reservation.getCstEmail()).setNtfRead(0).setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());			
+			int result = etpDAO.insertEnterpriseNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String updateDurationEnterpriseNotification() throws Exception{
+		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
+		reservation = etpDAO.retrieveReservation(notification.getRsvNum());
+		if(notification != null){
+			String ntfMessageForInsert = enterprise.getEtpTitle() + " 님이 " + notification.getCstEmail() + "님의 예약 : " + reservation.getRsvTitle() + " 의 일시를 " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "로 변경하셨습니다.";
+			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
+			int result = etpDAO.updateDurationEnterpriseNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String updatePeriodEnterpriseNotification() throws Exception{
+		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
+		reservation = etpDAO.retrieveReservation(notification.getRsvNum());
+		if(notification != null){
+			String ntfMessageForInsert = enterprise.getEtpTitle() + " 님이 " + notification.getCstEmail() + " 님의 예약 : " + reservation.getRsvTitle() + " 의 서비스 기간을 " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + " ~ " + reservation.getRsvEndDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "로 변경하셨습니다.";
+			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
+			int result = etpDAO.updatePeriodEnterpriseNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String deleteEnterpriseNotification() throws Exception{
+		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
+		if(notification != null){
+			String ntfMessageForInsert = notification.getCstEmail() + " 님이 " + enterprise.getEtpTitle() + " 업체의 예약을 삭제하셨습니다.";
+			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
+			int result = etpDAO.deleteEnterpriseNotification(notification);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	public String retrieveEnterpriseNotificationList() throws Exception{
+		System.err.println((String)session.get("loginEtpNum"));
+		notificationList = etpDAO.retrieveEnterpriseNotificationList((String)session.get("loginEtpNum"));
+		if(notificationList != null) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String retrieveEnterpriseNotificationListAll() throws Exception{
+		System.err.println((String)session.get("loginEtpNum"));
+		notificationList = etpDAO.retrieveEnterpriseNotificationListAll((String)session.get("loginEtpNum"));
+		if(notificationList != null) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String readEnterpriseNotification() throws Exception{
+		System.err.println(ntfNum);
+		if(ntfNum != 0){
+			int result = etpDAO.readEnterpriseNotification(ntfNum);
+			if(result != 0) return SUCCESS;
+			else return ERROR;
+		}else{
+			return ERROR;
+		}
+	}
 
 	/////////////////////////////////////////////////
 	
@@ -1051,7 +1165,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.gunList = gunList;
 	}
 
-
 	public Map<String, Object> getCpCollector() {
 		return cpCollector;
 	}
@@ -1060,6 +1173,30 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.cpCollector = cpCollector;
 	}
 
+	public Notification getNotification() {
+		return notification;
+	}
+
+	public List<Notification> getNotificationList() {
+		return notificationList;
+	}
+
+	public void setNotification(Notification notification) {
+		this.notification = notification;
+	}
+
+	public void setNotificationList(List<Notification> notificationList) {
+		this.notificationList = notificationList;
+	}
+
+	public int getNtfNum() {
+		return ntfNum;
+	}
+
+	public void setNtfNum(int ntfNum) {
+		this.ntfNum = ntfNum;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -1140,7 +1277,4 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.couponSendList = couponSendList;
 	}
 	
-
-	
-
 }
