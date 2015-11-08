@@ -201,6 +201,26 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
+	public String inMyPage() throws Exception{
+		// 예약내역 관련
+		String loginEmail = (String)session.get("loginId");
+		System.out.println("action"+loginEmail);
+		saleRecords = etpDAO.reservationHistory(loginEmail);
+		if (saleRecords == null) {
+			return ERROR;
+		}
+		
+		
+		// 쿠폰 및 이벤트
+		etpNum = (String)session.get("loginEtpNum");
+		etpEmail = (String)session.get("loginId");
+		couponList = etpDAO.retrieveCouponList(etpNum);
+		couponSendList = etpDAO.couponSendList(etpEmail);
+				
+		
+		return SUCCESS;
+	}
+	
 	//쿠폰불러오기
 	public String retrieveCouponList() throws Exception{
 		etpNum = (String)session.get("loginEtpNum");

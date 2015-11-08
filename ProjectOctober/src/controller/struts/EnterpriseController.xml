@@ -243,7 +243,7 @@
 		</action>
 		
 		<!-- 사업자의 마이페이지 -->
-		<action name="toEnterpriseMyPage">
+		<action name="toEnterpriseMyPage" class="controller.action.EnterpriseAction" method="inMyPage">
 			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
 		</action>
 		
@@ -291,7 +291,7 @@
 		
 		<!-- 쿠폰 관련 -->
 		<action name="toEnterpriseCouponManagement" class="controller.action.EnterpriseAction" method="retrieveCouponList">
-			<result>/jsp/enterprise/EnterpriseCouponManagement.jsp</result>
+			<result>/jsp/enterprise/EnterpriseCouponManagement.jsp</result>			
 		</action>
 		
 		<action name="insertCoupon" class="controller.action.EnterpriseAction" method="insertCoupon">
