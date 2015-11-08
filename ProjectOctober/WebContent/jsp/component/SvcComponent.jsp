@@ -11,11 +11,8 @@
 <script type="text/javascript">
 	$(function(){
 				
-		$('#svcCategoryModal').on('shown.bs.modal', function(){
-			$('.modal-backdrop').css('z-index', -1);
-			$('.modal-dialog').css('z-index', +1);
-			$('.input-group-btn').css('z-index', 0);			
-		});
+		
+
 	});
 	
 
@@ -28,6 +25,8 @@
 			dataType: 'json',
 			success : function(data){
 				printSvcModal(data);
+				alert("printSvcModal success");
+				$('#svcCategoryModal').modal('show');
 			}
 		});
 	}
@@ -74,7 +73,7 @@
 			type: 'GET',
 			success: function(data){
 				printSvcList(data);
-				location.reload();
+				//location.reload();
 				/* $('#svcCategoryModal').modal('hide').on('hidden.bs.modal', function(){
 					$('#svcCategoryModal').hide();
 				}); */
@@ -156,7 +155,7 @@
 					
 			$.each(object.serviceList, function(index, svcItem){
 				if(item == svcItem.svcCategory){
-					str += '<div class="panel-body" id="categoryBody"> <table class="table table-hover">';
+					str += '<div class="panel-body"> <table class="table table-hover">';
 					str += '<tr><td class="col-xs-3">'+svcItem.svcTitle+'</td><td  class="col-xs-5">';
 					if(svcItem.svcDescription != null){
 						str += svcItem.svcDescription + '<br>'
@@ -201,7 +200,7 @@
 		<s:iterator value="#session.enterprise.services">
 		<s:if test='%{svcCategory.equalsIgnoreCase(#category)}'> 
 		<!-- 서비스 항목-->
-		<div class="panel-body hidden-xs" id="categoryBody">
+		<div class="panel-body hidden-xs">
 		  	<table class="table table-hover">
 		  		<tr>
 		  			<td class="col-xs-4 hidden-xs">

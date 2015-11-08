@@ -92,6 +92,12 @@ $(function(){
 	  	$('#infoCP').css('z-index', -1);
 	});
 	
+	$('.modal').on('shown.bs.modal', function(){
+		$('.modal-backdrop').css('z-index', -1);
+		$('.modal-dialog').css('z-index', +1);
+		$('.input-group-btn').css('z-index', 0);			
+	});
+	
 	$('#svcCategoryModal').on('shown.bs.modal', function(){
 		$('.grid-stack-item').css('z-index', -1);
 		$('#svcCP').css('z-index', 0);
