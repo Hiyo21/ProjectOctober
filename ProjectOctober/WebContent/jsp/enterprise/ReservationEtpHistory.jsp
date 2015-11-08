@@ -37,7 +37,7 @@ $(document).ready(function() {
 }
 
 </style>
->>>>>>> refs/remotes/origin/master
+
 </head>
 <body>
 	<s:include value="../Header.jsp"></s:include>
