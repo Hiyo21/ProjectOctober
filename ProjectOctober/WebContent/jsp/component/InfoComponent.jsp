@@ -37,6 +37,11 @@ $(document).ready(function(){
 		$('.modal-dialog').css('z-index', +1);
 		$('.input-group-btn').css('z-index', 0);
 		$('#etpBtBar').css('z-index', -1);
+		$('#rsvBt').css('z-index', -1);
+	});
+	
+	$('#infoModal').on('hidden.bs.modal', function(){
+		$('#etpBtBar').css('z-index', 0);
 	});
 });
 
@@ -52,6 +57,7 @@ function saveInfo() {
 		success: function(data){
 			console.log(data);
 			var infoDesc = data.enterprise.etpDescription;
+			$('#infoContentIn').html();
 			$('#infoContentIn').html(infoDesc);
 		},
 		error: function(doc){
@@ -83,12 +89,7 @@ function toInfoUploadPage() {
 				</s:if>
 				<s:else>
 					<!-- 인포사진 부재시 기본적으로 뿌려지는 사진 -->
-					<s:if test='enterprise.etpSuperclass.equals("마사지샵")'>
-						<img src='http://coolmassage.net/data/apms/background/%EB%B6%84%EB%8B%B9%EB%A7%88%EC%82%AC%EC%A7%801.jpg' class='img-responsive'>
-					</s:if>
-					<s:if test='enterprise.etpSuperclass.equals("네일샵")'>
-						<img src='http://img.kormedi.com/news/article/__icsFiles/afieldfile/2012/10/15/cc201210150001145.jpg' class='img-responsive'>
-					</s:if>
+						<img src='${pageContext.request.contextPath}/image/wait.gif' class='img-responsive'>
 				</s:else>
 				
 				<input type="hidden" name="etpNum" value="${enterprise.etpNum}" id="etpNumHidden"/>
@@ -102,8 +103,7 @@ function toInfoUploadPage() {
 		  			<!-- 입력된 내용을 바로 반영 -->
 		  			<div id="infoContentIn">
 		  				<s:if test='#session.enterprise.etpDescription == null'>
-		  					<h3>사장님 안녕하세요!</h3>
-				  			<h5>이곳에 간단한 소개를 적어주세요</h5>
+		  					<h3><s:property value="#session.enterprise.etpTitle"/>에 어서오세요</h3>
 				  		</s:if>
 				  		<s:if test='#session.enterprise.etpDescription != null'>
 				  			<s:property value="#session.enterprise.etpDescription" escapeHtml="false"/>

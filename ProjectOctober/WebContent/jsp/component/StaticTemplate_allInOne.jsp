@@ -10,7 +10,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
 
 <title>Static Template 2</title>
 
@@ -50,10 +50,10 @@
 		
 		//로그인 한 사람이 페이지 주인과 동일 할 때 
 		if(loginId==pageId){
-			$('#etpBtBar').show();
+			$('#etpBt').show();
 			$('#editBT').on('click', startEdit);
 		}else{
-			$('#etpBtBar').hide();	
+			$('#etpBt').hide();	
 		}	
 	}
 	
@@ -62,10 +62,6 @@
 	function startEdit(){
 		//편집, 수정 버튼 보임	
 		$('.edit').show();
-		
-		//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
-		$('#saveBT').attr('disabled', false);
-		$('#saveBT').on('click', savePage);  
 		
 		//편집 버튼에 누름 효과 추가
 	    $('#editBT').addClass('active');
@@ -85,15 +81,7 @@
 		loadPage(); //DB에 저장되어 있는 페이지 로드
 	}
 	
-	/* //각 <div class="grid-stack-item-content"> 안에 들어갈 페이지 불러오기
-    $('#inReviewCP').load('${pageContext.request.contextPath}/jsp/component/ReviewComponent.jsp');
-    $('#inLocaCP').load('${pageContext.request.contextPath}/jsp/component/LocationComponent.jsp');
-    $('#inGalCP').load('${pageContext.request.contextPath}/jsp/component/GalleryComponent.jsp');
-    $('#inSvcCP').load('${pageContext.request.contextPath}/jsp/component/SvcComponent.jsp');
-    $('#inInfoCP').load('${pageContext.request.contextPath}/jsp/component/InfoComponent.jsp');
-    $('#inEtpBtBar').load('${pageContext.request.contextPath}/jsp/component/EtpBT.jsp');
-    $('#inTopCP').load('${pageContext.request.contextPath}/jsp/component/StaticTop.jsp'); 
-	 */
+
 </script>
 
 </head>

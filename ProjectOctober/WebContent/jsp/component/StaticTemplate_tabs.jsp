@@ -22,6 +22,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -71,10 +72,10 @@
 		
 		//로그인 한 사람이 페이지 주인과 동일 할 때 
 		if(loginId == pageId){
-			$('#etpBtBar').show();
+			$('#etpBt').show();
 			$('#editBT').on('click', startEdit);
 		}else{
-			$('#etpBtBar').hide();	
+			$('#etpBt').hide();	
 		}	
 	};
 	
@@ -97,10 +98,6 @@
 		$('#editBT').unbind('click');
 		$('#editBT').on('click', startEdit);
 		$('#editBT').removeClass('active');
-		
-	};
-	
-	function savePage(){
 		
 	};
 		

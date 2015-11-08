@@ -11,13 +11,11 @@
 <script type="text/javascript">
 	$(function(){
 				
-		$('.modal').on('shown.bs.modal', function(){
+		$('#svcCategoryModal').on('shown.bs.modal', function(){
 			$('.modal-backdrop').css('z-index', -1);
 			$('.modal-dialog').css('z-index', +1);
-			$('.input-group-btn').css('z-index', 0);
-			
+			$('.input-group-btn').css('z-index', 0);			
 		});
-
 	});
 	
 
@@ -30,10 +28,6 @@
 			dataType: 'json',
 			success : function(data){
 				printSvcModal(data);
-				$('#svcCategoryModal').modal('show').on('show.bs.modal', function(){
-					$('#svcCategoryModal').show();
-					$('.modal-backdrop').hide();
-				});
 			}
 		});
 	}
@@ -80,9 +74,10 @@
 			type: 'GET',
 			success: function(data){
 				printSvcList(data);
-				$('#svcCategoryModal').modal('hide').on('hidden.bs.modal', function(){
+				location.reload();
+				/* $('#svcCategoryModal').modal('hide').on('hidden.bs.modal', function(){
 					$('#svcCategoryModal').hide();
-				});
+				}); */
 
 			},
 			error: function(doc){
@@ -97,7 +92,6 @@
 		//htmleditor modal on
 		var svcList = object.serviceList;
 		var superClass = object.enterprise.etpSuperclass;
-		console.log(svcList);
 		
 		var str = '<table class="table">';
 		$.each(svcList, function(index, item){
@@ -140,9 +134,7 @@
 			type: 'POST',
 			data: $('#svcCategoryForm').serialize(),
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-			success: function(){
-				selectServiceList();
-			},
+			success: selectServiceList,
 			error: function(doc){
 				console.log("insert Error");
 			}
@@ -154,14 +146,14 @@
 		console.log(object);
 		var str = '<br><p align="right">'
 			str	+='<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcModalForm"'
-			str	+='data-dismiss=\'modal\'>서비스 추가</button></p>';
+			str	+='data-dismiss="modal">서비스 추가</button></p>';
 			
 		$.each(object.categoryList, function(index,item){
 			str += '<div class="panel panel-default"><div class="panel-heading"><b>'+item+'</b>';
 			str += '<button class="btn btn-default btn-md edit" data-toggle="modal" data-target="#svcCategoryModal"';
-			str += 'data-dismiss=\'modal\' onclick=\'selectSvcCategory("'+item+'")\'>수정</button>';
+			str += 'data-dismiss="modal" onclick=\'selectSvcCategory("'+item+'")\'>수정</button>';
 			str += '</div>';	
-			
+					
 			$.each(object.serviceList, function(index, svcItem){
 				if(item == svcItem.svcCategory){
 					str += '<div class="panel-body" id="categoryBody"> <table class="table table-hover">';
@@ -171,7 +163,6 @@
 					}
 					str += '<b>비용 : '+svcItem.svcCost+'</b><br>';
 					str += '시간 : '+svcItem.svcTime+'</td>';
-					str += '<td class="col-xs-3"><button type="button" class="btn btn-success btn-md" onclick="rsvInsert('+svcItem.svcNum+') style="width: 100px">예약 하기</button></td>';
 					str += '<td class="col-xs-3 edit"><button type="button" class="btn btn-danger btn-md edit" onclick="deleteService('+svcItem.svcNum+')">삭제</button></td></tr></table></div>';	
 				}
 			});
@@ -191,8 +182,7 @@
 <br>
 
 <p align="right">
-<button class="btn btn-default btn-md edit hidden-xs" data-toggle="modal" data-target="#svcModalForm"
-data-title="서비스 추가" data-submit="추가" data-onclick="insertService()" onclick="">서비스 추가</button>
+<button class="btn btn-default btn-md edit hidden-xs" data-toggle="modal" data-target="#svcModalForm" data-dismiss="modal">서비스 추가</button>
 </p>
 
 <s:if test="#session.categoryList != null">

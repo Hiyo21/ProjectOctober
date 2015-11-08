@@ -93,8 +93,19 @@ $(function(){
 	});
 	
 	$('#svcCategoryModal').on('shown.bs.modal', function(){
-		$('#locaCP').css('z-index', -1);
-		$('#reviewCP').css('z-index', -1);
+		$('.grid-stack-item').css('z-index', -1);
+		$('#svcCP').css('z-index', 0);
+		$('#svcCategoryModal').css('z-index', 1);
+	});
+	
+	$('#svcModalForm').on('shown.bs.modal', function(){
+		$('.grid-stack-item').css('z-index', -1);
+		$('#svcCP').css('z-index', 0);
+		$('#svcModalForm').css('z-index', 1);
+	});
+	
+	$('.modal').on('hidden.bs.modal', function(){
+		$('.grid-stack-item').css('z-index', 0);
 	});
 	
 	//편집 버튼 숨기기

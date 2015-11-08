@@ -135,7 +135,7 @@ $(function(){
 				<table class="table table-striped">					 	
 					<tr>
 						<td><label>■리뷰 : </label></td>					
-						<td><input type="text" size="100" name="review.rvwContent"	></td>				
+						<td><input type="text" size="70" name="review.rvwContent"	></td>				
 					</tr>				
 					<tr>
 						<td><label>■직업</label></td>
