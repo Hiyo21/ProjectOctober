@@ -134,10 +134,7 @@ $(function(){
 	});
 	
 	
-	
-	
 	$('.grid-stack').on('change', function (e, items) {
-		console.log(items);
 		makeIcon(items);   
 	});
 	
