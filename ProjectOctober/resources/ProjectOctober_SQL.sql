@@ -12,7 +12,7 @@ alter sequence service_seq increment by 1
 
 select * from service where etp_num = '9876543210' 
 
-select * from component where etp_num = '9876543210' and component_id = 'svcCP'
+select * from component order by etp_num  where etp_num = '9876543210' and component_id = 'svcCP'
 update component set etp_num = '1234567890', etp_email = 'seh@test.com' where etp_num = '9090909090'
 
  

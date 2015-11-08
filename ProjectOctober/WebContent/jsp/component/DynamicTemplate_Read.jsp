@@ -322,10 +322,9 @@ function resetPage(){
 		url: '${pageContext.request.contextPath}/enterprise/resetComponent.action?etpNum=<s:property value="etpNum"/>', 
 		type:'POST',
 		success: function(){
-			alert("success");
+			location.reload();
 		}
 	});
-	location.reload();
 };
 
 </script>

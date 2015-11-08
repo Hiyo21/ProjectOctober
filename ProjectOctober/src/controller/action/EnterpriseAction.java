@@ -536,6 +536,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		int result= 0;
 		
 		for(Component c : componentList){
+			System.err.println("###########Check :: "+etpNum);
+			c.setEtpNum(etpNum);
 			result = etpDAO.updateComponent(c);
 		}
 		

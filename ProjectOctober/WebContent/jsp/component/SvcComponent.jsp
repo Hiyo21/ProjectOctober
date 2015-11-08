@@ -169,7 +169,7 @@
 					if(svcItem.svcDescription != null){
 						str += svcItem.svcDescription + '<br>'
 					}
-					str += '비용 : '+svcItem.svcCost+'<br>';
+					str += '<b>비용 : '+svcItem.svcCost+'</b><br>';
 					str += '시간 : '+svcItem.svcTime+'</td>';
 					str += '<td class="col-xs-3"><button type="button" class="btn btn-success btn-md" onclick="rsvInsert('+svcItem.svcNum+') style="width: 100px">예약 하기</button></td>';
 					str += '<td class="col-xs-3 edit"><button type="button" class="btn btn-danger btn-md edit" onclick="deleteService('+svcItem.svcNum+')">삭제</button></td></tr></table></div>';	
@@ -221,7 +221,8 @@ data-title="서비스 추가" data-submit="추가" data-onclick="insertService()
 		  				<s:if test="svcDescription != null">
 		  					<s:property value="svcDescription"/><br>
 		  				</s:if>
-		  				비용 : <s:property value="svcCost"/> <br>시간 : <s:property value="svcTime"/>
+		  				<b> 비용 : <s:property value="svcCost"/> </b> <br>
+		  				시간 : <s:property value="svcTime"/>
 		  			</td>
 		  			<td class="edit col-xs-2 hidden-xs">
 		  				<button type="button" class="btn btn-danger btn-md edit" onclick="deleteService(<s:property value="svcNum"/>)">삭제</button>
