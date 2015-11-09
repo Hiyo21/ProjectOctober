@@ -285,7 +285,7 @@
 								 <a href="<s:url value="/search/areaMapSearch.action?searchKeyword=충청남도"/>"> <button type="button" class="btn btn-link" data-target="#chungcheongnamdo"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>충청남도</button></a>
 								  			
 								  <br><br>
-								  <a href="<s:url value="/search/areaMapSearch.action?searchKeyword=경상북도"/>"><button type="button" class="btn btn-link" data-target="#gyeongsangbukdo"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>경상묵도</button></a>
+								  <a href="<s:url value="/search/areaMapSearch.action?searchKeyword=경상북도"/>"><button type="button" class="btn btn-link" data-target="#gyeongsangbukdo"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>경상북도</button></a>
 								  				
 								  <br><br>
 								 <a href="<s:url value="/search/areaMapSearch.action?searchKeyword=경상남도"/>"> <button type="button" class="btn btn-link" data-target="#gyeongsangnamdo"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>경상남도</button></a>

@@ -147,6 +147,7 @@
 						theme: true,
 						defaultView : 'agendaWeek',
 						scrollTime: '09:00:00',
+						dragRevertDuration: 10,
 						draggable : true,
 						minTime: startTT,
 						maxTime: endTT,
@@ -871,27 +872,28 @@
 </head>
 <body>
 	<jsp:include page="/jsp/Header.jsp"></jsp:include>
-	<h1>A# 예약 스케쥴러</h1>
-	<br>
+
 	<div>
-		<a href="${pageContext.request.contextPath}/toMainPage.action"><button class="btn btn-info" >메인 메뉴로</button></a>
-		<!-- enterprise 값을 action으로 다 넘겨야 할듯? 아니면 적어도 이메일이랑 템플릿 타입이라도. -->
-		<a href="takeEtp.action?etpNum=<s:property value='#session.loginEtpNum'/>"><button class="btn btn-primary">사업자 메뉴로</button></a>
-		<a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value="#session.loginId"/>"><button class="btn btn-primary">통계</button></a>
-	</div>
 		<input type="hidden" id="starttt" />
 		<input type="hidden" id="endtt" />
-    	<div class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="195">
-    		<div>
-	      		<img src="${pageContext.request.contextPath}/image/trash-can1.jpg" class="img-thumbnail" id="trash" alt="쓰레기통" style="width: 100px; height: 100px;">
-	      		<h4>서비스 목록</h4>
-		      	<div id="external-events"></div>
-      		</div>	
-    	</div>
-
-	<div id='calendar' class='container'></div>
-	<br><br><br><br><br><br><br><br><br><br><br>
-	
+	</div>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-xs-1'>
+				<br><br><br>
+				<div id="external-events">
+					<br>
+					<img src="${pageContext.request.contextPath}/image/trash-can1.jpg" class="img-thumbnail" id="trash" alt="쓰레기통" style="width: 100px; height: 100px; margin:0px 0px 0px 23px;">
+					<h4>서비스 목록</h4>
+				</div> 
+			</div>
+			
+			<div class='col-xs-10 col-xs-offset-1'>
+				<div id='calendar'></div>
+			</div>
+		</div>
+	</div>	
+	<br><br>
 	
 	<div id="insertModal" class="modal fade">
 	    <div class="modal-dialog">
