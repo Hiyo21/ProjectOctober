@@ -45,7 +45,7 @@ function searchFeature(searchKeyword) {
 		</div>
 		<div class="col-md-3">
 			<div class="thumbnail" onclick="searchFeature('커플룸')">
-				<img src="/ProjectOctober/image/sch-biz-gr.jpg" alt="San Francisco" width="400" height="300">
+				<img src="/ProjectOctober/image/sch-feat-couple.jpg" alt="San Francisco" width="400" height="300">
 				<p><strong>커플룸</strong></p>
 				<p>연인과 함께 관리를!</p>
 			</div>
@@ -82,7 +82,7 @@ function searchFeature(searchKeyword) {
 		</div>
 		<div class="col-md-3">
 			<div class="thumbnail" onclick="searchFeature('회원권 제도')">
-				<img src="/ProjectOctober/image/sch-feat-card.png" alt="San Francisco" width="400" height="300">
+				<img src="/ProjectOctober/image/sch-feat-card.jpg" alt="San Francisco" width="400" height="300">
 				<p><strong>회원권제도</strong></p>
 				<p>보다 저렴하게 이용하세요!</p>
 			</div>
