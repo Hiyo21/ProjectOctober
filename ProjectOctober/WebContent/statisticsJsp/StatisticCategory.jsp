@@ -46,7 +46,7 @@ textarea {width:800px; height:300px;overflow:visible;}
 
 </head>
 <body>
-<s:include value="Header.jsp"></s:include>
+<s:include value="../jsp/Header.jsp"></s:include>
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">통계1</a></li>

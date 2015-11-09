@@ -11,7 +11,7 @@
 
 <style>
 	#headbar{
-		background-image: url("${pageContext.request.contextPath}/image/themes/preview3.jpg");
+		background-image: url("${pageContext.request.contextPath}/image/themes/15.png");
 	}
 </style>
 <!-- LINK 랑 SCRIPT 임포트하지 말 것! -->
@@ -59,7 +59,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<s:if test="#session.loginId == null">
-					<li><a data-toggle="modal" href="#myModal"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+					<li><a data-toggle="modal" href="#myModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 					<div class="modal fade" id="myModal" role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -101,9 +101,9 @@
 	$(function(){
 		$('[data-toggle="notification-popover"]').popover();
 	});
-	
-	
-	if(<s:property value="#session.memCode"/> == 1){
+	var memCode = 0;
+	memCode = '#session.memCode';	
+	if(memCode == 1 || memCode != null){
 		$(function(){
 			var str = '';
 			setInterval(function(){
@@ -176,7 +176,7 @@
 		});
 	}
 	
-	else if(<s:property value="#session.memCode"/> == 2){
+	else if(memCode == 2){
 		$(function(){
 			var str = '';
 			setInterval(function(){
@@ -232,6 +232,8 @@
 				});				
 			});
 		});
+	}else{
+		
 	}
 </script>
 
