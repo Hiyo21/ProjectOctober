@@ -1,27 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
-<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"></script>
+
 <style type="text/css">
 #example_paginate {
 	text-align: center;
 	 cursor: pointer; 
 }
-
 </style>
-  <script>
+ 
+ <script>
 
 	$(function(){
 		$('[data-toggle="notification-popover"]').popover();
@@ -30,103 +28,108 @@
 	$(function(){
 		$('[data-toggle="tooltip"]').tooltip(); 
 	});		
-
-$(document).ready(function(){
-	//$('#reservation').on('click', goReservation);
-	$('[data-toggle="tooltip"]').tooltip();	
-    $(".nav-tabs a").click(function(){
-        $(this).tab('show');
-    });
-    $('#example').DataTable( {
-        "order": [[ 3, "desc" ]]
-    } );
-    
-    $('.nav-tabs a').on('shown.bs.tab', function(event){
-        var x = $(event.target).text();         // active tab
-        var y = $(event.relatedTarget).text();  // previous tab
-        $(".act span").text(x);
-        $(".prev span").text(y);
-    });
-});
-
-function reservation() {
-	location.href="${pageContext.request.contextPath}/enterprise/toEptReservationHistoryPage.action";
-}
-
-function goReservation(){
-	alert('goHistory');
-	//location.href="${pageContext.request.contextPath}/enterprise/toEptReservationHistoryPage.action";
-	$.ajax({
-		url:'toEptReservationHistoryPage.action'
-		, dataType:'json'
-		, Type:'post'
-		, success: output
-	});
-}
-
-function output(msg){
-	alert('성공');
-	var str = '<table>';
-	$.each(msg.saleRecords, function(key, item) {
-		str += '<tr>';
-		str += '<td class=tbNum>'+ item.saleNum +'</td>';
-		str += '<td class=tbName>'+ item.reservation.rsvNum +'</td>';
-		str += '<td class=tbText>'+ item.reservation.cstEmail +'</td>';
-		str += '<td class=tbNum>'+ service.svcTitle +'</td>';
-		str += '<td class=tbNum>'+ reservation.rsvStartDate +'</td>';
-		str += '<td class=tbNum>'+ saleAmount +'</td>';
-		//str += '<td><input type="button" value="DELETE" class="btDel" num="'+item.num+'"></td>';
-		str += '</tr>';
-	});
-	str += '</table>';
-	$('#listDiv').html(str);
-	$('.btDel').on('click', deleteComment);
-}
-
-
-/* 쿠폰용 */
-function insertCoupon() {
-	var insertTitle = document.getElementById("insertTitle");
-	var insertRate = document.getElementById("insertRate");
-	var insertStartYear = document.getElementById("insertStartYear");
-	var insertStartMonth = document.getElementById("insertStartMonth");
-	var insertStartDay = document.getElementById("insertStartDay");
-	var insertEndYear = document.getElementById("insertEndYear");
-	var insertEndMonth = document.getElementById("insertEndMonth");
-	var insertEndDay = document.getElementById("insertEndDay");
-	location.href="${pageContext.request.contextPath}/enterprise/insertCoupon.action?title=" + insertTitle.value + "&rate=" + insertRate.value + "&startYear=" + insertStartYear.value + "&startMonth=" + insertStartMonth.value + "&startDay=" + insertStartDay.value + "&endYear=" + insertEndYear.value + "&endMonth=" + insertEndMonth.value + "&endDay=" + insertEndDay.value;
-}
-
-function updateCoupon() {
-	var editCpnNum = document.getElementById("couponRadio").value;
-	var editTitle = document.getElementById("editTitle").value;
-	var editRate = document.getElementById("editRate").value;
-	var editStartYear = document.getElementById("editStartYear").value;
-	var editStartMonth = document.getElementById("editStartMonth").value;
-	var editStartDay = document.getElementById("editStartDay").value;
-	var editEndYear = document.getElementById("editEndYear").value;
-	var editEndMonth = document.getElementById("editEndMonth").value;
-	var editEndDay = document.getElementById("editEndDay").value;
-	location.href="${pageContext.request.contextPath}/enterprise/updateCoupon.action?cpnNum=" + editCpnNum + "&title=" + editTitle + "&rate=" + editRate + "&startYear=" + editStartYear + "&startMonth=" + editStartMonth + "&startDay=" + editStartDay + "&endYear=" + editEndYear + "&endMonth=" + editEndMonth + "&endDay=" + editEndDay;
-}
-
-function deleteCoupon() {
-	var deleteCpnNum = document.getElementById("couponRadio").value;
-	location.href="${pageContext.request.contextPath}/enterprise/deleteCoupon.action?cpnNum=" + deleteCpnNum;
-}
-/* 
-function goCouponEvent(){
-	$.ajax({
-		url: 'enterprise/toEnterpriseCouponManagement.action',
-		success: function(obj){
-			alert(obj);
-			$('#CouponEvent').html(obj);
-			location.href="#CouponEvent";
-		}
-	});
 	
-} */
+	$(function(){
+		$('#btnToTemplateStyle').on('click', function(){
+			location.href= "${pageContext.request.contextPath}/member/toEnterpriseMakingPage.action";
+		});
+	});
 
+	$(document).ready(function(){
+		//$('#reservation').on('click', goReservation);
+		$('[data-toggle="tooltip"]').tooltip();	
+	    $(".nav-tabs a").click(function(){
+	        $(this).tab('show');
+	    });
+	    $('#example').DataTable( {
+	        "order": [[ 3, "desc" ]]
+	    } );
+	    
+	    $('.nav-tabs a').on('shown.bs.tab', function(event){
+	        var x = $(event.target).text();         // active tab
+	        var y = $(event.relatedTarget).text();  // previous tab
+	        $(".act span").text(x);
+	        $(".prev span").text(y);
+	    });
+	});
+
+	function reservation() {
+		location.href="${pageContext.request.contextPath}/enterprise/toEptReservationHistoryPage.action";
+	}
+	
+	function goReservation(){
+		alert('goHistory');
+		//location.href="${pageContext.request.contextPath}/enterprise/toEptReservationHistoryPage.action";
+		$.ajax({
+			url:'toEptReservationHistoryPage.action'
+			, dataType:'json'
+			, Type:'post'
+			, success: output
+		});
+	}
+	
+	function output(msg){
+		alert('성공');
+		var str = '<table>';
+		$.each(msg.saleRecords, function(key, item) {
+			str += '<tr>';
+			str += '<td class=tbNum>'+ item.saleNum +'</td>';
+			str += '<td class=tbName>'+ item.reservation.rsvNum +'</td>';
+			str += '<td class=tbText>'+ item.reservation.cstEmail +'</td>';
+			str += '<td class=tbNum>'+ service.svcTitle +'</td>';
+			str += '<td class=tbNum>'+ reservation.rsvStartDate +'</td>';
+			str += '<td class=tbNum>'+ saleAmount +'</td>';
+			//str += '<td><input type="button" value="DELETE" class="btDel" num="'+item.num+'"></td>';
+			str += '</tr>';
+		});
+		str += '</table>';
+		$('#listDiv').html(str);
+		$('.btDel').on('click', deleteComment);
+	}
+	
+	
+	/* 쿠폰용 */
+	function insertCoupon() {
+		var insertTitle = document.getElementById("insertTitle");
+		var insertRate = document.getElementById("insertRate");
+		var insertStartYear = document.getElementById("insertStartYear");
+		var insertStartMonth = document.getElementById("insertStartMonth");
+		var insertStartDay = document.getElementById("insertStartDay");
+		var insertEndYear = document.getElementById("insertEndYear");
+		var insertEndMonth = document.getElementById("insertEndMonth");
+		var insertEndDay = document.getElementById("insertEndDay");
+		location.href="${pageContext.request.contextPath}/enterprise/insertCoupon.action?title=" + insertTitle.value + "&rate=" + insertRate.value + "&startYear=" + insertStartYear.value + "&startMonth=" + insertStartMonth.value + "&startDay=" + insertStartDay.value + "&endYear=" + insertEndYear.value + "&endMonth=" + insertEndMonth.value + "&endDay=" + insertEndDay.value;
+	}
+	
+	function updateCoupon() {
+		var editCpnNum = document.getElementById("couponRadio").value;
+		var editTitle = document.getElementById("editTitle").value;
+		var editRate = document.getElementById("editRate").value;
+		var editStartYear = document.getElementById("editStartYear").value;
+		var editStartMonth = document.getElementById("editStartMonth").value;
+		var editStartDay = document.getElementById("editStartDay").value;
+		var editEndYear = document.getElementById("editEndYear").value;
+		var editEndMonth = document.getElementById("editEndMonth").value;
+		var editEndDay = document.getElementById("editEndDay").value;
+		location.href="${pageContext.request.contextPath}/enterprise/updateCoupon.action?cpnNum=" + editCpnNum + "&title=" + editTitle + "&rate=" + editRate + "&startYear=" + editStartYear + "&startMonth=" + editStartMonth + "&startDay=" + editStartDay + "&endYear=" + editEndYear + "&endMonth=" + editEndMonth + "&endDay=" + editEndDay;
+	}
+	
+	function deleteCoupon() {
+		var deleteCpnNum = document.getElementById("couponRadio").value;
+		location.href="${pageContext.request.contextPath}/enterprise/deleteCoupon.action?cpnNum=" + deleteCpnNum;
+	}
+	/* 
+	function goCouponEvent(){
+		$.ajax({
+			url: 'enterprise/toEnterpriseCouponManagement.action',
+			success: function(obj){
+				alert(obj);
+				$('#CouponEvent').html(obj);
+				location.href="#CouponEvent";
+			}
+		});
+		
+	} */
 </script>
 <title>CustomerMypage.jsp</title>
 </head>
@@ -145,6 +148,7 @@ function goCouponEvent(){
 <li><a href="#OneClick">OneClick 결제</a></li>
 <%-- <li><a href="${pageContext.request.contextPath}/enterprise/toEptReservationHistoryPage.action" id="reservation">예약 내역</a></li> --%>
 <li><a href="#reservationDiv">예약 내역</a></li>
+<li><a href="#templateRevisionDiv">템플릿 설정</a></li>
 </ul>
 
 <div class="tab-content">
@@ -720,7 +724,7 @@ function goCouponEvent(){
     <!-- 쿠폰 및 이벤트 탭 끝 -->
     
     <!-- 원클릭 결제 탭 시작 -->
-    <div id="OneClick" class="tab-pane fade" >
+    <div id="OneClick" class="tab-pane fade">
       <h2>OneClick 카드등록</h2>
       <table class="table table-hover">
           		<tr>
@@ -784,9 +788,9 @@ function goCouponEvent(){
           			<td><input type="text" id="cvc" size="5"/></td>
           		</tr>        		
        </table>  
-		       <div class="container" style="display: inline-block;text-align: center;">
-		          			<button type="button" class="btn btn-primary">등록</button>
-		          		</div>
+			<div class="container" style="display: inline-block; text-align: center;">
+		          	<button type="button" class="btn btn-primary">등록</button>
+			</div>
     </div>
     <!-- 원클릭 결제 탭 끝 -->   
     <div id="reservationDiv" class="tab-pane fade">
@@ -820,11 +824,13 @@ function goCouponEvent(){
 				<button type="button" class="btn btn-default" onclick="goBack()">뒤로가기</button>
 			</div>
 		</div>
-    </div>  
-  	
-	</div>
-	</div>
+    </div>
+    
+    <div id="templateRevisionDiv" class="tab-pane fade">
+    <br><button type="button" class="btn btn-warning btn-lg" id="btnToTemplateStyle">템플릿 스타일 변경 페이지로</button>
+    </div>
+</div>
+</div>
 <!-- 탭 끝 -->
-
 </body>
 </html>

@@ -845,7 +845,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveEnterpriseNotificationList() throws Exception{
-		System.err.println((String)session.get("loginEtpNum"));
 		notificationList = etpDAO.retrieveEnterpriseNotificationList((String)session.get("loginEtpNum"));
 		ntfCount = notificationList.size();
 		if(notificationList != null) return SUCCESS;
@@ -853,14 +852,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveEnterpriseNotificationListAll() throws Exception{
-		System.err.println((String)session.get("loginEtpNum"));
 		notificationList = etpDAO.retrieveEnterpriseNotificationListAll((String)session.get("loginEtpNum"));
 		if(notificationList != null) return SUCCESS;
 		else return ERROR;
 	}
 	
 	public String readEnterpriseNotification() throws Exception{
-		System.err.println(ntfNum);
 		if(ntfNum != 0){
 			int result = etpDAO.readEnterpriseNotification(ntfNum);
 			if(result != 0) return SUCCESS;

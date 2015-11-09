@@ -106,7 +106,7 @@
 		<div class="buttonBars">
 			<div class="btn-group btn-group-justified" role="group" aria-label="...">
 				<div class="btn-group" role="group">
-			    	<button type="button" class="btn btn-default btn-lg">전화 예약(000-0000-0000)</button>
+			    	<button type="button" class="btn btn-default btn-lg">전화 예약(<s:property value="enterprise.etpPhone"/>)</button>
 			  	</div>
 			  	<div class="btn-group" role="group">
 
