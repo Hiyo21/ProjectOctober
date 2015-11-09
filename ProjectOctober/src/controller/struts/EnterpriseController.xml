@@ -285,6 +285,10 @@
 			<result type="json" />
 		</action>
 		
+		<action name="retrieveEnterpriseNotificationListAll" class="controller.action.EnterpriseAction" method="retrieveEnterpriseNotificationListAll">
+			<result>/jsp/enterprise/EnterpriseNotificationListAll.jsp</result>
+		</action>
+		
 		<action name="readEnterpriseNotification" class="controller.action.EnterpriseAction" method="readEnterpriseNotification">
 			<result type="json" />
 		</action>

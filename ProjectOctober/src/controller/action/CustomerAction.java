@@ -43,6 +43,7 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	private Notification notification;
 	private List<Notification> notificationList;
 	private Integer ntfNum;
+	private Integer ntfCount;
 	
 	private String id;
 	
@@ -204,6 +205,7 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	public String retrieveCustomerNotificationList() throws Exception{
 		System.err.println((String)session.get("loginId"));
 		notificationList = cstDAO.retrieveCustomerNotificationList((String)session.get("loginId"));
+		ntfCount = notificationList.size();
 		if(notificationList != null) return SUCCESS;
 		else return ERROR;
 	}
@@ -370,6 +372,14 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 
 	public void setNtfNum(Integer ntfNum) {
 		this.ntfNum = ntfNum;
+	}
+
+	public Integer getNtfCount() {
+		return ntfCount;
+	}
+
+	public void setNtfCount(Integer ntfCount) {
+		this.ntfCount = ntfCount;
 	}	
 	
 	

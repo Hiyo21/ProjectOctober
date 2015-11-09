@@ -67,6 +67,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private int svcNum;
 	private int etpTemplateType;
 	private int ntfNum;
+	private int ntfCount;
 	
 	private int upCategory;//이미지 업로드시 용도 구별 위한 변수
 	
@@ -455,6 +456,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			case 1:
 				//dynamic
 				System.err.println("dynamic :: "+enterprise);
+				if(etpDAO.receiveComponentList(etpNum).size()==0){
+					firstInsertComponent();
+				}
 				//동적 페이지 일때만 컴포넌트 리스트 set
 				enterprise.setComponents(etpDAO.receiveComponentList(etpNum));
 				System.err.println(enterprise.getComponents());
@@ -698,6 +702,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println(enterprise);
 		if(enterprise != null){
 			int result = etpDAO.updateTemplate(enterprise);
+				if(enterprise.getEtpTemplateType()==1){
+					firstInsertComponent();
+				}
 			if(result != 0) return SUCCESS;
 			else return ERROR;
 		}else{
@@ -840,6 +847,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String retrieveEnterpriseNotificationList() throws Exception{
 		System.err.println((String)session.get("loginEtpNum"));
 		notificationList = etpDAO.retrieveEnterpriseNotificationList((String)session.get("loginEtpNum"));
+		ntfCount = notificationList.size();
 		if(notificationList != null) return SUCCESS;
 		else return ERROR;
 	}
@@ -1297,6 +1305,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setCouponSendList(List<Reservation> couponSendList) {
 		this.couponSendList = couponSendList;
+	}
+
+	public int getNtfCount() {
+		return ntfCount;
+	}
+
+	public void setNtfCount(int ntfCount) {
+		this.ntfCount = ntfCount;
 	}
 	
 }

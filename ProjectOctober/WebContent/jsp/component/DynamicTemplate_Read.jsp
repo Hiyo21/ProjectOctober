@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>동적페이지</title>
 
-
+<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejugothic.css"/>
 <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
@@ -27,6 +27,11 @@
 
 
 <style>
+	*{
+		font-family: "Helvetica Neue", "Jeju Gothic", Helvetica,Arial,sans-serif;
+	}
+
+
 	.delBT{
 		position: absolute;
 	}
@@ -90,6 +95,12 @@ $(function(){
 	  	modal.find('.modal-title').text(title);
 	  	modal.find('.modal-body').html(content);
 	  	$('#infoCP').css('z-index', -1);
+	});
+	
+	$('.modal').on('shown.bs.modal', function(){
+		$('.modal-backdrop').css('z-index', -1);
+		$('.modal-dialog').css('z-index', +1);
+		$('.input-group-btn').css('z-index', 0);			
 	});
 	
 	$('#svcCategoryModal').on('shown.bs.modal', function(){

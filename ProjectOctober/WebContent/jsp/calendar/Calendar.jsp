@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Calendar Page</title>
 
+<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejugothic.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/smoothness/jquery-ui.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/fullcalendar.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -14,7 +15,6 @@
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/js/smoke.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/calendar/FontTest.css"/>
-
 
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/jquery-2.1.4.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/lib/moment.min.js"></script>
@@ -28,11 +28,10 @@
 <script src="${pageContext.request.contextPath}/js/es.min.js"></script>
 <script src="${pageContext.request.contextPath}/jsp/calendar/fullcalendar/jquery.once.js"></script>
 
-
 <style>
-	* {font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
-	.fc-sat {color:blue; }
-	.fc-sun { color:red; }
+*{
+	font-family: "Helvetica Neue", "Jeju Gothic", Helvetica,Arial,sans-serif;
+}
 </style>
 
 <script>
@@ -187,9 +186,6 @@
 			        	//--------------------- 받아온 값들로 기존 예약 상세내용 리스트 뿌리기 -----------------------//
 			        	
 			        	console.log(event);
-			        	//$("#calendar").fullCalendar('removeEvents');
-						//$("#calendar").fullCalendar('removeEventSource', event);
-						//$('#calendar').fullCalendar('addEventSource', event);
 						$('#calendar').fullCalendar('refetchEvents');
 						$('#calendar').fullCalendar('rerenderEvents');
 			        	$("#updateModalTitle").html(event.title);
@@ -225,9 +221,6 @@
 					
 					$("#closeReservationBtn").click(function(event){
 						$('#insertModal').modal('hide');
-						//$("#calendar").fullCalendar('removeEvents');
-						//$("#calendar").fullCalendar('removeEventSource', event);
-						//$('#calendar').fullCalendar('addEventSource', event);
 						$('#calendar').fullCalendar('refetchEvents');
 						$('#calendar').fullCalendar('rerenderEvents');
 					});
@@ -265,9 +258,6 @@
 							success: function(data){
 								$.smkAlert({text:'상세내용 변경에 성공하였습니다.', type:'info'});
 								console.log(event);
-								//$("#calendar").fullCalendar('removeEvents');
-								//$("#calendar").fullCalendar('removeEventSource', event);
-								//$('#calendar').fullCalendar('addEventSource', event);
 								$('#calendar').fullCalendar('refetchEvents');
 								$('#calendar').fullCalendar('rerenderEvents');
 								$('#updateModal').modal('hide');
@@ -892,20 +882,9 @@
 
 </head>
 <body>
-	<jsp:include page="/jsp/Header.jsp"></jsp:include>
-	<aside>
-		<ul>
-			<li><a href="#"><span>hello?</span></a></li>
-			<li><a href="#"><span>hel</span></a></li>
-		</ul>
-		<button><img src="${pageContext.request.contextPath}/image/btn_open.png"/></button>
-	</aside>
-	
-	<h1>예약 스케쥴러</h1>
-	<br>
-	
+	<jsp:include page="/jsp/Header.jsp"></jsp:include>	
 	<div>
-		<a href="${pageContext.request.contextPath}/toMainPage.action"><button class="btn btn-info" >메인 메뉴로</button></a>
+		<a href="${pageContext.request.contextPath}/toFirstPage.action"><button class="btn btn-info" >메인 메뉴로</button></a>
 		<!-- enterprise 값을 action으로 다 넘겨야 할듯? 아니면 적어도 이메일이랑 템플릿 타입이라도. -->
 		<a href="takeEtp.action?etpNum=<s:property value='#session.loginEtpNum'/>"><button class="btn btn-primary">사업자 메뉴로</button></a>
 		<a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value='#session.loginId'/>"><button class="btn btn-primary">통계</button></a>
@@ -982,8 +961,8 @@
 								<!-- 성별 -->
 								<tr>
 									<td><label for='inputEmployeeGenderCheckBox' class='control-label'>희망 종업원 성별: </label></td>
-									<td><input type='radio' checked  id='inputEmployeeGenderCheckBox' name='reservation.employeeGender' class='form-control' value="남성"/>남성
-										<input type='radio' id='inputEmployeeGenderCheckBox' name='reservation.employeeGender' class='form-control' value="여성"/>여성
+									<td><input type='radio' checked  id='inputEmployeeGenderCheckBox' name='reservation.employeeGender' value="남성"/>남성
+										<input type='radio' id='inputEmployeeGenderCheckBox' name='reservation.employeeGender' value="여성"/>여성
 									</td>
 								</tr>
 								

@@ -7,18 +7,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejugothic.css"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
 
 <title>Static Template 2</title>
+
+<style>
+	*, h1{
+		font-family: "Helvetica Neue", "Jeju Gothic", Helvetica,Arial,sans-serif;
+	}
+</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script> 
 
-<script type="text/javascript">
+<script>
 
 	$(function(){
 		var colorTheme = <s:property value="enterprise.etpThemeType"/>;
@@ -62,10 +68,6 @@
 	function startEdit(){
 		//편집, 수정 버튼 보임	
 		$('.edit').show();
-		
-		//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
-		$('#saveBT').attr('disabled', false);
-		$('#saveBT').on('click', savePage);  
 		
 		//편집 버튼에 누름 효과 추가
 	    $('#editBT').addClass('active');
