@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="test.mapper.highchart3Mapper.xml" >
-	<select id="highchart3" resultType="Highchart3">
+	<select id="highchart3" parameterType="Enterprise" resultType="Highchart3">
 	SELECT B.SEASON as wea,nvl(A.CNT,0) as cnt, B.SERVICE as title,
 		 CASE B.SEASON 
 		 WHEN '봄' THEN 1
@@ -25,12 +25,12 @@
 		AS WEA
 		]]>
 		FROM RESERVATION r, SERVICE s
-		where r.svc_num = s.svc_num
+		where r.svc_num = s.svc_num and r.etp_num = #{etpNum}
 		) 
 		group by WEA, svc_code
 		ORDER BY WEA, svc_code
 		) A RIGHT OUTER JOIN SEASON_MAPPING B
-		ON A.WEA = B.SEASON AND A.svc_code = B.SERVICE
+		ON A.WEA = B.SEASON AND A.svc_code = B.SERVICE 
 		order by season, ord
 	
 	

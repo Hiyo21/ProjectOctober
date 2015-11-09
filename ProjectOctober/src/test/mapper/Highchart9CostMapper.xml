@@ -38,10 +38,10 @@
 		]]>
 		) A, 
 		SERVICE S
-		WHERE A.etp_num = S.etp_num
+		WHERE A.etp_num = S.etp_num 
 		group by S.svc_code
 		) B, (SELECT svc_code,svc_cost FROM SERVICE WHERE etp_num =#{etpNum}) T
-		WHERE B.svc_code = T.svc_code
+		WHERE B.svc_code = T.svc_code 
 	</select>
 	
 </mapper>

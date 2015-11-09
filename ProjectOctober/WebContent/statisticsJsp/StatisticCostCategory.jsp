@@ -30,7 +30,7 @@
 <title>유료 통계 서비스 화면</title>
 </head>
 <body>
-<%@include file="../jsp/Header.jsp"%>
+<s:include value="../jsp/Header.jsp"></s:include>
 <script type="text/javascript">
 $(function(){
 	// Ajax 파일 다운로드
