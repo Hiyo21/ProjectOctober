@@ -9,11 +9,6 @@
 
 
 <script type="text/javascript">
-	$(function(){
-				
-		
-
-	});
 	
 
 	//수정할 메뉴 카테고리 갖고 오기
@@ -25,8 +20,7 @@
 			dataType: 'json',
 			success : function(data){
 				printSvcModal(data);
-				alert("printSvcModal success");
-				$('#svcCategoryModal').modal('show');
+				console.log(data);
 			}
 		});
 	}
@@ -232,7 +226,7 @@
     
   	<form class="form" role="form" method="post" data-toggle="validator" id="svcCategoryForm"> <!-- form start -->    
       <div class="modal-header">
-        <button type="button" class="close" aria-label="Close">
+        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
         	<span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title" id="exampleModalLabel">서비스 메뉴 수정</h4>

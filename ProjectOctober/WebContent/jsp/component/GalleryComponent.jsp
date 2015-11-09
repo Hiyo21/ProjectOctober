@@ -36,8 +36,8 @@ function printPht(){
 		url : '${pageContext.request.contextPath}/enterprise/selectGalleryList.action',
 		type : 'GET',
 		data : {'etpNum' : <s:property value="#session.enterprise.etpNum"/>},
+		dataType: 'json',
 		success : function(data){
-			console.log(data);
 			
 			var items =  data.enterprise.photos;
 			var print ='';
@@ -45,7 +45,7 @@ function printPht(){
 				print += '<a class="group" href="${pageContext.request.contextPath}/'+item.phtAddress+'" ';
 				print += 'title="'+item.phtUsage+'">';
 				print += '<img src="${pageContext.request.contextPath}/'+item.phtAddress+'" ';
-				print += 'class = "phtImage"></a>';
+				print += 'class = "etpImage"></a>';
 				print += '<a class="btn btn-danger edit" role="button" onclick="deleteImage('+index+')">삭제</a>';
 			});
 			$('#gallery').html(print);

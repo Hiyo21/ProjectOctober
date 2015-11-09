@@ -79,7 +79,14 @@ function toInfoUploadPage() {
 	<!-- 사진, 설명 업로드 기능 필요 -->
 	<%-- <s:form action="infoPhtUploadAction" method="POST" enctype="multipart/form-data"> --%>
 	<div class="table-responsive">
-	<div class="row-xs-5">
+	<div class="row-xs-12" align="left"><!-- row2 start -->
+		<div class="col-xs-12">
+			<!-- 주소, 영업시간 -->
+			<span class="label label-success">주소</span> <s:property value="#session.enterprise.etpAddress"/>&nbsp;&nbsp;
+			<span class="label label-success">영업시간</span> <s:property value="#session.enterprise.etpStartHour"/> ~ <s:property value="#session.enterprise.etpEndHour"/>
+		</div>
+	</div>
+	<div class="row-xs-12">
 			<!-- image 뿌리기 -->
 			<!-- 리스트용 사진이 존재할 경우 -->
 			<div class="col-xs-5"><!-- row2 left start -->
