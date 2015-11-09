@@ -25,11 +25,11 @@ import test.vo.Highchart9;
 public class DAO {
 
 	//고객 성별에 따른 staff성별 선호도
-	public List<Highchart1> highchart1DAO() {
+	public List<Highchart1> highchart1DAO(Enterprise e) {
 		List<Highchart1> list = null;
 		 SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 			try{
-				list = sqlsession.selectList("highchart1");				
+				list = sqlsession.selectList("highchart1", e);				
 			}finally{
 				sqlsession.close();
 			}		
@@ -39,11 +39,11 @@ public class DAO {
 
 	
 	//연령대별 고객 평가 척도 - highchart2
-	public List<Highchart2> highchart2Dao() {
+	public List<Highchart2> highchart2Dao(Enterprise e) {
 		 List<Highchart2> list = null;
 		 SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 			try{
-				list = sqlsession.selectList("highchart2");				
+				list = sqlsession.selectList("highchart2", e);				
 			}finally{
 				sqlsession.close();
 			}		
@@ -52,11 +52,11 @@ public class DAO {
 	}
 
 	//계졀별 선호 서비스 
-	public List<Highchart3> highchart3DAO() {
+	public List<Highchart3> highchart3DAO(Enterprise e) {
 		List<Highchart3> list = null;
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list = sqlsession.selectList("highchart3");				
+			list = sqlsession.selectList("highchart3", e);				
 		}finally{
 			sqlsession.close();
 		}		
@@ -66,12 +66,12 @@ public class DAO {
 	}
 
 	//직업별 평균 소비 지출액
-	public List<Highchart4> highchart4DAO() {
+	public List<Highchart4> highchart4DAO(Enterprise e) {
 		List<Highchart4> list = null;
 		
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list = sqlsession.selectList("highchart4");				
+			list = sqlsession.selectList("highchart4", e);				
 		}finally{
 			sqlsession.close();
 		}		 		
@@ -80,12 +80,12 @@ public class DAO {
 	}
 
 	//요일별 예약수(주말 / 평일)
-	public List<Highchart5> highchart5DAO() {
+	public List<Highchart5> highchart5DAO(Enterprise e) {
 		List<Highchart5> list = null;
 
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list = sqlsession.selectList("highchart5");				
+			list = sqlsession.selectList("highchart5", e);				
 		}finally{
 			sqlsession.close();
 		}
@@ -163,11 +163,11 @@ public class DAO {
 	}
 
 	//월별 매출액 변화
-	public List<Highchart10> highchart10DAO() {
+	public List<Highchart10> highchart10DAO(Enterprise e) {
 		List<Highchart10> list = null;
 		SqlSession sqlsession = MyBatisSqlSessionFactory.getSessionFactory().openSession(true);
 		try{
-			list = sqlsession.selectList("highchart10");				
+			list = sqlsession.selectList("highchart10", e);				
 		}finally{
 			sqlsession.close();
 		}		

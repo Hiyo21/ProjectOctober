@@ -6,12 +6,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejugothic.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/css/bootstrap-dialog.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/js/bootstrap-dialog.min.js"></script>
 
 <style>
 	#headbar{
-		background-image: url("${pageContext.request.contextPath}/image/themes/preview3.jpg");
+		/* background-image: url("${pageContext.request.contextPath}/image/themes/17.png"); */
+		background-color: #FFA500;
+	}
+	
+	body,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+	    font-family: "Lato","Helvetica Neue", "Jeju Gothic", Helvetica,Arial,sans-serif;
+	    font-weight: 700;
 	}
 </style>
 <!-- LINK 랑 SCRIPT 임포트하지 말 것! -->
@@ -26,20 +39,20 @@
 			<ul class="nav navbar-nav">
 				<s:if test="#session.loginId != null">
 					<s:if test="#session.memCode == 1">	<!-- 사업자 -->
-						<li><a id="callNtfWindowEtp">알림<span class="badge" id="etpNtfBadge"><s:property value="ntfCount"/></span></a></li>
+						<li><a id="callNtfWindowEtp"><span class="glyphicon glyphicon-check"></span> 알림<span class="badge" id="etpNtfBadge"><s:property value="ntfCount"/></span></a></li>
 						<li><a href="${pageContext.request.contextPath}/enterprise/takeEtp.action">
-							<span class="glyphicon glyphicon-home"></span> 내페이지</a></li>
+							<span class="glyphicon glyphicon-home"></span> 내 페이지</a></li>
 						<li><a href="${pageContext.request.contextPath}/enterprise/toCalendarPage.action?etpNum=${session.loginEtpNum}">
-							<span class="glyphicon glyphicon-calendar"></span> 예약관리</a></li>
+							<span class="glyphicon glyphicon-calendar"></span> 예약 관리</a></li>
 						<li><a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=${session.loginId}">
-							<span class="glyphicon glyphicon-zoom-in"></span> 통계분석</a></li>
+							<span class="glyphicon glyphicon-zoom-in"></span> 통계 분석</a></li>
 						<li><a href="${pageContext.request.contextPath}/enterprise/toMiscSettingPage.action">
-							<span class="glyphicon glyphicon-cog"></span> 기타설정</a></li>
+							<span class="glyphicon glyphicon-cog"></span> 자동화 설정</a></li>
 						<li><a href="${pageContext.request.contextPath}/enterprise/toEnterpriseMyPage.action">
-							<span class="glyphicon glyphicon-user"></span> 나의정보</a></li>
+							<span class="glyphicon glyphicon-user"></span> 나의 정보</a></li>
 					</s:if>
 					<s:if test="#session.memCode == 2">	<!-- 개인고객 -->
-						<li><a id="callNtfWindowCst">알림<span class="badge" id="cstNtfBadge"><s:property value="ntfCount"/></span></a></li>
+						<li><a id="callNtfWindowCst"><span class="glyphicon glyphicon-check"></span> 알림 <span class="badge" id="cstNtfBadge"><s:property value="ntfCount"/></span></a></li>
 						<li><a href="${pageContext.request.contextPath}/search/toBusinessSectorCategoryPage.action">
 							<span class="glyphicon glyphicon-briefcase"></span>업종검색</a></li>
 						<li><a href="${pageContext.request.contextPath}/search/toFeatureCategoryPage.action">
@@ -59,7 +72,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<s:if test="#session.loginId == null">
-					<li><a data-toggle="modal" href="#myModal"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+					<li><a data-toggle="modal" href="#myModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 					<div class="modal fade" id="myModal" role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -101,9 +114,9 @@
 	$(function(){
 		$('[data-toggle="notification-popover"]').popover();
 	});
-	
-	
-	if(<s:property value="#session.memCode"/> == 1){
+	var memCode = 0;
+	memCode = '#session.memCode';	
+	if(memCode == 1 || memCode != null){
 		$(function(){
 			var str = '';
 			setInterval(function(){
@@ -176,7 +189,7 @@
 		});
 	}
 	
-	else if(<s:property value="#session.memCode"/> == 2){
+	else if(memCode == 2){
 		$(function(){
 			var str = '';
 			setInterval(function(){
@@ -232,6 +245,8 @@
 				});				
 			});
 		});
+	}else{
+		
 	}
 </script>
 

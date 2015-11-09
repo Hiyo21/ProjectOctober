@@ -22,16 +22,19 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/css/lightbox/jquery.colorbox.js"></script>
 
-	<script>
-	$(document).ready(function() {
-		$('.group').colorbox({
-			rel:'group',
-			open: true	
-		});
-	});
-	</script>
-
 <script>
+	var tType = 0;
+	tType = '${enterprise.etpTemplateType}';
+	if(tType == 0){
+		$(document).ready(function() {
+			
+			$('.group').colorbox({
+				rel:'group',
+				open: true	
+			});
+		});
+	}
+	
 $(document).ready(function() {
 	$('#b1').on('click', first);	//첫번째 버튼에 클릭 이벤트 생성
 	$('#b2').on('click', second);	//두번째 버튼에 클릭 이벤트 생성

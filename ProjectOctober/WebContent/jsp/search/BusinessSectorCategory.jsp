@@ -67,14 +67,14 @@ function searchSubClass(subClass) {
 			<div class="thumbnail" onclick="searchSubClass('웨딩관리')">
 				<img src="/ProjectOctober/image/sch-biz-wedding.jpg" alt="New York" width="400" height="300">
 				<p><strong>웨딩관리</strong></p>
-				<p>특별한 날에는 특별한 관리로!</p>
+				<p>평생에 단 한 번뿐인 날을 위해!</p>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="thumbnail" onclick="searchSubClass('네일케어')">
 				<img src="/ProjectOctober/image/sch-biz-hand.jpg" alt="San Francisco" width="400" height="300">
 				<p><strong>네일케어</strong></p>
-				<p>손까지도 예쁜 당신을 위해!</p>
+				<p>손 끝까지도 예뻐지세요!</p>
 			</div>
 		</div>
 		<div class="col-md-3">
