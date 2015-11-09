@@ -87,10 +87,6 @@
 	function startEdit(){
 		//편집, 수정 버튼 보임	
 		$('.edit').show();
-		//저장 버튼 활성화, 편집 버튼 비활성화 // 편집버튼 비활성화에서 활성화로 되돌리는 법 생각해야함 
-		$('#saveBT').attr('disabled', false);
-		//save 버튼에 클릭 이벤트와 함수 연결
-	    $('#saveBT').on('click', savePage);
 		//편집버튼에 누름 효과, 클릭시 편집 중지 기능
 		$('#editBT').addClass('active');
 		$('#editBT').unbind('click');

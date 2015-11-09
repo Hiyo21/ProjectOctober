@@ -157,9 +157,8 @@ public class EnterpriseDAO extends DAOTemplate{
 	public List<PhotoLocation> selectPhotoList(String etpNum){
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try{
-			List<PhotoLocation> phtList = session.getMapper(EnterpriseMapper.class).selectPhotoList(etpNum);
-			System.out.println("============check DAO :: selectPhotoList :: "+phtList.size());
-			return phtList;
+			System.out.println("============check DAO :: selectPhotoList :: ");
+			return session.getMapper(EnterpriseMapper.class).selectPhotoList(etpNum);
 		}finally{
 			session.close();
 		}

@@ -381,8 +381,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	public String selectGalleryList() throws Exception{
 		System.out.println("===========check Action :: receiveGalleryList :: ");
+		if(enterprise == null){
+			enterprise = new Enterprise();
+		}
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
-
+		System.err.println("#####enterprise.getPhotos() : "+enterprise.getPhotos());
+		
 		if(enterprise.getPhotos() != null) return SUCCESS;
 		else return ERROR;
 	}

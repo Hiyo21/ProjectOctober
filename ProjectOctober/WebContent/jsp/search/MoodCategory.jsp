@@ -30,50 +30,58 @@ function searchMood(searchKeyword) {
 			<div class="thumbnail" onclick="searchMood('경락')">
 				<img src="/ProjectOctober/image/sch-mood-back.jpg" alt="Paris" width="400" height="300">
 				<p><strong>허리가 아플 때</strong></p>
+				<p>앉아서 일하는 직장인들을 위해!</p>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="thumbnail" onclick="searchMood('경락')">
-				<img src="/ProjectOctober/image/sch-biz-gr.jpg" alt="New York" width="400" height="300">
+				<img src="/ProjectOctober/image/sch-mood-neck.jpg" alt="New York" width="400" height="300">
 				<p><strong>목과 어깨가 결릴 때</strong></p>
+				<p>컴퓨터 사용이 많은분께 추천!</p>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="thumbnail" onclick="searchMood('타이')">
 				<img src="/ProjectOctober/image/sch-mood-leg.jpg" alt="San Francisco" width="400" height="300">
 				<p><strong>다리가 부었을 때</strong></p>
+				<p>더이상 고민하지 마세요!</p>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="thumbnail" onclick="searchMood('웨딩관리')">
-				<img src="/ProjectOctober/image/sch-biz-wedding.jpg" alt="San Francisco" width="400" height="300">
+				<img src="/ProjectOctober/image/sch-mood-special.jpg" alt="San Francisco" width="400" height="300">
 				<p><strong>특별한 날을 위한 관리</strong></p>
+				<p>특별한 날에는 특별한 관리를!</p>
 			</div>
 		</div>
 	</div>
 	<div class="row text-center">
 		<div class="col-md-3">
 			<div class="thumbnail" onclick="searchMood('아로마마사지')">
-				<img src="/ProjectOctober/image/sch-biz-aroma.jpg" alt="Paris" width="400" height="300">
+				<img src="/ProjectOctober/image/sch-mood-aroma.jpg" alt="Paris" width="400" height="300">
 				<p><strong>마음의 편안함을 찾고 싶을 때</strong></p>
+				<p>심신의 안정을 찾아드립니다!</p>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="thumbnail" onclick="searchMood('두피')">
-				<img src="/ProjectOctober/image/sch-biz-hair.jpg" alt="New York" width="400" height="300">
+				<img src="/ProjectOctober/image/sch-mood-hair.jpg" alt="New York" width="400" height="300">
 				<p><strong>머릿결이 푸석할 때</strong></p>
+				<p>머릿결도 관리가 필요합니다!</p>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="thumbnail" onclick="searchMood('심야영업')">
-				<img src="/ProjectOctober/image/sch-feat-24.jpg" alt="San Francisco" width="400" height="300">
+				<img src="/ProjectOctober/image/sch-mood-off.jpg" alt="San Francisco" width="400" height="300">
 				<p><strong>퇴근 후에 관리받고 싶을 때</strong></p>
+				<p>시간에 구애받지 마세요!</p>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="thumbnail" onclick="searchMood('네일케어')">
-				<img src="/ProjectOctober/image/sch-biz-hand.jpg" alt="San Francisco" width="400" height="300">
+				<img src="/ProjectOctober/image/sch-mood-nail.jpg" alt="San Francisco" width="400" height="300">
 				<p><strong>손톱이 자주 갈라질 때</strong></p>
+				<p>손이 예뻐야 진정한 미인!</p>
 			</div>
 		</div>
 	</div>
