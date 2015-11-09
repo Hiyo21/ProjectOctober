@@ -17,7 +17,7 @@
 		select dayby, rsv_num from 
 		(
 		select rsv_start_date, TO_CHAR(rsv_start_date, 'day') as dayby , rsv_num
-		from reservation
+		from reservation r where r.etp_Num = #{etpNum}
 		)
 		group by dayby, rsv_num
 		)

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="test.mapper.Highchart10Mapper.xml">
-	<select id="highchart10" resultType="Highchart10">
+	<select id="highchart10" parameterType="Enterprise" resultType="Highchart10">
 		select floor(avg(sale_amount)) avgAmount, to_char(sale_time,'month') MonthA
-		from sale_record
+		from sale_record s where s.etp_num = #{etpNum}
 		group by to_char(sale_time,'month')
 		order by MonthA 
 	</select>
