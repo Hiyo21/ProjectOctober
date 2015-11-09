@@ -115,6 +115,12 @@ $(function(){
 		$('#svcModalForm').css('z-index', 1);
 	});
 	
+	$('#infoModal').on('shown.bs.modal', function(){
+		$('.grid-stack-item').css('z-index', -1);
+		$('#infoCP').css('z-index', 0);
+		$('#infoModal').css('z-index', 1);
+	});
+	
 	$('.modal').on('hidden.bs.modal', function(){
 		$('.grid-stack-item').css('z-index', 0);
 	});
