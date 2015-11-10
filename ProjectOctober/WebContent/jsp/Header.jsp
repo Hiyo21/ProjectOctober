@@ -16,13 +16,7 @@
 		background-color: #FFA500;
 	}
 	
-	body,
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
+	body, h1, h2, h3, h4, h5, h6 {
 	    font-family: "Lato","Helvetica Neue", "Jeju Gothic", Helvetica,Arial,sans-serif;
 	    font-weight: 700;
 	}
@@ -114,6 +108,7 @@
 	$(function(){
 		$('[data-toggle="notification-popover"]').popover();
 	});
+	
 	var memCode = 0;
 	memCode = '#session.memCode';	
 	if(memCode == 1 || memCode != null){
@@ -126,14 +121,13 @@
 					success: function(data){
 						if(str.length != 0) str = '';
 						$('#etpNtfBadge').html(data.ntfCount);
-						str += '<div class="table table-responsive">'
+						str += '<div class="table-responsive">'
 						str += '<table class="table table-hover table-compact">';
 						str += '<tr>';
 						str += '<th>예약 번호</th>';
 						str += '<th>알림 메시지</th>';
 						str += '<th>고객 이메일</th>';
 						str += '<th style="width: 130px;">알림 발생 일시</th>';
-						str += '<th>확인</th>'
 						str += '</tr>';
 						
 						$.each(data.notificationList, function(i,d){
@@ -142,7 +136,6 @@
 							str += "<td>"+ d.ntfMessage + "</td>";
 							str += "<td>" + d.cstEmail + "</td>";
 							str += "<td>" + d.ntfTime.year + '/' + d.ntfTime.monthValue + '/' + d.ntfTime.dayOfMonth + ' ' + d.ntfTime.hour +':' + d.ntfTime.minute + "</td>";
-							str += "<td><input type='button' num='" + d.ntfNum + "' class='rdck btn btn-warning' value='OK'></td>";
 							str += "</tr>";
 						});
 						
@@ -168,22 +161,6 @@
 							location.href = '${pageContext.request.contextPath}/enterprise/retrieveEnterpriseNotificationListAll.action';
 						}
 					}] 
-				});				
-			});
-		});
-		
-		
-		$(function(){
-			$('.rdck').on('click',function(){
-				alert('!');
-				var n = $(this).attr('num');
-				console.log(n);
-				$.ajax({
-					url: '${pageContext.request.contextPath}/enterprise/readEnterpriseNotification.action',
-					data: {'ntfNum' : n},
-					success: function(data){
-						alert('읽기 완료되었습니다.');
-					}
 				});
 			});
 		});
@@ -207,7 +184,6 @@
 						str += '<th>알림 메시지</th>';
 						str += '<th>사업자 이메일</th>';
 						str += '<th style="width: 130px;">알림 발생 일시</th>';
-						str += '<th>확인</th>'
 						str += '</tr>';
 						
 						$.each(data.notificationList, function(i,d){
@@ -216,7 +192,6 @@
 							str += "<td>"+ d.ntfMessage + "</td>";
 							str += "<td>" + d.etpEmail + "</td>";
 							str += "<td>" + d.ntfTime.year + '/' + d.ntfTime.monthValue + '/' + d.ntfTime.dayOfMonth + ' ' + d.ntfTime.hour +':' + d.ntfTime.minute + "</td>";
-							str += "<td><input type='button' num='" + d.ntfNum + "' class='rdck btn btn-warning' value='OK'></td>";
 							str += "</tr>";
 						});
 						
@@ -250,6 +225,13 @@
 	}
 </script>
 
+<script>
+	$(function(){
+		$('.wtf').click(function(){
+			alert('1');
+		})
+	});
+</script>
 	
 </body>		
 </html>	

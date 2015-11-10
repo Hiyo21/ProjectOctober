@@ -882,18 +882,10 @@
 
 </head>
 <body>
-	<jsp:include page="/jsp/Header.jsp"></jsp:include>	
-	<div>
-		<a href="${pageContext.request.contextPath}/toFirstPage.action"><button class="btn btn-info" >메인 메뉴로</button></a>
-		<!-- enterprise 값을 action으로 다 넘겨야 할듯? 아니면 적어도 이메일이랑 템플릿 타입이라도. -->
-		<a href="takeEtp.action?etpNum=<s:property value='#session.loginEtpNum'/>"><button class="btn btn-primary">사업자 메뉴로</button></a>
-		<a href="${pageContext.request.contextPath}/highchart1.action?etpEmail=<s:property value='#session.loginId'/>"><button class="btn btn-primary">통계</button></a>
-	</div>
-	
-	
+	<jsp:include page="/jsp/Header.jsp"></jsp:include>
 	<input type="hidden" id="starttt" />
 	<input type="hidden" id="endtt" />
-    <div class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="195">
+    <div class="container" data-spy="affix" data-offset-top="195">
     	<div>
 	      	<img src="${pageContext.request.contextPath}/image/trash-can1.jpg" class="img-thumbnail" id="trash" alt="쓰레기통" style="width: 100px; height: 100px;">
       	</div>
