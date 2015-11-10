@@ -17,7 +17,7 @@ update component set etp_num = '1234567890', etp_email = 'seh@test.com' where et
 
  
 alter table component drop column component_desc;
-delete component where etp_num = '9876543210'
+delete component where etp_num = '7777777777'
 
 select * from photo_location
 
