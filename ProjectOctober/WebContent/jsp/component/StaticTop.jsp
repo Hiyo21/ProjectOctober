@@ -89,6 +89,9 @@ function uploadLogoOpen() {
 						specialBT = '';
 					$.each(special, function(i, item){
 						specialBT += '<span class="label label-primary">'+item+'</span>&nbsp;&nbsp;';
+						if(i>0 && (i+1)%3 == 0){
+							specialBT += '<br>'	
+						}
 					});
 					
 					$('#spcialSpan').html(specialBT);	
