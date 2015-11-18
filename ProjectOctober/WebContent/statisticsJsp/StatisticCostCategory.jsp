@@ -302,7 +302,5 @@ $(function(){
 	<button type="button" class="btn btn-primary" id="pdfdown">PDF파일로 다운받기</button>
   </div>
   </form>
- <s:property value="etpEmail"/>
-<s:property value='#session.loginId'/>
 </body>
 </html>

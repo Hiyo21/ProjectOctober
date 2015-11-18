@@ -610,8 +610,7 @@
 	
 
 	<update id="choiceTemplateType" parameterType="hashmap">
-		update ENTERPRISE
-		set etp_Template_Type = #{etpTemplateType} where etp_num = #{etpNum}
+		update ENTERPRISE set etp_Template_Type = #{etpTemplateType} where etp_num = #{etpNum}
 	</update>
 
 
@@ -789,11 +788,11 @@
 	</delete>
 	
 	<select id="retrieveEnterpriseNotificationList" parameterType="string" resultMap="NotificationResultMap">
-		select * from notification where etp_num = #{value} and ntf_read = 0
+		select * from notification where etp_num = #{value} and ntf_read = 0 order by ntf_time desc
 	</select>
 	
 	<select id="retrieveEnterpriseNotificationListAll" parameterType="string" resultMap="NotificationResultMap">
-		select * from notification where etp_num = #{value}
+		select * from notification where etp_num = #{value} order by ntf_time desc
 	</select>
 	
 	<update id="readEnterpriseNotification" parameterType="int">

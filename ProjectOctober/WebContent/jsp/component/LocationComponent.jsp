@@ -70,7 +70,8 @@ function saveLoca() {
 			</div>
 			<div class="col-xs-6">
 				<s:if test="#session.enterprise.etpDirection != null">
-					<h3>오시는 길</h3>
+					<h1 style="text-decoration: underline; color: navy;">오시는 길</h1>
+					<br>
 					<s:property value="#session.enterprise.etpDirection" escapeHtml="false"/>
 				</s:if>
 				<p align="left">

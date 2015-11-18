@@ -56,8 +56,4 @@ public class Highchart7 {
 		return "Highchart7 [yeardate=" + yeardate + ", quater=" + quater + ", hygiene=" + hygiene + ", comfort="
 				+ comfort + ", technique=" + technique + ", price=" + price + ", service=" + service + "]";
 	}
-	
-	
-	
-	
 }

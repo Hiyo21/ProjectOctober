@@ -12,8 +12,7 @@
 
 <style>
 	#headbar{
-		/* background-image: url("${pageContext.request.contextPath}/image/themes/17.png"); */
-		background-color: #FFA500;
+		background-color: #fff5f5;
 	}
 	
 	body, h1, h2, h3, h4, h5, h6 {
@@ -110,14 +109,17 @@
 	});
 	
 	var memCode = 0;
-	memCode = '#session.memCode';	
-	if(memCode == 1 || memCode != null){
+	memCode = <s:property value='#session.memCode'/>;
+	var logEtpNum = '0000000000';
+	logEtpNum = '<s:property value="#session.loginEtpNum"/>';
+	
+	if(memCode == 1){
 		$(function(){
 			var str = '';
 			setInterval(function(){
 				$.ajax({
 					url: "${pageContext.request.contextPath}/enterprise/retrieveEnterpriseNotificationList.action",
-					data: {"etpNum" : <s:property value="#session.loginEtpNum"/>},
+					data: {"etpNum" : logEtpNum},
 					success: function(data){
 						if(str.length != 0) str = '';
 						$('#etpNtfBadge').html(data.ntfCount);
@@ -176,7 +178,7 @@
 					success: function(data){
 						if(str.length != 0) str = '';
 						console.log(data.ntfCount);
-						$('#etpNtfBadge').html(data.ntfCount);
+						$('#cstNtfBadge').html(data.ntfCount);
 						str += '<div class="table table-responsive">'
 						str += '<table class="table table-hover table-compact">';
 						str += '<tr>';
@@ -223,15 +225,6 @@
 	}else{
 		
 	}
-</script>
-
-<script>
-	$(function(){
-		$('.wtf').click(function(){
-			alert('1');
-		})
-	});
-</script>
-	
+</script>	
 </body>		
 </html>	

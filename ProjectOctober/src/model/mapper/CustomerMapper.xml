@@ -443,11 +443,11 @@
 	</delete>
 	
 	<select id="retrieveCustomerNotificationList" parameterType="string" resultMap="NotificationResultMap">
-		select * from notification where cst_email = #{value} and ntf_read = 0
+		select * from notification where cst_email = #{value} and ntf_read = 0 order by ntf_time desc
 	</select>
 	
 	<select id="retrieveCustomerNotificationListAll" parameterType="string" resultMap="NotificationResultMap">
-		select * from notification where cst_email = #{value}
+		select * from notification where cst_email = #{value} order by ntf_time desc
 	</select>
 	
 	<update id="readCustomerNotification" parameterType="int">

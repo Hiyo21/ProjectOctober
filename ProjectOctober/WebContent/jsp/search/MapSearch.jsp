@@ -115,14 +115,5 @@
   		</s:iterator>
 	</s:if>	
  	</div>		
-
-
-
-
-
-
-
-
-
 </body>
 </html>
