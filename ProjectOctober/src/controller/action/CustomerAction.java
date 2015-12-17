@@ -206,7 +206,7 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 		System.err.println((String)session.get("loginId"));
 		notificationList = cstDAO.retrieveCustomerNotificationList((String)session.get("loginId"));
 		ntfCount = notificationList.size();
-		if(notificationList != null) return SUCCESS;
+		if(ntfCount != null) return SUCCESS;
 		else return ERROR;
 	}
 	

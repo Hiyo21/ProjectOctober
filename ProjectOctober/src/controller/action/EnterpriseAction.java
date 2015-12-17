@@ -224,8 +224,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	//쿠폰불러오기
 	public String retrieveCouponList() throws Exception{
-		etpNum = (String)session.get("loginEtpNum");
-		etpEmail = (String)session.get("loginId");
+		if((String)session.get("loginEtpNum") != null){ 
+			etpNum = (String)session.get("loginEtpNum");
+		}
+		if ((String)session.get("loginId") != null){
+			etpEmail = (String)session.get("loginId");
+		}
 		couponList = etpDAO.retrieveCouponList(etpNum);
 		couponSendList = etpDAO.couponSendList(etpEmail);
 		return SUCCESS; 	
@@ -706,7 +710,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println(enterprise);
 		if(enterprise != null){
 			int result = etpDAO.updateTemplate(enterprise);
-			
 			if(result != 0) return SUCCESS;
 			else return ERROR;
 		}else{

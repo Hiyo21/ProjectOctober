@@ -15,5 +15,4 @@ public class LoginInterceptor extends AbstractInterceptor {
 		if(sessionMap.get("loginIn") == null) return "login";
 		return invocation.invoke();
 	}
-
 }

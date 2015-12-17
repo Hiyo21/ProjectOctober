@@ -1,6 +1,5 @@
 package model.common;
 
-import model.dao.AdminDAO;
 import model.dao.CustomerDAO;
 import model.dao.EnterpriseDAO;
 import model.dao.MemberDAO;
@@ -8,10 +7,6 @@ import model.dao.SearchDAO;
 import test.dao.DAO;
 
 public class DAOFactory {
-	public static AdminDAO createAdminDAO(){
-		return new AdminDAO();
-	}
-	
 	public static MemberDAO createMemberDAO(){
 		return new MemberDAO();
 	}

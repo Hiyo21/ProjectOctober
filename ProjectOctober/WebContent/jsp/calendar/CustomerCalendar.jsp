@@ -610,8 +610,12 @@
 											  $("#cpnList").append("<option value='" + d.cpnNum + "' cpnRate=''>" + d.cpnTitle + "</option>");
 										  });
 									  },
-									  error: function(){
-										  console.log("coupon retrieval error!");
+									  error: function(request, status, error){
+											console.log("coupon retrieval error!");
+										  	console.log(request);
+											console.log(request.responseText);
+											console.log(status);
+											console.log(error);
 									  }
 								});
 								
@@ -824,6 +828,7 @@
 									});
 									$(this).unbind();
 									calendar.fullCalendar('unselect');
+									//location.reload();
 								});
 							}
 						},
@@ -849,20 +854,25 @@
 					$(function(){
 						var externalServ = serviceInfo.responseJSON.serviceList;
 						console.log(externalServ);
-						$("#external-events .fc-event").each(function(){					
+						$("#external-events .fc-event").each(function(){
+							
 							var eventObject = {
 									title: $.trim($(this).context.innerHTML),
 									duration: $(this).attr("duration"),
 									cost : $(this).attr("cost"),
 									svcnum : $(this).attr("svcnum"),
 							};
-							$(this).data('event', eventObject);
+							if(eventObject.title != '휴일'){
+								$(this).data('event', eventObject);
 							
-							$(this).draggable({
-								zIndex: 999,
-								revert: true,
-								revertDuration : 0
-							});
+								$(this).draggable({
+									zIndex: 999,
+									revert: true,
+									revertDuration : 0
+								});
+							}else{
+								$(this).css('background-color','gray');
+							}
 						});
 					});
 				});

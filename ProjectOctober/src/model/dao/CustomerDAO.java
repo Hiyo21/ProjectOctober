@@ -42,11 +42,6 @@ public class CustomerDAO extends DAOTemplate{
 	public List<PaymentRecord> retrievePaymentRecords(){
 		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecords();});
 	}
-		
-	
-	public CustomerMapper fromMapper(SqlSession s){
-		return s.getMapper(CustomerMapper.class);
-	}
 	
 	//이용자 회원가입 
 	public int insertCustomerInfo(Customer customer) {
@@ -130,5 +125,9 @@ public class CustomerDAO extends DAOTemplate{
 
 	public int readCustomerNotification(Integer ntfNum) {
 		return dataModificationTemplate(s -> {return fromMapper(s).readCustomerNotification(ntfNum);});
+	}
+	
+	public CustomerMapper fromMapper(SqlSession s){
+		return s.getMapper(CustomerMapper.class);
 	}
 }

@@ -23,7 +23,6 @@ public class Component implements Serializable {
 
     ///////////////////////// GET&SET ///////////////////////// 
     
-    
 	public String getEtpNum() {
 		return etpNum;
 	}
@@ -90,7 +89,6 @@ public class Component implements Serializable {
 	
 	///////////////////////// ToString ///////////////////////// 
 
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -101,7 +99,4 @@ public class Component implements Serializable {
 				.append("]");
 		return builder.toString();
 	}
-
-
-
 }

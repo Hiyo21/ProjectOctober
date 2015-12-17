@@ -447,9 +447,10 @@
 						//-----------------약관 동의하면 DB에 reservation 집어 넣자! -----------------//
 						
 						console.log(colorTemp);
+						console.log();
 						
 						//---------------예약인데 휴일용 예약일때! ------------------//
-						if(colorTemp == 3){
+						if(colorTemp == $('#inputServiceList').length){
 							$.ajax({
 								url: "${pageContext.request.contextPath}/enterprise/insertDayOff.action",
 								//dataType: 'json',
@@ -568,6 +569,7 @@
 											});
 											$('#calendar').fullCalendar('refetchEvents');
 											$('#calendar').fullCalendar('rerenderEvents');
+											location.reload();
 										},
 										error:function(request, status, error){
 											console.log("sale record insertion failed!");
@@ -585,11 +587,10 @@
 						}
 						$(this).unbind();
 						calendar.fullCalendar('unselect');
+						location.reload();
 					});
 				}
 			},
-				
-				//------------------------------ insert 마무리 작업  -----------------------------------//
 				
 				themeButtonIcons: {
 					prev: 'circle-triangle-w',

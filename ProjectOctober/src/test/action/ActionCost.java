@@ -34,24 +34,19 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 	EnterpriseDAO enterprise = new EnterpriseDAO();
 	private Map<String, Object> application;
 	
-	
-	
 	public String getEtpEmail() {
 		return etpEmail;
 	}
-
-
+	
 	public void setEtpEmail(String etpEmail) {
 		this.etpEmail = etpEmail;
 	}
-
 
 	@Override
 	public void setRequest(Map<String, Object> request) {
 		this.request =request;		
 	}
 	
-
 	public String highchartCost(){
 		CostDAO dao = new CostDAO();
 		//유료 통계서비스 1
@@ -68,8 +63,6 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		Highchart9AddCost vo9 = new Highchart9AddCost();
 		Highchart9AddCost vo10 = new Highchart9AddCost();
 		
-		
-			
 		for(Highchart9Cost temp : list){
 			/*System.out.println(temp.getRank());*/
 			if(temp.getRank()==1){
@@ -97,8 +90,6 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 			
 		}
 		
-		
-		
 		List<Highchart9AddCost> rank1 = new ArrayList<Highchart9AddCost>();
 		List<Highchart9AddCost> rank2 = new ArrayList<Highchart9AddCost>();
 		List<Highchart9AddCost> rank3 = new ArrayList<Highchart9AddCost>();
@@ -109,8 +100,6 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		List<Highchart9AddCost> rank8 = new ArrayList<Highchart9AddCost>();
 		List<Highchart9AddCost> rank9 = new ArrayList<Highchart9AddCost>();
 		List<Highchart9AddCost> rank10 = new ArrayList<Highchart9AddCost>();
-		
-		
 		
 		rank1.add(vo1);
 		rank2.add(vo2);
@@ -140,15 +129,6 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 			application.put("loginId", session.get("loginId"));
 		}
 		
-		/*System.err.println("application :" + String.valueOf(application.get("loginId")));
-		
-		System.err.println("etpEmail :" + etpEmail);
-		System.err.println("session :" + session == null);
-		System.err.println(session.size());
-		System.err.println(session.toString());
-		System.err.println("Error?" + (session.get("loginId") == null));
-		System.err.println("Error?? " + session.get("loginId"));
-		System.err.println(application.get("loginId"));*/
 		String x = String.valueOf(application.get("loginId"));
 		/*System.err.println(x);*/
 		Enterprise e = enterprise.selectByEtpEmail(x);
@@ -214,8 +194,6 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 			}else if(temp.getTimeSet().equals("24")){
 				time.setTime0024(temp.getCountNum());
 			}
-			
-			
 		}
 		timelist3.add(time);
 		
@@ -247,8 +225,6 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 			}
 		}
 		
-		
-	
 		List<Highchart1Add> resultList1 = new ArrayList();
 		List<Highchart1Add> resultList2 = new ArrayList();
 		List<Highchart1Add> resultList3 = new ArrayList();
@@ -284,8 +260,6 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		AutoHighchartCost1Add c7 = new AutoHighchartCost1Add();
 		AutoHighchartCost1Add c8 = new AutoHighchartCost1Add();
 		AutoHighchartCost1Add c9 = new AutoHighchartCost1Add();
-		
-		
 		
 		List<AutoHighchartCost1Add> autoList = new ArrayList<AutoHighchartCost1Add>();
 		for(AutoHighchartCost1 temp : list3){
@@ -381,22 +355,7 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		request.put("PersonalAge", list7);
 		
 		//유료통계서비스3- 자동문구 생성3끝
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+				
 		return SUCCESS;
 	}
 	
@@ -405,23 +364,18 @@ public class ActionCost extends ActionSupport implements RequestAware, SessionAw
 		return SUCCESS;
 	}
 
-
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
 
-
 	public Map<String, Object> getSession() {
 		return session;
 	}
-
 
 	@Override
 	public void setApplication(Map<String, Object> application) {
 		this.application = application;
 		
 	}
-	
-		
 }
