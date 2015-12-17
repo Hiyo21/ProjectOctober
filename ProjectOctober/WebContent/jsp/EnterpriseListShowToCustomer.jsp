@@ -91,13 +91,14 @@
 				<!-- image 뿌리기 -->
 				<!-- 리스트용 사진이 존재할 경우 -->
 				<div class="col-xs-6"><!-- row2 left start -->
-					<s:if test="infoPht == null">
-			         	<!-- 인포사진 부재시 기본적으로 뿌려지는 사진 -->
-						<img src='${pageContext.request.contextPath}/image/wait.gif' class='img-responsive'>
+					<s:if test="infoPht != null">
+					<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
+			   			<img src='${pageContext.request.contextPath}/<s:property value="infoPht"/>' class='img-responsive'>
+			         	
 					</s:if>
 					<s:else>
-						<!-- photoLocation 에서 각 항목에 맞는 사진 뿌리기 -->
-			   			<img src='${pageContext.request.contextPath}/<s:property value="infoPht"/>' class='img-responsive'>
+						<!-- 인포사진 부재시 기본적으로 뿌려지는 사진 -->
+						<img src='${pageContext.request.contextPath}/image/wait.gif' class='img-responsive'>
 					</s:else>
 				</div>
             	<div class="col-xs-6 etpDescDiv"><!-- 오른쪽 칸 -->

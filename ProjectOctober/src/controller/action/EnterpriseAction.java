@@ -426,10 +426,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 		}
 		
-		if(etpDAO.selectInfoPht(etpNum)!=null){
+		if(etpDAO.selectInfoPht(etpNum)!= null){
 			enterprise.setInfoPht(etpDAO.selectInfoPht(etpNum));
 		}
-		
+			
 		if(etpDAO.selectLogoPht(etpNum)!=null){
 			enterprise.setLogoPht(etpDAO.selectLogoPht(etpNum));
 		}
@@ -454,13 +454,13 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 				session.put("categoryList", categoryList);
 				session.put("gunList", gunList);
 			}
-			
 
 			switch (type) {
 			case 1:
 				//dynamic
-				System.err.println("dynamic :: "+enterprise);
-				if(etpDAO.receiveComponentList(etpNum).size()==0){
+				//System.err.println("dynamic :: "+enterprise);
+				
+				if(etpDAO.receiveComponentList(enterprise.getEtpNum()).size()==0){
 					firstInsertComponent();
 				}
 				//동적 페이지 일때만 컴포넌트 리스트 set
@@ -706,9 +706,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println(enterprise);
 		if(enterprise != null){
 			int result = etpDAO.updateTemplate(enterprise);
-				if(enterprise.getEtpTemplateType()==1){
-					firstInsertComponent();
-				}
+			
 			if(result != 0) return SUCCESS;
 			else return ERROR;
 		}else{
