@@ -13,10 +13,7 @@ import model.dao.SearchDAO;
 import model.vo.Enterprise;
 
 public class SearchAction extends ActionSupport {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private Map<String, String> map = new HashMap<String, String>();
 	private List<Enterprise> enterpriseList;
@@ -32,20 +29,18 @@ public class SearchAction extends ActionSupport {
 	//고객 자유 검색
 	public String takeEnterpriseList() throws Exception{
 		//searchDAO에 searchKeyword를 패러미터로 줘서 받아오게 함.		
-	 
 		enterpriseList=searchDAO.CustomerFreeSearchingList(searchKeyword);
 		EnterpriseDAO etpDAO = new EnterpriseDAO();
 		
 		for(Enterprise etp : enterpriseList){
 			etp.setInfoPht(etpDAO.selectInfoPht(etp.getEtpNum()));
 		}
-		
+
 		return SUCCESS;
 	}	
 	
 	//카테고리 검색
 	public String categorySearch() throws Exception{	
-		System.err.println(searchKeyword);
 		map.put("part", part);
 		map.put("searchKeyword", searchKeyword);
 		
@@ -56,12 +51,9 @@ public class SearchAction extends ActionSupport {
 	         if(etpDAO.selectInfoPht(e.getEtpNum())!= null){
 	            e.setInfoPht(etpDAO.selectInfoPht(e.getEtpNum()));
 	         }
-	      }
-		System.err.println("action : "+enterpriseList);
-		
+	      }	
 		return SUCCESS;
 	}	
-	
 	
 	public Enterprise getVo() {
 		return vo;
@@ -102,7 +94,4 @@ public class SearchAction extends ActionSupport {
 	public void setPart(String part) {
 		this.part = part;
 	}
-
-	
-	
 }

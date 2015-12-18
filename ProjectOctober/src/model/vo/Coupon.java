@@ -4,27 +4,17 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Coupon implements Serializable {
-    private Integer cpnNum;
-
-    private String etpNum;
-
-    private String etpEmail;
-
-    private String cpnTitle;
-
-    private String cpnCode;
-
-    private Integer cpnRate;
-
-    private LocalDateTime cpnStartDate;
-
-    private LocalDateTime cpnEndDate;
-    
-    private boolean canUseCoupon;
-    
-
     private static final long serialVersionUID = 1L;
-
+    private Integer cpnNum;
+    private String etpNum;
+    private String etpEmail;
+    private String cpnTitle;
+    private String cpnCode;
+    private Integer cpnRate;
+    private LocalDateTime cpnStartDate;
+    private LocalDateTime cpnEndDate;
+    private boolean canUseCoupon;
+ 
     public Integer getCpnNum() {
         return cpnNum;
     }

@@ -22,7 +22,7 @@ import model.vo.Member;
 import model.vo.Zipcode;
 
 public class MemberAction extends ActionSupport implements SessionAware{
-	private static final long serialVersionUID = 5672648613791884055L;
+	private static final long serialVersionUID = 1L;
 	private static final int ENTERPRISE_CODE = 1;
 	private static final int ADMIN_CODE = 3;
 	private static final int CUSTOMER_CODE = 2;
@@ -62,22 +62,15 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String customerRegistration1() throws Exception{
-		System.err.println("회원등록 - 멤버 : " + member);
-		System.err.println("회원등록 - 이용자 : " + customer);
 		member.setMemCode(2);
 		String str = customer.getCstBirthdayTemp();
 		String[] strs = str.split("-");
 		customer.setCstBirthday(LocalDate.of(Integer.parseInt(strs[0]), Integer.parseInt(strs[1]), Integer.parseInt(strs[2])));
 		int result = memDAO.insertMemberInfo2(member);
-		System.err.println(result);
 		if(result == 0) throw new Exception("일반이용자 - 멤버 등록 안 됨");
 		customer.setCstEmail(member.getMemEmail());
 		customer.setCstOneclick(0);
-		System.err.println(customer);
 		int result2 = cstDAO.insertCustomerInfo(customer);
-		
-		
-		System.err.println(result2);
 		if(result2 != 0) return SUCCESS;
 		else throw new Exception("일반이용자 - 멤버 등록은 했는데 회원가입 안 됨");
 	}
@@ -93,12 +86,11 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String backToFirstRegistrationPage() throws Exception{
-		System.out.println(email);
 		if(email == null) email = (String) ActionContext.getContext().getSession().get("email");
 		int result = memDAO.deleteEnterpriseInfoFirstStep(email);
 		if(result != 1) return ERROR;
 		else result = memDAO.deleteMemberInfo(email);
-			
+		
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
@@ -109,32 +101,22 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		ActionContext.getContext().getSession().put("email", member.getEnterprise().getEtpEmail());
 		if(result != 1) return ERROR;
 		else result = memDAO.insertEnterpriseInfoFirstStep(member.getEnterprise());
-		
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
 
 	public String toSecondRegistrationPage() throws Exception{
 		member = memDAO.retrieveMemberInfo(etpNum);
-		System.err.println(member);
-		System.err.println(member.getEnterprise());
 		return SUCCESS;
 	}
 	
 	public String toThirdRegistrationPage() throws Exception{
-		System.err.println(etpNum);
-		System.err.println(member.getEnterprise());
 		Member tempMember = memDAO.retrieveMemberInfo(etpNum);
-		
 		
 		//---------------working days 셋업------------//
 		initializeWorkingDays(tempMember, member.getEnterprise().getWorkingDays().getTemp());
-		System.err.println(tempMember);
-		System.err.println((tempMember.getEnterprise().getWorkingDays()));
 		int result = memDAO.insertWorkingDays(tempMember);
-		//int result = memDAO.updateWorkingDays(tempMember);
-		if(result == 0) throw new Exception();
-		//-------------------------------------------//
+		if(result == 0) throw new Exception("휴무일 지정 중 오류 발생.");
 		
 		//-------그 외: 업종, 특징, 수용 인원, 스태프 수, 등등 ------//
 		tempMember.getEnterprise().setEtpSuperclass(member.getEnterprise().getEtpSuperclass());
@@ -142,29 +124,20 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		tempMember.getEnterprise().setEtpFemaleStaff(member.getEnterprise().getEtpFemaleStaff());
 		tempMember.getEnterprise().setEtpCapacity(member.getEnterprise().getEtpCapacity());
 		tempMember.getEnterprise().setEtpSubclass(member.getEnterprise().getEtpSubclass());
-		tempMember.getEnterprise().setEtpSpecialize(member.getEnterprise().getEtpSpecialize());
-		
-		//-----------------------------------------------//
+		tempMember.getEnterprise().setEtpSpecialize(member.getEnterprise().getEtpSpecialize());		
 		
 		//-----------시작 시간, 끝 시간 설정 ---------------------//
-		System.err.println(LocalTime.parse(member.getEnterprise().getStart(),DateTimeFormatter.ISO_LOCAL_TIME));
-		System.err.println(LocalTime.parse(member.getEnterprise().getEnd(),DateTimeFormatter.ISO_LOCAL_TIME));
-		
 		tempMember.getEnterprise().setEtpStartHour(LocalTime.parse(member.getEnterprise().getStart(),DateTimeFormatter.ISO_LOCAL_TIME));
 		tempMember.getEnterprise().setEtpEndHour(LocalTime.parse(member.getEnterprise().getEnd(),DateTimeFormatter.ISO_LOCAL_TIME));
 		result = memDAO.updateEtpDetailsFirst(tempMember);
-		if(result == 0) throw new Exception();
-		//-----------------------------------------------//
+		if(result == 0) throw new Exception("자동화 설정 정보 입력 중 오류 발생.");
 	 	ActionContext.getContext().getSession().put("etpNum", tempMember.getEnterprise().getEtpNum());
 		return SUCCESS;
 	}
 	
 	public String finalizeRegistration() throws Exception{
 		etpNum = (String) ActionContext.getContext().getSession().get("etpNum");
-		System.err.println(etpNum);
 		Member tempMember = memDAO.retrieveMemberInfo(etpNum);
-		System.err.println(tempMember);
-		System.err.println(tempMember.getEnterprise());
 		tempMember.getEnterprise().setEtpRsvDeadline(member.getEnterprise().getEtpRsvDeadline());
 		tempMember.getEnterprise().setEtpSelfNotification(member.getEnterprise().getEtpSelfNotification());
 		tempMember.getEnterprise().setEtpCstNotification(member.getEnterprise().getEtpCstNotification());
@@ -176,56 +149,37 @@ public class MemberAction extends ActionSupport implements SessionAware{
 
 	public String loginProcess() throws Exception{
 		if(session.get("invalid") != null) session.remove("invalid");
-		
 		Map<String, String> loginInfo = new HashMap<>();
 		loginInfo.put("loginEmail", email);
 		loginInfo.put("loginPassword", password);
-		System.out.println(email + password);
 		member = memDAO.loginResult(loginInfo);
-		System.out.println(member);
 		if(member == null) {
 			session.put("invalid", "invalid");
 			return LOGIN;
 		} else {
 			if(member.getMemCode() == ENTERPRISE_CODE){
 				Enterprise enterprise = etpDAO.selectByEtpEmail(member.getMemEmail());
-				/*EnterpriseDAO etpDao = new EnterpriseDAO();
-				Enterprise enterprise = etpDao.selectByEtpEmail(member.getMemEmail());*/
 				if(enterprise == null) throw new Exception("엔터프라이즈가 없음!");
 				if(enterprise.getEtpStatus() != 1) return LOGIN;
-				
 				session.put("enterprise", enterprise);
 				session.put("loginEtpNum", enterprise.getEtpNum());
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
-				
-				if(enterprise.getEtpTemplateType() == 0){ 
-					System.out.println(1);
-					return "enterpriseNo";
-				}else {
-					System.out.println(2);
-					return "enterprise";
-				}
-
-				/*if(enterprise.getEtpTemplateType() == null){ System.out.println(1);return "enterpriseNo";}
-				else {System.out.println(2);return "enterprise";}*/
-
+				if(enterprise.getEtpTemplateType() == 0) return "enterpriseNo";
+				else return "enterprise";
 			}else if(member.getMemCode() == CUSTOMER_CODE){
 				session.put("customer", memDAO.retrieveCustomerInfo(member.getMemEmail()));
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
-				System.out.println(3);
 				return "customer";
 			}else if(member.getMemCode() == ADMIN_CODE){
 				session.put("loginId", member.getMemEmail());
 				session.put("loginName", member.getMemName());
 				session.put("memCode", member.getMemCode());
-				System.out.println(4);
 				return "admin";
 			}else{
-				System.out.println(5);
 				session.put("invalid", "invalid");
 				return LOGIN;
 			}
@@ -238,42 +192,25 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String searchZipcode() throws Exception{
-		System.out.println("action in");
 		zipcodeList = memDAO.searchZipcode(searchText);
-		if (zipcodeList != null) {
-			return SUCCESS;
-		} else {
-			return ERROR;
-		}
+		if (zipcodeList != null) return SUCCESS;
+		else return ERROR;
+		
 	}
 	
 	public String checkMemberType() {
-		if (session.get("customer") != null) {
-			return "customer";
-		}
-		else if (session.get("enterprise") != null) {
-			return "enterprise";
-		}
-		else if (session.get("admin") != null) {
-			return "admin";
-		}
-		else {
-			return ERROR;
-		}
+		if (session.get("customer") != null) return "customer";
+		else if (session.get("enterprise") != null) return "enterprise";
+		else if (session.get("admin") != null) return "admin";
+		else return ERROR;
 	}
 
 	
 	public String retrieveEnterpriseInfo() throws Exception {
 		Enterprise enterprise = DAOFactory.createEnterpriseDAO().selectByEtpEmail((String)session.get("loginId"));
-		if(enterprise.getEtpTemplateType() == 1) {
-			return "template1";
-		}
-		else if(enterprise.getEtpTemplateType() == 2) {
-			return "template2";
-		}
-		else {
-			return "template3";
-		}
+		if(enterprise.getEtpTemplateType() == 1) return "template1";
+		else if(enterprise.getEtpTemplateType() == 2) return "template2";
+		else return "template3";
 	}
 	
 	public String retrieveCustomerInfo() throws Exception{
@@ -286,7 +223,6 @@ public class MemberAction extends ActionSupport implements SessionAware{
 		Map<String, Object> info = new HashMap<>();
 		info.put("cstEmail", cstEmail);
 		info.put("rsvNum", rsvNum);
-		System.err.println(cstEmail + ' ' + rsvNum);
 		member = memDAO.retrieveCustomerInfoPerReservation(info);
 		if(member != null)return SUCCESS;
 		else return ERROR;
@@ -298,7 +234,8 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	}
 
 	
-	//=================private methods=======================/
+	//=================Private Methods=======================/
+	
 	private void doPreliminarySteps(Member member) {
 		member.getEnterprise().setEtpOwner(member.getMemName());
 		member.setMemCode(ENTERPRISE_CODE);

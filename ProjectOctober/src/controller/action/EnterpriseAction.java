@@ -1,9 +1,11 @@
 package controller.action;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,49 +34,53 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	private static final long serialVersionUID = 1L;
 	private EnterpriseDAO etpDAO;
+	
 	private Enterprise enterprise;
 	private Reservation reservation;
+	private Member member;
+	private PhotoLocation photoLocation;
+	private SaleRecord saleRecord;
+	private Notification notification;
+	private Component component;
+	private Service service;	
+	private Coupon coupon;
+	
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
 	private List<Service> serviceList;
 	private List<String> categoryList;
+	private List<Coupon> couponList;
+	private List<SaleRecord> saleRecords;
+	private List<Review> reviewList;
+	private List<Highchart14> gunList;
+	private List<Notification> notificationList;
+	private List<Component> componentList;
+	
 	private Map<String, Object> session;
 	private Map<String, Object> cpCollector;
-	private List<Coupon> couponList;
-	private Member member;
-	private PhotoLocation photoLocation;
-	private SaleRecord saleRecord;
-	private List<SaleRecord> saleRecords;
+	
 	private String etpNum;
 	private String etpNum1;
 	private String etpEmail;
-	private List<Review> reviewList;
-	private List<Highchart14> gunList;
-	private Notification notification;
-	private List<Notification> notificationList;
-
-	//////// Component Member ////////  
-	private Component component;
-	private List<Component> componentList;
-	private Service service;	
-	private Coupon coupon;
 	private String address;
-	private Integer rsvNum;
-	private String regCardLocation;
-	private boolean canUseCoupon = false;
-	private Integer cpnNum;
 	private String category;
+	private String regCardLocation;
+	private String infoPht;
+	private String logoPht;
+	private Integer cpnNum;
+	private Integer rsvNum;
+
 	private int svcNum;
 	private int etpTemplateType;
 	private int ntfNum;
 	private int ntfCount;
+	private int upCategory;
+	private boolean canUseCoupon = false;
+	private String mobileTimeString;
+	private Date mobileTime;
 	
-	private int upCategory;//이미지 업로드시 용도 구별 위한 변수
 	
-	private String infoPht;
-	private String logoPht;
-	
-	//쿠폰관련
+	//------------쿠폰관련------------------//
 	private String title;
 	private String code;
 	private int rate;
@@ -85,41 +91,31 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String endMonth;
 	private String endDay;
 	private List<Reservation> couponSendList;
+	//-----------------------------------//
+
 	
-
-
 	public EnterpriseAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
 	}
 	
-//---------------------------------------- Calendar 관련 ----------------------------------//
 	public String toCalendarPage() throws Exception{
-		System.out.println(etpNum);
 		Integer memCode = (Integer)session.get("memCode");
 		if(memCode == 1) return "enterprise";
 		else return "customer";
 	}
 	
 	public String retrieveEnterpriseInfoForCalendar() throws Exception{
-		System.err.println(etpNum + "얘는?");
 		enterprise = etpDAO.selectByEtpNumIncludeOthers(etpNum);
-		System.err.println(enterprise + "어디?");
-		System.err.println(enterprise.getEtpStartHour() +"이건?");
-		System.err.println(enterprise.getWorkingDays());
 		enterprise.setStart(enterprise.getEtpStartHour().format(DateTimeFormatter.ISO_LOCAL_TIME));
 		enterprise.setEnd(enterprise.getEtpEndHour().format(DateTimeFormatter.ISO_LOCAL_TIME));
 		WorkingDays wd = enterprise.getWorkingDays();
-		Integer [] ttt = makeDow(wd);
-		enterprise.getWorkingDays().setDow(ttt);
+		Integer [] dowArr = makeDow(wd);
+		enterprise.getWorkingDays().setDow(dowArr);
 		return SUCCESS;
 	}
 
 	public String insertReservation() throws Exception{
-		System.err.println("널값 확인용 :" + reservation);
 		if(reservation != null){
-			System.err.println("reservation 시작 스트링: " + reservation.getStart());
-			System.err.println("reservation 끝 스트링: " + reservation.getEnd());
-			
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
 			reservation.setEtpNum(String.valueOf(session.get("loginEtpNum")));
@@ -131,36 +127,23 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveReservationFromOtherInfo() throws Exception{
-		System.err.println("retrieveReservationFromOtherInfo에서:" + reservation);
 		if(reservation != null){
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
-		
 			reservation = etpDAO.retrieveReservationFromOtherInfo(reservation);
-			System.err.println(reservation);
-		}
-		
-		if(reservation != null){
-			System.out.println("rsvnum찍기 : " + reservation.getRsvNum());
 			return SUCCESS;
 		}else{
 			return ERROR;
 		}
 	}
 	
-	
 	public String retrieveReservations() throws Exception{
-		System.err.println("현재 테스트 중입니다..etp정보를 받아오는가?");
-		System.err.println(etpNum);
 		reservationList = etpDAO.retrieveReservations(etpNum);
 		if (reservationList != null) {
 			for(int i = 0 ; i < reservationList.size() ; i++ ){
 				reservationList.get(i).setStart(reservationList.get(i).getRsvStartDate().toString());
 				reservationList.get(i).setEnd(reservationList.get(i).getRsvEndDate().toString());
-				//TODO: Reservation 상태에 따라 변화
-				if(reservationList.get(i).getRsvStatus() == 0){
-					reservationList.get(i).setBordercolor("#DDDDDD");
-				}
+				if(reservationList.get(i).getRsvStatus() == 0) reservationList.get(i).setBordercolor("#DDDDDD");
 			}
 			return SUCCESS;
 		}else{
@@ -189,10 +172,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
-	//--------------------------------------------------사업자 페이지---------------------------
-	//---------------------------------------Service Component-----------------------------
 	public String updateSvcCategory() throws Exception{
-		System.err.println("===========check Action :: updateSvcCategory :: ");
 		int result = 0; 
 		for(Service s : serviceList){
 			result = etpDAO.updateSvcCategory(s);
@@ -203,33 +183,20 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String inMyPage() throws Exception{
-		// 예약내역 관련
 		String loginEmail = (String)session.get("loginId");
-		System.out.println("action"+loginEmail);
 		saleRecords = etpDAO.reservationHistory(loginEmail);
-		if (saleRecords == null) {
-			return ERROR;
-		}
-		
-		
-		// 쿠폰 및 이벤트
+		if (saleRecords == null) return ERROR;
 		etpNum = (String)session.get("loginEtpNum");
 		etpEmail = (String)session.get("loginId");
 		couponList = etpDAO.retrieveCouponList(etpNum);
 		couponSendList = etpDAO.couponSendList(etpEmail);
-				
-		
 		return SUCCESS;
 	}
 	
 	//쿠폰불러오기
 	public String retrieveCouponList() throws Exception{
-		if((String)session.get("loginEtpNum") != null){ 
-			etpNum = (String)session.get("loginEtpNum");
-		}
-		if ((String)session.get("loginId") != null){
-			etpEmail = (String)session.get("loginId");
-		}
+		if((String)session.get("loginEtpNum") != null) etpNum = (String)session.get("loginEtpNum");
+		if ((String)session.get("loginId") != null) etpEmail = (String)session.get("loginId");
 		couponList = etpDAO.retrieveCouponList(etpNum);
 		couponSendList = etpDAO.couponSendList(etpEmail);
 		return SUCCESS; 	
@@ -251,12 +218,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		coupon.setCpnTitle(title);
 		coupon.setCpnRate(rate);
 		int result = etpDAO.insertCoupon(coupon);
-		if (result == 1) {
-			return SUCCESS;
-		}
-		else {
-			return ERROR;
-		}
+		if (result == 1) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String updateCoupon() throws Exception {
@@ -275,12 +238,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		coupon.setCpnRate(rate);
 		coupon.setCpnNum(cpnNum);
 		int result = etpDAO.updateCoupon(coupon);
-		if (result == 1) {
-			return SUCCESS;
-		}
-		else {
-			return ERROR;
-		}
+		if (result == 1) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String deleteCoupon() throws Exception {
@@ -289,7 +248,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String selectSvcCategory() throws Exception{
-		System.err.println("category Check :: "+category);
 		serviceList = etpDAO.selectSvcCategory(etpNum, category);
 		enterprise = etpDAO.selectByEtpNum(etpNum);
 		if(serviceList != null) return SUCCESS;
@@ -297,36 +255,27 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String selectServiceList() throws Exception{
-		System.err.println("===========check Action :: selectServiceList :: " + etpNum);
 		serviceList = etpDAO.selectServiceList(etpNum);
-		
 		categoryList = etpDAO.makeCategoryList(etpNum);
-		
 		enterprise = etpDAO.selectByEtpNum(etpNum);
-		
 		if(serviceList != null) return SUCCESS;
 		else return ERROR;
 	}
 	
 	public String insertService(){
-		System.err.println("===========check Action :: insertService :: ");
 		service.setEtpEmail(etpDAO.selectByEtpNum(service.getEtpNum()).getEtpEmail());
-		System.out.println(service);
 		int result = etpDAO.insertService(service);
-		
 		if(result==1)return SUCCESS;
 		else return ERROR;
 	}
 	
 	public String deleteService(){
-		System.err.println("===========check Action :: deleteService :: " + svcNum);
 		int result = etpDAO.deleteService(svcNum);
-		if(result==1)return SUCCESS;
+		if(result==1) return SUCCESS;
 		else return ERROR;
 	}
 	
 	public String receiveServiceList() throws Exception{
-		System.err.println(etpNum);
 		serviceList = etpDAO.receiveServiceList(etpNum);
 		if(serviceList != null) return SUCCESS;
 		else return ERROR;
@@ -338,81 +287,50 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 		reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd(),DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 		if(reservation.getRsvDesc().length()==0) reservation.setRsvDesc("");
-		System.err.println(reservation);
 		int result = etpDAO.insertDayOff(reservation);
 		if(result != 0) return SUCCESS;
 		else return ERROR;
 	}
-	
-	/*public String updateEnterprise() throws Exception{
-		System.err.println(===========check Action :: updateEnterprise);
-		int result = etpDAO.updateEtpStatus(etpNum)
-	}*/
-	
-	//---------------------------------------Service Component End-----------------------------
+
 	public String saveInfoDesc() throws Exception{
-		System.out.println("===========check Action :: saveInfoDesc :: ");
-		
 		enterprise.setEtpNum(session.get("loginEtpNum").toString());
 		int result = etpDAO.updateEtp(enterprise);
-		
-		if(result == 1){
-			return SUCCESS;
-		}else{
-			return ERROR;
-		}
+		if(result == 1) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String saveLocaDesc() throws Exception{
-		System.out.println("===========check Action :: saveLocaDesc :: ");
-		
 		enterprise.setEtpNum(session.get("loginEtpNum").toString());
 		int result = etpDAO.updateEtp(enterprise);
-		
-		if(result == 1){
-			return SUCCESS;
-		}else{
-			return ERROR;
-		}
+		if(result == 1) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String selectEtpList() throws Exception{
-		System.out.println("===========check Action :: enterpriseList :: ");
-		enterpriseList = etpDAO.selectEtpList();			
-
+		enterpriseList = etpDAO.selectEtpList();
 		return SUCCESS;
 	}
 	
 	public String selectGalleryList() throws Exception{
-		System.out.println("===========check Action :: receiveGalleryList :: ");
-		if(enterprise == null){
-			enterprise = new Enterprise();
-		}
-		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
-		System.err.println("#####enterprise.getPhotos() : "+enterprise.getPhotos());
-		
+		if(enterprise == null) enterprise = new Enterprise();
+		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));		
 		if(enterprise.getPhotos() != null) return SUCCESS;
 		else return ERROR;
 	}
 	
 	public String deleteImage() throws Exception{
-		System.out.println("===========check Action :: deleteImage :: " + photoLocation.getPhotoNum());
 		int result = etpDAO.deletePht(photoLocation.getPhotoNum());
-		
 		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
 	
-	public String takeEtp() throws Exception{
-		System.out.println("===========check Action :: takeEtp :: etpNum :: " + etpNum);
-		
+	public String takeEtp() throws Exception{		
 		if(etpNum == null){
 			etpNum = session.get("loginEtpNum").toString();
 			enterprise = etpDAO.selectByEtpNum(etpNum);			
 		}else{
 			enterprise = etpDAO.selectByEtpNum(etpNum);
 		}
-			
 		
 		//서비스 리스트 set
 		if(etpDAO.selectServiceList(etpNum).size()>0){
@@ -443,13 +361,11 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 		if(enterprise != null) {
 			int type = enterprise.getEtpTemplateType();
-			System.err.println("type :: " + type);
 			reviewList = etpDAO.selectReviewList(etpNum);
 			gunList = DAOFactory.createDAO().highchart14DAO(etpNum);
 			
 			session.put("pageId", enterprise.getEtpEmail());
-			
-			if(session.get("enterprise")==null){
+			if(session.get("enterprise") == null){
 				session.put("gunList", gunList);
 				session.put("enterprise", enterprise);
 				session.put("categoryList", categoryList);
@@ -459,23 +375,19 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 				session.put("gunList", gunList);
 			}
 			
-
 			switch (type) {
 			case 1:
-				//dynamic
-				System.err.println("dynamic :: "+enterprise);
 				if(etpDAO.receiveComponentList(etpNum).size()==0){
 					firstInsertComponent();
 				}
-				//동적 페이지 일때만 컴포넌트 리스트 set
+				//동적 페이지
 				enterprise.setComponents(etpDAO.receiveComponentList(etpNum));
-				System.err.println(enterprise.getComponents());
 				return "template1";
 			case 3:
-				//static_allInOne
+				//정적 페이지 - 싱글 페이지
 				return "template3";
 			default:
-				//static_tabs
+				//정적 페이지 - 탭 페이지
 				return "template2";
 			}
 		}else{
@@ -484,7 +396,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String takeEtpForDynamic() throws Exception{
-		System.out.println("===========check Action :: takeEtpForDynamic :: etpNum :: " + etpNum);
 		enterprise = etpDAO.selectByEtpNum(etpNum);
 		
 		//서비스 리스트 set
@@ -499,59 +410,39 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 		enterprise.setInfoPht(etpDAO.selectInfoPht(etpNum));
 		enterprise.setLogoPht(etpDAO.selectLogoPht(etpNum));
-		System.out.println("INFO:::"+enterprise.getInfoPht());
-		System.out.println("LOGO:::"+enterprise.getLogoPht());
 		infoPht = enterprise.getInfoPht();
 		logoPht = enterprise.getLogoPht();
 		
 		//컴포넌트 리스트 set
 		componentList = etpDAO.receiveComponentList(etpNum);
-		
 		return SUCCESS;
 	}
 	
 	public String updateReservationDetailsByEnterprise() throws Exception{
-		System.err.println("제목:" + reservation.getRsvTitle());
-		System.err.println("서비스 넘버: " + reservation.getSvcNum());
 		if(reservation.getRsvTitle() == null || reservation.getRsvTitle().trim().length() == 0) reservation.setRsvTitle("제목 없음");
-		int result = etpDAO.updateReservationDetailsByEnterprise(reservation);
-		System.err.println(result);
+		etpDAO.updateReservationDetailsByEnterprise(reservation);
 		return SUCCESS;
 	}
 	
 	public String checkCoupon() throws Exception{
-		System.err.println(coupon);
 		coupon = etpDAO.checkCoupon(coupon);
-		if(coupon != null)coupon.setCanUseCoupon(true);
+		if(coupon != null) coupon.setCanUseCoupon(true);
 		return SUCCESS;
 	}
 	
-	
 	//이미지 업로드 페이지로 가기
-		public String checkUploadCategory() {
-			System.out.println(upCategory);
-			if (upCategory == 1) {
-				System.out.println("여기"+1);
-				return "gallery";
-			} else if (upCategory == 2) {
-				System.out.println("여기"+2);
-				return "logo";
-			} else if (upCategory == 3) {
-				System.out.println("여기"+3);
-				return "info";
-			} else {
-				System.out.println("여기"+4);
-				return ERROR;
-			}
-		}
-	
-
-	
+	public String checkUploadCategory() throws Exception {
+		System.out.println(upCategory);
+		if (upCategory == 1) return "gallery";
+		else if (upCategory == 2) return "logo";
+		else if (upCategory == 3) return "info";
+		else return ERROR;
+	}
 	
 //--------------------------------------- Component ----------------------------------------///	
 	public String firstInsertComponent(){
 		componentList = etpDAO.receiveComponentList("1265479385");
-		
+
 		for(Component c : componentList){
 			//신규가입자의 사업자 번호와 이메일 주소를 받아서 기존의 사업자 정보를 대체한다.
 			c.setEtpNum(session.get("loginEtpNum").toString());
@@ -559,35 +450,25 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			//수정된 컴포넌트 객체를 인서트 한다
 			etpDAO.insertComponent(c);
 		}
-		
 		return SUCCESS;
 	}
 	
 	public String resetComponent(){
 		componentList = etpDAO.receiveComponentList("1265479385");
-		int result= 0;
+		int result = 0;
 		
 		for(Component c : componentList){
-			System.err.println("###########Check :: "+etpNum);
 			c.setEtpNum(etpNum);
 			result = etpDAO.updateComponent(c);
 		}
 		
-		if(result == 1) {
-			return SUCCESS;
-		}else{
-			System.err.println("============check Action :: result :: " + result);
-			return ERROR;
-		}
-		
+		if(result == 1) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String cleanComponent(){
-		System.err.println("============= CleanComponent ==============");
-		if(etpDAO.receiveComponentList(etpNum).size()==0){
-			firstInsertComponent();
-		}
-		
+		if(etpDAO.receiveComponentList(etpNum).size()==0) firstInsertComponent();
+	
 		//사업자의 모든 컴포넌트(총 8개) 정보에 0 값 입력
 		int result = etpDAO.cleanComponent(etpNum);
 		
@@ -595,7 +476,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 		
-	
 	public String insertComponent(){
 		
 		//사업자번호와 컴포넌트ID를 만족하는 컴포넌트가 존재하는지 확인
@@ -607,72 +487,39 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		if(etpDAO.selectComponent(check)==null){	//컴포넌트 신규등록
 			System.out.println("동적템플릿 신규 컴포넌트입니다.");
 			component.setEtpEmail(etpDAO.selectByEtpNum(etpNum).getEtpEmail());
-			System.out.println(component);
 			int result = etpDAO.insertComponent(component);
-			if(result == 1) {
-				return SUCCESS;
-			}else{
-				System.err.println("============check Action :: result :: " + result);
-				return ERROR;
-			}
+			if(result == 1) return SUCCESS;
+			else return ERROR;
 		}else{	//컴포넌트 기존에 등록되어 있던 사람
-			//업데이트
 			System.out.println("============기존 컴포넌트 등록 사업자============");
 			System.out.println("동적템플릿 기존 컴포넌트입니다.");
-			System.out.println(component);
-			int result = etpDAO.updateComponent(component);
-			if(result == 1) {
-				return SUCCESS;
-			}else{
-				System.err.println("============check Action :: result :: " + result);
-				return ERROR;
-			}
+			int result = etpDAO.updateComponent(component); //업데이트
+			if(result == 1) return SUCCESS;
+			else return ERROR;
 		}
-
 	}
 	
-	public String updateComponent(){	
-		System.err.println("============= UpdateComponent ==============");
-		//ajax로 받은 컴포넌트 정보를 update하여 DB로 저장
+	public String updateComponent(){	 		//ajax로 받은 컴포넌트 정보를 update하여 DB로 저장
 		int result = etpDAO.updateComponent(component);
-		
-		if(result == 1) {
-			return SUCCESS;
-		}else{
-			System.err.println("============check Action :: result :: " + result);
-			return ERROR;
-		}
+		if(result == 1) return SUCCESS;
+		else return ERROR;
 	}
 	
 		
 	public String receiveComponentList(){
-		System.out.println("============check Action :: getComponentList()");
-		System.err.println(etpNum);
 		component = new Component();
 		component.setEtpNum(etpNum);
-		///// 사업자 번호와 일치하는 컴포넌트만 갖고 오기
-		componentList = etpDAO.receiveComponentList(component.getEtpNum());
-		
-		if(componentList == null) {
-			return ERROR;
-		}
-		System.out.println("============check Action :: componentList.size() ::" + componentList.size());
-		
+		componentList = etpDAO.receiveComponentList(component.getEtpNum()); ///// 사업자 번호와 일치하는 컴포넌트만 갖고 오기
+		if(componentList == null) return ERROR;
 		return SUCCESS;
 	}
 	
-	
 	public String choiceTemplateType() {
 		etpNum = (String) session.get("loginEtpNum");
-		System.out.println(etpNum+etpTemplateType);
 		int result = etpDAO.choiceTemplateType(etpNum, etpTemplateType);
+		enterprise = etpDAO.selectByEtpNum(etpNum); //엔터프라이즈 전체
 		
-		//엔터프라이즈 전체
-		enterprise = etpDAO.selectByEtpNum(etpNum);
-		System.out.println(enterprise);
-		
-		//서비스 리스트 set
-		List<Service> svcList = new ArrayList<Service>();
+		List<Service> svcList = new ArrayList<Service>(); //서비스 리스트 set
 		etpDAO.selectServiceList(etpNum); 
 		if (svcList != null) {
 			enterprise.setServices(svcList);
@@ -698,98 +545,65 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		
 		if (result == 1) {
 			switch (etpTemplateType) {
-			case 1: return "dynamic";
-			case 2: return "static1";
-			case 3: return "static2";
+				case 1: return "dynamic";
+				case 2: return "static1";
+				case 3: return "static2";
 			}
 		} 
 		return ERROR;
 	}
 	
 	public String updateTemplate() throws Exception{
-		System.err.println(enterprise);
 		if(enterprise != null){
 			int result = etpDAO.updateTemplate(enterprise);
 			if(result != 0) return SUCCESS;
 			else return ERROR;
 		}else{
-			throw new Exception("엔터프라이즈 못 읽어 옴!");
+			throw new Exception("엔터프라이즈를 읽어 올 수 없습니다.");
 		}
 	}
 	
 	//사업자의 이용자 예약 내역
 	public String reservationHistory() {
 		String loginEmail = (String)session.get("loginId");
-		System.out.println("action"+loginEmail);
 		saleRecords = etpDAO.reservationHistory(loginEmail);
-		if (saleRecords != null) {
-			return SUCCESS;
-		} else {
-			return ERROR;
-		}
+		if (saleRecords != null) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String selectReviewListJSON() throws Exception{
 		reviewList = etpDAO.selectReviewList(etpNum);
-		if(reviewList != null){
-			return SUCCESS;
-		}else
-			return ERROR;
+		if(reviewList != null) return SUCCESS;
+		else return ERROR;
 	}
 	
 	/////////////////////// 미승인 사업자 게시판 ////////////////////
 	
 	public String allNoRegisterEtpList() throws Exception{
 		enterpriseList = etpDAO.allNoRegisterEtpList();
-		System.out.println(enterpriseList);
-		
 		return SUCCESS;
 	}
 	
 	public String noRegisterEtp() throws Exception{
-		System.err.println(etpNum);
 		enterprise = etpDAO.noRegisterEtp(etpNum);
 		regCardLocation = etpDAO.retrieveRegCard(etpNum);
-		System.err.println("regCardLocation : "+regCardLocation);
 		return SUCCESS;
 	}
 	
 	public String confirm() throws Exception{
-		System.err.println("confirm : "+etpNum);
 		int result=etpDAO.updateEtpStatus(etpNum);
-				
-		if(result !=1){	
-			return ERROR;			
-		}
+		if(result !=1) return ERROR;			
 		return SUCCESS;			
 	}
 	
 	public String reject() throws Exception{
-		System.err.println("reject : "+etpNum);
 		int result=etpDAO.rejectEtpStatus(etpNum);
-		
 		enterpriseList = etpDAO.allNoRegisterEtpList();
-		
-		if(result !=1){	
-			return ERROR;			
-		}
+		if(result !=1) return ERROR;			
 		return SUCCESS;			
 	}
-	
-	////////////////////MAP////////////////////
-	public String showMap() {
-		etpEmail = "111";
-		address = etpDAO.showMap(etpEmail);
-		System.out.println(address);
-		return SUCCESS;
-	}
-	
-	
-	@Override
-	public String execute() throws Exception {
-		System.out.println("check Action Execute");
-		return SUCCESS;
-	}
+		
+	//------------------Notification-------------------//
 	
 	public String insertEnterpriseNotification() throws Exception{
 		if(reservation != null){
@@ -811,6 +625,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String updateDurationEnterpriseNotification() throws Exception{
 		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
 		reservation = etpDAO.retrieveReservation(notification.getRsvNum());
+		
 		if(notification != null){
 			String ntfMessageForInsert = enterprise.getEtpTitle() + " 님이 " + notification.getCstEmail() + "님의 예약 : " + reservation.getRsvTitle() + " 의 일시를 " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "로 변경하셨습니다.";
 			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
@@ -825,6 +640,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public String updatePeriodEnterpriseNotification() throws Exception{
 		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
 		reservation = etpDAO.retrieveReservation(notification.getRsvNum());
+		
 		if(notification != null){
 			String ntfMessageForInsert = enterprise.getEtpTitle() + " 님이 " + notification.getCstEmail() + " 님의 예약 : " + reservation.getRsvTitle() + " 의 서비스 기간을 " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + " ~ " + reservation.getRsvEndDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "로 변경하셨습니다.";
 			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
@@ -838,6 +654,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	public String deleteEnterpriseNotification() throws Exception{
 		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
+		
 		if(notification != null){
 			String ntfMessageForInsert = notification.getCstEmail() + " 님이 " + enterprise.getEtpTitle() + " 업체의 예약을 삭제하셨습니다.";
 			notification.setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());
@@ -871,12 +688,8 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			return ERROR;
 		}
 	}
-
-	/////////////////////////////////////////////////
 	
 	public String retrieveOffDays() throws Exception{
-		System.err.println("휴일용 받는가?" + etpNum);
-		
 		if(reservationList != null){
 			reservationList = etpDAO.retrieveOffDays(etpNum);
 			return SUCCESS;
@@ -885,7 +698,52 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}	
 	}
 	
-    ///////////////////////// GET&SET ///////////////////////// 
+	public String retrieveReservationTime() throws Exception{
+		System.out.println(mobileTimeString);
+		reservationList = etpDAO.retrieveReservationTime("1234567890");
+		System.out.println(reservationList == null);
+		if(reservationList.get(0) != null){
+			return SUCCESS;
+		}else{
+			return ERROR;
+		}
+	}
+	
+	//---------------Local Methods------------------//
+	
+	public Integer [] makeDow(WorkingDays wd){
+		int [] temp = {wd.getSun(), wd.getMon(), wd.getTue(), wd.getWed(), wd.getThu(),wd.getFri(), wd.getSat()};
+		List<Integer> it = new ArrayList<Integer>();
+		boolean hasVacDay = false;
+		int x = 0;
+		for(int i = 0 ; i < temp.length ; i++){
+			if(temp[i] == 1) hasVacDay = true;
+			else it.add(x);
+			x++;
+		}
+		Object[] temptt = it.toArray();
+		Integer [] tt = Arrays.copyOf(temptt, temptt.length, Integer[].class);
+		return tt;
+	}
+	
+	//------------------Dummy Methods-----------------//
+	public String showMap() throws Exception {
+		etpEmail = "111";
+		address = etpDAO.showMap(etpEmail);
+		return SUCCESS;
+	}
+	
+	@Override
+	public String execute() throws Exception {
+		System.out.println("check Action Execute");
+		return SUCCESS;
+	}
+	
+	public String emptyAction(){
+		return SUCCESS;
+	}
+	
+    //------------------Properties------------------//
 
 	public Enterprise getEnterprise() {
 		return enterprise;
@@ -918,7 +776,6 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public void setEnterpriseList(List<Enterprise> enterpriseList) {
 		this.enterpriseList = enterpriseList;
 	}
-
 
 	public Component getComponent() {
 		return component;
@@ -960,122 +817,78 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.address = address;
 	}
 
-
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	
-	
-	//---------------------------------//
-	public Integer [] makeDow(WorkingDays wd){
-			int [] temp = {wd.getSun(), wd.getMon(), wd.getTue(), wd.getWed(), wd.getThu(),wd.getFri(), wd.getSat()};
-			List<Integer> it = new ArrayList<Integer>();
-			boolean hasVacDay = false;
-			int x = 0;
-			for(int i = 0 ; i < temp.length ; i++){
-				if(temp[i] == 1){
-					hasVacDay = true;
-				}else{
-					it.add(x);
-				}
-				x++;
-			}
-		Object[] temptt = it.toArray();
-		Integer [] tt = Arrays.copyOf(temptt, temptt.length, Integer[].class);
-			System.err.println(Arrays.toString(tt)+2);
-			return tt;
-	}
-	
-	public String emptyAction(){
-		return SUCCESS;
-	}
-
 
 	public List<Service> getServiceList() {
 		return serviceList;
 	}
 
-
 	public void setServiceList(List<Service> serviceList) {
 		this.serviceList = serviceList;
 	}
-
 
 	public Integer getRsvNum() {
 		return rsvNum;
 	}
 
-
 	public void setRsvNum(Integer rsvNum) {
 		this.rsvNum = rsvNum;
 	}
-
 
 	public Member getMember() {
 		return member;
 	}
 
-
 	public void setMember(Member member) {
 		this.member = member;
 	}
-
 
 	public List<String> getCategoryList() {
 		return categoryList;
 	}
 
-
 	public void setCategoryList(List<String> categoryList) {
 		this.categoryList = categoryList;
 	}
-
 
 	public String getEtpNum1() {
 		return etpNum1;
 	}
 
-
 	public void setEtpNum1(String etpNum1) {
 		this.etpNum1 = etpNum1;
 	}
-
 
 	public List<Coupon> getCouponList() {
 		return couponList;
 	}
 
-
 	public void setCouponList(List<Coupon> couponList) {
 		this.couponList = couponList;
 	}
-
 
 	public boolean isCanUseCoupon() {
 		return canUseCoupon;
 	}
 
-
 	public void setCanUseCoupon(boolean canUseCoupon) {
 		this.canUseCoupon = canUseCoupon;
 	}
-
 
 	public Coupon getCoupon() {
 		return coupon;
 	}
 
-
 	public void setCoupon(Coupon coupon) {
 		this.coupon = coupon;
 	}
 	
-	
 	public String getCategory() {
 		return category;
 	}
-
 
 	public void setCategory(String category) {
 		this.category = category;
@@ -1089,51 +902,41 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.cpnNum = cpnNum;
 	}
 
-	
 	public int getEtpTemplateType() {
 		return etpTemplateType;
 	}
-
 
 	public void setEtpTemplateType(int etpTemplateType) {
 		this.etpTemplateType = etpTemplateType;
 	}
 
-
 	public PhotoLocation getPhotoLocation() {
 		return photoLocation;
 	}
-
 
 	public void setPhotoLocation(PhotoLocation photoLocation) {
 		this.photoLocation = photoLocation;
 	}
 
-
 	public String getRegCardLocation() {
 		return regCardLocation;
 	}
 
-
 	public void setRegCardLocation(String regCardLocation) {
 		this.regCardLocation = regCardLocation;
-
 	}
 
 	public SaleRecord getSaleRecord() {
 		return saleRecord;
 	}
 
-
 	public List<SaleRecord> getSaleRecords() {
 		return saleRecords;
 	}
 
-
 	public void setSaleRecord(SaleRecord saleRecord) {
 		this.saleRecord = saleRecord;
 	}
-
 
 	public void setSaleRecords(List<SaleRecord> saleRecords) {
 		this.saleRecords = saleRecords;
@@ -1147,11 +950,9 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		this.service = service;
 	}
 
-
 	public int getSvcNum() {
 		return svcNum;
 	}
-
 
 	public void setSvcNum(int svcNum) {
 		this.svcNum = svcNum;
@@ -1316,5 +1117,20 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	public void setNtfCount(int ntfCount) {
 		this.ntfCount = ntfCount;
 	}
-	
+
+	public String getMobileTimeString() {
+		return mobileTimeString;
+	}
+
+	public Date getMobileTime() {
+		return mobileTime;
+	}
+
+	public void setMobileTimeString(String mobileTimeString) {
+		this.mobileTimeString = mobileTimeString;
+	}
+
+	public void setMobileTime(Date mobileTime) {
+		this.mobileTime = mobileTime;
+	}
 }

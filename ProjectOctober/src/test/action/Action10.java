@@ -36,22 +36,18 @@ public class Action10 extends ActionSupport implements RequestAware{
 	public String highchart10(){
 		DAO dao = new DAO();
 		Enterprise e = enterprise.selectByEtpEmail(etpEmail);
-		System.err.println(e);
 		List<Highchart10> list = dao.highchart10DAO(e);
 		
-		//System.out.println(list.toString()+"여기는?");
 		Highchart10Add vo = new Highchart10Add();
 		List<Highchart10Add> amountList = new ArrayList<Highchart10Add>();
 		
 		for(Highchart10 temp : list){
-			/*System.out.println(temp.toString());
-			System.out.println(temp.getMonthA());*/
+
 			if(temp.getMonthA().equals("1월 ")){
 				vo.setAmount0(temp.getAvgAmount());
 			}else if(temp.getMonthA().equals("2월 ")){
 				vo.setAmount1(temp.getAvgAmount());
 			}else if(temp.getMonthA().equals("3월 ")){
-				System.out.println("여기는 또왜");
 				vo.setAmount2(temp.getAvgAmount());
 			}else if(temp.getMonthA().equals("4월 ")){
 				vo.setAmount3(temp.getAvgAmount());
@@ -75,7 +71,6 @@ public class Action10 extends ActionSupport implements RequestAware{
 			
 		}
 		amountList.add(vo);
-		System.out.println(amountList.toString());
 		request.put("amountList", amountList);
 		
 		

@@ -19,7 +19,6 @@ public class Action11 extends ActionSupport implements RequestAware {
 	private String etpEmail;
 	EnterpriseDAO enterprise = new EnterpriseDAO();
 	
-	
 	public String getEtpEmail() {
 		return etpEmail;
 	}
@@ -36,7 +35,7 @@ public class Action11 extends ActionSupport implements RequestAware {
 	public String highchart11(){
 		DAO dao = new DAO();
 		Enterprise e = enterprise.selectByEtpEmail(etpEmail);
-		System.err.println(e);	
+	
 		List<Highchart11> list = dao.highchart11DAO(e);
 		List<Highchart11> listJubu = new ArrayList<Highchart11>();
 		List<Highchart11> listFree = new ArrayList<Highchart11>();
@@ -60,9 +59,7 @@ public class Action11 extends ActionSupport implements RequestAware {
 				listExpert.add(temp);
 			}
 		}
-		
-		System.out.println(listJubu.toString());
-			
+
 		request.put("listJubu",listJubu);
 		request.put("listFree",listFree);
 		request.put("listOther",listOther);

@@ -3,26 +3,16 @@ package model.vo;
 import java.io.Serializable;
 
 public class Component implements Serializable {
+    private static final long serialVersionUID = 1L;
 	private String etpNum;
-
     private String etpEmail;
-    
     private Integer componentNum;
-    
 	private String componentID;
-
     private Integer componentWidth;
-
     private Integer componentHeight;
-
     private Integer componentPosX;
-
     private Integer componentPosY;
 
-    private static final long serialVersionUID = 1L;
-
-    ///////////////////////// GET&SET ///////////////////////// 
-    
 	public String getEtpNum() {
 		return etpNum;
 	}

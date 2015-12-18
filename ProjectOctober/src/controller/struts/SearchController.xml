@@ -18,8 +18,7 @@
 		<action name="toMoodCategoryPage">
 			<result>/jsp/search/MoodCategory.jsp</result>
 		</action>
-		
-
+	
 		<action name="searchFreeKeyword" class="controller.action.SearchAction" method="takeEnterpriseList">
 			<result name="success">/jsp/EnterpriseListShowToCustomer.jsp</result>
 			<result name="error" type="redirect">toErrorPage.action</result>
@@ -31,12 +30,9 @@
 			<result name="error" type="redirect">toErrorPage.action</result>
 		</action>
 		
-		
 		<action name="categorySearch" class="controller.action.SearchAction" method="categorySearch">
 			<result name="success">/jsp/EnterpriseListShowToCustomer.jsp</result>
 			<result name="error" type="redirect">/toErrorPage.action</result>
 		</action>
-		
 	</package>
-
 </struts>
