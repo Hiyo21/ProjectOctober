@@ -218,6 +218,9 @@
 	</div>
 </s:iterator>		
 </s:if>
+<s:else>
+	<h3>등록 된 서비스가 없습니다</h3>
+</s:else>
 
 
 <div class="modal" id="svcCategoryModal" aria-hidden="true" tabindex="0" aria-labelledby="myModalLabel" role="dialog">

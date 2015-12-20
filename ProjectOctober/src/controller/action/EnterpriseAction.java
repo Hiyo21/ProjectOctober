@@ -348,10 +348,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 			enterprise.setPhotos(etpDAO.selectPhotoList(etpNum));
 		}
 		
-		if(etpDAO.selectInfoPht(etpNum)!=null){
+		if(etpDAO.selectInfoPht(etpNum)!= null){
 			enterprise.setInfoPht(etpDAO.selectInfoPht(etpNum));
 		}
-		
+			
 		if(etpDAO.selectLogoPht(etpNum)!=null){
 			enterprise.setLogoPht(etpDAO.selectLogoPht(etpNum));
 		}
@@ -374,10 +374,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 				session.put("categoryList", categoryList);
 				session.put("gunList", gunList);
 			}
-			
 			switch (type) {
 			case 1:
-				if(etpDAO.receiveComponentList(etpNum).size()==0){
+				//dynamic
+				//System.err.println("dynamic :: "+enterprise);
+				
+				if(etpDAO.receiveComponentList(enterprise.getEtpNum()).size()==0){
 					firstInsertComponent();
 				}
 				//동적 페이지

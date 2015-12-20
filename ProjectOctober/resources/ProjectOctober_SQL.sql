@@ -1128,14 +1128,19 @@ alter sequence service_seq increment by 100
 select service_seq.nextval from dual
 alter sequence service_seq increment by 1
 
-select * from service where etp_num = '9876543210' 
+select * from reservation where etp_num = '9876543210' 
 
 select * from component order by etp_num  where etp_num = '9876543210' and component_id = 'svcCP'
 update component set etp_num = '1234567890', etp_email = 'seh@test.com' where etp_num = '9090909090'
 
  
 alter table component drop column component_desc;
-delete component where etp_num = '7777777777'
+
+delete component where etp_email = 'rrr@rrr.com';
+delete service where etp_email = 'rrr@rrr.com';
+delete photo_location where etp_email = 'rrr@rrr.com' and pht_usage = 'info';
+update enterprise set etp_description = null, etp_template_type = 0, etp_theme_type = 12 where etp_email = 'rrr@rrr.com'; 
+
 
 select * from photo_location
 
