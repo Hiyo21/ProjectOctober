@@ -26,7 +26,7 @@ update enterprise set etp_description = null, etp_template_type = 0, etp_theme_t
 
 select * from photo_location
 
-select * from member where mem_email = 'ent6@naver.com'
+select * from member where mem_code = 2
 
 select * from enterprise where ETP_ADDRESS like '%'||'제주'||'%'
 

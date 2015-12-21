@@ -67,6 +67,10 @@
 			<result>/jsp/member/Login.jsp</result>
 		</action>
 		
+		<action name="loginMobile" class="controller.action.MemberAction" method="loginMobile">
+			<result type="json"/>
+		</action>
+		
 		<action name="loginProcess" class="controller.action.MemberAction" method="loginProcess">
 			<result name="enterprise" type="chain">
 				<param name="actionName">takeEtp</param>
