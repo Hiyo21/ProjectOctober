@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -24,50 +23,34 @@ public class CustomerDAO extends DAOTemplate{
 	}
 	
 	public int insertPaymentRecord(PaymentRecord paymentRecord){
-		return dataModificationTemplate(s -> {return s.getMapper(CustomerMapper.class).insertPaymentRecord(paymentRecord);});
+		return dataModificationTemplate(s -> {return fromMapper(s).insertPaymentRecord(paymentRecord);});
 	}
 	
 	public PaymentRecord retrievePaymentRecord(Integer rsvNum){
-		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecord(rsvNum);});
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrievePaymentRecord(rsvNum);});
 	}
 	
 	public int updatePaymentRecord(PaymentRecord paymentRecord){
-		return dataModificationTemplate(s -> {return s.getMapper(CustomerMapper.class).updatePaymentRecord(paymentRecord);});
+		return dataModificationTemplate(s -> {return fromMapper(s).updatePaymentRecord(paymentRecord);});
 	}
 	
 	public int deletePaymentRecord(Integer pmtNum){
-		return dataModificationTemplate(s -> {return s.getMapper(CustomerMapper.class).deletePaymentRecord(pmtNum);});
+		return dataModificationTemplate(s -> {return fromMapper(s).deletePaymentRecord(pmtNum);});
 	}
 	
 	public List<PaymentRecord> retrievePaymentRecords(){
-		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrievePaymentRecords();});
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrievePaymentRecords();});
 	}
 	
 	//이용자 회원가입 
-	public int insertCustomerInfo(Customer customer) {
-		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
-		try {
-			System.err.println(customer);
-			int result = session.getMapper(MemberMapper.class).insertCustomerInfo(customer);
-			System.out.println("DAO : "+ result);
-			if(result == 1) session.commit();
-			else session.rollback();
-			return result;
-		} finally {
-			session.close();
-		}
+	public Integer insertCustomerInfo(Customer customer){
+		return dataModificationTemplate(s -> {return s.getMapper(MemberMapper.class).insertCustomerInfo(customer);});
 	}
 	
-
-	//
 	public List<PaymentRecord> reservationHistory(String loginEmail) {
-		//return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).reservationHistory(loginEmail);});
 		SqlSession ss = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
-			List<PaymentRecord> list = new ArrayList<>();
-			list = ss.selectList("model.mapper.CustomerMapper.reservationHistory", loginEmail);
-			System.out.println(list);
-			return list;
+			return ss.selectList("model.mapper.CustomerMapper.reservationHistory", loginEmail);
 		} finally {
 			ss.close();
 		}
@@ -77,16 +60,12 @@ public class CustomerDAO extends DAOTemplate{
 	public int insertCustomerEvaluation(Review review) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
-			System.err.println(review);
 			int result = session.insert("model.mapper.CustomerMapper.insertCustomerEvaluation",review);
-			System.out.println("DAO : "+ review);
 			if(result == 1) session.commit();
 			else session.rollback();
-			System.out.println("DB들어갔다잉");
 			return result;
 		} finally {
 			session.close();
-
 		}
 	}
 
@@ -94,7 +73,6 @@ public class CustomerDAO extends DAOTemplate{
 		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrieveEnterprise(etpNum);});
 	}
 
-	
 	public int insertReservation(Reservation reservation) {
 		return dataModificationTemplate(s -> {return s.getMapper(ReservationMapper.class).insertReservation(reservation);});
 	}

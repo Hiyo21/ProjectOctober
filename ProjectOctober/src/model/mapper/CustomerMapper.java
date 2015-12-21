@@ -48,7 +48,6 @@ public interface CustomerMapper {
 	int insertCustomerEvaluation(Review record);
 
 	PaymentRecord retrievePaymentRecord(Integer rsvNum);
-  /*PaymentRecord retrievePaymentRecord(Integer pmtNum);*/
 	
 	List<PaymentRecord> reservationHistory(String cstEmail);
 

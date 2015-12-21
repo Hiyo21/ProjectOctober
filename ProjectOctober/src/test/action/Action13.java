@@ -27,10 +27,6 @@ public class Action13 extends ActionSupport implements RequestAware{
 		List<Highchart13> list3 = dao.highchart13DAO3();
 		List<Highchart13> list4 = dao.highchart13DAO4();
 		
-		
-		
-		
-		
 		return SUCCESS;
 	}
 

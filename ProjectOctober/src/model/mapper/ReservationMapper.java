@@ -22,4 +22,6 @@ public interface ReservationMapper {
 	Reservation retrieveReservation(Integer rsvNum);
 	
 	List<Reservation> couponSendList(String etpEmail);
+	
+	List<Reservation> retrieveReservationTime(String etpNum);
 }
