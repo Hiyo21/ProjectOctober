@@ -24,6 +24,22 @@
 		<association property="coupon" javaType="Coupon" resultMap="CouponResultMap"/>
     </resultMap>
     
+    <resultMap id="ReservationResultBaseMap" type="model.vo.Reservation" >
+		<id column="RSV_NUM" property="rsvNum" jdbcType="DECIMAL" />
+		<result column="SVC_NUM" property="svcNum" jdbcType="DECIMAL" />
+		<result column="CPN_NUM" property="cpnNum" jdbcType="DECIMAL" />
+		<result column="ETP_NUM" property="etpNum" jdbcType="VARCHAR" />
+		<result column="ETP_EMAIL" property="etpEmail" jdbcType="VARCHAR" />
+		<result column="CST_EMAIL" property="cstEmail" jdbcType="VARCHAR" />
+		<result column="RSV_START_DATE" property="rsvStartDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="RSV_END_DATE" property="rsvEndDate" jdbcType="DATE" typeHandler="model.mapper.typehandler.LocalDateTimeHandler" />
+		<result column="RSV_STATUS" property="rsvStatus" jdbcType="DECIMAL" />
+		<result column="RSV_GENDER" property="employeeGender" jdbcType="VARCHAR" />
+		<result column="RSV_TITLE" property="rsvTitle" jdbcType="VARCHAR" />
+		<result column="RSV_DESC" property="rsvDesc" jdbcType="VARCHAR"/>
+		<result column="RSV_COST" property="rsvCost" jdbcType="DECIMAL"/>
+    </resultMap>
+    
       <resultMap id="EnterpriseBaseResultMap" type="model.vo.Enterprise">
     <id column="ETP_NUM" jdbcType="VARCHAR" property="etpNum" />
     <id column="ETP_EMAIL" jdbcType="VARCHAR" property="etpEmail" />
@@ -203,5 +219,9 @@
 	<!-- 쿠폰 발송할 이용 고객 리스트 -->
 	<select id="couponSendList" resultMap="ReservationResultMap" parameterType="String">
   		select rownum, cst_email from (select cst_email from reservation where etp_email = #{etpEmail} group by cst_email) list
+	</select>
+	
+	<select id="retrieveReservationTime" parameterType="string" resultMap="ReservationResultBaseMap">
+		select * from reservation where etp_num = #{value}
 	</select>
 </mapper>

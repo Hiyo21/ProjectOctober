@@ -36,7 +36,6 @@ public class Action12 extends ActionSupport implements RequestAware{
 	public String highchart12(){
 		DAO dao = new DAO();
 		Enterprise e = enterprise.selectByEtpEmail(etpEmail);
-		System.err.println(e);
 		List<Highchart12> list = dao.highchart12DAO(e);
 		
 		List<Highchart12> service1 = new ArrayList<Highchart12>();
@@ -71,8 +70,6 @@ public class Action12 extends ActionSupport implements RequestAware{
 				service9.add(temp);
 			}			
 		}
-		
-		
 			
 		request.put("service1",service1);
 		request.put("service2",service2);

@@ -19,7 +19,6 @@ public class Action1 extends ActionSupport implements RequestAware{
 	private String etpEmail;
 	EnterpriseDAO enterprise = new EnterpriseDAO();
 	
-	
 	public String getEtpEmail() {
 		return etpEmail;
 	}
@@ -33,27 +32,21 @@ public class Action1 extends ActionSupport implements RequestAware{
 		this.request = request;
 	}
 	
-	
 	public String highchart1(){
 		DAO dao = new DAO();
 		Enterprise e = enterprise.selectByEtpEmail(etpEmail);
-		System.err.println(e);
 		List<Highchart1> list = dao.highchart1DAO(e);
 		
 		Highchart1Add av1 =  new Highchart1Add();
 		Highchart1Add av2 =  new Highchart1Add();
 		Highchart1Add av3 =  new Highchart1Add();
 		Highchart1Add av4 =  new Highchart1Add();
-	
-	
 		
 		int a = 0;
 		int b = 0;
 		int c = 0;
 		int d = 0;
 		for(Highchart1 temp : list){
-			
-			System.out.println(temp.getRsvGender()+"가져오냐");
 			if(temp.getRsvGender().equals("M")){
 				if(temp.getcGender().equals("M")){ 
 					
@@ -72,7 +65,6 @@ public class Action1 extends ActionSupport implements RequestAware{
 						a += temp.getCountGender();
 					}
 				}else if(temp.getcGender().equals("F")){
-					// ���� ����
 					if(temp.getAge()==1){
 						av2.setFirst(temp.getCountGender());
 					}else if(temp.getAge()==2){
@@ -86,10 +78,7 @@ public class Action1 extends ActionSupport implements RequestAware{
 					}
 				}
 			}else{
-			// ����
 				if(temp.getcGender().equals("M")){
-					// ���� ����
-					// ���� ����
 					if(temp.getAge()==1){
 						av3.setFirst(temp.getCountGender());
 					}else if(temp.getAge()==2){
@@ -102,7 +91,6 @@ public class Action1 extends ActionSupport implements RequestAware{
 						c += temp.getCountGender();
 					}
 				}else if(temp.getcGender().equals("F")){
-					// ���� ����
 					if(temp.getAge()==1){
 						av4.setFirst(temp.getCountGender());
 					}else if(temp.getAge()==2){
@@ -138,9 +126,7 @@ public class Action1 extends ActionSupport implements RequestAware{
 		request.put("resultList2", resultList2);
 		request.put("resultList3", resultList3);
 		request.put("resultList4", resultList4);
-		
-		
-		System.out.println(resultList1.toString());
+
 		return SUCCESS;
 	}
 }

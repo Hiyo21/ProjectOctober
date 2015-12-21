@@ -139,9 +139,7 @@
 			<result type="json"/>
 		</action>
 		
-		
 		<!--     사업자 게시판 Action     -->
-	
 		<action name="takeEtp" class="controller.action.EnterpriseAction" method="takeEtp">
 			<result name="template1">/jsp/component/DynamicTemplate_Read.jsp</result>
 			<result name="template2">/jsp/component/StaticTemplate_tabs.jsp</result>
@@ -192,7 +190,6 @@
 				<param name="namespace">/enterprise</param>
 			</result>
 		</action>
-		
 				
 		<!--     Component Action     -->
 		<action name="cleanComponent" class="controller.action.EnterpriseAction" method="cleanComponent">
@@ -222,7 +219,6 @@
 			<result name="static2">/jsp/component/StaticTemplate_allInOne.jsp</result><!-- static_allInOne -->
 		</action>
 
-		
 		<!-- 지도 -->
 		<action name="showMap" class="controller.action.EnterpriseAction" method="showMap">
 			<result name="success">
@@ -246,7 +242,6 @@
 		<action name="toEnterpriseMyPage" class="controller.action.EnterpriseAction" method="inMyPage">
 			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
 		</action>
-		
 		
 		<!-- 사업자의 이용자 예약 내역 -->
 		<action name="toEptReservationHistoryPage" class="controller.action.EnterpriseAction" method="reservationHistory">
@@ -308,6 +303,10 @@
 		
 		<action name="deleteCoupon" class="controller.action.EnterpriseAction" method="deleteCoupon">
 			<result>/jsp/enterprise/EnterpriseMyPage.jsp</result>
+		</action>
+		
+		<action name="retrieveReservationTime" class="controller.action.EnterpriseAction" method="retrieveReservationTime">
+			<result type="json"/>
 		</action>
 	</package>
 </struts>

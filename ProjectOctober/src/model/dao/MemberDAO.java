@@ -16,9 +16,7 @@ public class MemberDAO extends DAOTemplate {
 	public int insertMemberInfo2(Member member) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
-			System.err.println(member);
 			int result = session.getMapper(MemberMapper.class).insertMemberInfo(member);
-			System.out.println("DAO : " + result);
 			if(result == 1) session.commit();
 			else session.rollback();
 			return result;
@@ -63,9 +61,7 @@ public class MemberDAO extends DAOTemplate {
 	public List<Zipcode> searchZipcode(String searchText) {
 		SqlSession session = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
-			System.out.println(searchText);
 			List<Zipcode> list = session.getMapper(MemberMapper.class).searchZipcode(searchText);
-			System.out.println("DAO"+ list);
 			return list;
 		} finally {
 			session.close();
@@ -83,10 +79,6 @@ public class MemberDAO extends DAOTemplate {
 	
 	public Member retrieveCustomerInfo(String cstEmail){
 		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveCustomerInfo(cstEmail);});
-	}
-
-	public MemberMapper fromMapper(SqlSession s){
-		return s.getMapper(MemberMapper.class);
 	}
 
 	public Integer insertMemberInfo(Member member) {
@@ -132,5 +124,9 @@ public class MemberDAO extends DAOTemplate {
 
 	public int finalizeRegistration(Member tempMember) {
 		return dataModificationTemplate(s -> {return fromMapper(s).finalizeRegistration(tempMember);});
+	}
+	
+	public MemberMapper fromMapper(SqlSession s){
+		return s.getMapper(MemberMapper.class);
 	}
 }

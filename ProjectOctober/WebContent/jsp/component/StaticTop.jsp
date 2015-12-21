@@ -79,7 +79,7 @@ function uploadLogoOpen() {
 		  	</div>
 		</div>
 		<!-- 특징 -->	
-		<div class="col-md-3" id="spcialSpan">
+		<div class="col-md-3" id="spcialSpan" align="left">
 			<script type="text/javascript">
 				$(function(){
 					var item = '<s:property value="enterprise.etpSpecialize"/>'

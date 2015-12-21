@@ -798,5 +798,4 @@
 	<update id="readEnterpriseNotification" parameterType="int">
 		update notification set ntf_read = 1 where ntf_num= #{value}
 	</update>
-
 </mapper>

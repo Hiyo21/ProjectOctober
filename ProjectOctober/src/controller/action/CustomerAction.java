@@ -14,7 +14,6 @@ import model.common.DAOFactory;
 import model.common.VOFactory;
 import model.dao.CustomerDAO;
 import model.dao.EnterpriseDAO;
-import model.dao.SearchDAO;
 import model.vo.Customer;
 import model.vo.Enterprise;
 import model.vo.Member;
@@ -24,78 +23,64 @@ import model.vo.Reservation;
 import model.vo.Review;
 
 public class CustomerAction extends ActionSupport implements SessionAware{
-	private Customer customer;
-	private List<Customer> customerList;
-	private List<Reservation> reservationList;
-	private String etpEmail;
-	private String cstEmail;
+	private static final long serialVersionUID = 1L;
 	private CustomerDAO cstDAO;
-	private SearchDAO searchDAO;
-	private Map<String, Object> session;
+	private Customer customer;
 	private Member member;
 	private PaymentRecord paymentRecord;
-	private List<PaymentRecord> paymentRecords;
-	private Integer pmtNum;
-	private String etpNum;
 	private Review review;
 	private Enterprise enterprise;
 	private Reservation reservation;
 	private Notification notification;
+	
+	private List<PaymentRecord> paymentRecords;
 	private List<Notification> notificationList;
+	private List<Customer> customerList;
+	private List<Reservation> reservationList;
+	private Map<String, Object> session;
+	
+	private String etpEmail;
+	private String cstEmail;
+	private String etpNum;
+	private String id;
+	private Integer pmtNum;
 	private Integer ntfNum;
 	private Integer ntfCount;
-	
-	private String id;
-	
+
 	public CustomerAction() {
 		cstDAO = DAOFactory.createCustomerDAO();
 	}
 	
 	public String insertPaymentRecord() throws Exception{
-		System.out.println(paymentRecord);
-		System.err.println("나오냐?" + paymentRecord);
 		paymentRecord.setPmtTime(LocalDateTime.now());
 		int result = cstDAO.insertPaymentRecord(paymentRecord);
-		if(result != 0){
-			paymentRecord = cstDAO.retrievePaymentRecord(paymentRecord.getRsvNum());
-		}else{
-			return ERROR;
-		}
+		if(result != 0) paymentRecord = cstDAO.retrievePaymentRecord(paymentRecord.getRsvNum());
+		else return ERROR;
 		return SUCCESS;
 	}
 	
 	public String updatePaymentRecord() throws Exception{
 		int result = cstDAO.updatePaymentRecord(paymentRecord);
-		if(result != 0){
-			paymentRecord = cstDAO.retrievePaymentRecord(paymentRecord.getPmtNum());
-		}else{
-			return ERROR;
-		}
+		if(result != 0) paymentRecord = cstDAO.retrievePaymentRecord(paymentRecord.getPmtNum());
+		else return ERROR;	
 		return SUCCESS;
 	}
 	
 	public String deletePaymentRecord() throws Exception{
 		int result = cstDAO.deletePaymentRecord(pmtNum);
-		if(result != 0){
-			return SUCCESS;
-		}else{
-			return ERROR;
-		}
+		if(result != 0) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String retrievePaymentRecords() throws Exception{
 		paymentRecords = cstDAO.retrievePaymentRecords();
 		return SUCCESS;
-	}	
+	}
 	
 	//이용자 평가
 	public String customerEvaluation() throws Exception{
-		System.err.println(review);
-		
-		System.err.println(review.getEtpNum());
-		String x = String.valueOf(ActionContext.getContext().getSession().get("loginId"));
-		System.err.println(x);
-		review.setCstEmail(x);		
+		String tempId = String.valueOf(ActionContext.getContext().getSession().get("loginId"));
+		review.setCstEmail(tempId);		
 		cstDAO.insertCustomerEvaluation(review);
 		etpNum = review.getEtpNum();
 		return SUCCESS;
@@ -105,46 +90,29 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	public String reservationHistory() throws Exception {
 		String loginId = (String)session.get("loginId");
 		paymentRecords = cstDAO.reservationHistory(loginId);
-		System.out.println("size!!"+paymentRecords.size());
-		if (paymentRecords != null) {
-			return SUCCESS;
-		}
-		else {
-			return ERROR;
-		}
+		if (paymentRecords != null) return SUCCESS;
+		else return ERROR;
 	}
 	
 	public String insertReservationCustomer() throws Exception{
-		System.err.println(etpNum);
-		System.err.println("널값 확인용 :" + reservation);
 		if(reservation != null){
-			System.err.println("reservation 시작 스트링: " + reservation.getStart());
-			System.err.println("reservation 끝 스트링: " + reservation.getEnd());
-			
 			reservation.setRsvStartDate(LocalDateTime.parse(reservation.getStart().substring(0,19)));
 			reservation.setRsvEndDate(LocalDateTime.parse(reservation.getEnd().substring(0,19)));
 			Enterprise tempEtp = DAOFactory.createEnterpriseDAO().selectByEtpNum(etpNum);
-			System.err.println("이거 왜 씹힘?" + tempEtp);
-			System.err.println("tempEtp에서:" + tempEtp.getEtpNum());
-			System.err.println("그냥 가지고 온 거:" + etpNum);
 			reservation.setEtpNum(etpNum);
 			reservation.setEtpEmail(tempEtp.getEtpEmail());
-			
 		}
-		System.err.println(reservation);
 		int result = cstDAO.insertReservation(reservation);
 		if(result != 0) return SUCCESS;
 		else return ERROR;
 	}
 	
 	public String retrieveReservations() throws Exception{
-		System.err.println(etpNum);
 		reservationList = cstDAO.retrieveReservations(etpNum);
 		if (reservationList != null) {
 			for(int i = 0 ; i < reservationList.size() ; i++){
 				reservationList.get(i).setStart(reservationList.get(i).getRsvStartDate().toString());
 				reservationList.get(i).setEnd(reservationList.get(i).getRsvEndDate().toString());
-				
 			}
 			return SUCCESS;
 		}
@@ -172,7 +140,6 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String updatePeriodCustomerNotification() throws Exception{
-		System.err.println(notification);
 		EnterpriseDAO etpDAO = DAOFactory.createEnterpriseDAO();
 		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
 		reservation = etpDAO.retrieveReservation(notification.getRsvNum());
@@ -189,7 +156,6 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String deleteCustomerNotification() throws Exception{
-		System.err.println(notification);
 		enterprise = DAOFactory.createEnterpriseDAO().selectByEtpNum(notification.getEtpNum());
 		if(notification != null){
 			String ntfMessageForInsert = notification.getCstEmail() + " 님이 " + enterprise.getEtpTitle() + " 업체의 예약을 삭제하셨습니다.";
@@ -203,7 +169,6 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveCustomerNotificationList() throws Exception{
-		System.err.println((String)session.get("loginId"));
 		notificationList = cstDAO.retrieveCustomerNotificationList((String)session.get("loginId"));
 		ntfCount = notificationList.size();
 		if(ntfCount != null) return SUCCESS;
@@ -211,14 +176,12 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveCustomerNotificationListAll() throws Exception{
-		System.err.println((String)session.get("loginId"));
 		notificationList = cstDAO.retrieveCustomerNotificationListAll((String)session.get("loginId"));
 		if(notificationList != null) return SUCCESS;
 		else return ERROR;
 	}
 	
 	public String readCustomerNotification() throws Exception{
-		System.err.println(ntfNum);
 		if(ntfNum != 0){
 			int result = cstDAO.readCustomerNotification(ntfNum);
 			if(result != 0) return SUCCESS;
@@ -381,6 +344,4 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	public void setNtfCount(Integer ntfCount) {
 		this.ntfCount = ntfCount;
 	}	
-	
-	
 }

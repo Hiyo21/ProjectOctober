@@ -29,27 +29,22 @@ public class FileUploadAction extends ActionSupport implements SessionAware {
 	private boolean uploaded;
 	private EnterpriseDAO etpDAO;
 	private String locAddress;
-	private PhotoLocation loc;
-	File saveFile;
-	
+	private PhotoLocation loc;	
 	private File imageToUpload;
 	private String imageToUploadContentType;		
 	private String imageToUploadFileName;
 	
 	private Map<String, Object> session;
+	File saveFile;
 	
 	public FileUploadAction() {
 		etpDAO = DAOFactory.createEnterpriseDAO();
 	}
 	
 	public String uploadRegCard() throws Exception{
-		System.err.println(etpNum);
-		System.err.println(etpEmail);
 		String uploadPath = getText("file.uploadRegCardPath");
-		System.err.println(ServletActionContext.getServletContext().getRealPath("/") + uploadPath);
 		File dir = new File(uploadPath);
 		if (!dir.isDirectory()) dir.mkdirs();
-		
 		if(fileToUpload != null && fileToUpload.exists()){
 			locAddress = uploadPath + "/" + etpNum + "_" + fileToUploadFileName;
 			if(etpNum != null) saveFile = new File(ServletActionContext.getServletContext().getRealPath("/") + locAddress);
@@ -70,10 +65,7 @@ public class FileUploadAction extends ActionSupport implements SessionAware {
 	public String uploadImage() throws Exception{
 		etpEmail = (String)session.get("loginId");
 		etpNum = (String)session.get("loginEtpNum");
-		System.err.println(etpNum);
-		System.err.println(etpEmail);
 		String uploadPath = getText("file.uploadGalleryPath");
-		System.err.println(ServletActionContext.getServletContext().getRealPath("/") + uploadPath);
 		File dir = new File(uploadPath);
 		if (!dir.isDirectory()) dir.mkdirs();
 		
@@ -94,11 +86,9 @@ public class FileUploadAction extends ActionSupport implements SessionAware {
 	}
 	
 	public String uploadLogoImage() throws Exception{
-		System.err.println("=========FileUploadAction :: uploadLogoImage()");
 		etpEmail = (String)session.get("loginId");
 		etpNum = (String)session.get("loginEtpNum");	
 		String uploadPath = getText("file.uploadLogoPath");
-		System.err.println(ServletActionContext.getServletContext().getRealPath("/") + uploadPath);
 		File dir = new File(uploadPath);
 		if (!dir.isDirectory()) dir.mkdirs();
 		
@@ -124,13 +114,9 @@ public class FileUploadAction extends ActionSupport implements SessionAware {
 	public String uploadInfoImage() throws Exception{
 		etpEmail = (String)session.get("loginId");
 		etpNum = (String)session.get("loginEtpNum");
-		System.err.println(etpNum);
-		System.err.println(etpEmail);
 		String uploadPath = getText("file.uploadInfoPath");
-		System.err.println(ServletActionContext.getServletContext().getRealPath("/") + uploadPath);
 		File dir = new File(uploadPath);
 		if (!dir.isDirectory()) dir.mkdirs();
-		
 		if(imageToUpload != null && imageToUpload.exists()){
 			locAddress = uploadPath + "/" + etpNum + "_" + imageToUploadFileName;
 			if(etpNum != null) saveFile = new File(ServletActionContext.getServletContext().getRealPath("/") + locAddress);
@@ -146,8 +132,6 @@ public class FileUploadAction extends ActionSupport implements SessionAware {
 		if(result == 0) return "input";
 		else return "success";
 	}
-	
-	
 
 	public File getFileToUpload() {
 		return fileToUpload;
@@ -239,11 +223,6 @@ public class FileUploadAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public void setSession(Map<String, Object> session) {
-		// TODO Auto-generated method stub
 		this.session = session;
 	}
-
-	
-	
-	
 }
