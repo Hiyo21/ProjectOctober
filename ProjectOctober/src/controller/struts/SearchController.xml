@@ -37,6 +37,10 @@
 			<result name="error" type="redirect">/toErrorPage.action</result>
 		</action>
 		
+		<action name="androidSearchShop" class="controller.action.SearchAction" method="takeEnterpriseList">
+			<result type="json"></result>
+		</action>
+		
 	</package>
 
 </struts>
