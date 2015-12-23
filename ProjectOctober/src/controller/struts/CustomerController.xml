@@ -7,6 +7,10 @@
 			<result type="json" />
 		</action>
 		
+		<action name="toCstReservationHistoryPage1" class="controller.action.CustomerAction" method="reservationHistoryMobile">
+			<result type="json" />
+		</action>
+		
 		<action name="insertPaymentRecord" class="controller.action.CustomerAction" method="insertPaymentRecord">
 			<result type="json" />
 		</action>

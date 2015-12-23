@@ -8,6 +8,7 @@ public class PaymentRecord implements Serializable {
     private Integer pmtNum;
 
     private Integer rsvNum;
+    private String svcTitle;
 
     private LocalDateTime pmtTime;
 
@@ -96,6 +97,14 @@ public class PaymentRecord implements Serializable {
 
 	public void setReservationList(List<Reservation> reservationList) {
 		this.reservationList = reservationList;
+	}
+
+	public String getSvcTitle() {
+		return svcTitle;
+	}
+
+	public void setSvcTitle(String svcTitle) {
+		this.svcTitle = svcTitle;
 	}
 	
 	

@@ -1392,3 +1392,5 @@ create sequence photo_location_seq;
 
 /------------Working Days----------/
 select * from working_days;
+
+select * from reservation where cst_email = 't2@t2.com' ;

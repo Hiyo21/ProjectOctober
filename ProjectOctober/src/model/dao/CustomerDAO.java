@@ -55,6 +55,15 @@ public class CustomerDAO extends DAOTemplate{
 			ss.close();
 		}
 	}
+	
+	public List<PaymentRecord> reservationHistoryMobile(String loginEmail) {
+		SqlSession ss = MyBatisSqlSessionFactory.getSessionFactory().openSession();
+		try {
+			return ss.selectList("model.mapper.CustomerMapper.reservationHistoryMobile", loginEmail);
+		} finally {
+			ss.close();
+		}
+	}
 
 	//이용자 평가 INSERT
 	public int insertCustomerEvaluation(Review review) {
