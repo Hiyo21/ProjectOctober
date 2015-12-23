@@ -7,7 +7,7 @@
 			<result type="json" />
 		</action>
 		
-		<action name="toCstReservationHistoryPage1" class="controller.action.CustomerAction" method="reservationHistoryMobile">
+		<action name="toCstReservationHistoryPage1" class="controller.action.CustomerAction" method="reservationHistory1">
 			<result type="json" />
 		</action>
 		

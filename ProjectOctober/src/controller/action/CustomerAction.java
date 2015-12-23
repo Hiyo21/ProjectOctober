@@ -95,12 +95,17 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 		else return ERROR;
 	}
 	
-	public String reservationHistoryMobile() throws Exception {
-		paymentRecords = cstDAO.reservationHistoryMobile(cstEmail);
-		
-		if (paymentRecords != null) return SUCCESS;
-		else return ERROR;
-	}
+	public String reservationHistory1() throws Exception {
+	      System.out.println(cstEmail+"잘찍히는지 확인해보기");//잘직혀
+	      paymentRecords = cstDAO.reservationHistory1(cstEmail);
+	      System.out.println("size!!"+paymentRecords.size());
+	      if (paymentRecords != null) {
+	         return SUCCESS;
+	      }
+	      else {
+	         return ERROR;
+	      }
+	   }
 	
 	public String insertReservationCustomer() throws Exception{
 		if(reservation != null){

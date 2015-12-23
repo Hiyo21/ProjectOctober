@@ -56,10 +56,10 @@ public class CustomerDAO extends DAOTemplate{
 		}
 	}
 	
-	public List<PaymentRecord> reservationHistoryMobile(String loginEmail) {
+	public List<PaymentRecord> reservationHistory1(String loginEmail) {
 		SqlSession ss = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
-			return ss.selectList("model.mapper.CustomerMapper.reservationHistoryMobile", loginEmail);
+			return ss.selectList("model.mapper.CustomerMapper.reservationHistory1", loginEmail);
 		} finally {
 			ss.close();
 		}
