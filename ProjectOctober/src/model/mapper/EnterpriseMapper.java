@@ -36,6 +36,8 @@ public interface EnterpriseMapper {
 
     Enterprise selectByEtpNum(String key);
     
+    Enterprise selectByEtpNumAlternative(String etpNum);
+    
     Enterprise selectByEtpEmail(String etpEmail);
     
     Enterprise selectByEtpNumIncludeOthers(String etpNum);

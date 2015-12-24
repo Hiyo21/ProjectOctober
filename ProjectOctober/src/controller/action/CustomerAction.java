@@ -2,6 +2,7 @@ package controller.action;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import model.vo.Notification;
 import model.vo.PaymentRecord;
 import model.vo.Reservation;
 import model.vo.Review;
+import model.vo.Service;
 
 public class CustomerAction extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 1L;
@@ -32,11 +34,14 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	private Enterprise enterprise;
 	private Reservation reservation;
 	private Notification notification;
+	private Service service;
 	
 	private List<PaymentRecord> paymentRecords;
 	private List<Notification> notificationList;
 	private List<Customer> customerList;
 	private List<Reservation> reservationList;
+	private List<Enterprise> enterpriseList;
+	private List<Service> serviceList;
 	private Map<String, Object> session;
 	
 	private String etpEmail;
@@ -114,15 +119,9 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String reservationHistory1() throws Exception {
-	      System.out.println(cstEmail+"잘찍히는지 확인해보기");//잘직혀
-	      paymentRecords = cstDAO.reservationHistory1(cstEmail);
-	      System.out.println("size!!"+paymentRecords.size());
-	      if (paymentRecords != null) {
-	         return SUCCESS;
-	      }
-	      else {
-	         return ERROR;
-	      }
+	      reservationList = cstDAO.reservationHistory1(cstEmail); 
+	      if (reservationList != null) return SUCCESS;
+	      else return ERROR;
 	   }
 	
 	public String insertReservationCustomer() throws Exception{
@@ -390,5 +389,29 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 
 	public void setRsvNum(Integer rsvNum) {
 		this.rsvNum = rsvNum;
+	}
+
+	public List<Enterprise> getEnterpriseList() {
+		return enterpriseList;
+	}
+
+	public void setEnterpriseList(List<Enterprise> enterpriseList) {
+		this.enterpriseList = enterpriseList;
+	}
+
+	public List<Service> getServiceList() {
+		return serviceList;
+	}
+
+	public void setServiceList(List<Service> serviceList) {
+		this.serviceList = serviceList;
+	}
+
+	public Service getService() {
+		return service;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
 	}	
 }

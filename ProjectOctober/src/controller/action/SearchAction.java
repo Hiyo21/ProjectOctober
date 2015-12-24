@@ -7,7 +7,6 @@ import java.util.Map;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.common.DAOFactory;
-import model.dao.CustomerDAO;
 import model.dao.EnterpriseDAO;
 import model.dao.SearchDAO;
 import model.vo.Enterprise;

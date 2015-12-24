@@ -205,6 +205,34 @@
 
 		<result column="MEM_JOINED_DATE" jdbcType="DATE" property="memJoinedDate" typeHandler="model.mapper.typehandler.LocalDateHandler" />
 	</resultMap>
+	
+	<resultMap id="EnterpriseBaseResultMapAlternative" type="model.vo.Enterprise">
+		<id column="ETP_NUM" jdbcType="VARCHAR" property="etpNum" />
+		<id column="ETP_EMAIL" jdbcType="VARCHAR" property="etpEmail" />
+		<result column="ETP_OWNER" jdbcType="VARCHAR" property="etpOwner" />
+		<result column="ETP_SUPERCLASS" jdbcType="VARCHAR" property="etpSuperclass" />
+		<result column="ETP_ADDRESS" jdbcType="VARCHAR" property="etpAddress" />
+		<result column="ETP_ZIPCODE" jdbcType="VARCHAR" property="etpZipcode" />
+		<result column="ETP_TITLE" jdbcType="VARCHAR" property="etpTitle" />
+		<result column="ETP_START_HOUR" jdbcType="DATE" property="etpStartHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+		<result column="ETP_END_HOUR" jdbcType="DATE" property="etpEndHour" typeHandler="model.mapper.typehandler.LocalTimeHandler" />
+		<result column="ETP_PHONE" jdbcType="VARCHAR" property="etpPhone" />
+		<result column="ETP_MALE_STAFF" jdbcType="DECIMAL" property="etpMaleStaff" />
+		<result column="ETP_FEMALE_STAFF" jdbcType="DECIMAL" property="etpFemaleStaff" />
+		<result column="ETP_CAPACITY" jdbcType="DECIMAL" property="etpCapacity" />
+		<result column="ETP_RSV_DEADLINE" jdbcType="DECIMAL" property="etpRsvDeadline" />
+		<result column="ETP_SELF_NOTIFICATION" jdbcType="DECIMAL" property="etpSelfNotification" />
+		<result column="ETP_CST_NOTIFICATION" jdbcType="DECIMAL" property="etpCstNotification" />
+		<result column="ETP_TEMPLATE_TYPE" jdbcType="DECIMAL" property="etpTemplateType" />
+		<result column="ETP_THEME_TYPE" jdbcType="DECIMAL" property="etpThemeType" />
+		<result column="ETP_MAP_ADDRESS" jdbcType="VARCHAR" property="etpMapAddress" />
+		<result column="ETP_DIRECTION" jdbcType="VARCHAR" property="etpDirection" />
+		<result column="ETP_SVC_OFFERED" jdbcType="VARCHAR" property="etpSvcOffered" />
+		<result column="ETP_SUBCLASS" jdbcType="VARCHAR" property="etpSubclass" />
+		<result column="ETP_SPECIALIZE" jdbcType="VARCHAR" property="etpSpecialize" />
+		<result column="ETP_DESCRIPTION" jdbcType="VARCHAR" property="etpDescription" />
+		<result column="ETP_STATUS" jdbcType="DECIMAL" property="etpStatus" />
+	</resultMap>
 
 	<sql id="Base_Column_List">
 		ETP_NUM, ETP_EMAIL, ETP_OWNER, ETP_SUPERCLASS, ETP_ADDRESS, ETP_ZIPCODE,
@@ -221,8 +249,12 @@
 	<select id="selectByEtpNum" parameterType="String" resultMap="EnterpriseResultMap">
 		select * from ENTERPRISE where ETP_NUM = #{etpNum}
 	</select>
-	<select id="selectByEtpEmail" parameterType="String"
-		resultMap="EnterpriseResultMap">
+	
+	<select id="selectByEtpNumAlternative" parameterType="String" resultMap="EnterpriseBaseResultMapAlternative">
+		select * from ENTERPRISE where ETP_NUM = #{value}
+	</select>
+	
+	<select id="selectByEtpEmail" parameterType="String" resultMap="EnterpriseResultMap">
 		select * from ENTERPRISE where ETP_EMAIL = #{etpEmail}
 	</select>
 

@@ -1,6 +1,5 @@
 package controller.action;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +19,6 @@ import model.common.VOFactory;
 import model.dao.EnterpriseDAO;
 import model.vo.Component;
 import model.vo.Coupon;
-import model.vo.Customer;
 import model.vo.Enterprise;
 import model.vo.Member;
 import model.vo.MiscReservationDetail;
@@ -756,15 +754,10 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		hour = Integer.valueOf(datetimeInfo[3]);
 		minute = Integer.valueOf(datetimeInfo[4]);
 		
-		System.out.printf("year: %d month: %d dayOfMonth: %d hour: %d minute: %d", year, month, dayOfMonth, hour, minute);
-		System.out.println();
-		
 		Long serviceHour = Long.valueOf(serviceTimeString.split(":")[0]);
 		Long serviceMinuteTemp = Long.valueOf(serviceTimeString.split(":")[1]);
 		
 		LocalDateTime inputDateTime = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
-		
-		System.out.println(inputDateTime.toString());
 		
 		LocalDateTime inputDateTimePlusService = LocalDateTime.from(inputDateTime);
 		inputDateTimePlusService.plusMinutes(serviceMinuteTemp);
@@ -799,7 +792,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	public String insertReservationMobile() throws Exception{
 		Reservation mobileReservation = new Reservation();
-		mobileReservation.setCstEmail("t2@t2.com");
+		mobileReservation.setCstEmail(cstEmail);
 		mobileReservation.setEtpNum(service.getEtpNum());
 		mobileReservation.setEtpEmail(service.getEtpEmail());
 		mobileReservation.setSvcNum(service.getSvcNum());
@@ -818,14 +811,14 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	
 	public String retrieveReservationNumber() throws Exception{
 		Reservation mobileReservation = new Reservation();
-		
+		System.out.println(cstEmail);
 		mobileReservation.setCstEmail(cstEmail);
 		mobileReservation.setRsvStartDate(LocalDateTime.parse(miscReservationDetail.getRsvStartDate()));
 		mobileReservation.setSvcNum(service.getSvcNum());
 		mobileReservation.setRsvTitle(miscReservationDetail.getRsvTitle());
 		Reservation temp = etpDAO.retrieveReservationNumber(mobileReservation);
+		if(temp == null)
 		rsvNum = temp.getRsvNum();
-		System.out.println(rsvNum);
 		
 		return SUCCESS;
 	}

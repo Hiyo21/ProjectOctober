@@ -28,6 +28,10 @@ public class EnterpriseDAO extends DAOTemplate{
 		return dataRetrievalTemplate(s -> {return fromMapper(s).selectByEtpNum(etpNum);});
 	}
 	
+	public Enterprise selectByEtpNumAlternative(String etpNum){
+		return dataRetrievalTemplate(s -> {return fromMapper(s).selectByEtpNumAlternative(etpNum);});
+	}
+	
 	public Enterprise selectByEtpEmail(String etpEmail){
 		return dataRetrievalTemplate(s -> {return fromMapper(s).selectByEtpEmail(etpEmail);});
 	}

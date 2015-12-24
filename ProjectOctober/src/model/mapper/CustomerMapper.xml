@@ -384,10 +384,7 @@
 	</select>
 	
 	<select id="reservationHistory1" parameterType="String" resultMap="ReservationResultMap">
-       select RSV_NUM, rsv_TITLE, svc_NUM, rsv_Start_date
-      from  RESERVATION
-      where cst_email=#{cstEmail}
-      
+       select * from RESERVATION where cst_email=#{value} order by rsv_start_date desc
    </select>
 
 
@@ -460,4 +457,8 @@
 	<update id="readCustomerNotification" parameterType="int">
 		update notification set ntf_read = 1 where ntf_num= #{value}
 	</update>
+	
+	<select id="retrieveService" parameterType="int" resultMap="ServiceResultMap">
+		select * from service where svc_num= #{value}
+	</select>
 </mapper>

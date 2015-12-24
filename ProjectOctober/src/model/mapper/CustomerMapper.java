@@ -8,6 +8,7 @@ import model.vo.Notification;
 import model.vo.PaymentRecord;
 import model.vo.Reservation;
 import model.vo.Review;
+import model.vo.Service;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
@@ -50,6 +51,8 @@ public interface CustomerMapper {
 	PaymentRecord retrievePaymentRecord(Integer rsvNum);
 	
 	List<PaymentRecord> reservationHistory(String cstEmail);
+	
+	List<Reservation> reservationHistory1(String cstEmail);
 
 	Enterprise retrieveEnterprise(String etpNum);
 
@@ -66,5 +69,6 @@ public interface CustomerMapper {
 	List<Notification> retrieveCustomerNotificationListAll(String cstEmail);
 
 	Integer readCustomerNotification(Integer ntfNum);
-
+	
+	Service retrieveService(Integer svcNum);
 }

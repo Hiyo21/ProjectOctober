@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import model.common.MyBatisSqlSessionFactory;
 import model.mapper.CustomerMapper;
+import model.mapper.EnterpriseMapper;
 import model.mapper.MemberMapper;
 import model.mapper.ReservationMapper;
 import model.vo.Customer;
@@ -15,6 +16,7 @@ import model.vo.Notification;
 import model.vo.PaymentRecord;
 import model.vo.Reservation;
 import model.vo.Review;
+import model.vo.Service;
 
 public class CustomerDAO extends DAOTemplate{
 	
@@ -56,7 +58,8 @@ public class CustomerDAO extends DAOTemplate{
 		}
 	}
 	
-	public List<PaymentRecord> reservationHistory1(String loginEmail) {
+	public List<Reservation> reservationHistory1(String loginEmail) {
+		System.err.println(loginEmail);
 		SqlSession ss = MyBatisSqlSessionFactory.getSessionFactory().openSession();
 		try {
 			return ss.selectList("model.mapper.CustomerMapper.reservationHistory1", loginEmail);
@@ -79,7 +82,7 @@ public class CustomerDAO extends DAOTemplate{
 	}
 
 	public Enterprise retrieveEnterprise(String etpNum) {
-		return dataRetrievalTemplate(s -> {return s.getMapper(CustomerMapper.class).retrieveEnterprise(etpNum);});
+		return dataRetrievalTemplate(s -> {return s.getMapper(EnterpriseMapper.class).selectByEtpNumAlternative(etpNum);});
 	}
 
 	public int insertReservation(Reservation reservation) {
@@ -116,5 +119,9 @@ public class CustomerDAO extends DAOTemplate{
 	
 	public CustomerMapper fromMapper(SqlSession s){
 		return s.getMapper(CustomerMapper.class);
+	}
+
+	public Service retrieveService(Integer svcNum) {
+		return dataRetrievalTemplate(s -> {return fromMapper(s).retrieveService(svcNum);});
 	}
 }
