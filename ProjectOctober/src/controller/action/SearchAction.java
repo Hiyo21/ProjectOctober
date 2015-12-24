@@ -45,6 +45,7 @@ public class SearchAction extends ActionSupport {
 		map.put("searchKeyword", searchKeyword);
 		
 		enterpriseList=searchDAO.categorySearch(map);
+		
 		EnterpriseDAO etpDAO = new EnterpriseDAO();
 		for(Enterprise e : enterpriseList){
 			if(etpDAO.selectInfoPht(e.getEtpNum())!= null){

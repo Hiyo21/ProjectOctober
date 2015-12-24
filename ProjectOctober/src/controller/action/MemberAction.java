@@ -3,6 +3,7 @@ package controller.action;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,8 @@ public class MemberAction extends ActionSupport implements SessionAware{
 	private String etpPhone;
 	private String etpPhone1;
 	private String etpPhone2;
+	
+	ArrayList<String> loginArray;
 	
 	public MemberAction() {
 		memDAO = DAOFactory.createMemberDAO();
@@ -184,6 +187,28 @@ public class MemberAction extends ActionSupport implements SessionAware{
 				return LOGIN;
 			}
 		}
+	}
+	
+	public String loginMobile() throws Exception{
+		Map<String, String> loginInfo = new HashMap<>();
+		loginInfo.put("loginEmail", email);
+		loginInfo.put("loginPassword", password);
+		
+		System.out.println(email + password);
+		member = memDAO.loginResult(loginInfo);
+		System.out.println(member);
+		
+		if(member == null) {
+			session.put("invalid", "invalid");
+			return ERROR;
+		}
+		
+		loginArray = new ArrayList<>();
+		loginArray.add(member.getMemEmail());
+		loginArray.add(member.getMemPassword());
+		loginArray.add(member.getMemCode().toString());
+		
+		return SUCCESS;
 	}
 	
 	public String logoutProcess() throws Exception{
@@ -460,5 +485,13 @@ public class MemberAction extends ActionSupport implements SessionAware{
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public ArrayList<String> getLoginArray() {
+		return loginArray;
+	}
+
+	public void setLoginArray(ArrayList<String> loginArray) {
+		this.loginArray = loginArray;
 	}
 }

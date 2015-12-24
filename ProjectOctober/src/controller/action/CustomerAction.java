@@ -108,9 +108,22 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	public String reservationHistory() throws Exception {
 		String loginId = (String)session.get("loginId");
 		paymentRecords = cstDAO.reservationHistory(loginId);
+		System.out.println(paymentRecords);
 		if (paymentRecords != null) return SUCCESS;
 		else return ERROR;
 	}
+	
+	public String reservationHistory1() throws Exception {
+	      System.out.println(cstEmail+"잘찍히는지 확인해보기");//잘직혀
+	      paymentRecords = cstDAO.reservationHistory1(cstEmail);
+	      System.out.println("size!!"+paymentRecords.size());
+	      if (paymentRecords != null) {
+	         return SUCCESS;
+	      }
+	      else {
+	         return ERROR;
+	      }
+	   }
 	
 	public String insertReservationCustomer() throws Exception{
 		if(reservation != null){

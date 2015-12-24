@@ -1144,7 +1144,7 @@ update enterprise set etp_description = null, etp_template_type = 0, etp_theme_t
 
 select * from photo_location
 
-select * from member where mem_email = 'ent6@naver.com'
+select * from member where mem_code = 2
 
 select * from enterprise where ETP_ADDRESS like '%'||'제주'||'%'
 
@@ -1392,3 +1392,5 @@ create sequence photo_location_seq;
 
 /------------Working Days----------/
 select * from working_days;
+
+select * from reservation where cst_email = 't2@t2.com' ;
