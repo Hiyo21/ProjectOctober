@@ -51,13 +51,6 @@ public class SearchAction extends ActionSupport {
 				e.setInfoPht(etpDAO.selectInfoPht(e.getEtpNum()));
 			}
 		}
-		
-		EnterpriseDAO etpDAO = new EnterpriseDAO();
-	      for(Enterprise e : enterpriseList){
-	         if(etpDAO.selectInfoPht(e.getEtpNum())!= null){
-	            e.setInfoPht(etpDAO.selectInfoPht(e.getEtpNum()));
-	         }
-	      }	
 		return SUCCESS;
 	}	
 	

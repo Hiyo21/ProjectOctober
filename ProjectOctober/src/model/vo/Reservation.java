@@ -19,6 +19,7 @@ public class Reservation implements Serializable {
     private LocalDateTime rsvEndDate;
     private Integer rsvStatus;
     private char employeeGender;
+    
     private String rsvTitle;
     private String rsvDesc;
     private Integer rsvCost;

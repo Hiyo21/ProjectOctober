@@ -530,8 +530,7 @@
 											paymentRecordReceived = data.paymentRecord;
 											console.log(paymentRecordReceived);
 										},error: function(request, status, error){
-											console.log("payment record insertion failed!")
-
+											console.log("payment record insertion failed!");
 										}
 									});
 									

@@ -446,4 +446,8 @@ public class EnterpriseDAO extends DAOTemplate{
 	public EnterpriseMapper fromMapper(SqlSession s){
 		return s.getMapper(EnterpriseMapper.class);
 	}
+
+	public Reservation retrieveReservationNumber(Reservation mobileReservation) {
+		return dataRetrievalTemplate(s -> {return s.getMapper(ReservationMapper.class).retrieveReservationNumber(mobileReservation);});
+	}
 }

@@ -67,5 +67,9 @@
 		<action name="readCustomerNotification" class="controller.action.CustomerAction" method="readCustomerNotification">
 			<result type="json" />
 		</action>
+		
+		<action name="insertPaymentRecordMobile" class="controller.action.CustomerAction" method="insertPaymentRecordMobile">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>

@@ -46,6 +46,9 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 	private Integer pmtNum;
 	private Integer ntfNum;
 	private Integer ntfCount;
+	
+	private Integer pmtAmount;
+	private Integer rsvNum;
 
 	public CustomerAction() {
 		cstDAO = DAOFactory.createCustomerDAO();
@@ -57,6 +60,21 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 		if(result != 0) paymentRecord = cstDAO.retrievePaymentRecord(paymentRecord.getRsvNum());
 		else return ERROR;
 		return SUCCESS;
+	}
+	
+	public String insertPaymentRecordMobile() throws Exception{
+		paymentRecord = new PaymentRecord();
+		paymentRecord.setPmtTime(LocalDateTime.now());
+		paymentRecord.setPmtAmount(pmtAmount);
+		paymentRecord.setRsvNum(rsvNum);
+		int result = cstDAO.insertPaymentRecord(paymentRecord);
+		if(result != 0){
+			paymentRecord = cstDAO.retrievePaymentRecord(paymentRecord.getRsvNum());
+			pmtNum = paymentRecord.getPmtNum();
+			return SUCCESS;
+		}else{
+			return ERROR;
+		}
 	}
 	
 	public String updatePaymentRecord() throws Exception{
@@ -343,5 +361,21 @@ public class CustomerAction extends ActionSupport implements SessionAware{
 
 	public void setNtfCount(Integer ntfCount) {
 		this.ntfCount = ntfCount;
+	}
+
+	public Integer getPmtAmount() {
+		return pmtAmount;
+	}
+
+	public Integer getRsvNum() {
+		return rsvNum;
+	}
+
+	public void setPmtAmount(Integer pmtAmount) {
+		this.pmtAmount = pmtAmount;
+	}
+
+	public void setRsvNum(Integer rsvNum) {
+		this.rsvNum = rsvNum;
 	}	
 }

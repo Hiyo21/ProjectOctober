@@ -264,6 +264,10 @@
 			<result type="json" />
 		</action>
 		
+		<action name="insertEnterpriseNotificationMobile" class="controller.action.EnterpriseAction" method="insertEnterpriseNotificationMobile">
+			<result type="json"/>
+		</action>
+		
 		<action name="updateDurationEnterpriseNotification" class="controller.action.EnterpriseAction" method="updateDurationEnterpriseNotification">
 			<result type="json" />
 		</action>
@@ -307,6 +311,18 @@
 		
 		<action name="retrieveReservationTime" class="controller.action.EnterpriseAction" method="retrieveReservationTime">
 			<result type="json"/>
+		</action>
+		
+		<action name="insertReservationMobile" class="controller.action.EnterpriseAction" method="insertReservationMobile">
+			<result type="json"/>
+		</action>
+		
+		<action name="retrieveReservationNumber" class="controller.action.EnterpriseAction" method="retrieveReservationNumber">
+			<result type="json"/>
+		</action>
+		
+		<action name="insertSaleRecordMobile" class="controller.action.EnterpriseAction" method="insertSaleRecordMobile">
+			<result type="json" />
 		</action>
 	</package>
 </struts>

@@ -2,6 +2,7 @@ package controller.action;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +20,10 @@ import model.common.VOFactory;
 import model.dao.EnterpriseDAO;
 import model.vo.Component;
 import model.vo.Coupon;
+import model.vo.Customer;
 import model.vo.Enterprise;
 import model.vo.Member;
+import model.vo.MiscReservationDetail;
 import model.vo.Notification;
 import model.vo.PhotoLocation;
 import model.vo.Reservation;
@@ -44,6 +47,7 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private Component component;
 	private Service service;	
 	private Coupon coupon;
+	private MiscReservationDetail miscReservationDetail;
 	
 	private List<Reservation> reservationList;
 	private List<Enterprise> enterpriseList;
@@ -67,8 +71,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private String regCardLocation;
 	private String infoPht;
 	private String logoPht;
+	private String cstEmail;
 	private Integer cpnNum;
 	private Integer rsvNum;
+	private Integer pmtNum;
+	private Integer saleAmount;
+	private Integer saleNum;
 
 	private int svcNum;
 	private int etpTemplateType;
@@ -78,6 +86,12 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	private boolean canUseCoupon = false;
 	private String mobileTimeString;
 	private Date mobileTime;
+	private boolean reservationExists = false;
+	private LocalTime serviceTime;
+	private String serviceTimeString;
+	private Integer year, month, dayOfMonth, hour, minute;
+	private boolean mobileDone = false;
+	private String mobileDoneString;
 	
 	
 	//------------쿠폰관련------------------//
@@ -169,6 +183,21 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		System.err.println(saleRecord);
 		int result = etpDAO.insertSaleRecord(saleRecord);
 		if(result == 1)return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String insertSaleRecordMobile() throws Exception{
+		saleRecord = new SaleRecord();
+		System.out.printf("pmtNum: %d etpEmail: %s etpNum: %s saleAmount: %d", pmtNum, etpEmail, etpNum, saleAmount);
+		saleRecord.setPmtNum(pmtNum);
+		saleRecord.setEtpEmail(etpEmail);
+		saleRecord.setEtpNum(etpNum);
+		saleRecord.setSaleAmount(saleAmount);
+		saleRecord.setSaleTime(LocalDateTime.now());
+		
+		int result = etpDAO.insertSaleRecord(saleRecord);
+		System.out.println("result for insertSaleRecordMobile:" + result);
+		if(result == 1) return SUCCESS;
 		else return ERROR;
 	}
 	
@@ -624,6 +653,23 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 		}
 	}
 	
+	public String insertEnterpriseNotificationMobile() throws Exception{
+			notification = VOFactory.createNotification();
+			enterprise = etpDAO.selectByEtpNum(etpNum);
+			System.out.println(rsvNum);
+			reservation = etpDAO.retrieveReservation(rsvNum);
+			System.out.println(reservation);
+			String ntfMessageForInsert = reservation.getCstEmail() + " 님이 예약 : " + reservation.getRsvTitle() + " (일시) " + reservation.getRsvStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd a hh:mm ")) + "을 등록하였습니다."; 
+			notification.setRsvNum(reservation.getRsvNum()).setEtpNum(reservation.getEtpNum()).setEtpEmail(reservation.getEtpEmail()).setCstEmail(reservation.getCstEmail()).setNtfRead(0).setNtfMessage(ntfMessageForInsert).setNtfTime(LocalDateTime.now());			
+			int result = etpDAO.insertEnterpriseNotification(notification);
+			if(result != 0) {
+				mobileDone = true;
+				mobileDoneString = "done";
+				return SUCCESS;
+			}
+			else return ERROR;
+	}
+	
 	public String updateDurationEnterpriseNotification() throws Exception{
 		enterprise = etpDAO.selectByEtpNum(notification.getEtpNum());
 		reservation = etpDAO.retrieveReservation(notification.getRsvNum());
@@ -701,14 +747,87 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String retrieveReservationTime() throws Exception{
-		System.out.println(mobileTimeString);
-		reservationList = etpDAO.retrieveReservationTime("1234567890");
-		System.out.println(reservationList == null);
+		//MobileTimeString, ServiceTimeString, EnterpriseNumber 제대로 받아옴: Check.
+		String[] datetimeInfo = mobileTimeString.split("/");
+		
+		year = Integer.valueOf(datetimeInfo[0]);
+		month = Integer.valueOf(datetimeInfo[1]);
+		dayOfMonth = Integer.valueOf(datetimeInfo[2]);
+		hour = Integer.valueOf(datetimeInfo[3]);
+		minute = Integer.valueOf(datetimeInfo[4]);
+		
+		System.out.printf("year: %d month: %d dayOfMonth: %d hour: %d minute: %d", year, month, dayOfMonth, hour, minute);
+		System.out.println();
+		
+		Long serviceHour = Long.valueOf(serviceTimeString.split(":")[0]);
+		Long serviceMinuteTemp = Long.valueOf(serviceTimeString.split(":")[1]);
+		
+		LocalDateTime inputDateTime = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
+		
+		System.out.println(inputDateTime.toString());
+		
+		LocalDateTime inputDateTimePlusService = LocalDateTime.from(inputDateTime);
+		inputDateTimePlusService.plusMinutes(serviceMinuteTemp);
+		inputDateTimePlusService.plusHours(serviceHour);
+		
+		if(etpNum != null && etpNum.length() == 10) reservationList = etpDAO.retrieveReservationTime(etpNum);
+		else reservationList = etpDAO.retrieveReservationTime("9999999999");
+		
+		for(int i = 0 ; i < reservationList.size() ; i++){
+			LocalDateTime rsvStartDateToCompare = reservationList.get(i).getRsvStartDate();
+			LocalDateTime rsvEndDateToCompare = reservationList.get(i).getRsvEndDate();
+			
+			
+			//TODO: 여기 로직 수정!
+			if(inputDateTime.isBefore(rsvEndDateToCompare) && inputDateTime.isAfter(rsvStartDateToCompare)){
+				reservationExists = true;
+				break;
+			}else if(inputDateTime.isEqual(rsvStartDateToCompare)){
+				reservationExists = true;
+				break;
+			}else{
+				reservationExists = false;
+			}
+		}
+		
 		if(reservationList.get(0) != null){
 			return SUCCESS;
 		}else{
 			return ERROR;
 		}
+	}
+	
+	public String insertReservationMobile() throws Exception{
+		Reservation mobileReservation = new Reservation();
+		mobileReservation.setCstEmail("t2@t2.com");
+		mobileReservation.setEtpNum(service.getEtpNum());
+		mobileReservation.setEtpEmail(service.getEtpEmail());
+		mobileReservation.setSvcNum(service.getSvcNum());
+		mobileReservation.setRsvCost(service.getSvcCost());
+		mobileReservation.setRsvStartDate(LocalDateTime.parse(miscReservationDetail.getRsvStartDate()));
+		mobileReservation.setRsvEndDate(LocalDateTime.parse(miscReservationDetail.getRsvEndDate()));
+		mobileReservation.setRsvStatus(miscReservationDetail.getRsvStatus());
+		mobileReservation.setRsvTitle(miscReservationDetail.getRsvTitle());
+		mobileReservation.setRsvDesc(miscReservationDetail.getRsvDesc());
+		mobileReservation.setEmployeeGender(miscReservationDetail.getEmployeeGender().toCharArray()[0]);
+		
+		int result = etpDAO.insertReservation(mobileReservation);
+		if(result == 1) return SUCCESS;
+		else return ERROR;
+	}
+	
+	public String retrieveReservationNumber() throws Exception{
+		Reservation mobileReservation = new Reservation();
+		
+		mobileReservation.setCstEmail(cstEmail);
+		mobileReservation.setRsvStartDate(LocalDateTime.parse(miscReservationDetail.getRsvStartDate()));
+		mobileReservation.setSvcNum(service.getSvcNum());
+		mobileReservation.setRsvTitle(miscReservationDetail.getRsvTitle());
+		Reservation temp = etpDAO.retrieveReservationNumber(mobileReservation);
+		rsvNum = temp.getRsvNum();
+		System.out.println(rsvNum);
+		
+		return SUCCESS;
 	}
 	
 	//---------------Local Methods------------------//
@@ -1134,5 +1253,85 @@ public class EnterpriseAction extends ActionSupport implements SessionAware{
 
 	public void setMobileTime(Date mobileTime) {
 		this.mobileTime = mobileTime;
+	}
+
+	public boolean isReservationExists() {
+		return reservationExists;
+	}
+
+	public void setReservationExists(boolean reservationExists) {
+		this.reservationExists = reservationExists;
+	}
+
+	public LocalTime getServiceTime() {
+		return serviceTime;
+	}
+
+	public String getServiceTimeString() {
+		return serviceTimeString;
+	}
+
+	public void setServiceTime(LocalTime serviceTime) {
+		this.serviceTime = serviceTime;
+	}
+
+	public void setServiceTimeString(String serviceTimeString) {
+		this.serviceTimeString = serviceTimeString;
+	}
+
+	public MiscReservationDetail getMiscReservationDetail() {
+		return miscReservationDetail;
+	}
+
+	public void setMiscReservationDetail(MiscReservationDetail miscReservationDetail) {
+		this.miscReservationDetail = miscReservationDetail;
+	}
+
+	public String getCstEmail() {
+		return cstEmail;
+	}
+
+	public void setCstEmail(String cstEmail) {
+		this.cstEmail = cstEmail;
+	}
+
+	public Integer getPmtNum() {
+		return pmtNum;
+	}
+
+	public void setPmtNum(Integer pmtNum) {
+		this.pmtNum = pmtNum;
+	}
+
+	public Integer getSaleAmount() {
+		return saleAmount;
+	}
+
+	public void setSaleAmount(Integer saleAmount) {
+		this.saleAmount = saleAmount;
+	}
+
+	public Integer getSaleNum() {
+		return saleNum;
+	}
+
+	public void setSaleNum(Integer saleNum) {
+		this.saleNum = saleNum;
+	}
+
+	public boolean isMobileDone() {
+		return mobileDone;
+	}
+
+	public void setMobileDone(boolean mobileDone) {
+		this.mobileDone = mobileDone;
+	}
+
+	public String getMobileDoneString() {
+		return mobileDoneString;
+	}
+
+	public void setMobileDoneString(String mobileDoneString) {
+		this.mobileDoneString = mobileDoneString;
 	}
 }

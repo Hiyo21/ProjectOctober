@@ -224,4 +224,8 @@
 	<select id="retrieveReservationTime" parameterType="string" resultMap="ReservationResultBaseMap">
 		select * from reservation where etp_num = #{value}
 	</select>
+	
+	<select id="retrieveReservationNumber" parameterType="Reservation" resultMap="ReservationResultBaseMap">
+		select * from reservation where svc_num = #{svcNum} and cst_email =#{cstEmail} and to_char(rsv_start_date, 'yyyy/MM/dd hh24') = to_char(#{rsvStartDate}, 'yyyy/MM/dd hh24') and rsv_title = #{rsvTitle}
+	</select>
 </mapper>
